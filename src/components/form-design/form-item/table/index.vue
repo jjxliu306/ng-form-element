@@ -30,13 +30,13 @@
         </el-table-column>
         <el-table-column  
           v-for="(item,index) in record.list"
-          v-if="record.options.showItem && record.options.showItem.includes(item.model)"
-          :key="index"
+           :key="index"
           :label="item.label"
           align="center">
           <template  slot-scope="scope">
             <!-- 这里就要判断类型了 -->   
-            <TableItem :record="item" :renderPreview="true" :domains="models[record.model][scope.$index]" />
+            <TableItem  v-if="record.options.showItem && record.options.showItem.includes(item.model)" 
+              :record="item" :renderPreview="true" :domains="models[record.model][scope.$index]" />
           </template>  
         </el-table-column>
 
