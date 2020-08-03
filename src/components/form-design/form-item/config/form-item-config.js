@@ -9,8 +9,8 @@ import {http_get_file_list_url,http_upload_file_url} from '../../utils'
 export const basicsList = [
   {
     type: "input", // 表单类型
-    label: "输入框", // 标题文字
-    icon: "icon-write",
+    label: "输入框", // 标题文字 
+    index: 'A',
     options: {
       type: "text",
       width: "100%", // 宽度
@@ -18,6 +18,9 @@ export const basicsList = [
       placeholder: "请输入", // 没有输入时，提示文字
       clearable: false,
       maxLength: null,
+      prepend: '', // 前缀
+      append: '', // 后缀
+      tooptip: '', // 提示
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false // 是否禁用，false不禁用，true禁用
     },
@@ -34,14 +37,15 @@ export const basicsList = [
   },
   {
     type: "textarea", // 表单类型
-    label: "文本框", // 标题文字
-    icon: "icon-edit",
+    label: "文本框", // 标题文字 
+    index: 'B',
     options: {
       width: "100%", // 宽度 
       maxLength: null,
       defaultValue: "",
       rows: 4,
       clearable: false,
+      tooptip: '', // 提示
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false,
       placeholder: "请输入"
@@ -57,14 +61,17 @@ export const basicsList = [
   },
   {
     type: "number", // 表单类型
-    label: "数字输入框", // 标题文字
-    icon: "icon-number",
+    label: "数字输入框", // 标题文字 
+    index: 'C',
     options: {
       width: "100%", // 宽度
       defaultValue: 0, // 默认值
       min: null, // 可输入最小值
       max: null, // 可输入最大值
       precision: null,
+      tooptip: '', // 提示
+      prepend: '', // 前缀
+      append: '', // 后缀
       step: 1, // 步长，点击加减按钮时候，加减多少
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false, //是否禁用
@@ -81,8 +88,8 @@ export const basicsList = [
   },
   {
     type: "select", // 表单类型
-    label: "下拉选择器", // 标题文字
-    icon: "icon-xiala",
+    label: "下拉选择器", // 标题文字 
+    index: 'D',
     options: {
       width: "100%", // 宽度
       defaultValue: undefined, // 下拉选框请使用undefined为默认值
@@ -92,16 +99,13 @@ export const basicsList = [
       hidden: false, // 是否隐藏，false显示，true隐藏
       placeholder: "请选择", // 默认提示文字
       valueKey: 'value',
-      dynamic: false,
+      tooptip: '', // 提示
+      dynamic: 0,
       options: [
         // 下拉选择项配置
         {
           value: "1",
           label: "下拉框1"
-        },
-        {
-          value: "2",
-          label: "下拉框2"
         }
       ],
       showSearch: false // 是否显示搜索框，搜索选择的项的值，而不是文字
@@ -117,13 +121,14 @@ export const basicsList = [
   },
   {
     type: "checkbox",
-    label: "多选框",
-    icon: "icon-duoxuan1",
+    label: "多选框", 
+    index: 'E',
     options: {
       disabled: false, //是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
       defaultValue: [], 
-      dynamic: false,
+      dynamic: 0,
+      tooptip: '', // 提示
       options: [
         {
           value: "1",
@@ -132,10 +137,6 @@ export const basicsList = [
         {
           value: "2",
           label: "选项2"
-        },
-        {
-          value: "3",
-          label: "选项3"
         }
       ]
     },
@@ -150,13 +151,14 @@ export const basicsList = [
   },
   {
     type: "radio", // 表单类型
-    label: "单选框", // 标题文字
-    icon: "icon-danxuan-cuxiantiao",
+    label: "单选框", // 标题文字 
+    index: 'F',
     options: {
       disabled: false, //是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
       defaultValue: "", // 默认值 
-      dynamic: false,
+      dynamic: 0,
+      tooptip: '', // 提示
       options: [
         {
           value: "1",
@@ -165,10 +167,6 @@ export const basicsList = [
         {
           value: "2",
           label: "选项2"
-        },
-        {
-          value: "3",
-          label: "选项3"
         }
       ]
     },
@@ -183,8 +181,8 @@ export const basicsList = [
   },
   {
     type: "date", // 表单类型
-    label: "日期选择框", // 标题文字
-    icon: "icon-calendar",
+    label: "日期选择框", // 标题文字 
+    index: 'G',
     options: {
       width: "100%", // 宽度
       defaultValue: "", // 默认值，字符串 12:00:00
@@ -194,6 +192,7 @@ export const basicsList = [
       hidden: false, // 是否隐藏，false显示，true隐藏
       clearable: false, // 是否显示清除按钮
       placeholder: "请选择",
+      tooptip: '', // 提示
       rangeStartPlaceholder: "开始时间",
       rangeEndPlaceholder: "结束时间",
       format: "yyyy-MM-dd" // 展示格式  （请按照这个规则写 YYYY-MM-DD HH:mm:ss，区分大小写）
@@ -209,12 +208,13 @@ export const basicsList = [
   },
   {
     type: "time", // 表单类型
-    label: "时间选择框", // 标题文字
-    icon: "icon-time",
+    label: "时间选择框", // 标题文字 
+    index: 'H',
     options: {
       width: "100%", // 宽度
       defaultValue: "", // 默认值，字符串 12:00:00
       disabled: false, // 是否禁用
+      tooptip: '', // 提示
       hidden: false, // 是否隐藏，false显示，true隐藏
       clearable: false, // 是否显示清除按钮
       placeholder: "请选择",
@@ -231,11 +231,12 @@ export const basicsList = [
   },
   {
     type: "rate", // 表单类型
-    label: "评分", // 标题文字
-    icon: "icon-pingfen_moren",
+    label: "评分", // 标题文字 
+    index: 'I',
     options: {
       defaultValue: 0,
       max: 5, // 最大值
+      tooptip: '', // 提示
       disabled: false, // 是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
       allowHalf: false // 是否允许半选
@@ -251,14 +252,15 @@ export const basicsList = [
   },
   {
     type: "slider", // 表单类型
-    label: "滑动输入条", // 标题文字
-    icon: "icon-menu",
+    label: "滑动输入条", // 标题文字 
+    index: 'J',
     options: {
       width: "100%", // 宽度
       defaultValue: 0, // 默认值， 如果range为true的时候，则需要改成数组,如：[12,15]
       disabled: false, // 是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
       min: 0, // 最小值
+      tooptip: '', // 提示
       max: 100, // 最大值
       step: 1, // 步长，取值必须大于 0，并且可被 (max - min) 整除
       showInput: false // 是否显示输入框，range为true时，请勿开启
@@ -275,12 +277,13 @@ export const basicsList = [
   },
   {
     type: "uploadFile", // 表单类型
-    label: "上传文件", // 标题文字
-    icon: "icon-upload",
+    label: "上传文件", // 标题文字 
+    index: 'K',
     options: {
       defaultValue: "[]",
       multiple: false,
       disabled: false,
+      tooptip: '', // 提示
       hidden: false, // 是否隐藏，false显示，true隐藏 
       width: "100%",
       limit: 3, 
@@ -299,14 +302,15 @@ export const basicsList = [
   },
   {
     type: "uploadImg",
-    label: "上传图片",
-    icon: "icon-image",
+    label: "上传图片", 
+    index: 'L',
     options: {
       defaultValue: "[]",
       multiple: false,
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false,
       width: "100%", 
+      tooptip: '', // 提示
       limit: 3,
       placeholder: "上传", 
       headers: {},
@@ -324,8 +328,8 @@ export const basicsList = [
   }, 
   {
     type: "cascader", // 表单类型
-    label: "级联选择器", // 标题文字
-    icon: "icon-guanlian",
+    label: "级联选择器", // 标题文字 
+    index: 'M',
     options: {
       disabled: false, //是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
@@ -334,7 +338,8 @@ export const basicsList = [
       placeholder: "请选择",
       multiple: false,
       clearable: false, // 是否显示清除按钮 
-      dynamic: true,
+      dynamic: 0,
+      tooptip: '', // 提示
       options: [
         {
           value: "1",
@@ -367,32 +372,16 @@ export const basicsList = [
       }
     ]
   },
-  {
-    type: "batch",
-    label: "动态表格",
-    icon: "icon-biaoge",
-    list: [],
-    options: {
-      scrollY: 0,
-      disabled: false,
-      hidden: false, // 是否隐藏，false显示，true隐藏
-      showLabel: false,
-      hideSequence: false,
-      customStyle: "",
-      customClass: '',
-      width: "100%"
-    },
-    model: "",
-    key: ""
-  }, 
+  
   {
     type: "switch", // 表单类型
-    label: "开关", // 标题文字
-    icon: "icon-kaiguan3",
+    label: "开关", // 标题文字  
+    index: 'N',
     options: {
       defaultValue: false, // 默认值 Boolean 类型
       activeText: '',
       inactiveText: '',
+      tooptip: '', // 提示
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false // 是否禁用
     },
@@ -407,83 +396,144 @@ export const basicsList = [
   },
   {
     type: "button", // 表单类型
-    label: "按钮", // 标题文字
-    icon: "icon-button-remove",
+    label: "按钮", // 标题文字 
+    index: 'O',
     options: {
       type: "primary",
       handle: "submit",
       dynamicFun: "",
+      tooptip: '', // 提示
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false // 是否禁用，false不禁用，true禁用
     },
     key: ""
-  }, 
-  {
-    type: "text",
-    label: "标签",
-    icon: "icon-zihao",
-    options: {
-      textAlign: "left",
-      hidden: false, // 是否隐藏，false显示，true隐藏
-      showRequiredMark: false
-    },
-    key: ""
-  },
-  {
-    type: "html",
-    label: "HTML",
-    icon: "icon-ai-code",
-    options: {
-      hidden: false, // 是否隐藏，false显示，true隐藏
-      defaultValue: "<strong>HTML</strong>"
-    },
-    key: ""
-  }
+  } ,{
+      type: "batch",
+      label: "动态表格", 
+       index: 'P',
+      list: [],
+      options: {
+        scrollY: 0,
+        disabled: false,
+        hidden: false, // 是否隐藏，false显示，true隐藏
+        showLabel: false,
+        hideSequence: false,
+        labelWidth: "100",
+        labelPosition: 'left',
+        customStyle: "",
+        customClass: '',
+        showItem:[] ,
+        width: "100%"
+      },
+      model: "",
+      key: ""
+    }, 
 ];
 
-// 高级控件
-// export const highList = [];
-
-// import { Alert } from "ant-design-vue";
-
-// 自定义组件
-export const customComponents = {
-  title: "自定义组件",
-  list: [
-    // {
-    //   label: "测试",
-    //   type: "jkjksdf",
-    //   component: Alert,
-    //   options: {
-    //     multiple: false,
-    //     disabled: false,
-    //     width: "100%",
-    //     data: "{}",
-    //     limit: 3,
-    //     placeholder: "上传",
-    //     action: "",
-    //     listType: "picture-card"
-    //   },
-    //   model: "",
-    //   key: "",
-    //   rules: [
-    //     {
-    //       required: false,
-    //       message: "必填项"
-    //     }
-    //   ]
-    // }
+export const showComponents =   [
+    {
+      type: "text",
+      label: "标签", 
+      options: {
+        textAlign: "left",
+        tooptip: '', // 提示
+        hidden: false, // 是否隐藏，false显示，true隐藏
+        showRequiredMark: false
+      },
+      key: ""
+    },
+    {
+      type: "html",
+      label: "HTML", 
+      options: {
+        tooptip: '', // 提示
+        hidden: false, // 是否隐藏，false显示，true隐藏
+        defaultValue: "<strong>HTML</strong>"
+      },
+      key: ""
+    },
+   
+    {
+      type: "clys",
+      label: "材料要素", 
+      list: [],
+      options: {
+        scrollY: 0,
+        disabled: false,
+        hidden: false, // 是否隐藏，false显示，true隐藏
+        showLabel: false,
+        hideSequence: false,
+        customStyle: "",
+        customClass: '',
+        width: "100%"
+      },
+      model: "CLYS",
+      key: "CLYS"
+    },  
+    {
+      type: "sfbz",
+      label: "收费标准", 
+      list: [],
+      options: {
+        scrollY: 0,
+        disabled: false,
+        hidden: false, // 是否隐藏，false显示，true隐藏
+        showLabel: false,
+        hideSequence: false,
+        customStyle: "",
+        customClass: '',
+        width: "100%"
+      },
+      model: "SFBZ",
+      key: "SFBZ"
+    },
+    {
+      type: "cjwt",
+      label: "常见问题", 
+      list: [],
+      options: {
+        scrollY: 0,
+        disabled: false,
+        hidden: false, // 是否隐藏，false显示，true隐藏
+        showLabel: false,
+        hideSequence: false,
+        customStyle: "",
+        customClass: '',
+        width: "100%"
+      },
+      model: "CJWT",
+      key: "CJWT"
+    },
+    {
+      type: "jgyb",
+      label: "结果样本",  
+      options: { 
+        disabled: false, 
+        showLabel: false,   
+        width: "100%"
+      },
+      rules: [
+        {
+          required: false,
+          message: "必填项"
+        }
+      ],
+      model: "JGYB",
+      key: "JGYB"
+    },
   ]
-};
+
+ 
+ 
 // window.$customComponentList = customComponents.list;
 
 // 布局控件
 export const layoutList = [
   {
     type: "divider",
-    label: "分割线",
-    icon: "icon-fengexian",
+    label: "分割线", 
     options: {
+      tooptip: '', // 提示
       orientation: "left"
     },
     key: "",
@@ -499,8 +549,7 @@ export const layoutList = [
   },*/
   {
     type: "grid",
-    label: "栅格布局",
-    icon: "icon-zhage",
+    label: "栅格布局", 
     columns: [
       {
         span: 12,
@@ -519,8 +568,7 @@ export const layoutList = [
   },
   {
     type: "table",
-    label: "表格布局",
-    icon: "icon-biaoge",
+    label: "表格布局", 
     trs: [
       {
         tds: [
