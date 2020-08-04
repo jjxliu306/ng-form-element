@@ -1,23 +1,26 @@
 <template> 
     <el-container class="form-design">
       <el-aside width="260px">
-          <DragItem> </DragItem> 
+          <slot name="drag"></slot>
+          <DragItem > </DragItem> 
       </el-aside>
       <el-main>
         <el-row class="form-design" :gutter="20"> 
             <el-col :span="18" class="height-all">
               <el-card  header="表单面板"  class="box-card form-contains"> 
                 <div slot="header" class="clearfix">
-                    <span class="el-card__header">表单面板</span>
+                    <span class="el-card__header">
+                      <slot name="formName">表单面板</slot>
+                    </span>
                     <span style="float: right;">
                       <el-button   type="text" size="medium" icon="el-icon-delete" @click="handleClear">清空</el-button>
                       <el-button  type="text" size="medium" icon="el-icon-view" @click="handlePreview">预览</el-button>
                        <el-button  type="text" size="medium" icon="el-icon-view" @click="handleRender">渲染</el-button>
-                      <el-button  type="text" size="medium" icon="el-icon-upload" @click="handleImport">导入</el-button>
-                      <el-button  type="text" size="medium" icon="el-icon-tickets" @click="handleGenerateJson">生成json</el-button>
+                      <el-button  type="text" size="medium" icon="el-icon-download" @click="handleImport">导入</el-button>
+                      <el-button  type="text" size="medium" icon="el-icon-upload2" @click="handleGenerateJson">导出</el-button>
                     </span> 
                 </div> 
-                <DragPanel :data="data" @changeSelectItem="changeSelectItem"> 
+                <DragPanel :data="data" ref="dragPanel" :selectForm="selectForm" @changeSelectItem="changeSelectItem"> 
                </DragPanel> 
               </el-card> 
             </el-col>
@@ -68,6 +71,8 @@
 </template>
 
 <script>
+import cloneDeep from 'lodash/cloneDeep'
+
 import DragItem from './form-item/drag-item/index'
 import DragPanel from './drag-panel/index' 
 import Properties from './properties/index'
@@ -77,7 +82,6 @@ import previewCode from "./preview/preview-code";
 
 
 import renderPreview from "./render/preview";
-
 export default {
   name: 'App',
   data(){
@@ -108,9 +112,67 @@ export default {
       selectItem: {} // 选中的元素
     }
   },
+  watch: {
+    data :{
+      handler(newValue, oldValue){ 
+        if(this.selectForm && this.selectForm.id) {
+          // 修改数据发生变化
+          //this.selectForm.change = true 
+          const jsonForm = JSON.stringify(this.selectForm.htmlModel)
+          const jsonData = JSON.stringify(this.data)
+          if(jsonForm != jsonData){
+            this.$set(this.selectForm , 'change' , true)
+            this.$set(this.selectForm , 'htmlModel' , cloneDeep(this.data))
+          }
+       
+        
+         
+        }
+      },
+      //对象的深度监听deep，默认为false不进行深度监听
+      deep: true 
+    },
+    selectForm :{
+      handler(newValue, oldValue){ 
+        if(newValue && newValue.id != (oldValue ? oldValue.id: '')) {
+          // 修改数据发生变化
+          
+          const htmlModel = newValue.htmlModel
+      
+          let jsonModel = htmlModel ? (typeof htmlModel == 'object' ? htmlModel : JSON.parse(htmlModel) ) : null
+
+          this.initModel(cloneDeep(htmlModel))
+          
+        }
+      },
+      //对象的深度监听deep，默认为false不进行深度监听
+      deep: true 
+    },
+    
+  },
+  props:{
+    selectForm: {
+      type: Object,
+    }
+  },
+   
   components: {
     DragItem,DragPanel,Properties,Preview,previewCode,renderPreview
   },
+  // created(){ 
+  //   if( this.selectForm && !this.selectForm.htmlModel) {
+  //     this.selectForm.htmlModel =  {
+  //       list: [],
+  //       config: {
+  //         labelPosition: "left",
+  //         labelWidth: 100, 
+  //         size: 'mini',
+  //         hideRequiredMark: true ,
+  //         customStyle: ""
+  //       }
+  //     }
+  //   }
+  // },
   methods: {
     changeSelectItem(item) {
       this.selectItem = item
@@ -156,6 +218,19 @@ export default {
 
 
     },
+    initModel(model) { 
+      if(model)
+        this.data = model
+      else {
+        this.data.list = []
+      }
+
+      this.selectItem = {}
+      this.$refs.dragPanel.selectItem = {}
+    },
+    getModel(){
+      return this.data
+    },
     handleRender(){
      
       this.renderVisisble = true ;
@@ -173,11 +248,29 @@ export default {
 }
 </script>
 
-<style> 
+<style lang="scss"> 
 
 .form-design {
   height: 100%;
   width: 100%;
+  /*.form-contains {
+    height: 100%;
+    width: 100%;
+    .el-card__header {
+
+      padding: 5px;
+      line-height: 30px;
+
+      .clearfix {
+        line-height: 30px;
+
+        .el-card__header {
+          padding: 5px;
+        }
+      }
+    }
+  }
+  */
 }
 .form-properties {
   height: 100%;
@@ -188,4 +281,6 @@ export default {
    height: 100%;
 }
  
+ 
+
 </style>

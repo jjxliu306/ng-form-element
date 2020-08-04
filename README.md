@@ -1,5 +1,7 @@
 # vue-form-design
-VUE动态表单
+VUE-FORM-DESIGN
+
+ ![演示](./img/11.jpg "111")
 
 ## Project setup
 ```

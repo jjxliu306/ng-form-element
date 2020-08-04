@@ -14,7 +14,7 @@
           <el-input v-model="selectItem.label" placeholder="请输入" />
         </el-form-item>
         <el-form-item  label="数据字段" v-if="!hideModel && !['table','grid','divider','label','html','button',].includes(selectItem.type)" >
-          <el-input v-model="selectItem.model" placeholder="请输入" :disabled="(selectItem.item != undefined && selectItem.item.id != undefined) || ['sfbz' , 'clys' , 'cjwt'].includes(selectItem.type) "/>
+          <el-input v-model="selectItem.model" placeholder="请输入" :disabled="(selectItem.item != undefined && selectItem.item.id != undefined) "/>
         </el-form-item>
         <!-- 公共部分 标签 字段key 数据key end -->
 
@@ -114,7 +114,7 @@
             <el-radio-group   v-model="options.dynamic">
               <el-radio-button :label="0">静态数据</el-radio-button>
               <el-radio-button :label="1">动态数据</el-radio-button>
-              <el-radio-button :label="2">数据字典</el-radio-button>
+            
             </el-radio-group>
    
             <!-- 远程赋值配置 --> 
@@ -129,12 +129,6 @@
                   <template slot="prepend">标签字段</template>
                 </el-input> 
             </div>  
-            <div v-else-if="options.dynamic == 2">
-              <el-input size="mini" v-model="options.dictType">
-                <template slot="prepend">字典分类名称</template>
-              </el-input>
-            </div>
-
             <!-- 本地赋值 -->
             <ChangeOption v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
           </el-form-item>
@@ -179,7 +173,7 @@
             <el-radio-group   v-model="options.dynamic">
               <el-radio-button :label="0">静态数据</el-radio-button>
               <el-radio-button :label="1">动态数据</el-radio-button>
-              <el-radio-button :label="2">数据字典</el-radio-button>
+             
             </el-radio-group>
    
             <!-- 远程赋值配置 --> 
@@ -194,11 +188,7 @@
                   <template slot="prepend">标签字段</template>
                 </el-input> 
             </div> 
-            <div v-else-if="options.dynamic == 2">
-              <el-input size="mini" v-model="options.dictType">
-                <template slot="prepend">字典分类名称</template>
-              </el-input>
-            </div>
+           
 
             <!-- 本地赋值 -->
             <ChangeOption v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
@@ -227,7 +217,7 @@
             <el-radio-group   v-model="options.dynamic">
               <el-radio-button :label="0">静态数据</el-radio-button>
               <el-radio-button :label="1">动态数据</el-radio-button>
-              <el-radio-button :label="2">数据字典</el-radio-button>
+             
             </el-radio-group>
    
             <!-- 远程赋值配置 --> 
@@ -242,11 +232,7 @@
                   <template slot="prepend">标签字段</template>
                 </el-input> 
             </div> 
-            <div v-else-if="options.dynamic == 2">
-              <el-input size="mini" v-model="options.dictType">
-                <template slot="prepend">字典分类名称</template>
-              </el-input>
-            </div>
+           
 
             <!-- 本地赋值 -->
             <ChangeOption v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
@@ -647,8 +633,7 @@
           'button',
           'text',
           'html',
-          'divider',
-          'jgyb'
+          'divider' 
         ].includes(selectItem.type)" label="tooptip提示" > 
           <el-input type="textarea" v-model="options.tooptip"  placeholder="鼠标移动到组件上的提示信息" /> 
         </el-form-item> 

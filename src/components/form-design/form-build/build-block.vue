@@ -20,6 +20,7 @@
         :renderPreview="renderPreview"
         :models.sync="models"  
         :key="item.key"
+          :data="data"
         :record="item"
         :formConfig="formConfig"
         :config="config"
@@ -38,49 +39,82 @@
     ]" 
     :style="record.options.customStyle"
     >
-    <tr v-for="(trItem, trIndex) in record.trs" :key="trIndex">
-      <td
-        :class="['table-td', tdItem.class]"
-        :style="tdItem.style"
-        v-for="(tdItem, tdIndex) in trItem.tds"
-        :key="tdIndex"
-        :colspan="tdItem.colspan"
-        :rowspan="tdItem.rowspan"
-      >
-        <buildBlocks
+    <template v-for="(trItem, trIndex) in record.trs">
+      <tr  :key="trIndex" v-if="showTr(trItem , models)">
+        <td
+          :class="['table-td', tdItem.class]"
+          :style="tdItem.style"
+          v-for="(tdItem, tdIndex) in trItem.tds"
+          :key="tdIndex"
+          :colspan="tdItem.colspan"
+          :rowspan="tdItem.rowspan"
+        >
+          <buildBlocks
+            ref="nestedComponents"
+            @handleReset="$emit('handleReset')"
+            @change="handleChange"
+            v-for="item in tdItem.list"
+            :disabled="disabled"
+              :data="data"
+            :renderPreview="renderPreview"
+            :models.sync="models"  
+            :key="item.key"
+            :record="item"
+            :formConfig="formConfig"
+            :config="config"
+          />
+        </td>
+      </tr>
+    </template>
+   
+  </table>
+ 
+    
+      <el-tooltip 
+        class="item" 
+        effect="light" 
+        :enterable="false"
+        :open-delay="500"
+        v-else-if="dynamicVisibleItem && record.options.tooptip && record.options.tooptip.trim()"
+          
+        placement="top-start">
+        <div slot="content" class="tooltip-content"> {{record.options.tooptip}}</div>
+        <form-item
           ref="nestedComponents"
           @handleReset="$emit('handleReset')"
-          @change="handleChange"
-          v-for="item in tdItem.list"
-          :disabled="disabled"
+          @change="handleChange" 
+          :disabled="disabled" 
           :renderPreview="renderPreview"
-          :models.sync="models"  
-          :key="item.key"
-          :record="item"
+          :models.sync="models" 
+            :data="data"
+          :key="record.key"
+          :record="record"
           :formConfig="formConfig"
           :config="config"
         />
-      </td>
-    </tr>
-  </table>
-
-  <FormItem
-    ref="nestedComponents"
-    @handleReset="$emit('handleReset')"
-    @change="handleChange"
-    v-else-if="dynamicVisibleItem"
-    :disabled="disabled" 
-    :renderPreview="renderPreview"
-    :models.sync="models" 
-    :key="record.key"
-    :record="record"
-    :formConfig="formConfig"
-    :config="config"
-  />
+      </el-tooltip> 
+     
+      <form-item
+        v-else-if="dynamicVisibleItem"
+        ref="nestedComponents"
+        @handleReset="$emit('handleReset')"
+        @change="handleChange" 
+        :disabled="disabled" 
+        :renderPreview="renderPreview"
+        :models.sync="models" 
+        :data="data"
+        :key="record.key"
+        :record="record"
+        :formConfig="formConfig"
+        :config="config"
+      />
+      
+   
 </template>
 <script>
  
-import  FormItem from "../form-item/index";
+import  FormItem  from "../form-item";
+import {dynamicFun} from '../utils'
 export default {
   name: "buildBlocks",
   props: {
@@ -108,7 +142,11 @@ export default {
     renderPreview: {
       type: Boolean ,
       default: false
-    }
+    },
+    data: {// 整个事项实体
+      type: Object,
+      default: () => ({})
+    },
   },
   components: {
     FormItem
@@ -126,9 +164,9 @@ export default {
       }
       let fstr = this.record.options.dynamicVisibleValue;
       // 打开了开关 这里获取函数内容
-      const func = 'return (' + fstr + ')' 
-      const Fn = new Function('$', func)
-      return Fn(this.models)
+  
+      const ret = dynamicFun(fstr,this.models) 
+      return ret ;
     }
   },
   methods: {
@@ -144,6 +182,45 @@ export default {
     },
     handleChange(value, key) { 
       this.$emit("change", value, key);
+    },
+     showTr(trItem , model){
+      // 判断tr中是否还存在需要显示的td数据 
+      const tds = trItem.tds; 
+      let fs = tds.map(t=>{
+        const tdlist = t.list 
+         // 判断list中每个数据是否需要显示
+        for(let i in tdlist){
+          const tdRecord = tdlist[i]
+
+          if(!tdRecord.options || !tdRecord.options.dynamicVisible){
+            return tdRecord
+          }
+          // 没有配置动态显示隐藏的函数
+          if(!tdRecord.options.dynamicVisibleValue){
+            return true
+          }
+
+          let fstr = tdRecord.options.dynamicVisibleValue;
+
+           // 打开了开关 这里获取函数内容 
+          const fvalue = dynamicFun(fstr,model)  
+
+          if(fvalue) {
+            return tdRecord
+          }
+
+        } 
+ 
+      })
+
+      for(let j in fs) {
+        if(fs[j]){
+          return true
+        }
+      }
+
+      return false 
+
     }
   }
 };

@@ -1,14 +1,12 @@
 <!--
- * @Description: 表单设计器内容展示操作组件
- * @Author: kcz
- * @Date: 2019-12-31 19:39:48
- * @LastEditors: kcz
- * @LastEditTime: 2020-04-11 17:56:04
- -->
+ 表单设计器内容展示操作组件 
+-->
 <template>
-  <div class="form-panel">
+ 
+  <div class="form-panel" > 
+    
     <p class="hint-text" v-show="data.list.length === 0">
-      从左侧选择控件添加
+      从左下侧选择组件添加
     </p>
     <el-form 
       :label-width="data.config.labelWidth + 'px'" 
@@ -28,7 +26,7 @@
           animation: 180,
           handle: '.drag-move'
         }"
-        v-model="data.list"
+        v-model="data.list" 
         @add="deepClone"
         @start="dragStart($event, data.list)"
       >
@@ -58,6 +56,7 @@
       v-show="showRightMenu"
       :style="{ 'top': menuTop + 'px', 'left': menuLeft + 'px' }"
       class="right-menu"
+      id="rightMenu"
     >
       <ul>
         <li @click="handleSettingStyle" ><i class="el-icon-magic-stick" />样式配置</li> 
@@ -110,7 +109,7 @@ import draggable from "vuedraggable";
 import layoutItem from "./layerItem";
 import "codemirror/mode/javascript/javascript";
 export default {
-  name: "KCenter",
+  name: "FormPanel",
   data() {
     return {
       form: this.$refs.form,
@@ -175,7 +174,7 @@ export default {
     draggable,
     layoutItem
   },
-  methods: {
+  methods: { 
     deepClone(evt) {
       const newIndex = evt.newIndex;
       // json深拷贝一次
@@ -241,6 +240,12 @@ export default {
       this.$emit("handleSetSelectItem", columns[newIndex]);
     },
     dragStart(evt, list) {
+      console.log('drag start , event' , evt)
+      if(!this.selectForm || !this.selectForm.id) {
+        this.$message.error('请先选择具体的表单')
+        return  
+      }
+
       // 拖拽结束,自动选择拖拽的控件项
       this.$emit("handleSetSelectItem", list[evt.oldIndex]);
     },
@@ -410,14 +415,38 @@ export default {
         return false;
       }
 
-      this.rightMenuSelectValue.trs[this.trIndex].tds[
-        this.tdIndex
-      ].rowspan += 1;
+      // 可能会存在rowspan
+
+
+      // 获取当前得rowspan 
+      let rowspan =  this.rightMenuSelectValue.trs[this.trIndex].tds[ this.tdIndex ].rowspan
+
+      // 获取当前要合并得row
+      const mergeRowIndex =  this.trIndex + rowspan
+      // 获取当前要合并行得tdindex之前是否
+
+      // 获取带合并得行
+      const mergeRow =  this.rightMenuSelectValue.trs[mergeRowIndex]
+      const mergeCol = mergeRow.tds[ this.tdIndex ]
+
+      console.log('mergeCol' , mergeCol)
+
+      this.rightMenuSelectValue.trs[this.trIndex].tds[ this.tdIndex ].rowspan = rowspan +  mergeCol.rowspan
+
+      // 在rowspan行进行td得裁剪
       this.rightMenuSelectValue.trs[
-        this.trIndex + 1
-      ].tds = this.rightMenuSelectValue.trs[this.trIndex + 1].tds.filter(
-        (item, index) => index !== this.tdIndex - rows
+        this.trIndex + rowspan
+      ].tds = this.rightMenuSelectValue.trs[this.trIndex + rowspan].tds.filter(
+        (item, index) => index != this.tdIndex //- rows
       );
+
+     /* this.rightMenuSelectValue.trs[
+        this.trIndex + 1
+      ].tds = this.rightMenuSelectValue.trs[this.trIndex + rows].tds.filter(
+        (item, index) => index != this.tdIndex //- rows
+      );*/
+
+      console.log('trs ' , this.rightMenuSelectValue.trs)
 
       // }
     },
@@ -550,12 +579,30 @@ export default {
       // this.fileItem = item
       // 显示
       this.showRightMenu = true;
-
-
-      // 定位
-      this.menuTop = e.clientY;
-      this.menuLeft = e.clientX;
  
+
+      // 计算rightMenu得高度和宽度 和当前屏幕对比 来决定菜单出现得起始位置
+      let height = 210;// document.getElementById('rightMenu').clientHeight ;
+      let width = 280 ;//document.getElementById('rightMenu').clientWidth ;
+
+      // 获取屏幕高度和宽度 比对
+      const bodyHeight = document.body.clientHeight  ;
+      const bodyWidth = document.body.clientWidth ;
+ 
+        
+      // 定位 
+      if(e.clientY + height > bodyHeight) {
+        this.menuTop = e.clientY - height;
+      } else {
+        this.menuTop = e.clientY;
+      }
+
+      if(e.clientX + width > bodyWidth) {
+        this.menuLeft = e.clientX - width;
+      } else {
+        this.menuLeft = e.clientX + 20 ;
+      }
+       
 
       // this.rightMenuType = type
       // this.rightId = id

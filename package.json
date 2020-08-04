@@ -1,6 +1,6 @@
 {
-  "name": "form-design",
-  "version": "0.1.0",
+  "name": "vue-form-design",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

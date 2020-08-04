@@ -17,6 +17,15 @@ $border-color    : #ccc;
       margin-right: 4px;
     }
   }
+
+  .el-table thead th {
+    background: #a9c8ea;
+    color: #303133;
+    font-size: 13px;
+
+  }
+
+
   
 
   .el-aside{
@@ -70,6 +79,7 @@ $border-color    : #ccc;
       margin: 1%;
       color: #333;
       border: 1px solid #F4F6FC;
+      text-align: center;
 
       &:hover{
         color: $primary-color;
@@ -505,6 +515,19 @@ $border-color    : #ccc;
                 background: $layout-color;
               }
 }  
+
+.el-dialog__header {
+    padding: 10px 20px 10px;
+    background: #a9c8ea;
+    .el-dialog__title {
+      line-height: 20px;
+      font-size: 16px;
+    }
+
+    button {
+      top: 10px;
+    }
+  }
 
 
 

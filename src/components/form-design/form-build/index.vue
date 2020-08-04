@@ -4,7 +4,7 @@
       v-if="
         typeof formTemplate.list !== 'undefined' && typeof formTemplate.config !== 'undefined'
       "
-      class="form-build"
+      class="form-build form-design"
       :label-position="formTemplate.config.labelPosition"
       :hide-required-asterisk="formTemplate.config.hideRequiredMark" 
       :label-width="formTemplate.config.labelWidth + 'px'" 
@@ -13,7 +13,7 @@
       :model="models" 
       :style="formTemplate.config.customStyle"
       :size="formTemplate.config.size"
-    > 
+> 
       <buildBlocks
         ref="buildBlocks"
         @handleReset="reset"
@@ -21,6 +21,7 @@
         :renderPreview="renderPreview"
         :record="record"
         :models.sync="models" 
+        :data="data"
         :config="config"
         :disabled="disabled"
         :formConfig="formTemplate.config"
@@ -39,12 +40,16 @@ export default {
     return {
       //locale: zhCN,
       form: this.$refs.form,
-      models: {},
+      //models: {},
       rules: {}
     };
   }, 
   props: {
     formTemplate: {
+      type: Object,
+      required: true
+    },
+    models: {
       type: Object,
       required: true
     },
@@ -64,6 +69,13 @@ export default {
     renderPreview: {
       type: Boolean ,
       default: false
+    },
+    data: {
+      type: Object,
+      default: () => ({})
+    },
+    index: {
+      default: ''
     }
   },
   components: {
@@ -73,6 +85,16 @@ export default {
     reset() {
       // 重置表单
       this.form.resetFields();
+    },
+    validator(){
+      return new Promise((resolve, reject) => { 
+
+          this.$refs.form.validate((valid,values)=>{ 
+            
+            resolve({index: this.index , valid:valid}); 
+          })
+ 
+      });
     },
     getData() {
       // 提交函数，提供父级组件调用
@@ -91,7 +113,7 @@ export default {
     // 初始化验证规则
     initRules(weights , key){
       if(!weights) return
-
+/*
       const this_ = this  
        
       weights.forEach(t=>{
@@ -140,7 +162,7 @@ export default {
           
         }
       })
-
+*/
       
 
     },

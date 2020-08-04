@@ -21,8 +21,7 @@
 		      :key="index"
 		      @dragstart="$emit('generateKey', list, index)"
 		      @click="$emit('handleListPush', val)">
-	    		<a>
-               		<i class="icon iconfont" :class="val.icon"></i>
+	    		<a> 
                 	<span>{{val.label}}</span>
             	</a> 
 	   	 	</li>

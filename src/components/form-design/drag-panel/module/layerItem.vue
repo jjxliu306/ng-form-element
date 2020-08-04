@@ -9,7 +9,7 @@
     <!-- 动态表格设计模块 start -->
    <!--  <span>record.list: {{record.list}} </span> -->
     <template v-if="record.type === 'batch'">
-      <div 
+      <div
         :class="[
           'batch-box',
           record.options.customClass ? record.options.customClass : '' ,
@@ -152,7 +152,7 @@
           ]" 
           :style="record.options.customStyle"
         >
-          <tr v-for="(trItem, trIndex) in record.trs" :key="trIndex">
+          <tr v-for="(trItem, trIndex) in record.trs" :key="trIndex" >
             <td
               :class="['table-td', tdItem.class]"
               :style="tdItem.style"
@@ -282,7 +282,8 @@ export default {
     },
     handleColAdd(e, list) {
       this.$emit("handleColAdd", e, list);
-    }
+    },
+
   }
 };
 </script>

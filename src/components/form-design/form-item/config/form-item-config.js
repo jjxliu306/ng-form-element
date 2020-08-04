@@ -428,10 +428,7 @@ export const basicsList = [
       model: "",
       key: ""
     }, 
-];
-
-export const showComponents =   [
-    {
+     {
       type: "text",
       label: "标签", 
       options: {
@@ -452,77 +449,8 @@ export const showComponents =   [
       },
       key: ""
     },
-   
-    {
-      type: "clys",
-      label: "材料要素", 
-      list: [],
-      options: {
-        scrollY: 0,
-        disabled: false,
-        hidden: false, // 是否隐藏，false显示，true隐藏
-        showLabel: false,
-        hideSequence: false,
-        customStyle: "",
-        customClass: '',
-        width: "100%"
-      },
-      model: "CLYS",
-      key: "CLYS"
-    },  
-    {
-      type: "sfbz",
-      label: "收费标准", 
-      list: [],
-      options: {
-        scrollY: 0,
-        disabled: false,
-        hidden: false, // 是否隐藏，false显示，true隐藏
-        showLabel: false,
-        hideSequence: false,
-        customStyle: "",
-        customClass: '',
-        width: "100%"
-      },
-      model: "SFBZ",
-      key: "SFBZ"
-    },
-    {
-      type: "cjwt",
-      label: "常见问题", 
-      list: [],
-      options: {
-        scrollY: 0,
-        disabled: false,
-        hidden: false, // 是否隐藏，false显示，true隐藏
-        showLabel: false,
-        hideSequence: false,
-        customStyle: "",
-        customClass: '',
-        width: "100%"
-      },
-      model: "CJWT",
-      key: "CJWT"
-    },
-    {
-      type: "jgyb",
-      label: "结果样本",  
-      options: { 
-        disabled: false, 
-        showLabel: false,   
-        width: "100%"
-      },
-      rules: [
-        {
-          required: false,
-          message: "必填项"
-        }
-      ],
-      model: "JGYB",
-      key: "JGYB"
-    },
-  ]
-
+];
+ 
  
  
 // window.$customComponentList = customComponents.list;

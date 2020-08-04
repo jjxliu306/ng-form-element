@@ -1,10 +1,6 @@
 <!--
- * @Description: 传入record数据，通过判断record.type，来渲染对应的组件
- * @Author: kcz
- * @Date: 2020-01-02 22:41:48
- * @LastEditors: kcz
- * @LastEditTime: 2020-06-08 20:56:55
- -->
+传入record数据，通过判断record.type，来渲染对应的组件
+  -->
 <template>
   <el-form-item
     v-if="
@@ -24,22 +20,24 @@
           'uploadImg',
           'uploadFile',
           'cascader'
-        ].includes(record.type) && dynamicVisibleItem
+        ].includes(record.type) && dynamicVisibleItem && !(record.type == 'select' && renderPreview &&  record.options.previewHidden )
     "
     :label="formConfig.labelWidth > 0 ? record.label : null " 
-    :rules="record.rules"
+    :rules="recordRules"
     :prop="itemProp ? itemProp : (record.rules && record.rules.length > 0 ? record.model : null)"
-  > 
-   
+  >   
+ 
     <BaseItem 
       :models="models"  
       :formConfig="formConfig"
       :renderPreview="renderPreview"
+      :data="data"
       :record="record"
       :disabled="disabled || record.options.disabled"
 
-      />
-    
+      /> 
+  
+  
   </el-form-item>
   <!-- 可隐藏label -->
   <el-form-item
@@ -61,7 +59,8 @@
       
     />  
      
-  </el-form-item>
+  </el-form-item> 
+      
   <!-- button按钮 -->
   <el-form-item
     v-else-if="record.type === 'button' && dynamicVisibleItem" 
@@ -74,9 +73,9 @@
   </el-form-item>
   
   <!-- 文本 -->
-  <div v-else-if="record.type === 'text' && dynamicVisibleItem " :style="{ textAlign: record.options.textAlign }" >
+  <div class="form-label" v-else-if="record.type === 'text' && dynamicVisibleItem " :style="{ textAlign: record.options.textAlign }" > 
       <label
-        :class="{ 'is-required': record.options.showRequiredMark }"
+        :class="{ 'is-required': record.options.showRequiredMark || showRequiredMark }"
         v-text="record.label"
       ></label>
   </div>
@@ -103,13 +102,17 @@
   </div>
 </template>
 <script> 
-import TableBatch from "./table";
+import TableBatch from "./table"; 
 import BaseItem from './BaseItem' 
+
+import {dynamicFun} from '../utils'
+
 export default {
-  name: "form-item",
-  data(){
+  name: "form-item", 
+  data(){  
     return{
-      checkList: []
+      checkList: [] ,
+ 
     }
   },
   props: {
@@ -140,7 +143,16 @@ export default {
     renderPreview: {
       type: Boolean ,
       default: false
-    }
+    },
+    // 是否拖拽面板引用
+    isDragPanel: {
+      type: Boolean ,
+      default: false
+    },
+    data: {// 整个事项实体
+      type: Object,
+      default: () => ({})
+    },
   },
   components: {
      TableBatch,BaseItem 
@@ -149,7 +161,8 @@ export default {
     checkList:{
       handler(val, oldVal){
           // 默认所有val 全部补一个id 标明顺序
-        this.models[this.record.model] = val
+        //this.models[this.record.model] = val
+        this.$set(this.models , this.record.model , val)
       },
       deep:true
     }
@@ -162,9 +175,24 @@ export default {
         return [];
       }
     },
+    showRequiredMark(){
+      //##############
+      const fstr = this.record.options.showRequiredMarkScript
+      if(!fstr){
+        return false
+      }
+
+      const mark = dynamicFun(fstr , this.models) 
+      //console.log('mark' ,Fn,this.record.key ,mark)
+
+      return mark 
+    },
     // 是否动态显示当前元素 
     // 返回true 显示 false 不显示
-    dynamicVisibleItem(){
+    dynamicVisibleItem(){ 
+      if(this.isDragPanel) {
+        return true
+      }
       
       if(!this.record.options || !this.record.options.dynamicVisible){
         return true
@@ -174,17 +202,74 @@ export default {
       }
       let fstr = this.record.options.dynamicVisibleValue;
       // 打开了开关 这里获取函数内容
-      const func = 'return (' + fstr + ')' 
-      const Fn = new Function('$', func)
-      return Fn(this.models)
+      const func =  dynamicFun(fstr , this.models)
+      return func
+    },
+    recordRules(){
+      // 2020-07-29 如果是预览 不需要规则验证
+      if(this.renderPreview) {
+        return []
+      }
+      const rules = this.record.rules  
+
+      // 循环判断
+      for(var i = 0 ; i < rules.length ; i++){
+        const t = rules[i]
+         if(t.vtype == 1 || t.vtype == 2){ 
+          t.validator =  this.validatorFiled 
+        } 
+
+        // 判断trigger
+        if(!t.trigger) {
+          t.trigger =  ['change','blur']
+        }
+      }
+     
+
+      return rules 
+
     }
   },
   methods: {
-    validationSubform() {
-      // 验证动态表格
-      if (!this.$refs.KBatch) return true;
-      return this.$refs.KBatch.validationSubform();
-    },
+    validatorFiled (rule , value , callback) {
+      
+        // 判断rule类型 
+        if(rule.vtype == 1) {
+          // 正则
+          if(!rule.pattern) {
+            callback()
+            return
+          }
+          // 正则匹配
+          var patt1=new RegExp(rule.pattern);
+          //document.write(patt1.test("free"));
+
+          if(patt1.test(value)) {
+            callback() 
+           } else {
+            callback(new Error(rule.message)) 
+           }
+
+           return
+        } else if(rule.vtype == 2) {
+          // 表达式
+          const script = rule.script
+
+          // 打开了开关 这里获取函数内容
+         const fvalue =  dynamicFun(script , this.models)
+          
+          if (!fvalue) {
+            callback(new Error(rule.message))
+          } else {
+            callback()
+          }
+
+
+        }
+
+       
+      } ,
+    
     handleChange(value, key) {
       // change事件
       this.$emit("change", value, key);
@@ -205,12 +290,7 @@ export default {
         this.models[this.record.model] = defaultValue
       } 
     } 
-
-    // if(this.record.type == 'checkbox' && !this.models[this.record.model]) {
-    //   this.models[this.record.model] = []
-    // }
-    // console.log('record' , this.record)
-    // console.log('models' , this.models)
+ 
   }
 };
 </script>

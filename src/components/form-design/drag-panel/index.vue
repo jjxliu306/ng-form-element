@@ -5,6 +5,7 @@
             :selectItem="selectItem"
             :noModel="noModel"
             :hideModel="hideModel"
+            :selectForm="selectForm"
             :startType="startType"
             ref="KFCP"
             @handleSetSelectItem="handleSetSelectItem"> 
@@ -40,17 +41,10 @@ export default {
 	props: {
 		data: {
 			type: Object ,
-			default : () => {
-				return {list: [],
-			        config: {
-			          layout: "horizontal",
-			          labelCol: { span: 4 },
-			          wrapperCol: { span: 18 },
-			          hideRequiredMark: false,
-			          customStyle: ""
-			        }
-			    }
-		    }
+			required: true
+		},
+		selectForm: {
+			type: Object
 		}
 	}, 
 	methods: {
