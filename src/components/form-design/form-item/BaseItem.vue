@@ -588,15 +588,7 @@ export default {
           this.checkValues = data.data
         }
       })
-
-/*
-
-      request.get(url).then(res => {
-        if(res && res.code == 0){
-          //this.record.options.options = res.data
-          this.checkValues = res.data
-        } 
-      })*/
+ 
 
       this.itemProp.label = this.record.options.remoteLabel
       this.itemProp.value = this.record.options.remoteValue
@@ -633,17 +625,10 @@ export default {
         //this.models[this.record.model] = defaultValue
         this.$set(this.models , this.record.model , defaultValue)
       } 
+
+      this.handleChange(defaultValue , this.record.model)
     }
-
-
-   
-   
  
-    // if(this.record.type == 'checkbox' && !this.models[this.record.model]) {
-    //   this.models[this.record.model] = []
-    // }
-    // console.log('record' , this.record)
-    // console.log('models' , this.models)
   }
 };
 </script>

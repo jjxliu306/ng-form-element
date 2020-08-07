@@ -1,0 +1,191 @@
+{
+	"list": [
+		{
+			"type": "input",
+			"label": "姓名",
+			"index": "A",
+			"options": {
+				"type": "text",
+				"width": "100%",
+				"defaultValue": "",
+				"placeholder": "请输入性别",
+				"clearable": false,
+				"maxLength": null,
+				"prepend": "",
+				"append": "",
+				"tooptip": "",
+				"hidden": false,
+				"disabled": false,
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "name",
+			"key": "input_1596781096796",
+			"rules": [
+				{
+					"required": true,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "textarea",
+			"label": "地址",
+			"index": "B",
+			"options": {
+				"width": "100%",
+				"maxLength": null,
+				"defaultValue": "",
+				"rows": 4,
+				"clearable": false,
+				"tooptip": "",
+				"hidden": false,
+				"disabled": false,
+				"placeholder": "请输入地址",
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "address",
+			"key": "textarea_1596781097946",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "select",
+			"label": "性别",
+			"index": "D",
+			"options": {
+				"width": "100%",
+				"multiple": false,
+				"disabled": false,
+				"clearable": false,
+				"hidden": false,
+				"placeholder": "请选择",
+				"valueKey": "value",
+				"tooptip": "",
+				"dynamic": 0,
+				"options": [
+					{
+						"value": "1",
+						"label": "男"
+					},
+					{
+						"value": "2",
+						"label": "女"
+					}
+				],
+				"showSearch": false,
+				"dynamicHide": false,
+				"dynamicHideValue": "",
+				"defaultValue": "1"
+			},
+			"model": "sex",
+			"key": "select_1596781098828",
+			"rules": [
+				{
+					"required": true,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "radio",
+			"label": "有效证件",
+			"index": "F",
+			"options": {
+				"disabled": false,
+				"hidden": false,
+				"defaultValue": "",
+				"dynamic": 0,
+				"tooptip": "",
+				"options": [
+					{
+						"value": "1",
+						"label": "身份证"
+					},
+					{
+						"value": "2",
+						"label": "户口本"
+					},
+					{
+						"value": "3",
+						"label": "护照"
+					},
+					{
+						"value": "4",
+						"label": "其他"
+					}
+				],
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "card",
+			"key": "radio_1596781099911",
+			"rules": [
+				{
+					"required": true,
+					"message": "有效证件不能为空",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "textarea",
+			"label": "其他有效证件说明",
+			"index": "B",
+			"options": {
+				"width": "100%",
+				"maxLength": null,
+				"defaultValue": "",
+				"rows": 4,
+				"clearable": false,
+				"tooptip": "",
+				"hidden": false,
+				"disabled": false,
+				"placeholder": "请输入",
+				"dynamicHide": false,
+				"dynamicHideValue": "",
+				"dynamicVisible": true,
+				"dynamicVisibleValue": "$.card==4"
+			},
+			"model": "card_info",
+			"key": "textarea_1596782289229",
+			"rules": [
+				{
+					"required": true,
+					"message": "其他有效证件说明不能为空",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		}
+	],
+	"config": {
+		"labelPosition": "right",
+		"labelWidth": 150,
+		"size": "mini",
+		"hideRequiredMark": false,
+		"customStyle": ""
+	}
+}

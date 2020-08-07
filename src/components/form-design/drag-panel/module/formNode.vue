@@ -12,13 +12,13 @@
       <FormItem :formConfig="config" :models="models" :record="record" :isDragPanel="true"/>
     </div>
     <div v-if="!hideModel" class="show-key-box" v-text="record.model" />
-  <!--   <div
+   <div
       class="copy"
       :class="record.key === selectItem.key ? 'active' : 'unactivated'"
       @click.stop="$emit('handleCopy')"
     >
       <i class="el-icon-document-copy" />
-    </div> -->
+    </div> 
     <div
       class="delete"
       :class="record.key === selectItem.key ? 'active' : 'unactivated'"

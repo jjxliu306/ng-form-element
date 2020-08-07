@@ -21,11 +21,9 @@
       size="mini"
     > 
     <template
-        v-for="(item,index)  in formTemplate.list"  
+      v-for="(item,index) in formTemplate.list"  
     >
-      <el-form-item  
-      :key="index"
-      v-if="
+      <el-form-item v-if="
       !(item.options.hidden === true) &&
         [
           'input',
@@ -43,18 +41,41 @@
           'uploadFile',
           'cascader'
         ].includes(item.type) && dynamicVisibleItem(item)  "
+        :key="index"
         :label="formTemplate.config.labelWidth > 0 ? item.label : null " 
         :rules="recordRules(item)"
         :prop="item.rules && item.rules.length > 0 ? item.model : null"
-      >    
-        <BaseItem 
-          :models="dataForm"  
-          :formConfig="formTemplate.config"
-          :renderPreview="renderPreview" 
-          :record="item"
-          :disabled="disabled || item.options.disabled"
+      >   
 
-          /> 
+
+       <el-tooltip 
+        class="item" 
+        effect="light" 
+        :enterable="false"
+        :open-delay="500"
+        v-if="item.options.tooptip && item.options.tooptip.trim()" 
+        placement="top-start">
+          <div slot="content" class="tooltip-content"> {{item.options.tooptip}}</div>
+          <BaseItem 
+            :models="dataForm"  
+            :formConfig="formTemplate.config"
+            :renderPreview="renderPreview"
+            
+            :record="item"
+            :disabled="disabled || item.options.disabled"
+
+            /> 
+        </el-tooltip>  
+        <BaseItem 
+          v-else
+            :models="dataForm"  
+            :formConfig="formTemplate.config"
+            :renderPreview="renderPreview"
+            
+            :record="item"
+            :disabled="disabled || item.options.disabled"
+
+            /> 
       </el-form-item>
 
       
@@ -100,10 +121,10 @@
   import {dynamicFun} from '../../utils'
   export default {
     name: 'table-add-or-update' ,
-  	components: {
-  		//FormBuild
+    components: {
+      //FormBuild
       BaseItem
-  	},	
+    },  
     data () {
       return {
         loading: false,
@@ -121,11 +142,11 @@
         type: Object, 
         default: () => ({})
       },
-    	   // 是否预览结果表单
-	    renderPreview: {
-	      type: Boolean ,
-	      default: false
-	    },
+         // 是否预览结果表单
+      renderPreview: {
+        type: Boolean ,
+        default: false
+      },
       disabled: {
         type: Boolean,
         default: false
@@ -207,16 +228,16 @@
 
        
       } ,
-    	 
+       
       init (data) {
-	        this.visible = true 
-	        this.dataForm.id = null  
-	        if(data) {
-	        	//this.dataForm = data
+          this.visible = true 
+          this.dataForm.id = null  
+          if(data) {
+            //this.dataForm = data
             for(var i in data){
               this.dataForm[i] = data[i]
             }
-	        } else {
+          } else {
             // 初始化数据  
              
             const d = {}
@@ -229,35 +250,35 @@
  
             this.dataForm = {id:null,seq: 0 , ...d}
 
-	        	this.$nextTick(() => {
-	        		this.$refs['dataForm'].resetFields()
-	       
-	        	})
-	        }
-	        	 
+            this.$nextTick(() => {
+              this.$refs['dataForm'].resetFields()
+         
+            })
+          }
+             
 
-      	},
-      	// 表单提交
-      	dataFormSubmit () {
-	        this.$refs['dataForm'].validate((valid) => {
-	          if (valid) {
-	          	console.log('ddd' , this.dataForm)
-	            this.loading = true
-	            if(!this.dataForm.id) {
-	            	// 回填一个ID 
-	            	const id = new Date().getTime() * 10 + parseInt(Math.random() * 100)
-	            	this.dataForm.id = id 
-	            	this.$emit('formAdd' , cloneDeep(this.dataForm))
-	            } else {
-	            	this.$emit('formUpdate' , cloneDeep(this.dataForm))
-	            }
-	            this.loading = false
-	            this.visible = false
-	          }
-	        })
+        },
+        // 表单提交
+        dataFormSubmit () {
+          this.$refs['dataForm'].validate((valid) => {
+            if (valid) {
+              console.log('ddd' , this.dataForm)
+              this.loading = true
+              if(!this.dataForm.id) {
+                // 回填一个ID 
+                const id = new Date().getTime() * 10 + parseInt(Math.random() * 100)
+                this.dataForm.id = id 
+                this.$emit('formAdd' , cloneDeep(this.dataForm))
+              } else {
+                this.$emit('formUpdate' , cloneDeep(this.dataForm))
+              }
+              this.loading = false
+              this.visible = false
+            }
+          })
 
  
-      	}
+        }
     }
   }
 </script>

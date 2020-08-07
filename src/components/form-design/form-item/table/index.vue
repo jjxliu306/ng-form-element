@@ -28,17 +28,19 @@
           type="index"
           width="50" >  
         </el-table-column>
-        <el-table-column  
-          v-for="(item,index) in record.list"
-           :key="index"
+        <template  v-for="(item,index) in record.list">
+          <el-table-column   
+          v-if="record.options.showItem && record.options.showItem.includes(item.model)"
+          :key="index"
           :label="item.label"
           align="center">
           <template  slot-scope="scope">
             <!-- 这里就要判断类型了 -->   
-            <TableItem  v-if="record.options.showItem && record.options.showItem.includes(item.model)" 
-              :record="item" :renderPreview="true" :domains="models[record.model][scope.$index]" />
+            <TableItem :record="item" :renderPreview="true" :domains="models[record.model][scope.$index]" />
           </template>  
         </el-table-column>
+        </template>
+        
 
      <!--    <TableFormItem 
               v-for="(item,index) in record.list"
@@ -164,12 +166,30 @@ export default {
       this.$refs.dynamicValidateForm.resetFields();
     },
     removeDomain(index) { 
-      let domains = this.models[this.record.model] 
-      if(domains) { 
-        if (index !== -1) {
-          domains.splice(index, 1);
+
+      this.$confirm(`确定删除此数据?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+      }).then(() => {
+        let domains = this.models[this.record.model] 
+        if(domains) { 
+          if (index !== -1) {
+            domains.splice(index, 1);
+
+            this.$message({
+              message: '删除成功',
+              type: 'success',
+              duration: 1000 
+            })
+          }
         }
-      }
+      })
+
+
+     
+
+
       
     },
     updateDomain(data) {
@@ -204,7 +224,12 @@ export default {
         return a.seq - b.seq
       });
       this.isVisible = true
-      console.log('this.models[this.record.model] ' , this.models[this.record.model] )
+      this.$message({
+        message: '添加成功',
+        type: 'success',
+        duration: 1000 
+      })
+
       
     },
     formUpdate(form){
@@ -236,8 +261,12 @@ export default {
        this.models[this.record.model].sort(function(a, b){
           return a.seq - b.seq
         });
-
-       console.log('this.models[this.record.model] ' , this.models[this.record.model] )
+      this.$message({
+        message: '更新成功',
+        type: 'success',
+        duration: 1000 
+      })
+      // console.log('this.models[this.record.model] ' , this.models[this.record.model] )
 
     },
     handleInput() {

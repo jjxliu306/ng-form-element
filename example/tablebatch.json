@@ -1,0 +1,139 @@
+{
+	"list": [
+		{
+			"type": "batch",
+			"label": "动态表格",
+			"index": "P",
+			"list": [
+				{
+					"type": "input",
+					"label": "姓名",
+					"index": "A",
+					"options": {
+						"type": "text",
+						"width": "100%",
+						"defaultValue": "",
+						"placeholder": "请输入",
+						"clearable": false,
+						"maxLength": null,
+						"prepend": "",
+						"append": "",
+						"tooptip": "",
+						"hidden": false,
+						"disabled": false,
+						"dynamicHide": false,
+						"dynamicHideValue": ""
+					},
+					"model": "name",
+					"key": "input_1596783434007",
+					"rules": [
+						{
+							"required": false,
+							"message": "必填项",
+							"trigger": [
+								"change",
+								"blur"
+							]
+						}
+					]
+				},
+				{
+					"type": "radio",
+					"label": "性别",
+					"index": "F",
+					"options": {
+						"disabled": false,
+						"hidden": false,
+						"defaultValue": "",
+						"dynamic": 0,
+						"tooptip": "",
+						"options": [
+							{
+								"value": "1",
+								"label": "男"
+							},
+							{
+								"value": "2",
+								"label": "女"
+							}
+						],
+						"dynamicHide": false,
+						"dynamicHideValue": ""
+					},
+					"model": "sex",
+					"key": "radio_1596783443126",
+					"rules": [
+						{
+							"required": false,
+							"message": "必填项",
+							"trigger": [
+								"change",
+								"blur"
+							]
+						}
+					]
+				},
+				{
+					"type": "date",
+					"label": "生日",
+					"index": "G",
+					"options": {
+						"width": "100%",
+						"defaultValue": "",
+						"rangeDefaultValue": [],
+						"range": false,
+						"disabled": false,
+						"hidden": false,
+						"clearable": false,
+						"placeholder": "请选择",
+						"tooptip": "",
+						"rangeStartPlaceholder": "开始时间",
+						"rangeEndPlaceholder": "结束时间",
+						"format": "yyyy-MM-dd",
+						"dynamicHide": false,
+						"dynamicHideValue": ""
+					},
+					"model": "birthday",
+					"key": "date_1596783455831",
+					"rules": [
+						{
+							"required": false,
+							"message": "必填项",
+							"trigger": [
+								"change",
+								"blur"
+							]
+						}
+					]
+				}
+			],
+			"options": {
+				"scrollY": 0,
+				"disabled": false,
+				"hidden": false,
+				"showLabel": false,
+				"hideSequence": false,
+				"labelWidth": "100",
+				"labelPosition": "left",
+				"customStyle": "",
+				"customClass": "",
+				"showItem": [
+					"name",
+					"sex"
+				],
+				"width": "100%",
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "batch_1596783432238",
+			"key": "batch_1596783432238"
+		}
+	],
+	"config": {
+		"labelPosition": "left",
+		"labelWidth": 0,
+		"size": "mini",
+		"hideRequiredMark": true,
+		"customStyle": ""
+	}
+}

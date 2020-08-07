@@ -1,0 +1,179 @@
+{
+	"list": [
+		{
+			"type": "input",
+			"label": "输入框",
+			"index": "A",
+			"options": {
+				"type": "text",
+				"width": "100%",
+				"defaultValue": "",
+				"placeholder": "请输入",
+				"clearable": false,
+				"maxLength": null,
+				"prepend": "",
+				"append": "",
+				"tooptip": "",
+				"hidden": false,
+				"disabled": false,
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "input_1596781096796",
+			"key": "input_1596781096796",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "textarea",
+			"label": "文本框",
+			"index": "B",
+			"options": {
+				"width": "100%",
+				"maxLength": null,
+				"defaultValue": "",
+				"rows": 4,
+				"clearable": false,
+				"tooptip": "",
+				"hidden": false,
+				"disabled": false,
+				"placeholder": "请输入",
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "textarea_1596781097946",
+			"key": "textarea_1596781097946",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "select",
+			"label": "下拉选择器",
+			"index": "D",
+			"options": {
+				"width": "100%",
+				"multiple": false,
+				"disabled": false,
+				"clearable": false,
+				"hidden": false,
+				"placeholder": "请选择",
+				"valueKey": "value",
+				"tooptip": "",
+				"dynamic": 0,
+				"options": [
+					{
+						"value": "1",
+						"label": "下拉框1"
+					}
+				],
+				"showSearch": false,
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "select_1596781098828",
+			"key": "select_1596781098828",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "radio",
+			"label": "单选框",
+			"index": "F",
+			"options": {
+				"disabled": false,
+				"hidden": false,
+				"defaultValue": "",
+				"dynamic": 0,
+				"tooptip": "",
+				"options": [
+					{
+						"value": "1",
+						"label": "选项1"
+					},
+					{
+						"value": "2",
+						"label": "选项2"
+					}
+				],
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "radio_1596781099911",
+			"key": "radio_1596781099911",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "date",
+			"label": "日期选择框",
+			"index": "G",
+			"options": {
+				"width": "100%",
+				"defaultValue": "",
+				"rangeDefaultValue": [],
+				"range": false,
+				"disabled": false,
+				"hidden": false,
+				"clearable": false,
+				"placeholder": "请选择",
+				"tooptip": "",
+				"rangeStartPlaceholder": "开始时间",
+				"rangeEndPlaceholder": "结束时间",
+				"format": "yyyy-MM-dd",
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "date_1596781101081",
+			"key": "date_1596781101081",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		}
+	],
+	"config": {
+		"labelPosition": "right",
+		"labelWidth": 100,
+		"size": "mini",
+		"hideRequiredMark": true,
+		"customStyle": ""
+	}
+}
