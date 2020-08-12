@@ -402,6 +402,13 @@ export default {
         this.$set(this.models , this.record.model , val)
       },
       deep:true
+    },
+    // 远程方法获取的数据尝试再这里回填label
+    checkValues: {
+      handler(val, oldVal){
+         this.handleChange(val ,this.record.model , 1)
+      },
+      deep:true
     }
   },
   methods: {
@@ -468,7 +475,7 @@ export default {
           }
         } 
     },*/
-    handleChange(value, key) {
+    handleChange(value, key , type) {
       // change事件 
       this.$emit("change", value, key); 
 
@@ -533,7 +540,7 @@ export default {
 
 
         // 2020-08-01 如果有远程调用并且有选择回调 再这里进行回调
-        if(this.record.options.onlineSearch && this.record.options.showSearch && this.record.options.selectCb) {
+        if(/*this.record.options.onlineSearch && this.record.options.showSearch &&*/ type && this.record.options.selectCb) {
 
           // 找到当前选择的数据实体  
           const fs = this.checkValues.filter(t=>t[this.itemProp.value] == value)
