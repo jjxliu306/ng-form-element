@@ -1,27 +1,27 @@
 # vue-form-design 致力打造开源最强vue动态表单组件
 VUE-FORM-DESIGN
 
-![组件一览](https://images.gitee.com/uploads/images/2020/0804/181439_109ac234_146738.png "11.png")
+![组件一览](http://cdn.opgis.com/11.png "11.png")
  
 
 
 ##示例
 
  **基础表单** 
- ![基础表单](https://images.gitee.com/uploads/images/2020/0807/150334_0706749e_146738.gif "basic.gif")
+ ![基础表单](http://cdn.opgis.com/basic.gif "basic.gif")
 
 
  **表单验证和组件动态显示** 
-![表单验证和组件动态显示](https://images.gitee.com/uploads/images/2020/0807/150454_6cc36142_146738.gif "validator1.gif")
+![表单验证和组件动态显示](http://cdn.opgis.com/validator1.gif "validator1.gif")
 
 
  **动态表格** 
-![动态表格](https://images.gitee.com/uploads/images/2020/0807/150525_44384fb3_146738.gif "tablebatch.gif")
+![动态表格](http://cdn.opgis.com/tablebatch.gif "tablebatch.gif")
 
 
 ## 简介
 
-参考项目[k-form-design](https://github.com/Kchengz/k-form-design)，基于vue和element-ui实现的表单设计器。通过拖拽方式快速生成一个表单页面，表单可以导出json格式,也可以将其他人绘制的表单通过json导入方式进行还原。
+基于vue和element-ui实现的表单设计器。通过拖拽方式快速生成一个表单页面，表单可以导出json格式,也可以将其他人绘制的表单通过json导入方式进行还原。
 
 ## 和其他开源表单的差异
  
@@ -40,23 +40,23 @@ VUE-FORM-DESIGN
 
 ## Project setup
 ```
-npm install
+npm install --save  vue-drag-formdesign 
+
+ // 导入组件库
+import VueDragFormdesign from 'vue-drag-formdesign'
+import 'vue-drag-formdesign/lib/vue-drag-formdesign.css'
+// 注册组件库
+Vue.use(VueDragFormdesign)
+
 ```
 
-### Compiles and hot-reloads for development
+### 页面引用
 ```
-npm run serve
+<div id="app"> 
+    <VueDragFormdesign  />
+</div>
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
+ 
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
