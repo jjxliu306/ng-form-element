@@ -1,3 +1,6 @@
+// 导入颜色选择器组件
+import VueDragFormdesign from './vue-drag-formdesign'
+ 
 /**
  * UI组件, 统一使用饿了么桌面端组件库(https://github.com/ElemeFE/element）
  *
@@ -9,16 +12,8 @@
  */
 import Vue from 'vue'
 import {
-  Pagination,
   Dialog,
   Autocomplete,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Menu,
-  Submenu,
-  MenuItem,
-  MenuItemGroup,
   Input,
   InputNumber,
   Radio,
@@ -37,62 +32,37 @@ import {
   TableColumn,
   DatePicker,
   TimeSelect,
-  TimePicker,
-  Popover,
-  Tooltip,
-  Breadcrumb,
-  BreadcrumbItem,
+  TimePicker, 
+  Tooltip, 
   Form,
   FormItem,
   Tabs,
-  TabPane,
-  Tag,
-  Tree,
-  Alert,
+  TabPane, 
   Slider,
-  Icon,
   Row,
   Col,
-  Upload,
-  // Progress,
-  Badge,
+  Upload, 
   Card,
-  Rate,
-  Steps,
-  Step,
+  Rate, 
   Divider,
-  Carousel,
-  CarouselItem,
-   // Transitions ,
+  Tree ,
    Collapse,
    CollapseItem,
-   Cascader,
-  ColorPicker,
-    Transfer,
+   Cascader, 
    Container,
   Header,
    Aside,
-   Main,
-  Image,
+   Main, 
   // Footer,
   Loading,
   MessageBox,
-  Message,
-  Progress
+  Message
   // Notification
 } from 'element-ui'
-
-Vue.use(Pagination)
+ 
 Vue.use(Dialog)
 Vue.use(Divider)
-Vue.use(Autocomplete)
-Vue.use(Dropdown)
-Vue.use(DropdownMenu)
-Vue.use(DropdownItem)
-Vue.use(Menu)
-Vue.use(Submenu)
-Vue.use(MenuItem)
-Vue.use(MenuItemGroup)
+Vue.use(Autocomplete)   
 Vue.use(Input)
 Vue.use(InputNumber)
 Vue.use(Radio)
@@ -112,54 +82,62 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(DatePicker)
 Vue.use(TimeSelect)
-Vue.use(TimePicker)
-Vue.use(Popover)
-Vue.use(Tooltip)
-Vue.use(Breadcrumb)
-Vue.use(BreadcrumbItem)
+Vue.use(TimePicker) 
+Vue.use(Tooltip) 
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Tabs)
-Vue.use(TabPane)
-Vue.use(Tag)
-Vue.use(Tree)
-Vue.use(Alert)
+Vue.use(TabPane) 
 Vue.use(Slider)
-Vue.use(Icon)
 Vue.use(Row)
 Vue.use(Col)
-Vue.use(Upload)
-// Vue.use(Progress)
-Vue.use(Badge)
+Vue.use(Upload) 
 Vue.use(Card)
-Vue.use(Rate)
-Vue.use(Steps)
-Vue.use(Step)
-Vue.use(Carousel)
-Vue.use(CarouselItem)
+Vue.use(Rate)  
 Vue.use(Collapse)
-Vue.use(CollapseItem)
-Vue.use(Transfer)
+Vue.use(CollapseItem) 
 
-Vue.use(Cascader)
-Vue.use(ColorPicker)
-//Vue.use(Transfer)
+Vue.use(Cascader) 
+Vue.use(Tree)
 Vue.use(Container)
 Vue.use(Header)
 Vue.use(Aside)
-Vue.use(Main)
-Vue.use(Image)
-Vue.use(Progress)
-// Vue.use(Footer)
+Vue.use(Main) 
 
 Vue.use(Loading.directive)
 
 Vue.prototype.$loading = Loading.service
-Vue.prototype.$msgbox = MessageBox
-Vue.prototype.$alert = MessageBox.alert
+Vue.prototype.$msgbox = MessageBox 
 Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$prompt = MessageBox.prompt
 // Vue.prototype.$notify = Notification
 Vue.prototype.$message = Message
 
 Vue.prototype.$ELEMENT = { size: 'mini' }
+
+
+
+// 存储组件列表
+const components = [
+  VueDragFormdesign
+]
+ 
+// 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
+const install = function (Vue) {
+  // 判断是否安装
+  if (install.installed) return
+  // 遍历注册全局组件
+  components.map(component => Vue.component(component.name, component))
+}
+ 
+// 判断是否是直接引入文件
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+ 
+export default {
+  // 导出的对象必须具有 install，才能被 Vue.use() 方法安装
+  install,
+  // 以下是具体的组件列表
+  VueDragFormdesign
+}

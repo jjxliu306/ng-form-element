@@ -1,14 +1,20 @@
 <template>
   <div>
     <div class="json-box">
-      <codemirror
+
+      <el-input style="min-height:300px;height:300px" :rows="15" readonly ref="myEditor" type="textarea" :value="editorJson">
+
+
+      </el-input>
+
+      <!-- <codemirror
         style="height:100%;"
         ref="myEditor"
         :value="editorJson"
-      ></codemirror>
+      ></codemirror> -->
     </div>
     <div class="copy-btn-box">
-      <el-button
+    <!--   <el-button
         @click="handleCopyJson"
         type="primary"
         class="copy-btn"
@@ -16,7 +22,7 @@
         :data-clipboard-text="editorJson"
       >
         复制数据
-      </el-button>
+      </el-button> -->
       <el-button @click="handleExportJson" type="primary">
         导出代码
       </el-button>
@@ -25,8 +31,8 @@
 </template>
 <script>
 // 剪切板组件
-import Clipboard from "clipboard";
-import { codemirror } from "vue-codemirror-lite";
+//import Clipboard from "clipboard";
+//import { codemirror } from "vue-codemirror-lite";
 export default {
   name: "PreviewCode",
   props: {
@@ -46,7 +52,7 @@ export default {
   },
 
   components: {
-    codemirror
+    //codemirror
   },
   methods: {
     exportData(data, fileName = `demo.${this.fileFormat}`) {
@@ -62,7 +68,7 @@ export default {
       // 导出JSON
       this.exportData(this.editorJson);
     },
-    handleCopyJson() {
+   /* handleCopyJson() {
       // 复制数据
       let clipboard = new Clipboard(".copy-btn");
       clipboard.on("success", () => {
@@ -75,7 +81,7 @@ export default {
         // 销毁实例
         clipboard.destroy();
       }, 122);
-    }
+    }*/
   }
 };
 </script>

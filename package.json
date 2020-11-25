@@ -1,25 +1,21 @@
 {
   "name": "vue-drag-formdesign",
-  "version": "1.0.0",
+  "version": "1.0.9-beta",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name vue-drag-formdesign --dest lib packages/index.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "babel-plugin-import": "^1.13.0",
-    "babel-polyfill": "^6.26.0",
-    "clipboard": "^2.0.6",
+    "axios": "^0.18.0",  
     "core-js": "^3.6.5",
     "default-passive-events": "^1.0.10",
     "element-ui": "^2.13.2",
     "moment": "^2.24.0",
-    "node-sass": "4.9.0",
-    "sass-loader": "6.0.6",
-    "vue": "^2.6.11",
-    "vue-codemirror-lite": "^1.0.4",
-    "vue-quill-editor": "^3.0.6",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^6.0.6",
+    "vue": "^2.6.11", 
     "vue-router": "^3.0.3",
     "vuedraggable": "^2.23.2"
   },
@@ -59,8 +55,9 @@
     "last 2 versions",
     "not dead"
   ],
+  "private": false,
   "description": "vue-drag-formdesign",
-  "main": "babel.config.js",
+  "main": "lib/vue-drag-formdesign.umd.min.js",
   "directories": {
     "example": "example"
   },

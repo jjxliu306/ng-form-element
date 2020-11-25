@@ -1,24 +1,18 @@
 <template>
   <div id="app">
-    <FormDesign>
-
-    </FormDesign>
+    <VueDragFormdesign /> 
   </div>
 </template>
 
 <script>
-import FormDesign from '@/components/form-design/index' 
-
+ 
 export default {
   name: 'App',
   data(){
     return {
       
     }
-  },
-  components: {
-    FormDesign
-  }
+  } 
 }
 </script>
 

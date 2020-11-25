@@ -71,6 +71,9 @@
 </template>
 
 <script>
+require('./form-design.scss')
+require('element-ui/lib/theme-chalk/index.css')
+ 
 import cloneDeep from 'lodash/cloneDeep'
 
 import DragItem from './form-item/drag-item/index'
@@ -83,7 +86,7 @@ import previewCode from "./preview/preview-code";
 
 import renderPreview from "./render/preview";
 export default {
-  name: 'App',
+  name: 'VueDragFormdesign',
   data(){
     return {
       previewVisible: false , 
