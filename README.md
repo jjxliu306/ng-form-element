@@ -4,6 +4,8 @@ VUE-FORM-DESIGN
 ![组件一览](http://cdn.opgis.com/11.png "11.png")
  
 
+ **在线示例**
+ http://211.159.185.23/vue-drag-formdesign/
 
 ##示例
 
@@ -38,15 +40,20 @@ VUE-FORM-DESIGN
 - FormBuild 表单构建器（根据设计器中获取的配置json数据，快速构建出表单页面，添加readonly属性后展现预览表单）
 
 
-## Project setup
+## 安装
 ```
 npm install --save  vue-drag-formdesign 
 
+```
+## 引用
  // 导入组件库
 import VueDragFormdesign from 'vue-drag-formdesign'
 import 'vue-drag-formdesign/lib/vue-drag-formdesign.css'
 // 注册组件库
-Vue.use(VueDragFormdesign)
+
+## 注册
+``` 
+Vue.use(VueDragFormdesign) 
 
 ```
 
@@ -57,6 +64,4 @@ Vue.use(VueDragFormdesign)
 </div>
 ```
  
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ 
