@@ -13,6 +13,9 @@
                       <slot name="formName">表单面板</slot>
                     </span>
                     <span style="float: right;">
+                      <slot name="controlButton">
+                        
+                      </slot>
                       <el-button   type="text" size="medium" icon="el-icon-delete" @click="handleClear">清空</el-button>
                       <el-button  type="text" size="medium" icon="el-icon-view" @click="handlePreview">预览</el-button>
                        <el-button  type="text" size="medium" icon="el-icon-view" @click="handleRender">渲染</el-button>

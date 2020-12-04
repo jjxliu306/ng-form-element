@@ -46,13 +46,15 @@ npm install --save  vue-drag-formdesign
 
 ```
 ## 引用
+```
  // 导入组件库
 import VueDragFormdesign from 'vue-drag-formdesign'
 import 'vue-drag-formdesign/lib/vue-drag-formdesign.css'
-// 注册组件库
+```
 
 ## 注册
 ``` 
+// 注册组件库
 Vue.use(VueDragFormdesign) 
 
 ```
@@ -64,4 +66,36 @@ Vue.use(VueDragFormdesign)
 </div>
 ```
  
+### API 说明
+#1.  VueDragFormdesign 
+
+Methods:
+
+|  方法名称 | 参数| 说明  |
+|-----------|--------|-------------------------|
+| initModel | json |  初始化动态表单内容，参数为动态表单json模板|
+| getModel| N/A|  返回当前正在编辑得动态表单信息|
+
+
+Slot:
+|  插槽名称 | 说明  |
+|-----------|-------------------------|
+| drag |  左侧组件面板插槽，可以在组件面板上面填充一个区域展示内容|
+| formName |  当前动态表单名称|
+| controlButton | 功能区按钮,如果需要自定义功能按钮可以在这里自定义 |
  
+
+ 插槽示例:
+ ```
+	<VueDragFormdesign >
+        <template slot="controlButton" >
+            <el-button   type="text" size="medium"  @click="initDemo(1)">示例1</el-button>
+            <el-button   type="text" size="medium"  @click="initDemo(2)">示例2</el-button>
+            <el-button   type="text" size="medium"  @click="initDemo(3)">示例3</el-button>
+        </template>
+        <template  slot="formName">
+            <span> vue-drag-formdesign 示例 </span>
+        </template>
+    </VueDragFormdesign> 
+ ```
+

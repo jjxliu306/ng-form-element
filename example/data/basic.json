@@ -2,13 +2,13 @@
 	"list": [
 		{
 			"type": "input",
-			"label": "ÊäÈë¿ò",
+			"label": "è¾“å…¥æ¡†",
 			"index": "A",
 			"options": {
 				"type": "text",
 				"width": "100%",
 				"defaultValue": "",
-				"placeholder": "ÇëÊäÈë",
+				"placeholder": "è¯·è¾“å…¥",
 				"clearable": false,
 				"maxLength": null,
 				"prepend": "",
@@ -24,7 +24,7 @@
 			"rules": [
 				{
 					"required": false,
-					"message": "±ØÌîÏî",
+					"message": "å¿…å¡«é¡¹",
 					"trigger": [
 						"change",
 						"blur"
@@ -34,7 +34,7 @@
 		},
 		{
 			"type": "textarea",
-			"label": "ÎÄ±¾¿ò",
+			"label": "æ–‡æœ¬æ¡†",
 			"index": "B",
 			"options": {
 				"width": "100%",
@@ -45,7 +45,7 @@
 				"tooptip": "",
 				"hidden": false,
 				"disabled": false,
-				"placeholder": "ÇëÊäÈë",
+				"placeholder": "è¯·è¾“å…¥",
 				"dynamicHide": false,
 				"dynamicHideValue": ""
 			},
@@ -54,7 +54,7 @@
 			"rules": [
 				{
 					"required": false,
-					"message": "±ØÌîÏî",
+					"message": "å¿…å¡«é¡¹",
 					"trigger": [
 						"change",
 						"blur"
@@ -64,7 +64,7 @@
 		},
 		{
 			"type": "select",
-			"label": "ÏÂÀ­Ñ¡ÔñÆ÷",
+			"label": "ä¸‹æ‹‰é€‰æ‹©å™¨",
 			"index": "D",
 			"options": {
 				"width": "100%",
@@ -72,14 +72,14 @@
 				"disabled": false,
 				"clearable": false,
 				"hidden": false,
-				"placeholder": "ÇëÑ¡Ôñ",
+				"placeholder": "è¯·é€‰æ‹©",
 				"valueKey": "value",
 				"tooptip": "",
 				"dynamic": 0,
 				"options": [
 					{
 						"value": "1",
-						"label": "ÏÂÀ­¿ò1"
+						"label": "ä¸‹æ‹‰æ¡†1"
 					}
 				],
 				"showSearch": false,
@@ -91,7 +91,7 @@
 			"rules": [
 				{
 					"required": false,
-					"message": "±ØÌîÏî",
+					"message": "å¿…å¡«é¡¹",
 					"trigger": [
 						"change",
 						"blur"
@@ -101,7 +101,7 @@
 		},
 		{
 			"type": "radio",
-			"label": "µ¥Ñ¡¿ò",
+			"label": "å•é€‰æ¡†",
 			"index": "F",
 			"options": {
 				"disabled": false,
@@ -112,11 +112,11 @@
 				"options": [
 					{
 						"value": "1",
-						"label": "Ñ¡Ïî1"
+						"label": "é€‰é¡¹1"
 					},
 					{
 						"value": "2",
-						"label": "Ñ¡Ïî2"
+						"label": "é€‰é¡¹2"
 					}
 				],
 				"dynamicHide": false,
@@ -127,7 +127,7 @@
 			"rules": [
 				{
 					"required": false,
-					"message": "±ØÌîÏî",
+					"message": "å¿…å¡«é¡¹",
 					"trigger": [
 						"change",
 						"blur"
@@ -137,7 +137,7 @@
 		},
 		{
 			"type": "date",
-			"label": "ÈÕÆÚÑ¡Ôñ¿ò",
+			"label": "æ—¥æœŸé€‰æ‹©æ¡†",
 			"index": "G",
 			"options": {
 				"width": "100%",
@@ -147,10 +147,10 @@
 				"disabled": false,
 				"hidden": false,
 				"clearable": false,
-				"placeholder": "ÇëÑ¡Ôñ",
+				"placeholder": "è¯·é€‰æ‹©",
 				"tooptip": "",
-				"rangeStartPlaceholder": "¿ªÊ¼Ê±¼ä",
-				"rangeEndPlaceholder": "½áÊøÊ±¼ä",
+				"rangeStartPlaceholder": "å¼€å§‹æ—¶é—´",
+				"rangeEndPlaceholder": "ç»“æŸæ—¶é—´",
 				"format": "yyyy-MM-dd",
 				"dynamicHide": false,
 				"dynamicHideValue": ""
@@ -160,7 +160,7 @@
 			"rules": [
 				{
 					"required": false,
-					"message": "±ØÌîÏî",
+					"message": "å¿…å¡«é¡¹",
 					"trigger": [
 						"change",
 						"blur"
