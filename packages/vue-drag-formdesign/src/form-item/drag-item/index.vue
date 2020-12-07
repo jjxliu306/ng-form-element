@@ -134,7 +134,7 @@ export default {
 }
 
 </script>
-<style type="scss">
+<style >
 .form-item{ 
 	height: 100%; 
 

@@ -294,15 +294,15 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style   scoped>
 .slider-box {
   display: flex;
-  > .slider {
-    flex: 1;
-    margin-right: 16px;
-  }
-  > .number {
-    width: 70px;
-  }
+}
+.slider-box > .slider {
+  flex: 1;
+  margin-right: 16px;
+}
+.slider-box > .number {
+  width: 70px;
 }
 </style>

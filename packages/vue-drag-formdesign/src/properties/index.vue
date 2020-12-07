@@ -56,7 +56,7 @@ export default {
 	}
 }
 </script>
-<style type="scss">
+<style  >
 .form-properties{ 
 	height: 100%; 
 }

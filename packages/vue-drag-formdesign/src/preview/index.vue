@@ -85,13 +85,13 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.design-preview {
-  .item-main {
+<style >
+.design-preview .item-main {
+  
     height: calc(100vh - 140px);
     padding: 0 20px 0 20px;
     overflow: auto;
-  }
+   
 }
 
 

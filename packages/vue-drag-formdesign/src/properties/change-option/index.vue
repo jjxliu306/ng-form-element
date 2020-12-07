@@ -171,39 +171,35 @@ export default {
   }
 };
 </script>
-<style lang="scss" >
-.option-change-container {
+<style  >
+ .option-change-container {
   width: calc(100% - 8px);
-
-  .el-tree-node__content { 
-    height: 35px;
-    .custom-tree-node {
-      height: 35px;
-    }
-  }
-
-
-  .option-change-box {
-    height: 38px;
-    padding-bottom: 6px;
-    .option-delete-box {
-      margin-top: 3px;
-      background: #ffe9e9;
-      color: #f22;
-      width: 32px;
-      height: 32px;
-      line-height: 32px;
-      text-align: center;
-      border-radius: 50%;
-      overflow: hidden;
-      transition: all 0.3s;
-      &:hover {
-        background: #f22;
-        color: #fff;
-      }
-    }
-  }
-
+}
+.option-change-container .el-tree-node__content {
+  height: 35px;
+}
+.option-change-container .el-tree-node__content .custom-tree-node {
+  height: 35px;
+}
+.option-change-container .option-change-box {
+  height: 38px;
+  padding-bottom: 6px;
+}
+.option-change-container .option-change-box .option-delete-box {
+  margin-top: 3px;
+  background: #ffe9e9;
+  color: #f22;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.option-change-container .option-change-box .option-delete-box:hover {
+  background: #f22;
+  color: #fff;
 }
 
 

@@ -72,7 +72,7 @@ export default {
 	}
 }
 </script>
-<style type="scss">
+<style>
 .form-contains{ 
 	height: 100%; 
 }

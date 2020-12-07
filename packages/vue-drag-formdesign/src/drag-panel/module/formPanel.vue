@@ -107,7 +107,7 @@
 <script>
 import draggable from "vuedraggable";
 import layoutItem from "./layerItem";
-import "codemirror/mode/javascript/javascript";
+//import "codemirror/mode/javascript/javascript";
 export default {
   name: "FormPanel",
   data() {

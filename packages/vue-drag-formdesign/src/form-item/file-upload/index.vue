@@ -321,44 +321,41 @@
     }
   }
 </script>
-<style lang="scss">
-
-.upload-div{
+<style  >
+ .upload-div {
   float: left;
-
-  .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .avatar {
-    width: 128px;
-    height: 128px;
-    display: block;
-    object-fit: cover;
-  }
-  .vertical {
-    width: 128px;
-    height: 128px;
-    margin-left: 5px;
-    object-fit: cover;
-    margin-top: 20px;
-  }
 }
-
+.upload-div .avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.upload-div .avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+.upload-div .avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.upload-div .avatar {
+  width: 128px;
+  height: 128px;
+  display: block;
+  object-fit: cover;
+}
+.upload-div .vertical {
+  width: 128px;
+  height: 128px;
+  margin-left: 5px;
+  object-fit: cover;
+  margin-top: 20px;
+}
   
 </style>
 

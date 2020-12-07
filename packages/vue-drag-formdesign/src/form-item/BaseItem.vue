@@ -639,56 +639,45 @@ export default {
   }
 };
 </script>
-<style lang="scss"  >
-.base-item {
-  .slider-box {
-    display: flex;
-    > .slider {
-      flex: 1;
-      margin-right: 16px;
-    }
-    > .number {
-      width: 70px;
-    }
-  }
-
-  .el-input-number-diaplay {
-    vertical-align: middle;
-    display: inline-flex;
-    position: relative;
-
-
-    .el-input-number__append {
-      float: left;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      background-color: #F5F7FA;
-      color: #909399;
-      vertical-align: middle;
-      display: table-cell;
-      position: relative;
-      border: 1px solid #DCDFE6;
-      border-radius: 4px;
-      
-      white-space: nowrap;
-      border-left: 0;
-      border-right: 0;
-
-      .el-input__inner {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-
-    .el-input-number-group__append {
-        border-left: 0;
-        text-align: center;
-        display: inline-table; 
-         
-    }
-  }
-
+<style >
+ .base-item .slider-box {
+  display: flex;
 }
-
+.base-item .slider-box > .slider {
+  flex: 1;
+  margin-right: 16px;
+}
+.base-item .slider-box > .number {
+  width: 70px;
+}
+.base-item .el-input-number-diaplay {
+  vertical-align: middle;
+  display: inline-flex;
+  position: relative;
+}
+.base-item .el-input-number-diaplay .el-input-number__append {
+  float: left;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #F5F7FA;
+  color: #909399;
+  vertical-align: middle;
+  display: table-cell;
+  position: relative;
+  border: 1px solid #DCDFE6;
+  border-radius: 4px;
+  white-space: nowrap;
+  border-left: 0;
+  border-right: 0;
+}
+.base-item .el-input-number-diaplay .el-input-number__append .el-input__inner {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.base-item .el-input-number-diaplay .el-input-number-group__append {
+  border-left: 0;
+  text-align: center;
+  display: inline-table;
+}
 
 </style>

@@ -74,7 +74,7 @@
 </template>
 
 <script>
-require('./form-design.scss')
+require('./form-design.css')
 require('element-ui/lib/theme-chalk/index.css')
  
 import cloneDeep from 'lodash/cloneDeep'
@@ -254,8 +254,7 @@ export default {
 }
 </script>
 
-<style lang="scss"> 
-
+<style > 
 .form-design {
   height: 100%;
   width: 100%;
@@ -278,15 +277,15 @@ export default {
   }
   */
 }
+
 .form-properties {
   height: 100%;
-  width: 100%; 
+  width: 100%;
 }
 
 .height-all {
-   height: 100%;
+  height: 100%;
 }
- 
  
 
 </style>
