@@ -275,7 +275,7 @@ export const basicsList = [
       }
     ]
   },
-  {
+ /* {
     type: "uploadFile", // 表单类型
     label: "上传文件", // 标题文字 
     index: 'K',
@@ -325,7 +325,7 @@ export const basicsList = [
         message: "必填项"
       }
     ]
-  }, 
+  }, */
   {
     type: "cascader", // 表单类型
     label: "级联选择器", // 标题文字 

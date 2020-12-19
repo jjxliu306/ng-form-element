@@ -1,15 +1,29 @@
 <template>
   <div id="app">
-    <VueDragFormdesign ref="formDesign">
-        <template slot="controlButton" >
-            <el-button   type="text" size="medium"  @click="initDemo(1)">示例1</el-button>
-            <el-button   type="text" size="medium"  @click="initDemo(2)">示例2</el-button>
-            <el-button   type="text" size="medium"  @click="initDemo(3)">示例3</el-button>
-        </template>
-        <template  slot="formName">
-            <span> vue-drag-formdesign 示例 </span>
-        </template>
-    </VueDragFormdesign> 
+
+    <el-tabs v-model="activeName" style="padding: 20px;">
+        <el-tab-pane label="表单绘制" name="first">
+            <VueDragFormdesign ref="formDesign">
+                <template slot="controlButton" >
+                    <el-button   type="text" size="medium"  @click="initDemo(1)">示例1</el-button>
+                    <el-button   type="text" size="medium"  @click="initDemo(2)">示例2</el-button>
+                    <el-button   type="text" size="medium"  @click="initDemo(3)">示例3</el-button>
+                </template>
+                <template  slot="formName">
+                    <span> vue-drag-formdesign 示例 </span>
+                </template>
+            </VueDragFormdesign> 
+        </el-tab-pane>
+        <el-tab-pane label="表单查看" name="second">
+            <el-alert
+            title="测试表单预览"
+            type="warning">
+          </el-alert>
+            <VueDragFormBuild  :formTemplate="formTemplate" :models="models"/>
+        </el-tab-pane> 
+      </el-tabs>
+
+  
   </div>
 </template>
 
@@ -19,9 +33,15 @@ export default {
   name: 'App',
   data(){
     return {
-      
+      activeName: 'first',
+      models: {} ,
+      formTemplate: {}
     }
   } ,
+
+  created() {
+    this.formTemplate = require('./data/basic.json')
+  },
   methods: {
     initDemo(index){
         let json = null 

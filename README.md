@@ -67,7 +67,7 @@ Vue.use(VueDragFormdesign)
 ```
  
 ### API 说明
-#1.  VueDragFormdesign 
+#1. 表单绘制组件  VueDragFormdesign 
 
 Methods:
 
@@ -99,3 +99,48 @@ Slot:
     </VueDragFormdesign> 
  ```
 
+#2. 表单查看/填报组件  VueDragFormBuild 
+
+Methods:
+
+|  方法名称 | 参数| 说明  |
+|-----------|--------|-------------------------|
+| reset | N/A |  重置动态表单内容|
+| validator| N/A|  根据设置的规则验证当前表单内容,返回Promise|
+| getData | N/A | 表单验证后,获取当前表单数据,返回Promise | 
+| setData | json | 重新设置当前的表单填写内容 |
+
+
+属性: 
+| 属性名 | 说明 | 格式| 默认值 | 
+|-----------|--------|-------------------------|
+| formTemplate | 表单模板 | json | 无 |
+| models | 表单填充数据 | json | 无 |
+| disabled | 是否禁用 | boolean | false |
+| renderPreview | 当前是否为预览模式 | boolean | false |
+
+ 
+ 
+
+ 使用示例:
+ ```
+    <template>
+      <div id="app"> 
+         <VueDragFormBuild  :formTemplate="formTemplate" :models="models"/>
+      </div>
+    </template>
+    <script>
+    export default {
+      data(){
+        return {
+          models: {} ,
+          formTemplate: {}
+        }
+      },
+      created() {
+        this.formTemplate = require('./data/basic.json')
+      }
+    }
+    </script>
+
+ ```

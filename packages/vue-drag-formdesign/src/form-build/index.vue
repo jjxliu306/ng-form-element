@@ -35,7 +35,7 @@
  
 import buildBlocks from "./build-block";  
 export default {
-  name: "FormBuild",
+  name: "VueDragFormBuild",
   data() {
     return {
       //locale: zhCN,
@@ -73,10 +73,7 @@ export default {
     data: {
       type: Object,
       default: () => ({})
-    },
-    index: {
-      default: ''
-    }
+    } 
   },
   components: {
     buildBlocks
@@ -91,7 +88,7 @@ export default {
 
           this.$refs.form.validate((valid,values)=>{ 
             
-            resolve({index: this.index , valid:valid}); 
+            resolve(valid); 
           })
  
       });
