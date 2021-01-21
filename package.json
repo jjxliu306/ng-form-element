@@ -1,6 +1,6 @@
 {
   "name": "vue-drag-formdesign",
-  "version": "1.0.11-beta",
+  "version": "1.0.12-beta",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -72,6 +72,8 @@
   "keywords": [
     "vue-form-design",
     "vue-drag-formdesign",
-    "formdesign"
+    "formdesign",
+    "动态表单",
+    "表单"
   ]
 }

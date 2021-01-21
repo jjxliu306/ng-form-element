@@ -22,6 +22,7 @@
   overflow: auto;
   height: 90%;
   padding: 5px;
+  width: 100%
 }
 .form-design .components-list {
   padding: 8px 0;
@@ -173,7 +174,7 @@
   bottom: 2px;
   right: 5px;
   font-size: 14px;
-  z-index: 999;
+ /* z-index: 999; */
   color: #409EFF;
 }
 .form-design .form-panel .draggable-box .list-main .drag-move-box > .copy,
