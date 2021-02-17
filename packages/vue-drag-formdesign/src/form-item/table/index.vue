@@ -39,43 +39,20 @@
             <TableItem :record="item" :renderPreview="true" :domains="models[record.model][scope.$index]" />
           </template>  
         </el-table-column>
-        </template>
-        
-
-     <!--    <TableFormItem 
-              v-for="(item,index) in record.list"
-              :key="item.key + '1'"
-              :parent="record"
-              :record="item"
-              :config="config"
-              :parentDisabled="disabled"
-              :index="index"
-              :domains="models[record.model]" 
-              v-model="record[item.model]"
-              :renderPreview="renderPreview"
-              @input="handleInput"
-        /> -->
-      <!--   <el-table-column  
-          label="操作"
-          align="center"
-          v-if="!renderPreview"
-          width="100">
-          <template  slot-scope="scope"> 
-            <el-button type="danger"   @click="removeDomain(scope.$index)">
-              <i class="el-icon-delete" />删除 
-            </el-button>
-          </template> 
-        </el-table-column>  -->
-         <el-table-column  
+        </template> 
+        <el-table-column  
           label="操作"
           align="center" 
-          width="200">
+          :width="renderPreview ? 120 : (record.options.copyRow ? 250 : 200)">
           <template  slot-scope="scope"> 
             <el-button type="success"  v-if="renderPreview"  @click="updateDomain(scope.row)">
               <i class="el-icon-eye" />查看
             </el-button>
             <el-button type="primary"  v-if="!renderPreview"  @click="updateDomain(scope.row)">
               <i class="el-icon-edit" />修改
+            </el-button>
+            <el-button type="primary"  v-if="!renderPreview && record.options.copyRow"  @click="copyDomain(scope.row)">
+              <i class="el-icon-copy-document" />复制
             </el-button>
             <el-button type="danger"   v-if="!renderPreview" @click="removeDomain(scope.$index)">
               <i class="el-icon-delete" />删除 
@@ -184,20 +161,24 @@ export default {
             })
           }
         }
-      })
-
-
-     
-
-
+      }) 
       
     },
     updateDomain(data) {
       this.addOrUpdateVisible = true
       
-        this.$nextTick(() => {
-          this.$refs.addOrUpdate.init(data)
-        })
+      this.$nextTick(() => {
+        this.$refs.addOrUpdate.init(data)
+      })
+    },
+    // 行复制 2021-02-17 lyf
+    copyDomain(data) {
+      this.addOrUpdateVisible = true 
+      let copyData = {...data}
+      copyData._id = null
+      this.$nextTick(() => {
+         this.$refs.addOrUpdate.init(copyData) 
+      })
     },
     addDomain() { 
 
@@ -237,7 +218,7 @@ export default {
       let domains = this.models[this.record.model] 
 
       for(var i in this.models[this.record.model] ){
-        if(this.models[this.record.model] [i].id == form.id){
+        if(this.models[this.record.model] [i]._id == form._id){
           this.models[this.record.model].splice(i,1,form)
           break
         }

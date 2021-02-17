@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="!dataForm.id ? '新增' : '修改'"
+    :title="!dataForm._id ? '新增' : '修改'"
     :close-on-click-modal="false"
      :append-to-body="true" 
     :lock-scroll="false"
@@ -130,7 +130,7 @@
         loading: false,
         visible: false,
         dataForm: {
-          id: '',
+          _id: '',
           seq: 0
         }, 
         dataRule: { 
@@ -231,7 +231,7 @@
        
       init (data) {
           this.visible = true 
-          this.dataForm.id = null  
+          this.dataForm._id = null  
           if(data) {
             //this.dataForm = data
             for(var i in data){
@@ -248,7 +248,7 @@
                 d[item.model] = null
             }); 
  
-            this.dataForm = {id:null,seq: 0 , ...d}
+            this.dataForm = {_id:null,seq: 0 , ...d}
 
             this.$nextTick(() => {
               this.$refs['dataForm'].resetFields()
@@ -261,13 +261,12 @@
         // 表单提交
         dataFormSubmit () {
           this.$refs['dataForm'].validate((valid) => {
-            if (valid) {
-              console.log('ddd' , this.dataForm)
+            if (valid) { 
               this.loading = true
-              if(!this.dataForm.id) {
+              if(!this.dataForm._id) {
                 // 回填一个ID 
                 const id = new Date().getTime() * 10 + parseInt(Math.random() * 100)
-                this.dataForm.id = id 
+                this.dataForm._id = id 
                 this.$emit('formAdd' , cloneDeep(this.dataForm))
               } else {
                 this.$emit('formUpdate' , cloneDeep(this.dataForm))
