@@ -65,9 +65,11 @@
   <el-form-item
     v-else-if="record.type === 'button' && dynamicVisibleItem" 
   >
+    {{record}}
     <el-button
       :disabled="disabled || record.options.disabled" 
       :type="record.options.type" 
+      @click="buttonClick"
       v-text="record.label"
     ></el-button>
   </el-form-item>
@@ -87,18 +89,16 @@
 
   <div v-else-if="dynamicVisibleItem">
     <!-- 分割线 -->
+
     <el-divider
-      v-if="
-        record.type === 'divider' &&
-          record.label !== '' &&
-          record.options.orientation
-      "
-      :orientation="record.options.orientation"
-      >{{ record.label }}</el-divider>
-    <el-divider v-else-if="record.type === 'divider' && record.label !== ''">{{
-      record.label
-    }}</el-divider>
-    <el-divider v-else-if="record.type === 'divider' && record.label === ''" />
+      v-if=" record.type === 'divider' && record.label !== '' && record.options.orientation "
+      :content-position="record.options.orientation" :direction="record.options.direction ? record.options.direction : 'horizontal'">
+      {{ record.label }}
+    </el-divider>
+    <el-divider v-else-if="record.type === 'divider' && record.label !== ''" :direction="record.options.direction ? record.options.direction : 'horizontal'" >
+      {{record.label}}
+    </el-divider>
+    <el-divider v-else-if="record.type === 'divider' && record.label === ''" :direction="record.options.direction ? record.options.direction : 'horizontal'" />
   </div>
 </template>
 <script> 
@@ -275,7 +275,15 @@ export default {
       this.$emit("change", value, key);
  
     },
-    
+    // 按钮点击事件 2021-02-17 lyf
+    buttonClick() { 
+      if(this.record.type != 'button' || !this.record.options.dynamicFun) {
+        return 
+      } 
+      // 有回调函数 去执行
+      dynamicFun(this.record.options.dynamicFun , this.models)
+
+    }
   },
   mounted() {  
     // 如果已经赋值了 则不管默认值了

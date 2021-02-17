@@ -22,6 +22,7 @@
   overflow: auto;
   height: 90%;
   padding: 5px;
+  width: 100%
 }
 .form-design .components-list {
   padding: 8px 0;
@@ -173,7 +174,7 @@
   bottom: 2px;
   right: 5px;
   font-size: 14px;
-  z-index: 999;
+ /* z-index: 999; */
   color: #409EFF;
 }
 .form-design .form-panel .draggable-box .list-main .drag-move-box > .copy,
@@ -469,11 +470,17 @@
 .form-table tr td {
   box-sizing: border-box;
   transition: all 0.3s;
-  padding: 12px 12px;
+  padding: 3px 3px;
   border-collapse: collapse;
   display: table-cell;
   vertical-align: inherit;
 }
+
+.form-table tr td .cell {
+ padding-right: 2px;
+ padding-left: 2px;
+}
+
 .form-table tr td .el-form-item {
   margin-bottom: 0 !important;
 }

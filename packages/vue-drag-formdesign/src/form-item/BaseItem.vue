@@ -65,7 +65,7 @@
 
   </div>
   <div v-else class="base-item"> 
-    <!-- 单行文本 -->  
+    <!-- 单行文本 -->   
     <el-input
      
       :style="`width:${record.options.width}`"
@@ -78,12 +78,12 @@
       @change="handleChange($event, record.model)"
       v-model="models[record.model]" 
     >
-      <template v-if="record.options.prepend"  slot="prepend" v-html="transformAppend(record.options.append)">
+      <span v-if="record.options.prepend"  slot="prepend" v-html="transformAppend(record.options.prepend)">
        
-      </template>
-      <template v-if="record.options.append"  slot="append" v-html="transformAppend(record.options.append)">
+      </span>
+      <span v-if="record.options.append"  slot="append" v-html="transformAppend(record.options.append)">
         
-      </template>
+      </span>
     </el-input>
     <!-- 多行文本 -->
     <el-input
@@ -267,9 +267,8 @@
       @change="handleChange($event, record.model)"
      
     />
-   <!-- 滑块 -->
-   
-      <el-slider
+   <!-- 滑块 --> 
+    <el-slider
         v-else-if="record.type === 'slider'"
         v-model="models[record.model]"
         :style="`width:${record.options.width}`"
@@ -278,11 +277,10 @@
         :max="record.options.max"
         :show-input="record.options.showInput"
         :step="record.options.step"
+        :marks="sliderMarks"
         @change="handleChange($event, record.model)"
           
-      /> 
-    
-   
+    />  
     
     <!-- 上传图片 -->
     <FileUpload
@@ -393,6 +391,25 @@ export default {
   },
   components: {
      FileUpload
+  },
+  computed: {
+    sliderMarks() {
+        
+      if(this.record.type !== 'slider' || !this.record.options.marks || this.record.options.marks.length == 0) {
+        return null 
+      }
+
+      let p = {}  
+
+      this.record.options.marks.forEach(t=> {
+       
+        p[t.label] = t.value 
+        
+      })
+
+      return p ;
+
+    },
   },
   watch: {
     checkList:{

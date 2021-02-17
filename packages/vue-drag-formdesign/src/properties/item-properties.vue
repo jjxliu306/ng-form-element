@@ -40,10 +40,10 @@
             </el-input>
         
           </el-form-item>
-          <el-form-item  label="回显字段"  v-if="selectItem.type === 'input'">
+        <!--   <el-form-item  label="回显字段"  v-if="selectItem.type === 'input'">
             <el-input placeholder="回显字段" v-model="options.cbColumn"  > 
             </el-input>
-          </el-form-item>
+          </el-form-item> -->
           
 
           <el-form-item  v-if="selectItem.type === 'textarea'" label="输入框行数" >
@@ -345,12 +345,18 @@
             <el-input-number v-model="options.max" placeholder="请输入"/>
           </el-form-item>
           <el-form-item label="默认值"  >
-          <el-input-number
-            :step="options.step"
-            :min="options.min || -Infinity"
-            :max="options.max || Infinity"
-            v-model="options.defaultValue"  />
+            <el-input-number
+              :step="options.step"
+              :min="options.min || -Infinity"
+              :max="options.max || Infinity"
+              v-model="options.defaultValue"  />
           </el-form-item>
+
+          <el-form-item   label="标记marks">
+            <br>
+            <ChangeOption style="width: 100%;" :keyNumber="true" type="keyvalue" v-model="options.marks" />
+          </el-form-item> 
+            
  
           <el-form-item   label="操作属性" >
             <el-checkbox v-model="options.hidden"  label="隐藏" />
@@ -457,6 +463,8 @@
               <el-radio-button label="top">顶部对齐</el-radio-button>
             </el-radio-group>
           </el-form-item>
+
+
           <!-- 上传数量 -->
           <el-form-item  label="滚动高度" >
             <el-input-number :min="0" v-model="options.scrollY" />
@@ -479,6 +487,7 @@
             <el-checkbox v-model="options.disabled"  label="禁用" /> 
             <el-checkbox v-model="options.showLabel" label="显示Label" />
             <el-checkbox v-model="options.hideSequence" label="隐藏序号" />
+            <el-checkbox v-model="options.copyRow" label="行复制" />
           </el-form-item> 
         </template> 
         <!-- 动态表格 end -->
@@ -520,7 +529,7 @@
           </el-form-item>
           <el-form-item   label="操作属性" >
             <el-checkbox v-model="options.hidden"  label="隐藏" />
-            <el-checkbox v-model="options.disabled"  label="禁用" />  >
+            <el-checkbox v-model="options.disabled"  label="禁用" />   
           </el-form-item> 
         </template> 
         <!-- 按钮  end -->
@@ -560,10 +569,19 @@
         <!-- ################### 布局  start ################################  -->
         <!-- 分割线 start-->
         <template v-if="selectItem.type == 'divider'">  
-          <el-form-item  label="标签位置" >
+          
+
+          <el-form-item  label="方向" >
+            <el-radio-group  v-model="options.direction">
+              <el-radio-button label="horizontal">横向</el-radio-button>
+              <el-radio-button label="vertical">竖向</el-radio-button> 
+            </el-radio-group>
+          </el-form-item>  
+
+          <el-form-item  label="标签位置" v-if="options.direction && options.direction == 'horizontal'">
             <el-radio-group  v-model="options.orientation">
               <el-radio-button label="left">左</el-radio-button>
-              <el-radio-button label="">居中</el-radio-button>
+              <el-radio-button label="center">居中</el-radio-button>
               <el-radio-button label="right">右</el-radio-button>
             </el-radio-group>
           </el-form-item> 

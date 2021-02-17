@@ -263,7 +263,8 @@ export const basicsList = [
       tooptip: '', // 提示
       max: 100, // 最大值
       step: 1, // 步长，取值必须大于 0，并且可被 (max - min) 整除
-      showInput: false // 是否显示输入框，range为true时，请勿开启
+      showInput: false, // 是否显示输入框，range为true时，请勿开启
+      marks: [] , //标记， key 的类型必须为 number 且取值在闭区间 [min, max] 内，每个标记可以单独设置样式
       // range: false // 双滑块模式
     },
     model: "",
@@ -462,7 +463,8 @@ export const layoutList = [
     label: "分割线", 
     options: {
       tooptip: '', // 提示
-      orientation: "left"
+      orientation: "left",
+      direction: 'horizontal'
     },
     key: "",
     model: ""
