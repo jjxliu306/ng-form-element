@@ -470,11 +470,17 @@
 .form-table tr td {
   box-sizing: border-box;
   transition: all 0.3s;
-  padding: 12px 12px;
+  padding: 3px 3px;
   border-collapse: collapse;
   display: table-cell;
   vertical-align: inherit;
 }
+
+.form-table tr td .cell {
+ padding-right: 2px;
+ padding-left: 2px;
+}
+
 .form-table tr td .el-form-item {
   margin-bottom: 0 !important;
 }

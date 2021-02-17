@@ -74,7 +74,7 @@ export default {
 body{
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
     /* position: relative; */
     position: absolute;
     margin: 0;

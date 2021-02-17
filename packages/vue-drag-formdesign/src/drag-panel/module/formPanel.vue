@@ -240,11 +240,11 @@ export default {
       this.$emit("handleSetSelectItem", columns[newIndex]);
     },
     dragStart(evt, list) {
-      console.log('drag start , event' , evt)
-      if(!this.selectForm || !this.selectForm.id) {
-        this.$message.error('请先选择具体的表单')
-        return  
-      }
+      // console.log('drag start , event' , evt)
+      // if(!this.selectForm || !this.selectForm.id) {
+      //   this.$message.error('请先选择具体的表单')
+      //   return  
+      // }
 
       // 拖拽结束,自动选择拖拽的控件项
       this.$emit("handleSetSelectItem", list[evt.oldIndex]);
