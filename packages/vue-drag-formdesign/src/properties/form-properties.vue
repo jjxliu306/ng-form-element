@@ -39,7 +39,7 @@
         <el-divider></el-divider>
 
         <el-form-item label="表单CSS">
-          <el-input v-model="config.customStyle" />
+          <el-input  type="textarea" v-model="config.customStyle" />
         </el-form-item>
         <el-divider></el-divider>
       
