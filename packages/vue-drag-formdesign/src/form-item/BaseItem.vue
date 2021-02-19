@@ -96,6 +96,7 @@
       :clearable="record.options.clearable"
       :maxlength="record.options.maxLength"
       :rows="record.options.rows"
+      :show-word-limit="record.options.maxLength && record.options.maxLength > 10"
       @change="handleChange($event, record.model)"
        
     />
