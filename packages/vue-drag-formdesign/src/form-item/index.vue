@@ -40,9 +40,10 @@
   
   </el-form-item>
   <!-- 可隐藏label -->
+ 
   <el-form-item
     v-else-if="(record.type === 'batch' || record.type === 'editor') && dynamicVisibleItem"
-    :label="!record.options.showLabel ? '' : record.label" 
+    :label="!record.options.showLabel ? '' : record.label" :label-width="record.options.showLabel ? null : '0px'"
   >
     <!-- 动态表格 -->
     <TableBatch
