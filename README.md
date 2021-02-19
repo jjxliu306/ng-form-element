@@ -1,7 +1,7 @@
 # vue-form-design 致力打造开源最强vue动态表单组件
 VUE-FORM-DESIGN
 
-![组件一览](http://cdn.opgis.com/11.png "11.png")
+![组件一览](https://s3.ax1x.com/2020/12/22/rr6Dw6.png "11.png")
  
 
  **在线示例**
@@ -10,15 +10,15 @@ VUE-FORM-DESIGN
 ##示例
 
  **基础表单** 
- ![基础表单](http://cdn.opgis.com/basic.gif "basic.gif")
+ ![基础表单](https://s3.ax1x.com/2020/12/22/rrcpkT.gif "basic.gif")
 
 
  **表单验证和组件动态显示** 
-![表单验证和组件动态显示](http://cdn.opgis.com/validator1.gif "validator1.gif")
+![表单验证和组件动态显示](https://s3.ax1x.com/2020/12/22/rr6x00.gif "validator1.gif")
 
 
  **动态表格** 
-![动态表格](http://cdn.opgis.com/tablebatch.gif "tablebatch.gif")
+![动态表格](https://s3.ax1x.com/2020/12/22/rrc9tU.gif "tablebatch.gif")
 
 
 ## 简介
@@ -67,7 +67,7 @@ Vue.use(VueDragFormdesign)
 ```
  
 ### API 说明
-#1. 表单绘制组件  VueDragFormdesign 
+# 1. 表单绘制组件  VueDragFormdesign 
 
 Methods:
 
@@ -78,6 +78,7 @@ Methods:
 
 
 Slot:
+
 |  插槽名称 | 说明  |
 |-----------|-------------------------|
 | drag |  左侧组件面板插槽，可以在组件面板上面填充一个区域展示内容|
@@ -87,7 +88,7 @@ Slot:
 
  插槽示例:
  ```
-	<VueDragFormdesign >
+  <VueDragFormdesign >
         <template slot="controlButton" >
             <el-button   type="text" size="medium"  @click="initDemo(1)">示例1</el-button>
             <el-button   type="text" size="medium"  @click="initDemo(2)">示例2</el-button>
@@ -99,7 +100,7 @@ Slot:
     </VueDragFormdesign> 
  ```
 
-#2. 表单查看/填报组件  VueDragFormBuild 
+# 2. 表单查看/填报组件  VueDragFormBuild 
 
 Methods:
 
@@ -112,6 +113,7 @@ Methods:
 
 
 属性: 
+
 | 属性名 | 说明 | 格式| 默认值 | 
 |-----------|------------------------------|--------|----------|
 | formTemplate | 表单模板 | json | 无 |
