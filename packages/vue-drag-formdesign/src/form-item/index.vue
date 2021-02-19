@@ -24,7 +24,7 @@
     "
     :label="formConfig.labelWidth > 0 ? record.label : null " 
     :rules="recordRules"
-    :prop="itemProp ? itemProp : (record.rules && record.rules.length > 0 ? record.model : null)"
+    :prop="itemProp ? itemProp : (recordRules && recordRules.length > 0 ? record.model : null)"
   >   
  
     <BaseItem 
@@ -103,7 +103,7 @@
 <script> 
 import TableBatch from "./table"; 
 import BaseItem from './BaseItem' 
-
+ 
 import {dynamicFun} from '../utils'
 
 export default {
@@ -187,6 +187,7 @@ export default {
       return mark 
     },
     // 是否动态显示当前元素 
+     // 是否动态显示当前元素 
     // 返回true 显示 false 不显示
     dynamicVisibleItem(){ 
       if(this.isDragPanel) {
@@ -206,15 +207,21 @@ export default {
     },
     recordRules(){
       // 2020-07-29 如果是预览 不需要规则验证
-      if(this.renderPreview) {
+      if(this.isDragPanel || this.renderPreview || !this.record.rules || this.record.rules.length == 0) {
         return []
       }
-      const rules = this.record.rules  
+      let rules =this.record.rules
+
+      // 2020-09-12 判断是否必填 ,非必填得没有值得时候不校验
+
+      const isRequire = rules[0].required
 
       // 循环判断
       for(var i = 0 ; i < rules.length ; i++){
         const t = rules[i]
-         if(t.vtype == 1 || t.vtype == 2){ 
+        
+        t.required = isRequire
+        if(t.vtype == 1 || t.vtype == 2){ 
           t.validator =  this.validatorFiled 
         } 
 
@@ -224,7 +231,13 @@ export default {
         }
       }
      
+      //2020-12-08 lyf 如果是batch类型的话增加一个内部校验的标记
 
+      if(this.record.type == 'batch') {
+        rules.push({vtype: 3,trigger:['change','blur'] ,validator: this.validatorFiled ,message: '待完善'  })
+      }  
+
+      
       return rules 
 
     }
@@ -264,6 +277,21 @@ export default {
           }
 
 
+        }else if(rule.vtype == 3) {
+          // 2020-12-08 lyf 表单内部校验
+          if(!this.$refs.TableBatch) {
+             callback()
+
+          } else {
+            const v = this.$refs.TableBatch.validatorRule()
+            if(v) {
+               callback()
+             } else {
+                callback(new Error(rule.message))
+            }
+
+          }
+          
         }
 
        

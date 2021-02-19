@@ -37,7 +37,7 @@
           </el-form-item>  
             
           <el-form-item  label="最大长度"  >
-            <el-input-number  v-model="options.maxLength" placeholder="最大长度"  :min="1"/>  
+            <el-input-number  v-model="options.maxLength" placeholder="最大长度,为0表示不限制"  :min="0"/>  
            
           </el-form-item>
           

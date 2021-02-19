@@ -74,7 +74,7 @@
       :placeholder="record.options.placeholder"
       :type="record.options.type"
       :clearable="record.options.clearable"
-      :maxlength="record.options.maxLength"
+      :maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
       @change="handleChange($event, record.model)"
       v-model="models[record.model]" 
     >
@@ -94,7 +94,7 @@
       :disabled="disabled || record.options.disabled"
       :placeholder="record.options.placeholder"
       :clearable="record.options.clearable"
-      :maxlength="record.options.maxLength"
+      :maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
       :rows="record.options.rows"
       :show-word-limit="record.options.maxLength && record.options.maxLength > 10"
       @change="handleChange($event, record.model)"

@@ -9,12 +9,11 @@
       v-if="[ 
         'radio',
         'checkbox',
-        'select',
-        'keyvalue'
+        'select'
         ].includes(type)" :gutter="8">
       <div class="option-change-box" v-for="(val, index) in value" :key="index">
         <el-col :span="9"
-          ><el-input v-model="val.label"  :type="keyNumber ? 'number' : 'text'" placeholder="名称"
+          ><el-input v-model="val.label" placeholder="名称"
         /></el-col>
         <el-col :span="9"><el-input v-model="val.value" placeholder="值"/></el-col>
         <el-col :span="6"
@@ -22,13 +21,13 @@
             <i class="el-icon-delete" /></div
         ></el-col>
       </div>
-      <el-col :span="24"><el-button type="primary" @click="handleAdd">添加</el-button></el-col>
+      <el-col v-if="!disabled" :span="24"><el-button type="primary" @click="handleAdd">添加</el-button></el-col>
     </el-row>
     <!-- 级联 树状数据 lyf 2020-07-06 -->
     <el-row v-if="type === 'cascader'" :gutter="8">
       <div  >
         <el-tree
-          :data="value"
+          :data="value ? value : []"
           show-checkbox
           node-key="value"
           default-expand-all
@@ -37,7 +36,7 @@
             <span> 
               <el-row :gutter="4">
                 <el-col :span="9">
-                  <el-input v-model="data.label" :type="keyNumber ? 'number' : 'text'" placeholder="名称" />
+                  <el-input v-model="data.label" placeholder="名称" />
                 </el-col>
                 <el-col :span="9">
                   <el-input v-model="data.value" placeholder="值"/>
@@ -62,25 +61,33 @@
           </span>
         </el-tree>
       </div>
-      <el-col :span="24"><el-button type="primary" @click="handleAdd">添加</el-button></el-col>
+      <el-col v-if="!disabled" :span="24"><el-button type="primary" @click="handleAdd">添加</el-button></el-col>
     </el-row>
 
     <el-row v-if="type === 'rules'" :gutter="8">
       <span v-for="(val, index) in value" :key="index">
         <div class="option-change-box" v-if="index !== 0">
-          <el-col :span="18"
-            ><el-input v-model="val.message" placeholder="提示信息"
-          /></el-col>
-          <el-col :span="18"
-            ><el-input v-model="val.pattern" placeholder="正则表达式pattern"
-          /></el-col>
-          <el-col :span="6"
-            ><div @click="handleDelete(index)" class="option-delete-box">
-              <i class="el-icon-delete" /></div
-          ></el-col>
+          <el-col :span="18" >
+            <template>
+              <el-radio v-model="val.vtype" :label="1">正则</el-radio>
+              <el-radio v-model="val.vtype" :label="2">表达式</el-radio>
+            </template>
+          </el-col>
+          <el-col :span="18" >
+            <el-input v-model="val.message" placeholder="提示信息"/>
+          </el-col>
+          <el-col :span="18">
+            <el-input  v-if="val.vtype == 1" v-model="val.pattern" placeholder="正则表达式pattern" />
+            <el-input  v-else-if="val.vtype == 2" type="textarea" v-model="val.script" placeholder="条件表达式" />
+          </el-col>
+          <el-col :span="6" >
+            <div @click="handleDelete(index)" class="option-delete-box">
+              <i class="el-icon-delete" />
+            </div>
+          </el-col>
         </div>
       </span>
-      <el-col :span="24"><el-button type="primary" @click="handleAddRules">增加校验</el-button></el-col>
+      <el-col v-if="!disabled" :span="24"><el-button type="primary" @click="handleAddRules">增加校验</el-button></el-col>
     </el-row>
     <el-row v-else-if="type === 'colspan'" :gutter="8">
       <div class="option-change-box" v-for="(val, index) in value" :key="index">
@@ -96,7 +103,7 @@
              <i class="el-icon-delete" /></div
         ></el-col>
       </div>
-      <el-col :span="24"><el-button type="primary" @click="handleAddCol">添加</el-button></el-col>
+      <el-col v-if="!disabled" :span="24"><el-button type="primary" @click="handleAddCol">添加</el-button></el-col>
     </el-row>
   </div>
 </template>
@@ -107,18 +114,17 @@ export default {
   props: {
     value: {
       type: Array,
+      default: ()=> [],
       required: true
     },
     type: {
       type: String,
       default: "option"
     },
-    // key必须为数字 2021-02-17 lyf
-    keyNumber: {
-      type: Boolean ,
+    disabled: {
+      type: Boolean,
       default: false
-    },
-    
+    }
   },
   methods: {
     handleAdd() {
@@ -147,7 +153,10 @@ export default {
       let addData = [
         ...this.value,
         {
+          vtype: 1,
+          //validator: 'validatorFiled',
           pattern: "",
+          script: "",
           message: ""
         }
       ];
@@ -179,37 +188,41 @@ export default {
 };
 </script>
 <style  >
- .option-change-container {
+.option-change-container {
   width: calc(100% - 8px);
+
+  
+
 }
-.option-change-container .el-tree-node__content {
+.option-change-container .el-tree-node__content { 
   height: 35px;
 }
-.option-change-container .el-tree-node__content .custom-tree-node {
+.option-change-container .el-tree-node__content  .custom-tree-node {
   height: 35px;
 }
+
 .option-change-container .option-change-box {
-  height: 38px;
-  padding-bottom: 6px;
-}
+    height: 38px;
+    padding-bottom: 6px;
+    
+  }
+
 .option-change-container .option-change-box .option-delete-box {
-  margin-top: 3px;
-  background: #ffe9e9;
-  color: #f22;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  text-align: center;
-  border-radius: 50%;
-  overflow: hidden;
-  transition: all 0.3s;
-}
+      margin-top: 3px;
+      background: #ffe9e9;
+      color: #f22;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: all 0.3s;
+     
+    }
 .option-change-container .option-change-box .option-delete-box:hover {
-  background: #f22;
-  color: #fff;
+        background: #f22;
+        color: #fff;
 }
-
-
-
 
 </style>
