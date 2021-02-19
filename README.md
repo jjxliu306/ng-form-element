@@ -146,3 +146,7 @@ Methods:
     </script>
 
  ```
+
+
+# 交流
+点击链接加入qq群聊，可以直接提问及反馈bug 【交流群：203205848】 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=KZkRtW-ZhaUENgubVwHh0GLiQPxW5nBK&jump_from=webapi"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="vue-form-design" title="vue-form-design"></a>
