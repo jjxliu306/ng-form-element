@@ -64,8 +64,7 @@
   <!-- button按钮 -->
   <el-form-item
     v-else-if="record.type === 'button' && dynamicVisibleItem" 
-  >
-    {{record}}
+  > 
     <el-button
       :disabled="disabled || record.options.disabled" 
       :type="record.options.type" 
