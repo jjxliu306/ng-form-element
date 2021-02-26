@@ -84,7 +84,7 @@ export default {
       required : true
     },
     value: {
-      type: Object,
+      type: [Object , Array],
       required : false
     },
     models: {
