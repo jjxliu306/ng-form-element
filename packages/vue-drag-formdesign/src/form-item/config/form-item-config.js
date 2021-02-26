@@ -66,8 +66,8 @@ export const basicsList = [
     options: {
       width: "100%", // 宽度
       defaultValue: 0, // 默认值
-      min: null, // 可输入最小值
-      max: null, // 可输入最大值
+      min: 0, // 可输入最小值
+      max: 100, // 可输入最大值
       precision: null,
       tooptip: '', // 提示
       prepend: '', // 前缀
