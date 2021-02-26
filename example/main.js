@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css';
  
  // 导入组件库
 import VueFormDesign from '../packages/index'
+import '../packages/vue-drag-formdesign/src/form-design.css';
 // 注册组件库
 Vue.use(VueFormDesign)
 

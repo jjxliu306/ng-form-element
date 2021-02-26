@@ -81,7 +81,7 @@ export default {
   methods: { 
     reset() {
       // 重置表单
-      this.form.resetFields();
+      this.$refs.form.resetFields();
     },
     validator(){
       return new Promise((resolve, reject) => { 

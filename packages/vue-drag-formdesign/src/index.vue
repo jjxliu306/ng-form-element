@@ -73,9 +73,7 @@
     </el-container> 
 </template>
 
-<script>
-require('./form-design.css')
-require('element-ui/lib/theme-chalk/index.css')
+<script> 
  
 import cloneDeep from 'lodash/cloneDeep'
 
