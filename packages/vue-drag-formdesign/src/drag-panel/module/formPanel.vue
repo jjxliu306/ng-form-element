@@ -107,6 +107,7 @@
 <script>
 import draggable from "vuedraggable";
 import layoutItem from "./layerItem";
+  import cloneDeep from 'lodash/cloneDeep'
 //import "codemirror/mode/javascript/javascript";
 export default {
   name: "FormPanel",
@@ -210,26 +211,42 @@ export default {
           columns[newIndex].rules = JSON.parse(rulesStr);
         }
         if (typeof columns[newIndex].list !== "undefined") {
-          // 深拷贝list
-          columns[newIndex].list = [];
+          // list 不为空 则重置list下的组件model
+          columns[newIndex].list.forEach(t=>{
+            t.model = t.model + 1
+            t.key = t.key + 1
+          })
         }
         if (typeof columns[newIndex].columns !== "undefined") {
           // 深拷贝columns
           const columnsStr = JSON.stringify(columns[newIndex].columns);
           columns[newIndex].columns = JSON.parse(columnsStr);
-          // 复制时，清空数据
+          // 复制时，重置key和model
           columns[newIndex].columns.forEach(item => {
-            item.list = [];
+            if(item.list && item.list.length > 0) {
+                item.list.forEach(t => {
+                  t.model = t.model + 1
+                  t.key = t.key + 1
+                });
+              }
+            
           });
         }
         if (columns[newIndex].type === "table") {
           // 深拷贝trs
           const trsStr = JSON.stringify(columns[newIndex].trs);
           columns[newIndex].trs = JSON.parse(trsStr);
-          // 复制时，清空数据
+          // 复制时，重置key和model
           columns[newIndex].trs.forEach(item => {
+
             item.tds.forEach(val => {
-              val.list = [];
+              if(val.list && val.list.length > 0) {
+                val.list.forEach(t => {
+                  t.model = t.model + 1
+                  t.key = t.key + 1
+                });
+              }
+             
             });
           });
         }
@@ -253,16 +270,16 @@ export default {
       // 修改选择Item
       this.$emit("handleSetSelectItem", record);
     },
-    handleCopy(isCopy = true, data) {
+    handleCopy(isCopy = true, data) { 
       const traverse = array => {
-        array.forEach((element, index) => {
+        array.forEach((element, index) => { 
           if (element.key === this.selectItem.key) {
             if (isCopy) {
               // 复制添加到选择节点后面
-              array.splice(index + 1, 0, element);
+              array.splice(index + 1, 0, cloneDeep(element)); 
             } else {
               // 双击添加到选择节点后面
-              array.splice(index + 1, 0, data);
+              array.splice(index + 1, 0, cloneDeep(data));
             }
             // 复制完成，重置key值
             const evt = {
@@ -281,10 +298,6 @@ export default {
             traverse(element.list);
           } else if (element.type === "batch") {
             // 动态表格内复制
-            if (!isCopy && !this.insertAllowedType.includes(data.type)) {
-              // 插入不允许的字段时，直接return false
-              return false;
-            }
             traverse(element.list);
           }
           if (element.type === "table") {
@@ -295,6 +308,7 @@ export default {
               });
             });
           }
+        
         });
       };
       traverse(this.data.list);
@@ -429,7 +443,6 @@ export default {
       const mergeRow =  this.rightMenuSelectValue.trs[mergeRowIndex]
       const mergeCol = mergeRow.tds[ this.tdIndex ]
 
-      console.log('mergeCol' , mergeCol)
 
       this.rightMenuSelectValue.trs[this.trIndex].tds[ this.tdIndex ].rowspan = rowspan +  mergeCol.rowspan
 
@@ -446,7 +459,6 @@ export default {
         (item, index) => index != this.tdIndex //- rows
       );*/
 
-      console.log('trs ' , this.rightMenuSelectValue.trs)
 
       // }
     },
