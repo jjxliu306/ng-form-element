@@ -15,6 +15,7 @@
         ref="nestedComponents"
         @handleReset="$emit('handleReset')"
         @change="handleChange"
+         @forceUpdate="forceUpdate"
         v-for="item in colItem.list"
         :disabled="disabled"
         :renderPreview="renderPreview"
@@ -53,6 +54,7 @@
             ref="nestedComponents"
             @handleReset="$emit('handleReset')"
             @change="handleChange"
+             @forceUpdate="forceUpdate"
             v-for="item in tdItem.list"
             :disabled="disabled"
               :data="data"
@@ -83,10 +85,11 @@
           ref="nestedComponents"
           @handleReset="$emit('handleReset')"
           @change="handleChange" 
+          @forceUpdate="forceUpdate"
           :disabled="disabled" 
           :renderPreview="renderPreview"
           :models.sync="models" 
-            :data="data"
+          :data="data"
           :key="record.key"
           :record="record"
           :formConfig="formConfig"
@@ -97,6 +100,7 @@
       <form-item
         v-else-if="dynamicVisibleItem"
         ref="nestedComponents"
+        @forceUpdate="forceUpdate"
         @handleReset="$emit('handleReset')"
         @change="handleChange" 
         :disabled="disabled" 
@@ -182,6 +186,9 @@ export default {
     },
     handleChange(value, key) { 
       this.$emit("change", value, key);
+    },
+    forceUpdate(){ 
+       this.$emit("forceUpdate" );
     },
      showTr(trItem , model){
       // 判断tr中是否还存在需要显示的td数据 

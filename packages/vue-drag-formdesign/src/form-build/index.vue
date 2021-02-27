@@ -14,9 +14,11 @@
       :style="formTemplate.config.customStyle"
       :size="formTemplate.config.size"
 > 
+    <template v-if="visible">
       <buildBlocks
         ref="buildBlocks"
         @handleReset="reset"
+        @forceUpdate="forceUpdate"
         v-for="(record, index) in formTemplate.list"
         :renderPreview="renderPreview"
         :record="record"
@@ -28,6 +30,7 @@
         :key="index"
         @change="handleChange"
       />
+    </template>
     </el-form>
   
 </template>
@@ -38,7 +41,7 @@ export default {
   name: "VueDragFormBuild",
   data() {
     return {
-      //locale: zhCN,
+      visible: true , 
       form: this.$refs.form,
       //models: {},
       rules: {}
@@ -82,6 +85,12 @@ export default {
     reset() {
       // 重置表单
       this.$refs.form.resetFields();
+    },
+    forceUpdate(){ 
+      this.visible = false
+      this.$nextTick(()=>{  
+        this.visible = true
+      }) 
     },
     validator(){
       return new Promise((resolve, reject) => { 

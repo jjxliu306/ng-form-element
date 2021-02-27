@@ -154,7 +154,7 @@
         :disabled="disabled || record.options.disabled"
         :clearable="record.options.clearable"
         multiple
-        @change="handleChange($event, record.model)" 
+        @change="handleChange($event, record.model ,  true)" 
       >
         <el-option
           v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)"
@@ -174,7 +174,7 @@
         :filterable="record.options.showSearch"
         :disabled="disabled || record.options.disabled"
         :clearable="record.options.clearable" 
-        @change="handleChange($event, record.model)" 
+        @change="handleChange($event, record.model , true)" 
       > 
         <el-option
           v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)"
@@ -464,35 +464,7 @@ export default {
           this.checkValues = data.data.list
         }
       }) 
-    },
-  /*  handleSelect(val){
-
-        console.log('selectId' , val)
-        let select ;
-        for(var i in this.queryList) {
-          if(this.queryList[i].name == val){
-            select = this.queryList[i]
-            break
-          }
-        }
-        if(select){ 
-          this.dataForm.code = select.code 
-          if(select.sampleTempldateTable) {
-            if(select.sampleTempldateTable instanceof Array) {
-              this.dataForm.sampleTempldateTable = select.sampleTempldateTable
-            } else {
-              this.dataForm.sampleTempldateTable = select.sampleTempldateTable.split(',')
-            }
-          }
-          if(select.sampleTempldateFile) {
-            if(select.sampleTempldateFile instanceof Array) {
-              this.dataForm.sampleTempldateFile = select.sampleTempldateFile
-            } else {
-              this.dataForm.sampleTempldateFile = select.sampleTempldateFile.split(',')
-            }
-          }
-        } 
-    },*/
+    }, 
     handleChange(value, key , type) {
       // change事件 
       this.$emit("change", value, key); 
@@ -557,20 +529,29 @@ export default {
         this.$set(this.models , modelLabel , labels.join(','))
 
 
-        // 2020-08-01 如果有远程调用并且有选择回调 再这里进行回调
+        // 2020-08-01 如果有远程调用并且有选择回调 再这里进行回调 
         if(/*this.record.options.onlineSearch && this.record.options.showSearch &&*/ type && this.record.options.selectCb) {
 
           // 找到当前选择的数据实体  
-          const fs = this.checkValues.filter(t=>t[this.itemProp.value] == value)
+          // 获取数据
+          const cvalues = (this.record.options.dynamic == 1 && this.record.options.remoteFunc  ?  this.checkValues : this.record.options.options)
+ 
+          const fs = cvalues.filter(t=>t[this.itemProp.value] == value)
+ 
           if(fs && fs.length > 0) {
             const select = fs[0] 
 
             // 构建函数 去执行 
-            const scriptFunc = this.record.options.selectCb
-            const func =  '{' + scriptFunc + '}'  
-            const Fn = new Function('$' , 'item', func)
-  
-            Fn(this.models,select)
+            this.$nextTick(()=>{
+              const scriptFunc = this.record.options.selectCb
+              const func =  '{' + scriptFunc + '}'  
+              const Fn = new Function('$' , '$select', func)
+            
+              Fn(this.models,select)
+
+              this.$emit('forceUpdate') 
+            })
+           
           }
 
 

@@ -34,7 +34,7 @@
       :data="data"
       :record="record"
       :disabled="disabled || record.options.disabled"
-
+      @forceUpdate="forceUpdate"
       /> 
   
   
@@ -297,7 +297,9 @@ export default {
 
        
       } ,
-    
+    forceUpdate(){ 
+       this.$emit("forceUpdate" );
+    },
     handleChange(value, key) {
       // change事件
       this.$emit("change", value, key);
