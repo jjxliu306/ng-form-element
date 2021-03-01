@@ -123,7 +123,7 @@ export default {
 	        delete record.component;
 	        this.data.list.push(record);
 	       
-	        this.$emit('handleSetSelectItem' , reord)
+	        this.$emit('handleSetSelectItem' , record)
 	        return false;
 	      }
 	     
