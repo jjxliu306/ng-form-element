@@ -343,6 +343,7 @@
 import request from '../utils/request.js'
 import FileUpload from './file-upload'
 import {dynamicFun} from '../utils' 
+
 export default {
   name: "BaseItem",
   data(){
@@ -454,11 +455,10 @@ export default {
         url += '?' + queryParam
       }
 
-      this.$http({
-        url: this.$http.adornUrl(url),
+     request({
+        url: url,
         method: 'get',
-        params: this.$http.adornParams({ 
-        })
+        params: {}
       }).then(({data}) => {
         if (data.code === 0) { 
           this.checkValues = data.data.list
@@ -473,7 +473,10 @@ export default {
       if(['select' , 'radio' , 'checkbox' , 'cascader'].includes(this.record.type)){
         let labels = []
         // 获取数据 判断从ajax 还是本地默认配置
-        const datas = this.record.options.dynamic > 0 ? this.checkValues : this.record.options.options
+        let datas = this.record.options.dynamic > 0 ? this.checkValues : this.record.options.options
+        if(!datas) {
+          datas = []
+        }
 
         // 回填数据
         if(this.record.type == 'cascader'){
@@ -513,6 +516,7 @@ export default {
 
            for(let i = 0 ; i < as.length ; i++){
               const v = as[i]
+              console.log('datas' , datas)
               const fs = datas.filter(t=>t[this.itemProp.value] == v)
               if(fs && fs.length > 0) {
                 const label = fs[0][this.itemProp.label]
@@ -584,14 +588,23 @@ export default {
     if(this.record.options.dynamic == 1 && this.record.options.remoteFunc) {
       const url =  this.record.options.remoteFunc 
 
+      
+      const objectPath = require("object-path");
+      console.log('this.record.options' , this.record.options , objectPath)
+
+      const dataPath = this.record.options.dataPath
+
       request({
         url: url,
         method: 'get',
-        params: this.$http.adornParams({ 
-        })
-      }).then(({data}) => {
-        if (data.code === 0) { 
-          this.checkValues = data.data
+        params: {}
+      }).then((data) => {
+        if (data) { 
+          // 获取list 根据dataPath
+          console.log('data' , data)
+          const rdata = objectPath.get(data, dataPath);
+          console.log('rdata' , rdata)
+          this.checkValues = rdata
         }
       })
  

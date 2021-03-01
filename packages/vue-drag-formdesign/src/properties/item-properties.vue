@@ -129,6 +129,9 @@
                 <el-input size="mini" v-model="options.remoteFunc">
                   <template slot="prepend">远端方法</template>
                 </el-input>
+                <el-input size="mini" v-model="options.dataPath">
+                  <template slot="prepend">列表数据jsonPath</template>
+                </el-input>
                 <el-input size="mini" v-model="options.remoteValue">
                   <template slot="prepend">值字段</template>
                 </el-input>
@@ -190,6 +193,9 @@
                 <el-input size="mini" v-model="options.remoteFunc">
                   <template slot="prepend">远端方法</template>
                 </el-input>
+                <el-input size="mini" v-model="options.dataPath">
+                  <template slot="prepend">列表数据jsonPath</template>
+                </el-input>
                 <el-input size="mini" v-model="options.remoteValue">
                   <template slot="prepend">值字段</template>
                 </el-input>
@@ -235,6 +241,9 @@
             <div v-if="options.dynamic == 1">
                 <el-input size="mini" v-model="options.remoteFunc">
                   <template slot="prepend">远端方法</template>
+                </el-input>
+                <el-input size="mini" v-model="options.dataPath">
+                  <template slot="prepend">列表数据jsonPath</template>
                 </el-input>
                 <el-input size="mini" v-model="options.remoteValue">
                   <template slot="prepend">值字段</template>
@@ -437,6 +446,9 @@
             <div v-if="options.dynamic == 1">
                 <el-input size="mini" v-model="options.remoteFunc">
                   <template slot="prepend">远端方法</template>
+                </el-input>
+                <el-input size="mini" v-model="options.dataPath">
+                  <template slot="prepend">列表数据jsonPath</template>
                 </el-input>
                 <el-input size="mini" v-model="options.remoteValue">
                   <template slot="prepend">值字段</template>

@@ -12,6 +12,4 @@ export function dynamicFun(script , model) {
   return Fn(model)
 }
  
-
-
  

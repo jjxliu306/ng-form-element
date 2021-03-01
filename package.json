@@ -8,12 +8,13 @@
     "lib": "vue-cli-service build --target lib --name vue-drag-formdesign --dest lib packages/index.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",  
+    "axios": "^0.18.0",
     "core-js": "^3.6.5",
     "default-passive-events": "^1.0.10",
     "element-ui": "^2.13.2",
     "moment": "^2.24.0",
-    "vue": "^2.6.11", 
+    "object-path": "^0.11.5",
+    "vue": "^2.6.11",
     "vue-router": "^3.0.3",
     "vuedraggable": "^2.23.2"
   },

@@ -101,6 +101,10 @@ export const basicsList = [
       valueKey: 'value',
       tooptip: '', // 提示
       dynamic: 0,
+      remoteFunc: '',
+      dataPath: '',
+      remoteValue:'' ,
+      remoteLabel:'',
       options: [
         // 下拉选择项配置
         {
@@ -129,6 +133,10 @@ export const basicsList = [
       defaultValue: [], 
       dynamic: 0,
       tooptip: '', // 提示
+        remoteFunc: '',
+      dataPath: '',
+      remoteValue:'' ,
+      remoteLabel:'',
       options: [
         {
           value: "1",
@@ -159,6 +167,10 @@ export const basicsList = [
       defaultValue: "", // 默认值 
       dynamic: 0,
       tooptip: '', // 提示
+        remoteFunc: '',
+      dataPath: '',
+      remoteValue:'' ,
+      remoteLabel:'',
       options: [
         {
           value: "1",
@@ -341,6 +353,10 @@ export const basicsList = [
       clearable: false, // 是否显示清除按钮 
       dynamic: 0,
       tooptip: '', // 提示
+        remoteFunc: '',
+      dataPath: '',
+      remoteValue:'' ,
+      remoteLabel:'',
       options: [
         {
           value: "1",
