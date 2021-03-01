@@ -9,11 +9,12 @@
       v-if="[ 
         'radio',
         'checkbox',
-        'select'
+        'select',
+        'keyvalue'
         ].includes(type)" :gutter="8">
       <div class="option-change-box" v-for="(val, index) in value" :key="index">
         <el-col :span="9"
-          ><el-input v-model="val.label" placeholder="名称"
+          ><el-input v-model="val.label"   :type="keyNumber ? 'number' : 'text'" placeholder="名称"
         /></el-col>
         <el-col :span="9"><el-input v-model="val.value" placeholder="值"/></el-col>
         <el-col :span="6"
@@ -36,7 +37,7 @@
             <span> 
               <el-row :gutter="4">
                 <el-col :span="9">
-                  <el-input v-model="data.label" placeholder="名称" />
+                  <el-input v-model="data.label"  :type="keyNumber ? 'number' : 'text'" placeholder="名称" />
                 </el-col>
                 <el-col :span="9">
                   <el-input v-model="data.value" placeholder="值"/>
@@ -124,7 +125,12 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    }
+    },
+    // key必须为数字 2021-02-17 lyf
+    keyNumber: {
+      type: Boolean ,
+      default: false
+    },
   },
   methods: {
     handleAdd() {
