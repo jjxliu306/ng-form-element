@@ -590,8 +590,7 @@ export default {
 
       
       const objectPath = require("object-path");
-      console.log('this.record.options' , this.record.options , objectPath)
-
+      
       const dataPath = this.record.options.dataPath
 
       request({
@@ -600,10 +599,9 @@ export default {
         params: {}
       }).then((data) => {
         if (data) { 
-          // 获取list 根据dataPath
-          console.log('data' , data)
+          // 获取list 根据dataPath 
           const rdata = objectPath.get(data, dataPath);
-          console.log('rdata' , rdata)
+
           this.checkValues = rdata
         }
       })
