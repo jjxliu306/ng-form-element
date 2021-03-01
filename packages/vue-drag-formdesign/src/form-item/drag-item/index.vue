@@ -122,10 +122,11 @@ export default {
 	        delete record.icon;
 	        delete record.component;
 	        this.data.list.push(record);
-	        this.handleSetSelectItem(record);
+	       
+	        this.$emit('handleSetSelectItem' , reord)
 	        return false;
 	      }
-	      this.$refs.KFCP.handleCopy(false, item);
+	     
 	    },
 	    handleStart(type) {
 	      this.startType = type;
