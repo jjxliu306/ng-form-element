@@ -19,7 +19,9 @@
             title="测试表单预览"
             type="warning">
           </el-alert>
-            <VueDragFormBuild  :formTemplate="formTemplate" :models="models"/>
+            <VueDragFormBuild ref="formbuild" :formTemplate="formTemplate" :models="models" />
+
+             <el-button   type="primary" size="medium"  @click="validator()">验证</el-button>
         </el-tab-pane> 
       </el-tabs>
 
@@ -55,8 +57,19 @@ export default {
 
         if(json) {
             this.$refs.formDesign.initModel(json)
+
+            this.formTemplate = json
         }
 
+    },
+    validator() {
+      this.$refs.formbuild.validator().then((valid)=>{
+        if(valid){
+          this.$message.info('验证通过')
+        } else {
+          this.$message.error('验证不通过')
+        }
+      })
     }
   }
 }
