@@ -337,13 +337,22 @@
       @change="handleChange($event, record.model)"
      
     />
+    <!-- 自定义组件 -->
+    <customComponent
+      v-else-if="customList.includes(record.type)"
+      :record="record"
+      :disabled="disabled"
+      :dynamicData="dynamicData"
+      @change="handleChange($event, record.model)"
+      :formConfig="formConfig"
+    /> 
   </div>
 </template>
 <script> 
 import request from '../utils/request.js'
 import FileUpload from './file-upload'
 import {dynamicFun} from '../utils' 
-
+import CustomComponent from "./custom-component";
 export default {
   name: "BaseItem",
   data(){
@@ -392,8 +401,8 @@ export default {
     },
   },
   components: {
-     FileUpload
-  },
+     FileUpload,CustomComponent
+  }, 
   computed: {
     sliderMarks() {
         
@@ -412,6 +421,14 @@ export default {
       return p ;
 
     },
+    customList() {
+     
+      if (window.customComponents) {
+        return window.customComponents.map(item => item.type);
+      } else {
+        return [];
+      }
+    }
   },
   watch: {
     checkList:{

@@ -13,7 +13,16 @@
 	                @handleListPush="handleListPush"
 	                @start="handleStart"/>
 		  	</el-collapse-item>
-		  	<el-collapse-item title="布局组件" name="2">
+		  	 <!-- 自定义控件 -->
+            <el-collapse-item v-if="customComponents.length > 0" title="自定义组件" name="3" >
+              <DragItem
+                :list="customComponents"
+                @generateKey="generateKey"
+                @handleListPush="handleListPush"
+                @start="handleStart"
+              />
+            </el-collapse-item>
+		  	<el-collapse-item title="布局组件" name="3">
 		  		<DragItem 
 	                :list="layoutArray"
 	                @generateKey="generateKey"
@@ -26,10 +35,8 @@
 </template>
 <script>
 import {
-  basicsList,
-  // highList,
-  layoutList,
-  customComponents
+  basicsList, 
+  layoutList 
 } from "../config/form-item-config.js";
 import DragItem from './module/dragItem'
 export default {
@@ -65,7 +72,8 @@ export default {
 		    },
 		    selectItem: {
 		       key: ""
-		    } 
+		    } ,
+		    customComponents: []
 		}
 	},
 	computed: {
@@ -85,7 +93,14 @@ export default {
         		t.options.dynamicVisibleValue = ''
 	      	}) ;
 	      	return llist
-	    }
+	    } 
+	},
+	created() {
+		console.log('window.customComponents' , window.customComponents)
+		if(window.customComponents) {
+			this.customComponents = window.customComponents
+		}
+		 
 	},
 	methods: {
 		generateKey(list, index) {

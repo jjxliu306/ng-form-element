@@ -3,7 +3,7 @@
 
     <el-tabs v-model="activeName" style="padding: 20px;">
         <el-tab-pane label="表单绘制" name="first">
-            <VueDragFormdesign ref="formDesign">
+            <VueDragFormdesign ref="formDesign" :custom-components="customComponents">
                 <template slot="controlButton" >
                     <el-button   type="text" size="medium"  @click="initDemo(1)">示例1</el-button>
                     <el-button   type="text" size="medium"  @click="initDemo(2)">示例2</el-button>
@@ -30,14 +30,55 @@
 </template>
 
 <script>
-   
+import CustomT from './components/TCustom'
 export default {
   name: 'App',
+  components: {CustomT},
   data(){
     return {
       activeName: 'first',
       models: {} ,
-      formTemplate: {}
+      formTemplate: {} ,
+
+      customComponents: [
+        { 
+          type: 'customT' ,
+          label: "下拉选择器", // 标题文字 
+          component: CustomT ,
+          options: {
+            width: "100%", // 宽度
+            defaultValue: undefined, // 下拉选框请使用undefined为默认值
+            multiple: false, // 是否允许多选
+            disabled: false, // 是否禁用
+            clearable: false, // 是否显示清除按钮
+            hidden: false, // 是否隐藏，false显示，true隐藏
+            placeholder: "请选择", // 默认提示文字
+            valueKey: 'value',
+            tooptip: '', // 提示
+            dynamic: 0,
+            remoteFunc: '',
+            dataPath: '',
+            remoteValue:'' ,
+            remoteLabel:'',
+            options: [
+              // 下拉选择项配置
+              {
+                value: "1",
+                label: "下拉框1"
+              }
+            ],
+            showSearch: false // 是否显示搜索框，搜索选择的项的值，而不是文字
+          },
+          model: "DDD",
+          key: "DDD",
+          rules: [
+            {
+              required: false,
+              message: "必填项"
+            }
+          ]
+        },
+      ]
     }
   } ,
 

@@ -5,7 +5,7 @@
   <el-form-item
     v-if="
       !(record.options.hidden === true) &&
-        [
+        ( [
           'input',
           'textarea',
           'date',
@@ -20,7 +20,7 @@
           'uploadImg',
           'uploadFile',
           'cascader'
-        ].includes(record.type) && dynamicVisibleItem && !(record.type == 'select' && renderPreview &&  record.options.previewHidden )
+        ].includes(record.type) || customList.includes(record.type) ) && dynamicVisibleItem && !(record.type == 'select' && renderPreview &&  record.options.previewHidden )
     "
     :label="formConfig.labelWidth > 0 ? record.label : null " 
     :rules="recordRules"
@@ -169,8 +169,8 @@ export default {
   },
   computed: {
     customList() {
-      if (window.$customComponentList) {
-        return window.$customComponentList.map(item => item.type);
+      if (window.customComponents) {
+        return window.customComponents.map(item => item.type);
       } else {
         return [];
       }

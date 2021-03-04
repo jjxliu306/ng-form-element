@@ -127,10 +127,7 @@ export default {
           if(jsonForm != jsonData){
             this.$set(this.selectForm , 'change' , true)
             this.$set(this.selectForm , 'htmlModel' , cloneDeep(this.data))
-          }
-       
-        
-         
+          } 
         }
       },
       //对象的深度监听deep，默认为false不进行深度监听
@@ -157,26 +154,22 @@ export default {
   props:{
     selectForm: {
       type: Object,
+    },
+    customComponents: {
+      type: Array,
+      default: ()=>[]
     }
   },
    
   components: {
     DragItem,DragPanel,Properties,Preview,previewCode,renderPreview
   },
-  // created(){ 
-  //   if( this.selectForm && !this.selectForm.htmlModel) {
-  //     this.selectForm.htmlModel =  {
-  //       list: [],
-  //       config: {
-  //         labelPosition: "left",
-  //         labelWidth: 100, 
-  //         size: 'mini',
-  //         hideRequiredMark: true ,
-  //         customStyle: ""
-  //       }
-  //     }
-  //   }
-  // },
+  created(){ 
+    console.log('this.customComponents' , this.customComponents)
+    if( this.customComponents && this.customComponents.length > 0) {
+      window.customComponents = this.customComponents
+    }
+  },
   methods: {
     changeSelectItem(item) {
       this.selectItem = item
