@@ -3,12 +3,16 @@
 
     <el-tabs v-model="activeName" style="padding: 20px;">
         <el-tab-pane label="表单绘制" name="first">
-            <VueDragFormdesign ref="formDesign" :custom-components="customComponents">
+            <VueDragFormdesign ref="formDesign" :custom-components="customComponents" >
                 <template slot="controlButton" >
                     <el-button   type="text" size="medium"  @click="initDemo(1)">示例1</el-button>
                     <el-button   type="text" size="medium"  @click="initDemo(2)">示例2</el-button>
                     <el-button   type="text" size="medium"  @click="initDemo(3)">示例3</el-button>
                 </template>
+                <!-- 自定义属性配置 -->
+                <template slot="custom-properties" slot-scope="{selectItem}">
+                     <Properties :selectItem="selectItem"/>
+                </template> 
                 <template  slot="formName">
                     <span> vue-drag-formdesign 示例 </span>
                 </template>
@@ -31,9 +35,10 @@
 
 <script>
 import CustomT from './components/TCustom'
+import Properties from './components/properties'
 export default {
   name: 'App',
-  components: {CustomT},
+  components: {CustomT , Properties},
   data(){
     return {
       activeName: 'first',
@@ -43,31 +48,10 @@ export default {
       customComponents: [
         { 
           type: 'customT' ,
-          label: "下拉选择器", // 标题文字 
+          label: "自定义图片展示", // 标题文字 
           component: CustomT ,
           options: {
-            width: "100%", // 宽度
-            defaultValue: undefined, // 下拉选框请使用undefined为默认值
-            multiple: false, // 是否允许多选
-            disabled: false, // 是否禁用
-            clearable: false, // 是否显示清除按钮
-            hidden: false, // 是否隐藏，false显示，true隐藏
-            placeholder: "请选择", // 默认提示文字
-            valueKey: 'value',
-            tooptip: '', // 提示
-            dynamic: 0,
-            remoteFunc: '',
-            dataPath: '',
-            remoteValue:'' ,
-            remoteLabel:'',
-            options: [
-              // 下拉选择项配置
-              {
-                value: "1",
-                label: "下拉框1"
-              }
-            ],
-            showSearch: false // 是否显示搜索框，搜索选择的项的值，而不是文字
+            style: 'width:100px;height:100px'
           },
           model: "DDD",
           key: "DDD",

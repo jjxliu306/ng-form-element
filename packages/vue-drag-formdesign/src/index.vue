@@ -29,7 +29,11 @@
             </el-col>
             <el-col :span="6" class="height-all">
               <el-card  header="属性配置"  class="box-card form-properties"> 
-                <Properties :data="data" :selectItem="selectItem"> </Properties>
+                <Properties :data="data" :selectItem="selectItem"> 
+                  <template slot="custom-properties" :selectItem="selectItem">
+                        <slot name="custom-properties" :selectItem="selectItem"></slot>
+                  </template>
+                </Properties>
               </el-card>
             </el-col>
         </el-row>

@@ -2,7 +2,11 @@
 	 
 	<el-tabs type="card" v-model="active" >
 	    <el-tab-pane label="控件属性" name="item">
-	    	<ItemProperties :selectItem="selectItem" ref="itemProperties" />
+	    	<ItemProperties :selectItem="selectItem" ref="itemProperties" >
+	    		<template slot="custom-properties" :selectItem="selectItem">
+                        <slot name="custom-properties" :selectItem="selectItem"></slot>
+                </template>
+	    	</ItemProperties>
 	    </el-tab-pane>
 	  <!--    <el-tab-pane label="控件属性2" name="item2">
 	    	<ItemProperties2 :selectItem="selectItem" ref="itemProperties2" />

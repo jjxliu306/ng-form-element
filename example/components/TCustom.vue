@@ -1,7 +1,19 @@
 <template>
 	<div>
 
-		<el-select v-if="!preview" v-model="models[record.model]" placeholder="请选择" :disabled="disabled" @change="change">
+		<el-input
+		  type="textarea"
+		  autosize
+		  placeholder="请输入图片地址"
+		  v-model="models[record.model]" :disabled="disabled">
+		</el-input>
+
+		 <el-image
+	      :style="record.options.style ? record.options.style : null"
+	      :src="models[record.model]"
+	      fit="scale-down"></el-image>
+
+	<!-- 	<el-select v-if="!preview" v-model="models[record.model]" placeholder="请选择" :disabled="disabled" @change="change">
 		    <el-option
 		      v-for="item in options"
 		      :key="item.value"
@@ -11,7 +23,7 @@
 		</el-select>
 		<div>
 			{{models[record.model + '_label']}}
-		</div>
+		</div> -->
 
 	</div>
 
@@ -21,24 +33,8 @@
   export default {
     data() {
       return {
-        options: [{
-          value: '选项1',
-          label: '黄金糕'
-        }, {
-          value: '选项2',
-          label: '双皮奶'
-        }, {
-          value: '选项3',
-          label: '蚵仔煎'
-        }, {
-          value: '选项4',
-          label: '龙须面'
-        }, {
-          value: '选项5',
-          label: '北京烤鸭'
-        }],
-        value: ''
-      }
+         
+        }
     },
     props: {    
 	     // 表单数组 
@@ -61,13 +57,7 @@
 	    } 
     },
     methods: {
-    	change(v) {
-
-    		const labels = this.options.filter(t=>t.value == v)
-    		const ds = labels.map(t=>t.label).join(',')
-
-    		this.$set(this.models , this.record.model + '_label' , ds)
-    	}
+    	 
     }
   }
 </script>
