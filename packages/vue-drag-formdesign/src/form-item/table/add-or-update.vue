@@ -25,7 +25,7 @@
     >
       <el-form-item v-if="
       !(item.options.hidden === true) &&
-        [
+        ([
           'input',
           'textarea',
           'date',
@@ -40,7 +40,7 @@
           'uploadImg',
           'uploadFile',
           'cascader'
-        ].includes(item.type) && dynamicVisibleItem(item)  "
+        ].includes(item.type) || customList.includes(item.type) ) && dynamicVisibleItem(item)  "
         :key="index"
         :label="formTemplate.config.labelWidth > 0 ? item.label : null " 
         :rules="recordRules(item)"
@@ -136,6 +136,15 @@
         dataRule: { 
         }
       }
+    },
+    computed: {
+     customList() {
+      if (window.customComponents) {
+        return window.customComponents.map(item => item.type);
+      } else {
+        return [];
+      }
+    }
     },
     props: {
       formTemplate: {

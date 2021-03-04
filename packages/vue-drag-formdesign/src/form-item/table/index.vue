@@ -133,7 +133,8 @@ export default {
     },
     templateData() {
       return {list: this.record.list, config: { "labelPosition": this.record.options.labelPosition ? this.record.options.labelPosition : "right", "labelWidth": this.record.options.labelWidth, "size": "mini", "hideRequiredMark": false } }
-    }
+    }, 
+    
   },
   methods: {
     validationSubform() { 

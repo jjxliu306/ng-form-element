@@ -19,7 +19,7 @@
         'uploadImg',
         'uploadFile',
         'cascader'
-      ].includes(record.type)
+      ].includes(record.type) || customList.includes(record.type) 
     " 
     align="center" 
   >
@@ -41,7 +41,7 @@
 
   <div v-else >
     <!-- 空 -->
-    dd
+   
   </div>
 </template>
 <script> 
@@ -53,7 +53,16 @@ export default {
     "record",
     "domains",  
     "renderPreview"
-  ],  
+  ], 
+  computed: {
+     customList() {
+      if (window.customComponents) {
+        return window.customComponents.map(item => item.type);
+      } else {
+        return [];
+      }
+    }
+  },
   components: {
      BaseItem
   },  
