@@ -6,7 +6,7 @@
   <div class="form-panel" > 
     
     <p class="hint-text" v-show="data.list.length === 0">
-      从左下侧选择组件添加
+      从左侧选择组件添加
     </p>
     <el-form 
       :label-width="data.config.labelWidth + 'px'" 
