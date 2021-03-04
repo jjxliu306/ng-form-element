@@ -7,11 +7,7 @@
 	      @change="handleChange"
 	      :disabled="disabled" 
 	      :preview="renderPreview"
-	      :height="
-	        typeof record.options.height !== 'undefined'
-	          ? record.options.height
-	          : ''
-	      " 
+	      :models="models" 
 	      :is="customComponent"> 
 	    </component>  
 	</div>
@@ -48,11 +44,7 @@ export default {
 	    renderPreview: {
 	      type: Boolean ,
 	      default: false
-	    },
-	    data: {// 整个事项实体
-	      type: Object,
-	      default: () => ({})
-	    },
+	    } 
 	},
 	computed: {
 	    customComponent() {

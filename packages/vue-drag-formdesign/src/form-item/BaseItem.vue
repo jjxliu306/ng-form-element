@@ -339,12 +339,14 @@
     />
     <!-- 自定义组件 -->
     <customComponent
+      :models="models"
       v-else-if="customList.includes(record.type)"
       :record="record"
-      :disabled="disabled"
-      :dynamicData="dynamicData"
-      @change="handleChange($event, record.model)"
+      :disabled="disabled || record.options.disabled"
       :formConfig="formConfig"
+      :renderPreview="renderPreview"
+      @change="handleChange($event, record.model)"
+      
     /> 
   </div>
 </template>
