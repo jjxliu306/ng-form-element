@@ -1,7 +1,7 @@
 <template>
 	<!-- 自定义组件的属性配置 -->  
 	<el-form v-show="selectItem.key" size="mini" :disabled="disabled">
-		<!-- TCustom   start-->
+		<!-- TCustom   start--> 
 	    <template v-if="selectItem.type == 'customT'"> 
 	          <!-- 开关的label -->
 	        <el-form-item   label="图片样式">

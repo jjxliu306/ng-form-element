@@ -169,8 +169,7 @@ export default {
   components: {
     DragItem,DragPanel,Properties,Preview,previewCode,renderPreview
   },
-  created(){ 
-    console.log('this.customComponents' , this.customComponents)
+  created(){  
     if( this.customComponents && this.customComponents.length > 0) {
       window.customComponents = this.customComponents
     }

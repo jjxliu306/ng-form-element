@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <el-tabs v-model="activeName" style="padding: 20px;">
+    <el-tabs v-model="activeName" style="padding: 20px;" @tab-click="changeTab">
         <el-tab-pane label="表单绘制" name="first">
             <VueDragFormdesign ref="formDesign" :custom-components="customComponents" >
                 <template slot="controlButton" >
@@ -10,7 +10,7 @@
                     <el-button   type="text" size="medium"  @click="initDemo(3)">示例3</el-button>
                 </template>
                 <!-- 自定义属性配置 -->
-                <template slot="custom-properties" slot-scope="{selectItem}">
+                <template slot="custom-properties" slot-scope="{selectItem}"> 
                      <Properties :selectItem="selectItem"/>
                 </template> 
                 <template  slot="formName">
@@ -23,7 +23,7 @@
             title="测试表单预览"
             type="warning">
           </el-alert>
-            <VueDragFormBuild ref="formbuild" :formTemplate="formTemplate" :models="models" />
+            <VueDragFormBuild ref="formbuild" :formTemplate="formTemplate" :models="models" :custom-components="customComponents"/>
 
              <el-button   type="primary" size="medium"  @click="validator()">验证</el-button>
         </el-tab-pane> 
@@ -95,6 +95,11 @@ export default {
           this.$message.error('验证不通过')
         }
       })
+    },
+    changeTab(v) {
+      if(v && v.name == 'second') {
+        this.formTemplate =  this.$refs.formDesign.getModel()
+      } 
     }
   }
 }

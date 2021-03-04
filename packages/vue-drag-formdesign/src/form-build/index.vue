@@ -76,7 +76,11 @@ export default {
     data: {
       type: Object,
       default: () => ({})
-    } 
+    },
+    customComponents: {
+      type: Array,
+      default: ()=>[]
+    }
   },
   components: {
     buildBlocks
@@ -119,57 +123,7 @@ export default {
     // 初始化验证规则
     initRules(weights , key){
       if(!weights) return
-/*
-      const this_ = this  
-       
-      weights.forEach(t=>{
-        if(t.type == 'batch'){
-          // const list = t.list 
-          // if(list && list.length > 0){
-          //   console.log('role parent , ' ,t)
-          //   this_.initRules(list , t.model)
-          // }
-
-          return
-        } else if(t.type == 'grid'){
-          const columns = t.columns
-          columns.forEach(c=>{
-            const list = c.list 
-            if(list && list.length > 0){
-              this_.initRules(list)
-            }
-          })
-          return
-        } else if(t.type == 'table'){
-          const trs = t.trs 
-          trs.forEach(t=>{
-            const tds = t.tds
-            tds.forEach(d=>{
-              const list = d.list 
-              if(list && list.length > 0){
-                this_.initRules(list)
-              }
-            })
-          })
-
-
-        }
-
-        const r = t.rules
-        if(r && r.length > 0) {
-          if(key) {
-            const modelRule = {}
-            modelRule[t.model] = r 
-            //keymodel[key] = r 
-            this_.rules[key] = modelRule
-          } else{
-            this_.rules[t.model] = r
-          }
-          
-        }
-      })
-*/
-      
+ 
 
     },
     // 初始化表单数据 默认值或者填充值
@@ -188,9 +142,12 @@ export default {
   mounted() { 
     this.$nextTick(() => {
       const list = this.formTemplate.list
-      this.initRules(list)
-  
-      //this.setData(this.defaultValue);
+      this.initRules(list)   
+
+      if(!window.customComponents && this.customComponents && this.customComponents.length > 0) {
+        window.customComponents = this.customComponents
+      } 
+
     });
   }
 };
