@@ -116,15 +116,12 @@
     // notPhysicalDels 不能够物理删除的文件ID列表
     props: ['fileKey', 'fileForm', 'readOnly', 'accept', 'limit', 'listType', 'direction', 'notPhysicalDels', 'imgDownBut', 'updateNow', 'multiple', 'fileSize' , 'action'],
      
-    mounted(){
-      // console.log('mounted fileupload ', this.fileForm , 'key' , this.fileKey)
+    mounted(){ 
       this.initFiles()
     },
     methods: {
       // 钩子函数上传附件成功后
-      handleSuccess (res, file) {
-        // console.log('113 ' , res , file)
-        // console.log('fileList' ,file , this.fileList)
+      handleSuccess (res, file) { 
         if (res.code == 401) {
           this.$message.error('当前账号已在其他地方登录,请重新登录!')
           this.$router.replace({ name: 'login' })
@@ -149,11 +146,9 @@
         } else {
           this.fileForm[this.fileKey] = this.files
         }
-        this.$message('上传成功')
-        // console.log('this.fileForm',this.fileForm)
+        this.$message('上传成功') 
         this.$emit('uploadChange', {id: res.data.id, url: res.data.url, type: 'add', fileForm: this.fileForm})
-        // URL.createObjectURL(file.raw);
-        // console.log("--------"+ URL.createObjectURL(file.raw));
+ 
       },
       handerError (err, file, fileList) {
         console.log('error', err, file, fileList)

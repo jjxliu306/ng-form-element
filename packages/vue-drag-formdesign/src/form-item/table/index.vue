@@ -189,8 +189,7 @@ export default {
  
     },
     formAdd(form){
-      this.isVisible = false
-      console.log('formAdd' , form)
+      this.isVisible = false 
       let domains = this.models[this.record.model] 
       if(!domains) {
         const ds = [form]
@@ -222,22 +221,7 @@ export default {
           this.models[this.record.model].splice(i,1,form)
           break
         }
-      }
-      // 根据ID 找到数据 替换
-      // const fs = domains.filter(t=>t.id == form.id)
-      // console.log('fs' , fs)
-      // if(fs && fs.length > 0){
-      //   // 替换数据
-      //   for(var i in form) {
-      //     fs[0][i] == form[i]
-      //   }
-
-      //   domains.sort(function(a, b){
-      //     return a.seq - b.seq
-      //   });
-
-      //   this.models[this.record.model] = domains
-      // }
+      } 
 
        this.models[this.record.model].sort(function(a, b){
           return a.seq - b.seq
@@ -246,8 +230,7 @@ export default {
         message: '更新成功',
         type: 'success',
         duration: 1000 
-      })
-      // console.log('this.models[this.record.model] ' , this.models[this.record.model] )
+      }) 
 
     },
     handleInput() {

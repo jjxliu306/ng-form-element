@@ -153,8 +153,7 @@ export default {
         validators.push(formbuilds[i].validator())
       }
       
-      Promise.all(validators).then( (res) =>{
-        console.log('res' , res)
+      Promise.all(validators).then( (res) =>{ 
         for(let i in res) {
           if(!res[i]) {
            this.$message.error('验证不通过')

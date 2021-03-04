@@ -95,8 +95,7 @@ export default {
 	      	return llist
 	    } 
 	},
-	created() {
-		console.log('window.customComponents' , window.customComponents)
+	created() { 
 		if(window.customComponents) {
 			this.customComponents = window.customComponents
 		}

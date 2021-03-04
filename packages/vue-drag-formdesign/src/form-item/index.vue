@@ -182,8 +182,7 @@ export default {
         return false
       }
 
-      const mark = dynamicFun(fstr , this.models) 
-      //console.log('mark' ,Fn,this.record.key ,mark)
+      const mark = dynamicFun(fstr , this.models)  
 
       return mark 
     },

@@ -534,8 +534,7 @@ export default {
            }
 
            for(let i = 0 ; i < as.length ; i++){
-              const v = as[i]
-              console.log('datas' , datas)
+              const v = as[i] 
               const fs = datas.filter(t=>t[this.itemProp.value] == v)
               if(fs && fs.length > 0) {
                 const label = fs[0][this.itemProp.label]
@@ -591,13 +590,11 @@ export default {
 
   },
   mounted() { 
-     // 2020-07-30 如果有cbColumn 则尝试从data中回填数据
-    //console.log('this.record.options.cbColumn',this.record.options.cbColumn)
+     // 2020-07-30 如果有cbColumn 则尝试从data中回填数据 
     if(this.record.options.cbColumn) {
       this.loading = true
       const value = this.data[this.record.options.cbColumn] 
-     // this.models[this.record.model] = value 
-      //  console.log('value', value)
+     // this.models[this.record.model] = value  
       this.$set(this.models , this.record.model , value)
       this.loading = false
       return
