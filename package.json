@@ -1,6 +1,6 @@
 {
   "name": "vue-drag-formdesign",
-  "version": "1.0.14",
+  "version": "2.0.0-beta",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
