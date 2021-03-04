@@ -1,4 +1,5 @@
 <template>
+  <!-- 自定义组件的示例 -->
   <div id="app">
     <VueDragFormdesign ref="formDesign" :custom-components="customComponents" > 
       <!-- 自定义属性配置 -->
