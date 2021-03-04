@@ -171,5 +171,136 @@ Methods:
  ```
 
 
+# 3. 自定义组件示例  
+
+3.1 自定义一个组件（根据文本中输入的地址展示图片）
+
+```
+<template>
+  <div> 
+    <el-input
+      v-if="!preview"
+      type="textarea"
+      autosize
+      placeholder="请输入图片地址"
+      v-model="models[record.model]" :disabled="disabled">
+    </el-input> 
+     <el-image
+        :style="record.options.style ? record.options.style : null"
+        :src="models[record.model]"
+        fit="scale-down"></el-image> 
+  </div> 
+</template>
+<script>
+  export default { 
+    props: {    
+      record: {//组件数据
+        type: Object,
+        required: true
+      }, 
+      models: {// 表单数组 
+        type: Object,
+        required: true
+      }, 
+      disabled: { // 是否禁用
+        type: Boolean,
+        default: false
+      } , 
+      preview: {// 是否当前是预览
+        type: Boolean ,
+        default: false
+      } 
+    },
+    methods: { 
+    }
+  }
+</script>
+```
+
+3.2 定义一个自定义组件的属性配置组件（后面通过插槽挂到表单绘制面板的属性面板中）
+
+```
+<template>
+  <!-- 自定义组件的属性配置 -->  
+  <el-form v-show="selectItem.key" size="mini" :disabled="disabled">
+    <!-- TCustom   start-->
+      <template v-if="selectItem.type == 'customT'"> 
+            <!-- 开关的label -->
+          <el-form-item   label="图片样式">
+              <el-input type="textarea" placeholder="请输入" v-model="selectItem.options.style" /> 
+          </el-form-item>
+      </template> 
+      <!-- TCustom  end -->
+  </el-form> 
+</template>
+<script>
+export default {
+  props: {
+      selectItem: { // 当前选择的组件
+        type: Object,
+        required: true
+      },
+      disabled: { // 是否禁用
+        type: Boolean,
+        default: false
+      }
+  } 
+}
+</script>
+```
+
+3.3 在动态表单绘制面板中进行配置
+
+```
+<template>
+  <div id="app">
+    <VueDragFormdesign ref="formDesign" :custom-components="customComponents" > 
+      <!-- 自定义属性配置 -->
+      <template slot="custom-properties" slot-scope="{selectItem}">
+        <Properties :selectItem="selectItem"/>
+      </template> 
+      <template  slot="formName">
+        <span> vue-drag-formdesign 示例 </span>
+      </template>
+    </VueDragFormdesign>   
+  </div>
+</template> 
+<script>
+// 引用自定义的表单组件和自定义组件配置信息修改组件
+import CustomT from './components/TCustom'
+import Properties from './components/properties'
+export default {
+  name: 'App',
+  components: {CustomT , Properties},
+  data(){
+    return {  
+      // 自定义组件列表
+      customComponents: [
+        { 
+          type: 'customT' ,
+          label: "自定义图片展示", // 标题文字 
+          component: CustomT ,
+          options: {
+            style: 'width:100px;height:100px'
+          },
+          model: "customT",
+          key: "customT",
+          rules: [
+            {
+              required: false,
+              message: "必填项"
+            }
+          ]
+        },
+      ]
+    }
+  } ,  
+  methods: { 
+  }
+}
+</script>
+ 
+```
+
 # 交流
 点击链接加入qq群聊，可以直接提问及反馈bug 【交流群：203205848】 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=vNN2AMPxXjojpwYu66DOGNtL2dFYh6Q-&jump_from=webapi"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="vue-form-design" title="vue-form-design"></a>

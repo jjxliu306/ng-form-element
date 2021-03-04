@@ -1,63 +1,39 @@
 <template>
-	<div>
-
+	<div> 
 		<el-input
+		  v-if="!preview"
 		  type="textarea"
 		  autosize
 		  placeholder="请输入图片地址"
 		  v-model="models[record.model]" :disabled="disabled">
-		</el-input>
-
+		</el-input> 
 		 <el-image
 	      :style="record.options.style ? record.options.style : null"
 	      :src="models[record.model]"
-	      fit="scale-down"></el-image>
-
-	<!-- 	<el-select v-if="!preview" v-model="models[record.model]" placeholder="请选择" :disabled="disabled" @change="change">
-		    <el-option
-		      v-for="item in options"
-		      :key="item.value"
-		      :label="item.label"
-		      :value="item.value">
-		    </el-option>
-		</el-select>
-		<div>
-			{{models[record.model + '_label']}}
-		</div> -->
-
-	</div>
-
-
+	      fit="scale-down"></el-image> 
+	</div> 
 </template>
 <script>
-  export default {
-    data() {
-      return {
-         
-        }
-    },
+  export default { 
     props: {    
-	     // 表单数组 
-	    record: {
+	    record: {//组件数据
 	      type: Object,
 	      required: true
 	    }, 
-	    models: {
+	    models: {// 表单数组 
 	      type: Object,
 	      required: true
 	    }, 
-	    disabled: {
+	    disabled: { // 是否禁用
 	      type: Boolean,
 	      default: false
-	    } ,
-	      // 是否预览结果表单
-	    preview: {
+	    } , 
+	    preview: {// 是否当前是预览
 	      type: Boolean ,
 	      default: false
 	    } 
     },
-    methods: {
-    	 
+    methods: { 
     }
   }
 </script>
