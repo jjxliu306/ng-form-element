@@ -1,3 +1,8 @@
+
+.form-design {
+  text-align: left ;
+}
+
 .form-design .form-label .is-required:before {
   content: "*";
   color: #F56C6C;
@@ -259,7 +264,7 @@
   padding: 5px 0;
 }
 .form-design .properties-centent .properties-body .el-form .el-form-item .el-form-item__label, .form-design .properties-centent .properties-body .el-form .el-form-item .el-radio__label, .form-design .properties-centent .properties-body .el-form .el-form-item .el-switch__label, .form-design .properties-centent .properties-body .el-form .el-form-item * {
-  font-size: 13px;
+  font-size: 13px; 
 }
 .form-design .properties-centent .properties-body .el-form .el-form-item .el-checkbox {
   font-size: 13px;
@@ -268,18 +273,18 @@
   font-size: 13px;
 }
 
-.batch-box > .batch-label {
+.form-design .batch-box > .batch-label {
   font-size: 16px;
   font-weight: 500;
   padding: 10px 10px;
 }
-.batch-box .draggable-box {
+.form-design .batch-box .draggable-box {
   min-height: 60px;
   width: 100%;
   border: 1px #ccc dashed;
   background: #fff;
 }
-.batch-box .draggable-box .list-main {
+.form-design .batch-box .draggable-box .list-main {
   min-height: 60px;
   position: relative;
   border: 1px #ccc dashed;
@@ -287,28 +292,28 @@
   overflow-y: auto;
   white-space: nowrap;
 }
-.batch-box .draggable-box .list-main .moving {
+.form-design .batch-box .draggable-box .list-main .moving {
   width: 175px;
   min-height: 94px;
   display: inline-block;
 }
-.batch-box .draggable-box .list-main > div {
+.form-design .batch-box .draggable-box .list-main > div {
   min-width: 185px;
   display: inline-block;
   vertical-align: top;
 }
-.batch-box .draggable-box .list-main > div .ant-form-item > .ant-form-item-label,
-.batch-box .draggable-box .list-main > div .ant-form-item > .ant-form-item-control-wrapper {
+.form-design .batch-box .draggable-box .list-main > div .ant-form-item > .ant-form-item-label,
+.form-design .batch-box .draggable-box .list-main > div .ant-form-item > .ant-form-item-control-wrapper {
   text-align: left;
   display: block;
 }
-.batch-box .draggable-box .list-main > div .ant-col {
+.form-design .batch-box .draggable-box .list-main > div .ant-col {
   width: 100%;
 }
 
-.batch-box,
-.grid-box,
-.table-box {
+.form-design .batch-box,
+.form-design .grid-box,
+.form-design .table-box {
   position: relative;
   box-sizing: border-box;
   padding: 5px;
@@ -318,62 +323,62 @@
   overflow: hidden;
   min-height: 30px;
 }
-.batch-box .form-item-box,
-.grid-box .form-item-box,
-.table-box .form-item-box {
+.form-design .batch-box .form-item-box,
+.form-design .grid-box .form-item-box,
+.form-design .table-box .form-item-box {
   position: relative;
   box-sizing: border-box;
 }
-.batch-box .form-item-box .ant-form-item,
-.grid-box .form-item-box .ant-form-item,
-.table-box .form-item-box .ant-form-item {
+.form-design .batch-box .form-item-box .ant-form-item,
+.form-design .grid-box .form-item-box .ant-form-item,
+.form-design .table-box .form-item-box .ant-form-item {
   margin: 0;
   padding-bottom: 15px;
 }
-.batch-box .grid-row,
-.batch-box .table-layout,
-.grid-box .grid-row,
-.grid-box .table-layout,
-.table-box .grid-row,
-.table-box .table-layout {
+.form-design .batch-box .grid-row,
+.form-design .batch-box .table-layout,
+.form-design .grid-box .grid-row,
+.form-design .grid-box .table-layout,
+.form-design .table-box .grid-row,
+.form-design .table-box .table-layout {
   background: fade(#9867f7, 12%);
 }
-.batch-box .grid-row .grid-col .draggable-box,
-.batch-box .grid-row .table-td .draggable-box,
-.batch-box .table-layout .grid-col .draggable-box,
-.batch-box .table-layout .table-td .draggable-box,
-.grid-box .grid-row .grid-col .draggable-box,
-.grid-box .grid-row .table-td .draggable-box,
-.grid-box .table-layout .grid-col .draggable-box,
-.grid-box .table-layout .table-td .draggable-box,
-.table-box .grid-row .grid-col .draggable-box,
-.table-box .grid-row .table-td .draggable-box,
-.table-box .table-layout .grid-col .draggable-box,
-.table-box .table-layout .table-td .draggable-box {
+.form-design .batch-box .grid-row .grid-col .draggable-box,
+.form-design .batch-box .grid-row .table-td .draggable-box,
+.form-design .batch-box .table-layout .grid-col .draggable-box,
+.form-design .batch-box .table-layout .table-td .draggable-box,
+.form-design .grid-box .grid-row .grid-col .draggable-box,
+.form-design .grid-box .grid-row .table-td .draggable-box,
+.form-design .grid-box .table-layout .grid-col .draggable-box,
+.form-design .grid-box .table-layout .table-td .draggable-box,
+.form-design .table-box .grid-row .grid-col .draggable-box,
+.form-design .table-box .grid-row .table-td .draggable-box,
+.form-design .table-box .table-layout .grid-col .draggable-box,
+.form-design .table-box .table-layout .table-td .draggable-box {
   min-height: 60px;
   min-width: 50px;
   border: 1px #ccc dashed;
   background: #fff;
 }
-.batch-box .grid-row .grid-col .draggable-box .list-main,
-.batch-box .grid-row .table-td .draggable-box .list-main,
-.batch-box .table-layout .grid-col .draggable-box .list-main,
-.batch-box .table-layout .table-td .draggable-box .list-main,
-.grid-box .grid-row .grid-col .draggable-box .list-main,
-.grid-box .grid-row .table-td .draggable-box .list-main,
-.grid-box .table-layout .grid-col .draggable-box .list-main,
-.grid-box .table-layout .table-td .draggable-box .list-main,
-.table-box .grid-row .grid-col .draggable-box .list-main,
-.table-box .grid-row .table-td .draggable-box .list-main,
-.table-box .table-layout .grid-col .draggable-box .list-main,
-.table-box .table-layout .table-td .draggable-box .list-main {
+.form-design .batch-box .grid-row .grid-col .draggable-box .list-main,
+.form-design .batch-box .grid-row .table-td .draggable-box .list-main,
+.form-design .batch-box .table-layout .grid-col .draggable-box .list-main,
+.form-design .batch-box .table-layout .table-td .draggable-box .list-main,
+.form-design .grid-box .grid-row .grid-col .draggable-box .list-main,
+.form-design .grid-box .grid-row .table-td .draggable-box .list-main,
+.form-design .grid-box .table-layout .grid-col .draggable-box .list-main,
+.form-design .grid-box .table-layout .table-td .draggable-box .list-main,
+.form-design .table-box .grid-row .grid-col .draggable-box .list-main,
+.form-design .table-box .grid-row .table-td .draggable-box .list-main,
+.form-design .table-box .table-layout .grid-col .draggable-box .list-main,
+.form-design .table-box .table-layout .table-td .draggable-box .list-main {
   min-height: 60px;
   position: relative;
   border: 1px #ccc dashed;
 }
-.batch-box::before,
-.grid-box::before,
-.table-box::before {
+.form-design .batch-box::before,
+.form-design .grid-box::before,
+.form-design .table-box::before {
   content: "";
   height: 5px;
   width: 100%;
@@ -383,24 +388,24 @@
   right: -100%;
   transition: all 0.3s;
 }
-.batch-box.active,
-.grid-box.active,
-.table-box.active {
+.form-design .batch-box.active,
+.form-design .grid-box.active,
+.form-design .table-box.active {
   background: fade(#9867f7, 24%);
   outline-offset: 0;
 }
-.batch-box.active::before,
-.grid-box.active::before,
-.table-box.active::before {
+.form-design .batch-box.active::before,
+.form-design .grid-box.active::before,
+.form-design .table-box.active::before {
   background: #9867f7;
   right: 0;
 }
-.batch-box > .copy,
-.batch-box > .delete,
-.grid-box > .copy,
-.grid-box > .delete,
-.table-box > .copy,
-.table-box > .delete {
+.form-design .batch-box > .copy,
+.form-design .batch-box > .delete,
+.form-design .grid-box > .copy,
+.form-design .grid-box > .delete,
+.form-design .table-box > .copy,
+.form-design .table-box > .delete {
   position: absolute;
   top: 0px;
   width: 30px;
@@ -411,63 +416,63 @@
   z-index: 989;
   transition: all 0.3s;
 }
-.batch-box > .copy.unactivated,
-.batch-box > .delete.unactivated,
-.grid-box > .copy.unactivated,
-.grid-box > .delete.unactivated,
-.table-box > .copy.unactivated,
-.table-box > .delete.unactivated {
+.form-design .batch-box > .copy.unactivated,
+.form-design .batch-box > .delete.unactivated,
+.form-design .grid-box > .copy.unactivated,
+.form-design .grid-box > .delete.unactivated,
+.form-design .table-box > .copy.unactivated,
+.form-design .table-box > .delete.unactivated {
   opacity: 0 !important;
   pointer-events: none;
 }
-.batch-box > .copy.active,
-.batch-box > .delete.active,
-.grid-box > .copy.active,
-.grid-box > .delete.active,
-.table-box > .copy.active,
-.table-box > .delete.active {
+.form-design .batch-box > .copy.active,
+.form-design .batch-box > .delete.active,
+.form-design .grid-box > .copy.active,
+.form-design .grid-box > .delete.active,
+.form-design .table-box > .copy.active,
+.form-design .table-box > .delete.active {
   opacity: 1 !important;
 }
-.batch-box > .copy,
-.grid-box > .copy,
-.table-box > .copy {
+.form-design .batch-box > .copy,
+.form-design .grid-box > .copy,
+.form-design .table-box > .copy {
   border-radius: 0 0 0 8px;
   right: 30px;
   background: #9867f7;
 }
-.batch-box > .delete,
-.grid-box > .delete,
-.table-box > .delete {
+.form-design .batch-box > .delete,
+.form-design .grid-box > .delete,
+.form-design .table-box > .delete {
   right: 0px;
   background: #9867f7;
 }
 
-.el-dialog__header {
+.form-design .el-dialog__header {
   padding: 10px 20px 10px;
   background: #a9c8ea;
 }
-.el-dialog__header .el-dialog__title {
+.form-design .el-dialog__header .el-dialog__title {
   line-height: 20px;
   font-size: 16px;
 }
-.el-dialog__header button {
+.form-design .el-dialog__header button {
   top: 10px;
 }
 
-.form-table {
+.form-design .form-table {
   width: 100%;
   box-sizing: border-box;
   transition: all 0.3s;
   border-collapse: collapse;
 }
-.form-table tr {
+.form-design .form-table tr {
   transition: all 0.3s;
   border-collapse: collapse;
 }
-.form-table tr .el-form-item {
+.form-design .form-table tr .el-form-item {
   margin-bottom: 0 !important;
 }
-.form-table tr td {
+.form-design .form-table tr td {
   box-sizing: border-box;
   transition: all 0.3s;
   padding: 3px 3px;
@@ -476,23 +481,60 @@
   vertical-align: inherit;
 }
 
-.form-table tr td .cell {
+.form-design .form-table tr td .cell {
  padding-right: 2px;
  padding-left: 2px;
 }
 
-.form-table tr td .el-form-item {
+.form-design .form-table tr td .el-form-item {
   margin-bottom: 0 !important;
 }
-.form-table.bordered tr td {
+.form-design .form-table.bordered tr td {
   border: 1px solid #e8e8e8 !important;
 }
-.form-table.bright tr:hover > td {
+.form-design .form-table.bright tr:hover > td {
   background: #e6f7ff;
 }
-.form-table.small tr td {
+.form-design .form-table.small tr td {
   padding: 8px 8px;
 }
-.form-table .el-row .el-form-item {
+.form-design .form-table .el-row .el-form-item {
   margin: 0 !important;
+}
+
+.form-design .option-change-container {
+  width: calc(100% - 8px);
+
+  
+
+}
+.form-design .option-change-container .el-tree-node__content { 
+  height: 35px;
+}
+.form-design .option-change-container .el-tree-node__content  .custom-tree-node {
+  height: 35px;
+}
+
+.form-design .option-change-container .option-change-box {
+    height: 38px;
+    padding-bottom: 6px;
+    
+  }
+
+.form-design .option-change-container .option-change-box .option-delete-box {
+      margin-top: 3px;
+      background: #ffe9e9;
+      color: #f22;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: all 0.3s;
+     
+    }
+.form-design .option-change-container .option-change-box .option-delete-box:hover {
+        background: #f22;
+        color: #fff;
 }
