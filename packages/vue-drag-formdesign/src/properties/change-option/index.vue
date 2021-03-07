@@ -13,10 +13,14 @@
         'keyvalue'
         ].includes(type)" :gutter="8">
       <div class="option-change-box" v-for="(val, index) in value" :key="index">
-        <el-col :span="9"
-          ><el-input v-model="val.label"   :type="keyNumber ? 'number' : 'text'" placeholder="名称"
-        /></el-col>
-        <el-col :span="9"><el-input v-model="val.value" placeholder="值"/></el-col>
+        <el-col :span="9">
+          <el-input v-if="keyNumber" v-model="val.value"  type="number" placeholder="值"/>
+          <el-input v-else v-model="val.label" type="text" placeholder="名称"/>
+        </el-col>
+        <el-col :span="9"> 
+          <el-input v-if="keyNumber" v-model="val.label" placeholder="名称"/>
+          <el-input v-else v-model="val.value" placeholder="值"/>
+        </el-col>
         <el-col :span="6"
           ><div @click="handleDelete(index)" class="option-delete-box">
             <i class="el-icon-delete" /></div

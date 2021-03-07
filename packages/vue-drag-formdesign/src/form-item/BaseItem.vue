@@ -416,7 +416,7 @@ export default {
 
       this.record.options.marks.forEach(t=> {
        
-        p[t.label] = t.value 
+        p[t.value] = t.label 
         
       })
 
