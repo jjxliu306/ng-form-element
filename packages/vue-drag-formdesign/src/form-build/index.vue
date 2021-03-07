@@ -89,6 +89,9 @@ export default {
     reset() {
       // 重置表单
       this.$refs.form.resetFields();
+
+      this.models = {} 
+
     },
     forceUpdate(){ 
       this.visible = false
