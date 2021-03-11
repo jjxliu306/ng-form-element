@@ -3,7 +3,7 @@
 
     <el-tabs v-model="activeName" style="padding: 20px;" @tab-click="changeTab">
         <el-tab-pane label="表单绘制" name="first">
-            <VueDragFormdesign ref="formDesign" :custom-components="customComponents" >
+            <VueDragFormdesign ref="formDesign" :custom-components="customComponents" :config="formConfig">
                 <template slot="controlButton" >
                     <el-button   type="text" size="medium"  @click="initDemo(1)">示例1</el-button>
                     <el-button   type="text" size="medium"  @click="initDemo(2)">示例2</el-button>
@@ -23,7 +23,7 @@
             title="测试表单预览"
             type="warning">
           </el-alert>
-            <VueDragFormBuild ref="formbuild" :formTemplate="formTemplate" :models="models" :custom-components="customComponents"/>
+            <VueDragFormBuild ref="formbuild" :formTemplate="formTemplate" :models="models" :custom-components="customComponents" :httpConfig="httpConfig"/>
 
              <el-button   type="primary" size="medium"  @click="validator()">验证</el-button>
         </el-tab-pane> 
@@ -44,7 +44,12 @@ export default {
       activeName: 'first',
       models: {} ,
       formTemplate: {} ,
-
+      formConfig: {
+        httpConfig: (config)=>{
+          config.headers['aaaa'] = 'bbbb'
+          return config 
+        }
+      },
       customComponents: [
         { 
           type: 'customT' ,

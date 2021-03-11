@@ -163,7 +163,12 @@ export default {
     customComponents: {
       type: Array,
       default: ()=>[]
+    },
+    config: {
+      type: Object,
+      default: ()=> {return {}}
     }
+    
   },
    
   components: {
@@ -172,6 +177,9 @@ export default {
   created(){  
     if( this.customComponents && this.customComponents.length > 0) {
       window.customComponents = this.customComponents
+    }
+    if(this.config.httpConfig) {
+      window.httpConfig = this.config.httpConfig
     }
   },
   methods: {

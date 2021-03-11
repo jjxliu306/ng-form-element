@@ -80,6 +80,9 @@ export default {
     customComponents: {
       type: Array,
       default: ()=>[]
+    },
+    httpConfig: {
+      type: Function 
     }
   },
   components: {
@@ -150,6 +153,11 @@ export default {
       if(!window.customComponents && this.customComponents && this.customComponents.length > 0) {
         window.customComponents = this.customComponents
       } 
+
+      if(this.config.httpConfig && !window.httpConfig) {
+        window.httpConfig = this.config.httpConfig
+      }
+      
 
     });
   }

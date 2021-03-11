@@ -4,8 +4,18 @@ const request = axios.create({
   withCredentials: false
 })
 
+/**
+ * 请求拦截
+ */
 request.interceptors.request.use(
   config => {
+    // 判断是否有自定义的配置
+    if(window.httpConfig) {
+      let _config = window.httpConfig(config)
+      if(_config) {
+        config = _config 
+      }
+    }
     return config
   },
   error => {
