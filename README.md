@@ -6,6 +6,33 @@ VUE-FORM-DESIGN
  **版本更新说明**
 
 
+  **2.0.2-beta**  
+
+```
+1、优化针对动态远程获取数据的时候可以自定义请求头信息。
+配置方法：
+
+ <VueDragFormdesign ref="formDesign"  :config="formConfig">
+
+
+data() {
+  return {
+    formConfig: {
+      httpConfig: (config)=>{
+        // 这里自定会议header的请求参数
+        config.headers['aaaa'] = 'bbbb'
+        return config
+      }
+    }
+
+  }
+
+}
+
+预览组件中也需要加入: 
+ <VueDragFormBuild ref="formbuild"  :config="formConfig"/>
+
+```
 
   **2.0.1-beta**  
 

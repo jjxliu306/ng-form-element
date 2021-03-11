@@ -23,7 +23,7 @@
             title="测试表单预览"
             type="warning">
           </el-alert>
-            <VueDragFormBuild ref="formbuild" :formTemplate="formTemplate" :models="models" :custom-components="customComponents" :httpConfig="httpConfig"/>
+            <VueDragFormBuild ref="formbuild" :formTemplate="formTemplate" :models="models" :custom-components="customComponents" :config="formConfig"/>
 
              <el-button   type="primary" size="medium"  @click="validator()">验证</el-button>
         </el-tab-pane> 
