@@ -36,15 +36,13 @@
             inactive-text="关闭">
           </el-switch> 
         </el-form-item> 
-        <!--  <el-form-item label="隐藏字段不输出"> 
+          <el-form-item label="输出隐藏组件值"> 
           <el-switch
-            v-model="config.onlyOutputVisible"
-            active-text="打开"
-            :inactive-value="true"
-            :active-value="false"
+            v-model="config.outputHidden"
+            active-text="打开" 
             inactive-text="关闭">
           </el-switch> 
-        </el-form-item>  -->
+        </el-form-item>
         <el-divider></el-divider>
 
         <el-form-item label="表单CSS">

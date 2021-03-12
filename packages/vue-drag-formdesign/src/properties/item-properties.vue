@@ -129,8 +129,8 @@
                 <el-input size="mini" v-model="options.remoteFunc">
                   <template slot="prepend">远端方法</template>
                 </el-input>
-                <el-input size="mini" v-model="options.dataPath">
-                  <template slot="prepend">列表数据jsonPath</template>
+                <el-input size="mini" v-model="options.dataPath"  title="假设当前接口返回的数据结构为:{code:200,data:[{id:1,name:'11'},{id:2,name:'22'}]} , 则当前的dataPath填写: data">
+                  <template slot="prepend">列表数据dataPath</template>
                 </el-input>
                 <el-input size="mini" v-model="options.remoteValue">
                   <template slot="prepend">值字段</template>
@@ -193,8 +193,8 @@
                 <el-input size="mini" v-model="options.remoteFunc">
                   <template slot="prepend">远端方法</template>
                 </el-input>
-                <el-input size="mini" v-model="options.dataPath">
-                  <template slot="prepend">列表数据jsonPath</template>
+                <el-input size="mini" v-model="options.dataPath"  title="假设当前接口返回的数据结构为:{code:200,data:[{id:1,name:'11'},{id:2,name:'22'}]} , 则当前的dataPath填写: data">
+                  <template slot="prepend">列表数据dataPath</template>
                 </el-input>
                 <el-input size="mini" v-model="options.remoteValue">
                   <template slot="prepend">值字段</template>
@@ -242,8 +242,8 @@
                 <el-input size="mini" v-model="options.remoteFunc">
                   <template slot="prepend">远端方法</template>
                 </el-input>
-                <el-input size="mini" v-model="options.dataPath">
-                  <template slot="prepend">列表数据jsonPath</template>
+                <el-input size="mini" v-model="options.dataPath" title="假设当前接口返回的数据结构为:{code:200,data:[{id:1,name:'11'},{id:2,name:'22'}]} , 则当前的dataPath填写: data">
+                  <template slot="prepend">列表数据dataPath</template>
                 </el-input>
                 <el-input size="mini" v-model="options.remoteValue">
                   <template slot="prepend">值字段</template>

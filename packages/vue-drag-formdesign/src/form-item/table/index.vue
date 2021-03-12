@@ -2,7 +2,7 @@
   动态表格 用于批量填入数据
  -->
 <template>
- <div>  
+ <div  :id="record.model" :name="record.model">  
     <el-table
       :class="[
         'form-table',
@@ -67,7 +67,7 @@
       <i class="el-icon-circle-plus-outline" />增加
     </el-button>
 
-    <AddOrUpdate ref="addOrUpdate" v-if="addOrUpdateVisible" :formTemplate="templateData" :renderPreview="renderPreview" @formAdd="formAdd"  @formUpdate="formUpdate"/>
+    <AddOrUpdate ref="addOrUpdate" v-if="addOrUpdateVisible" :formConfig="config" :formTemplate="templateData" :renderPreview="renderPreview" @formAdd="formAdd"  @formUpdate="formUpdate"/>
 
   </div>
 </template>

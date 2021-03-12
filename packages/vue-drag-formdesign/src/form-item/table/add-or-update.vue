@@ -4,10 +4,8 @@
     :close-on-click-modal="false"
      :append-to-body="true" 
     :lock-scroll="false"
-    :visible.sync="visible"> 
-   <!--  <div class="mod-config"> -->
-      <!-- 
-   <FormBuild  :formTemplate="formTemplate" :renderPreview="renderPreview" :models="dataForm" /> -->
+    :visible.sync="visible"
+    :id="randomId">  
    <el-form
       v-if="
         typeof formTemplate.list !== 'undefined' && typeof formTemplate.config !== 'undefined'
@@ -45,6 +43,7 @@
         :label="formTemplate.config.labelWidth > 0 ? item.label : null " 
         :rules="recordRules(item)"
         :prop="item.rules && item.rules.length > 0 ? item.model : null"
+        :id="item.model" :name="item.model"
       >   
 
 
@@ -91,20 +90,7 @@
       </el-form-item>
       
 </el-form>
-   
-
-   <!--   <form-item
-        v-for="(item,index) in formTemplate.list" 
-          :disabled="item.options.disabled" 
-          :renderPreview="renderPreview"
-          :models.sync="dataForm"  
-          :key="item.key"
-          :record="item"
-          :formConfig="formTemplate.formConfig" 
-        />
-
-    </el-form> -->
-
+    
 
     <div  class="mod-footer">
       <el-button @click="visible = false">取消</el-button>
@@ -127,6 +113,7 @@
     },  
     data () {
       return {
+        randomId: '' ,
         loading: false,
         visible: false,
         dataForm: {
@@ -147,7 +134,13 @@
     }
     },
     props: {
+      // 表格内部的配置
       formTemplate: {
+        type: Object, 
+        default: () => ({})
+      },
+      //动态表格整体的配置
+      formConfig: {
         type: Object, 
         default: () => ({})
       },
@@ -199,6 +192,27 @@
         const func =  dynamicFun(fstr , this.dataForm)
         return func
       },
+       // 2021-03-12 清理没有显示的组件的数据
+      clearHiddenValue() {
+        // 根据组件ID 是否隐藏为准
+        // 根据 formTemplate.config.outputHidden 来判断是否要输出隐藏 
+        if(!this.formConfig || !this.formConfig.outputHidden) {
+     
+          const formdesign = document.getElementById(this.randomId)
+         
+          // 循环当前数据 非P 开头的统一不深入第二层
+          for(let key in this.dataForm) {
+            if(key.indexOf('_label') > 0 || key == '_id' || key == 'seq') continue 
+            //  判断key的id是否还在
+            const key_div = formdesign.querySelector('#' + key) 
+            if(!key_div) {
+              // 删除
+              delete this.dataForm[key]
+              delete this.dataForm[key + '_label']
+            }  
+          } 
+        } 
+      }, 
        validatorFiled (rule , value , callback) {
       
         // 判断rule类型 
@@ -239,6 +253,7 @@
       } ,
        
       init (data) {
+          this.randomId = 'sxfw_table_dialog' + parseInt(Math.random() * 1000000)
           this.visible = true 
           this.dataForm._id = null  
           if(data) {
@@ -272,6 +287,7 @@
           this.$refs['dataForm'].validate((valid) => {
             if (valid) { 
               this.loading = true
+              this.clearHiddenValue()
               if(!this.dataForm._id) {
                 // 回填一个ID 
                 const id = new Date().getTime() * 10 + parseInt(Math.random() * 100)

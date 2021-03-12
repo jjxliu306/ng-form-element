@@ -13,7 +13,8 @@
       :model="models" 
       :style="formTemplate.config.customStyle"
       :size="formTemplate.config.size"
-> 
+      :id="randomId"
+    > 
     <template v-if="visible">
       <buildBlocks
         ref="buildBlocks"
@@ -41,6 +42,7 @@ export default {
   name: "VueDragFormBuild",
   data() {
     return {
+      randomId: '' ,
       visible: true , 
       form: this.$refs.form,
       //models: {},
@@ -80,10 +82,7 @@ export default {
     customComponents: {
       type: Array,
       default: ()=>[]
-    },
-    httpConfig: {
-      type: Function 
-    }
+    }, 
   },
   components: {
     buildBlocks
@@ -120,7 +119,7 @@ export default {
             if (!valid) { 
               reject('验证失败');
             } 
-            
+            this.clearHiddenValue()
             resolve(this.models); 
           })
  
@@ -132,6 +131,29 @@ export default {
  
 
     },
+    // 2021-03-12 清理没有显示的组件的数据
+    clearHiddenValue() {
+      // 根据组件ID 是否隐藏为准
+      // 根据 formTemplate.config.outputHidden 来判断是否要输出隐藏 
+      if(!this.formTemplate.config || !this.formTemplate.config.outputHidden) {
+       
+        const formdesign = document.getElementById(this.randomId)
+       
+        // 循环当前数据 非P 开头的统一不深入第二层
+        for(let key in this.models) {
+          if(key.indexOf('_label') > 0) continue 
+          //  判断key的id是否还在
+          const key_div = formdesign.querySelector('#' + key) 
+          if(!key_div) {
+            // 删除
+            delete this.models[key]
+            delete this.models[key + '_label']
+          }  
+        } 
+      }
+
+      
+    }, 
     // 初始化表单数据 默认值或者填充值
     initData(){
 
@@ -145,7 +167,8 @@ export default {
       this.$emit("change", value, key);
     }
   },
-  mounted() { 
+  mounted() {  
+    this.randomId = 'vue_form_design' + parseInt(Math.random() * 1000000)
     this.$nextTick(() => {
       const list = this.formTemplate.list
       this.initRules(list)   

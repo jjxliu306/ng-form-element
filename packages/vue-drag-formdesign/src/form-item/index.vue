@@ -2,6 +2,7 @@
 传入record数据，通过判断record.type，来渲染对应的组件
   -->
 <template>
+   
   <el-form-item
     v-if="
       !(record.options.hidden === true) &&
@@ -25,6 +26,7 @@
     :label="formConfig.labelWidth > 0 ? record.label : null " 
     :rules="recordRules"
     :prop="itemProp ? itemProp : (recordRules && recordRules.length > 0 ? record.model : null)"
+    :id="record.model" :name="record.model"
   >   
  
     <BaseItem 
@@ -42,6 +44,7 @@
   <!-- 可隐藏label -->
  
   <el-form-item
+    :id="record.model" :name="record.model"
     v-else-if="(record.type === 'batch' || record.type === 'editor') && dynamicVisibleItem"
     :label="!record.options.showLabel ? '' : record.label" :label-width="record.options.showLabel ? null : '0px'"
   >
@@ -83,6 +86,7 @@
   </div>
   <!-- html -->
   <div
+    :id="record.model" :name="record.model"
     v-else-if="record.type === 'html' && dynamicVisibleItem"
     v-html="record.options.defaultValue"
   ></div> 
