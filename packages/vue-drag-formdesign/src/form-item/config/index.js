@@ -105,6 +105,7 @@ export const basicsList = [
       dataPath: '',
       remoteValue:'' ,
       remoteLabel:'',
+      linkage: false,
       options: [
         // 下拉选择项配置
         {
@@ -137,6 +138,7 @@ export const basicsList = [
       dataPath: '',
       remoteValue:'' ,
       remoteLabel:'',
+      linkage: false,
       options: [
         {
           value: "1",
@@ -171,6 +173,7 @@ export const basicsList = [
       dataPath: '',
       remoteValue:'' ,
       remoteLabel:'',
+      linkage: false,
       options: [
         {
           value: "1",

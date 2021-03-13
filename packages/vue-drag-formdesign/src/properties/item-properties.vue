@@ -140,9 +140,22 @@
                 </el-input> 
             </div>  
             <!-- 本地赋值 -->
-            <ChangeOption v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
+            <OptionChange v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
           </el-form-item>
-          
+          <el-divider ></el-divider>
+          <!-- 联动配置 2021-03-12 lyf -->
+          <el-form-item label="联动关联">
+            <el-switch
+              v-model="options.linkage"
+              active-text="是"
+              inactive-text="否">
+            </el-switch> 
+          </el-form-item>
+          <template v-if="options.linkage">
+            <!-- 联动关联中如果事本地数据则只有脚本关联,如果是远程数据则包含远程搜索 -->
+            <Linkage v-model="options.linkData" />
+          </template>
+          <el-divider ></el-divider>
           <!-- select 本地配置才有默认值 -->
           <el-form-item v-if="options.dynamic == 0" label="默认值">
             <el-select v-model="options.defaultValue"  :clearable="true">
@@ -206,8 +219,23 @@
            
 
             <!-- 本地赋值 -->
-            <ChangeOption v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
+            <OptionChange v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
           </el-form-item>
+
+           <el-divider ></el-divider>
+          <!-- 联动配置 2021-03-12 lyf -->
+          <el-form-item label="联动关联">
+            <el-switch
+              v-model="options.linkage"
+              active-text="是"
+              inactive-text="否">
+            </el-switch> 
+          </el-form-item>
+          <template v-if="options.linkage">
+            <!-- 联动关联中如果事本地数据则只有脚本关联,如果是远程数据则包含远程搜索 -->
+            <Linkage v-model="options.linkData" />
+          </template>
+          <el-divider ></el-divider>
 
           <!-- select 本地配置才有默认值 -->
           <el-form-item v-if="options.dynamic == 0" label="默认值">
@@ -255,8 +283,24 @@
            
 
             <!-- 本地赋值 -->
-            <ChangeOption v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
+            <OptionChange v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
           </el-form-item>
+
+           <el-divider ></el-divider>
+          <!-- 联动配置 2021-03-12 lyf -->
+          <el-form-item label="联动关联">
+            <el-switch
+              v-model="options.linkage"
+              active-text="是"
+              inactive-text="否">
+            </el-switch> 
+          </el-form-item>
+          <template v-if="options.linkage">
+            <!-- 联动关联中如果事本地数据则只有脚本关联,如果是远程数据则包含远程搜索 -->
+            <Linkage v-model="options.linkData" />
+          </template>
+          <el-divider ></el-divider>
+          
           <!-- select 本地配置才有默认值 -->
           <el-form-item v-if="options.dynamic == 0" label="默认值">
             <el-radio-group
@@ -376,7 +420,7 @@
            <el-divider ></el-divider>
           <el-form-item   label="标记marks">
             <br>
-            <ChangeOption style="width: 100%;" :keyNumber="true" type="keyvalue" v-model="options.marks" />
+            <OptionChange style="width: 100%;" :keyNumber="true" type="keyvalue" v-model="options.marks" />
           </el-form-item> 
             
            <el-divider ></el-divider>
@@ -462,7 +506,7 @@
             </div>  
 
             <!-- 本地赋值 -->
-            <ChangeOption v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
+            <OptionChange v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
           </el-form-item>
              <el-divider ></el-divider>
           <el-form-item   label="操作属性" >
@@ -632,7 +676,7 @@
             <el-input-number  v-model="selectItem.options.gutter"  placeholder="请输入" />
           </el-form-item>
           <el-form-item label="列配置项">
-            <ChangeOption v-model="selectItem.columns" type="colspan" />
+            <OptionChange v-model="selectItem.columns" type="colspan" />
           </el-form-item>
         </template> 
         <!-- 栅格布局  end -->
@@ -696,7 +740,7 @@
         <el-form-item  v-if="selectItem.rules  && selectItem.rules.length > 0 " label="校验" >
           <el-checkbox v-model="selectItem.rules[0].required" label="必填" />
           <el-input v-model="selectItem.rules[0].message"  placeholder="必填校验提示信息" />
-          <ChangeOption v-model="selectItem.rules" type="rules" :disabled="disabled" />
+          <OptionChange v-model="selectItem.rules" type="rules" :disabled="disabled" />
 
           <el-divider ></el-divider>
         </el-form-item>
@@ -739,8 +783,8 @@
   </div>
 </template>
 <script> 
-import ChangeOption from "./change-option/index";
- 
+import OptionChange from "./option-change/index";
+import Linkage from './linkage'
 export default {
   name: "formItemProperties",
   data() {
@@ -769,7 +813,7 @@ export default {
     }
   },
   components: {
-    ChangeOption 
+    OptionChange , Linkage
   }
 };
 </script>

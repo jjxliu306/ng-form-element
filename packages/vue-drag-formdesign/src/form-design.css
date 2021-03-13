@@ -253,12 +253,10 @@
 }
 .form-design .properties-centent .properties-body {
   overflow: auto;
-  height: calc(100% - 48px);
+  height: 500px;
   padding: 8px 16px;
 }
-.form-design .properties-centent .properties-body .el-form {
-  height: calc(100% + 20px);
-}
+
 .form-design .properties-centent .properties-body .el-form .el-form-item {
   margin-bottom: 0;
   padding: 5px 0;

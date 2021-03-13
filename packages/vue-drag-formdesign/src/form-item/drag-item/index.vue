@@ -37,7 +37,7 @@
 import {
   basicsList, 
   layoutList 
-} from "../config/form-item-config.js";
+} from "../config/index.js";
 import DragItem from './module/dragItem'
 export default {
 	components: {

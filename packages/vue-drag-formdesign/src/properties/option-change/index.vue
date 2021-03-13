@@ -109,7 +109,7 @@
         ></el-col>
       </div>
       <el-col v-if="!disabled" :span="24"><el-button type="primary" @click="handleAddCol">添加</el-button></el-col>
-    </el-row>
+    </el-row> 
   </div>
 </template>
 <script>
@@ -196,43 +196,4 @@ export default {
 
   }
 };
-</script>
-<style  >
-.option-change-container {
-  width: calc(100% - 8px);
-
-  
-
-}
-.option-change-container .el-tree-node__content { 
-  height: 35px;
-}
-.option-change-container .el-tree-node__content  .custom-tree-node {
-  height: 35px;
-}
-
-.option-change-container .option-change-box {
-    height: 38px;
-    padding-bottom: 6px;
-    
-  }
-
-.option-change-container .option-change-box .option-delete-box {
-      margin-top: 3px;
-      background: #ffe9e9;
-      color: #f22;
-      width: 32px;
-      height: 32px;
-      line-height: 32px;
-      text-align: center;
-      border-radius: 50%;
-      overflow: hidden;
-      transition: all 0.3s;
-     
-    }
-.option-change-container .option-change-box .option-delete-box:hover {
-        background: #f22;
-        color: #fff;
-}
-
-</style>
+</script> 

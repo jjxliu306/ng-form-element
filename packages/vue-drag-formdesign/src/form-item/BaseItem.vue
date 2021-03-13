@@ -65,6 +65,7 @@
 
   </div>
   <div v-else class="base-item"> 
+    linkageData:: {{linkageData}}
     <!-- 单行文本 -->   
     <el-input
      
@@ -156,12 +157,15 @@
         multiple
         @change="handleChange($event, record.model ,  true)" 
       >
-        <el-option
-          v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)"
-          :key="item[itemProp.value]"
-          :label="item[itemProp.label]"
-          :value="item[itemProp.value]">
-        </el-option>
+        <template  v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)">
+          <el-option 
+            :key="item[itemProp.value]"
+            :label="item[itemProp.label]"
+            :value="item[itemProp.value]"
+            v-if="itemVisible(item)"
+            >
+          </el-option>
+        </template>
       </el-select>
       <el-select
         v-else
@@ -176,12 +180,15 @@
         :clearable="record.options.clearable" 
         @change="handleChange($event, record.model , true)" 
       > 
-        <el-option
-          v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)"
-          :key="item[itemProp.value]"
-          :label="item[itemProp.label]"
-          :value="item[itemProp.value]">
-        </el-option>
+        <template v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)">
+          <el-option
+            :key="item[itemProp.value]"
+            :label="item[itemProp.label]"
+            :value="item[itemProp.value]"
+            v-if="itemVisible(item)"
+            >
+          </el-option>
+        </template> 
       </el-select>
     </template>
  
@@ -193,9 +200,11 @@
       :placeholder="record.options.placeholder"
       @change="handleChange($event, record.model)"
     >
-      <el-checkbox  v-for="checkitem in  ( (record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)" :label="checkitem[itemProp.value]" :key="checkitem[itemProp.value]"> 
+      <template v-for="checkitem in  ( (record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)" >
+         <el-checkbox :label="checkitem[itemProp.value]" :key="checkitem[itemProp.value]" v-if="itemVisible(checkitem)"> 
         {{checkitem[itemProp.label]}}
       </el-checkbox>
+      </template> 
     </el-checkbox-group>
 
      <!-- 单选框 -->
@@ -207,10 +216,11 @@
       @change="handleChange($event, record.model)"
       
     > 
-      <el-radio v-for="radioitem in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)" :label="radioitem[itemProp.value]" :key="radioitem[itemProp.value]">
+      <template v-for="radioitem in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)" >
+         <el-radio :label="radioitem[itemProp.value]" :key="radioitem[itemProp.value]" v-if="itemVisible(radioitem)">
          {{radioitem[itemProp.label]}}
-      </el-radio>
-       
+        </el-radio>
+      </template> 
     </el-radio-group>
 
     <!-- 日期选择 -->
@@ -368,7 +378,10 @@ export default {
         label: 'label',
         multiple: this.record.options.multiple,
 
-      }
+      },
+
+      // 2021-03-13 如果该字段带有本地数据过滤,则这里保存本地过滤的过滤条件
+      localFilter: []
     }
   },
   props: {
@@ -430,6 +443,26 @@ export default {
       } else {
         return [];
       }
+    },
+    linkageData() {
+       if(this.record.options.linkage ) {
+          const linkData = this.record.options.linkData
+          if(!linkData) return null
+
+          let vs = []
+          for(let i = 0 ; i < linkData.length ; i++) {
+            // 判断类型 vtype=1 本地搜索 vtype=2 远程过滤
+            const ld = linkData[i]
+            if(ld.vtype == 1) {
+              // local script
+              vs.push(this.models[ld.model])
+
+            }
+          }
+          return vs 
+
+        }
+        return null
     }
   },
   watch: {
@@ -447,7 +480,43 @@ export default {
          this.handleChange(val ,this.record.model , 1)
       },
       deep:true
-    }
+    },
+    // 监听关联字段
+    linkageData: {
+      handler(val , oldVal) {
+        console.log('linkageData' , val)
+        if(this.record.options.linkage ) {
+          const linkData = this.record.options.linkData
+          if(!linkData) return null
+
+          // 本地搜索
+          let localScript = []
+          for(let i = 0 ; i < linkData.length ; i++) {
+            // 判断类型 vtype=1 本地搜索 vtype=2 远程过滤
+            const ld = linkData[i]
+            if(ld.vtype == 1) {
+              // local script
+              localScript.push(ld.script) 
+            }
+          }
+
+          this.localFilter = localScript
+
+/*
+          let itemData = (this.record.options.dynamic == 1 && this.record.options.remoteFunc) || (this.record.options.dynamic == 2 && this.record.options.dictType) ? this.checkValues : this.record.options.options
+
+          if(localScript && localScript.length > 0) {
+            // 本地搜索开始
+            for(let i = 0 ; i < localScript.length ; i++) {
+              itemData = dynamicFun(localScript[i] , itemData , '$item')
+            } 
+          } */
+
+        }
+         
+      },
+      deep:true
+    } 
   },
   methods: {
     transformAppend(append){
@@ -483,7 +552,29 @@ export default {
           this.checkValues = data.data.list
         }
       }) 
-    }, 
+    },
+    dynamicVisible(script , item) {
+       const func = script.indexOf('return') >= 0 ? '{' + script + '}' : 'return (' + script + ')' 
+      const Fn = new Function('$','$item', func)
+      return Fn(this.models , item)
+    },
+    // 2021-03-13 针对select radio checkbox判断如果有本地过滤关联，判断该条数据是否该显示 
+    itemVisible(item) {
+      // 没有过滤条件 直接全部展示
+     // console.log('this.localFilter' , this.localFilter)
+      if(!this.localFilter || this.localFilter.length == 0) return true 
+
+      //挨个过滤判断 
+            // 本地搜索开始
+      for(let i = 0 ; i < this.localFilter.length ; i++) {
+          const v = this.dynamicVisible(this.localFilter[i] , item )
+         // console.log('sitem' , item , v)
+          if(!v) {
+            return false
+          }
+      }  
+      return true 
+    },
     handleChange(value, key , type) {
       // change事件 
       this.$emit("change", value, key); 

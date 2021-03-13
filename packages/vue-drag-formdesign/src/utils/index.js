@@ -5,11 +5,12 @@ export const http_down_file_url = 'http://localhost:9000/sxfw/file/fileDown'
 
  
 
-export function dynamicFun(script , model) {
-  if(!script) return false
+export function dynamicFun(script , model , key="$") {
+  if(!script) return false 
   const func = script.indexOf('return') >= 0 ? '{' + script + '}' : 'return (' + script + ')' 
-  const Fn = new Function('$', func)
+  const Fn = new Function(key, func)
   return Fn(model)
 }
+ 
  
  
