@@ -64,8 +64,7 @@
 
 
   </div>
-  <div v-else class="base-item"> 
-    linkageData:: {{linkageData}}
+  <div v-else class="base-item">  
     <!-- 单行文本 -->   
     <el-input
      
@@ -491,8 +490,7 @@ export default {
     },
     // 监听关联字段
     linkageData: {
-      handler(val , oldVal) {
-        console.log('linkageData' , val)
+      handler(val , oldVal) { 
         if(this.record.options.linkage ) {
           const linkData = this.record.options.linkData
           if(!linkData) return  
@@ -565,21 +563,7 @@ export default {
       this.getRemoteData()
     },
     // 获取远程数据
-    getRemoteData() {
-     /*  request({
-        url: this.remoteUrl,
-        method: 'get',
-        params: {
-          ...this.remoteQuery
-        }
-      }).then(({data}) => {
-        if (data.code === 0) { 
-          this.checkValues = data.data.list
-        }
-      }) */
-
-
-      console.log('remote query ' , this.remoteUrl , this.remoteFilter)
+    getRemoteData() { 
 
       const objectPath = require("object-path");
       
