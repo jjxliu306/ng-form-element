@@ -37,6 +37,7 @@
       :record="record"
       :disabled="disabled || record.options.disabled"
       @forceUpdate="forceUpdate"
+      :isDragPanel="isDragPanel"
       /> 
   
   

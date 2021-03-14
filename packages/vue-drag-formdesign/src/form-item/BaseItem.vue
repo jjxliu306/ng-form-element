@@ -157,7 +157,7 @@
         multiple
         @change="handleChange($event, record.model ,  true)" 
       >
-        <template  v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)">
+        <template  v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)">
           <el-option 
             :key="item[itemProp.value]"
             :label="item[itemProp.label]"
@@ -180,7 +180,7 @@
         :clearable="record.options.clearable" 
         @change="handleChange($event, record.model , true)" 
       > 
-        <template v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)">
+        <template v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)">
           <el-option
             :key="item[itemProp.value]"
             :label="item[itemProp.label]"
@@ -200,7 +200,7 @@
       :placeholder="record.options.placeholder"
       @change="handleChange($event, record.model)"
     >
-      <template v-for="checkitem in  ( (record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)" >
+      <template v-for="checkitem in  ( (record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)" >
          <el-checkbox :label="checkitem[itemProp.value]" :key="checkitem[itemProp.value]" v-if="itemVisible(checkitem)"> 
         {{checkitem[itemProp.label]}}
       </el-checkbox>
@@ -216,7 +216,7 @@
       @change="handleChange($event, record.model)"
       
     > 
-      <template v-for="radioitem in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)" >
+      <template v-for="radioitem in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)" >
          <el-radio :label="radioitem[itemProp.value]" :key="radioitem[itemProp.value]" v-if="itemVisible(radioitem)">
          {{radioitem[itemProp.label]}}
         </el-radio>
@@ -379,9 +379,12 @@ export default {
         multiple: this.record.options.multiple,
 
       },
+      // 2021-03-13 针对实时搜索回调的时候将动态的url放置在外部，方便组件联动的时候引用
+      remoteUrl: '' ,
 
       // 2021-03-13 如果该字段带有本地数据过滤,则这里保存本地过滤的过滤条件
-      localFilter: []
+      localFilter: [],
+      remoteFilter: {} , // 远程过滤搜索 结构 {key:xx,value:xx}
     }
   },
   props: {
@@ -407,6 +410,11 @@ export default {
     } ,
       // 是否预览结果表单
     renderPreview: {
+      type: Boolean ,
+      default: false
+    },
+     // 是否拖拽面板引用
+    isDragPanel: {
       type: Boolean ,
       default: false
     },
@@ -445,7 +453,7 @@ export default {
       }
     },
     linkageData() {
-       if(this.record.options.linkage ) {
+       if(!this.isDragPanel && this.record.options.linkage ) {
           const linkData = this.record.options.linkData
           if(!linkData) return null
 
@@ -453,7 +461,7 @@ export default {
           for(let i = 0 ; i < linkData.length ; i++) {
             // 判断类型 vtype=1 本地搜索 vtype=2 远程过滤
             const ld = linkData[i]
-            if(ld.vtype == 1) {
+            if(ld.model) {
               // local script
               vs.push(this.models[ld.model])
 
@@ -487,30 +495,39 @@ export default {
         console.log('linkageData' , val)
         if(this.record.options.linkage ) {
           const linkData = this.record.options.linkData
-          if(!linkData) return null
+          if(!linkData) return  
 
           // 本地搜索
           let localScript = []
+          let remoteQuery = {}
           for(let i = 0 ; i < linkData.length ; i++) {
             // 判断类型 vtype=1 本地搜索 vtype=2 远程过滤
             const ld = linkData[i]
             if(ld.vtype == 1) {
               // local script
               localScript.push(ld.script) 
+            } else if(ld.vtype == 2 
+              // 确定有远程搜索
+                &&  this.record.options.dynamic == 1 && this.record.options.remoteFunc
+                // 确定搜索的key 和value存在
+                && ld.queryKey && ld.queryValue) {
+              // remote 远程过滤 
+
+              // 解析queryValue
+              const queryValue = dynamicFun(ld.queryValue , this.models)
+
+              remoteQuery[ld.queryKey] = queryValue 
+                
             }
           }
 
           this.localFilter = localScript
+          this.remoteFilter = remoteQuery
+    
 
-/*
-          let itemData = (this.record.options.dynamic == 1 && this.record.options.remoteFunc) || (this.record.options.dynamic == 2 && this.record.options.dictType) ? this.checkValues : this.record.options.options
-
-          if(localScript && localScript.length > 0) {
-            // 本地搜索开始
-            for(let i = 0 ; i < localScript.length ; i++) {
-              itemData = dynamicFun(localScript[i] , itemData , '$item')
-            } 
-          } */
+          if(this.remoteFilter) {
+            this.getRemoteData()
+          }
 
         }
          
@@ -543,16 +560,50 @@ export default {
         url += '?' + queryParam
       }
 
-     request({
-        url: url,
+      this.remoteUrl = url 
+
+      this.getRemoteData()
+    },
+    // 获取远程数据
+    getRemoteData() {
+     /*  request({
+        url: this.remoteUrl,
         method: 'get',
-        params: {}
+        params: {
+          ...this.remoteQuery
+        }
       }).then(({data}) => {
         if (data.code === 0) { 
           this.checkValues = data.data.list
         }
-      }) 
+      }) */
+
+
+      console.log('remote query ' , this.remoteUrl , this.remoteFilter)
+
+      const objectPath = require("object-path");
+      
+      const dataPath = this.record.options.dataPath
+
+      request({
+        url: this.remoteUrl,
+        method: 'get',
+        params: {
+          ...this.remoteFilter
+        }
+      }).then((data) => {
+        if (data) { 
+          // 获取list 根据dataPath 
+          const rdata = objectPath.get(data, dataPath);
+
+          this.checkValues = rdata
+        }
+      })
+
+
+
     },
+    // 2021-03-13 判断列表中具体某个值是否应该显示
     dynamicVisible(script , item) {
        const func = script.indexOf('return') >= 0 ? '{' + script + '}' : 'return (' + script + ')' 
       const Fn = new Function('$','$item', func)
@@ -562,7 +613,7 @@ export default {
     itemVisible(item) {
       // 没有过滤条件 直接全部展示
      // console.log('this.localFilter' , this.localFilter)
-      if(!this.localFilter || this.localFilter.length == 0) return true 
+      if(this.isDragPanel || !this.localFilter || this.localFilter.length == 0) return true 
 
       //挨个过滤判断 
             // 本地搜索开始
@@ -694,24 +745,10 @@ export default {
      // 判断如果是远程方法的话 远程请求数据
     if(this.record.options.dynamic == 1 && this.record.options.remoteFunc) {
       const url =  this.record.options.remoteFunc 
-
+      this.remoteUrl = url 
       
-      const objectPath = require("object-path");
-      
-      const dataPath = this.record.options.dataPath
 
-      request({
-        url: url,
-        method: 'get',
-        params: {}
-      }).then((data) => {
-        if (data) { 
-          // 获取list 根据dataPath 
-          const rdata = objectPath.get(data, dataPath);
-
-          this.checkValues = rdata
-        }
-      })
+      this.getRemoteData()
  
 
       this.itemProp.label = this.record.options.remoteLabel

@@ -7,20 +7,37 @@
     <el-row  :gutter="8">
       <span v-for="(val, index) in value" :key="index">
         <div class="option-change-box"  >
-          <el-col :span="18" >
+          <el-col :span="21" >
             <template>
+              {{index+1}}、
               <el-radio v-model="val.vtype" :label="1">本地</el-radio>
               <el-radio v-model="val.vtype" :label="2">远程</el-radio>
             </template>
           </el-col>
-          <el-col :span="18" >
-            <el-input size="mini" v-model="val.model" placeholder="关联字段"/>
+          <el-col :span="21" >
+            <el-input size="mini" v-model="val.model" placeholder="关联字段">
+              <template slot="prepend">关联字段</template>
+            </el-input>
           </el-col>
-          <el-col :span="18">
-            <el-input size="mini"  v-if="val.vtype == 1" type="textarea" v-model="val.script" placeholder="表达式" />
-            <el-input size="mini"  v-else-if="val.vtype == 2" type="textarea" v-model="val.query" placeholder="远程搜索添加查询条件,eg:key=$.sex" />
+          <el-col :span="21">
+            <template v-if="val.vtype == 1">
+               表达式:
+              <el-input size="mini"   type="textarea" v-model="val.script" placeholder="表达式,eg: $item.value>$.age . 其中$item表示当前数据中具体一条数据,$表示当前整个表单数据" />
+
+            </template>
+           
+            <el-row v-else-if="val.vtype == 2">
+              <el-col :span="12">
+                <el-input size="mini" v-model="val.queryKey" placeholder="query key" />
+              </el-col>
+               <el-col :span="12">
+                <el-input size="mini" v-model="val.queryValue" placeholder="query value" />
+              </el-col>
+            </el-row>
+
+          <!--   <el-input size="mini"  v-else-if="val.vtype == 2" type="textarea" v-model="val.query" placeholder="远程搜索添加查询条件,eg:key=$.sex" /> -->
           </el-col>
-          <el-col :span="6" >
+          <el-col :span="3" >
             <div @click="handleDelete(index)" class="option-delete-box">
               <i class="el-icon-delete" />
             </div>
@@ -62,7 +79,8 @@ export default {
           //validator: 'validatorFiled',
           model: "",
           script: "",
-          query: ""
+          queryKey: "",
+          queryValue: ""
         }
       ];
       console.log('this.addData' , addData)
