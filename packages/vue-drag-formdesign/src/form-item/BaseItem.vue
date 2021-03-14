@@ -521,6 +521,13 @@ export default {
 
           this.localFilter = localScript
           this.remoteFilter = remoteQuery
+
+          // 将当前选中值设置为空 防止选择的值目前展示不出来后永远不能反选
+          if( (this.record.type === 'select' && this.record.options.multiple) || this.record.type === 'checkbox') {
+            this.checkList = []
+          } else {
+             this.$set(this.models , this.record.model , null)
+          }
     
 
           if(this.remoteFilter) {
