@@ -300,7 +300,7 @@
             <Linkage v-model="options.linkData" />
           </template>
           <el-divider ></el-divider>
-          
+
           <!-- select 本地配置才有默认值 -->
           <el-form-item v-if="options.dynamic == 0" label="默认值">
             <el-radio-group
@@ -551,12 +551,21 @@
             <el-input type="textarea" v-model="selectItem.options.customStyle" />
           </el-form-item>
           <el-divider ></el-divider>
-           <el-form-item  label="外部展示字段">
+
+          <el-form-item  label="新增行方式">
+             <el-radio-group v-model="options.addType">
+              <el-radio-button label="line">增加行</el-radio-button>
+              <el-radio-button label="dialog">弹出框</el-radio-button> 
+            </el-radio-group>
+          </el-form-item>
+
+           <el-form-item  label="外部展示字段" v-if="options.addType == 'dialog'">
             <el-checkbox-group v-model="selectItem.options.showItem" >
               <!-- 获取当前内部已经包含的要素 -->
               <el-checkbox v-for="item in selectItem.list" :label="item.model" :key="item.model">{{item.label}}</el-checkbox>
             </el-checkbox-group>
           </el-form-item>
+
            <el-divider ></el-divider>
           <el-form-item   label="操作属性" >
             <el-checkbox v-model="options.hidden"  label="隐藏" />

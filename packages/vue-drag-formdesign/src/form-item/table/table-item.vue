@@ -16,7 +16,7 @@
     <BaseItem
           :models="domains" 
           :record="record"   
-          :renderPreview="true"  
+          :renderPreview="renderPreview"  
           >
     </BaseItem>
   </div>
@@ -26,11 +26,21 @@ import BaseItem from '../BaseItem'
  
 export default {
   name: "TableItem",
-  props: [
-    "record",
-    "domains",  
-    "renderPreview"
-  ], 
+  props: {
+     record: {
+      type: Object,
+      required : true
+    }, 
+    domains: {
+      type: Object,
+      required : true
+    },  
+      // 是否预览结果表单
+    renderPreview: {
+      type: Boolean ,
+      default: false
+    }
+  }, 
   computed: {
      customList() {
       if (window.customComponents) {

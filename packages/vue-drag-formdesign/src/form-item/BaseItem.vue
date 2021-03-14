@@ -749,7 +749,8 @@ export default {
 
     
     // 如果已经赋值了 则不管默认值了
-    if(Object.prototype.hasOwnProperty.call(this.models, this.record.model)) {
+    console.log('754',this.models, this.record.model)
+    if(this.models && Object.prototype.hasOwnProperty.call(this.models, this.record.model)) {
       // 判断数据类型是否正确 
       // 类型为checkbox cascader 但数据非array类型 则强制转array
       let modelValue = this.models[this.record.model]

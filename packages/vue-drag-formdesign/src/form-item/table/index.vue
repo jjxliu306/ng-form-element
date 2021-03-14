@@ -30,25 +30,27 @@
         </el-table-column>
         <template  v-for="(item,index) in record.list">
           <el-table-column   
-          v-if="record.options.showItem && record.options.showItem.includes(item.model)"
+          v-if="record.options.addType != 'dialog' || (record.options.showItem && record.options.showItem.includes(item.model) )"
           :key="index"
           :label="item.label"
           align="center">
-          <template  slot-scope="scope">
+          <template  slot-scope="scope"> 
             <!-- 这里就要判断类型了 -->   
-            <TableItem :record="item" :renderPreview="true" :domains="models[record.model][scope.$index]" />
+            <!-- 2021-03-14 判断新增数据方式，如果是怎加航 这里就不能预览了 -->
+            <TableItem :record="item" :renderPreview="renderPreview || record.options.addType == 'dialog'" :domains="models[record.model][scope.$index]" /> 
           </template>  
         </el-table-column>
         </template> 
         <el-table-column  
           label="操作"
           align="center" 
+          v-if="!renderPreview || record.options.addType == 'dialog'"
           :width="renderPreview ? 120 : (record.options.copyRow ? 250 : 200)">
           <template  slot-scope="scope"> 
-            <el-button type="success"  v-if="renderPreview"  @click="updateDomain(scope.row)">
+            <el-button type="success"  v-if="renderPreview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
               <i class="el-icon-eye" />查看
             </el-button>
-            <el-button type="primary"  v-if="!renderPreview"  @click="updateDomain(scope.row)">
+            <el-button type="primary"  v-if="!renderPreview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
               <i class="el-icon-edit" />修改
             </el-button>
             <el-button type="primary"  v-if="!renderPreview && record.options.copyRow"  @click="copyDomain(scope.row)">
@@ -133,7 +135,17 @@ export default {
     },
     templateData() {
       return {list: this.record.list, config: { "labelPosition": this.record.options.labelPosition ? this.record.options.labelPosition : "right", "labelWidth": this.record.options.labelWidth, "size": "mini", "hideRequiredMark": false } }
-    }
+    },
+   /* controlWidth() {
+      let w = 0 
+      if(!this.renderPreview || this.record.options.addType == 'dialog') {
+        return w 
+      }
+      if(this.renderPreview) {
+        w = 100 
+      } 
+      return w 
+    }*/
   },
   methods: {
     validationSubform() { 
@@ -173,20 +185,53 @@ export default {
     },
     // 行复制 2021-02-17 lyf
     copyDomain(data) {
-      this.addOrUpdateVisible = true 
       let copyData = {...data}
       copyData._id = null
-      this.$nextTick(() => {
-         this.$refs.addOrUpdate.init(copyData) 
-      })
+      if(this.record.options.addType == 'dialog') {
+        this.addOrUpdateVisible = true 
+        
+        this.$nextTick(() => {
+           this.$refs.addOrUpdate.init(copyData) 
+        })
+      } else {
+        // 直接添加一行数据
+        this.isVisible = false 
+        
+        let domains = this.models[this.record.model] 
+        
+        domains.push(copyData)   
+         this.isVisible = true 
+      }
+      
     },
-    addDomain() { 
+    addDomain() {  
+      if(this.record.options.addType == 'dialog') {
+        this.addOrUpdateVisible = true 
+        this.$nextTick(() => {
+           this.$refs.addOrUpdate.init() 
+        })
+      } else {
+        // 直接添加一行数据
+        this.isVisible = false 
+        const items = this.record.list
 
-      this.addOrUpdateVisible = true 
-      this.$nextTick(() => {
-         this.$refs.addOrUpdate.init() 
-      })
+        const itemObject = {} 
+        items.forEach(t=>{
+          itemObject[t.model] = ''
+        })
  
+        let domains = this.models[this.record.model] 
+        if(!domains) {
+          const ds = [itemObject] 
+
+          domains = ds
+        } else {
+          domains.push(itemObject)  
+        }
+
+        this.$set(this.models , this.record.model , domains)
+         this.isVisible = true 
+      } 
     },
     formAdd(form){
       this.isVisible = false 

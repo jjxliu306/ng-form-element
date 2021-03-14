@@ -439,6 +439,7 @@ export const basicsList = [
         showLabel: false,
         hideSequence: false,
         labelWidth: "100",
+        addType: 'dialog', // 默认增加一条数据的方式为弹出框
         labelPosition: 'left',
         customStyle: "",
         customClass: '',
