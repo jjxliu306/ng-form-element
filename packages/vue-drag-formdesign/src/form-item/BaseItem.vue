@@ -781,6 +781,12 @@ export default {
 
       this.handleChange(defaultValue , this.record.model)
     }
+
+
+      // 2021-03-16 lyf 判断当前没有值并且类型是input 或者textarea 给初始化model
+    if( (this.record.type == 'input' || this.record.type == 'textarea') && !this.models.hasOwnProperty(this.record.model)) {
+      this.$set(this.models , this.record.model , '')
+    }
  
   }
 };
