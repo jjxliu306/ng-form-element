@@ -26,6 +26,7 @@
             <VueDragFormBuild ref="formbuild" :formTemplate="formTemplate" :models="models" :custom-components="customComponents" :config="formConfig"/>
 
              <el-button   type="primary" size="medium"  @click="validator()">验证</el-button>
+             <el-button   type="primary" size="medium"  @click="getData()">获取数据</el-button>
         </el-tab-pane> 
       </el-tabs>
 
@@ -105,6 +106,11 @@ export default {
       if(v && v.name == 'second') {
         this.formTemplate =  this.$refs.formDesign.getModel()
       } 
+    },
+    getData() {
+      this.$refs.formbuild.getData().then((data)=>{
+        console.log('data' , data)
+      })
     }
   }
 }
