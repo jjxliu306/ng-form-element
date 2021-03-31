@@ -22,7 +22,7 @@
                   </el-tab-pane>  
                 </template> 
                 <template slot="form-extend-properties" slot-scope="{ data}">  
-                    扩展测试插槽
+                    扩展测试插槽(组件数量):: {{data.list.length}}
                 </template> 
 
             </VueDragFormdesign> 
