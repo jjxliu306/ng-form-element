@@ -11,13 +11,21 @@
 	  <!--    <el-tab-pane label="控件属性2" name="item2">
 	    	<ItemProperties2 :selectItem="selectItem" ref="itemProperties2" />
 	    </el-tab-pane> -->
-	    <el-tab-pane label="表单属性" name="form">
-	    	 
+	    <el-tab-pane label="表单属性" name="form"> 
 	    	<FormProperties ref="formProperties"  
 	    	 	:config="data.config"
 	            :previewOptions="previewOptions"
-	    	 />
+	    	 > 
+	    		<template slot="form-extend-properties" :data="data">
+                    <slot name="form-extend-properties" :data="data"></slot>
+                </template> 
+	    	</FormProperties>
 	    </el-tab-pane> 
+
+	    <slot name="extend-tab" :data="data"  >
+	     	<!-- 扩展插槽,扩展对应要素属性 -->
+	    </slot>
+
 	  </el-tabs>
 		
 	 

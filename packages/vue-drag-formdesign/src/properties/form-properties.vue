@@ -49,6 +49,8 @@
           <el-input  type="textarea" v-model="config.customStyle" />
         </el-form-item>
         <el-divider></el-divider>
+
+        <slot name="form-extend-properties"></slot>
       
         <el-form-item label="提示">
           实际预览效果请点击预览查看

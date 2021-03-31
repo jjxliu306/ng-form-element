@@ -33,6 +33,12 @@
                   <template slot="custom-properties" :selectItem="selectItem">
                         <slot name="custom-properties" :selectItem="selectItem"></slot>
                   </template>
+                   <template slot="form-extend-properties" :data="data">
+                        <slot name="form-extend-properties" :data="data"></slot>
+                  </template>
+                   <template slot="extend-tab" :data="data">
+                        <slot name="extend-tab" :data="data"></slot>
+                  </template>
                 </Properties>
               </el-card>
             </el-col>

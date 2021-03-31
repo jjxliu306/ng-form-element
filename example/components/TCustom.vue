@@ -5,7 +5,7 @@
 		  type="textarea"
 		  autosize
 		  placeholder="请输入图片地址"
-		  v-model="models[record.model]" :disabled="disabled">
+		  v-model.trim="models[record.model]" :disabled="disabled">
 		</el-input> 
 		 <el-image
 	      :style="record.options.style ? record.options.style : null"

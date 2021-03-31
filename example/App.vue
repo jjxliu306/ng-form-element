@@ -16,6 +16,15 @@
                 <template  slot="formName">
                     <span> vue-drag-formdesign 示例 </span>
                 </template>
+                <template slot="extend-tab" slot-scope="{data }"> 
+                  <el-tab-pane label="扩展属性" name="select"> 
+                    扩展测试插槽-加tab:: {{data}} 
+                  </el-tab-pane>  
+                </template> 
+                <template slot="form-extend-properties" slot-scope="{ data}">  
+                    扩展测试插槽
+                </template> 
+
             </VueDragFormdesign> 
         </el-tab-pane>
         <el-tab-pane label="表单查看" name="second">

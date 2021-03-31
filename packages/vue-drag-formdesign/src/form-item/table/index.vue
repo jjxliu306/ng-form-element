@@ -257,8 +257,7 @@ export default {
 
       
     },
-    formUpdate(form){
-      console.log('formUpdate' , form)
+    formUpdate(form){ 
       let domains = this.models[this.record.model] 
 
       for(var i in this.models[this.record.model] ){

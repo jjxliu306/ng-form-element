@@ -82,8 +82,7 @@ export default {
           queryKey: "",
           queryValue: ""
         }
-      ];
-      console.log('this.addData' , addData)
+      ]; 
       this.$emit("input", addData);
     },
     handleDelete(deleteIndex) {
