@@ -82,7 +82,7 @@ export default {
   } ,
 
   created() {
-    this.formTemplate = require('./data/basic.json')
+   // this.formTemplate = require('./data/basic.json')
   },
   methods: {
     initDemo(index){
@@ -113,7 +113,19 @@ export default {
     },
     changeTab(v) {
       if(v && v.name == 'second') {
+       
         this.formTemplate =  this.$refs.formDesign.getModel()
+        const list = this.formTemplate.list 
+        if(list) {
+          const templateModels = list.map(t=>t.model)
+          for(let i in this.models) {
+            if(!templateModels.includes(i)) {
+              delete this.models[i]
+            }
+          }
+         // 2021-04-06 顺带重置models 将
+        }
+        //this.models = {}
       } 
     },
     getData() {

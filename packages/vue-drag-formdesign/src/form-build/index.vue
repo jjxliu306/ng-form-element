@@ -14,13 +14,14 @@
       :style="formTemplate.config.customStyle"
       :size="formTemplate.config.size"
       :id="randomId"
+      :key="randomId"
     > 
     <template >
       <buildBlocks
         ref="buildBlocks"
         @handleReset="reset"
         @forceUpdate="forceUpdate"
-        v-for="(record, index) in formTemplate.list"
+        v-for="record in formTemplate.list"
         :renderPreview="renderPreview"
         :record="record"
         :models.sync="models" 
@@ -28,7 +29,7 @@
         :config="config"
         :disabled="disabled"
         :formConfig="formTemplate.config"
-        :key="index"
+        :key="record.model"
         @change="handleChange"
       />
     </template>
@@ -75,6 +76,16 @@ export default {
       type: Array,
       default: ()=>[]
     }, 
+  },
+  watch: {
+    formTemplate: {
+      handler (val, oldVal) {
+        this.randomId = 'vue_form_design' + parseInt(Math.random() * 1000000)
+         
+      },
+      deep: true
+    }
+    
   },
   components: {
     buildBlocks

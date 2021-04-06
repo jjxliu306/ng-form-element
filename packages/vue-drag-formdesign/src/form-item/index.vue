@@ -92,8 +92,7 @@
   ></div> 
 
   <div v-else-if="dynamicVisibleItem">
-    <!-- 分割线 -->
-
+    <!-- 分割线 --> 
     <el-divider
       v-if=" record.type === 'divider' && record.label !== '' && record.options.orientation "
       :content-position="record.options.orientation" :direction="record.options.direction ? record.options.direction : 'horizontal'">

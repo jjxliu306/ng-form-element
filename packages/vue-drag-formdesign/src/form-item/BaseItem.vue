@@ -719,8 +719,9 @@ export default {
 
   },
   mounted() { 
-     // 2020-07-30 如果有cbColumn 则尝试从data中回填数据 
-    if(this.record.options.cbColumn) {
+     // 2020-07-30 如果有cbColumn 则尝试从data中回填数据  
+   
+    if(this.record.options.cbColumn && !this.isDragPanel) {
       this.loading = true
       const value = this.data[this.record.options.cbColumn] 
      // this.models[this.record.model] = value  
@@ -779,9 +780,12 @@ export default {
 
 
       // 2021-03-16 lyf 判断当前没有值并且类型是input 或者textarea 给初始化model
-    if( !Object.prototype.hasOwnProperty.call(this.models, this.record.model)  ) {
+
+    if(!this.isDragPanel && !Object.prototype.hasOwnProperty.call(this.models, this.record.model)  ) {
       this.$set(this.models , this.record.model , '')
+       
     }
+  
  
   }
 };
