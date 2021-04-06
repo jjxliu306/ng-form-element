@@ -704,7 +704,7 @@ export default {
             
               Fn(this.models,select)
 
-              this.$emit('forceUpdate') 
+              
             })
            
           }
@@ -783,7 +783,7 @@ export default {
 
 
       // 2021-03-16 lyf 判断当前没有值并且类型是input 或者textarea 给初始化model
-    if( (this.record.type == 'input' || this.record.type == 'textarea') && !Object.prototype.hasOwnProperty.call(this.models, this.record.model)  ) {
+    if( !Object.prototype.hasOwnProperty.call(this.models, this.record.model)  ) {
       this.$set(this.models , this.record.model , '')
     }
  
