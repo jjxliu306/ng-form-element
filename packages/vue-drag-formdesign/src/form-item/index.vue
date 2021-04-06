@@ -25,15 +25,14 @@
     "
     :label="formConfig.labelWidth > 0 ? record.label : null " 
     :rules="recordRules"
-    :prop="itemProp ? itemProp : (recordRules && recordRules.length > 0 ? record.model : null)"
+    :prop="recordRules && recordRules.length > 0 ? record.model : null"
     :id="record.model" :name="record.model"
   >   
  
     <BaseItem 
       :models="models"  
       :formConfig="formConfig"
-      :renderPreview="renderPreview"
-      :data="data"
+      :renderPreview="renderPreview" 
       :record="record"
       :disabled="disabled || record.options.disabled"
       @forceUpdate="forceUpdate"
@@ -129,7 +128,10 @@ export default {
     // form-item 宽度配置
     formConfig: {
       type: Object,
-      required: true
+      default: () => ({
+        labelWidth: 120
+      })
+     // required: true
     },
     // form-item 宽度配置
     models: {
@@ -140,10 +142,6 @@ export default {
       type: Boolean,
       default: false
     },
-    itemProp: {
-      type: String,
-      default: null
-    },
      // 是否预览结果表单
     renderPreview: {
       type: Boolean ,
@@ -153,11 +151,7 @@ export default {
     isDragPanel: {
       type: Boolean ,
       default: false
-    },
-    data: {// 整个事项实体
-      type: Object,
-      default: () => ({})
-    },
+    } 
   },
   components: {
      TableBatch,BaseItem 

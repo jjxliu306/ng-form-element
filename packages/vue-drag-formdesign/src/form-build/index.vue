@@ -65,20 +65,12 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    }, 
-    defaultValue: {
-      type: Object,
-      default: () => ({})
-    },
+    },  
     // 是否预览结果表单
     renderPreview: {
       type: Boolean ,
       default: false
-    },
-    data: {
-      type: Object,
-      default: () => ({})
-    },
+    }, 
     customComponents: {
       type: Array,
       default: ()=>[]

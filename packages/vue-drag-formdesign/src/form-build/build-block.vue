@@ -24,7 +24,7 @@
           :data="data"
         :record="item"
         :formConfig="formConfig"
-        :config="config"
+        
       />
     </el-col>
   </el-row> 
@@ -63,7 +63,7 @@
             :key="item.key"
             :record="item"
             :formConfig="formConfig"
-            :config="config"
+             
           />
         </td>
       </tr>
@@ -93,7 +93,7 @@
           :key="record.key"
           :record="record"
           :formConfig="formConfig"
-          :config="config"
+         
         />
       </el-tooltip> 
      
@@ -110,7 +110,7 @@
         :key="record.key"
         :record="record"
         :formConfig="formConfig"
-        :config="config"
+       
       />
       
    
@@ -132,11 +132,10 @@ export default {
     },
     formConfig: {
       type: Object,
-      required: true
-    },
-    config: {
-      type: Object,
-      default: () => ({})
+      default: ()=> ({
+        labelWidth: 120
+      })
+      //required: true
     }, 
     disabled: {
       type: Boolean,
@@ -146,11 +145,7 @@ export default {
     renderPreview: {
       type: Boolean ,
       default: false
-    },
-    data: {// 整个事项实体
-      type: Object,
-      default: () => ({})
-    },
+    } 
   },
   components: {
     FormItem

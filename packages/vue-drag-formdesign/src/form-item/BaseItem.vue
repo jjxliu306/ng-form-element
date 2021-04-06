@@ -416,11 +416,7 @@ export default {
     isDragPanel: {
       type: Boolean ,
       default: false
-    },
-    data: {// 整个事项实体
-      type: Object,
-      default: () => ({})
-    },
+    } 
   },
   components: {
      FileUpload,CustomComponent
