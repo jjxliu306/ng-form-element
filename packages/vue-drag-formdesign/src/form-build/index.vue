@@ -24,7 +24,7 @@
         :renderPreview="renderPreview"
         :record="record"
         :models.sync="models" 
-        :data="data"
+        
         :config="config"
         :disabled="disabled"
         :formConfig="formTemplate.config"
