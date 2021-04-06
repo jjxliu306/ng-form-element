@@ -5,6 +5,32 @@ VUE-FORM-DESIGN
  
  **版本更新说明**
 
+  **2.0.6**  
+
+```
+1、要素初始化的时候为当前models初始化值，去掉回调后强制整个表单重置的性能缺陷。
+2、对外暴漏VueDragFormItem , 单个组件的渲染组件。
+3、优化部分代码。
+
+```
+
+  **2.0.5**  
+
+```
+1、属性配置中给表单整体配置页和tabs上增加插槽，具体插槽名称：
+extend-tab - tabs的扩展，使用方法：  <template slot="extend-tab" slot-scope="{data }">
+                  <el-tab-pane label="扩展属性" name="select">
+                    扩展测试插槽-加tab:: {{data}}
+                  </el-tab-pane>
+                </template>
+form-extend-properties - 表单属性扩展配置,使用方法：
+     <template slot="form-extend-properties" slot-scope="{ data}">
+                    扩展测试插槽
+                </template>
+
+
+```
+
   **2.0.4**  
 
 ```
