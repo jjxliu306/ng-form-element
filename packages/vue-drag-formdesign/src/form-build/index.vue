@@ -15,7 +15,7 @@
       :size="formTemplate.config.size"
       :id="randomId"
     > 
-    <template v-if="visible">
+    <template >
       <buildBlocks
         ref="buildBlocks"
         @handleReset="reset"
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       randomId: '' ,
-      visible: true , 
+      //visible: true , 
       form: this.$refs.form,
       //models: {},
       rules: {}
@@ -96,10 +96,10 @@ export default {
 
     },
     forceUpdate(){ 
-      this.visible = false
-      this.$nextTick(()=>{  
-        this.visible = true
-      }) 
+      // this.visible = false
+      // this.$nextTick(()=>{  
+      //   this.visible = true
+      // }) 
     },
     validator(){
       return new Promise((resolve, reject) => { 
