@@ -3,6 +3,9 @@ VUE-FORM-DESIGN
 
 ![组件一览](https://s3.ax1x.com/2020/12/22/rr6Dw6.png "11.png")
  
+ **在线示例**
+ http://jjxliu306.gitee.io/vue-form-design/
+
  **版本更新说明**
 
   **2.0.7**  
@@ -104,8 +107,7 @@ data() {
 ```
  
 
- **在线示例**
- http://jjxliu306.gitee.io/vue-form-design/
+
 
 ##示例
 
