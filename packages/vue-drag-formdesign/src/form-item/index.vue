@@ -106,12 +106,12 @@
 </template>
 <script> 
 import TableBatch from "./table"; 
-import BaseItem from './BaseItem' 
+import BaseItem from './baseItem' 
  
 import {dynamicFun} from '../utils'
 
 export default {
-  name: "form-item", 
+  name: "VueDragFormItem", 
   data(){  
     return{
       checkList: [] ,

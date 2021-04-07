@@ -365,7 +365,7 @@ import FileUpload from './file-upload'
 import {dynamicFun} from '../utils' 
 import CustomComponent from "./custom-component";
 export default {
-  name: "BaseItem",
+  name: "VueDragBaseItem",
   data(){
     return{
       loading: false,
