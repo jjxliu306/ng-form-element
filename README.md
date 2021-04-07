@@ -105,7 +105,7 @@ data() {
  
 
  **在线示例**
- http://211.159.185.23/vue-drag-formdesign/
+ http://jjxliu306.gitee.io/vue-form-design/
 
 ##示例
 
