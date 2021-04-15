@@ -106,7 +106,7 @@
 </template>
 <script> 
 import TableBatch from "./table"; 
-import BaseItem from './baseItem' 
+import BaseItem from './base-item' 
  
 import {dynamicFun} from '../utils'
 
