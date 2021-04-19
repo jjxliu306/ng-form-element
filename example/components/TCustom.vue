@@ -1,5 +1,5 @@
 <template>
-	<div> 
+	<div>  
 		<el-input
 		  v-if="!preview"
 		  type="textarea"

@@ -58,6 +58,17 @@
         :readOnly="true"    
       />  
     </template>
+     <!-- 自定义组件 -->
+    <template  v-else-if="customList.includes(record.type)">
+      <customComponent
+        :models="models" 
+        :record="record"
+        :disabled="disabled || record.options.disabled" 
+        :renderPreview="true"
+        @change="handleChange($event, record.model)" 
+      /> 
+    </template>
+   
     <template v-else>
       {{""}}
     </template>
