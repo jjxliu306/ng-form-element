@@ -477,6 +477,10 @@ export default {
 
         }
         return null
+    },
+    modelsRecord() {
+      // 2021-04-21 lyf 目前只针对select多选\checkbox 两种进行监听
+      return  this.models[this.record.model]
     }
   },
   watch: {
@@ -545,7 +549,22 @@ export default {
          
       },
       deep:true
-    } 
+    } ,
+    modelsRecord :{
+      handler(val, oldVal){
+          // 2021-04-21 lyf 目前只针对select多选\checkbox 两种进行监听
+        if(this.record.type == 'checkbox' || (this.record.type == 'select' && this.record.options.multiple)) {
+           
+          // 选择值重置
+          if(val instanceof Array) {
+            this.checkList = val
+          }
+
+        } 
+
+      },
+      deep:true
+    }
   },
   methods: {
     transformAppend(append){
