@@ -2,7 +2,7 @@
   
     <el-form
       v-if="
-        typeof formTemplate.list !== 'undefined' && typeof formTemplate.config !== 'undefined'
+        formTemplate && typeof formTemplate.list !== 'undefined' && typeof formTemplate.config !== 'undefined'
       "
       class="form-build form-design"
       :label-position="formTemplate.config.labelPosition"
@@ -128,12 +128,7 @@ export default {
  
       });
     },
-    // 初始化验证规则
-    initRules(weights , key){
-      if(!weights) return
- 
-
-    },
+    
     // 2021-03-12 清理没有显示的组件的数据
     clearHiddenValue() {
       // 根据组件ID 是否隐藏为准
@@ -173,8 +168,8 @@ export default {
   mounted() {  
     this.randomId = 'vue_form_design' + parseInt(Math.random() * 1000000)
     this.$nextTick(() => {
-      const list = this.formTemplate.list
-      this.initRules(list)   
+     // const list = this.formTemplate.list
+      //this.initRules(list)   
 
       if(!window.customComponents && this.customComponents && this.customComponents.length > 0) {
         window.customComponents = this.customComponents
