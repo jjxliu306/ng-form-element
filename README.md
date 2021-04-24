@@ -151,6 +151,49 @@ data() {
 - FormDesign 表单设计器（基于可视化操作快速设计出表单页面，生成配置json或页面）
 - FormBuild 表单构建器（根据设计器中获取的配置json数据，快速构建出表单页面，添加readonly属性后展现预览表单）
 
+## CDN 直接使用
+
+```
+  <!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>vue-drag-formdesign</title> 
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jjxliu306/vue-form-design@2.0.9/lib/vue-drag-formdesign.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jjxliu306/vue-form-design@2.0.9/lib/vue-drag-formdesign.umd.min.js"></script>
+</head> 
+<body>
+<div id="app"> 
+  <vue-drag-formdesign ref="formDesign" > 
+    <template  slot="formName">
+        <span> vue-drag-formdesign 示例 </span>
+    </template>
+  </vue-drag-formdesign>  
+</div> 
+<script>
+new Vue({
+  el: '#app',
+  data: { 
+  },
+  mounted() { 
+  },
+  methods: {
+     
+  }
+})
+</script>
+</body>
+</html>
+```
+
+**详情可参考项目中 form-cdn.html**
+
+
 
 ## 安装
 ```
