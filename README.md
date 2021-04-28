@@ -161,11 +161,11 @@ data() {
 <title>vue-drag-formdesign</title> 
 <!-- 引入样式 -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jjxliu306/vue-form-design@2.0.9/lib/vue-drag-formdesign.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jjxliu306/vue-form-design@2.0.10/lib/vue-drag-formdesign.css">
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/jjxliu306/vue-form-design@2.0.9/lib/vue-drag-formdesign.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jjxliu306/vue-form-design@2.0.10/lib/vue-drag-formdesign.umd.min.js"></script>
 </head> 
 <body>
 <div id="app"> 
