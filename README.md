@@ -264,7 +264,7 @@ Methods:
 | reset | N/A |  重置动态表单内容|
 | validator| N/A|  根据设置的规则验证当前表单内容,返回Promise|
 | getData | N/A | 表单验证后,获取当前表单数据,返回Promise | 
-| setData | json | 重新设置当前的表单填写内容 |
+ 
 
 
 属性: 

@@ -161,10 +161,10 @@ export default {
     initData(){
 
     }, 
-    setData(json) { 
+   /* setData(json) { 
       this.models = json
  
-    }, 
+    },*/ 
     handleChange(value, key) {
       // 触发change事件
       this.$emit("change", value, key);
