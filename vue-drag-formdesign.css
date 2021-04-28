@@ -1,0 +1,538 @@
+
+.form-design {
+  text-align: left ;
+}
+
+.form-design .form-label .is-required:before {
+  content: "*";
+  color: #F56C6C;
+  margin-right: 4px;
+}
+.form-design .el-table thead th {
+  background: #a9c8ea;
+  color: #303133;
+  font-size: 13px;
+}
+.form-design .el-aside {
+  overflow: hidden;
+  padding: 10px;
+}
+.form-design .el-main {
+  padding: 10px;
+}
+.form-design .el-card__header {
+  text-align: center;
+}
+.form-design .el-card__body {
+  overflow: auto;
+  height: 90%;
+  padding: 5px;
+  width: 100%
+}
+.form-design .components-list {
+  padding: 8px 0;
+  width: 100%;
+  height: 100%;
+}
+.form-design .components-list .widget-cate {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.form-design .components-list ul {
+  position: relative;
+  overflow: hidden;
+  padding: 0 10px 10px;
+  margin: 0;
+}
+.form-design .components-list .form-edit-widget-label {
+  font-size: 12px;
+  display: block;
+  width: 45%;
+  line-height: 26px;
+  position: relative;
+  float: left;
+  left: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 1%;
+  color: #333;
+  border: 1px solid #F4F6FC;
+  text-align: center;
+}
+.form-design .components-list .form-edit-widget-label:hover {
+  color: #409EFF;
+  border: 1px dashed #409EFF;
+}
+.form-design .components-list .form-edit-widget-label > a {
+  display: block;
+  cursor: move;
+  background: #F4F6FC;
+  border: 1px solid #F4F6FC;
+}
+.form-design .components-list .form-edit-widget-label > a .icon {
+  margin-right: 6px;
+  margin-left: 8px;
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.form-design .components-list .form-edit-widget-label > a span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.form-design .form-panel {
+  height: 600px;
+  background: #eee;
+  position: relative;
+}
+.form-design .form-panel.no-toolbars-top {
+  height: calc(100% - 50px);
+}
+.form-design .form-panel > .hint-text {
+  position: absolute;
+  left: 0;
+  top: 45%;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  color: #aaa;
+  z-index: 16;
+}
+.form-design .form-panel .a-form-box {
+  height: 100%;
+}
+.form-design .form-panel .draggable-box {
+  height: 100%;
+  overflow: auto;
+}
+.form-design .form-panel .draggable-box .list-main {
+  min-height: 100%;
+  padding: 5px;
+  position: relative;
+  background: #fafafa;
+}
+.form-design .form-panel .draggable-box .list-main .moving {
+  min-height: 35px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 !important;
+  position: relative;
+}
+.form-design .form-panel .draggable-box .list-main .moving::before {
+  content: "";
+  height: 5px;
+  width: 100%;
+  background: #409EFF;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box {
+  position: relative;
+  box-sizing: border-box;
+  padding: 8px;
+  overflow: hidden;
+  transition: all 0.3s;
+  min-height: 36px;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box:hover {
+  background: fade(#409EFF, 20%);
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box::before {
+  content: "";
+  height: 5px;
+  width: 100%;
+  background: #409EFF;
+  position: absolute;
+  top: 0;
+  right: -100%;
+  transition: all 0.3s;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box.active {
+  background: fade(#409EFF, 20%);
+  outline-offset: 0;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box.active::before {
+  right: 0;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box .form-item-box {
+  position: relative;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box .form-item-box::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 888;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box .form-item-box .ant-form-item {
+  margin: 0;
+  padding-bottom: 6px;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box .show-key-box {
+  position: absolute;
+  bottom: 2px;
+  right: 5px;
+  font-size: 14px;
+ /* z-index: 999; */
+  color: #409EFF;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box > .copy,
+.form-design .form-panel .draggable-box .list-main .drag-move-box > .delete {
+  position: absolute;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  z-index: 989;
+  transition: all 0.3s;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box > .copy.unactivated,
+.form-design .form-panel .draggable-box .list-main .drag-move-box > .delete.unactivated {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box > .copy.active,
+.form-design .form-panel .draggable-box .list-main .drag-move-box > .delete.active {
+  opacity: 1 !important;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box > .copy {
+  border-radius: 0 0 0 8px;
+  right: 30px;
+  background: #409EFF;
+}
+.form-design .form-panel .draggable-box .list-main .drag-move-box > .delete {
+  right: 0px;
+  background: #409EFF;
+}
+.form-design .right-menu {
+  width: 190px;
+  background: #fff;
+  border: 1px solid #ccc;
+  position: fixed;
+  transition: all 0s;
+  box-shadow: 3px 3px 5px #999;
+  padding: 8px 0;
+  z-index: 999;
+}
+.form-design .right-menu ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.form-design .right-menu ul li {
+  cursor: pointer;
+  user-select: none;
+  padding: 0 15px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+}
+.form-design .right-menu ul li:hover {
+  background: #eee;
+}
+.form-design .properties-centent {
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+.form-design .properties-centent .head-title {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 24px;
+  font-size: 16px;
+  border-bottom: 1px solid #ccc;
+  color: rgba(0, 0, 0, 0.85);
+}
+.form-design .properties-centent .properties-body {
+  overflow: auto;
+  height: 500px;
+  padding: 8px 16px;
+}
+
+.form-design .properties-centent .properties-body .el-form .el-form-item {
+  margin-bottom: 0;
+  padding: 5px 0;
+}
+.form-design .properties-centent .properties-body .el-form .el-form-item .el-form-item__label, .form-design .properties-centent .properties-body .el-form .el-form-item .el-radio__label, .form-design .properties-centent .properties-body .el-form .el-form-item .el-switch__label, .form-design .properties-centent .properties-body .el-form .el-form-item * {
+  font-size: 13px; 
+}
+.form-design .properties-centent .properties-body .el-form .el-form-item .el-checkbox {
+  font-size: 13px;
+}
+.form-design .properties-centent .properties-body .el-form .el-form-item .el-checkbox .el-checkbox__label {
+  font-size: 13px;
+}
+
+.form-design .batch-box > .batch-label {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 10px;
+}
+.form-design .batch-box .draggable-box {
+  min-height: 60px;
+  width: 100%;
+  border: 1px #ccc dashed;
+  background: #fff;
+}
+.form-design .batch-box .draggable-box .list-main {
+  min-height: 60px;
+  position: relative;
+  border: 1px #ccc dashed;
+  overflow-x: auto;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+.form-design .batch-box .draggable-box .list-main .moving {
+  width: 175px;
+  min-height: 94px;
+  display: inline-block;
+}
+.form-design .batch-box .draggable-box .list-main > div {
+  min-width: 185px;
+  display: inline-block;
+  vertical-align: top;
+}
+.form-design .batch-box .draggable-box .list-main > div .ant-form-item > .ant-form-item-label,
+.form-design .batch-box .draggable-box .list-main > div .ant-form-item > .ant-form-item-control-wrapper {
+  text-align: left;
+  display: block;
+}
+.form-design .batch-box .draggable-box .list-main > div .ant-col {
+  width: 100%;
+}
+
+.form-design .batch-box,
+.form-design .grid-box,
+.form-design .table-box {
+  position: relative;
+  box-sizing: border-box;
+  padding: 5px;
+  background: fade(#9867f7, 12%);
+  width: 100%;
+  transition: all 0.3s;
+  overflow: hidden;
+  min-height: 30px;
+}
+.form-design .batch-box .form-item-box,
+.form-design .grid-box .form-item-box,
+.form-design .table-box .form-item-box {
+  position: relative;
+  box-sizing: border-box;
+}
+.form-design .batch-box .form-item-box .ant-form-item,
+.form-design .grid-box .form-item-box .ant-form-item,
+.form-design .table-box .form-item-box .ant-form-item {
+  margin: 0;
+  padding-bottom: 15px;
+}
+.form-design .batch-box .grid-row,
+.form-design .batch-box .table-layout,
+.form-design .grid-box .grid-row,
+.form-design .grid-box .table-layout,
+.form-design .table-box .grid-row,
+.form-design .table-box .table-layout {
+  background: fade(#9867f7, 12%);
+}
+.form-design .batch-box .grid-row .grid-col .draggable-box,
+.form-design .batch-box .grid-row .table-td .draggable-box,
+.form-design .batch-box .table-layout .grid-col .draggable-box,
+.form-design .batch-box .table-layout .table-td .draggable-box,
+.form-design .grid-box .grid-row .grid-col .draggable-box,
+.form-design .grid-box .grid-row .table-td .draggable-box,
+.form-design .grid-box .table-layout .grid-col .draggable-box,
+.form-design .grid-box .table-layout .table-td .draggable-box,
+.form-design .table-box .grid-row .grid-col .draggable-box,
+.form-design .table-box .grid-row .table-td .draggable-box,
+.form-design .table-box .table-layout .grid-col .draggable-box,
+.form-design .table-box .table-layout .table-td .draggable-box {
+  min-height: 60px;
+  min-width: 50px;
+  border: 1px #ccc dashed;
+  background: #fff;
+}
+.form-design .batch-box .grid-row .grid-col .draggable-box .list-main,
+.form-design .batch-box .grid-row .table-td .draggable-box .list-main,
+.form-design .batch-box .table-layout .grid-col .draggable-box .list-main,
+.form-design .batch-box .table-layout .table-td .draggable-box .list-main,
+.form-design .grid-box .grid-row .grid-col .draggable-box .list-main,
+.form-design .grid-box .grid-row .table-td .draggable-box .list-main,
+.form-design .grid-box .table-layout .grid-col .draggable-box .list-main,
+.form-design .grid-box .table-layout .table-td .draggable-box .list-main,
+.form-design .table-box .grid-row .grid-col .draggable-box .list-main,
+.form-design .table-box .grid-row .table-td .draggable-box .list-main,
+.form-design .table-box .table-layout .grid-col .draggable-box .list-main,
+.form-design .table-box .table-layout .table-td .draggable-box .list-main {
+  min-height: 60px;
+  position: relative;
+  border: 1px #ccc dashed;
+}
+.form-design .batch-box::before,
+.form-design .grid-box::before,
+.form-design .table-box::before {
+  content: "";
+  height: 5px;
+  width: 100%;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  right: -100%;
+  transition: all 0.3s;
+}
+.form-design .batch-box.active,
+.form-design .grid-box.active,
+.form-design .table-box.active {
+  background: fade(#9867f7, 24%);
+  outline-offset: 0;
+}
+.form-design .batch-box.active::before,
+.form-design .grid-box.active::before,
+.form-design .table-box.active::before {
+  background: #9867f7;
+  right: 0;
+}
+.form-design .batch-box > .copy,
+.form-design .batch-box > .delete,
+.form-design .grid-box > .copy,
+.form-design .grid-box > .delete,
+.form-design .table-box > .copy,
+.form-design .table-box > .delete {
+  position: absolute;
+  top: 0px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  z-index: 989;
+  transition: all 0.3s;
+}
+.form-design .batch-box > .copy.unactivated,
+.form-design .batch-box > .delete.unactivated,
+.form-design .grid-box > .copy.unactivated,
+.form-design .grid-box > .delete.unactivated,
+.form-design .table-box > .copy.unactivated,
+.form-design .table-box > .delete.unactivated {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+.form-design .batch-box > .copy.active,
+.form-design .batch-box > .delete.active,
+.form-design .grid-box > .copy.active,
+.form-design .grid-box > .delete.active,
+.form-design .table-box > .copy.active,
+.form-design .table-box > .delete.active {
+  opacity: 1 !important;
+}
+.form-design .batch-box > .copy,
+.form-design .grid-box > .copy,
+.form-design .table-box > .copy {
+  border-radius: 0 0 0 8px;
+  right: 30px;
+  background: #9867f7;
+}
+.form-design .batch-box > .delete,
+.form-design .grid-box > .delete,
+.form-design .table-box > .delete {
+  right: 0px;
+  background: #9867f7;
+}
+
+.form-design .el-dialog__header {
+  padding: 10px 20px 10px;
+  background: #a9c8ea;
+}
+.form-design .el-dialog__header .el-dialog__title {
+  line-height: 20px;
+  font-size: 16px;
+}
+.form-design .el-dialog__header button {
+  top: 10px;
+}
+
+.form-design .form-table {
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  border-collapse: collapse;
+}
+.form-design .form-table tr {
+  transition: all 0.3s;
+  border-collapse: collapse;
+}
+.form-design .form-table tr .el-form-item {
+  margin-bottom: 0 !important;
+}
+.form-design .form-table tr td {
+  box-sizing: border-box;
+  transition: all 0.3s;
+  padding: 3px 3px;
+  border-collapse: collapse;
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+.form-design .form-table tr td .cell {
+ padding-right: 2px;
+ padding-left: 2px;
+}
+
+.form-design .form-table tr td .el-form-item {
+  margin-bottom: 0 !important;
+}
+.form-design .form-table.bordered tr td {
+  border: 1px solid #e8e8e8 !important;
+}
+.form-design .form-table.bright tr:hover > td {
+  background: #e6f7ff;
+}
+.form-design .form-table.small tr td {
+  padding: 8px 8px;
+}
+.form-design .form-table .el-row .el-form-item {
+  margin: 0 !important;
+}
+
+.form-design .option-change-container {
+  width: calc(100% - 8px);
+
+  
+
+}
+.form-design .option-change-container .el-tree-node__content { 
+  height: 35px;
+}
+.form-design .option-change-container .el-tree-node__content  .custom-tree-node {
+  height: 35px;
+}
+
+.form-design .option-change-container .option-change-box {
+    height: 38px;
+    padding-bottom: 6px;
+    
+  }
+
+.form-design .option-change-container .option-change-box .option-delete-box {
+      margin-top: 3px;
+      background: #ffe9e9;
+      color: #f22;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: all 0.3s;
+     
+    }
+.form-design .option-change-container .option-change-box .option-delete-box:hover {
+        background: #f22;
+        color: #fff;
+}
