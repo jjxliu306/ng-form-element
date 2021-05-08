@@ -188,7 +188,9 @@
           <el-form-item   label="选择后回调"  > 
              <el-input type="textarea" placeholder="选择后回调方法,eg: $.A004=$select.name, $表示当前表单数据,$select标示当前选择元素实体" v-model="options.selectCb" />
           </el-form-item> 
-
+          <el-form-item  v-if="selectItem.options.clearable" label="清除后回调"  > 
+             <el-input type="textarea" placeholder="清除后回调方法,eg: $.A004= '', $表示当前表单数据" v-model="selectItem.options.clearCb" />
+          </el-form-item> 
         </template>
          <!-- select end -->
 

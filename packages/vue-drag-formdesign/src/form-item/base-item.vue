@@ -165,6 +165,7 @@
         :disabled="disabled || record.options.disabled"
         :clearable="record.options.clearable"
         multiple
+        @clear="clearChange"
         @change="handleChange($event, record.model ,  true)" 
       >
         <template  v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)">
@@ -188,6 +189,7 @@
         :filterable="record.options.showSearch"
         :disabled="disabled || record.options.disabled"
         :clearable="record.options.clearable" 
+        @clear="clearChange"
         @change="handleChange($event, record.model , true)" 
       > 
         <template v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)">
@@ -642,6 +644,18 @@ export default {
           }
       }  
       return true 
+    },
+    // select 清除后回调
+    clearChange() {
+      // 2021-05-08 lyf 判断是否有清除后回调
+      if(!this.record.options.clearCb) {
+        return
+      }
+
+      const cbScript = this.record.options.clearCb
+      const func =  '{' + cbScript + '}'
+      const Fn = new Function('$' , 'data', func)
+      Fn(this.models, this.data)
     },
     handleChange(value, key , type) {
       // change事件 
