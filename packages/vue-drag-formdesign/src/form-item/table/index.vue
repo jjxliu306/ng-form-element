@@ -148,10 +148,10 @@ export default {
     }*/
   },
   mounted(){ 
-    // 2021-05-10 lyf 只要没有默认值都先给回填一个  这个可以处理初始化么有值，导致后面很多联动没法做，必须要通过v-if刷新
-    if(!this.models.hasOwnProperty(this.record.model)) {
+    // 2021-05-10 lyf 只要没有默认值都先给回填一个  这个可以处理初始化么有值，导致后面很多联动没法做，必须要通过v-if刷新 
+    if(!Object.prototype.hasOwnProperty.call(this.models, this.record.model)  ) {
       this.$set(this.models , this.record.model , [])
-    } 
+    }
 
   },
   methods: {
