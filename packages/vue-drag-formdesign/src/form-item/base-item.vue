@@ -81,7 +81,7 @@
      
       :style="`width:${record.options.width}`"
       v-if="record.type === 'input'"
-      :disabled="disabled || record.options.disabled"
+      :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder"
       :type="record.options.type"
       :clearable="record.options.clearable"
@@ -102,7 +102,7 @@
       type="textarea"
       :style="`width:${record.options.width}`"
       v-else-if="record.type === 'textarea'" 
-      :disabled="disabled || record.options.disabled"
+      :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder"
       :clearable="record.options.clearable"
       :maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
@@ -130,7 +130,7 @@
               ? record.options.max
               : Infinity
           "
-          :disabled="disabled || record.options.disabled"
+          :disabled="dynamicDisabled"
           :step="record.options.step"
           :precision="
             record.options.precision > 50 ||
@@ -162,7 +162,7 @@
         :remote-method="remoteMethod"
         :placeholder="record.options.placeholder"
         :filterable="record.options.showSearch"
-        :disabled="disabled || record.options.disabled"
+        :disabled="dynamicDisabled"
         :clearable="record.options.clearable"
         multiple
         @clear="clearChange"
@@ -187,7 +187,7 @@
         :remote-method="remoteMethod"
         :placeholder="record.options.placeholder"
         :filterable="record.options.showSearch"
-        :disabled="disabled || record.options.disabled"
+        :disabled="dynamicDisabled"
         :clearable="record.options.clearable" 
         @clear="clearChange"
         @change="handleChange($event, record.model , true)" 
@@ -208,7 +208,7 @@
     <el-checkbox-group  
       v-else-if="record.type === 'checkbox'"  
       v-model="checkList"
-      :disabled="disabled || record.options.disabled"
+      :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder"
       @change="handleChange($event, record.model)"
     >
@@ -223,7 +223,7 @@
     <el-radio-group
       v-model="models[record.model]"
       v-else-if="record.type === 'radio'" 
-      :disabled="disabled || record.options.disabled"
+      :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder"
       @change="handleChange($event, record.model)"
       
@@ -244,7 +244,7 @@
         align="right"
         type="daterange"
         :clearable="record.options.clearable"
-        :disabled="disabled || record.options.disabled"
+        :disabled="dynamicDisabled"
         :start-placeholder="record.options.rangeStartPlaceholder"
         :end-placeholder="record.options.rangeEndPlaceholder"
         :format="record.options.format"
@@ -257,7 +257,7 @@
         align="right"
         type="date"
         :clearable="record.options.clearable"
-        :disabled="disabled || record.options.disabled"
+        :disabled="dynamicDisabled"
         :placeholder="record.options.placeholder"
         :format="record.options.format"
         :value-format="record.options.format"
@@ -273,7 +273,7 @@
       v-model="models[record.model]"
       @change="handleChange($event, record.model)"
       :clearable="record.options.clearable"
-      :disabled="disabled || record.options.disabled"
+      :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder" 
       :format="record.options.format"
       :value-format="record.options.format">
@@ -284,7 +284,7 @@
       v-model="models[record.model]"
       v-else-if="record.type === 'rate'"
       :max="record.options.max"
-      :disabled="disabled || record.options.disabled"
+      :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder"
       :allowHalf="record.options.allowHalf"
       @change="handleChange($event, record.model)"
@@ -295,7 +295,7 @@
         v-else-if="record.type === 'slider'"
         v-model="models[record.model]"
         :style="`width:${record.options.width}`"
-        :disabled="disabled || record.options.disabled"
+        :disabled="dynamicDisabled"
         :min="record.options.min"
         :max="record.options.max"
         :show-input="record.options.showInput"
@@ -309,7 +309,7 @@
     <FileUpload
       v-else-if="record.type === 'uploadImg'"
       :style="`width:${record.options.width}`"
-      :disabled="disabled"
+      :disabled="dynamicDisabled"
       :fileForm="models"
       :fileKey="record.model"
       accept="image/*" 
@@ -324,7 +324,7 @@
     <FileUpload
       v-else-if="record.type === 'uploadFile'"
       :style="`width:${record.options.width}`"
-      :disabled="disabled"
+      :disabled="dynamicDisabled"
       :fileForm="models"
       :fileKey="record.model" 
       :multiple="true"
@@ -342,7 +342,7 @@
       :style="`width:${record.options.width}`"
       :placeholder="record.options.placeholder"
       :filterable="record.options.showSearch" 
-      :disabled="disabled || record.options.disabled"
+      :disabled="dynamicDisabled"
       :clearable="record.options.clearable"
       :props="itemProp"
       @change="handleChange($event, record.model)"
@@ -355,7 +355,7 @@
       v-else-if="record.type === 'switch'"
       :active-text="record.options.activeText"
       :inactive-text="record.options.inactiveText"
-      :disabled="disabled || record.options.disabled"
+      :disabled="dynamicDisabled"
       @change="handleChange($event, record.model)"
      
     />
@@ -364,7 +364,7 @@
       :models="models"
       v-else-if="customList.includes(record.type)"
       :record="record"
-      :disabled="disabled || record.options.disabled"
+      :disabled="dynamicDisabled"
       :formConfig="formConfig"
       :renderPreview="renderPreview"
       @change="handleChange($event, record.model)"
@@ -483,6 +483,33 @@ export default {
     modelsRecord() {
       // 2021-04-21 lyf 目前只针对select多选\checkbox 两种进行监听
       return  this.models[this.record.model]
+    },
+     // 2021-05-06 lyf 组件内的动态禁用
+    dynamicDisabled() {
+      if(this.disabled) {
+        return true 
+      }
+      
+      if(this.record.options.disabled) {
+        // 打开禁用但没有配置动态禁用 直接返回true 
+        if(this.record.options.dynamicDisabled) {
+          if(this.record.options.dynamicDisabledValue) {
+            const script = this.record.options.dynamicDisabledValue
+
+            // 打开了开关 这里获取函数内容
+            const fvalue = dynamicFun(script,this.models , this.data) 
+            return fvalue
+          } else {
+            // 打开了动态禁用,但没有配置脚本 返回 true 直接禁用
+            return true
+          }
+        } else {
+          // 没有配置动态禁用 直接返回true
+          return true
+        }
+
+      } 
+      return false  
     }
   },
   watch: {

@@ -779,7 +779,27 @@
           </el-form-item>
           <el-divider ></el-divider>
         </template>
+        <!-- 条件禁用 lyf 2021-05-06-->
+        <template v-if="!hideModel && selectItem && selectItem.options && selectItem.options.disabled">
+           <el-form-item label="动态禁用">
+            <!-- 每个元素都有隐藏条件 根据渲染数据的值来改变 --> 
+            <el-switch
+              v-model="selectItem.options.dynamicDisabled"
+              active-text="打开"
+              inactive-text="关闭">
+            </el-switch>
+          </el-form-item>
+          <el-form-item label="禁用条件" v-if="selectItem.options.dynamicDisabled">
+            <!-- 每个元素都有隐藏条件 根据渲染数据的值来改变 -->
+            <el-input
+              type="textarea"
+              :rows="3"
+              placeholder="请输入禁用条件,$标识当前整个表单的绑定数据,data标识当前事项实体数据"
+              v-model="selectItem.options.dynamicDisabledValue">
+            </el-input>
+          </el-form-item>
 
+        </template>
        
 
 

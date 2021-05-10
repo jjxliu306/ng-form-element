@@ -34,7 +34,7 @@
       :formConfig="formConfig"
       :renderPreview="renderPreview" 
       :record="record"
-      :disabled="disabled || record.options.disabled"
+      :disabled="disabled"
       @forceUpdate="forceUpdate"
       :isDragPanel="isDragPanel"
       /> 
