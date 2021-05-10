@@ -612,6 +612,14 @@
               <el-radio label="danger">Danger</el-radio>
             </el-radio-group>
           </el-form-item>
+            <el-divider ></el-divider>
+          <el-form-item  label="按钮对齐方式">
+            <el-radio-group v-model="selectItem.options.textAlign">
+              <el-radio-button label="left">左</el-radio-button>
+              <el-radio-button label="center">居中</el-radio-button>
+              <el-radio-button label="right">右</el-radio-button>
+            </el-radio-group>
+          </el-form-item> 
           <el-divider ></el-divider>
           <el-form-item  label="按钮操作"> 
             <el-input type="textarea" v-model="options.dynamicFun" placeholder="动态JS,表单数据绑定值符号$" ></el-input>

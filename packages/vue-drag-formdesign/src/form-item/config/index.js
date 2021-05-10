@@ -421,6 +421,7 @@ export const basicsList = [
     options: {
       type: "primary",
       handle: "submit",
+      textAlign: 'left',
       dynamicFun: "",
       tooptip: '', // 提示
       hidden: false, // 是否隐藏，false显示，true隐藏

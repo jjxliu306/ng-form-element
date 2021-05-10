@@ -68,6 +68,7 @@
   <!-- button按钮 -->
   <el-form-item
     v-else-if="record.type === 'button' && dynamicVisibleItem" 
+    :style="{ 'textAlign': record.options.textAlign }"
   > 
     <el-button
       :disabled="disabled || record.options.disabled" 
