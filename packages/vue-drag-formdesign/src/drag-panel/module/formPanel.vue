@@ -26,6 +26,7 @@
           animation: 180,
           handle: '.drag-move'
         }"
+       :force-fallback="true"
         v-model="data.list" 
         @add="deepClone"
         @start="dragStart($event, data.list)"
@@ -176,8 +177,9 @@ export default {
     layoutItem
   },
   methods: { 
-    deepClone(evt) {
-      const newIndex = evt.newIndex;
+    deepClone(evt) { 
+      const newIndex = evt.newIndex; 
+
       // json深拷贝一次
       const listString = JSON.stringify(this.data.list);
       this.data.list = JSON.parse(listString);
@@ -256,8 +258,7 @@ export default {
       columns[newIndex] = JSON.parse(listString);
       this.$emit("handleSetSelectItem", columns[newIndex]);
     },
-    dragStart(evt, list) {
-      // console.log('drag start , event' , evt)
+    dragStart(evt, list) { 
       // if(!this.selectForm || !this.selectForm.id) {
       //   this.$message.error('请先选择具体的表单')
       //   return  

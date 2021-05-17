@@ -28,6 +28,7 @@
             animation: 180,
             handle: '.drag-move'
           }"
+          :force-fallback="true"
           v-model="record.list"
           @start="$emit('dragStart', $event, record.list)"
           @add="$emit('handleColAdd', $event, record.list)"
@@ -91,6 +92,7 @@
                 animation: 180,
                 handle: '.drag-move'
               }"
+              :force-fallback="true"
               v-model="colItem.list"
               @start="$emit('dragStart', $event, colItem.list)"
               @add="$emit('handleColAdd', $event, colItem.list)"
@@ -173,6 +175,7 @@
                   animation: 180,
                   handle: '.drag-move'
                 }"
+                :force-fallback="true"
                 v-model="tdItem.list"
                 @start="$emit('dragStart', $event, tdItem.list)"
                 @add="$emit('handleColAdd', $event, tdItem.list)"

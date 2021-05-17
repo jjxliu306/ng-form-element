@@ -83,6 +83,12 @@ export default {
 	      	blist.forEach(t=>{
 	      		t.options.dynamicHide = false
         		t.options.dynamicHideValue = ''
+        		if(!t.key) { 
+        		 	const key = t.type + "_" + new Date().getTime()
+        		 	t['key'] = key 
+        		 	t['model'] = key
+        		}
+
 	      	}) ;
 	      	return blist
 	    },
@@ -91,6 +97,11 @@ export default {
 	    	llist.forEach(t=>{
 	      		t.options.dynamicVisible = false
         		t.options.dynamicVisibleValue = ''
+        		if(!t.key) { 
+        		 	const key = t.type + "_" + new Date().getTime()
+        		 	t['key'] = key 
+        		 	t['model'] = key
+        		}
 	      	}) ;
 	      	return llist
 	    } 
@@ -98,12 +109,23 @@ export default {
 	created() { 
 		if(window.customComponents) {
 			this.customComponents = window.customComponents
+
+			// 2021-05-17 lyf 初始化回填默认key和model
+			if(this.customComponents && this.customComponents.length > 0) {
+				this.customComponents.forEach(t=>{
+					if(!t.key) { 
+	        		 	const key = t.type + "_" + new Date().getTime()
+	        		 	t['key'] = key 
+        		 		t['model'] = key
+	        		}
+				})
+			}
 		}
 		 
 	},
 	methods: {
 		generateKey(list, index) {
-	      // 生成key值
+	      // 生成key值 
 	      const key = list[index].type + "_" + new Date().getTime();
 	      this.$set(list, index, {
 	        ...list[index],
@@ -117,7 +139,7 @@ export default {
 	    },
 	    handleListPush(item) {
 	      // 双击控件按钮push到list
-	      // 生成key值
+	      // 生成key值 
 	      if (!this.selectItem.key) {
 	        // 在没有选择表单时，将数据push到this.data.list
 	        const key = item.type + "_" + new Date().getTime();
@@ -142,8 +164,11 @@ export default {
 	      }
 	     
 	    },
-	    handleStart(type) {
+	    handleStart(list,index) {
+	    	this.generateKey(list,index)
+	      const type = list[index].type
 	      this.startType = type;
+
 	    },
 	}
 }

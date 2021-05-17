@@ -14,12 +14,12 @@
 	      animation: 180,
 	      ghostClass: 'moving'
 	    }"
+	    :force-fallback="true"
 	    @start="handleStart($event, list)" >  
 		    <li
 		      class="form-edit-widget-label"
 		      v-for="(val, index) in list"
-		      :key="index"
-		      @dragstart="$emit('generateKey', list, index)"
+		      :key="index" 
 		      @click="$emit('handleListPush', val)">
 	    		<a> 
                 	<span>{{val.label}}</span>
@@ -44,7 +44,8 @@ export default {
   },
   methods: {
     handleStart(e, list) {
-      this.$emit("start", list[e.oldIndex].type);
+      //this.$emit("start", list ,[e.oldIndex].type);
+      this.$emit('start', list, e.oldIndex)
     }
   }
 };
