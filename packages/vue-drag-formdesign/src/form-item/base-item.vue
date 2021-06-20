@@ -9,6 +9,7 @@
           'textarea',
           'date',
           'time',
+          'datePicker',
           'number', 
           'rate',
           'switch',
@@ -265,6 +266,38 @@
       </el-date-picker>
 
     </template>
+
+    <!-- 日期+时间选择 -->
+   <!-- 日期选择 -->
+    <template v-else-if="record.type === 'datePicker'" > 
+      <!-- 区分时间段选择 和单个时间选择 -->
+      <el-date-picker 
+        v-if="record.options.range"
+        v-model="checkList"
+        align="right"
+        type="datetimerange"
+        :clearable="record.options.clearable"
+        :disabled="dynamicDisabled"
+        :start-placeholder="record.options.rangeStartPlaceholder"
+        :end-placeholder="record.options.rangeEndPlaceholder"
+        :format="record.options.format"
+        :value-format="record.options.format"
+        @change="handleChange($event, record.model)" >
+      </el-date-picker>
+      <el-date-picker 
+        v-else
+        v-model="models[record.model]"
+        align="right"
+        type="datetime"
+        :clearable="record.options.clearable"
+        :disabled="dynamicDisabled"
+        :placeholder="record.options.placeholder"
+        :format="record.options.format"
+        :value-format="record.options.format"
+        @change="handleChange($event, record.model)">
+      </el-date-picker>
+
+    </template>
     
  
     <!-- 时间选择 -->
@@ -278,6 +311,9 @@
       :format="record.options.format"
       :value-format="record.options.format">
     </el-time-select> 
+
+
+
  
     <!-- 评分 -->
     <el-rate

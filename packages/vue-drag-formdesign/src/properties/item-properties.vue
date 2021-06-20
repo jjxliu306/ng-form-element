@@ -323,9 +323,9 @@
         <!-- radio end -->
 
          <!-- date start -->
-        <template v-if="selectItem.type == 'date' || selectItem.type == 'time'">
+        <template v-if="selectItem.type == 'date' || selectItem.type == 'time' || selectItem.type == 'datePicker'">
           
-          <el-form-item  v-if="selectItem.type == 'date' && options.range " label="占位内容" >
+          <el-form-item  v-if=" (selectItem.type == 'date' || selectItem.type == 'datePicker' ) && options.range " label="占位内容" >
           <el-input placeholder="请输入" v-model="options.rangeStartPlaceholder" />
           <el-input placeholder="请输入" v-model="options.rangeEndPlaceholder" />
           </el-form-item>
@@ -346,17 +346,17 @@
               "
             />
             <el-input
-              v-if="selectItem.type == 'date' && options.range"
+              v-if="(selectItem.type == 'date' || selectItem.type == 'datePicker' ) && options.range"
               v-model="options.rangeDefaultValue[0]"
               :placeholder="
-                typeof options.format === 'undefined' ? '' : options.format
+                '起始时间' + (typeof options.format === 'undefined' ? '' : options.format)
               "
             />
             <el-input
-              v-if="selectItem.type == 'date' && options.range"
+              v-if="(selectItem.type == 'date' || selectItem.type == 'datePicker' ) && options.range"
               v-model="options.rangeDefaultValue[1]"
               :placeholder="
-                typeof options.format === 'undefined' ? '' : options.format
+                '结束时间' + ( typeof options.format === 'undefined' ? '' : options.format)
               "
             /> 
             <!-- <el-input  v-model="options.defaultValue"
@@ -364,14 +364,14 @@
             /> -->
           </el-form-item> 
           <el-form-item  label="时间格式" >
-            <el-input  v-model="options.format"  :placeholder="selectItem.type == 'date' ? 'YYYY-MM-DD' : 'HH:mm:ss'" />
+            <el-input  v-model="options.format"  :placeholder="selectItem.type == 'date' ? 'YYYY-MM-DD' : (selectItem.type == 'datePicker' ? 'YYYY-MM-DD HH:mm:ss' : 'HH:mm:ss' )" />
           </el-form-item>
            <el-divider ></el-divider>
           <el-form-item   label="操作属性" >
             <el-checkbox v-model="options.hidden"  label="隐藏" />
             <el-checkbox v-model="options.disabled"  label="禁用" /> 
             <el-checkbox v-model="options.clearable" label="可清除" /> 
-            <el-checkbox v-if="selectItem.type == 'date'" v-model="options.range" label="范围选择" />
+            <el-checkbox v-if="selectItem.type == 'date' || selectItem.type == 'datePicker'" v-model="options.range" label="范围选择" />
           </el-form-item>
         </template>
         <!-- date end -->
@@ -576,13 +576,9 @@
                 </el-row> 
 
               </el-checkbox-group>
-          </el-form-item>
-          
-          
-          
-
+          </el-form-item> 
            
-            <el-divider ></el-divider>
+          <el-divider ></el-divider>
 
           <el-form-item   label="操作属性" >
             <el-checkbox v-model="options.hidden"  label="隐藏" />
@@ -757,6 +753,7 @@
           'radio',
           'date',
           'time',
+          'datePicker',
           'rate',
           'slider',
           'uploadFile',

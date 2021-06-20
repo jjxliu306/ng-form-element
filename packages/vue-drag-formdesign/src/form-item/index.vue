@@ -11,6 +11,7 @@
           'textarea',
           'date',
           'time',
+          'datePicker',
           'number',
           'radio',
           'checkbox',

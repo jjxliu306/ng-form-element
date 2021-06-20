@@ -245,6 +245,33 @@ export const basicsList = [
     ]
   },
   {
+    type: "datePicker", // 表单类型
+    label: "日期时间选择框", // 标题文字 
+    index: 'DP',
+    options: {
+      width: "100%", // 宽度
+      defaultValue: "", // 默认值，字符串 12:00:00
+      rangeDefaultValue: [], // 默认值，字符串 12:00:00
+      range: false, // 范围日期选择，为true则会显示两个时间选择框（同时defaultValue和placeholder要改成数组），
+      disabled: false, // 是否禁用
+      hidden: false, // 是否隐藏，false显示，true隐藏
+      clearable: false, // 是否显示清除按钮
+      placeholder: "请选择",
+      tooptip: '', // 提示
+      rangeStartPlaceholder: "开始时间",
+      rangeEndPlaceholder: "结束时间",
+      format: "yyyy-MM-dd HH:mm:ss" // 展示格式
+    },
+    model: "",
+    key: "",
+    rules: [
+      {
+        required: false,
+        message: "必填项"
+      }
+    ]
+  }, 
+  {
     type: "rate", // 表单类型
     label: "评分", // 标题文字 
     index: 'I',
