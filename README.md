@@ -248,12 +248,7 @@ Vue.use(VueDragFormdesign)
 | 属性名 | 说明 | 格式| 默认值 | 
 |-----------|------------------------------|--------|----------|
 | customComponents |   自定义组件的配置,具体参加最下方自定义组件示例中的格式 | array | N/A  | 
-| config|表单的一些基础配置，主要为http的一些参数,譬如在http请求中给header增加参数：config: {
-        httpConfig: (config)=>{
-          config.headers['aaaa'] = 'bbbb'
-          return config 
-        }
-      }| object |  N/A  |
+| config|表单的一些基础配置，主要为http的一些参数,譬如在http请求中给header增加参数：config: { httpConfig: (config)=>{          config.headers['aaaa'] = 'bbbb'          return config  } }| object |  N/A  |
 | clear|  是否显示面板上清除按钮 |boolean | true |
 | preview|  是否显示面板上预览按钮 |boolean | true |
 | reder|  是否显示面板上渲染按钮 |boolean | true |
@@ -304,12 +299,7 @@ Vue.use(VueDragFormdesign)
 | models | 表单填充数据 | json | 无 |
 | disabled | 是否禁用 | boolean | false |
 | renderPreview | 当前是否为预览模式 | boolean | false |
-| config|表单的一些基础配置，主要为http的一些参数,譬如在http请求中给header增加参数：config: {
-        httpConfig: (config)=>{
-          config.headers['aaaa'] = 'bbbb'
-          return config 
-        }
-      }| object |  N/A  |
+| config|表单的一些基础配置，主要为http的一些参数,譬如在http请求中给header增加参数：config: {  httpConfig: (config)=>{  config.headers['aaaa'] = 'bbbb' return config   } }| object |  N/A  |
 | customComponents |   自定义组件的配置,具体参加最下方自定义组件示例中的格式 | array | N/A  |  
  
  
