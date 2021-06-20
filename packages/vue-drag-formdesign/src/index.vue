@@ -16,11 +16,11 @@
                       <slot name="controlButton">
                         
                       </slot>
-                      <el-button   type="text" size="medium" icon="el-icon-delete" @click="handleClear">清空</el-button>
-                      <el-button  type="text" size="medium" icon="el-icon-view" @click="handlePreview">预览</el-button>
-                       <el-button  type="text" size="medium" icon="el-icon-view" @click="handleRender">渲染</el-button>
-                      <el-button  type="text" size="medium" icon="el-icon-download" @click="handleImport">导入</el-button>
-                      <el-button  type="text" size="medium" icon="el-icon-upload2" @click="handleGenerateJson">导出</el-button>
+                      <el-button v-if="clear" type="text" size="medium" icon="el-icon-delete" @click="handleClear">清空</el-button>
+                      <el-button v-if="preview" type="text" size="medium" icon="el-icon-view" @click="handlePreview">预览</el-button>
+                       <el-button v-if="reder"  type="text" size="medium" icon="el-icon-view" @click="handleRender">渲染</el-button>
+                      <el-button v-if="imp" type="text" size="medium" icon="el-icon-download" @click="handleImport">导入</el-button>
+                      <el-button v-if="exp" type="text" size="medium" icon="el-icon-upload2" @click="handleGenerateJson">导出</el-button>
                     </span> 
                 </div> 
                 <DragPanel :data="data" ref="dragPanel" :selectForm="selectForm" @changeSelectItem="changeSelectItem"> 
@@ -173,8 +173,28 @@ export default {
     config: {
       type: Object,
       default: ()=> {return {}}
+    },
+    // 按钮显示隐藏 
+    clear: {
+      type: Boolean ,
+      default: true
+    },
+    preview: {
+      type: Boolean ,
+      default: true
+    },
+    reder: {
+      type: Boolean ,
+      default: true
+    },
+    imp: {
+      type: Boolean ,
+      default: true
+    },
+    exp: {
+      type: Boolean ,
+      default: true
     }
-    
   },
    
   components: {
