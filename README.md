@@ -8,6 +8,18 @@ VUE-FORM-DESIGN
 
  **版本更新说明**
 
+
+  **2.0.11**  
+
+```
+1、动态表格中外部显示的组件可以自定义每个组件的宽度,不指定则均分。
+2、屏蔽默认H5的拖拽，可以在拖拽组件的时候滚动面板。
+3、增加日期时间选择组件。
+4、对于绘制面板上5个功能按钮增加prop来决定是否显示或者隐藏
+5、优化部分代码。
+
+```
+
   **2.0.9**  
 
 ```
@@ -224,15 +236,33 @@ Vue.use(VueDragFormdesign)
 ### API 说明
 # 1. 表单绘制组件  VueDragFormdesign 
 
-Methods:
+方法:
 
 |  方法名称 | 参数| 说明  |
 |-----------|--------|-------------------------|
 | initModel | json |  初始化动态表单内容，参数为动态表单json模板|
 | getModel| N/A|  返回当前正在编辑得动态表单信息|
 
+属性: 
 
-Slot:
+| 属性名 | 说明 | 格式| 默认值 | 
+|-----------|------------------------------|--------|----------|
+| customComponents |   自定义组件的配置,具体参加最下方自定义组件示例中的格式 | array | N/A  | 
+| config|表单的一些基础配置，主要为http的一些参数,譬如在http请求中给header增加参数：config: {
+        httpConfig: (config)=>{
+          config.headers['aaaa'] = 'bbbb'
+          return config 
+        }
+      }| object |  N/A  |
+| clear|  是否显示面板上清除按钮 |boolean | true |
+| preview|  是否显示面板上预览按钮 |boolean | true |
+| reder|  是否显示面板上渲染按钮 |boolean | true |
+| imp|  是否显示面板上导入按钮 |boolean | true |
+| exp|  是否显示面板上导出按钮 |boolean | true |
+
+ 
+
+插槽:
 
 |  插槽名称 | 说明  |
 |-----------|-------------------------|
@@ -257,15 +287,14 @@ Slot:
 
 # 2. 表单查看/填报组件  VueDragFormBuild 
 
-Methods:
+方法:
 
 |  方法名称 | 参数| 说明  |
 |-----------|--------|-------------------------|
 | reset | N/A |  重置动态表单内容|
 | validator| N/A|  根据设置的规则验证当前表单内容,返回Promise|
 | getData | N/A | 表单验证后,获取当前表单数据,返回Promise | 
- 
-
+   
 
 属性: 
 
@@ -275,7 +304,13 @@ Methods:
 | models | 表单填充数据 | json | 无 |
 | disabled | 是否禁用 | boolean | false |
 | renderPreview | 当前是否为预览模式 | boolean | false |
-
+| config|表单的一些基础配置，主要为http的一些参数,譬如在http请求中给header增加参数：config: {
+        httpConfig: (config)=>{
+          config.headers['aaaa'] = 'bbbb'
+          return config 
+        }
+      }| object |  N/A  |
+| customComponents |   自定义组件的配置,具体参加最下方自定义组件示例中的格式 | array | N/A  |  
  
  
 
