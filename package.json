@@ -1,6 +1,6 @@
 {
   "name": "vue-drag-formdesign",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -45,7 +45,7 @@
       "no-unused-vars": "off",
       "vue/no-unused-components": "off",
       "no-mixed-spaces-and-tabs": "off",
-      "no-tabs": "off", 
+      "no-tabs": "off",
       "no-irregular-whitespace": "off"
     }
   },
@@ -58,7 +58,8 @@
   "description": "vue-drag-formdesign",
   "main": "lib/vue-drag-formdesign.umd.min.js",
   "directories": {
-    "example": "example"
+    "example": "example",
+    "lib": "lib"
   },
   "repository": {
     "type": "git",
