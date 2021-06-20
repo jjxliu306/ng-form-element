@@ -445,6 +445,7 @@ export const basicsList = [
         customStyle: "",
         customClass: '',
         showItem:[] ,
+        colWidth:{},
         width: "100%"
       },
       model: "",

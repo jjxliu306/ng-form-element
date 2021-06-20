@@ -536,3 +536,10 @@
         background: #f22;
         color: #fff;
 }
+
+
+.form-design .divider-center .is-center {
+  font-size: 13px;
+  left: 40%; 
+  transform: translateX(-40%) translateY(-50%);
+}

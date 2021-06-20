@@ -553,28 +553,45 @@
             <el-input type="textarea" v-model="selectItem.options.customStyle" />
           </el-form-item>
           <el-divider ></el-divider>
-
-          <el-form-item  label="新增行方式">
+            <el-form-item  label="新增行方式">
              <el-radio-group v-model="options.addType">
-              <el-radio-button label="line">增加行</el-radio-button>
-              <el-radio-button label="dialog">弹出框</el-radio-button> 
+              <el-radio  label="line">增加行</el-radio>
+              <el-radio  label="dialog">弹出框</el-radio> 
             </el-radio-group>
           </el-form-item>
+         
+         
+          <el-divider class="divider-center" > {{options.addType == 'dialog' ? '外部展示字段' : '字段宽度'}} </el-divider>
+          <el-form-item  >
+              <el-checkbox-group v-model="selectItem.options.showItem" >
+                <!-- 获取当前内部已经包含的要素 -->
+                <el-row  v-for="item in selectItem.list" :key="item.model">
+                  <el-col :span="12">
+                     <el-checkbox :label="item.model" v-if="options.addType == 'dialog'">{{item.label}}</el-checkbox>
+                     <span v-else> {{item.label}} </span>
+                  </el-col>
+                   <el-col :span="12">
+                     <el-input   placeholder="宽度" v-model="selectItem.options.colWidth[item.model]" />
+                  </el-col> 
+                </el-row> 
 
-           <el-form-item  label="外部展示字段" v-if="options.addType == 'dialog'">
-            <el-checkbox-group v-model="selectItem.options.showItem" >
-              <!-- 获取当前内部已经包含的要素 -->
-              <el-checkbox v-for="item in selectItem.list" :label="item.model" :key="item.model">{{item.label}}</el-checkbox>
-            </el-checkbox-group>
+              </el-checkbox-group>
           </el-form-item>
+          
+          
+          
 
-           <el-divider ></el-divider>
+           
+            <el-divider ></el-divider>
+
           <el-form-item   label="操作属性" >
             <el-checkbox v-model="options.hidden"  label="隐藏" />
             <el-checkbox v-model="options.disabled"  label="禁用" /> 
             <el-checkbox v-model="options.showLabel" label="显示Label" />
+             <el-checkbox v-model="options.showBorder" label="显示边框" />
             <el-checkbox v-model="options.hideSequence" label="隐藏序号" />
             <el-checkbox v-model="options.copyRow" label="行复制" />
+             
           </el-form-item> 
         </template> 
         <!-- 动态表格 end -->

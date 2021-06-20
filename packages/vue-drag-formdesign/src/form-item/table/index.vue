@@ -3,6 +3,7 @@
  -->
 <template>
  <div  :id="record.model" :name="record.model">  
+  record.options.showBorder {{record.options.showBorder}}
     <el-table
       :class="[
         'form-table',
@@ -11,7 +12,7 @@
       :style="record.options.customStyle"
       :rowKey="record => record.key" 
       :data="models[record.model]" 
-      bordered
+      :border="record.options.showBorder"
       :scroll="{
         x:
           record.list.length * 190 +
@@ -33,6 +34,7 @@
           v-if="record.options.addType != 'dialog' || (record.options.showItem && record.options.showItem.includes(item.model) )"
           :key="index"
           :label="item.label"
+          :width="record.options.colWidth && record.options.colWidth[item.model] ? record.options.colWidth[item.model] : undefined"
           align="center">
           <template  slot-scope="scope"> 
             <!-- 这里就要判断类型了 -->   
