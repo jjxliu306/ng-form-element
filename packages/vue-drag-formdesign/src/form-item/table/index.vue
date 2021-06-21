@@ -3,7 +3,7 @@
  -->
 <template>
  <div  :id="record.model" :name="record.model">  
-  record.options.showBorder {{record.options.showBorder}}
+   
     <el-table
       :class="[
         'form-table',
