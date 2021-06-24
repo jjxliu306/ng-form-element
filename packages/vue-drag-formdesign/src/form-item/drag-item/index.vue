@@ -14,7 +14,7 @@
 	                @start="handleStart"/>
 		  	</el-collapse-item>
 		  	 <!-- 自定义控件 -->
-            <el-collapse-item v-if="customComponents.length > 0" title="自定义组件" name="3" >
+            <el-collapse-item v-if="customComponents.length > 0" title="自定义组件" name="2" >
               <DragItem
                 :list="customComponents"
                 @generateKey="generateKey"
