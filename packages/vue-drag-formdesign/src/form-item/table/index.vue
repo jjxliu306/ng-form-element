@@ -47,7 +47,7 @@
           label="操作"
           align="center" 
           v-if="!renderPreview || record.options.addType == 'dialog'"
-          :width="renderPreview ? 120 : (record.options.copyRow ? 250 : 200)">
+          :width="controlWidth ">
           <template  slot-scope="scope"> 
             <el-button type="success"  v-if="renderPreview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
               <i class="el-icon-eye" />查看
@@ -138,16 +138,21 @@ export default {
     templateData() {
       return {list: this.record.list, config: { "labelPosition": this.record.options.labelPosition ? this.record.options.labelPosition : "right", "labelWidth": this.record.options.labelWidth, "size": "mini", "hideRequiredMark": false } }
     },
-   /* controlWidth() {
-      let w = 0 
-      if(!this.renderPreview || this.record.options.addType == 'dialog') {
-        return w 
+     controlWidth() {
+      let w = 100 
+     
+      if(this.renderPreview) { 
+        return w
       }
-      if(this.renderPreview) {
-        w = 100 
+      if(this.record.options.copyRow) {
+        w += 80
+      }
+      if(this.record.options.addType == 'dialog') {
+        w += 80
       } 
+       
       return w 
-    }*/
+    } 
   },
   mounted(){ 
     // 2021-05-10 lyf 只要没有默认值都先给回填一个  这个可以处理初始化么有值，导致后面很多联动没法做，必须要通过v-if刷新 
