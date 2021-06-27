@@ -98,7 +98,7 @@ export default {
       this.$nextTick(() => {
         this.formVisible = true 
         this.buildVisible = true
-        if(model){
+        if(model && this.$refs.formPreview){
           this.$nextTick(() => {
             this.$refs.formPreview.setData(model)
             this.$refs.buildPreview.setData(model)

@@ -2,7 +2,7 @@
   <div>
     <div class="json-box">
 
-      <el-input style="min-height:300px;height:300px" :rows="15" readonly ref="myEditor" type="textarea" :value="editorJson">
+      <el-input style="min-height:300px;" :rows="15" readonly ref="myEditor" type="textarea" :value="editorJson">
 
 
       </el-input>
@@ -23,7 +23,7 @@
       >
         复制数据
       </el-button> -->
-      <el-button @click="handleExportJson" type="primary">
+      <el-button size="mini" @click="handleExportJson" type="primary">
         导出代码
       </el-button>
     </div>

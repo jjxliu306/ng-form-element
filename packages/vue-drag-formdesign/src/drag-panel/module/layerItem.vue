@@ -1,14 +1,14 @@
 <template>
   <div
     :class="{
-      'layout-width': ['grid', 'table', 'card', 'divider', 'html'].includes(
+      'layout-width': ['control', 'table', 'card', 'divider', 'html'].includes(
         record.type
       )
     }"
   >
     <!-- 动态表格设计模块 start -->
    <!--  <span>record.list: {{record.list}} </span> -->
-    <template v-if="record.type === 'batch'">
+    <template v-if="record && record.type === 'batch'">
       <div
         :class="[
           'batch-box',
@@ -70,7 +70,7 @@
     </template>
     <!-- 动态表格设计模块 end -->
     <!-- 栅格布局 start -->
-    <template v-else-if="record.type === 'grid'">
+    <template v-else-if="record &&  record.type === 'grid'">
       <div
         class="grid-box"
         :class="{ active: record.key === selectItem.key }"
@@ -136,9 +136,74 @@
       </div>
     </template>
     <!-- 栅格布局 end -->
+    <!-- 容器 start -->
+    <template v-else-if="record && record.type === 'control'">
+      <div 
+        :class="[ 'grid-box','control-form', 
+            record.key == selectItem.key ? 'active': '',
+            record.options.customClass ? record.options.customClass : '' ,
+            record.options.bright ? 'bright' : '' ,
+            record.options.small ? 'small' : '' ,
+           record.options.bordered ? 'form-table-bordered' : '' ]"
+        :style="record.options.customStyle"
+        @click.stop="handleSelectItem(record)"
+      >
+      
+            <draggable
+              tag="div"
+              class="draggable-box"
+              v-bind="{
+                group: 'form-draggable',
+                ghostClass: 'moving',
+                animation: 180,
+                handle: '.drag-move'
+              }"
+              :force-fallback="true"
+              v-model="record.list"
+              @start="$emit('dragStart', $event, record.list)"
+            >
+              <transition-group tag="div" name="list" class="list-main">
+                record.list:: {{record.list}}
+                <layoutItem
+                  class="drag-move"
+                   v-for="item in record.list"
+                  :key="item.key"
+                  :selectItem.sync="selectItem"
+                  :startType="startType"
+                  :insertAllowedType="insertAllowedType"
+                  :record="item"
+                  :hideModel="hideModel"
+                  :config="config"
+                  @handleSelectItem="handleSelectItem"
+                  @handleColAdd="handleColAdd"
+                  @handleCopy="$emit('handleCopy')"
+                  @handleShowRightMenu="handleShowRightMenu"
+                  @handleDetele="$emit('handleDetele')"
+                />
+              </transition-group>
+            </draggable>
+       
+
+        <div
+          class="copy"
+          :class="record.key === selectItem.key ? 'active' : 'unactivated'"
+          @click.stop="$emit('handleCopy')"
+        >
+          <i class="el-icon-copy-document" />
+        </div>
+        <div
+          class="delete"
+          :class="record.key === selectItem.key ? 'active' : 'unactivated'"
+          @click.stop="$emit('handleDetele')"
+        >
+          <i class="el-icon-delete" />
+        </div>
+      </div>
+    </template>
+    <!-- 栅格布局 end -->
     
     <!-- 表格布局 start -->
-    <template v-else-if="record.type === 'table'">
+    <template v-else-if="record && record.type === 'table'">
       <div
         class="table-box"
         :class="{ active: record.key === selectItem.key }"
@@ -220,7 +285,7 @@
       </div>
     </template>
     <!-- 表格布局 end -->
-    <template v-else>
+    <template v-else-if="record != undefined">
       <formNode
         :key="record.key"
         :selectItem.sync="selectItem"

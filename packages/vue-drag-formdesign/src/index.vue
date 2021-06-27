@@ -58,8 +58,8 @@
       >
         <previewCode :editorJson="modelJson" />
         <span slot="footer" class="dialog-footer">
-          <el-button @click="modelVisible = false">取 消</el-button>
-          <el-button type="primary" @click="modelVisible = false">确 定</el-button>
+          <el-button size="mini" @click="modelVisible = false">取 消</el-button>
+          <el-button  size="mini" type="primary" @click="modelVisible = false">确 定</el-button>
         </span>
       </el-dialog>
 
@@ -75,8 +75,8 @@
 
         </el-input>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="importVisible = false">取 消</el-button>
-          <el-button type="primary" @click="importModel">确 定</el-button>
+          <el-button size="mini" @click="importVisible = false">取 消</el-button>
+          <el-button size="mini" type="primary" @click="importModel">确 定</el-button>
         </span>
       </el-dialog>
 

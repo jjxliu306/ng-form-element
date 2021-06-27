@@ -2,7 +2,7 @@
   动态表格 用于批量填入数据
  -->
 <template>
- <div  :id="record.model" :name="record.model">  
+ <div  :id="record.model" :name="record.model" class="form-table-index">  
    
     <el-table
       :class="[

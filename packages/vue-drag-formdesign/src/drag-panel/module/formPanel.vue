@@ -119,6 +119,7 @@ export default {
         "input",
         "textarea",
         "number",
+        'control',
         "select",
          "batch",
         "checkbox",
@@ -184,13 +185,21 @@ export default {
       const listString = JSON.stringify(this.data.list);
       this.data.list = JSON.parse(listString);
       // 删除icon及compoent属性
-      delete this.data.list[newIndex].icon;
-      delete this.data.list[newIndex].component;
-      this.$emit("handleSetSelectItem", this.data.list[newIndex]);
+      console.log('list' , this.data.list , newIndex)
+      if(this.data.list && this.data.list.length > newIndex) {
+        delete this.data.list[newIndex].icon;
+        delete this.data.list[newIndex].component;
+        this.$emit("handleSetSelectItem", this.data.list[newIndex]);
+      }
+      
     }, 
     handleColAdd(evt, columns, isCopy = false) {
       // 重置或者生成key值
       const newIndex = evt.newIndex;
+     // if(!this.columns || this.columns.length < newIndex ){
+     //   return
+     // }
+      console.log('columns ' , columns , newIndex ,columns[newIndex] )
       const key = columns[newIndex].type + "_" + new Date().getTime();
       if (columns[newIndex].key === "" || isCopy) {
         this.$set(columns, newIndex, {

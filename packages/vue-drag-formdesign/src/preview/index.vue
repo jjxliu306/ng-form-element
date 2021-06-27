@@ -15,11 +15,11 @@
       <renderPreview ref="renderPreview" v-if="renderVisisble"/> 
     </div> 
     <span slot="footer" class="dialog-footer">
-      <el-button @click="visible = false">取 消</el-button>
-      <el-button @click="handleGetData">获取数据</el-button> 
-      <el-button @click="handleRender">渲染</el-button>
-       <el-button @click="handleValidator">验证</el-button>
-      <el-button type="primary" @click="visible = false">确 定</el-button>
+      <el-button size="mini" @click="visible = false">取 消</el-button>
+      <el-button size="mini" @click="handleGetData">获取数据</el-button> 
+      <el-button size="mini" @click="handleRender">渲染</el-button>
+       <el-button size="mini" @click="handleValidator">验证</el-button>
+      <el-button  size="mini" type="primary" @click="visible = false">确 定</el-button>
     </span>
  
   </el-dialog>

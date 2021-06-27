@@ -7,8 +7,8 @@
   >
     <el-col
       class="grid-col"
-      v-for="(colItem, idnex) in record.columns"
-      :key="idnex"
+      v-for="(colItem, index) in record.columns"
+      :key="index"
       :span="colItem.span || 0"
     >
       <buildBlocks
@@ -68,7 +68,60 @@
     </template>
    
   </table>
+  <!-- 2021-06-27 lyf 弹性容器 -->
  
+    <div 
+     v-else-if="record.type === 'control' && dynamicVisibleItem" 
+     >   
+     <div v-for="(mdata, idx) in models[record.model]"  :key="idx"
+      :class="[
+        'table-layout','form-table',
+        record.options.customClass ? record.options.customClass : '' ,
+        record.options.bright ? 'bright' : '' ,
+        record.options.small ? 'small' : '' ,
+        record.options.bordered ? 'form-table-bordered' : '' 
+      ]" 
+      :style="record.options.customStyle"
+       @contextmenu.prevent="handleShowRightMenu($event , idx) "
+     >
+      <div  
+        v-for="(item, index) in record.list"  
+        :key="index"  
+        >
+       <buildBlocks
+          ref="nestedComponents"
+          @handleReset="$emit('handleReset')"
+          @change="handleChange"
+           @forceUpdate="forceUpdate" 
+          :disabled="disabled"
+          :renderPreview="renderPreview"
+          :models.sync="mdata"   
+          :record="item"
+          :formConfig="formConfig" 
+        />
+      </div> 
+         
+        
+
+     </div>
+      <!-- 右键里的删除和复制 下方的新增 -->
+      <el-button v-if="!renderPreview" type="dashed" size="mini" :disabled="disabled" @click="addControl">
+        <i class="el-icon-circle-plus-outline" />增加
+      </el-button>
+      <div
+        v-show="showRightMenu"
+        :style="{ 'top': menuTop + 'px', 'left': menuLeft + 'px' }"
+        class="right-menu"
+        id="rightMenu"
+      >
+        <ul> 
+         <li @click="handleCopy"><i class="el-icon-document" />复制</li>
+          <hr>
+          <li @click="handleRemove"><i class="el-icon-delete" />删除</li> 
+        </ul>
+      </div>
+    </div> 
+  
     
       <el-tooltip 
         class="item" 
@@ -112,11 +165,19 @@
    
 </template>
 <script>
- 
+import cloneDeep from 'lodash/cloneDeep'
 import  FormItem  from "../form-item";
 import {dynamicFun} from '../utils'
 export default {
   name: "buildBlocks",
+  data() {
+    return {
+      menuTop: 0,
+      menuLeft: 0,
+      selectControlIndex: -1,
+      showRightMenu: false
+    }
+  },
   props: {
     record: {
       type: Object,
@@ -163,6 +224,34 @@ export default {
       const ret = dynamicFun(fstr,this.models) 
       return ret ;
     }
+  },
+  created() {
+    // 如果是control 则默认初始化就有一份空数据,control 下的list所有组件初始一个
+    
+    if(this.record.type == 'control' && !this.renderPreview && !Object.prototype.hasOwnProperty.call(this.models, this.record.model) ) {
+      const data_ = {} 
+
+     /* this.record.list.forEach(t=> {
+        data_[t.model] = null
+      })*/
+      
+      this.$set(this.models , this.record.model , [data_])
+    }
+
+  },
+  mounted() {
+    // 添加监听取消右键菜单
+    document.addEventListener("click", this.handleRemoveRightMenu, true);
+    document.addEventListener("contextmenu", this.handleRemoveRightMenu, true);
+  },
+  destroyed() {
+    // 移除监听
+    document.removeEventListener("click", this.handleRemoveRightMenu, true);
+    document.removeEventListener(
+      "contextmenu",
+      this.handleRemoveRightMenu,
+      true
+    );
   },
   methods: {
     validationSubform() {
@@ -219,6 +308,84 @@ export default {
 
       return false 
 
+    },
+    // 容器添加一行数据
+    addControl() {
+      console.log('add control')
+
+      // 将当前数据复制一份 压入
+      const data_ = {} 
+
+      this.record.list.forEach(t=> {
+        data_[t.model] = ''
+      })
+      
+      this.models[this.record.model].push(data_) 
+
+    },
+    handleShowRightMenu(e, idx) {
+      // 显示右键菜单
+      e.stopPropagation();
+      // this.fileItem = item
+      // 显示
+      this.showRightMenu = true;
+ 
+
+      // 计算rightMenu得高度和宽度 和当前屏幕对比 来决定菜单出现得起始位置
+      let height = 210;// document.getElementById('rightMenu').clientHeight ;
+      let width = 280 ;//document.getElementById('rightMenu').clientWidth ;
+
+      // 获取屏幕高度和宽度 比对
+      const bodyHeight = document.body.clientHeight  ;
+      const bodyWidth = document.body.clientWidth ;
+ 
+        
+      // 定位 
+      if(e.clientY + height > bodyHeight) {
+        this.menuTop = e.clientY - height;
+      } else {
+        this.menuTop = e.clientY;
+      }
+
+      if(e.clientX + width > bodyWidth) {
+        this.menuLeft = e.clientX - width;
+      } else {
+        this.menuLeft = e.clientX + 20 ;
+      }
+      
+      this.selectControlIndex = idx
+
+      return false;
+    },
+    handleCopy() {
+      if(this.selectControlIndex == undefined || this.selectControlIndex < 0) {
+        return 
+      }
+
+      if(!this.models[this.record.model] || this.models[this.record.model].length < this.selectControlIndex) {
+        return 
+      }
+
+      const cloneData = cloneDeep(this.models[this.record.model][this.selectControlIndex])
+
+      this.models[this.record.model].push(cloneData)
+
+    },
+    handleRemove() {
+      if(this.selectControlIndex == undefined || this.selectControlIndex < 0) {
+        return 
+      }
+
+      if(!this.models[this.record.model] || this.models[this.record.model].length < this.selectControlIndex) {
+        return 
+      }
+
+      this.models[this.record.model].splice(this.selectControlIndex,1)
+
+    },
+    handleRemoveRightMenu() {
+      // 取消右键菜单
+      this.showRightMenu = false;
     }
   }
 };

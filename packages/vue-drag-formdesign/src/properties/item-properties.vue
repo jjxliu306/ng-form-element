@@ -14,7 +14,7 @@
           <el-input v-model="selectItem.label" placeholder="请输入" />
         </el-form-item>
        
-        <el-form-item  label="数据字段" v-if="!hideModel && !['table','grid','divider','label','html','button',].includes(selectItem.type)" >
+        <el-form-item  label="数据字段" v-if="!hideModel && !['table','grid','divider','text','label','html','button'].includes(selectItem.type)" >
           <el-input v-model="selectItem.model" placeholder="请输入" :disabled="(selectItem.item != undefined && selectItem.item.id != undefined) "/>
         </el-form-item>
          <el-divider ></el-divider>
@@ -733,6 +733,36 @@
           </el-form-item>
         </template> 
         <!-- 表格布局  end -->
+
+         <!-- 容器 start -->
+        <template v-if="selectItem.type == 'control'">
+          <el-form-item  label="宽度">
+            <el-input placeholder="请输入" v-model="options.width" />
+          </el-form-item>
+          
+
+           <el-divider ></el-divider> 
+           <!-- 表格 -->
+          <el-form-item  label="样式Class名称">
+            <el-input v-model="selectItem.options.customClass" />
+          </el-form-item>
+            
+          <el-form-item  label="样式CSS">
+            <el-input type="textarea" v-model="selectItem.options.customStyle" />
+          </el-form-item>
+           
+           
+          <el-divider ></el-divider>
+
+          <el-form-item   label="操作属性" >
+            <el-checkbox v-model="options.hidden"  label="隐藏" />
+            <el-checkbox v-model="options.disabled"  label="禁用" />  
+            <el-checkbox v-model="options.bordered" label="显示边框" /> 
+            <el-checkbox v-model="options.noAdd" label="无新增" />
+            <el-checkbox v-model="options.noRemove" label="无删除" />  
+          </el-form-item> 
+        </template> 
+        <!-- 容器 end -->
  
         <!-- ############# 为自定义组件预备的插槽 start ############### -->
 
