@@ -3,12 +3,14 @@ node_modules/
 example/
 packages/
 public/
+dist/
 vue.config.js
 babel.config.js
 *.map
 *.html
 img/
 example-data/
+package.json
  
 # local env files
 .env.local
