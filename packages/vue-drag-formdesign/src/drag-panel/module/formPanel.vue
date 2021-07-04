@@ -185,7 +185,7 @@ export default {
       const listString = JSON.stringify(this.data.list);
       this.data.list = JSON.parse(listString);
       // 删除icon及compoent属性
-      console.log('list' , this.data.list , newIndex)
+      
       if(this.data.list && this.data.list.length > newIndex) {
         delete this.data.list[newIndex].icon;
         delete this.data.list[newIndex].component;
@@ -199,7 +199,6 @@ export default {
      // if(!this.columns || this.columns.length < newIndex ){
      //   return
      // }
-      console.log('columns ' , columns , newIndex ,columns[newIndex] )
       const key = columns[newIndex].type + "_" + new Date().getTime();
       if (columns[newIndex].key === "" || isCopy) {
         this.$set(columns, newIndex, {
@@ -281,7 +280,6 @@ export default {
       this.$emit("handleSetSelectItem", record);
     },
     handleCopy(isCopy = true, data) { 
-      console.log('isCopy' , isCopy , data)
       const traverse = array => {
         array.forEach((element, index) => { 
           if (element.key === this.selectItem.key) {
@@ -322,7 +320,6 @@ export default {
     },
     handleDetele() {
       // 删除已选择
-      console.log('handleDetele')
       const traverse = array => {
         array = array.filter((element, index) => {
           if (element.type === "grid") {
