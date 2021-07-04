@@ -28,9 +28,9 @@
   </el-tabs>
  
     <span slot="footer" class="dialog-footer">
-      <el-button @click="visible = false">取 消</el-button> 
-      <el-button v-if="active == 'third'" type="primary" @click="syncModel" >同 步</el-button>
-      <el-button type="primary" @click="visible = false">确 定</el-button>
+      <el-button size="mini" @click="visible = false">取 消</el-button> 
+      <el-button size="mini" v-if="active == 'third'" type="primary" @click="syncModel" >同 步</el-button>
+      <el-button size="mini" type="primary" @click="visible = false">确 定</el-button>
     </span>
  
   </el-dialog>

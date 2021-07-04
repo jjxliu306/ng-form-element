@@ -105,19 +105,19 @@
 
      </div>
       <!-- 右键里的删除和复制 下方的新增 -->
-      <el-button v-if="!renderPreview" type="dashed" size="mini" :disabled="disabled" @click="addControl">
+      <el-button v-if="!renderPreview && !record.options.noAdd" type="dashed" size="mini" :disabled="disabled" @click="addControl">
         <i class="el-icon-circle-plus-outline" />增加
       </el-button>
       <div
-        v-show="showRightMenu"
+        v-show="!renderPreview && showRightMenu"
         :style="{ 'top': menuTop + 'px', 'left': menuLeft + 'px' }"
         class="right-menu"
         id="rightMenu"
       >
         <ul> 
-         <li @click="handleCopy"><i class="el-icon-document" />复制</li>
-          <hr>
-          <li @click="handleRemove"><i class="el-icon-delete" />删除</li> 
+         <li v-if="!record.options.noCopy" @click="handleCopy"><i class="el-icon-document" />复制</li>
+          <hr v-if="!record.options.noCopy && !record.options.noRemove">
+          <li v-if="!record.options.noRemove" @click="handleRemove"><i class="el-icon-delete" />删除</li> 
         </ul>
       </div>
     </div> 
@@ -311,7 +311,6 @@ export default {
     },
     // 容器添加一行数据
     addControl() {
-      console.log('add control')
 
       // 将当前数据复制一份 压入
       const data_ = {} 
@@ -326,6 +325,13 @@ export default {
     handleShowRightMenu(e, idx) {
       // 显示右键菜单
       e.stopPropagation();
+
+      // 判断是否有复制和删除 如果没有直接返回
+      if(this.record.options.noRemove && this.record.options.noCopy) {
+        this.showRightMenu = false
+        return false
+      }
+
       // this.fileItem = item
       // 显示
       this.showRightMenu = true;
@@ -378,6 +384,12 @@ export default {
 
       if(!this.models[this.record.model] || this.models[this.record.model].length < this.selectControlIndex) {
         return 
+      }
+
+      if(this.models[this.record.model].length == 1) {
+        
+        this.$message.error(this.record.label + '内仅存的一条数据不能删除')
+        return
       }
 
       this.models[this.record.model].splice(this.selectControlIndex,1)

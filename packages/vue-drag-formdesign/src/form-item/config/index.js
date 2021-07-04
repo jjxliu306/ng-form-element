@@ -522,10 +522,13 @@ export const layoutList = [
     options: {  
       width: "100%",
       bordered: true,
-      bright: false,
-      small: true,
+      disabled: false,
+      
       customStyle: "",
-      customClass: ''
+      customClass: '',
+      noCopy: false,
+      noAdd: false,
+      noRemove: false
     },
     key: "",
     model: ""

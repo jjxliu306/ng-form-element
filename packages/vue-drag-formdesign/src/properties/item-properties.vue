@@ -760,6 +760,7 @@
             <el-checkbox v-model="options.bordered" label="显示边框" /> 
             <el-checkbox v-model="options.noAdd" label="无新增" />
             <el-checkbox v-model="options.noRemove" label="无删除" />  
+            <el-checkbox v-model="options.noCopy" label="无复制" />  
           </el-form-item> 
         </template> 
         <!-- 容器 end -->
