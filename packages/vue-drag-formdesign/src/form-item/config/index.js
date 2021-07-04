@@ -515,14 +515,21 @@ export const layoutList = [
     key: "",
     model: ""
   },
- /* {
-    type: "card",
-    label: "卡片布局",
-    icon: "icon-qiapian",
+   {
+    type: "control",
+    label: "弹性容器", 
     list: [],
+    options: {  
+      width: "100%",
+      bordered: true,
+      bright: false,
+      small: true,
+      customStyle: "",
+      customClass: ''
+    },
     key: "",
     model: ""
-  },*/
+  }, 
   {
     type: "grid",
     label: "栅格布局", 

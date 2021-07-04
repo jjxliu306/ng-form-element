@@ -2,7 +2,7 @@
   <div>
     <div class="json-box">
 
-      <el-input style="min-height:300px;" :rows="15" readonly ref="myEditor" type="textarea" :value="editorJson">
+      <el-input style="min-height:300px;height: 300px;max-height: 290px;overflow: auto;" autosize  readonly ref="myEditor" type="textarea" :value="editorJson">
 
 
       </el-input>

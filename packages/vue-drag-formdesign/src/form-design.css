@@ -12,6 +12,7 @@
   background: #a9c8ea;
   color: #303133;
   font-size: 13px;
+  padding: 1px;
 }
 .form-design .el-aside {
   overflow: hidden;
@@ -499,7 +500,7 @@
   background: #e6f7ff;
 }
 .form-design .form-table.small tr td {
-  padding: 8px 8px;
+  /*padding: 8px 8px;*/
 }
 .form-design .form-table .el-row .el-form-item {
   margin: 0 !important;
@@ -558,3 +559,6 @@
   border: 1px solid #ccc; 
 }
 
+.form-design .json-box .el-textarea__inner{
+  height: 300px;
+}

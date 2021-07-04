@@ -119,7 +119,7 @@ export default {
         "input",
         "textarea",
         "number",
-        'control',
+        
         "select",
          "batch",
         "checkbox",
@@ -281,6 +281,7 @@ export default {
       this.$emit("handleSetSelectItem", record);
     },
     handleCopy(isCopy = true, data) { 
+      console.log('isCopy' , isCopy , data)
       const traverse = array => {
         array.forEach((element, index) => { 
           if (element.key === this.selectItem.key) {
@@ -303,14 +304,10 @@ export default {
             element.columns.forEach(item => {
               traverse(item.list);
             });
-          } else if (element.type === "card") {
-            // 卡片布局
-            traverse(element.list);
-          } else if (element.type === "batch") {
+          } else if (element.type === "batch" || element.type === "control") {
             // 动态表格内复制
             traverse(element.list);
-          }
-          if (element.type === "table") {
+          } else if (element.type === "table") {
             // 表格布局
             element.trs.forEach(item => {
               item.tds.forEach(val => {
@@ -325,6 +322,7 @@ export default {
     },
     handleDetele() {
       // 删除已选择
+      console.log('handleDetele')
       const traverse = array => {
         array = array.filter((element, index) => {
           if (element.type === "grid") {
@@ -332,12 +330,10 @@ export default {
             element.columns.forEach(item => {
               item.list = traverse(item.list);
             });
-          }
-          if (element.type === "card" || element.type === "batch") {
-            // 卡片布局
+          } else if (element.type === "control" || element.type === "batch") {
+            // 动态表格布局，容器布局
             element.list = traverse(element.list);
-          }
-          if (element.type === "table") {
+          }else if (element.type === "table") {
             // 表格布局
             element.trs.forEach(item => {
               item.tds.forEach(val => {

@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{
-      'layout-width': ['control', 'table', 'card', 'divider', 'html'].includes(
+      'layout-width': ['control', 'table', 'grid', 'divider', 'html'].includes(
         record.type
       )
     }"
@@ -137,23 +137,83 @@
     </template>
     <!-- 栅格布局 end -->
     <!-- 容器 start -->
+
+     <template v-if="record && record.type === 'control'">
+      <div
+        :class="[
+          'grid-box','control-form', 
+          record.options.customClass ? record.options.customClass : '' ,
+          record.key === selectItem.key ? 'active' : '',
+          record.options && record.options.bordered ? 'form-table-bordered' : '' 
+        ]" 
+        :style="record.options.customStyle"
+        @click="handleSelectItem(record)"
+      >
+        <!-- <div class="batch-label">弹性容器</div>  -->
+         <draggable
+          tag="div"
+          class="draggable-box"
+          v-bind="{
+            group: insertAllowed ? 'form-draggable' : '',
+            ghostClass: 'moving',
+            animation: 180,
+            handle: '.drag-move'
+          }"
+          :force-fallback="true"
+          v-model="record.list"
+          @start="$emit('dragStart', $event, record.list)"
+          @add="$emit('handleColAdd', $event, record.list)"
+        >
+
+          <transition-group tag="div" name="list" class="list-main">
+            <formNode
+              v-for="item in record.list"
+              :key="item.key"
+              class="drag-move"
+              :selectItem.sync="selectItem"
+              :record="item"
+              :hideModel="hideModel"
+              :config="config"
+              @handleSelectItem="handleSelectItem"
+              @handleColAdd="handleColAdd"
+              @handleCopy="$emit('handleCopy')"
+              @handleShowRightMenu="handleShowRightMenu"
+              @handleDetele="$emit('handleDetele')"
+            />
+          </transition-group>
+        </draggable>
+      
+        <div
+          class="copy"
+          :class="record.key === selectItem.key ? 'active' : 'unactivated'"
+          @click.stop="$emit('handleCopy')"
+        >
+          <i class="el-icon-copy-document" />
+        </div>
+        <div
+          class="delete"
+          :class="record.key === selectItem.key ? 'active' : 'unactivated'"
+          @click.stop="$emit('handleDetele')"
+        >
+          <i class="el-icon-delete" />
+        </div>
+      </div>
+    </template>
+<!--
     <template v-else-if="record && record.type === 'control'">
       <div 
         :class="[ 'grid-box','control-form', 
-            record.key == selectItem.key ? 'active': '',
-            record.options.customClass ? record.options.customClass : '' ,
-            record.options.bright ? 'bright' : '' ,
-            record.options.small ? 'small' : '' ,
-           record.options.bordered ? 'form-table-bordered' : '' ]"
-        :style="record.options.customStyle"
+            record.key == selectItem.key ? 'active': '', 
+            record.options && record.options.bordered ? 'form-table-bordered' : '' ]"
+        :style="record.options ? record.options.customStyle : null"
         @click.stop="handleSelectItem(record)"
       >
-      
+          
             <draggable
               tag="div"
               class="draggable-box"
               v-bind="{
-                group: 'form-draggable',
+                group: 'form-draggable' ,
                 ghostClass: 'moving',
                 animation: 180,
                 handle: '.drag-move'
@@ -161,9 +221,9 @@
               :force-fallback="true"
               v-model="record.list"
               @start="$emit('dragStart', $event, record.list)"
-            >
+            >  record.list:: {{record.list}}
               <transition-group tag="div" name="list" class="list-main">
-                record.list:: {{record.list}}
+              
                 <layoutItem
                   class="drag-move"
                    v-for="item in record.list"
@@ -200,6 +260,7 @@
         </div>
       </div>
     </template>
+  -->
     <!-- 栅格布局 end -->
     
     <!-- 表格布局 start -->
