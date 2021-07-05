@@ -1,6 +1,6 @@
 {
   "name": "vue-drag-formdesign",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -8,6 +8,7 @@
     "lib": "vue-cli-service build --target lib --name vue-drag-formdesign --dest lib packages/index.js"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^3.6.5",
     "default-passive-events": "^1.0.10",
     "object-path": "^0.11.5",
@@ -22,7 +23,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11",
     "vuex-persistedstate": "^3.0.1",
-    "webpack-bundle-analyzer": "^4.4.2"
+    "webpack-bundle-analyzer": "^4.4.2" 
   },
   "eslintConfig": {
     "root": true,

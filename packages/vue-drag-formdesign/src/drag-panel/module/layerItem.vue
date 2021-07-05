@@ -138,7 +138,7 @@
     <!-- 栅格布局 end -->
     <!-- 容器 start -->
 
-     <template v-if="record && record.type === 'control'">
+     <template v-else-if="record && record.type === 'control'">
       <div
         :class="[
           'grid-box','control-form', 

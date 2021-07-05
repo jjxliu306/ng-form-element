@@ -34,7 +34,7 @@
 import ItemProperties from './item-properties'
 //import ItemProperties2 from './item-properties2'
 import FormProperties from './form-properties'
-import { mapState } from "vuex";
+//import { mapState } from "vuex";
 export default {
 	components: {
 		ItemProperties,FormProperties/*,ItemProperties2*/

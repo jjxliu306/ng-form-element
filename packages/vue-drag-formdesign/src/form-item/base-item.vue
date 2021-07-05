@@ -560,7 +560,8 @@ export default {
     // 远程方法获取的数据尝试再这里回填label
     checkValues: {
       handler(val, oldVal){
-         this.handleChange(val ,this.record.model , 1)
+        const value = this.models[this.record.model]
+        this.handleChange(value ,this.record.model , 1)
       },
       deep:true
     },
@@ -721,7 +722,7 @@ export default {
       Fn(this.models, this.data)
     },
     handleChange(value, key , type) {
-      // change事件 
+      // change事件  
       this.$emit("change", value, key); 
 
       // 根据类型判断 如果是 select , radio , checkbox , cascader 则回带具体的显示值
