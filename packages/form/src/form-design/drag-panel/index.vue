@@ -34,11 +34,8 @@
 	</el-card>
 </template>
 <script>
-import {
-  basicsList, 
-  layoutList 
-} from "../config/index.js";
-import DragItem from './module/dragItem'
+import { basicsList,  layoutList , noModelList} from "../config.js";
+import DragItem from './item'
 export default {
 	components: {
 		DragItem
@@ -46,16 +43,7 @@ export default {
 	data(){
 		return {
 			actives:['1','2','3'],
-			noModel: [
-		        "button",
-		        "divider",
-		        "card",
-		        "grid",
-		        "table",
-		        "alert",
-		        "text",
-		        "html"
-		    ],
+			noModel: noModelList,
 		    startType: "",
 		    data: {
 		        list: [],

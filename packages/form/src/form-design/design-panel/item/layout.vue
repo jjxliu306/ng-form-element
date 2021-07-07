@@ -303,7 +303,7 @@
 <script>
  
 import draggable from "vuedraggable";
-import formNode from "./formNode";
+import formNode from "./node";
 export default {
   name: "layoutItem",
   props: {

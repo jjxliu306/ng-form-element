@@ -2,7 +2,7 @@
     <el-container class="form-design">
       <el-aside width="260px">
           <slot name="drag"></slot>
-          <DragItem > </DragItem> 
+          <DragPanel > </DragPanel> 
       </el-aside>
       <el-main>
         <el-row class="form-design" :gutter="20"> 
@@ -23,8 +23,8 @@
                       <el-button v-if="exp" type="text" size="medium" icon="el-icon-upload2" @click="handleGenerateJson">导出</el-button>
                     </span> 
                 </div> 
-                <DragPanel :data="data" ref="dragPanel" :selectForm="selectForm" @changeSelectItem="changeSelectItem"> 
-               </DragPanel> 
+                <DesignPanel :data="data" ref="dragPanel" :selectForm="selectForm" @changeSelectItem="changeSelectItem"/> 
+               
               </el-card> 
             </el-col>
             <el-col :span="6" class="height-all">
@@ -87,17 +87,17 @@
  
 import cloneDeep from 'lodash/cloneDeep'
 
-import DragItem from './form-item/drag-item/index'
-import DragPanel from './drag-panel/index' 
+import DragPanel from './drag-panel/index'
+import DesignPanel from './design-panel/index' 
 import Properties from './properties/index'
 
-import Preview  from './preview/index'
-import previewCode from "./preview/preview-code"; 
+import Preview  from '../preview/index'
+import previewCode from "../preview/preview-code"; 
 
 
-import renderPreview from "./render/preview";
+import renderPreview from "../preview/render";
 export default {
-  name: 'VueDragFormdesign',
+  name: 'form-design',
   data(){
     return {
       previewVisible: false , 
@@ -198,7 +198,7 @@ export default {
   },
    
   components: {
-    DragItem,DragPanel,Properties,Preview,previewCode,renderPreview
+    DesignPanel,DragPanel,Properties,Preview,previewCode,renderPreview
   },
   created(){  
     if( this.customComponents && this.customComponents.length > 0) {
@@ -210,6 +210,7 @@ export default {
   },
   methods: {
     changeSelectItem(item) {
+      console.log('changeSelectItem' , item)
       this.selectItem = item
     },
     handlePreview () { 

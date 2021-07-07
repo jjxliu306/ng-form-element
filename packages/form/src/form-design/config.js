@@ -1,5 +1,21 @@
 
-import {http_get_file_list_url,http_upload_file_url} from '../../utils'
+import {http_get_file_list_url,http_upload_file_url} from '../utils'
+
+/**
+* 不需要回填属性 model的组件 
+*/
+export const noModelList = [
+  "button",
+            "divider",
+            "card",
+            'control',
+            "grid",
+            "table",
+          //  "alert",
+            "text",
+            "html"
+]
+
 /*
  * author lyf
  * date 2020-07-06
@@ -9,8 +25,7 @@ import {http_get_file_list_url,http_upload_file_url} from '../../utils'
 export const basicsList = [
   {
     type: "input", // 表单类型
-    label: "输入框", // 标题文字 
-    index: 'A',
+    label: "输入框", // 标题文字  
     options: {
       type: "text",
       width: "100%", // 宽度
@@ -31,14 +46,13 @@ export const basicsList = [
       {
         required: false, // 必须填写
         message: "必填项",
-        trigger: ['change','blur']
+        trigger: ['blur']
       }
     ]
   },
   {
     type: "textarea", // 表单类型
-    label: "文本框", // 标题文字 
-    index: 'B',
+    label: "文本框", // 标题文字  
     options: {
       width: "100%", // 宽度 
       maxLength: null,
@@ -55,14 +69,14 @@ export const basicsList = [
     rules: [
       {
         required: false,
-        message: "必填项"
+        message: "必填项",
+        trigger: ['blur']
       }
     ]
   },
   {
     type: "number", // 表单类型
-    label: "数字输入框", // 标题文字 
-    index: 'C',
+    label: "数字输入框", // 标题文字  
     options: {
       width: "100%", // 宽度
       defaultValue: 0, // 默认值
@@ -88,8 +102,7 @@ export const basicsList = [
   },
   {
     type: "select", // 表单类型
-    label: "下拉选择器", // 标题文字 
-    index: 'D',
+    label: "下拉选择器", // 标题文字  
     options: {
       width: "100%", // 宽度
       defaultValue: undefined, // 下拉选框请使用undefined为默认值
@@ -100,8 +113,8 @@ export const basicsList = [
       placeholder: "请选择", // 默认提示文字
       valueKey: 'value',
       tooptip: '', // 提示
-      dynamic: 0,
-      remoteFunc: '',
+      dynamic: 0, // 数据获取方式
+      remoteFunc: '',//远程获取数据链接
       dataPath: '',
       remoteValue:'' ,
       remoteLabel:'',
@@ -126,15 +139,14 @@ export const basicsList = [
   },
   {
     type: "checkbox",
-    label: "多选框", 
-    index: 'E',
+    label: "多选框",  
     options: {
       disabled: false, //是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
       defaultValue: [], 
       dynamic: 0,
       tooptip: '', // 提示
-        remoteFunc: '',
+      remoteFunc: '',
       dataPath: '',
       remoteValue:'' ,
       remoteLabel:'',
@@ -161,15 +173,14 @@ export const basicsList = [
   },
   {
     type: "radio", // 表单类型
-    label: "单选框", // 标题文字 
-    index: 'F',
+    label: "单选框", // 标题文字  
     options: {
       disabled: false, //是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
       defaultValue: "", // 默认值 
       dynamic: 0,
       tooptip: '', // 提示
-        remoteFunc: '',
+      remoteFunc: '',
       dataPath: '',
       remoteValue:'' ,
       remoteLabel:'',
@@ -196,8 +207,7 @@ export const basicsList = [
   },
   {
     type: "date", // 表单类型
-    label: "日期选择框", // 标题文字 
-    index: 'G',
+    label: "日期选择框", // 标题文字  
     options: {
       width: "100%", // 宽度
       defaultValue: "", // 默认值，字符串 12:00:00
@@ -223,8 +233,7 @@ export const basicsList = [
   },
   {
     type: "time", // 表单类型
-    label: "时间选择框", // 标题文字 
-    index: 'H',
+    label: "时间选择框", // 标题文字  
     options: {
       width: "100%", // 宽度
       defaultValue: "", // 默认值，字符串 12:00:00
@@ -246,8 +255,7 @@ export const basicsList = [
   },
   {
     type: "datePicker", // 表单类型
-    label: "日期时间选择框", // 标题文字 
-    index: 'DP',
+    label: "日期时间选择框", // 标题文字  
     options: {
       width: "100%", // 宽度
       defaultValue: "", // 默认值，字符串 12:00:00
@@ -273,8 +281,7 @@ export const basicsList = [
   }, 
   {
     type: "rate", // 表单类型
-    label: "评分", // 标题文字 
-    index: 'I',
+    label: "评分", // 标题文字  
     options: {
       defaultValue: 0,
       max: 5, // 最大值
@@ -294,8 +301,7 @@ export const basicsList = [
   },
   {
     type: "slider", // 表单类型
-    label: "滑动输入条", // 标题文字 
-    index: 'J',
+    label: "滑动输入条", // 标题文字  
     options: {
       width: "100%", // 宽度
       defaultValue: 0, // 默认值， 如果range为true的时候，则需要改成数组,如：[12,15]
@@ -320,8 +326,7 @@ export const basicsList = [
   },
  /* {
     type: "uploadFile", // 表单类型
-    label: "上传文件", // 标题文字 
-    index: 'K',
+    label: "上传文件", // 标题文字  
     options: {
       defaultValue: "[]",
       multiple: false,
@@ -345,8 +350,7 @@ export const basicsList = [
   },
   {
     type: "uploadImg",
-    label: "上传图片", 
-    index: 'L',
+    label: "上传图片",  
     options: {
       defaultValue: "[]",
       multiple: false,
@@ -371,8 +375,7 @@ export const basicsList = [
   }, */
   {
     type: "cascader", // 表单类型
-    label: "级联选择器", // 标题文字 
-    index: 'M',
+    label: "级联选择器", // 标题文字  
     options: {
       disabled: false, //是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
@@ -383,7 +386,7 @@ export const basicsList = [
       clearable: false, // 是否显示清除按钮 
       dynamic: 0,
       tooptip: '', // 提示
-        remoteFunc: '',
+      remoteFunc: '',
       dataPath: '',
       remoteValue:'' ,
       remoteLabel:'',
@@ -422,8 +425,7 @@ export const basicsList = [
   
   {
     type: "switch", // 表单类型
-    label: "开关", // 标题文字  
-    index: 'N',
+    label: "开关", // 标题文字   
     options: {
       defaultValue: false, // 默认值 Boolean 类型
       activeText: '',
@@ -443,8 +445,7 @@ export const basicsList = [
   },
   {
     type: "button", // 表单类型
-    label: "按钮", // 标题文字 
-    index: 'O',
+    label: "按钮", // 标题文字  
     options: {
       type: "primary",
       handle: "submit",
@@ -455,10 +456,10 @@ export const basicsList = [
       disabled: false // 是否禁用，false不禁用，true禁用
     },
     key: ""
-  } ,{
+  } ,
+  {
       type: "batch",
-      label: "动态表格", 
-       index: 'P',
+      label: "动态表格",  
       list: [],
       options: {
         scrollY: 0,
@@ -477,8 +478,8 @@ export const basicsList = [
       },
       model: "",
       key: ""
-    }, 
-     {
+  }, 
+  {
       type: "text",
       label: "标签", 
       options: {
@@ -488,8 +489,8 @@ export const basicsList = [
         showRequiredMark: false
       },
       key: ""
-    },
-    {
+  },
+  {
       type: "html",
       label: "HTML", 
       options: {
@@ -498,7 +499,7 @@ export const basicsList = [
         defaultValue: "<strong>HTML</strong>"
       },
       key: ""
-    },
+  },
 ];
  
   

@@ -1,5 +1,5 @@
-// 导入颜色选择器组件
-import components from './vue-drag-formdesign'
+// 导入组件
+import components from './form/src'
  
 
 // 存储组件列表 

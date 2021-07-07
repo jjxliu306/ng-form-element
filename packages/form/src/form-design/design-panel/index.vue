@@ -6,15 +6,14 @@
             :noModel="noModel"
             :hideModel="hideModel"
             :selectForm="selectForm"
-            :startType="startType"
-            ref="KFCP"
+            :startType="startType" 
             @handleSetSelectItem="handleSetSelectItem"> 
 		</FormPanel> 
  
 </template>
 <script>
-import FormPanel from './module/formPanel'
-
+import FormPanel from './item/index'
+import {noModelList} from '../config'
 export default {
 	components:{
 		FormPanel 
@@ -24,17 +23,7 @@ export default {
 			updateTime: 0,
 			hideModel: false, 
 			 
-			noModel: [
-		        "button",
-		        "divider",
-		        "card",
-		        'control',
-		        "grid",
-		        "table",
-		        "alert",
-		        "text",
-		        "html"
-		    ],
+			noModel: noModelList,
 		    startType: "", 
 		    selectItem: {}, 
 		}

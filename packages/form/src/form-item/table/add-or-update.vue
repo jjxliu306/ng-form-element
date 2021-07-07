@@ -104,7 +104,7 @@
 <script>
 //import FormBuild from '../../form-build/index' 
   import cloneDeep from 'lodash/cloneDeep'
-  import BaseItem from '../base-item'
+  import BaseItem from '../base'
   import {dynamicFun} from '../../utils'
   export default {
     name: 'table-add-or-update' ,

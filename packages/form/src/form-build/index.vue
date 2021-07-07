@@ -38,9 +38,9 @@
 </template>
 <script>
  
-import buildBlocks from "./build-block";  
+import buildBlocks from "./build-item";  
 export default {
-  name: "VueDragFormBuild",
+  name: "form-build",
   data() {
     return {
       randomId: '' ,

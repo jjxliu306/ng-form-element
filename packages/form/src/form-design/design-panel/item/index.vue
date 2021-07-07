@@ -107,8 +107,8 @@
 </template>
 <script>
 import draggable from "vuedraggable";
-import layoutItem from "./layerItem";
-  import cloneDeep from 'lodash/cloneDeep'
+import layoutItem from "./layout";
+import cloneDeep from 'lodash/cloneDeep'
 //import "codemirror/mode/javascript/javascript";
 export default {
   name: "FormPanel",

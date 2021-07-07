@@ -341,7 +341,7 @@
           
     />  
     
-    <!-- 上传图片 -->
+    <!-- 上传图片 
     <FileUpload
       v-else-if="record.type === 'uploadImg'"
       :style="`width:${record.options.width}`"
@@ -355,8 +355,8 @@
       :limit="record.options.limit"
       @change="handleChange($event, record.model)"
       
-    />  
-    <!-- 上传文件 --> 
+    />  -->
+    <!-- 上传文件 
     <FileUpload
       v-else-if="record.type === 'uploadFile'"
       :style="`width:${record.options.width}`"
@@ -368,7 +368,7 @@
       :limit="record.options.limit"
       @change="handleChange($event, record.model)"
       
-    />   
+    />  -->  
     <!-- 级联选择器 -->
     <el-cascader 
       v-else-if="record.type === 'cascader'"
@@ -410,11 +410,11 @@
 </template>
 <script> 
 import request from '../utils/request.js'
-import FileUpload from './file-upload'
+//import FileUpload from './file-upload'
 import {dynamicFun} from '../utils' 
-import CustomComponent from "./custom-component";
+import CustomComponent from "./custom";
 export default {
-  name: "VueDragBaseItem",
+  name: "form-item-base",
   data(){
     return{
       loading: false,
@@ -468,7 +468,7 @@ export default {
     } 
   },
   components: {
-     FileUpload,CustomComponent
+     /*FileUpload,*/CustomComponent
   }, 
   computed: {
     sliderMarks() {

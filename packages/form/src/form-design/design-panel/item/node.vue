@@ -30,7 +30,7 @@
 </template>
 <script>
 
-import FormItem from "../../form-item/index";
+import FormItem from "../../../form-item/index";
 export default {
   props: {
     record: {

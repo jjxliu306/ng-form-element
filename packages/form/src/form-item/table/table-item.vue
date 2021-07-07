@@ -22,7 +22,7 @@
   </div>
 </template>
 <script> 
-import BaseItem from '../base-item'
+import BaseItem from '../base'
  
 export default {
   name: "TableItem",

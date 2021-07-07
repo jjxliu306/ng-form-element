@@ -11,7 +11,7 @@
 
     <div class="item-main">
       <FormBuild :formTemplate="jsonData" :models="models" ref="formBuild" />
-      <jsonModel ref="jsonModel" />
+      <PreviewCode ref="previewCode" />
       <renderPreview ref="renderPreview" v-if="renderVisisble"/> 
     </div> 
     <span slot="footer" class="dialog-footer">
@@ -26,9 +26,9 @@
 </template>
 <script> 
 import FormBuild from '../form-build/index'
-import jsonModel from "./json-model";
+import PreviewCode from "./preview-code";
 
-import renderPreview from "../render/preview";
+import renderPreview from "./render";
 export default {
   name: "FormPreview",
   data() {
@@ -41,7 +41,7 @@ export default {
     };
   },
   components: {
-    jsonModel,FormBuild,renderPreview
+    PreviewCode,FormBuild,renderPreview
   },
   methods: {
     
@@ -49,8 +49,8 @@ export default {
       this.$refs.formBuild.getData()
         .then(res => { 
 
-          this.$refs.jsonModel.jsonData = res;
-          this.$refs.jsonModel.visible = true;
+          this.$refs.previewCode.jsonData = res;
+          this.$refs.previewCode.visible = true;
         })
         .catch(err => {
           console.log(err, "获取数据失败");
@@ -92,10 +92,5 @@ export default {
     padding: 0 20px 0 20px;
     overflow: auto;
    
-}
-
-
-
-
-
+} 
 </style>

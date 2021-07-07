@@ -3,7 +3,7 @@
 
     <el-tabs v-model="activeName" style="padding: 20px;" @tab-click="changeTab">
         <el-tab-pane label="表单绘制" name="first">
-            <VueDragFormdesign ref="formDesign" :custom-components="customComponents" :config="formConfig">
+            <form-design ref="formDesign" :custom-components="customComponents" :config="formConfig">
                 <template slot="controlButton" >
                     <el-button   type="text" size="medium"  @click="initDemo(1)">示例1</el-button>
                     <el-button   type="text" size="medium"  @click="initDemo(2)">示例2</el-button>
@@ -18,24 +18,24 @@
                 </template>
                 <template slot="extend-tab" slot-scope="{data }"> 
                   <el-tab-pane label="扩展属性" name="select"> 
-                    扩展测试插槽-加tab:: {{data}} 
+                    扩展测试插槽-加tab::  (组件数量):: {{data.list.length}}
                   </el-tab-pane>  
                 </template> 
                 <template slot="form-extend-properties" slot-scope="{ data}">  
                     扩展测试插槽(组件数量):: {{data.list.length}}
                 </template> 
 
-            </VueDragFormdesign> 
+            </form-design> 
         </el-tab-pane>
         <el-tab-pane label="表单查看" name="second">
             <el-alert
             title="测试表单预览"
             type="warning">
           </el-alert>
-            <VueDragFormBuild ref="formbuild" :formTemplate="formTemplate" :models="models" :custom-components="customComponents" :config="formConfig"/>
+            <form-build ref="formbuild" :formTemplate="formTemplate" :models="models" :custom-components="customComponents" :config="formConfig"/>
 
-             <el-button   type="primary" size="medium"  @click="validator()">验证</el-button>
-             <el-button   type="primary" size="medium"  @click="getData()">获取数据</el-button>
+             <el-button   type="primary" size="mini"  @click="validator()">验证</el-button>
+             <el-button   type="primary" size="mini"  @click="getData()">获取数据</el-button>
         </el-tab-pane> 
       </el-tabs>
 
