@@ -2,7 +2,7 @@
 import FormDesign from './form-design/index.vue'
 import FormBuild from './form-build/index.vue'
 import FormItem from './form-item/index.vue' 
-import BaseItem from './form-item/base.vue' 
+import FormItemBase from './form-item/base.vue' 
 // 为组件提供 install 安装方法，供按需引入
 FormDesign.install = function (Vue) { 
   Vue.component(FormDesign.name, FormDesign)
@@ -16,9 +16,9 @@ FormItem.install = function (Vue) {
   Vue.component(FormItem.name, FormItem)
 }
 
-BaseItem.install = function (Vue) { 
-  Vue.component(BaseItem.name, BaseItem)
+FormItemBase.install = function (Vue) { 
+  Vue.component(FormItemBase.name, FormItemBase)
 }
 // 默认导出组件
-export default [ FormDesign,FormBuild,FormItem,BaseItem]
+export default [ FormDesign,FormBuild,FormItem,FormItemBase]
  
