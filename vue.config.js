@@ -16,7 +16,7 @@ module.exports = {
           "https://cdn.jsdelivr.net/npm/vue-router@3.0.3/dist/vue-router.min.js",
           "https://cdn.jsdelivr.net/npm/vuex@3.1.3/dist/vuex.min.js",
           "https://cdn.jsdelivr.net/npm/element-ui@2.13.2/lib/index.js",
-          "https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js",
+          
           "https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js" 
         ]
  
@@ -30,7 +30,7 @@ module.exports = {
       vue: "Vue",
       "vue-router": "VueRouter",
       vuex: "Vuex",
-      axios: "axios",
+      
       moment: "moment" 
     }
   }, 

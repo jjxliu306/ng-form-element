@@ -285,37 +285,6 @@ export default {
 </script>
 
 <style > 
-.form-design {
-  height: 100%;
-  width: 100%;
-  /*.form-contains {
-    height: 100%;
-    width: 100%;
-    .el-card__header {
 
-      padding: 5px;
-      line-height: 30px;
-
-      .clearfix {
-        line-height: 30px;
-
-        .el-card__header {
-          padding: 5px;
-        }
-      }
-    }
-  }
-  */
-}
-
-.form-properties {
-  height: 100%;
-  width: 100%;
-}
-
-.height-all {
-  height: 100%;
-}
- 
 
 </style>

@@ -1,6 +1,6 @@
 // 导入组件
 import components from './form/src'
- 
+require('./form/src/form-design.css')
 
 // 存储组件列表 
  
