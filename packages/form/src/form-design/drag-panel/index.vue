@@ -161,11 +161,4 @@ export default {
 	}
 }
 
-</script>
-<style >
-.form-item{ 
-	height: 100%; 
-
-}
-
-</style>
+</script> 

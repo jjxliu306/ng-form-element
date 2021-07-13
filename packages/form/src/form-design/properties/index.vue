@@ -67,10 +67,4 @@ export default {
 
 	}
 }
-</script>
-<style  >
-.form-properties{ 
-	height: 100%; 
-}
-
-</style>
+</script> 

@@ -62,9 +62,3 @@ export default {
 	}
 }
 </script>
-<style>
-.form-contains{ 
-	height: 100%; 
-}
-
-</style>

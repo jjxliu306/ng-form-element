@@ -74,17 +74,4 @@ export default {
     }
   }
 };
-</script>
-<style scoped>
- .change-col-box > div {
-  padding: 5px;
-  display: flex;
-}
-.change-col-box > div > label {
-  text-align: right;
-  padding-right: 8px;
-  display: block;
-  font-size: 16px;
-  width: 45px;
-}
-</style>
+</script> 

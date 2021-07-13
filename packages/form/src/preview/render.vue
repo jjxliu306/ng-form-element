@@ -126,13 +126,3 @@ export default {
   }
 };
 </script>
-<style  >
-.form-render-preview {
-  height: 600px;
-}
-.form-render-preview .el-tab-pane {
-  height: 500px;
-  overflow: auto;
-}
-
-</style>

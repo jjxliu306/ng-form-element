@@ -331,15 +331,3 @@ export default {
   }
 };
 </script>
-<style   scoped>
-.slider-box {
-  display: flex;
-}
-.slider-box > .slider {
-  flex: 1;
-  margin-right: 16px;
-}
-.slider-box > .number {
-  width: 70px;
-}
-</style>
