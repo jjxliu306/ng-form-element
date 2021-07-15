@@ -1,5 +1,5 @@
 # vue-form-design 致力打造开源最强vue动态表单组件
-VUE-FORM-DESIGN
+FORM-DESIGN-ELEMENT
 
 ![组件一览](https://s3.ax1x.com/2020/12/22/rr6Dw6.png "11.png")
  
@@ -88,32 +88,32 @@ new Vue({
 
 ## 安装
 ```
-npm install --save  vue-drag-formdesign 
+npm install --save  form-design-element 
 
 ```
 ## 引用
 ```
  // 导入组件库
-import VueDragFormdesign from 'vue-drag-formdesign'
-import 'vue-drag-formdesign/lib/vue-drag-formdesign.css'
+import FormDesign from 'form-design-element'
+import 'form-design-element/lib/form-design-element.css'
 ```
 
 ## 注册
 ``` 
 // 注册组件库
-Vue.use(VueDragFormdesign) 
+Vue.use(FormDesign) 
 
 ```
 
 ### 页面引用
 ```
 <div id="app"> 
-    <VueDragFormdesign  />
+    <form-design  />
 </div>
 ```
  
 ### API 说明
-# 1. 表单绘制组件  VueDragFormdesign 
+# 1. 表单绘制组件  FormDesign 
 
 方法:
 
@@ -147,7 +147,7 @@ Vue.use(VueDragFormdesign)
 
  插槽示例:
  ```
-  <VueDragFormdesign >
+  <form-design >
         <template slot="controlButton" >
             <el-button   type="text" size="medium"  @click="initDemo(1)">示例1</el-button>
             <el-button   type="text" size="medium"  @click="initDemo(2)">示例2</el-button>
@@ -156,10 +156,10 @@ Vue.use(VueDragFormdesign)
         <template  slot="formName">
             <span> vue-drag-formdesign 示例 </span>
         </template>
-    </VueDragFormdesign> 
+    </form-design> 
  ```
 
-# 2. 表单查看/填报组件  VueDragFormBuild 
+# 2. 表单查看/填报组件  FormBuild 
 
 方法:
 
@@ -187,7 +187,7 @@ Vue.use(VueDragFormdesign)
  ```
     <template>
       <div id="app"> 
-         <VueDragFormBuild  :formTemplate="formTemplate" :models="models"/>
+         <form-build  :formTemplate="formTemplate" :models="models"/>
       </div>
     </template>
     <script>
@@ -290,7 +290,7 @@ export default {
 ```
 <template>
   <div id="app">
-    <VueDragFormdesign ref="formDesign" :custom-components="customComponents" > 
+    <form-design ref="formDesign" :custom-components="customComponents" > 
       <!-- 自定义属性配置 -->
       <template slot="custom-properties" slot-scope="{selectItem}">
         <Properties :selectItem="selectItem"/>
@@ -298,7 +298,7 @@ export default {
       <template  slot="formName">
         <span> vue-drag-formdesign 示例 </span>
       </template>
-    </VueDragFormdesign>   
+    </form-design>   
   </div>
 </template> 
 <script>
