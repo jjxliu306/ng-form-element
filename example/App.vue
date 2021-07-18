@@ -14,7 +14,7 @@
                      <Properties :selectItem="selectItem"/>
                 </template> 
                 <template  slot="formName">
-                    <span> vue-drag-formdesign 示例 </span>
+                    <span> form-design 示例 </span>
                 </template>
                 <template slot="extend-tab" slot-scope="{data }"> 
                   <el-tab-pane label="扩展属性" name="select"> 
