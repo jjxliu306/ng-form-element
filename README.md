@@ -7,6 +7,17 @@ FORM-DESIGN-ELEMENT
  http://jjxliu306.gitee.io/vue-form-design/
 
 
+**仓库更名说明** 
+
+- 项目发布仓库由之前 **vue-drag-formdesign** 更名为 **form-design-element**。
+
+- 表单绘制组件由**vue-drag-formdesign** 改为 **form-design**
+
+- 表单填报组件由**vue-drag-formbuild**  改为 **form-build**
+
+- 为什么叫form-design-element，卖个关子，后续揭晓。
+
+
 
 ##示例
 
