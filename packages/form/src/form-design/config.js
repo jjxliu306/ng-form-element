@@ -11,11 +11,11 @@ export const noModelList = [
             'control',
             "grid",
             "table",
-          //  "alert",
+            "alert",
             "text",
             "html"
 ]
-
+ 
 /*
  * author lyf
  * date 2020-07-06
@@ -298,6 +298,22 @@ export const basicsList = [
         message: "必填项"
       }
     ]
+  },
+  {
+    type: "alert", // 提示
+    label: "提示", // 标题 
+    options: { 
+      tooptip: '',  // 提示 
+      title: '' ,  //title
+      type: 'info', //类型
+      description: '',
+      closable: true , // 是否可关闭
+      center: true , // 是否居中
+      showIcon: false, //  是否西安市图标
+      effect: 'light' , // 主题 light/dark
+      closeText: '' , //关闭按钮自定义文本 
+    }, 
+    key: "" 
   },
   {
     type: "slider", // 表单类型

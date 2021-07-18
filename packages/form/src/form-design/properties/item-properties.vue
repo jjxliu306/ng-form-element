@@ -14,7 +14,7 @@
           <el-input v-model="selectItem.label" placeholder="请输入" />
         </el-form-item>
        
-        <el-form-item  label="数据字段" v-if="!hideModel && !['table','grid','divider','text','label','html','button'].includes(selectItem.type)" >
+        <el-form-item  label="数据字段" v-if="!hideModel && !noModel.includes(selectItem.type)" >
           <el-input v-model="selectItem.model" placeholder="请输入" :disabled="(selectItem.item != undefined && selectItem.item.id != undefined) "/>
         </el-form-item>
          <el-divider ></el-divider>
@@ -667,6 +667,45 @@
         </template> 
         <!-- 标签  end -->
 
+         <!-- 标签 start-->
+        <template v-if="selectItem.type == 'alert'"> 
+          <!-- 按钮类型 -->
+          <el-form-item  label="内容">
+             <el-input type="textarea" v-model="options.title" :rows="4" placeholder="提示内容"/>
+          </el-form-item> 
+          <el-form-item  label="辅助文字">
+             <el-input type="textarea" v-model="options.description" :rows="4" placeholder="辅助文字"/>
+          </el-form-item> 
+          <el-form-item  label="类型">
+            <el-radio-group v-model="options.type">
+              <el-radio-button label="success">success</el-radio-button>
+              <el-radio-button label="warning">warning</el-radio-button> 
+              <el-radio-button label="info">info</el-radio-button>
+              <el-radio-button label="error">error</el-radio-button> 
+            </el-radio-group>
+          </el-form-item> 
+          <el-form-item  label="主题">
+            <el-radio-group v-model="options.effect">
+              <el-radio-button label="light">light</el-radio-button>
+              <el-radio-button label="dark">dark</el-radio-button> 
+            </el-radio-group>
+          </el-form-item> 
+          <el-divider ></el-divider>
+          <el-form-item   label="操作属性" >
+            <el-checkbox v-model="options.closable"  label="可关闭" /> 
+            <el-checkbox v-model="options.center" label="居中" />
+             <el-checkbox v-model="options.showIcon" label="显示图标" />
+          </el-form-item> 
+           <el-form-item v-if="options.closable" label="关闭按钮文本">
+            <el-input  v-model="options.closeText"  placeholder="不需要则不填"/>
+          </el-form-item> 
+          <el-divider ></el-divider>
+          <el-form-item   label="动态必选" >
+           <el-input type="textarea" v-model="options.showRequiredMarkScript" :rows="4" placeholder="请输入表达式或者动态函数,数据实体以$标识"/>
+          </el-form-item> 
+        </template> 
+        <!-- 标签  end -->
+
         <!-- html start-->
         <template v-if="selectItem.type == 'html'">  
           <el-form-item label="默认值">
@@ -869,11 +908,13 @@
 <script> 
 import Option from "./option";
 import Linkage from './linkage'
+import {noModelList} from '../config'
 export default {
   name: "formItemProperties",
   data() {
     return {
-      options: {}
+      options: {},
+      noModel : noModelList
     };
   },
   watch: {

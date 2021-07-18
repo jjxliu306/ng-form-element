@@ -86,6 +86,19 @@
         v-text="record.label"
       ></label>
   </div>
+   <!-- 提示 -->
+  <div class="form-label" v-else-if="record.type === 'alert' && dynamicVisibleItem " :style="{ textAlign: record.options.textAlign }" > 
+       <el-alert
+        :title="record.options.title"
+        :type="record.options.type"
+        :description="record.options.description"
+        :effect="record.options.effect"
+        :closable="record.options.closable"
+        :center="record.options.center"
+         :close-text="record.options.closeText"
+        :show-icon="record.options.showIcon">
+      </el-alert>
+  </div>
   <!-- html -->
   <div
     :id="record.model" :name="record.model"
