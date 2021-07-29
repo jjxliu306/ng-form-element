@@ -1,11 +1,11 @@
 {
-  "name": "form-design-element",
+  "name": "ng-form-element",
   "version": "1.0.0",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name form-design-element --dest lib packages/index.js"
+    "lib": "vue-cli-service build --target lib --name ng-form-element --dest lib packages/index.js"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -51,25 +51,27 @@
     "not dead"
   ],
   "private": false,
-  "description": "form-design-element",
-  "main": "lib/form-design-element.umd.min.js",
+  "description": "ng-form-element",
+  "main": "lib/ng-form-element.umd.min.js",
   "directories": {
     "example": "example",
     "lib": "lib"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitee.com/jjxliu306/form-design-element.git"
+    "url": "git+https://gitee.com/jjxliu306/vue-form-design.git"
   },
   "author": "liuyufeng",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitee.com/jjxliu306/form-design-element/issues"
+    "url": "https://gitee.com/jjxliu306/vue-form-design/issues"
   },
-  "homepage": "https://gitee.com/jjxliu306/form-design-element#readme",
+  "homepage": "https://gitee.com/jjxliu306/vue-form-design#readme",
   "keywords": [
+    "ng-form"
+    "ng-form-element",
     "vue-form-design",
-    "form-design-element",
+    "form-build-element",
     "formdesign",
     "动态表单",
     "表单"

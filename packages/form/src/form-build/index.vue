@@ -40,7 +40,7 @@
  
 import buildBlocks from "./build-item";  
 export default {
-  name: "form-build",
+  name: "ng-form-build",
   data() {
     return {
       randomId: '' ,

@@ -38,7 +38,7 @@
 <script> 
 import FormBuild from '../form-build/index' 
 export default {
-  name: "FormPreview",
+  name: "ng-form-render",
   data() {
     return {
       templdateText: '' ,

@@ -1,24 +1,24 @@
 // 导入组件，组件必须声明 name
-import FormDesign from './form-design/index.vue'
-import FormBuild from './form-build/index.vue'
-import FormItem from './form-item/index.vue' 
-import FormItemBase from './form-item/base.vue' 
+import NgFormDesign from './form-design/index.vue'
+import NgFormBuild from './form-build/index.vue'
+import NgFormItem from './form-item/index.vue' 
+import NgFormItemBase from './form-item/base.vue' 
 // 为组件提供 install 安装方法，供按需引入
-FormDesign.install = function (Vue) { 
-  Vue.component(FormDesign.name, FormDesign)
+NgFormDesign.install = function (Vue) { 
+  Vue.component(NgFormDesign.name, NgFormDesign)
 }
 // 为组件提供 install 安装方法，供按需引入
-FormBuild.install = function (Vue) { 
-  Vue.component(FormBuild.name, FormBuild)
+NgFormBuild.install = function (Vue) { 
+  Vue.component(NgFormBuild.name, NgFormBuild)
 }
  
-FormItem.install = function (Vue) { 
-  Vue.component(FormItem.name, FormItem)
+NgFormItem.install = function (Vue) { 
+  Vue.component(NgFormItem.name, NgFormItem)
 }
 
-FormItemBase.install = function (Vue) { 
-  Vue.component(FormItemBase.name, FormItemBase)
+NgFormItemBase.install = function (Vue) { 
+  Vue.component(NgFormItemBase.name, NgFormItemBase)
 }
 // 默认导出组件
-export default [ FormDesign,FormBuild,FormItem,FormItemBase]
+export default [ NgFormDesign,NgFormBuild,NgFormItem,NgFormItemBase]
  

@@ -414,7 +414,7 @@ import request from '../utils/request.js'
 import {dynamicFun} from '../utils' 
 import CustomComponent from "./custom";
 export default {
-  name: "form-item-base",
+  name: "ng-form-item-base",
   data(){
     return{
       loading: false,

@@ -126,7 +126,7 @@ import BaseItem from './base'
 import {dynamicFun} from '../utils'
 
 export default {
-  name: "form-item", 
+  name: "ng-form-item", 
   data(){  
     return{
       checkList: [] ,

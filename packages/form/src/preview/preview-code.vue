@@ -27,7 +27,7 @@
 <script> 
  
 export default {
-  name: "JsonModal",
+  name: "ng-form-code",
   data() {
     return {
       visible: false,

@@ -30,7 +30,7 @@ import PreviewCode from "./preview-code";
 
 import renderPreview from "./render";
 export default {
-  name: "FormPreview",
+  name: "ng-form-preview",
   data() {
     return {
       visible: false,

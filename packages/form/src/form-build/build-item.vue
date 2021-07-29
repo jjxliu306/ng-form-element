@@ -169,7 +169,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import  FormItem  from "../form-item";
 import {dynamicFun} from '../utils'
 export default {
-  name: "buildBlocks",
+  name: "ng-form-build-item",
   data() {
     return {
       menuTop: 0,

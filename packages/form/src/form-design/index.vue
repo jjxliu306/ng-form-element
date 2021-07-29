@@ -97,7 +97,7 @@ import previewCode from "../preview/preview-code";
 
 import renderPreview from "../preview/render";
 export default {
-  name: 'form-design',
+  name: 'ng-form-design',
   data(){
     return {
       previewVisible: false , 
