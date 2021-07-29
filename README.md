@@ -9,13 +9,12 @@ FORM-DESIGN-ELEMENT
 
 **仓库更名说明** 
 
-- 项目发布仓库由之前 **vue-drag-formdesign** 更名为 **form-design-element**。
+- 项目发布仓库由之前 **vue-drag-formdesign** 更名为 **ng-form-element**。
 
-- 表单绘制组件由**vue-drag-formdesign** 改为 **form-design**
+- 表单绘制组件由**vue-drag-formdesign** 改为 **ng-form-design**
 
-- 表单填报组件由**vue-drag-formbuild**  改为 **form-build**
+- 表单填报组件由**vue-drag-formbuild**  改为 **ng-form-build**
 
-- 为什么叫form-design-element，卖个关子，后续揭晓。
 
 
 
@@ -50,21 +49,23 @@ FORM-DESIGN-ELEMENT
  
 
 ## 组件
-- FormDesign 表单设计器（基于可视化操作快速设计出表单页面，生成配置json或页面）
-- FormBuild 表单构建器（根据设计器中获取的配置json数据，快速构建出表单页面，添加readonly属性后展现预览表单）
+- ng-form-design 表单设计器（基于可视化操作快速设计出表单页面，生成配置json或页面）
+- ng-form-build 表单构建器（根据设计器中获取的配置json数据，快速构建出表单页面，添加readonly属性后展现预览表单）
 
+
+ <!--
 ## CDN 直接使用
-
+ 
 ```
   <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>vue-drag-formdesign</title> 
-<!-- 引入样式 -->
+  引入样式  
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jjxliu306/vue-form-design@2.0.10/lib/vue-drag-formdesign.css">
-<!-- 引入组件库 -->
+  引入组件库  
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/jjxliu306/vue-form-design@2.0.10/lib/vue-drag-formdesign.umd.min.js"></script>
@@ -94,37 +95,37 @@ new Vue({
 ```
 
 **详情可参考项目中 form-cdn.html**
-
-
+ -->
+</div>
 
 ## 安装
 ```
-npm install --save  form-design-element 
+npm install --save  ng-form-element
 
 ```
 ## 引用
 ```
  // 导入组件库
-import FormDesign from 'form-design-element'
-import 'form-design-element/lib/form-design-element.css'
+import NgFormElement  from 'ng-form-element'
+import 'ng-form-element/lib/ng-form-element.css'
 ```
 
 ## 注册
 ``` 
 // 注册组件库
-Vue.use(FormDesign) 
+Vue.use(NgFormElement) 
 
 ```
 
 ### 页面引用
 ```
 <div id="app"> 
-    <form-design  />
+    <ng-form-design  />
 </div>
 ```
  
 ### API 说明
-# 1. 表单绘制组件  FormDesign 
+# 1. 表单绘制组件  ng-form-design 
 
 方法:
 
@@ -158,7 +159,7 @@ Vue.use(FormDesign)
 
  插槽示例:
  ```
-  <form-design >
+  <ng-form-design >
         <template slot="controlButton" >
             <el-button   type="text" size="medium"  @click="initDemo(1)">示例1</el-button>
             <el-button   type="text" size="medium"  @click="initDemo(2)">示例2</el-button>
@@ -167,10 +168,10 @@ Vue.use(FormDesign)
         <template  slot="formName">
             <span> vue-drag-formdesign 示例 </span>
         </template>
-    </form-design> 
+    </ng-form-design> 
  ```
 
-# 2. 表单查看/填报组件  FormBuild 
+# 2. 表单查看/填报组件  ng-form-build 
 
 方法:
 
@@ -198,7 +199,7 @@ Vue.use(FormDesign)
  ```
     <template>
       <div id="app"> 
-         <form-build  :formTemplate="formTemplate" :models="models"/>
+         <ng-form-build  :formTemplate="formTemplate" :models="models"/>
       </div>
     </template>
     <script>
@@ -301,7 +302,7 @@ export default {
 ```
 <template>
   <div id="app">
-    <form-design ref="formDesign" :custom-components="customComponents" > 
+    <ng-form-design ref="formDesign" :custom-components="customComponents" > 
       <!-- 自定义属性配置 -->
       <template slot="custom-properties" slot-scope="{selectItem}">
         <Properties :selectItem="selectItem"/>
@@ -309,7 +310,7 @@ export default {
       <template  slot="formName">
         <span> vue-drag-formdesign 示例 </span>
       </template>
-    </form-design>   
+    </ng-form-design>   
   </div>
 </template> 
 <script>
