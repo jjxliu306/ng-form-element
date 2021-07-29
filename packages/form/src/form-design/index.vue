@@ -49,19 +49,9 @@
       <Preview  v-if="previewVisible" ref="preview" />
        
       <renderPreview ref="renderPreview" v-if="renderVisisble"/>            
-      <el-dialog
-        title="模板数据" 
-        :visible.sync="modelVisible"
-        :append-to-body="true"
-        style="top:20px;"
-        width="850px"
-      >
-        <previewCode :editorJson="modelJson" />
-        <span slot="footer" class="dialog-footer">
-          <el-button size="mini" @click="modelVisible = false">取 消</el-button>
-          <el-button  size="mini" type="primary" @click="modelVisible = false">确 定</el-button>
-        </span>
-      </el-dialog>
+     
+      <previewCode ref="model" v-if="modelVisible" />
+          
 
       <el-dialog
         title="模板数据" 
@@ -209,8 +199,7 @@ export default {
     }
   },
   methods: {
-    changeSelectItem(item) {
-      console.log('changeSelectItem' , item)
+    changeSelectItem(item) { 
       this.selectItem = item
     },
     handlePreview () { 
@@ -276,8 +265,11 @@ export default {
     },
     handleGenerateJson () { 
 
-      this.modelJson =  JSON.stringify(this.data, null, "\t"); //JSON.stringify(this.data)
-      this.modelVisible = true
+      this.modelVisible = true 
+      this.$nextTick(()=>{
+        this.$refs.model.init(this.data)
+      })
+ 
  
     }
   }

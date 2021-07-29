@@ -27,25 +27,27 @@
 <script> 
  
 export default {
-  name: "ng-form-code",
+  name: "ng-preview-code",
   data() {
     return {
       visible: false,
       editorJson: "",
+      fileFormat: 'json',
       jsonData: {}
     };
   },
-  watch: {
-    visible(val) {
-      if (val) { 
-        this.editorJson = JSON.stringify(this.jsonData, null, "\t");
-      }
-    }
-  },
+  
   components: {
      
   },
   methods: {
+    init(model){
+      this.visible = true 
+      this.$nextTick(()=>{
+        this.editorJson = JSON.stringify(model, null, "\t");
+      })
+       
+    },
     handleCancel() {
       this.visible = false;
     },
