@@ -887,12 +887,43 @@ export default {
     }
 
 
-      // 2021-03-16 lyf 判断当前没有值并且类型是input 或者textarea 给初始化model
+    // 2021-03-16 lyf 判断当前没有值并且类型是input 或者textarea 给初始化model
+    // 2021-08-05 lyf 为不同的组件初始化不同类型的初始值，防止类型不同后端解析异常
+    if(!this.isDragPanel) {
+      if(!Object.prototype.hasOwnProperty.call(this.models,this.record.model)){
+        // 判断数据格式 刷数据
+        if(this.record.type == 'checkbox' ||  this.record.type == 'cascader'
+          || (this.record.type == 'select' && this.record.options.multiple)) {
+          // 多选
+          this.$set(this.models , this.record.model , [])
+        } else if(this.record.type == 'number') {
+          // 数字
+          this.$set(this.models , this.record.model , null)
+        } else {
+          // 字符串
+          this.$set(this.models , this.record.model , '')
+        } 
+      } else if(this.record.type == 'checkbox' ||  this.record.type == 'cascader'
+          || (this.record.type == 'select' && this.record.options.multiple)){
+        // 获取数据 校验格式 
+        const mv = this.models[this.record.model]
+         
 
-    if(!this.isDragPanel && !Object.prototype.hasOwnProperty.call(this.models, this.record.model)  ) {
-      this.$set(this.models , this.record.model , '')
-       
+        if(typeof mv == 'string') {
+          if(mv == "") {
+            this.$set(this.models , this.record.model , [])
+          } else {
+            const mvs = mv.split(',')
+            this.$set(this.models , this.record.model , mvs)
+          }
+          
+        }
+
+      }
+
     }
+
+      
   
  
   }
