@@ -7,6 +7,10 @@ FORM-DESIGN-ELEMENT
  http://jjxliu306.gitee.io/vue-form-design/
 
 
+ **iview版本地址**
+ https://gitee.com/jjxliu306/ng-form-iview
+
+
 **仓库更名说明** 
 
 - 项目发布仓库由之前 **vue-drag-formdesign** 更名为 **ng-form-element**。
