@@ -863,7 +863,7 @@ export default {
           this.record.type == 'select' && this.record.options.multiple 
         )) {
         if(!(modelValue instanceof Array)){
-          modelValue = [modelValue]
+          modelValue = modelValue.split(',')
           this.$set(this.models , this.record.model , modelValue)
         }
   
