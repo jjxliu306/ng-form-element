@@ -17,7 +17,7 @@
       :key="randomId"
     > 
     <template >
-      <buildBlocks
+      <ng-form-build-item
         ref="buildBlocks"
         @handleReset="reset"
         @forceUpdate="forceUpdate"
@@ -38,7 +38,7 @@
 </template>
 <script>
  
-import buildBlocks from "./build-item";  
+import NgFormBuildItem from "./build-item";  
 export default {
   name: "ng-form-build",
   data() {
@@ -88,7 +88,7 @@ export default {
     
   },
   components: {
-    buildBlocks
+    NgFormBuildItem
   },
   methods: { 
     reset() {
