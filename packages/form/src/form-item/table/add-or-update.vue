@@ -161,14 +161,17 @@
         if(this.renderPreview) {
           return []
         }
-        const rules = record.rules  
-
+        const rules = record.rules   
         // 循环判断
         for(var i = 0 ; i < rules.length ; i++){
           const t = rules[i]
            if(t.vtype == 1 || t.vtype == 2){ 
             t.validator =  this.validatorFiled 
           } 
+ 
+          if(t.required && (record.type == 'input' || record.type == 'textarea') ){
+            t.whitespace = true
+          }
 
           // 判断trigger
           if(!t.trigger) {

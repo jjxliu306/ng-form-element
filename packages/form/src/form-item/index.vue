@@ -234,6 +234,11 @@ export default {
         const t = rules[i]
         
         t.required = isRequire
+        // 2021-08-12 lyf 针对必填而且是文本输入的组件增加纯空格校验
+        if(t.required && (this.record.type == 'input' || this.record.type == 'textarea') ){
+          t.whitespace = true
+        }
+
         if(t.vtype == 1 || t.vtype == 2){ 
           t.validator =  this.validatorFiled 
         } 
