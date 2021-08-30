@@ -33,8 +33,7 @@
       <div  >
         <el-tree
           :data="value ? value : []"
-          show-checkbox
-          node-key="value"
+          show-checkbox 
           default-expand-all
           :expand-on-click-node="false">
           <span class="custom-tree-node" slot-scope="{ node, data }">
@@ -180,7 +179,7 @@ export default {
       );
     },
     append(data) {
-        const newChild = { value: '', label: '', children: [] };
+        const newChild = { value: '', label: '' };
         if (!data.children) {
           this.$set(data, 'children', []);
         }

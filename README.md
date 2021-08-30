@@ -1,5 +1,5 @@
-# vue-form-design 致力打造开源最强vue动态表单组件
-FORM-DESIGN-ELEMENT
+# ng-form 致力打造开源最强vue动态表单组件
+NG-FORM-ELEMENT
 
 ![组件一览](https://s3.ax1x.com/2020/12/22/rr6Dw6.png "11.png")
  
@@ -133,15 +133,15 @@ Vue.use(NgFormElement)
 
 方法:
 
-|  方法名称 | 参数| 说明  |
-|-----------|--------|-------------------------|
-| initModel | json |  初始化动态表单内容，参数为动态表单json模板|
-| getModel| N/A|  返回当前正在编辑得动态表单信息|
+方法名称 | 参数| 说明   
+- | :-: | -:
+ initModel | json |  初始化动态表单内容，参数为动态表单json模板
+ getModel| N/A|  返回当前正在编辑得动态表单信息
 
 属性: 
 
 | 属性名 | 说明 | 格式| 默认值 | 
-|-----------|------------------------------|--------|----------|
+|----|--------------|---|---|
 | customComponents |   自定义组件的配置,具体参加最下方自定义组件示例中的格式 | array | N/A  | 
 | config|表单的一些基础配置，主要为http的一些参数,譬如在http请求中给header增加参数：config: { httpConfig: (config)=>{          config.headers['aaaa'] = 'bbbb'          return config  } }| object |  N/A  |
 | clear|  是否显示面板上清除按钮 |boolean | true |
