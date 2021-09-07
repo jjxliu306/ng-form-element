@@ -62,7 +62,7 @@
             :renderPreview="renderPreview"
             
             :record="item"
-            :disabled="disabled || item.options.disabled"
+            :disabled="disabled || (item.options.disabled && !item.options.dynamicDisabled )"
 
             /> 
         </el-tooltip>  
@@ -73,7 +73,7 @@
             :renderPreview="renderPreview"
             
             :record="item"
-            :disabled="disabled || item.options.disabled"
+            :disabled="disabled || (item.options.disabled && !item.options.dynamicDisabled )"
 
             /> 
       </el-form-item>
