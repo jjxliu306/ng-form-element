@@ -122,9 +122,10 @@
               <el-radio-button :label="0">静态数据</el-radio-button>
               <el-radio-button :label="1">动态数据</el-radio-button>
             
-            </el-radio-group>
-   
-            <!-- 远程赋值配置 --> 
+            </el-radio-group> 
+          </el-form-item>
+          <el-form-item label-width="0px" >
+              <!-- 远程赋值配置 --> 
             <div v-if="options.dynamic == 1">
                 <el-input size="mini" v-model="options.remoteFunc">
                   <template slot="prepend">远端方法</template>
@@ -199,10 +200,10 @@
           <el-form-item  label="选项配置" >
             <el-radio-group   v-model="options.dynamic">
               <el-radio-button :label="0">静态数据</el-radio-button>
-              <el-radio-button :label="1">动态数据</el-radio-button>
-             
-            </el-radio-group>
-   
+              <el-radio-button :label="1">动态数据</el-radio-button> 
+            </el-radio-group> 
+          </el-form-item>
+          <el-form-item label-width="0px" >
             <!-- 远程赋值配置 --> 
             <div v-if="options.dynamic == 1">
                 <el-input size="mini" v-model="options.remoteFunc">
@@ -217,9 +218,7 @@
                 <el-input size="mini" v-model="options.remoteLabel">
                   <template slot="prepend">标签字段</template>
                 </el-input> 
-            </div> 
-           
-
+            </div>  
             <!-- 本地赋值 -->
             <Option v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
           </el-form-item>
@@ -265,9 +264,10 @@
               <el-radio-button :label="0">静态数据</el-radio-button>
               <el-radio-button :label="1">动态数据</el-radio-button>
              
-            </el-radio-group>
-   
-            <!-- 远程赋值配置 --> 
+            </el-radio-group> 
+          </el-form-item>
+          <el-form-item label-width="0px" >
+             <!-- 远程赋值配置 --> 
             <div v-if="options.dynamic == 1">
                 <el-input size="mini" v-model="options.remoteFunc">
                   <template slot="prepend">远端方法</template>
@@ -281,13 +281,10 @@
                 <el-input size="mini" v-model="options.remoteLabel">
                   <template slot="prepend">标签字段</template>
                 </el-input> 
-            </div> 
-           
-
+            </div>  
             <!-- 本地赋值 -->
-            <Option v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
+            <Option v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" /> 
           </el-form-item>
-
            <el-divider ></el-divider>
           <!-- 联动配置 2021-03-12 lyf -->
           <el-form-item label="联动关联">
@@ -486,8 +483,9 @@
             <el-radio-group   v-model="options.dynamic">
               <el-radio-button :label="0">静态数据</el-radio-button>
               <el-radio-button :label="1">动态数据</el-radio-button> 
-            </el-radio-group>
-   
+            </el-radio-group> 
+          </el-form-item>
+          <el-form-item label-width="0px" > 
             <!-- 远程赋值配置 --> 
             <div v-if="options.dynamic == 1">
                 <el-input size="mini" v-model="options.remoteFunc">
@@ -505,8 +503,7 @@
                 <el-input size="mini" v-model="options.remoteChildren" >
                   <template slot="prepend">下级字段</template>
                 </el-input>
-            </div>  
-
+            </div>   
             <!-- 本地赋值 -->
             <Option v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
           </el-form-item>
