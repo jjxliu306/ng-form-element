@@ -10,6 +10,9 @@ NG-FORM-ELEMENT
  **iview版本地址**
  https://gitee.com/jjxliu306/ng-form-iview
 
+  **element-plus版本地址**
+ https://gitee.com/jjxliu306/ng-form-elementplus
+
 
 **仓库更名说明** 
 
@@ -175,7 +178,7 @@ Vue.use(NgFormElement)
     </ng-form-design> 
  ```
 
-# 2. 表单查看/填报组件  ng-form-build 
+# 2. 表单查看/填报组件  ng-form-build
 
 方法:
 
@@ -223,7 +226,7 @@ Vue.use(NgFormElement)
  ```
 
 
-# 3. 自定义组件示例  
+# 3. 自定义组件示例
 
 3.1 自定义一个组件（根据文本中输入的地址展示图片）
 
