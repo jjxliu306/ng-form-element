@@ -18,7 +18,7 @@
         :style="record.options.customStyle"
         @click="handleSelectItem(record)"
       >
-        <div class="batch-label">动态表格</div> 
+        <div class="batch-label">{{record.label}}</div> 
          <draggable
           tag="div"
           class="draggable-box"
