@@ -21,7 +21,8 @@
           'slider',
           'uploadImg',
           'uploadFile',
-          'cascader'
+          'cascader',
+          'state'
         ].includes(record.type) || customList.includes(record.type) ) && dynamicVisibleItem && !(record.type == 'select' && renderPreview &&  record.options.previewHidden )
     "
     :label="formConfig.labelWidth > 0 ? record.label : null " 
@@ -51,8 +52,7 @@
   >
     <!-- 动态表格 -->
     <TableBatch
-      v-model="models[record.model]"
-      v-if="record.type === 'batch'"
+      v-model="models[record.model]" 
       ref="TableBatch"
       :renderPreview="renderPreview"
       :models="models"
@@ -65,7 +65,7 @@
     />  
      
   </el-form-item> 
-      
+
   <!-- button按钮 -->
   <el-form-item
     v-else-if="record.type === 'button' && dynamicVisibleItem" 
@@ -122,7 +122,6 @@
 <script> 
 import TableBatch from "./table"; 
 import BaseItem from './base' 
- 
 import {dynamicFun} from '../utils'
 
 export default {
@@ -168,7 +167,7 @@ export default {
     } 
   },
   components: {
-     TableBatch,BaseItem 
+     TableBatch,BaseItem
   },
   watch: {
     checkList:{

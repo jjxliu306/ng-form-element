@@ -395,6 +395,17 @@
       @change="handleChange($event, record.model)"
      
     />
+    <!-- 区划三级联动选择 -->
+     <ng-state
+      v-else-if="record.type == 'state'"
+      v-model="models[record.model]" 
+      :renderPreview="renderPreview"
+      :models="models"
+      :record="record"
+      :config="formConfig"
+      :parentDisabled="disabled" 
+      :disabled="disabled || record.options.disabled"  
+    /> 
     <!-- 自定义组件 -->
     <customComponent
       :models="models"
@@ -413,6 +424,7 @@ import request from '../utils/request.js'
 //import FileUpload from './file-upload'
 import {dynamicFun} from '../utils' 
 import CustomComponent from "./custom";
+import NgState from './state'
 export default {
   name: "ng-form-item-base",
   data(){
@@ -468,7 +480,7 @@ export default {
     } 
   },
   components: {
-     /*FileUpload,*/CustomComponent
+     /*FileUpload,*/CustomComponent,NgState
   }, 
   computed: {
     sliderMarks() {

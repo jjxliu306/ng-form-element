@@ -517,7 +517,30 @@ export const basicsList = [
       key: ""
   },
 ];
- 
+
+// 2021-09-29 lyf 增加个性化组件 
+export const personalList = [
+  {
+    type: "state", // 表单类型
+    label: "区划选择", // 标题文字   
+    options: {
+      defaultValue: false, // 默认值 Boolean 类型
+      
+      tooptip: '', // 提示
+      hidden: false, // 是否隐藏，false显示，true隐藏
+      disabled: false // 是否禁用
+    },
+    model: "",
+    key: "",
+    rules: [
+      {
+        required: false,
+        message: "必填项"
+      }
+    ]
+  },
+
+]
   
 // 布局控件
 export const layoutList = [

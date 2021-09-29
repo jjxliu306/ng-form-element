@@ -13,8 +13,17 @@
 	                @handleListPush="handleListPush"
 	                @start="handleStart"/>
 		  	</el-collapse-item>
+		  		 <!-- 个性化控件 -->
+            <el-collapse-item v-if="personalArray.length > 0" title="个性化组件" name="2" >
+              <DragItem
+                :list="personalArray"
+                @generateKey="generateKey"
+                @handleListPush="handleListPush"
+                @start="handleStart"
+              />
+            </el-collapse-item>
 		  	 <!-- 自定义控件 -->
-            <el-collapse-item v-if="customComponents.length > 0" title="自定义组件" name="2" >
+            <el-collapse-item v-if="customComponents.length > 0" title="自定义组件" name="3" >
               <DragItem
                 :list="customComponents"
                 @generateKey="generateKey"
@@ -22,7 +31,7 @@
                 @start="handleStart"
               />
             </el-collapse-item>
-		  	<el-collapse-item title="布局组件" name="3">
+		  	<el-collapse-item title="布局组件" name="4">
 		  		<DragItem 
 	                :list="layoutArray"
 	                @generateKey="generateKey"
@@ -34,7 +43,7 @@
 	</el-card>
 </template>
 <script>
-import { basicsList,  layoutList , noModelList} from "../config.js";
+import { basicsList,  layoutList ,personalList, noModelList} from "../config.js";
 import DragItem from './item'
 export default {
 	components: {
@@ -42,7 +51,7 @@ export default {
 	},
 	data(){
 		return {
-			actives:['1','2','3'],
+			actives:['1','2','3','4'],
 			noModel: noModelList,
 		    startType: "",
 		    data: {
@@ -57,7 +66,7 @@ export default {
 		      },
 		      previewOptions: {
 		        width: 850
-		    },
+		    }, 
 		    selectItem: {
 		       key: ""
 		    } ,
@@ -68,6 +77,21 @@ export default {
 	    basicsArray() {
 	      	// 计算需要显示的基础字段
 	      	const blist = basicsList
+	      	blist.forEach(t=>{
+	      		t.options.dynamicHide = false
+        		t.options.dynamicHideValue = ''
+        		if(!t.key) { 
+        		 	const key = t.type + "_" + new Date().getTime()
+        		 	t['key'] = key 
+        		 	t['model'] = key
+        		}
+
+	      	}) ;
+	      	return blist
+	    },
+	    personalArray(){
+	    	// 计算需要显示的基础字段
+	      	const blist = personalList
 	      	blist.forEach(t=>{
 	      		t.options.dynamicHide = false
         		t.options.dynamicHideValue = ''
