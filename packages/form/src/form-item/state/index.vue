@@ -8,7 +8,7 @@
             :value="item.v">
           </el-option>
         </el-select>
-        <el-select v-if="dataForm.province" class="width-select" v-model="dataForm.city" value-key="value" filterable clearable  placeholder="请选择地市" @change="changeCity" @clear="changeCity()">
+        <el-select v-if="record.options.maxLevel >1 && (!record.options.oneByOne || dataForm.province)" class="width-select" v-model="dataForm.city" value-key="value" filterable clearable  placeholder="请选择地市" @change="changeCity" @clear="changeCity()">
           <el-option
             v-for="item in citys"
             :key="item.v"
@@ -16,7 +16,7 @@
             :value="item.v">
           </el-option>
         </el-select>
-        <el-select v-if="dataForm.city" class="width-select" v-model="dataForm.district" value-key="value" filterable clearable placeholder="请选择区县" @change="changeDistrict" @clear="changeDistrict()"> 
+        <el-select v-if="record.options.maxLevel > 2 && (!record.options.oneByOne || dataForm.city)" class="width-select" v-model="dataForm.district" value-key="value" filterable clearable placeholder="请选择区县" @change="changeDistrict" @clear="changeDistrict()"> 
           <el-option
             v-for="item in districts"
             :key="item.v"
@@ -124,6 +124,7 @@ export default {
   			// 过滤name
   			this.dataForm.city = ''
   			this.dataForm.district = ''
+  			this.districts = []
   			if(v) {
   				this.getOrgs(v).then((data)=>{
 					this.citys = data

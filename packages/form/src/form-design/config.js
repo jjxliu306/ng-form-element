@@ -524,8 +524,11 @@ export const personalList = [
     type: "state", // 表单类型
     label: "区划选择", // 标题文字   
     options: {
-      defaultValue: false, // 默认值 Boolean 类型
-      
+      defaultValue: '', // 默认值 Boolean 类型
+      maxLevel: 3 , // 级别 1-省 2-地市 3-区县
+      showAllPath: true , // 是否在label中回显所有路径
+      separator: '-' , // 显示所有路径的时候分隔符
+      oneByOne: true , // 递进式显示区划选择
       tooptip: '', // 提示
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false // 是否禁用
