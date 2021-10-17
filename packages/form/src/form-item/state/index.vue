@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="!renderPreview || isDragPanel">
 		<el-select class="width-select" v-model="dataForm.province" value-key="value" filterable clearable placeholder="请选择省份" @change="changeProvince" @clear="changeProvince()"> 
           <el-option
             v-for="item in provinces"
@@ -25,6 +25,9 @@
           </el-option>
         </el-select>
 	</div>
+	<div v-else>
+		<span>{{models[record.model + '_label']}}</span>
+	</div>
 </template>
 <script>
 import AreaData from './area.json'
@@ -43,14 +46,15 @@ export default {
 				cityName: '' ,
 				district: '',
 				districtName: ''
-			}
+			},
+			value: ''
 		}
 	},
 	props: {
     	// 表单数组 
-    	value: {
-    		type: String
-    	},
+    	// value: {
+    	// 	type: String
+    	// },
     	record: {
 	      type: Object,
 	      required: true
@@ -83,7 +87,29 @@ export default {
   	mounted(){
   		this.init()
   	},
+  	watch:{
+  		// value(val) { 
+    //   		 if(val == this.value) {
+    //   		 	return
+    //   		 } else {
+    //   		 	// refresh
+    //   		 	const intval = parseInt(val)
+    //   		 	const p = intval / 10000
+    //   		 	if(this.record.options.maxLevel >= 1) {
+    //   		 		this.changeProvince(p*10000)
+    //   		 	}
+    //   		 	if(this.record.options.maxLevel >= 2) {
+    //   		 		const c = (intval / 100) % 100
+    //   		 		this.changeCity((p + c) * 100)
+    //   		 	}
+      		 	
+    //   		 }
+    // 	}
+  	},
   	methods: {
+  		validator() {
+
+  		},
   		init() {
   			this.provinces = this.areas
   		},
@@ -134,8 +160,15 @@ export default {
   			} else {
   				this.citys = []
   			}
-			
-			this.$emit("input", v);
+			// 判断层级 如果是最小层级 则input change
+			if(this.record.options.maxLevel == 1){
+				this.value = v
+				this.$emit("input", v);
+			}
+			else {
+				this.$emit("input", '');
+				this.value = ''
+			}
   		},
   		changeCity(v) {
   			// 过滤name 
@@ -146,17 +179,29 @@ export default {
 				}).catch(()=>{
 					this.districts = []
 				})
-				this.$emit("input", v);
+				// 判断层级 如果是最小层级 则input change
+				if(this.record.options.maxLevel == 2){
+					this.$emit("input", v);
+					this.value = v
+				} else {
+					this.value = ''
+					this.$emit("input", '');
+				}
   			} else {
-  				this.districts = []
-  				this.$emit("input", this.dataf.province);
+  				this.districts = [] 
+  				this.$emit("input", '');
   			}
+				 
   		},
   		changeDistrict(v){
   			if(v) {
-  				this.$emit("input", v);
-  			} else {
-  				this.$emit("input", this.dataForm.city);
+  				if(this.record.options.maxLevel == 3) {
+  					this.value = v
+  					this.$emit("input", v);
+  				}
+  			} else { 
+  				this.value = ''
+  				this.$emit("input", '');
   			}
   		}
 	},

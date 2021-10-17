@@ -809,8 +809,8 @@
           
 
           <el-divider ></el-divider> 
-          <el-form-item  label="可选层级">
-            <el-select v-model="options.maxLevel"  placeholder="请选择可选层级" >
+          <el-form-item  label="区划层级">
+            <el-select v-model="options.maxLevel"  placeholder="请选择区划层级" >
               <el-option
                 v-for="item in [{value:1 , label: '省'},{value:2 , label: '地市'},{value:3 , label: '区县'}]"
                 :key="item.value"
