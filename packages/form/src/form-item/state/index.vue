@@ -26,7 +26,9 @@
         </el-select>
 	</div>
 	<div v-else>
+		models :: {{models}}
 		<span>{{models[record.model + '_label']}}</span>
+		 
 	</div>
 </template>
 <script>
@@ -40,21 +42,17 @@ export default {
 			citys: [],
 			districts: [],
 			dataForm: {
-				province: '' ,
-				provinceName: '' ,
-				city: '' ,
-				cityName: '' ,
-				district: '',
-				districtName: ''
-			},
-			value: ''
+				province: '' , 
+				city: '' , 
+				district: '' 
+			} 
 		}
 	},
 	props: {
     	// 表单数组 
-    	// value: {
-    	// 	type: String
-    	// },
+    	value: {
+    		type: String
+    	},
     	record: {
 	      type: Object,
 	      required: true
@@ -88,23 +86,33 @@ export default {
   		this.init()
   	},
   	watch:{
-  		// value(val) { 
-    //   		 if(val == this.value) {
-    //   		 	return
-    //   		 } else {
-    //   		 	// refresh
-    //   		 	const intval = parseInt(val)
-    //   		 	const p = intval / 10000
-    //   		 	if(this.record.options.maxLevel >= 1) {
-    //   		 		this.changeProvince(p*10000)
-    //   		 	}
-    //   		 	if(this.record.options.maxLevel >= 2) {
-    //   		 		const c = (intval / 100) % 100
-    //   		 		this.changeCity((p + c) * 100)
-    //   		 	}
+  		value(val) { 
+      		if(val == this.value) {
+      		 	return
+      		} else {
+      		 	// 找名称
+      		 	const province_ = val.substr(0,2) + '0000'
+  				const city_  = val.substr(0,4) + '00'
+  				const district_  = val 
+
+      		 	let address = '' 
+      		 	const ps = this.provinces.filter(t=> t.v == province_)
+      		 	if(ps && ps.length > 0) {
+      		 		address += ps[0].l
+      		 	}
+      		 	const cs = this.citys.filter(t=> t.v == city_)
+      		 	if(cs && cs.length > 0) {
+      		 		address += cs[0].l
+      		 	}
+      		 	const ds = this.districts.filter(t=> t.v == district_)
+      		 	if(ds && ds.length > 0) {
+      		 		address += ds[0].l
+      		 	}
+
+      		 	this.$set(this.models , this.record.model + '_label' , address)
       		 	
-    //   		 }
-    // 	}
+      		}
+    	}
   	},
   	methods: {
   		validator() {
@@ -112,6 +120,21 @@ export default {
   		},
   		init() {
   			this.provinces = this.areas
+
+  			// 判断当前是否有值
+  			const value = this.models[this.record.model]
+  			if(value) {
+
+  				// 省
+  				this.dataForm.province = value.substr(0,2) + '0000'
+  				this.dataForm.city  = value.substr(0,4) + '00'
+  				this.dataForm.district  = value 
+
+  				this.changeProvince(this.dataForm.province , 1)
+  				this.changeCity(this.dataForm.city , 1)
+  				this.changeDistrict(this.dataForm.district , 1)
+
+  			}
   		},
   		getOrgs (pid) {
 	    	return new Promise((resolve, reject)=>{
@@ -146,10 +169,13 @@ export default {
 
 		  	return datas
 		},
-  		changeProvince(v) {
+  		changeProvince(v , type) {
   			// 过滤name
-  			this.dataForm.city = ''
-  			this.dataForm.district = ''
+  			if(!type) {
+  				this.dataForm.city = ''
+  				this.dataForm.district = ''
+  			}
+  		
   			this.districts = []
   			if(v) {
   				this.getOrgs(v).then((data)=>{
@@ -161,18 +187,24 @@ export default {
   				this.citys = []
   			}
 			// 判断层级 如果是最小层级 则input change
-			if(this.record.options.maxLevel == 1){
-				this.value = v
-				this.$emit("input", v);
+			if(!type) {
+				if(this.record.options.maxLevel == 1){
+					this.value = v
+					this.$emit("input", v);
+				}
+				else {
+					this.$emit("input", '');
+					this.value = ''
+				}
 			}
-			else {
-				this.$emit("input", '');
-				this.value = ''
-			}
+			
   		},
-  		changeCity(v) {
+  		changeCity(v,type) {
   			// 过滤name 
-  			this.dataForm.district = ''
+  			if(!type) {
+  				this.dataForm.district = ''
+  			}
+  			
   			if(v) {
   				this.getOrgs(v).then((data)=>{
 					this.districts = data
@@ -180,20 +212,28 @@ export default {
 					this.districts = []
 				})
 				// 判断层级 如果是最小层级 则input change
-				if(this.record.options.maxLevel == 2){
-					this.$emit("input", v);
-					this.value = v
-				} else {
-					this.value = ''
-					this.$emit("input", '');
+				if(!type) {
+					if(this.record.options.maxLevel == 2){
+						this.$emit("input", v);
+						this.value = v
+					} else {
+						this.value = ''
+						this.$emit("input", '');
+					}
+
 				}
+				
   			} else {
   				this.districts = [] 
-  				this.$emit("input", '');
+  				if(!type) {
+  					this.$emit("input", '');
+  				}
+  				
   			}
 				 
   		},
-  		changeDistrict(v){
+  		changeDistrict(v , type){
+  			if(type) return
   			if(v) {
   				if(this.record.options.maxLevel == 3) {
   					this.value = v
