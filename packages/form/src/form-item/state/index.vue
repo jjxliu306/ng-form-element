@@ -1,6 +1,6 @@
 <template>
 	<div v-if="!renderPreview || isDragPanel">
-		<el-select class="width-select" v-model="dataForm.province" value-key="value" filterable clearable placeholder="请选择省份" @change="changeProvince" @clear="changeProvince()"> 
+		<el-select class="width-select" v-model="dataForm.province" value-key="value" filterable clearable placeholder="请选择省份" @change="changeProvince" @clear="changeProvince()" :disabled="disabled"> 
           <el-option
             v-for="item in provinces"
             :key="item.v"
@@ -8,7 +8,7 @@
             :value="item.v">
           </el-option>
         </el-select>
-        <el-select v-if="record.options.maxLevel >1 && (!record.options.oneByOne || dataForm.province)" class="width-select" v-model="dataForm.city" value-key="value" filterable clearable  placeholder="请选择地市" @change="changeCity" @clear="changeCity()">
+        <el-select v-if="record.options.maxLevel >1 && (!record.options.oneByOne || dataForm.province)" class="width-select" v-model="dataForm.city" value-key="value" filterable clearable  placeholder="请选择地市" @change="changeCity" @clear="changeCity()" :disabled="disabled">
           <el-option
             v-for="item in citys"
             :key="item.v"
@@ -16,7 +16,7 @@
             :value="item.v">
           </el-option>
         </el-select>
-        <el-select v-if="record.options.maxLevel > 2 && (!record.options.oneByOne || dataForm.city)" class="width-select" v-model="dataForm.district" value-key="value" filterable clearable placeholder="请选择区县" @change="changeDistrict" @clear="changeDistrict()"> 
+        <el-select v-if="record.options.maxLevel > 2 && (!record.options.oneByOne || dataForm.city)" class="width-select" v-model="dataForm.district" value-key="value" filterable clearable placeholder="请选择区县" @change="changeDistrict" @clear="changeDistrict()" :disabled="disabled"> 
           <el-option
             v-for="item in districts"
             :key="item.v"
@@ -25,8 +25,7 @@
           </el-option>
         </el-select>
 	</div>
-	<div v-else>
-		models :: {{models}}
+	<div v-else> 
 		<span>{{models[record.model + '_label']}}</span>
 		 
 	</div>
@@ -86,32 +85,42 @@ export default {
   		this.init()
   	},
   	watch:{
-  		value(val) { 
-      		if(val == this.value) {
-      		 	return
-      		} else {
+  		value(val) {  
       		 	// 找名称
       		 	const province_ = val.substr(0,2) + '0000'
-  				const city_  = val.substr(0,4) + '00'
-  				const district_  = val 
+  				  const city_  = val.substr(0,4) + '00'
+  				  const district_  = val 
 
-      		 	let address = '' 
+      		 	let address = [] 
+
       		 	const ps = this.provinces.filter(t=> t.v == province_)
       		 	if(ps && ps.length > 0) {
-      		 		address += ps[0].l
+      		 		address.push(ps[0].l)
       		 	}
       		 	const cs = this.citys.filter(t=> t.v == city_)
       		 	if(cs && cs.length > 0) {
-      		 		address += cs[0].l
+      		 		address.push(cs[0].l)
       		 	}
       		 	const ds = this.districts.filter(t=> t.v == district_)
       		 	if(ds && ds.length > 0) {
-      		 		address += ds[0].l
+      		 		address.push(ds[0].l)
       		 	}
 
-      		 	this.$set(this.models , this.record.model + '_label' , address)
+            let separator = this.record.options.separator 
+            if(separator == null || separator == undefined) {
+              separator = ''
+            }
+
+            let str_ = ''
+            if(this.showAllPath) {
+              str_ = address.join(separator)
+            } else {
+              str_ = address.length > 0 ? address[address.length - 1] : ''
+            }
+
+      		 	this.$set(this.models , this.record.model + '_label' , str_)
       		 	
-      		}
+      		 
     	}
   	},
   	methods: {
