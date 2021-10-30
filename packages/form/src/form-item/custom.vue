@@ -1,6 +1,6 @@
 <template>
 	<!-- 自定义组件 -->
-	<div>
+	<div> 
 		<component 
 	      :record="record"
 	      :style="`width:${record.options.width}`"
@@ -46,13 +46,19 @@ export default {
 	      default: false
 	    } 
 	},
+	inject: {
+	    customComponents: {
+	      from: 'customC',
+	      default: ()=>[]
+	    },
+	},
 	computed: {
 	    customComponent() {
 	      // 计算需要显示的组件
 	      let customComponentList = {};
-	      if (window.customComponents) {
+	      if (this.customComponents) {
 	        // 将数组映射成json
-	        window.customComponents.forEach(item => {
+	        this.customComponents.forEach(item => {
 	          customComponentList[item.type] = item.component;
 	        });
 	      }

@@ -169,6 +169,12 @@ export default {
   components: {
      TableBatch,BaseItem
   },
+  inject: {
+      customComponents: {
+        from: 'customC',
+        default: ()=>[]
+      },
+  },
   watch: {
     checkList:{
       handler(val, oldVal){
@@ -181,8 +187,8 @@ export default {
   },
   computed: {
     customList() {
-      if (window.customComponents) {
-        return window.customComponents.map(item => item.type);
+      if (this.customComponents) {
+        return this.customComponents.map(item => item.type);
       } else {
         return [];
       }

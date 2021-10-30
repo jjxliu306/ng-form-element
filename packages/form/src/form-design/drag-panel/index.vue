@@ -69,8 +69,7 @@ export default {
 		    }, 
 		    selectItem: {
 		       key: ""
-		    } ,
-		    customComponents: []
+		    } 
 		}
 	},
 	computed: {
@@ -119,11 +118,10 @@ export default {
 	    } 
 	},
 	created() { 
-		if(window.customComponents) {
-			this.customComponents = window.customComponents
+		  
 
-			// 2021-05-17 lyf 初始化回填默认key和model
-			if(this.customComponents && this.customComponents.length > 0) {
+		// 2021-05-17 lyf 初始化回填默认key和model
+		if(this.customComponents && this.customComponents.length > 0) {
 				this.customComponents.forEach(t=>{
 					if(!t.key) { 
 	        		 	const key = t.type + "_" + new Date().getTime()
@@ -131,9 +129,15 @@ export default {
         		 		t['model'] = key
 	        		}
 				})
-			}
 		}
 		 
+		 
+	},
+	inject: {
+	    customComponents: {
+	      from: 'customC',
+	      default: ()=>[]
+	    },
 	},
 	methods: {
 		generateKey(list, index) {

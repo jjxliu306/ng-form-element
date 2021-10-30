@@ -15,7 +15,7 @@
       :size="formTemplate.config.size"
       :id="randomId"
       :key="randomId"
-    > 
+    >  
     <template >
       <ng-form-build-item
         ref="buildBlocks"
@@ -77,6 +77,11 @@ export default {
       default: ()=>[]
     }, 
   },
+  provide: function () {
+    return {
+     customC: this.customComponents 
+    }
+  },
   watch: {
     formTemplate: {
       handler (val, oldVal) {
@@ -127,13 +132,7 @@ export default {
           })
  
       });
-    },
-    // 初始化验证规则
-    initRules(weights , key){
-      if(!weights) return
- 
-
-    },
+    }, 
     // 2021-03-12 清理没有显示的组件的数据
     clearHiddenValue() {
       // 根据组件ID 是否隐藏为准
@@ -156,36 +155,23 @@ export default {
       }
 
       
-    }, 
-    // 初始化表单数据 默认值或者填充值
-    initData(){
-
-    }, 
-   /* setData(json) { 
-      this.models = json
- 
-    },*/ 
+    },  
     handleChange(value, key) {
       // 触发change事件
       this.$emit("change", value, key);
     }
   },
-  mounted() {  
+  created() {  
     this.randomId = 'vue_form_design' + parseInt(Math.random() * 1000000)
-    this.$nextTick(() => {
-      const list = this.formTemplate.list
-      this.initRules(list)   
 
-      if(!window.customComponents && this.customComponents && this.customComponents.length > 0) {
-        window.customComponents = this.customComponents
-      } 
+    // if(!window.customComponents && this.customComponents && this.customComponents.length > 0) {
+    //   window.customComponents = this.customComponents
+    // } 
 
-      if(this.config.httpConfig && !window.httpConfig) {
-        window.httpConfig = this.config.httpConfig
-      }
-      
-
-    });
+    if(this.config.httpConfig && !window.httpConfig) {
+      window.httpConfig = this.config.httpConfig
+    }
+ 
   }
 };
 </script>

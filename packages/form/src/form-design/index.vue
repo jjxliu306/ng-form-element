@@ -186,14 +186,18 @@ export default {
       default: true
     }
   },
-   
+  provide: function () {
+    return {
+     customC: this.customComponents 
+    }
+   },
   components: {
     DesignPanel,DragPanel,Properties,Preview,previewCode,renderPreview
   },
   created(){  
-    if( this.customComponents && this.customComponents.length > 0) {
-      window.customComponents = this.customComponents
-    }
+    // if( this.customComponents && this.customComponents.length > 0) {
+    //   window.customComponents = this.customComponents
+    // }
     if(this.config.httpConfig) {
       window.httpConfig = this.config.httpConfig
     }
