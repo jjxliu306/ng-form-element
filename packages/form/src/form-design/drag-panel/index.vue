@@ -5,7 +5,7 @@
  --> 
 <template>
 	<el-card header="组件列表" class="box-card form-item ">
-		<el-collapse v-model="actives"  >
+		<el-collapse v-model="actives" accordion >
 		  	<el-collapse-item title="基础组件" name="1">
 		  		<DragItem 
 	                :list="basicsArray"
@@ -51,7 +51,7 @@ export default {
 	},
 	data(){
 		return {
-			actives:['1','2','3','4'],
+			actives:['1'],
 			noModel: noModelList,
 		    startType: "",
 		    data: {
