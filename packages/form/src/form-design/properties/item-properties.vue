@@ -828,7 +828,7 @@
             <el-checkbox v-model="options.oneByOne" label="递进式显示" /> 
             <el-checkbox v-model="options.showAllPath" label="回显所有路径" /> 
           </el-form-item> 
-          <el-form-item  label="路径分隔符">
+          <el-form-item v-if="options.showAllPath" label="路径分隔符">
              <el-input  v-model="options.separator" max-length="10"/> 
           </el-form-item> 
         </template> 

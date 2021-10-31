@@ -900,12 +900,10 @@ export default {
       if(this.record.type == 'checkbox' || this.record.type == 'cascader'){
         this.checkList = defaultValue
       } else {
-        if((this.record.type == 'date' || this.record.type == 'time' || this.record.type == 'datePicker' ) && defaultValue == 'now') {
-
+        if((this.record.type == 'date' || this.record.type == 'time' || this.record.type == 'datePicker' ) && defaultValue == 'now') { 
 
           defaultValue = dateFormater(new Date() ,this.record.options.format)
-
-          console.log('defaultValue' , defaultValue)
+ 
         }  
         
         this.$set(this.models , this.record.model , defaultValue)
