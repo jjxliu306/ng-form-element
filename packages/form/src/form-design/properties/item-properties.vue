@@ -339,7 +339,7 @@
               v-if="selectItem.type == 'time' || !options.range"
               v-model="options.defaultValue"
               :placeholder="
-                typeof options.format === 'undefined' ? '' : options.format
+                (typeof options.format === 'undefined' ? '' : options.format) + ',当前日期使用now'
               "
             />
             <el-input

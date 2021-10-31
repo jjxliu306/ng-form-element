@@ -429,7 +429,7 @@
 <script> 
 import request from '../utils/request.js'
 //import FileUpload from './file-upload'
-import {dynamicFun} from '../utils' 
+import {dynamicFun,dateFormater} from '../utils' 
 import CustomComponent from "./custom";
 import NgState from './state'
 export default {
@@ -846,11 +846,7 @@ export default {
 
       }
     }
-  },
-  activated(){
-    
-
-  },
+  }, 
   mounted() { 
      // 2020-07-30 如果有cbColumn 则尝试从data中回填数据  
    
@@ -899,13 +895,22 @@ export default {
       return ;
     }
 
-    const defaultValue = this.record.options.defaultValue
-    if(defaultValue) {
+    let defaultValue = this.record.options.defaultValue
+    if(defaultValue != null) {
       if(this.record.type == 'checkbox' || this.record.type == 'cascader'){
         this.checkList = defaultValue
       } else {
-        //this.models[this.record.model] = defaultValue
+        if((this.record.type == 'date' || this.record.type == 'time' || this.record.type == 'datePicker' ) && defaultValue == 'now') {
+
+
+          defaultValue = dateFormater(new Date() ,this.record.options.format)
+
+          console.log('defaultValue' , defaultValue)
+        }  
+        
         this.$set(this.models , this.record.model , defaultValue)
+         
+        
       } 
 
       this.handleChange(defaultValue , this.record.model)
