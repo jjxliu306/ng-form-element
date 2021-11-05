@@ -159,6 +159,41 @@ export default {
     handleChange(value, key) {
       // 触发change事件
       this.$emit("change", value, key);
+    },
+    // 2021-11-05 lyf 初始化每个组件的key 防止后面通过动态显隐等方式无法绑定
+    initModelKey() {
+      // 根据模板迭代一圈 每个组件赋予初值
+      const list_ = this.formTemplate.list 
+      if(!list_ || list_.length == 0) return 
+
+      const fs_ = (n)=> {
+        if(n instanceof Array) {
+          n.forEach(t=> {
+            fs_(t)
+          })
+        } else {
+          if(n.model && !this.models.hasOwnProperty(n.model)) {
+
+            if(n.type == 'checkbox' || n.type == 'cascader' || n.type == 'batch'
+              || (n.type == 'select' && n.options.multiple)) {
+              // 多选
+              this.$set(this.models , n.model , [])
+            } else {
+              // 字符串
+              this.$set(this.models , n.model , null)
+            }
+   
+          } 
+
+          for(let i in n) {
+            if(n[i] instanceof Array)
+              fs_(n[i])
+          }
+
+        }
+      }
+
+      fs_(list_)
     }
   },
   created() {  
@@ -171,6 +206,8 @@ export default {
     if(this.config.httpConfig && !window.httpConfig) {
       window.httpConfig = this.config.httpConfig
     }
+
+    this.initModelKey()
  
   }
 };
