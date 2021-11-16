@@ -311,7 +311,7 @@
   transition: all 0.3s;
   overflow: hidden;
   min-height: 30px;
-  overflow: auto;
+  overflow: hidden;
 }
 .form-design .batch-box .form-item-box,
 .form-design .grid-box .form-item-box,
