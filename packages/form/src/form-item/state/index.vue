@@ -198,12 +198,10 @@ export default {
 			// 判断层级 如果是最小层级 则input change
 			if(!type) {
 				if(this.record.options.maxLevel == 1){
-					this.value = v
 					this.$emit("input", v);
 				}
 				else {
 					this.$emit("input", '');
-					this.value = ''
 				}
 			}
 			
@@ -224,9 +222,7 @@ export default {
 				if(!type) {
 					if(this.record.options.maxLevel == 2){
 						this.$emit("input", v);
-						this.value = v
 					} else {
-						this.value = ''
 						this.$emit("input", '');
 					}
 
@@ -245,11 +241,9 @@ export default {
   			if(type) return
   			if(v) {
   				if(this.record.options.maxLevel == 3) {
-  					this.value = v
   					this.$emit("input", v);
   				}
-  			} else { 
-  				this.value = ''
+  			} else {
   				this.$emit("input", '');
   			}
   		}

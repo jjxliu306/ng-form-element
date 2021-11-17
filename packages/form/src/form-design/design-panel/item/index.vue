@@ -119,9 +119,8 @@ export default {
         "input",
         "textarea",
         "number",
-        
         "select",
-         "batch",
+        "batch",
         "checkbox",
         "radio",
         "date",
@@ -134,7 +133,8 @@ export default {
         "treeSelect",
         "switch",
         "text",
-        "html"
+        "html",
+        "control"
       ],
       rightMenuSelectValue: {},
       showRightMenu: false,

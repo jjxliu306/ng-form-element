@@ -172,7 +172,7 @@ export default {
             fs_(t)
           })
         } else {
-          if(n.model && !this.models.hasOwnProperty(n.model)) {
+          if(n.model && !Object.prototype.hasOwnProperty.call(this.models, n.model)) {
 
             if(n.type == 'checkbox' || n.type == 'cascader' || n.type == 'batch'
               || (n.type == 'select' && n.options.multiple)) {
