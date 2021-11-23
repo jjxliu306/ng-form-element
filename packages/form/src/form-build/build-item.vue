@@ -95,7 +95,7 @@
            @forceUpdate="forceUpdate" 
           :disabled="disabled"
           :renderPreview="renderPreview"
-          :models.sync="mdata"   
+          :models.sync="models[record.model][idx]"   
           :record="item"
           :formConfig="formConfig" 
         />
