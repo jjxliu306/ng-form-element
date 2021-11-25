@@ -283,7 +283,7 @@ export const basicsList = [
     type: "rate", // 表单类型
     label: "评分", // 标题文字  
     options: {
-      defaultValue: 0,
+      defaultValue: null,
       max: 5, // 最大值
       tooptip: '', // 提示
       disabled: false, // 是否禁用
