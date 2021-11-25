@@ -35,6 +35,7 @@
             <ng-form-build ref="formbuild" :formTemplate="formTemplate" :models="models" :custom-components="customComponents" :config="formConfig"/>
 
              <el-button   type="primary" size="mini"  @click="validator()">验证</el-button>
+             <el-button   type="primary" size="mini"  @click="reset()">重置</el-button>
              <el-button   type="primary" size="mini"  @click="getData()">获取数据</el-button>
         </el-tab-pane> 
       </el-tabs>
@@ -127,6 +128,9 @@ export default {
         }
         //this.models = {}
       } 
+    },
+    reset() {
+      this.$refs.formbuild.reset()
     },
     getData() {
       this.$refs.formbuild.getData().then((data)=>{

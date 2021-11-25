@@ -100,7 +100,9 @@ export default {
       // 重置表单
       this.$refs.form.resetFields();
 
-      this.models = {} 
+      this.initModelKey(true)
+
+      this.randomId = 'vue_form_design' + parseInt(Math.random() * 1000000)
 
     },
     forceUpdate(){ 
@@ -161,7 +163,7 @@ export default {
       this.$emit("change", value, key);
     },
     // 2021-11-05 lyf 初始化每个组件的key 防止后面通过动态显隐等方式无法绑定
-    initModelKey() {
+    initModelKey(update) {
       // 根据模板迭代一圈 每个组件赋予初值
       const list_ = this.formTemplate.list 
       if(!list_ || list_.length == 0) return 
@@ -172,7 +174,7 @@ export default {
             fs_(t)
           })
         } else {
-          if(n.model && !Object.prototype.hasOwnProperty.call(this.models, n.model)) {
+          if(n.model && (update || !Object.prototype.hasOwnProperty.call(this.models, n.model))) {
 
             if(n.type == 'checkbox' || n.type == 'cascader' || n.type == 'batch'
               || (n.type == 'select' && n.options.multiple)) {
