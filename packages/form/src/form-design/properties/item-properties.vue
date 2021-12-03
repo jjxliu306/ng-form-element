@@ -57,7 +57,7 @@
           <el-form-item   label="操作属性" >
             <el-checkbox v-model="options.hidden"  label="隐藏" />
             <el-checkbox v-model="options.disabled"  label="禁用" /> 
-            <el-checkbox v-model="options.clearable" label="可清除" /> 
+            <el-checkbox v-if="selectItem.type == 'input'" v-model="options.clearable" label="可清除" /> 
           </el-form-item>
         </template>
         <!-- input textarea end -->
