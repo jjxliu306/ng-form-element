@@ -247,6 +247,7 @@
     <template v-else-if="record.type === 'date'" > 
       <!-- 区分时间段选择 和单个时间选择 -->
       <el-date-picker 
+        :style="`width:${record.options.width}`"
         v-if="record.options.range"
         v-model="checkList"
         align="right"
@@ -261,6 +262,7 @@
       </el-date-picker>
       <el-date-picker 
         v-else
+        :style="`width:${record.options.width}`"
         v-model="models[record.model]"
         align="right"
         type="date"
@@ -280,6 +282,7 @@
       <!-- 区分时间段选择 和单个时间选择 -->
       <el-date-picker 
         v-if="record.options.range"
+        :style="`width:${record.options.width}`"
         v-model="checkList"
         align="right"
         type="datetimerange"
@@ -293,6 +296,7 @@
       </el-date-picker>
       <el-date-picker 
         v-else
+        :style="`width:${record.options.width}`"
         v-model="models[record.model]"
         align="right"
         type="datetime"
@@ -310,6 +314,7 @@
     <!-- 时间选择 -->
     <el-time-select
       v-else-if="record.type === 'time'"
+      :style="`width:${record.options.width}`"
       v-model="models[record.model]"
       @change="handleChange($event, record.model)"
       :clearable="record.options.clearable"
@@ -324,6 +329,7 @@
  
     <!-- 评分 -->
     <el-rate
+      :style="`width:${record.options.width}`"
       v-model="models[record.model]"
       v-else-if="record.type === 'rate'"
       :max="record.options.max"
@@ -404,6 +410,7 @@
     />
     <!-- 区划三级联动选择 -->
      <ng-state
+       :style="`width:${record.options.width}`"
       v-else-if="record.type == 'state'"
       v-model="models[record.model]" 
       :renderPreview="renderPreview"
@@ -415,6 +422,7 @@
     /> 
     <!-- 自定义组件 -->
     <customComponent
+      :style="`width:${record.options.width}`"
       :models="models"
       v-else-if="customList.includes(record.type)"
       :record="record"
