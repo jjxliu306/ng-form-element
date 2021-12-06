@@ -504,6 +504,9 @@
 .form-design .base-item .slider-box {
   display: flex;
 }
+.form-design .base-item .base-item-span {
+  white-space: pre-wrap;
+}
 .form-design .base-item .slider-box > .slider {
   flex: 1;
   margin-right: 16px;

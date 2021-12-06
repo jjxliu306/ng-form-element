@@ -3,7 +3,7 @@
  -->
 <template>
  
-  <div v-if="renderPreview">
+  <div v-if="renderPreview" class="base-item">
     <template v-if=" [
           'input',
           'textarea',
@@ -15,10 +15,10 @@
           'switch',
           'slider' 
         ].includes(record.type)"> 
-      <span   v-if="record.options.prepend" v-html="transformAppend(record.options.prepend)"> 
+      <span  class="base-item-span" v-if="record.options.prepend" v-html="transformAppend(record.options.prepend)"> 
       </span>
-       <span v-if="!loading">{{models[record.model]}} </span>
-      <span  v-if="record.options.append" v-html="transformAppend(record.options.append)"> 
+       <span class="base-item-span" v-if="!loading">{{models[record.model]}} </span>
+      <span class="base-item-span" v-if="record.options.append" v-html="transformAppend(record.options.append)"> 
       </span>  
     </template>
     <!-- 区划三级联动选择 -->
