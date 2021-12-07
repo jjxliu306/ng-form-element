@@ -87,39 +87,7 @@ export default {
   	watch:{
   		value(val) {  
       		 	// 找名称
-      		 	const province_ = val.substr(0,2) + '0000'
-  				  const city_  = val.substr(0,4) + '00'
-  				  const district_  = val 
-
-      		 	let address = [] 
-
-      		 	const ps = this.provinces.filter(t=> t.v == province_)
-      		 	if(ps && ps.length > 0) {
-      		 		address.push(ps[0].l)
-      		 	}
-      		 	const cs = this.citys.filter(t=> t.v == city_)
-      		 	if(cs && cs.length > 0) {
-      		 		address.push(cs[0].l)
-      		 	}
-      		 	const ds = this.districts.filter(t=> t.v == district_)
-      		 	if(ds && ds.length > 0) {
-      		 		address.push(ds[0].l)
-      		 	}
-
-            let separator = this.record.options.separator 
-            if(separator == null || separator == undefined) {
-              separator = ''
-            }
-
-            let str_ = ''
-            if(this.showAllPath) {
-              str_ = address.join(separator)
-            } else {
-              str_ = address.length > 0 ? address[address.length - 1] : ''
-            }
-
-      		 	this.$set(this.models , this.record.model + '_label' , str_)
-      		 	
+      	this.updateStateLabel(val)	 	
       		 
     	}
   	},
@@ -127,6 +95,39 @@ export default {
   		validator() {
 
   		},
+      // 更新区划label
+      updateStateLabel(val) {
+       
+
+        let address = [] 
+
+        const fs_ = (areas)=> {
+          areas.forEach(t=> {
+            if(t.v == val) {
+              address.push(t.l)
+            } else if(val.indexOf(t.v.replace(/0+$/ , '')) == 0 && t.c && t.c.length > 0) {
+              address.push(t.l)
+              fs_(t.c)
+            }
+          })
+        }
+
+        fs_(AreaData) 
+        let separator = this.record.options.separator 
+        if(separator == null || separator == undefined) {
+          separator = ''
+        }
+
+        let str_ = ''
+        if(this.record.options.showAllPath) {
+          str_ = address.join(separator)
+        } else {
+          str_ = address.length > 0 ? address[address.length - 1] : ''
+        }
+   
+        this.$set(this.models , this.record.model + '_label' , str_)
+            
+      },
   		init() {
   			this.provinces = this.areas
 
@@ -143,6 +144,13 @@ export default {
   				this.changeCity(this.dataForm.city , 1)
   				this.changeDistrict(this.dataForm.district , 1)
 
+          if(!this.models[this.record.model + '_label']) {
+            this.$nextTick(()=> { 
+              this.updateStateLabel(value)
+            })
+            
+          }
+
   			}
   		},
   		getOrgs (pid) {
@@ -151,7 +159,7 @@ export default {
 	    		resolve(ds)
 	    	})  
 	    },
-		getOrgChild(pid ) {
+		  getOrgChild(pid ) {
 		  	let ds = []
 		  	if(!pid) {
 		    	// 第一层
@@ -177,7 +185,7 @@ export default {
 		  	fn(this.areas)
 
 		  	return datas
-		},
+		  },
   		changeProvince(v , type) {
   			// 过滤name
   			if(!type) {
@@ -188,22 +196,22 @@ export default {
   			this.districts = []
   			if(v) {
   				this.getOrgs(v).then((data)=>{
-					this.citys = data
-				}).catch(()=>{
-					this.citys = []
-				})
+  					this.citys = data
+  				}).catch(()=>{
+  					this.citys = []
+  				})
   			} else {
   				this.citys = []
   			}
-			// 判断层级 如果是最小层级 则input change
-			if(!type) {
-				if(this.record.options.maxLevel == 1){
-					this.$emit("input", v);
-				}
-				else {
-					this.$emit("input", '');
-				}
-			}
+  			// 判断层级 如果是最小层级 则input change
+  			if(!type) {
+  				if(this.record.options.maxLevel == 1){
+  					this.$emit("input", v);
+  				}
+  				else {
+  					this.$emit("input", '');
+  				}
+  			}
 			
   		},
   		changeCity(v,type) {
@@ -214,10 +222,10 @@ export default {
   			
   			if(v) {
   				this.getOrgs(v).then((data)=>{
-					this.districts = data
-				}).catch(()=>{
-					this.districts = []
-				})
+  					this.districts = data
+  				}).catch(()=>{
+  					this.districts = []
+  				})
 				// 判断层级 如果是最小层级 则input change
 				if(!type) {
 					if(this.record.options.maxLevel == 2){
