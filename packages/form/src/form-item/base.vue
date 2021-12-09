@@ -176,9 +176,9 @@
         @clear="clearChange"
         @change="handleChange($event, record.model ,  true)" 
       >
-        <template  v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)">
+        <template  v-for="(item, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)">
           <el-option 
-            :key="item[itemProp.value]"
+            :key="item[itemProp.value] + index"
             :label="item[itemProp.label]"
             :value="item[itemProp.value]"
             v-if="itemVisible(item)"
@@ -200,9 +200,9 @@
         @clear="clearChange"
         @change="handleChange($event, record.model , true)" 
       > 
-        <template v-for="item in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)">
+        <template v-for="(item, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)">
           <el-option
-            :key="item[itemProp.value]"
+            :key="item[itemProp.value] + index"
             :label="item[itemProp.label]"
             :value="item[itemProp.value]"
             v-if="itemVisible(item)"
@@ -220,8 +220,8 @@
       :placeholder="record.options.placeholder"
       @change="handleChange($event, record.model)"
     >
-      <template v-for="checkitem in  ( (record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)" >
-         <el-checkbox :label="checkitem[itemProp.value]" :key="checkitem[itemProp.value]" v-if="itemVisible(checkitem)"> 
+      <template v-for="(checkitem, index) in  ( (record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)" >
+         <el-checkbox :label="checkitem[itemProp.value]" :key="checkitem[itemProp.value] + index" v-if="itemVisible(checkitem)"> 
         {{checkitem[itemProp.label]}}
       </el-checkbox>
       </template> 
@@ -236,8 +236,8 @@
       @change="handleChange($event, record.model)"
       
     > 
-      <template v-for="radioitem in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)" >
-         <el-radio :label="radioitem[itemProp.value]" :key="radioitem[itemProp.value]" v-if="itemVisible(radioitem)">
+      <template v-for="(radioitem, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) ? checkValues : record.options.options)" >
+         <el-radio :label="radioitem[itemProp.value]" :key="radioitem[itemProp.value] + index" v-if="itemVisible(radioitem)">
          {{radioitem[itemProp.label]}}
         </el-radio>
       </template> 
