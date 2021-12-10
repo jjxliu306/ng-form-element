@@ -161,8 +161,8 @@
           <el-form-item v-if="options.dynamic == 0" label="默认值">
             <el-select v-model="options.defaultValue"  :clearable="true">
               <el-option
-                v-for="item in options.options"
-                :key="item.value"
+                v-for="(item, index) in options.options"
+                :key="item.value + index"
                 :label="item.label"
                 :value="item.value">
               </el-option>
@@ -244,7 +244,7 @@
               :options="options.options"
               v-model="options.defaultValue"
             >
-              <el-checkbox  v-for="checkitem in  [].concat(options.options)" :label="checkitem.value" :key="checkitem.value"> 
+              <el-checkbox  v-for="(checkitem, index) in  [].concat(options.options)" :label="checkitem.value" :key="checkitem.value + index"> 
                 {{checkitem.label}}
               </el-checkbox>
           </el-checkbox-group>
@@ -306,7 +306,7 @@
               :options="options.options"
               v-model="options.defaultValue"
             >
-              <el-radio  v-for="checkitem in  [].concat(options.options)" :label="checkitem.value" :key="checkitem.value"> 
+              <el-radio  v-for="(checkitem, index) in  [].concat(options.options)" :label="checkitem.value" :key="checkitem.value + index"> 
                 {{checkitem.label}}
               </el-radio>
           </el-radio-group>
