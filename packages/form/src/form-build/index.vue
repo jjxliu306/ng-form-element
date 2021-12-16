@@ -24,7 +24,7 @@
         v-for="record in formTemplate.list"
         :renderPreview="renderPreview"
         :record="record"
-        :models.sync="models" 
+        :models="models" 
         
         :config="config"
         :disabled="disabled"

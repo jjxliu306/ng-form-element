@@ -15,6 +15,7 @@
 </template>
 <script>
 export default {
+	name: 'form-item-custom' ,
 	data() {
 		return {
 

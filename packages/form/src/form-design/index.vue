@@ -207,15 +207,10 @@ export default {
       this.selectItem = item
     },
     handlePreview () { 
-
-          this.previewVisible = true
-          const this_ = this
-          this.$nextTick(() => {
-            this_.$refs.preview.jsonData = this_.data;
-            this_.$refs.preview.previewWidth = this_.previewOptions.width;
-            this_.$refs.preview.visible = true;
-          }) 
-         
+      this.previewVisible = true
+      this.$nextTick(() => {
+        this.$refs.preview.init(this.data) 
+      }) 
     },
     handleClear () {
        this.$confirm('清空后无法恢复,请确认操作?', '提示', {
