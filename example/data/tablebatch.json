@@ -121,6 +121,7 @@
 					"name",
 					"sex"
 				],
+				"colWidth": {},
 				"width": "100%",
 				"dynamicHide": false,
 				"dynamicHideValue": ""
