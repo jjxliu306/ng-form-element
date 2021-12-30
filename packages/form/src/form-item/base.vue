@@ -7,9 +7,9 @@
     <template v-if=" [
           'input',
           'textarea',
-          'date',
+          //'date',
           'time',
-          'datePicker',
+          //'datePicker',
           'number', 
           'rate',
           'switch',
@@ -20,6 +20,14 @@
        <span class="base-item-span" v-if="!loading">{{models[record.model]}} </span>
       <span class="base-item-span" v-if="record.options.append" v-html="transformAppend(record.options.append)"> 
       </span>  
+    </template>
+    <template v-if="record.type == 'date' || record.type == 'datePicker'">
+      <span v-if="record.options.range && models[record.model] instanceof Array">
+        {{models[record.model].join(' ~ ')}}
+      </span>
+      <span v-else>
+         {{models[record.model]}}
+      </span>
     </template>
     <!-- 区划三级联动选择 -->
      <ng-state
@@ -244,12 +252,12 @@
     </el-radio-group>
 
     <!-- 日期选择 -->
-    <template v-else-if="record.type === 'date'" > 
+    <template v-else-if="record.type === 'date'" >  
       <!-- 区分时间段选择 和单个时间选择 -->
       <el-date-picker 
         :style="`width:${record.options.width}`"
         v-if="record.options.range"
-        v-model="checkList"
+        v-model="models[record.model]"
         align="right"
         type="daterange"
         :clearable="record.options.clearable"
@@ -280,10 +288,11 @@
    <!-- 日期选择 -->
     <template v-else-if="record.type === 'datePicker'" > 
       <!-- 区分时间段选择 和单个时间选择 -->
+     
       <el-date-picker 
         v-if="record.options.range"
         :style="`width:${record.options.width}`"
-        v-model="checkList"
+        v-model="models[record.model]"
         align="right"
         type="datetimerange"
         :clearable="record.options.clearable"
@@ -652,13 +661,16 @@ export default {
     modelsRecord :{
       handler(val, oldVal){
           // 2021-04-21 lyf 目前只针对select多选\checkbox 两种进行监听
-        if(this.record.type == 'checkbox' || (this.record.type == 'select' && this.record.options.multiple)) {
+          console.log('this.record.type' , this.record.type)
+        if(this.record.type == 'checkbox' || (this.record.type == 'select' && this.record.options.multiple)
+          ) {
            
           // 选择值重置
           if(val instanceof Array) {
             this.checkList = val
           }
 
+            console.log('checkList' , this.checkList)
         } 
 
       },
