@@ -948,7 +948,12 @@ export default {
   },
   watch: {
     selectItem(val) { 
-      this.options = val.options || {}; 
+     
+      if(val.type == 'batch' && !val.options.colWidth) {
+        this.$set(val.options , 'colWidth' , {})
+      }
+
+      this.options = val.options || {}
     }
   },
   props: {
