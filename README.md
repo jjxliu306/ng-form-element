@@ -132,7 +132,7 @@ Vue.use(NgFormElement)
 ```
  
 ### API 说明
-# 1. 表单绘制组件  ng-form-design 
+#### 1. 表单绘制组件  ng-form-design 
 
 方法:
 
@@ -178,7 +178,7 @@ Vue.use(NgFormElement)
     </ng-form-design> 
  ```
 
-# 2. 表单查看/填报组件  ng-form-build
+#### 2. 表单查看/填报组件  ng-form-build
 
 方法:
 
