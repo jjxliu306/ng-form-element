@@ -13,30 +13,21 @@ NG-FORM-ELEMENT
   **element-plus版本地址**
  https://gitee.com/jjxliu306/ng-form-elementplus
 
-
-**仓库更名说明** 
-
-- 项目发布仓库由之前 **vue-drag-formdesign** 更名为 **ng-form-element**。
-
-- 表单绘制组件由**vue-drag-formdesign** 改为 **ng-form-design**
-
-- 表单填报组件由**vue-drag-formbuild**  改为 **ng-form-build**
-
-
+ 
 
 
 ##示例
 
  **基础表单** 
- ![基础表单](https://s3.ax1x.com/2020/12/22/rrcpkT.gif "basic.gif")
+ ![基础表单](img/basic.gif "basic.gif")  
 
 
  **表单验证和组件动态显示** 
-![表单验证和组件动态显示](https://s3.ax1x.com/2020/12/22/rr6x00.gif "validator1.gif")
+![表单验证和组件动态显示](img/validator1.gif "validator1.gif")
 
 
  **动态表格** 
-![动态表格](https://s3.ax1x.com/2020/12/22/rrc9tU.gif "tablebatch.gif")
+![动态表格](img/tablebatch.gif "tablebatch.gif")
 
 
 ## 简介
