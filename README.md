@@ -13,26 +13,23 @@ NG-FORM-ELEMENT
   **element-plus版本地址**
  https://gitee.com/jjxliu306/ng-form-elementplus
 
-
  
 ## 后端服务
 **ngtool 后端解析和校验功能** 
 https://gitee.com/jjxliu306/ngtool
 
-
-
 ## 示例
 
  **基础表单** 
- ![基础表单](https://s3.ax1x.com/2020/12/22/rrcpkT.gif "basic.gif")
+ ![基础表单](img/basic.gif "basic.gif")  
 
 
  **表单验证和组件动态显示** 
-![表单验证和组件动态显示](https://s3.ax1x.com/2020/12/22/rr6x00.gif "validator1.gif")
+![表单验证和组件动态显示](img/validator1.gif "validator1.gif")
 
 
  **动态表格** 
-![动态表格](https://s3.ax1x.com/2020/12/22/rrc9tU.gif "tablebatch.gif")
+![动态表格](img/tablebatch.gif "tablebatch.gif")
 
 
 ## 简介
