@@ -14,18 +14,14 @@ NG-FORM-ELEMENT
  https://gitee.com/jjxliu306/ng-form-elementplus
 
 
-**仓库更名说明** 
-
-- 项目发布仓库由之前 **vue-drag-formdesign** 更名为 **ng-form-element**。
-
-- 表单绘制组件由**vue-drag-formdesign** 改为 **ng-form-design**
-
-- 表单填报组件由**vue-drag-formbuild**  改为 **ng-form-build**
+ 
+## 后端服务
+**ngtool 后端解析和校验功能** 
+https://gitee.com/jjxliu306/ngtool
 
 
 
-
-##示例
+## 示例
 
  **基础表单** 
  ![基础表单](https://s3.ax1x.com/2020/12/22/rrcpkT.gif "basic.gif")
