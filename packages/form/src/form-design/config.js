@@ -340,7 +340,7 @@ export const basicsList = [
       }
     ]
   },
- /* {
+  {
     type: "uploadFile", // 表单类型
     label: "上传文件", // 标题文字  
     options: {
@@ -368,7 +368,7 @@ export const basicsList = [
     type: "uploadImg",
     label: "上传图片",  
     options: {
-      defaultValue: "[]",
+      defaultValue: [],
       multiple: false,
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false,
@@ -377,7 +377,7 @@ export const basicsList = [
       limit: 3,
       placeholder: "上传", 
       headers: {},
-      action: http_upload_file_url,
+      action: '',
       listType: "picture-card"
     },
     model: "",
@@ -388,7 +388,7 @@ export const basicsList = [
         message: "必填项"
       }
     ]
-  }, */
+  }, 
   {
     type: "cascader", // 表单类型
     label: "级联选择器", // 标题文字  

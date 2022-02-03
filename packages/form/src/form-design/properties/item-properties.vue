@@ -436,16 +436,20 @@
           <el-form-item  label="宽度">
             <el-input placeholder="请输入" v-model="options.width" />
           </el-form-item>
-          <!-- 上传数量 -->
-          <el-form-item  label="最大上传数量" >
-            <el-input-number :min="1" v-model="options.limit" />
+          <el-form-item  label="上传地址">
+            <el-input placeholder="上传地址" v-model="options.action" />
           </el-form-item>
+         
            <el-divider ></el-divider>
           <el-form-item   label="操作属性" >
             <el-checkbox v-model="options.hidden"  label="隐藏" />
             <el-checkbox v-model="options.disabled"  label="禁用" /> 
             <el-checkbox v-model="options.multiple"  label="多选" />
           </el-form-item> 
+           <!-- 上传数量 -->
+          <el-form-item  label="最大上传数量" v-if="options.multiple">
+            <el-input-number :min="1" v-model="options.limit" />
+          </el-form-item>
         </template> 
         <!-- 上传文件 end -->
 

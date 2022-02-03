@@ -363,34 +363,34 @@
           
     />  
     
-    <!-- 上传图片 
+    <!-- 上传图片 -->
     <FileUpload
       v-else-if="record.type === 'uploadImg'"
       :style="`width:${record.options.width}`"
       :disabled="dynamicDisabled"
-      :fileForm="models"
-      :fileKey="record.model"
+      :value="models[record.model]"
       accept="image/*" 
-      :list-type="record.options.listType"
-      :multiple="true"
+      list-type="picture"
+      :multiple="record.options.multiple"
       :action="record.options.action"
       :limit="record.options.limit"
       @change="handleChange($event, record.model)"
       
-    />  -->
-    <!-- 上传文件 
+    />  
+     <!-- 上传文件  -->
     <FileUpload
       v-else-if="record.type === 'uploadFile'"
       :style="`width:${record.options.width}`"
       :disabled="dynamicDisabled"
-      :fileForm="models"
-      :fileKey="record.model" 
-      :multiple="true"
+      :value="models[record.model]"
+      :multiple="record.options.multiple"
       :action="record.options.action"
       :limit="record.options.limit"
+      :list-type="record.options.listType"
+      :accept="record.options.accept"
       @change="handleChange($event, record.model)"
       
-    />  -->  
+    />   
     <!-- 级联选择器 -->
     <el-cascader 
       v-else-if="record.type === 'cascader'"
@@ -445,7 +445,7 @@
 </template>
 <script> 
 import request from '../utils/request.js'
-//import FileUpload from './file-upload'
+import FileUpload from './upload'
 import {dynamicFun,dateFormater} from '../utils' 
 import CustomComponent from "./custom";
 import NgState from './state'
@@ -510,7 +510,7 @@ export default {
     },
   },
   components: {
-     /*FileUpload,*/CustomComponent,NgState
+     FileUpload,CustomComponent,NgState
   }, 
   computed: {
     sliderMarks() {
