@@ -31,7 +31,7 @@
           </el-form-item>
            
           <el-form-item label="默认值" >
-            <el-input  v-model="options.defaultValue"
+            <el-input  v-model="options.defaultValue" :type="selectItem.type"
               :placeholder=" typeof options.format === 'undefined' ? '请输入' : options.format"
             />
           </el-form-item>  
