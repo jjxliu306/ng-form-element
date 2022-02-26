@@ -121,7 +121,7 @@
             <el-radio-group   v-model="options.dynamic">
               <el-radio-button :label="0">静态数据</el-radio-button>
               <el-radio-button :label="1">动态数据</el-radio-button>
-            
+              <el-radio-button :label="2" v-if="hasDict">数据字典</el-radio-button>
             </el-radio-group> 
           </el-form-item>
           <el-form-item label-width="0px" >
@@ -140,6 +140,20 @@
                   <template slot="prepend">标签字段</template>
                 </el-input> 
             </div>  
+            <div v-else-if="selectItem.options.dynamic == 2">
+              <el-autocomplete 
+                v-model="selectItem.options.dictType"
+                :fetch-suggestions="queryDictSearch"
+                value-key="type"
+                placeholder="请输入"
+                @select="handleDictSelect"
+              >
+                <template slot="prepend">字典分类</template>
+                <template slot-scope="{ item }">
+                  <span class="name">{{ item.type }}</span> 
+                </template>
+              </el-autocomplete>
+            </div>
             <!-- 本地赋值 -->
             <Option v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
           </el-form-item>
@@ -201,6 +215,7 @@
             <el-radio-group   v-model="options.dynamic">
               <el-radio-button :label="0">静态数据</el-radio-button>
               <el-radio-button :label="1">动态数据</el-radio-button> 
+              <el-radio-button :label="2" v-if="hasDict">数据字典</el-radio-button> 
             </el-radio-group> 
           </el-form-item>
           <el-form-item label-width="0px" >
@@ -219,6 +234,20 @@
                   <template slot="prepend">标签字段</template>
                 </el-input> 
             </div>  
+            <div v-else-if="selectItem.options.dynamic == 2">
+              <el-autocomplete 
+                v-model="selectItem.options.dictType"
+                :fetch-suggestions="queryDictSearch"
+                value-key="type"
+                placeholder="请输入"
+                @select="handleDictSelect"
+              >
+                <template slot="prepend">字典分类</template>
+                <template slot-scope="{ item }">
+                  <span class="name">{{ item.type }}</span> 
+                </template>
+              </el-autocomplete>
+            </div>
             <!-- 本地赋值 -->
             <Option v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" />
           </el-form-item>
@@ -263,7 +292,7 @@
             <el-radio-group   v-model="options.dynamic">
               <el-radio-button :label="0">静态数据</el-radio-button>
               <el-radio-button :label="1">动态数据</el-radio-button>
-             
+              <el-radio-button :label="2" v-if="hasDict">数据字典</el-radio-button> 
             </el-radio-group> 
           </el-form-item>
           <el-form-item label-width="0px" >
@@ -281,7 +310,21 @@
                 <el-input size="mini" v-model="options.remoteLabel">
                   <template slot="prepend">标签字段</template>
                 </el-input> 
-            </div>  
+            </div> 
+            <div v-else-if="selectItem.options.dynamic == 2">
+              <el-autocomplete 
+                v-model="selectItem.options.dictType"
+                :fetch-suggestions="queryDictSearch"
+                value-key="type"
+                placeholder="请输入"
+                @select="handleDictSelect"
+              >
+                <template slot="prepend">字典分类</template>
+                <template slot-scope="{ item }">
+                  <span class="name">{{ item.type }}</span> 
+                </template>
+              </el-autocomplete>
+            </div> 
             <!-- 本地赋值 -->
             <Option v-show="options.dynamic == 0" :type="selectItem.type" v-model="options.options" /> 
           </el-form-item>
@@ -989,6 +1032,43 @@ export default {
       }
 
       this.options = val.options || {}
+    }
+  },
+  computed: {
+    hasDict() {
+      return window.ng_dict_
+    }
+  },
+  methods: {
+     relyCbColumn(v) {
+      this.$set(this.options , 'relyCbColumn' , v)
+     // this.selectItem.options['relyCbColumn'] = v
+    },
+    queryDictSearch(queryString, cb) {
+      const dicts = window.ng_dict_ 
+      if(!dicts || dicts.length == 0) {
+        cb([])
+      }
+
+      const ls = {}
+      const types = []
+      dicts.forEach(t=> {
+        const type = t.type 
+        if(!ls[type]) {
+          ls[type] = type 
+
+          types.push(t)
+        } 
+      })
+
+      // 关键字过滤
+      const fs = types.filter(t=> t.type.indexOf(queryString) >= 0)
+      console.log('fs' , fs)
+      cb(fs)
+
+    },
+    handleDictSelect(item) {
+      console.log('item' , item)
     }
   },
   props: {

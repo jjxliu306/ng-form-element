@@ -209,6 +209,11 @@ export default {
       window.httpConfig = this.config.httpConfig
     }
 
+    // 2022-02-26 lyf 从config中获取数据字典 dict
+    if(this.config.dict && this.config.dict.length > 0 && !window.ng_dict_) {
+      window.ng_dict_ = this.config.dict  
+    }
+
     this.initModelKey()
  
   }

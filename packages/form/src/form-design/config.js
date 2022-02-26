@@ -118,6 +118,7 @@ export const basicsList = [
       dataPath: '',
       remoteValue:'' ,
       remoteLabel:'',
+      dictType: '' ,// 数据字典类型
       linkage: false,
       options: [
         // 下拉选择项配置
@@ -151,6 +152,7 @@ export const basicsList = [
       remoteValue:'' ,
       remoteLabel:'',
       linkage: false,
+      dictType: '' ,// 数据字典类型
       options: [
         {
           value: "1",
@@ -185,6 +187,7 @@ export const basicsList = [
       remoteValue:'' ,
       remoteLabel:'',
       linkage: false,
+       dictType: '' ,// 数据字典类型
       options: [
         {
           value: "1",
@@ -340,9 +343,7 @@ export const basicsList = [
       }
     ]
   },
-  {
- 
-
+  { 
     type: "uploadFile", // 表单类型
     label: "上传文件", // 标题文字  
     options: {
