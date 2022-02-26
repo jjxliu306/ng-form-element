@@ -343,6 +343,7 @@ export default {
       return ;
 
     const defaultValue = this.record.options.defaultValue
+    console.log('index defaultValue' , defaultValue)
     if(defaultValue) {
       if(this.record.type == 'checkbox'){
         this.checkList = defaultValue

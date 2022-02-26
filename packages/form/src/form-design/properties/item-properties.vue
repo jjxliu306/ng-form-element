@@ -439,8 +439,15 @@
           <el-form-item  label="上传地址">
             <el-input placeholder="上传地址" v-model="options.action" />
           </el-form-item>
+          <el-form-item  label="上传成功后解析文件url的epl地址">
+            <el-input placeholder="上传成功后解析文件url的epl地址" v-model="options.responseFileUrl" />
+          </el-form-item>
+           <el-divider >携带信息</el-divider>
+          <el-form-item>
+             <Option type="keyvalue" v-model="options.headers" /> 
+          </el-form-item>
          
-           <el-divider ></el-divider>
+          
           <el-form-item   label="操作属性" >
             <el-checkbox v-model="options.hidden"  label="隐藏" />
             <el-checkbox v-model="options.disabled"  label="禁用" /> 
@@ -463,6 +470,17 @@
           <el-form-item  label="最大上传数量" >
             <el-input-number :min="1" v-model="options.limit" />
           </el-form-item>
+            <el-form-item  label="上传地址">
+            <el-input placeholder="上传地址" v-model="options.action" />
+          </el-form-item>
+           <el-form-item  label="上传成功后解析文件url的epl地址">
+            <el-input placeholder="上传成功后解析文件url的epl地址" v-model="options.responseFileUrl" />
+          </el-form-item>
+          <el-divider >携带信息</el-divider>
+          <el-form-item>
+             <Option type="keyvalue" v-model="options.headers" /> 
+          </el-form-item>
+           
            <el-divider ></el-divider>
           <!-- 上传图片样式 -->
           <el-form-item  label="样式">

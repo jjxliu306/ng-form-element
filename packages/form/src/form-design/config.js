@@ -341,18 +341,21 @@ export const basicsList = [
     ]
   },
   {
+ 
+
     type: "uploadFile", // 表单类型
     label: "上传文件", // 标题文字  
     options: {
-      defaultValue: "[]",
+      defaultValue: [],
       multiple: false,
       disabled: false,
       tooptip: '', // 提示
       hidden: false, // 是否隐藏，false显示，true隐藏 
-      width: "100%",
-      limit: 3, 
-      headers: {},
-      action: http_upload_file_url,
+      width: "100%", 
+      limit: 3,  
+      headers: [{"label":"token" , "value":"64685b8ab1aa962eab779b62716ee84d"}], //上传携带的头信息
+      action: 'http://localhost:8990/ng-server/file/upload',
+      responseFileUrl: 'data.url' , // 上传完成后需要从返回结果中获取文件地址的url
       placeholder: "上传"
     },
     model: "",
@@ -368,16 +371,17 @@ export const basicsList = [
     type: "uploadImg",
     label: "上传图片",  
     options: {
-      defaultValue: [],
+      defaultValue: [ ],
       multiple: false,
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false,
       width: "100%", 
       tooptip: '', // 提示
       limit: 3,
-      placeholder: "上传", 
-      headers: {},
+      placeholder: "上传",  
+      headers: [],
       action: '',
+      responseFileUrl: '' , // 上传完成后需要从返回结果中获取文件地址的url
       listType: "picture-card"
     },
     model: "",

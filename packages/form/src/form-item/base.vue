@@ -368,9 +368,10 @@
       v-else-if="record.type === 'uploadImg'"
       :style="`width:${record.options.width}`"
       :disabled="dynamicDisabled"
-      :value="models[record.model]"
+      v-model="models[record.model]"
+      :record="record"
       accept="image/*" 
-      list-type="picture"
+      :list-type="record.options.listType"
       :multiple="record.options.multiple"
       :action="record.options.action"
       :limit="record.options.limit"
@@ -378,19 +379,23 @@
       
     />  
      <!-- 上传文件  -->
-    <FileUpload
-      v-else-if="record.type === 'uploadFile'"
+     <template v-else-if="record.type === 'uploadFile'">
+       models : {{models }}
+       <FileUpload
+      
       :style="`width:${record.options.width}`"
       :disabled="dynamicDisabled"
-      :value="models[record.model]"
+      v-model="models[record.model]"
       :multiple="record.options.multiple"
       :action="record.options.action"
+      :record="record"
       :limit="record.options.limit"
-      :list-type="record.options.listType"
       :accept="record.options.accept"
       @change="handleChange($event, record.model)"
       
     />   
+     </template>
+    
     <!-- 级联选择器 -->
     <el-cascader 
       v-else-if="record.type === 'cascader'"
@@ -893,9 +898,9 @@ export default {
       this.itemProp.children = this.record.options.remoteChildren
     } 
 
-    
+    console.log('901' , this.models)
     // 如果已经赋值了 则不管默认值了 
-    if(this.models && Object.prototype.hasOwnProperty.call(this.models, this.record.model)) {
+    if(this.models && Object.prototype.hasOwnProperty.call(this.models, this.record.model) && this.models[this.record.model]) {
       // 判断数据类型是否正确 
       // 类型为checkbox cascader 但数据非array类型 则强制转array
       let modelValue = this.models[this.record.model]
@@ -916,6 +921,7 @@ export default {
     }
 
     let defaultValue = this.record.options.defaultValue
+    console.log('defaultValue' , defaultValue)
     if(defaultValue != null) {
       if(this.record.type == 'checkbox' || this.record.type == 'cascader'){
         this.checkList = defaultValue
