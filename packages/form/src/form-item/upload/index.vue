@@ -141,7 +141,7 @@ export default {
 	      	if (
 		        this.accept &&
 		        this.accept.indexOf("image") >= 0 &&
-		        !this.isAssetTypeAnImage(postf)
+		        !this.isAssetTypeAnImage(fileSuffix)
 		    ) {
 		        this.$message.error("当前图片格式只支持:[png,jpg,jpeg,bmp]");
 		        return false;

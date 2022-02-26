@@ -382,8 +382,7 @@ export const basicsList = [
       tooptip: '', // 提示
       limit: 3,
       placeholder: "上传图片",  
-      limitSize: 10, // 文件大小限制 单位MB
-      accept:"", // 接受上传的文件类型
+      limitSize: 10, // 文件大小限制 单位MB 
       name:"file" , //上传的文件字段名
       headers: [],
       action: '',

@@ -372,8 +372,7 @@
       :record="record"
       accept="image/*" 
       :list-type="record.options.listType"
-      :multiple="record.options.multiple"
-      :accept="accept.options.accept"
+      :multiple="record.options.multiple" 
       :action="record.options.action"
       :limit="record.options.limit"
       @change="handleChange($event, record.model)"
@@ -389,9 +388,8 @@
       :multiple="record.options.multiple"
       :action="record.options.action"
       :record="record"
-      :accept="accept.options.accept"
-      :limit="record.options.limit"
       :accept="record.options.accept"
+      :limit="record.options.limit" 
       @change="handleChange($event, record.model)"
       
     />   

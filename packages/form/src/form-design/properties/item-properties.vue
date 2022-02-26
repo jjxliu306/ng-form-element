@@ -483,9 +483,9 @@
            <el-form-item  label="上传成功后解析文件url的epl地址">
             <el-input placeholder="上传成功后解析文件url的epl地址" v-model="options.responseFileUrl" />
           </el-form-item>
-           <el-form-item  label="文件类型">
+          <!--  <el-form-item  label="文件类型">
             <el-input placeholder="文件类型" v-model="options.accept" />
-          </el-form-item>
+          </el-form-item> -->
            <el-form-item  label="大小限制(Mb)">
              <el-input-number v-model="options.limitSize" placeholder="大小限制(Mb)" />
           </el-form-item>
