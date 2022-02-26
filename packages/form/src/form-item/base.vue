@@ -895,7 +895,7 @@ export default {
       this.itemProp.label = this.record.options.remoteLabel
       this.itemProp.value = this.record.options.remoteValue
       this.itemProp.children = this.record.options.remoteChildren
-    }else if(this.record.options.dynamic == 2 && this.record.options.dictType ) {
+    } else if(this.record.options.dynamic == 2 && this.record.options.dictType ) {
 
       // 2022-02-26 lyf  引入数据字典后判断数据字典
      
