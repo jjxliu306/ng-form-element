@@ -6,7 +6,7 @@
    
     <div class="properties-body"> 
       <p class="hint-box" v-show="!selectItem.key">未选择控件</p>
-      <el-form v-show="selectItem.key" size="mini" :disabled="disabled">
+      <el-form :key="selectItem.key" v-show="selectItem.key" size="mini" :disabled="disabled" :model="selectItem">
  
 
         <!-- 公共部分 标签 字段key 数据key start -->
@@ -432,15 +432,22 @@
         <!-- date end -->
 
         <!-- 上传文件 start -->
-        <template v-if="selectItem.type == 'uploadFile'">
+        <template v-if="selectItem.type == 'uploadFile'"> 
           <el-form-item  label="宽度">
             <el-input placeholder="请输入" v-model="options.width" />
           </el-form-item>
-          <el-form-item  label="上传地址">
-            <el-input placeholder="上传地址" v-model="options.action" />
+          <el-form-item  label="上传地址" prop="options.action"  >
+            <el-input placeholder="上传地址" v-model="selectItem.options.action" />
           </el-form-item>
-          <el-form-item  label="上传成功后解析文件url的epl地址">
-            <el-input placeholder="上传成功后解析文件url的epl地址" v-model="options.responseFileUrl" />
+          <!--required error="返回文件url地址不能为空"-->
+          <el-form-item  label="上传成功后解析文件url的epl地址" prop="options.responseFileUrl" >
+            <el-input placeholder="上传成功后解析文件url的epl地址" v-model="selectItem.options.responseFileUrl" />
+          </el-form-item>
+           <el-form-item  label="文件类型">
+            <el-input placeholder="文件类型" v-model="options.accept" />
+          </el-form-item>
+           <el-form-item  label="大小限制(Mb)">
+             <el-input-number v-model="options.limitSize" placeholder="大小限制(Mb)" />
           </el-form-item>
            <el-divider >携带信息</el-divider>
           <el-form-item>
@@ -475,6 +482,12 @@
           </el-form-item>
            <el-form-item  label="上传成功后解析文件url的epl地址">
             <el-input placeholder="上传成功后解析文件url的epl地址" v-model="options.responseFileUrl" />
+          </el-form-item>
+           <el-form-item  label="文件类型">
+            <el-input placeholder="文件类型" v-model="options.accept" />
+          </el-form-item>
+           <el-form-item  label="大小限制(Mb)">
+             <el-input-number v-model="options.limitSize" placeholder="大小限制(Mb)" />
           </el-form-item>
           <el-divider >携带信息</el-divider>
           <el-form-item>

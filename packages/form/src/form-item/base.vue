@@ -373,6 +373,7 @@
       accept="image/*" 
       :list-type="record.options.listType"
       :multiple="record.options.multiple"
+      :accept="accept.options.accept"
       :action="record.options.action"
       :limit="record.options.limit"
       @change="handleChange($event, record.model)"
@@ -380,15 +381,15 @@
     />  
      <!-- 上传文件  -->
      <template v-else-if="record.type === 'uploadFile'">
-       models : {{models }}
-       <FileUpload
-      
+       
+       <FileUpload 
       :style="`width:${record.options.width}`"
       :disabled="dynamicDisabled"
       v-model="models[record.model]"
       :multiple="record.options.multiple"
       :action="record.options.action"
       :record="record"
+      :accept="accept.options.accept"
       :limit="record.options.limit"
       :accept="record.options.accept"
       @change="handleChange($event, record.model)"
@@ -897,8 +898,7 @@ export default {
       this.itemProp.value = this.record.options.remoteValue
       this.itemProp.children = this.record.options.remoteChildren
     } 
-
-    console.log('901' , this.models)
+ 
     // 如果已经赋值了 则不管默认值了 
     if(this.models && Object.prototype.hasOwnProperty.call(this.models, this.record.model) && this.models[this.record.model]) {
       // 判断数据类型是否正确 
@@ -921,7 +921,7 @@ export default {
     }
 
     let defaultValue = this.record.options.defaultValue
-    console.log('defaultValue' , defaultValue)
+ 
     if(defaultValue != null) {
       if(this.record.type == 'checkbox' || this.record.type == 'cascader'){
         this.checkList = defaultValue

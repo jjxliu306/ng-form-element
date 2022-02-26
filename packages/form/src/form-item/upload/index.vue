@@ -1,6 +1,5 @@
 <template>
-<div>
-	uploadHeader:: {{uploadHeader}}
+<div> 
 	<el-upload
 	  class="upload-demo"
 	  :action="action"
@@ -127,10 +126,42 @@ export default {
 		}
 	}, 
 	methods: {
+		beforeUpload(file) {
+			const fileName = file.name;
+	       
+	      	const ltSize = file.size / 1024 / 1024  
+
+	      	const index1 = fileName.lastIndexOf(".");
+
+	      	const index2 = fileName.length;
+	      	const fileSuffix = fileName.substring(index1 + 1, index2); // 后缀名
+ 
+	      	// console.log('file' , file)
+	      	const fileType = file.type;
+	      	if (
+		        this.accept &&
+		        this.accept.indexOf("image") >= 0 &&
+		        !this.isAssetTypeAnImage(postf)
+		    ) {
+		        this.$message.error("当前图片格式只支持:[png,jpg,jpeg,bmp]");
+		        return false;
+		    }
+
+	      	if (this.record.options.limitSize && ltSize > this.record.options.limitSize) {
+	        	this.$message.error( "上传文件大小不能超过" + (this.record.options.limitSize) + "MB!" )
+
+	        	return false
+	         
+	      	}
+	      return true;
+		},
+		isAssetTypeAnImage(ext) {
+      		return ["png", "jpg", "jpeg", "bmp"].indexOf(ext.toLowerCase()) !== -1;
+    	},
 		handleSuccess(response , file , fileList) {
-			console.log('add response' , response)
-			console.log('add file' , file)
-			console.log('add fileList' , fileList)
+			//console.log('add response' , response)
+			//console.log('add file' , file)
+			//console.log('add fileList' , fileList)
 
 			// 根据返回结果的url来获取实际文件的url
 			const responseFileUrl = this.uploadResponseFileUrl 
@@ -159,8 +190,8 @@ export default {
 		 
 		},
 		handleRemove(file , fileList) {
-			console.log('remove file' , file)
-			console.log('remove fileList' , fileList)
+			//console.log('remove file' , file)
+			//console.log('remove fileList' , fileList)
 
 			// 根据文件名删除文件
 			const name = file.name  
@@ -173,7 +204,7 @@ export default {
 		},
 		// 点击下载或者预览
 		handlePreview(file) {
-			console.log('handlePreview file' , file)
+			//console.log('handlePreview file' , file)
 
 			// 从url中下载
 			if(file.url) {
