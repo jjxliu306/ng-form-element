@@ -520,7 +520,7 @@
           <el-form-item  label="最大上传数量" >
             <el-input-number :min="1" v-model="options.limit" />
           </el-form-item>
-            <el-form-item  label="上传地址">
+          <el-form-item  label="上传地址">
             <el-input placeholder="上传地址" v-model="options.action" />
           </el-form-item>
            <el-form-item  label="上传成功后解析文件url的epl地址">

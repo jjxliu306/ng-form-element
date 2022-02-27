@@ -11,6 +11,7 @@
 	  :accept="accept"
 	  :list-type="listType"
 	  :with-credentials="withCredentials"
+	   :before-upload="beforeUpload"
 	  :on-success="handleSuccess"
 	  :on-remove="handleRemove"
 	  :on-preview="handlePreview"
