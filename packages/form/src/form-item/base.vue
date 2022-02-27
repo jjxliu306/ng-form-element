@@ -57,21 +57,19 @@
       <FileUpload
         v-if="record.type == 'uploadImg'"
         :style="`width:${record.options.width}`" 
-        :fileForm="models"
-        :fileKey="record.model"
-        :updateNow="true"
+        v-model="models[record.model]" 
         accept="image/*" 
         :list-type="record.options.listType" 
         :readOnly="true"  
+        :record="record"
       />  
       <!-- 上传文件 --> 
       <FileUpload
         v-else
         :style="`width:${record.options.width}`" 
-        :fileForm="models"
-        :updateNow="true"
-        :fileKey="record.model"  
-        :readOnly="true"    
+        v-model="models[record.model]" 
+        :readOnly="true"  
+         :record="record"  
       />  
     </template>
      <!-- 自定义组件 -->
