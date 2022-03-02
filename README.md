@@ -153,16 +153,17 @@ Vue.use(NgFormElement)
 | reder|  是否显示面板上渲染按钮 |boolean | true |
 | imp|  是否显示面板上导入按钮 |boolean | true |
 | exp|  是否显示面板上导出按钮 |boolean | true |
-
- 
+| basic-item|  基础组件是否要展示或待选组件列表集合 |boolean|Array | true |
+| personal-item|  个性化组件是否要展示或待选组件列表集合 |boolean|Array | true |
+| layout-item|  布局组件是否要展示或待选组件列表集合 |boolean|Array | true | 
 
 插槽:
 
 |  插槽名称 | 说明  |
 |-----------|-------------------------|
 | drag |  左侧组件面板插槽，可以在组件面板上面填充一个区域展示内容|
-| formName |  当前动态表单名称|
-| controlButton | 功能区按钮,如果需要自定义功能按钮可以在这里自定义 |
+| form-name |  当前动态表单名称|
+| control-button | 功能区按钮,如果需要自定义功能按钮可以在这里自定义 |
  
 
  插槽示例:
