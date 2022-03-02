@@ -109,6 +109,9 @@ export default {
 	      	return blist
 	    },
 	    personalArray(){
+	    	if(this.personalItem == false) {
+	    		return []
+	    	}
 	    	// 计算需要显示的基础字段
 	      	let blist = personalList
 	      	if(this.personalItem && this.personalItem instanceof Array && this.personalItem.length > 0) {
@@ -127,6 +130,9 @@ export default {
 	      	return blist
 	    },
 	    layoutArray(){ 
+	    	if(this.layoutItem == false) {
+	    		return []
+	    	}
 	    	let llist = layoutList
 	    	if(this.layoutItem && this.layoutItem instanceof Array && this.layoutItem.length > 0) {
 	      		llist = llist.filter(t=> this.layoutItem.indexOf(t.type) >= 0)
