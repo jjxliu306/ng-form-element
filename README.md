@@ -153,9 +153,9 @@ Vue.use(NgFormElement)
 | reder|  是否显示面板上渲染按钮 |boolean | true |
 | imp|  是否显示面板上导入按钮 |boolean | true |
 | exp|  是否显示面板上导出按钮 |boolean | true |
-| basic-item|  基础组件是否要展示或待选组件列表集合 |boolean|Array | true |
-| personal-item|  个性化组件是否要展示或待选组件列表集合 |boolean|Array | true |
-| layout-item|  布局组件是否要展示或待选组件列表集合 |boolean|Array | true | 
+| basic-item|  基础组件是否要展示或待选组件列表集合 |boolean/Array | true |
+| personal-item|  个性化组件是否要展示或待选组件列表集合 |boolean/Array | true |
+| layout-item|  布局组件是否要展示或待选组件列表集合 |boolean/Array | true | 
 
 插槽:
 
