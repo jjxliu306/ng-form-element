@@ -180,14 +180,15 @@ export default {
               || (n.type == 'select' && n.options.multiple)) {
               // 多选
               this.$set(this.models , n.model , [])
-            } else if(n.type != 'control'){ 
+            } else if(n.type != 'control' && n.type != 'table' && n.type != 'divider' && n.type != 'grid'){ 
               // 字符串
               this.$set(this.models , n.model , null)
             }
    
           } 
-
-          for(let i in n) {
+          
+          if(n.type != 'batch')
+          for(let i in n) { 
             if(n[i] instanceof Array)
               fs_(n[i])
           }
