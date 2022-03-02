@@ -1,0 +1,98 @@
+{
+	"list": [
+		{
+			"type": "input",
+			"label": "输入框",
+			"index": "A",
+			"options": {
+				"type": "text",
+				"width": "100%",
+				"defaultValue": "",
+				"placeholder": "请输入",
+				"clearable": false,
+				"maxLength": 0,
+				"prepend": "",
+				"append": "",
+				"tooptip": "",
+				"hidden": false,
+				"disabled": false,
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "title",
+			"key": "input_1615682858289",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "checkbox",
+			"label": "多选框",
+			"index": "E",
+			"options": {
+				"disabled": false,
+				"hidden": false,
+				"defaultValue": [],
+				"dynamic": 1,
+				"tooptip": "",
+				"remoteFunc": "https://www.netopt.net/netopt-admin/doc/api/listPage",
+				"dataPath": "data.list",
+				"remoteValue": "id",
+				"remoteLabel": "name",
+				"linkage": true,
+				"options": [
+					{
+						"value": "1",
+						"label": "选项1"
+					},
+					{
+						"value": "2",
+						"label": "选项2"
+					},
+					{
+						"value": "",
+						"label": "选项3"
+					}
+				],
+				"dynamicHide": false,
+				"dynamicHideValue": "",
+				"linkData": [
+					{
+						"vtype": 1,
+						"model": "title",
+						"script": "$item.name.indexOf($.title) >= 0",
+						"queryKey": "name",
+						"queryValue": "$.title"
+					}
+				]
+			},
+			"model": "titles",
+			"key": "checkbox_1615682727526",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		}
+	],
+	"config": {
+		"labelPosition": "left",
+		"labelWidth": 100,
+		"size": "mini",
+		"outputHidden": true,
+		"hideRequiredMark": true,
+		"customStyle": ""
+	}
+}

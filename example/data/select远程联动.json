@@ -1,0 +1,105 @@
+{
+	"list": [
+		{
+			"type": "select",
+			"label": "分类",
+			"index": "D",
+			"options": {
+				"width": "100%",
+				"multiple": false,
+				"disabled": false,
+				"clearable": false,
+				"hidden": false,
+				"placeholder": "请选择",
+				"valueKey": "value",
+				"tooptip": "",
+				"dynamic": 1,
+				"remoteFunc": "https://www.netopt.net/netopt-admin/doc/api/selectCategory",
+				"dataPath": "data",
+				"remoteValue": "id",
+				"remoteLabel": "name",
+				"linkage": false,
+				"options": [
+					{
+						"value": "1",
+						"label": "下拉框1"
+					}
+				],
+				"showSearch": false,
+				"dynamicHide": false,
+				"dynamicHideValue": ""
+			},
+			"model": "categorys",
+			"key": "select_1620375951136",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "select",
+			"label": "文章",
+			"index": "D",
+			"options": {
+				"width": "100%",
+				"multiple": false,
+				"disabled": false,
+				"clearable": false,
+				"hidden": false,
+				"placeholder": "请选择",
+				"valueKey": "value",
+				"tooptip": "",
+				"dynamic": 1,
+				"remoteFunc": "https://www.netopt.net/netopt-admin/doc/api/listPage",
+				"dataPath": "data.list",
+				"remoteValue": "id",
+				"remoteLabel": "name",
+				"linkage": true,
+				"options": [
+					{
+						"value": "1",
+						"label": "下拉框1"
+					}
+				],
+				"showSearch": false,
+				"dynamicHide": false,
+				"dynamicHideValue": "",
+				"linkData": [
+					{
+						"vtype": 2,
+						"model": "categorys",
+						"script": "",
+						"queryKey": "categoryId",
+						"queryValue": "$.categorys"
+					}
+				]
+			},
+			"model": "docs",
+			"key": "select_1620375952166",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"change",
+						"blur"
+					]
+				}
+			]
+		}
+	],
+	"config": {
+		"labelPosition": "left",
+		"labelWidth": 100,
+		"size": "mini",
+		"outputHidden": true,
+		"hideRequiredMark": true,
+		"customStyle": ""
+	}
+}
