@@ -614,6 +614,10 @@
   width: 100%; 
 }
 
+.form-design .ng-form-upload .el-upload {
+  display: flex;
+} 
+
 .form-properties {
   height: 100%;
   width: 100%;

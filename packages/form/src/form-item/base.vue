@@ -60,7 +60,7 @@
         v-model="models[record.model]" 
         accept="image/*" 
         :list-type="record.options.listType" 
-        :readOnly="true"  
+        :render-preview="true"  
         :record="record"
       />  
       <!-- 上传文件 --> 
@@ -68,7 +68,7 @@
         v-else
         :style="`width:${record.options.width}`" 
         v-model="models[record.model]" 
-        :readOnly="true"  
+        :render-preview="true"  
          :record="record"  
       />  
     </template>
