@@ -1036,8 +1036,14 @@ export default {
   },
   computed: {
     hasDict() {
-      return window.ng_dict_
+      return this.ngConfig && this.ngConfig.dict && this.ngConfig.dict.length > 0
     }
+  },
+  inject: {
+      ngConfig: {
+        from: 'ngConfigC',
+        default: ()=>({})
+      },
   },
   methods: {
      relyCbColumn(v) {
@@ -1045,7 +1051,7 @@ export default {
      // this.selectItem.options['relyCbColumn'] = v
     },
     queryDictSearch(queryString, cb) {
-      const dicts = window.ng_dict_ 
+      const dicts = this.ngConfig && this.ngConfig.dict ? this.ngConfig.dict : null
       if(!dicts || dicts.length == 0) {
         cb([])
       }

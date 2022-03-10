@@ -15,7 +15,7 @@
       :size="formTemplate.config.size"
       :id="randomId"
       :key="randomId"
-    >   
+    > 
     <template >
       <ng-form-build-item
         ref="buildBlocks"
@@ -79,7 +79,9 @@ export default {
   },
   provide: function () {
     return {
-     customC: this.customComponents 
+     customC: this.customComponents ,
+      // 2022-03-10 lyf 从config中获取数据字典 dict
+     ngConfigC: this.config
     }
   },
   watch: {
@@ -211,9 +213,9 @@ export default {
     }
 
     // 2022-02-26 lyf 从config中获取数据字典 dict
-    if(this.config.dict && this.config.dict.length > 0 && !window.ng_dict_) {
-      window.ng_dict_ = this.config.dict  
-    }
+    // if(this.config.dict && this.config.dict.length > 0 && !window.ng_dict_) {
+    //   window.ng_dict_ = this.config.dict  
+    // }
 
     this.initModelKey()
  

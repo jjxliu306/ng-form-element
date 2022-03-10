@@ -23,7 +23,7 @@
       <FormBuild  :formTemplate="formTemplate" :models="models"   ref="buildPreview" v-if="buildVisible" />  
     </el-tab-pane>
     <el-tab-pane label="渲染" name="four">
-      <FormBuild style="height: 100%;" :formTemplate="formTemplate" :models="models" :renderPreview="true" ref="formPreview" v-if="formVisible" /> 
+      <FormBuild style="height: 100%;" :formTemplate="formTemplate" :custom-components="customComponents" :config="ngConfig" :models="models" :renderPreview="true" ref="formPreview" v-if="formVisible" /> 
     </el-tab-pane> 
   </el-tabs>
  
@@ -55,6 +55,16 @@ export default {
   },
   components: {
     FormBuild
+  },
+  inject: {
+    customComponents: {
+      from: 'customC',
+      default: ()=>[]
+    },
+    ngConfig: {
+        from: 'ngConfigC',
+        default: ()=>({})
+    } 
   },
   methods: { 
     init(template , value) { 

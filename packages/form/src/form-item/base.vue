@@ -234,20 +234,22 @@
     </el-checkbox-group>
 
      <!-- 单选框 -->
-    <el-radio-group
+    <template v-else-if="record.type === 'radio'" >
+       <!-- checkValues::{{checkValues}} -->
+      <el-radio-group
       v-model="models[record.model]"
-      v-else-if="record.type === 'radio'" 
       :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder"
       @change="handleChange($event, record.model)"
-      
-    > 
-      <template v-for="(radioitem, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)" >
-         <el-radio :label="radioitem[itemProp.value]" :key="radioitem[itemProp.value] + index" v-if="itemVisible(radioitem)">
-         {{radioitem[itemProp.label]}}
-        </el-radio>
-      </template> 
-    </el-radio-group>
+      >
+        <template v-for="(radioitem, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)" > 
+           <el-radio :label="radioitem[itemProp.value]" :key="radioitem[itemProp.value] + index" v-if="itemVisible(radioitem)">
+           {{radioitem[itemProp.label]}}
+          </el-radio>
+        </template> 
+      </el-radio-group>
+    </template>
+    
 
     <!-- 日期选择 -->
     <template v-else-if="record.type === 'date'" >  
@@ -446,6 +448,7 @@
   </div>
 </template>
 <script> 
+import cloneDeep from 'lodash/cloneDeep'
 import request from '../utils/request.js'
 import FileUpload from './upload'
 import {dynamicFun,dateFormater} from '../utils' 
@@ -510,6 +513,11 @@ export default {
       from: 'customC',
       default: ()=>[]
     },
+    ngConfig: {
+        from: 'ngConfigC',
+        default: ()=>({})
+    },
+
   },
   components: {
      FileUpload,CustomComponent,NgState
@@ -896,12 +904,19 @@ export default {
     } else if(this.record.options.dynamic == 2 && this.record.options.dictType ) {
 
       // 2022-02-26 lyf  引入数据字典后判断数据字典
-     
-      this.checkValues = window.ng_dict_.filter(t=>t.type == this.record.options.dictType)
+       
+      //console.log('ngConfig' , this.ngConfig)
+      if(this.ngConfig && this.ngConfig.dict && this.ngConfig.dict.length > 0) {
+        const fsDict = this.ngConfig.dict.filter(t=>t.type == this.record.options.dictType)
+        this.checkValues = cloneDeep(fsDict)
 
-      this.itemProp.label = 'label'
-      this.itemProp.value = 'value'
-      this.itemProp.children = 'children'
+        this.itemProp.label = 'label'
+        this.itemProp.value = 'value'
+        this.itemProp.children = 'children'
+      }
+
+      console.log('checkValues' , this.checkValues)
+      
 
     }
  
