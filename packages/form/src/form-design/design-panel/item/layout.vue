@@ -334,6 +334,9 @@ export default {
   },
   computed: {
     insertAllowed() {
+      if(this.record.type == 'batch') {
+        return !['control' , 'batch' , 'batch' ,'divider', 'table'].includes(this.startType)
+      }
       return this.insertAllowedType.includes(this.startType);
     }
   },
