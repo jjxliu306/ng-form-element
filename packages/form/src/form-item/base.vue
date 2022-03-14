@@ -89,7 +89,7 @@
 
 
   </div>
-  <div v-else class="base-item">  
+  <div v-else class="base-item" >   
     <!-- 单行文本 -->   
     <el-input
      
@@ -168,6 +168,7 @@
      <!-- 下拉选框 -->
     <template v-else-if="record.type === 'select' "> 
       <el-select
+        
         v-model="checkList"
         :value-key="itemProp.value"
         :style="`width:${record.options.width}`"
@@ -194,6 +195,7 @@
       </el-select>
       <el-select
         v-else
+         
         v-model="models[record.model]"
         :style="`width:${record.options.width}`"
         :value-key="itemProp.value" 
@@ -222,6 +224,7 @@
     <el-checkbox-group  
       v-else-if="record.type === 'checkbox'"  
       v-model="checkList"
+      
       :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder"
       @change="handleChange($event, record.model)"
@@ -235,8 +238,9 @@
 
      <!-- 单选框 -->
     <template v-else-if="record.type === 'radio'" >
-       <!-- checkValues::{{checkValues}} -->
+       
       <el-radio-group
+      
       v-model="models[record.model]"
       :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder"
@@ -459,6 +463,7 @@ export default {
   data(){
     return{
       loading: false,
+      
       checkList: [],
       checkValues: [], // ajax获取的动态数据绑定
       itemProp: {
@@ -598,6 +603,25 @@ export default {
 
       } 
       return false  
+    },
+    // 2022-03-14 lyf 针对select radio checkbox这些数据的动态来源修改后进行刷新
+    dynamicOption() {
+
+      // 只在表单模板拖拽绘制的时候生效
+
+      if(this.isDragPanel || !['select','radio','checkbox'].includes(this.record.type)) {
+        return null 
+      }
+      if(this.record.options.dynamic == 0){
+        return null
+      }
+      if(this.record.options.dynamic == 1) {
+        return this.record.options.dynamic + this.record.options.remoteFunc + this.record.options.dataPath + this.record.options.remoteValue + this.record.options.remoteLabel
+      } else if(this.record.options.dynamic == 2) {
+        return this.record.options.dynamic + this.record.options.dictType
+      }
+      
+      return null
     }
   },
   watch: {
@@ -616,6 +640,13 @@ export default {
         this.handleChange(value ,this.record.model , 1)
       },
       deep:true
+    },
+    // 2022-03-14 lyf 监听下拉、多选、单选配置变化后如果当前是表单模板编辑状态 则刷新
+    dynamicOption: {
+      handler(val, oldVal){
+         this.initDynamicValue()
+      },
+      deep:true 
     },
     // 监听关联字段
     linkageData: {
@@ -670,8 +701,7 @@ export default {
     } ,
     modelsRecord :{
       handler(val, oldVal){
-          // 2021-04-21 lyf 目前只针对select多选\checkbox 两种进行监听
-          console.log('this.record.type' , this.record.type)
+          // 2021-04-21 lyf 目前只针对select多选\checkbox 两种进行监听 
         if(this.record.type == 'checkbox' || (this.record.type == 'select' && this.record.options.multiple)
           ) {
            
@@ -679,8 +709,7 @@ export default {
           if(val instanceof Array) {
             this.checkList = val
           }
-
-            console.log('checkList' , this.checkList)
+ 
         } 
 
       },
@@ -736,10 +765,7 @@ export default {
 
           this.checkValues = rdata
         }
-      })
-
-
-
+      }) 
     },
     // 2021-03-13 判断列表中具体某个值是否应该显示
     dynamicVisible(script , item) {
@@ -866,20 +892,44 @@ export default {
               
             })
            
-          }
+          } 
+        } 
+      }
+    },
+    // 初始化远程数据或者数据字典 针对select radio checkbox
+    initDynamicValue() {
+      if(this.record.options.dynamic == 1 && this.record.options.remoteFunc) {
+        const url =  this.record.options.remoteFunc 
+        this.remoteUrl = url 
+        
 
+        this.getRemoteData()
+   
 
+        this.itemProp.label = this.record.options.remoteLabel
+        this.itemProp.value = this.record.options.remoteValue
+        this.itemProp.children = this.record.options.remoteChildren
+      } else if(this.record.options.dynamic == 2 && this.record.options.dictType ) {
+
+        // 2022-02-26 lyf  引入数据字典后判断数据字典
          
+        //console.log('ngConfig' , this.ngConfig)
+        if(this.ngConfig && this.ngConfig.dict && this.ngConfig.dict.length > 0) {
+          const fsDict = this.ngConfig.dict.filter(t=>t.type == this.record.options.dictType)
+          this.checkValues = cloneDeep(fsDict)
 
-        }
-
+          this.itemProp.label = 'label'
+          this.itemProp.value = 'value'
+          this.itemProp.children = 'children'
+        } 
+        
 
       }
     }
   }, 
   mounted() { 
      // 2020-07-30 如果有cbColumn 则尝试从data中回填数据  
-   
+     
     if(this.record.options.cbColumn && !this.isDragPanel) {
       this.loading = true
       const value = this.data[this.record.options.cbColumn] 
@@ -890,35 +940,7 @@ export default {
     }
 
      // 判断如果是远程方法的话 远程请求数据
-    if(this.record.options.dynamic == 1 && this.record.options.remoteFunc) {
-      const url =  this.record.options.remoteFunc 
-      this.remoteUrl = url 
-      
-
-      this.getRemoteData()
- 
-
-      this.itemProp.label = this.record.options.remoteLabel
-      this.itemProp.value = this.record.options.remoteValue
-      this.itemProp.children = this.record.options.remoteChildren
-    } else if(this.record.options.dynamic == 2 && this.record.options.dictType ) {
-
-      // 2022-02-26 lyf  引入数据字典后判断数据字典
-       
-      //console.log('ngConfig' , this.ngConfig)
-      if(this.ngConfig && this.ngConfig.dict && this.ngConfig.dict.length > 0) {
-        const fsDict = this.ngConfig.dict.filter(t=>t.type == this.record.options.dictType)
-        this.checkValues = cloneDeep(fsDict)
-
-        this.itemProp.label = 'label'
-        this.itemProp.value = 'value'
-        this.itemProp.children = 'children'
-      }
-
-      console.log('checkValues' , this.checkValues)
-      
-
-    }
+     this.initDynamicValue()
  
     // 如果已经赋值了 则不管默认值了 
     if(this.models && Object.prototype.hasOwnProperty.call(this.models, this.record.model) && this.models[this.record.model]) {
