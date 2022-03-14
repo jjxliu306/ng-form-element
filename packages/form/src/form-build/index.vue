@@ -15,7 +15,7 @@
       :size="formTemplate.config.size"
       :id="randomId"
       :key="randomId"
-    > 
+    >  
     <template >
       <ng-form-build-item
         ref="buildBlocks"

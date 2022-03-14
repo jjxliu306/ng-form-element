@@ -19,10 +19,10 @@
       <el-input style="height: 100%;" :rows="20" type="textarea" v-model="valueText" @change="changeValue"> 
       </el-input>  
     </el-tab-pane>
-     <el-tab-pane label="表单" name="third"> 
-      <FormBuild  :formTemplate="formTemplate" :models="models"   ref="buildPreview" v-if="buildVisible" />  
+     <el-tab-pane label="表单" name="third">  
+      <FormBuild  :formTemplate="formTemplate" :models="models"  :custom-components="customComponents" :config="ngConfig" ref="buildPreview" v-if="buildVisible" />  
     </el-tab-pane>
-    <el-tab-pane label="渲染" name="four">
+    <el-tab-pane label="渲染" name="four"> 
       <FormBuild style="height: 100%;" :formTemplate="formTemplate" :custom-components="customComponents" :config="ngConfig" :models="models" :renderPreview="true" ref="formPreview" v-if="formVisible" /> 
     </el-tab-pane> 
   </el-tabs>
