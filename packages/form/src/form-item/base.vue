@@ -609,7 +609,7 @@ export default {
 
       // 只在表单模板拖拽绘制的时候生效
 
-      if(this.isDragPanel || !['select','radio','checkbox'].includes(this.record.type)) {
+      if(!this.isDragPanel || !['select','radio','checkbox'].includes(this.record.type)) {
         return null 
       }
       if(this.record.options.dynamic == 0){
