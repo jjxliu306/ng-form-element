@@ -2,7 +2,7 @@
     <el-container class="form-design">
       <el-aside width="260px">
           <slot name="drag"></slot> 
-          <DragPanel :basic-item="basicItem" :personal-item="personalItem" :layout-item="layoutItem"> </DragPanel> 
+          <DragPanel @handleDragType="handleDragType" :basic-item="basicItem" :personal-item="personalItem" :layout-item="layoutItem"/>
       </el-aside>
       <el-main>
         <el-row class="form-design" :gutter="20"> 
@@ -23,7 +23,7 @@
                       <el-button v-if="exp" type="text" size="medium" icon="el-icon-upload2" @click="handleGenerateJson">导出</el-button>
                     </span> 
                 </div> 
-                <DesignPanel :data="data" ref="dragPanel" :selectForm="selectForm" @changeSelectItem="changeSelectItem"/> 
+                <DesignPanel :data="data" ref="dragPanel" :dragType="dragType" :selectForm="selectForm" @changeSelectItem="changeSelectItem"/> 
                
               </el-card> 
             </el-col>
@@ -96,6 +96,9 @@ export default {
       modelVisible: false,
       importVisible: false,
       importText: '' ,
+
+      // 2022-03-23 lyf 增加dargType 当前拖拽的组件类型
+      dragType: '' ,
 
       renderVisisble: false,
       // 基础配置
@@ -246,6 +249,9 @@ export default {
     handleImport(){
       this.importVisible = true 
       this.importText = ''
+    },
+    handleDragType(dragType){
+      this.dragType = dragType
     },
     importModel(){
       if(!this.importText) {

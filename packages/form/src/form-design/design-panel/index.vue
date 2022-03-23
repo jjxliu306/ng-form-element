@@ -6,6 +6,7 @@
             :noModel="noModel"
             :hideModel="hideModel"
             :selectForm="selectForm"
+            :dragType="dragType"
             :startType="startType" 
             @handleSetSelectItem="handleSetSelectItem"> 
 		</FormPanel> 
@@ -35,6 +36,10 @@ export default {
 		},
 		selectForm: {
 			type: Object
+		},
+		// 当前正在拖拽的组件类型
+		dragType: {
+			type: String
 		}
 	}, 
 	methods: {

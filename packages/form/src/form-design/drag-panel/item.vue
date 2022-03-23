@@ -9,13 +9,14 @@
 	    tag="ul"
 	    :value="list"
 	    v-bind="{
-	      group: { name: 'form-draggable', pull: 'clone', put: false },
+	      group: { name: 'form-draggable', pull: 'clone', put: true },
 	      sort: false,
 	      animation: 180,
 	      ghostClass: 'moving'
 	    }"
 	    :force-fallback="true"
-	    @start="handleStart($event, list)" >  
+	    @start="handleStart($event, list)" 
+	    @end="handleEnd">  
 		    <li
 		      class="form-edit-widget-label"
 		      v-for="(val, index) in list"
@@ -46,6 +47,9 @@ export default {
     handleStart(e, list) {
       //this.$emit("start", list ,[e.oldIndex].type);
       this.$emit('start', list, e.oldIndex)
+    },
+    handleEnd(){
+    	this.$emit('end')
     }
   }
 };

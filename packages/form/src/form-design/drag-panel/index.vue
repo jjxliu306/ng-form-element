@@ -11,7 +11,8 @@
 	                :list="basicsArray"
 	                @generateKey="generateKey"
 	                @handleListPush="handleListPush"
-	                @start="handleStart"/>
+	                @start="handleStart"
+	                @end="handleEnd"/>
 		  	</el-collapse-item>
 		  		 <!-- 个性化控件 -->
             <el-collapse-item v-if="personalArray.length > 0 && (personalItem == true || personalItem.length > 0)" title="个性化组件" name="2" >
@@ -20,6 +21,7 @@
                 @generateKey="generateKey"
                 @handleListPush="handleListPush"
                 @start="handleStart"
+                @end="handleEnd"
               />
             </el-collapse-item>
 		  	 <!-- 自定义控件 -->
@@ -29,6 +31,7 @@
                 @generateKey="generateKey"
                 @handleListPush="handleListPush"
                 @start="handleStart"
+                @end="handleEnd"
               />
             </el-collapse-item>
 		  	<el-collapse-item title="布局组件" name="4" v-if="layoutItem == true || layoutItem.length > 0">
@@ -36,7 +39,8 @@
 	                :list="layoutArray"
 	                @generateKey="generateKey"
 	                @handleListPush="handleListPush"
-	                @start="handleStart"/>
+	                @start="handleStart"
+	                @end="handleEnd"/>
 		  	</el-collapse-item>
 
 		</el-collapse> 
@@ -214,10 +218,18 @@ export default {
 	    },
 	    handleStart(list,index) {
 	    	this.generateKey(list,index)
-	      const type = list[index].type
-	      this.startType = type;
+	      	const type = list[index].type
+	      	this.startType = type;
+
+	      	//console.log('startType' , this.startType)
+
+	      	this.$emit('handleDragType' , type)
 
 	    },
+	    handleEnd(){
+	    	this.startType = null
+	    	this.$emit('handleDragType' , null)
+	    }
 	}
 }
 

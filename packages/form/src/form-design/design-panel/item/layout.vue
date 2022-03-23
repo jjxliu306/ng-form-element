@@ -8,7 +8,7 @@
   >
     <!-- 动态表格设计模块 start -->
    <!--  <span>record.list: {{record.list}} </span> -->
-    <template v-if="record && record.type === 'batch'">
+    <template v-if="record && record.type === 'batch'"> 
       <div
         :class="[
           'batch-box',
@@ -104,7 +104,7 @@
                   :key="item.key"
                   :selectItem.sync="selectItem"
                   :startType="startType"
-                  :insertAllowedType="insertAllowedType"
+                
                   :record="item"
                   :hideModel="hideModel"
                   :config="config"
@@ -252,7 +252,7 @@
                     :key="item.key"
                     :selectItem.sync="selectItem"
                     :startType="startType"
-                    :insertAllowedType="insertAllowedType"
+                    
                     :record="item"
                     :hideModel="hideModel"
                     :config="config"
@@ -330,14 +330,26 @@ export default {
     hideModel: {
       type: Boolean,
       default: false
+    },
+    dragType: {
+      type: String
     }
   },
   computed: {
     insertAllowed() {
       if(this.record.type == 'batch') {
-        return !['control' , 'batch' , 'batch' ,'divider', 'table'].includes(this.startType)
+        const disabledType = ['control' , 'batch' , 'batch' ,'divider', 'table']
+        
+        // 判断当前是在从原始组件拖拽还是从面板内组件拖拽
+        if(this.dragType) {
+          return !disabledType.includes(this.dragType)
+        } else {
+          return !disabledType.includes(this.startType)
+        }
+
+        
       }
-      return this.insertAllowedType.includes(this.startType);
+      return true ;//this.insertAllowedType.includes(this.startType);
     }
   },
   components: {
