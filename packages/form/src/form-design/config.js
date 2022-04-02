@@ -8,7 +8,7 @@ export const noModelList = [
   "button",
             "divider",
             "card",
-            'control',
+            
             "grid",
             "table",
             "alert",

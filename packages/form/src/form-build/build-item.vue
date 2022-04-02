@@ -23,7 +23,7 @@
         :key="item.key" 
         :record="item"
         :formConfig="formConfig"
-        
+        :prop-prepend="record.model + '.' + idx + '.'"
       />
     </el-col>
   </el-row> 
@@ -143,7 +143,7 @@
           :key="record.key"
           :record="record"
           :formConfig="formConfig"
-         
+          :prop-prepend="propPrepend"
         />
       </el-tooltip> 
      
@@ -159,7 +159,7 @@
         :key="record.key"
         :record="record"
         :formConfig="formConfig"
-       
+        :prop-prepend="propPrepend"
       />
       
    
@@ -194,6 +194,10 @@ export default {
       })
       //required: true
     }, 
+    propPrepend: {
+      // form-item的 prop前缀 默认不需要
+      type: String
+    },
     disabled: {
       type: Boolean,
       default: false
