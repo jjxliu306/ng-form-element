@@ -18,14 +18,14 @@ NG-FORM-ELEMENT
 **ngtool 后端解析和校验功能** 
 https://gitee.com/jjxliu306/ngtool
 
-
+<!--
 ## 集成示例
 **基于springboot + vue 的前后端分离集成案例**
 
 后端springboot: https://gitee.com/jjxliu306/ng-server
 
 前端vue: https://gitee.com/jjxliu306/ng-ui
-
+-->
 ## 示例
 
  **基础表单** 
@@ -358,6 +358,7 @@ export default {
 </script>
  
 ```
-
+<!--
 # 交流
 点击链接加入qq群聊，可以直接提问及反馈bug 【交流群：203205848】 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=vNN2AMPxXjojpwYu66DOGNtL2dFYh6Q-&jump_from=webapi"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="vue-form-design" title="vue-form-design"></a>
+-->
