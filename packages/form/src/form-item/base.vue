@@ -988,6 +988,14 @@ export default {
       && this.record.options.range) {
       let defaultRangeValue = this.record.options.rangeDefaultValue 
       if(defaultRangeValue && defaultRangeValue.length == 2) {
+        // 判断有么有设置为now的
+        if(defaultRangeValue[0] == 'now'){
+          defaultRangeValue[0] = dateFormater(new Date() ,this.record.options.format)
+        }
+        if(defaultRangeValue[1] == 'now'){
+          defaultRangeValue[1] = dateFormater(new Date() ,this.record.options.format)
+        }
+
         this.$set(this.models , this.record.model , defaultRangeValue)
       }
     }
