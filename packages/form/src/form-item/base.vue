@@ -257,7 +257,7 @@
 
     <!-- 日期选择 -->
     <template v-else-if="record.type === 'date'" >  
-      <!-- 区分时间段选择 和单个时间选择 -->
+      <!-- 区分时间段选择 和单个时间选择 --> 
       <el-date-picker 
         :style="`width:${record.options.width}`"
         v-if="record.options.range"
@@ -964,7 +964,7 @@ export default {
     }
 
     let defaultValue = this.record.options.defaultValue
- 
+     
     if(defaultValue != null) {
       if(this.record.type == 'checkbox' || this.record.type == 'cascader'){
         this.checkList = defaultValue
@@ -982,6 +982,16 @@ export default {
 
       this.handleChange(defaultValue , this.record.model)
     }
+
+    // 2022-05-04 lyf 如果当前是时间范围或者日期范围 则从rangeDefaultValue 中取默认值
+    if( (this.record.type == 'date' || this.record.type == 'time' || this.record.type == 'datePicker') 
+      && this.record.options.range) {
+      let defaultRangeValue = this.record.options.rangeDefaultValue 
+      if(defaultRangeValue && defaultRangeValue.length == 2) {
+        this.$set(this.models , this.record.model , defaultRangeValue)
+      }
+    }
+   
 
 
     // 2021-03-16 lyf 判断当前没有值并且类型是input 或者textarea 给初始化model
