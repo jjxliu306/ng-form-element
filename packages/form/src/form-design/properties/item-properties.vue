@@ -17,6 +17,9 @@
         <el-form-item  label="数据字段" v-if="!hideModel && !noModel.includes(selectItem.type)" >
           <el-input v-model="selectItem.model" placeholder="请输入" :disabled="(selectItem.item != undefined && selectItem.item.id != undefined) "/>
         </el-form-item>
+        <el-form-item label="标签宽度" v-if="!hideModel && !noModel.includes(selectItem.type)">
+          <el-input-number v-model="options.labelWidth" title="-1表示跟随整体表达配置的宽度"></el-input-number>
+        </el-form-item>
          <el-divider ></el-divider>
         <!-- 公共部分 标签 字段key 数据key end -->
 
@@ -1031,7 +1034,14 @@ export default {
         this.$set(val.options , 'colWidth' , {})
       }
 
+     
+
       this.options = val.options || {}
+
+       // 判断 labelWidth 
+      if(!this.hideModel && !Object.prototype.hasOwnProperty.call(this.options, 'labelWidth')){
+        this.$set(this.options , 'labelWidth' , -1)
+      }
     }
   },
   computed: {

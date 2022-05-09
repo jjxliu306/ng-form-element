@@ -45,6 +45,7 @@
         :rules="recordRules(item)"
         :prop="item.rules && item.rules.length > 0 ? item.model : null"
         :id="item.model" :name="item.model"
+        :label-width="(item.options.labelWidth >= 0 ? item.options.labelWidth : formTemplate.config.labelWidth) + 'px'"
       >   
 
 
