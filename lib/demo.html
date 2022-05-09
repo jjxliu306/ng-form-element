@@ -1,98 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="utf-8">
-<title>ng-form-element</title> 
-<!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<title>ng-form-element demo</title>
+<script src="./ng-form-element.umd.js"></script>
 
 <link rel="stylesheet" href="./ng-form-element.css">
-<!-- 引入组件库 -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
 
-<script src="https://unpkg.com/element-ui/lib/index.js"></script> 
-
-<script src="./ng-form-element.umd.min.js"></script>
-
-</head> 
-<body>
-<div id="app"> 
-
-    <el-tabs v-model="activeName" style="padding: 20px;" @tab-click="changeTab">
-        <el-tab-pane label="表单绘制" name="first">
-            <ng-form-design ref="formDesign" >
-                
-                <template  slot="formName">
-                    <span> ng-form-element 示例 </span>
-                </template>
-                
-
-            </ng-form-design> 
-        </el-tab-pane>
-        <el-tab-pane label="表单查看" name="second">
-            <el-alert
-            title="测试表单预览"
-            type="warning">
-          </el-alert> 
-             <el-button   type="primary" size="mini"  @click="validator()">验证</el-button>
-             <el-button   type="primary" size="mini"  @click="getData()">获取数据</el-button>
-          
-            <ng-form-build ref="formbuild" :form-template="formTemplate" :models="models" />
-
- 
-
-           
-        </el-tab-pane> 
-      </el-tabs>
-     
-   
-</div>
 
 <script>
-new Vue({
-  el: '#app',
-  data: {
-    activeName: 'first',
-    models: {} ,
-    formTemplate: {list:[] , config:{}} ,
-  },
-   mounted() { 
-  },
-   methods: {
-     
-    validator() {
-      this.$refs.formbuild.validator().then((valid)=>{
-        if(valid){
-          this.$message.info('验证通过')
-        } else {
-          this.$message.error('验证不通过')
-        }
-      })
-    },
-    changeTab(v) {
-      if(v && v.name == 'second') {
-       
-        this.formTemplate =  this.$refs.formDesign.getModel()
-        const list = this.formTemplate.list 
-        if(list) {
-          const templateModels = list.map(t=>t.model)
-          for(let i in this.models) {
-            if(!templateModels.includes(i)) {
-              delete this.models[i]
-            }
-          }
-         // 2021-04-06 顺带重置models 将
-        }
-        //this.models = {}
-      } 
-    },
-    getData() {
-      this.$refs.formbuild.getData().then((data)=>{
-        console.log('data' , data)
-      })
-    }
-  }
-})
+console.log(ng-form-element)
 </script>
-</body>
-</html>
