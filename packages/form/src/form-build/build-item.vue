@@ -23,7 +23,7 @@
         :key="item.key" 
         :record="item"
         :formConfig="formConfig"
-        :prop-prepend="record.model + '.' + idx + '.'"
+        
       />
     </el-col>
   </el-row> 
@@ -98,6 +98,7 @@
           :models.sync="mdata"   
           :record="item"
           :formConfig="formConfig" 
+          :prop-prepend="record.model + '.' + idx + '.'"
         />
       </div> 
          
