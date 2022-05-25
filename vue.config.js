@@ -9,15 +9,13 @@ module.exports = {
       chunks: ['chunk-vendors', 'chunk-common', 'index'],
       cdn: {
         css: [
-          'https://cdn.jsdelivr.net/npm/element-ui@2.13.2/lib/theme-chalk/index.css'
+          'https://unpkg.com/element-ui/lib/theme-chalk/index.css' 
         ],
         js: [
-          "https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js",
-          "https://cdn.jsdelivr.net/npm/vue-router@3.0.3/dist/vue-router.min.js",
-          "https://cdn.jsdelivr.net/npm/vuex@3.1.3/dist/vuex.min.js",
-          "https://cdn.jsdelivr.net/npm/element-ui@2.13.2/lib/index.js",
-          
-          "https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js" 
+          "https://unpkg.com/vue@2.6.11/dist/vue.min.js",
+          "https://unpkg.com/vue-router@3.0.3/dist/vue-router.min.js",
+          "https://unpkg.com/vuex@3.1.3/dist/vuex.min.js",
+          "https://unpkg.com/element-ui/lib/index.js" 
         ]
  
       }, 
@@ -29,9 +27,7 @@ module.exports = {
       "element-ui": "ELEMENT",
       vue: "Vue",
       "vue-router": "VueRouter",
-      vuex: "Vuex",
-      
-      moment: "moment" 
+      vuex: "Vuex" 
     }
   }, 
   productionSourceMap: false,
