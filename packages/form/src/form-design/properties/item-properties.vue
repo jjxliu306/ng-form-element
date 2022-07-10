@@ -921,6 +921,10 @@
 
          <!-- ############# 为自定义组件预备的插槽 end ############### -->
 
+
+       
+
+
         <!-- ################### 布局  end ################################  -->
 
          <!-- tooptip 提示 -->
@@ -960,6 +964,15 @@
         <!-- ################### 校验   end ############################## -->
 
        
+         <!-- 获取焦点事件  后续这块单独拉一个事件列表 包含获取、失去焦点等其他 -->
+        <template v-if="focusType.includes(selectItem.type) || Object.prototype.hasOwnProperty.call(options, 'focusEvent')" >
+          <el-divider >事件</el-divider>
+          <el-form-item  label="获取焦点事件">
+            <el-input type="textarea" v-model="options.focusEvent"  placeholder="获取焦点后事件,eg: $.address = $.city + $.location" /> 
+          </el-form-item>
+        </template>
+      
+
 
         <template v-if="!hideModel && selectItem && selectItem.options">
            <el-form-item label="动态显示">
@@ -1024,6 +1037,8 @@ export default {
   data() {
     return {
       options: {},
+      // 包含focus的组件
+      focusType: ['input' , 'textarea' , 'number' , 'select' , 'date' , 'time' , 'datePicker'] ,
       noModel : noModelList
     };
   },
@@ -1034,7 +1049,10 @@ export default {
         this.$set(val.options , 'colWidth' , {})
       }
 
-     
+      // 获取焦点事件
+      if(this.focusType.includes(val.type)) {
+        this.$set(val.options , 'focusEvent' , '')
+      }
 
       this.options = val.options || {}
 

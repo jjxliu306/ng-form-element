@@ -5,6 +5,7 @@
 	      :record="record"
 	      :style="`width:${record.options.width}`"
 	      @change="handleChange"
+	      @focus="handleFocus"
 	      :disabled="disabled" 
 	      :preview="renderPreview"
 	      :models="models" 
@@ -68,7 +69,10 @@ export default {
 	},
 	methods: {
 		handleChange(value, key) {
-	      this.$emit("change", value, key);
+	      	this.$emit("change", value, key);
+	    },
+	    handleFocus(value , key) {
+	    	this.$emit('focus' , value , key)
 	    }
 	}
 }

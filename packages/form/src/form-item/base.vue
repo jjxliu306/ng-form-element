@@ -102,6 +102,7 @@
       :maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
       @change="handleChange($event, record.model)"
       v-model="models[record.model]" 
+      @focus="handleFocus($event , record.model)"
     >
       <span v-if="record.options.prepend"  slot="prepend" v-html="transformAppend(record.options.prepend)">
        
@@ -123,7 +124,7 @@
       :rows="record.options.rows"
       :show-word-limit="record.options.maxLength > 0 && record.options.maxLength > 10"
       @change="handleChange($event, record.model)"
-       
+       @focus="handleFocus($event , record.model)"
     />
 
     <!-- 数字输入框 -->
@@ -155,7 +156,7 @@
           controls-position="right"
           :placeholder="record.options.placeholder"
           @change="handleChange($event, record.model)"
-          
+          @focus="handleFocus($event , record.model)"
         > </el-input-number>
         <div class="el-input-group__append el-input-number-group__append " v-if="record.options.append" v-html="transformAppend(record.options.append)">
          
@@ -182,6 +183,7 @@
         multiple
         @clear="clearChange"
         @change="handleChange($event, record.model ,  true)" 
+        @focus="handleFocus($event , record.model)"
       >
         <template  v-for="(item, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)">
           <el-option 
@@ -207,6 +209,7 @@
         :clearable="record.options.clearable" 
         @clear="clearChange"
         @change="handleChange($event, record.model , true)" 
+        @focus="handleFocus($event , record.model)"
       > 
         <template v-for="(item, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)">
           <el-option
@@ -270,7 +273,8 @@
         :end-placeholder="record.options.rangeEndPlaceholder"
         :format="record.options.format"
         :value-format="record.options.format"
-        @change="handleChange($event, record.model)" >
+        @change="handleChange($event, record.model)"
+        @focus="handleFocus($event , record.model)" >
       </el-date-picker>
       <el-date-picker 
         v-else
@@ -283,7 +287,8 @@
         :placeholder="record.options.placeholder"
         :format="record.options.format"
         :value-format="record.options.format"
-        @change="handleChange($event, record.model)">
+        @change="handleChange($event, record.model)"
+        @focus="handleFocus($event , record.model)">
       </el-date-picker>
 
     </template>
@@ -305,7 +310,8 @@
         :end-placeholder="record.options.rangeEndPlaceholder"
         :format="record.options.format"
         :value-format="record.options.format"
-        @change="handleChange($event, record.model)" >
+        @change="handleChange($event, record.model)"
+        @focus="handleFocus($event , record.model)" >
       </el-date-picker>
       <el-date-picker 
         v-else
@@ -318,7 +324,8 @@
         :placeholder="record.options.placeholder"
         :format="record.options.format"
         :value-format="record.options.format"
-        @change="handleChange($event, record.model)">
+        @change="handleChange($event, record.model)"
+        @focus="handleFocus($event , record.model)">
       </el-date-picker>
 
     </template>
@@ -334,7 +341,8 @@
       :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder" 
       :format="record.options.format"
-      :value-format="record.options.format">
+      :value-format="record.options.format"
+      @focus="handleFocus($event , record.model)">
     </el-time-select> 
 
 
@@ -447,7 +455,7 @@
       :formConfig="formConfig"
       :renderPreview="renderPreview"
       @change="handleChange($event, record.model)"
-      
+      @focus="handleFocus($event , record.model)"
     /> 
   </div>
 </template>
@@ -728,6 +736,15 @@ export default {
           return fvalue 
       } 
       return append 
+    }, 
+    // 获取焦点后的事件
+    handleFocus(event , model) {
+      // 判断是否有监听
+      const focusEventScript = this.record.options.focusEvent
+
+      if(!focusEventScript) return 
+
+      dynamicFun(focusEventScript,this.models) 
     },
     remoteMethod(query){
       let queryParam = this.record.options.onlineParams
