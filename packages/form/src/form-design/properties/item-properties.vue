@@ -970,8 +970,29 @@
           <el-form-item  label="获取焦点事件">
             <el-input type="textarea" v-model="options.focusEvent"  placeholder="获取焦点后事件,eg: $.address = $.city + $.location" /> 
           </el-form-item>
+           <el-divider ></el-divider>
         </template>
       
+
+
+         <!-- 联动配置 2022-07-10 lyf -->
+        <el-form-item label="监听组件">
+         
+            <el-switch
+              v-model="options.listenModel"
+              active-text="是"
+              inactive-text="否">
+            </el-switch> 
+        </el-form-item>
+        <template v-if="options.listenModel"> 
+          <el-form-item label="监听组件model">
+            <el-input v-model.trim="options.listenModelData"  placeholder="多个使用,分割" /> 
+          </el-form-item>
+          <el-form-item label="触发表达式">
+            <el-input size="mini"   type="textarea" v-model="options.listenModelScript" placeholder="表达式,eg: $.address = $.city + $.location" />
+          </el-form-item> 
+        </template>
+        <el-divider ></el-divider>
 
 
         <template v-if="!hideModel && selectItem && selectItem.options">
@@ -1050,8 +1071,15 @@ export default {
       }
 
       // 获取焦点事件
-      if(this.focusType.includes(val.type)) {
+      if(this.focusType.includes(val.type) && !Object.prototype.hasOwnProperty.call(val.options, 'focusEvent')) {
         this.$set(val.options , 'focusEvent' , '')
+      }
+
+      // 监听组件
+      if(!Object.prototype.hasOwnProperty.call(val.options, 'listenModel')) {
+        this.$set(val.options , 'listenModel' , false)
+        this.$set(val.options , 'listenModelData' , '')
+        this.$set(val.options , 'listenModelScript' , '')
       }
 
       this.options = val.options || {}
@@ -1060,6 +1088,9 @@ export default {
       if(!this.hideModel && !Object.prototype.hasOwnProperty.call(this.options, 'labelWidth')){
         this.$set(this.options , 'labelWidth' , -1)
       }
+ 
+
+
     }
   },
   computed: {
