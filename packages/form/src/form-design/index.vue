@@ -109,7 +109,7 @@ export default {
           labelWidth: 100, 
           size: 'mini',
           outputHidden: true ,//  是否输出隐藏字段的值 默认打开,所有字段都输出
-          hideRequiredMark: true ,
+          hideRequiredMark: false ,
           customStyle: ""
         }
       },
