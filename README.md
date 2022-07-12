@@ -4,7 +4,8 @@ NG-FORM-ELEMENT
 ![组件一览](https://s3.ax1x.com/2020/12/22/rr6Dw6.png "11.png")
  
  **在线示例**
- http://jjxliu306.gitee.io/ng-form-element/
+<!--  http://jjxliu306.gitee.io/ng-form-element/ --> 
+ https://jjxliu306.github.io/ng-form-element/dist/index.html
 
 
  **iview版本地址**
