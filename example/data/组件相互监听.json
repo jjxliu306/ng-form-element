@@ -1,0 +1,115 @@
+{
+	"list": [
+		{
+			"type": "input",
+			"label": "城市",
+			"options": {
+				"type": "text",
+				"width": "100%",
+				"defaultValue": "",
+				"placeholder": "",
+				"clearable": false,
+				"maxLength": 0,
+				"prepend": "",
+				"append": "",
+				"tooptip": "",
+				"hidden": false,
+				"disabled": false,
+				"dynamicHide": false,
+				"dynamicHideValue": "",
+				"focusEvent": "",
+				"listenModel": false,
+				"listenModelData": "",
+				"listenModelScript": "",
+				"labelWidth": -1
+			},
+			"model": "city",
+			"key": "input_1657600731315",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "input",
+			"label": "街道",
+			"options": {
+				"type": "text",
+				"width": "100%",
+				"defaultValue": "",
+				"placeholder": "",
+				"clearable": false,
+				"maxLength": 0,
+				"prepend": "",
+				"append": "",
+				"tooptip": "",
+				"hidden": false,
+				"disabled": false,
+				"dynamicHide": false,
+				"dynamicHideValue": "",
+				"focusEvent": "",
+				"listenModel": false,
+				"listenModelData": "",
+				"listenModelScript": "",
+				"labelWidth": -1
+			},
+			"model": "location",
+			"key": "input_1657600732999",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"blur"
+					]
+				}
+			]
+		},
+		{
+			"type": "textarea",
+			"label": "地址",
+			"options": {
+				"width": "100%",
+				"maxLength": 0,
+				"defaultValue": "",
+				"rows": 4,
+				"clearable": false,
+				"tooptip": "",
+				"hidden": false,
+				"disabled": false,
+				"placeholder": "请输入",
+				"dynamicHide": false,
+				"dynamicHideValue": "",
+				"focusEvent": "",
+				"listenModel": true,
+				"listenModelData": "city,location",
+				"listenModelScript": "$.address=$.city+$.location",
+				"labelWidth": -1
+			},
+			"model": "address",
+			"key": "textarea_1657600731315",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"blur"
+					]
+				}
+			]
+		}
+	],
+	"config": {
+		"labelPosition": "left",
+		"labelWidth": 70,
+		"size": "mini",
+		"outputHidden": true,
+		"hideRequiredMark": false,
+		"customStyle": ""
+	}
+}
