@@ -1064,25 +1064,25 @@ export default {
     };
   },
   watch: {
-    selectItem(val) { 
-     
+    selectItem(val) {
+      this.options = val.options || {}
       if(val.type == 'batch' && !val.options.colWidth) {
         this.$set(val.options , 'colWidth' , {})
       }
 
       // 获取焦点事件
-      if(this.focusType.includes(val.type) && !Object.prototype.hasOwnProperty.call(val.options, 'focusEvent')) {
-        this.$set(val.options , 'focusEvent' , '')
+      if(this.focusType.includes(val.type) && !Object.prototype.hasOwnProperty.call(this.options, 'focusEvent')) {
+        this.$set(this.options , 'focusEvent' , '')
       }
 
       // 监听组件
-      if(!Object.prototype.hasOwnProperty.call(val.options, 'listenModel')) {
-        this.$set(val.options , 'listenModel' , false)
-        this.$set(val.options , 'listenModelData' , '')
-        this.$set(val.options , 'listenModelScript' , '')
+      if(!Object.prototype.hasOwnProperty.call(this.options, 'listenModel')) {
+        this.$set(this.options , 'listenModel' , false)
+        this.$set(this.options , 'listenModelData' , '')
+        this.$set(this.options , 'listenModelScript' , '')
       }
 
-      this.options = val.options || {}
+
 
        // 判断 labelWidth 
       if(!this.hideModel && !Object.prototype.hasOwnProperty.call(this.options, 'labelWidth')){
