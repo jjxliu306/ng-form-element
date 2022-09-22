@@ -1,6 +1,6 @@
 {
-  "name": "ng-form-element",
-  "version": "1.1.2",
+  "name": "ng-form-element-x",
+  "version": "0.0.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -23,7 +23,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11",
     "vuex-persistedstate": "^3.0.1",
-    "webpack-bundle-analyzer": "^4.4.2" 
+    "webpack-bundle-analyzer": "^4.4.2"
   },
   "eslintConfig": {
     "root": true,
@@ -68,6 +68,7 @@
   },
   "homepage": "https://gitee.com/jjxliu306/vue-form-design#readme",
   "keywords": [
+    "ng-form-element-x",
     "ng-form",
     "ng-form-element",
     "vue-form-design",
