@@ -4,6 +4,7 @@
 <template>
  
   <div v-if="renderPreview" class="base-item">
+
     <template v-if=" [
           'input',
           'textarea',
@@ -89,7 +90,7 @@
 
 
   </div>
-  <div v-else class="base-item" >   
+  <div v-else class="base-item" > 
     <!-- 单行文本 -->   
     <el-input
      
@@ -222,12 +223,11 @@
         </template> 
       </el-select>
     </template>
- 
+    
     <!-- 多选框 --> 
     <el-checkbox-group  
-      v-else-if="record.type === 'checkbox' && models[record.model]"
+      v-else-if="record.type === 'checkbox'"
       v-model="models[record.model]"
-      
       :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder"
       @change="handleChange($event, record.model)"
@@ -472,7 +472,6 @@ export default {
     return{
       loading: false,
       
-      checkList: [],
       checkValues: [], // ajax获取的动态数据绑定
       itemProp: {
         children: 'children',
@@ -655,14 +654,7 @@ export default {
     }
   },
   watch: {
-    checkList:{
-      handler(val, oldVal){
-          // 默认所有val 全部补一个id 标明顺序
-        //this.models[this.record.model] = val
-        this.$set(this.models , this.record.model , val)
-      },
-      deep:true
-    },
+  
     // 远程方法获取的数据尝试再这里回填label
     checkValues: {
       handler(val, oldVal){
@@ -715,7 +707,6 @@ export default {
 
           // 将当前选中值设置为空 防止选择的值目前展示不出来后永远不能反选
           if( (this.record.type === 'select' && this.record.options.multiple) || this.record.type === 'checkbox') {
-            // this.checkList = []
             this.models[this.record.model] = []
           } else {
              this.$set(this.models , this.record.model , null)
@@ -739,7 +730,6 @@ export default {
            
           // 选择值重置
           if(val instanceof Array) {
-            // this.checkList = val
             this.models[this.record.model] = val
           }
  
@@ -864,9 +854,8 @@ export default {
       Fn(this.models, this.data)
     },
     handleChange(value, key , type) {
-
       if(['select' , 'checkbox' , 'cascader'].includes(this.record.type)){
-        this.$set(this.models, this.record.type, value)
+        this.$set(this.models, this.record.model, value)
       }
       // change事件  
       this.$emit("change", value, key); 
@@ -1021,8 +1010,6 @@ export default {
           this.$set(this.models , this.record.model , modelValue)
         }
   
-        //this.models[this.record.model] = vs
-        // this.checkList = modelValue
         this.models[this.record.model] = modelValue
 
       }
@@ -1034,7 +1021,6 @@ export default {
      
     if(defaultValue != null) {
       if(this.record.type == 'checkbox' || this.record.type == 'cascader'){
-        // this.checkList = defaultValue
         this.models[this.record.model] = defaultValue
       } else {
         if((this.record.type == 'date' || this.record.type == 'time' || this.record.type == 'datePicker' ) && defaultValue == 'now') { 
