@@ -22,14 +22,14 @@ https://gitee.com/jjxliu306/ngtool
 ## 文档（陆续更新）
 https://www.ng-form.cn/  
 
-<!--
+ 
 ## 集成示例
 **基于springboot + vue 的前后端分离集成案例**
 
 后端springboot: https://gitee.com/jjxliu306/ng-server
 
 前端vue: https://gitee.com/jjxliu306/ng-ui
--->
+ 
 ## 示例
 
  **基础表单** 

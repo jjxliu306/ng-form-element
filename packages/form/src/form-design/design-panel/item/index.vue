@@ -10,7 +10,7 @@
     </p>
     <el-form 
       :label-width="data.config.labelWidth + 'px'" 
-      class="a-form-box form-build"
+      class="form-build"
       :label-position="data.config.labelPosition"
       :hide-required-asterisk="data.config.hideRequiredMark" 
       ref="form" 
