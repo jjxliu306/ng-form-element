@@ -110,6 +110,7 @@ export default {
           size: 'mini',
           outputHidden: true ,//  是否输出隐藏字段的值 默认打开,所有字段都输出
           hideRequiredMark: false ,
+          syncLabelRequired: false,
           customStyle: ""
         }
       },

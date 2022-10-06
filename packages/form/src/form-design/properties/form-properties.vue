@@ -27,7 +27,7 @@
           </el-radio-group>
         </el-form-item>
         <el-divider></el-divider>
-        <el-form-item label="校验字段提示"> 
+        <el-form-item label="校验字段提示" title="是否打开element-ui中hide-required-asterisk开关，即 是否隐藏必填字段的标签旁边的红色星号"> 
           <el-switch
             v-model="config.hideRequiredMark"
             active-text="打开"
@@ -36,7 +36,16 @@
             inactive-text="关闭">
           </el-switch> 
         </el-form-item> 
-          <el-form-item label="输出隐藏组件值"> 
+        <el-form-item label="动态校验标签" v-if="!config.hideRequiredMark" title="此开关在打开hide-required-asterisk时，是否将标签旁边的红色星号跟随组件的校验规则一起显示"> 
+          <el-switch
+            v-model="config.syncLabelRequired"
+            active-text="打开"
+            :inactive-value="false"
+            :active-value="true"
+            inactive-text="关闭">
+          </el-switch> 
+        </el-form-item> 
+        <el-form-item label="输出隐藏组件值" title="当存在动态隐藏的组件时，此开关决定隐藏的组件中的值是否将被忽略删除"> 
           <el-switch
             v-model="config.outputHidden"
             active-text="打开" 

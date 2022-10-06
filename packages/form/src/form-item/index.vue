@@ -28,6 +28,7 @@
     :label="formConfig.labelWidth > 0 ? record.label : null " 
     :rules="recordRules"
     :prop="recordProps"
+    :required="recordRequired" 
     :id="record.model" :name="record.model"
     :label-width="(record.options.labelWidth >= 0 ? record.options.labelWidth : formConfig.labelWidth) + 'px'"
   >   
@@ -178,7 +179,7 @@ export default {
         from: 'customC',
         default: ()=>[]
       },
-  },
+  }, 
   watch: {
     'record': {
       handler(pre, nex) {
@@ -256,9 +257,12 @@ export default {
       for(var i = 0 ; i < rules.length ; i++){
         const t = rules[i]
         
-        t.required = isRequire
+        // if(t.required != undefined) {
+
+        // }
+        // t.required = isRequire
         // 2021-08-12 lyf 针对必填而且是文本输入的组件增加纯空格校验
-        if(t.required && (this.record.type == 'input' || this.record.type == 'textarea') ){
+        if(isRequire && (this.record.type == 'input' || this.record.type == 'textarea') ){
           t.whitespace = true
         }
 
@@ -281,6 +285,57 @@ export default {
       
       return rules 
 
+    },
+    // 2022-10-06 lyf 判断组件是否必填 动态
+    recordRequired() {
+      if(this.formConfig.hideRequiredMark || !this.formConfig.syncLabelRequired) {
+        return false
+      }
+       
+
+      let rules =this.record.rules
+
+      if(!rules || rules.length == 0) return false
+      // 2020-09-12 判断是否必填 ,非必填得没有值得时候不校验
+
+      const isRequire = rules[0].required
+      if(isRequire) {
+        return true 
+      }
+
+      const value = this.models[this.record.model]
+      // 循环判断
+      for(var i = 0 ; i < rules.length ; i++){
+        const rule = rules[i]
+
+ 
+        if(rule.vtype == 1) {
+            // 正则
+          if(!rule.pattern) { 
+            continue
+          }
+          // 正则匹配
+          const patt1 = new RegExp(rule.pattern);
+            //document.write(patt1.test("free"));
+
+          if(!patt1.test(value)) {
+            return true
+          }  
+ 
+        } else if(rule.vtype == 2) {
+          // 表达式
+          const script = rule.script
+
+          // 打开了开关 这里获取函数内容
+         const fvalue =  dynamicFun(script , this.models)
+          
+          if (!fvalue) {
+            return true
+          } 
+        } 
+      }
+
+      return false
     }
   },
   methods: {
