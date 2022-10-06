@@ -412,11 +412,11 @@ export default {
   },
   created () {
     // 如果已经赋值了 则不管默认值了
-    if(this.models[this.record.model]) return ;
-    const defaultValue = this.record.options.defaultValue
-    if(defaultValue) {
-      this.$set(this.models, this.record.model, defaultValue)
-    } 
+    // if(this.models[this.record.model]) return ;
+    // const defaultValue = this.record.options.defaultValue
+    // if(defaultValue) {
+    //   this.$set(this.models, this.record.model, defaultValue)
+    // } 
   },
 };
 </script>

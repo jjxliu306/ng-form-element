@@ -266,7 +266,7 @@
         v-if="record.options.range"
         v-model="models[record.model]"
         align="right"
-        type="daterange"
+        :type="record.options.dateType == 'month' ? 'monthrange' : 'daterange'"
         :clearable="record.options.clearable"
         :disabled="dynamicDisabled"
         :start-placeholder="record.options.rangeStartPlaceholder"
@@ -280,8 +280,8 @@
         v-else
         :style="`width:${record.options.width}`"
         v-model="models[record.model]"
-        align="right"
-        type="date"
+        align="right" 
+        :type="record.options.dateType"
         :clearable="record.options.clearable"
         :disabled="dynamicDisabled"
         :placeholder="record.options.placeholder"
@@ -1017,7 +1017,7 @@ export default {
     }
 
     let defaultValue = this.record.options.defaultValue
-     
+    
     if(defaultValue != null) {
       if(this.record.type == 'checkbox' || this.record.type == 'cascader'){
         this.models[this.record.model] = defaultValue
@@ -1027,7 +1027,7 @@ export default {
           defaultValue = dateFormater(new Date() ,this.record.options.format)
  
         }  
-        
+       
         this.$set(this.models , this.record.model , defaultValue)
          
         
