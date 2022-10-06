@@ -258,15 +258,20 @@ export default {
       if(!this.importText) {
         alert('文本不能为空')
         return
+      }  
+      try {
+        const importData = JSON.parse(this.importText)
+        
+        if(importData && typeof importData == 'object'){
+          this.data = importData
+          this.importVisible = false
+        } else {
+          this.$message.error('模板解析异常，请检查文本内容.')
+        }
+        
+      } catch (error) {
+        this.$message.error('模板解析异常，请检查文本内容.')
       }
-
-      const importData = JSON.parse(this.importText)
-      if(importData){
-        this.data = importData
-      }
-
-      this.importVisible = false
-
 
     },
     initModel(model) { 

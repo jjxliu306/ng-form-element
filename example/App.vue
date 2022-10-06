@@ -18,11 +18,11 @@
                 </template>
                 <template slot="extend-tab" slot-scope="{data }"> 
                   <el-tab-pane label="扩展属性" name="select"> 
-                    扩展测试插槽-加tab::  (组件数量):: {{data.list.length}}
+                    扩展测试插槽-加tab::  (组件数量):: {{data && data.list ? data.list.length : 0}}
                   </el-tab-pane>  
                 </template> 
                 <template slot="form-extend-properties" slot-scope="{ data}">  
-                    扩展测试插槽(组件数量):: {{data.list.length}}
+                    扩展测试插槽(组件数量):: {{data && data.list ? data.list.length : 0}}
                 </template> 
 
             </ng-form-design> 
