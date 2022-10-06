@@ -1,7 +1,10 @@
 
 .form-design {
   text-align: left ;
+   height: 100%;
+  width: 100%; 
 }
+ 
 
 .form-design .form-label .is-required:before {
   content: "*";
@@ -609,14 +612,25 @@
 .form-design .form-item .el-collapse-item__content {
   padding-bottom: 0px;
 }
-.form-design {
-  height: 100%;
-  width: 100%; 
+
+
+.form-design .pointer{
+  cursor: pointer;
 }
+
 
 .form-design .ng-form-upload .el-upload {
   display: flex;
 } 
+
+.form-design .ng-form-upload .el-upload .el-icon-plus {
+  color: #8c939d;
+    width: 148px;
+    height: 148px;
+    line-height: 148px;
+    text-align: center;
+
+}
 
 .form-properties {
   height: 100%;

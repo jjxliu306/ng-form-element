@@ -1,6 +1,36 @@
 <template>
 <div> 
+	<div v-if="renderPreview || disabled">
+		<!-- 判断图片还是文件列表 -->
+		<div v-if="accept && accept.indexOf('image') >= 0 && listType && listType.indexOf('picture-card') >= 0" >
+        <ul > 
+          <li style="float:left;margin-right:20px;list-style: none;" v-for="(item,index) in fileList"  :key="index">
+
+            <img  @click="reviewDown(item)"   :src="item.url" :class="[direction == null || direction == false?'avatar':'vertical']" style="max-height: 150px;max-width: 150px;cursor: pointer;">
+            
+          </li>
+
+        </ul>
+
+      </div>
+
+      <ul v-else class="el-upload-list el-upload-list--text">
+        <li v-for="(item,index) in fileList" :key="index" :tabindex="index" class="el-upload-list__item pointer"  style="cursor: pointer;"
+            @click="fileDown(item)"><!---->
+          <a class="el-upload-list__item-name "  style="cursor: pointer;">
+            <i class="el-icon-document"></i> {{item.name}}
+          </a>
+
+          <label class="el-upload-list__item-status-label">
+            <i class="el-icon-upload-success el-icon-circle-check"></i>
+          </label>
+
+          <!---->
+        </li>
+      </ul>
+	</div>
 	<el-upload
+	  v-else 
 	  class="ng-form-upload"
 	  :action="action"
 	  :drag="drag"
@@ -23,6 +53,11 @@
 	  	<div v-if="tip != undefined" slot="tip" class="el-upload__tip">请选择图片，且不超过500kb</div>
 	  </template> 
 	</el-upload>
+
+	  <!--附件上传-->
+    <el-dialog :append-to-body="true" :visible.sync="dialogVisible">
+      <img width="100%" :src="dialogImageUrl" alt="">
+    </el-dialog>
 </div>
 </template>
 <script>
@@ -30,6 +65,8 @@ export default {
 	name: 'form-upload',
 	data() {
 		return {
+			dialogVisible: false,
+			dialogImageUrl: '',
 			fileList: []
 		}
 	},
@@ -88,6 +125,10 @@ export default {
 	    renderPreview: {
 	    	type: Boolean,
 	    	default: false
+	    },
+	    imgDownBut: {
+	    	type: Boolean,
+	    	default: true
 	    }
 	},
 	watch: {
@@ -176,7 +217,7 @@ export default {
 
 			const objectPath = require("object-path")
 			const fileUrl = objectPath.get(response, responseFileUrl)
-
+			console.log('fileUrl' , fileUrl )
 			if(fileUrl) {
 				// 重新组合
 				const f_ = {name: file.name , size: file.size , url: fileUrl}
@@ -215,12 +256,31 @@ export default {
 
 			// 从url中下载
 			if(file.url) {
-				window.location.href = file.url
+				 
+
+				this.dialogVisible = true 
+				this.dialogImageUrl = file.url 
+				//window.location.href = file.url
 			} else {
 				this.$message.error('找不到文件下载路径')
 			}
 
-		}
+		},
+		 // 浏览下载文件
+	    reviewDown (file) {
+	      this.handlePreview(file)
+	    },
+	    
+	    // 图片下载
+	    fileDown (file) {
+	    	if(file.url) {
+				 window.open(file.url)
+			} else {
+				this.$message.error('找不到文件下载路径')
+			}
+
+	     
+	    },
 	}
 }
 </script>
