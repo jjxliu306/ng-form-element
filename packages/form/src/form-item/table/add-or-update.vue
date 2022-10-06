@@ -286,7 +286,7 @@
             this.dataForm = {_id:null,seq: 0 , ...d}
 
             this.$nextTick(() => {
-              this.$refs['dataForm'].resetFields()
+              this.$refs['dataForm'] && this.$refs['dataForm'].resetFields()
          
             })
           }
@@ -295,7 +295,7 @@
         },
         // 表单提交
         dataFormSubmit () {
-          this.$refs['dataForm'].validate((valid) => {
+          this.$refs['dataForm'] && this.$refs['dataForm'].validate((valid) => {
             if (valid) { 
               this.loading = true
               this.clearHiddenValue()

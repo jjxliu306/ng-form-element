@@ -4,6 +4,7 @@
 <template>
  
   <div v-if="renderPreview" class="base-item">
+
     <template v-if=" [
           'input',
           'textarea',
@@ -89,7 +90,7 @@
 
 
   </div>
-  <div v-else class="base-item" >   
+  <div v-else class="base-item" > 
     <!-- 单行文本 -->   
     <el-input
      
@@ -170,7 +171,7 @@
     <template v-else-if="record.type === 'select' "> 
       <el-select
         
-        v-model="checkList"
+        v-model="models[record.model]"
         :value-key="itemProp.value"
         :style="`width:${record.options.width}`"
         v-if="record.options.multiple"
@@ -222,12 +223,11 @@
         </template> 
       </el-select>
     </template>
- 
+    
     <!-- 多选框 --> 
     <el-checkbox-group  
-      v-else-if="record.type === 'checkbox'"  
-      v-model="checkList"
-      
+      v-else-if="record.type === 'checkbox'"
+      v-model="models[record.model]"
       :disabled="dynamicDisabled"
       :placeholder="record.options.placeholder"
       @change="handleChange($event, record.model)"
@@ -411,7 +411,7 @@
     <el-cascader 
       v-else-if="record.type === 'cascader'"
       ref="cascader"
-      v-model="checkList"
+      v-model="models[record.model]"
       :options="(record.options.dynamic == 1 && record.options.remoteFunc ? checkValues : record.options.options)"
       :style="`width:${record.options.width}`"
       :placeholder="record.options.placeholder"
@@ -472,7 +472,6 @@ export default {
     return{
       loading: false,
       
-      checkList: [],
       checkValues: [], // ajax获取的动态数据绑定
       itemProp: {
         children: 'children',
@@ -487,6 +486,8 @@ export default {
       // 2021-03-13 如果该字段带有本地数据过滤,则这里保存本地过滤的过滤条件
       localFilter: [],
       remoteFilter: {} , // 远程过滤搜索 结构 {key:xx,value:xx}
+      copyModels: '', // 监听models数据上下两次变化
+      copyLstenModel: '', // 监听数据字段的变化
     }
   },
   props: {
@@ -504,7 +505,8 @@ export default {
     // form-item 宽度配置
     models: {
       type: Object,
-      required: true
+      required: true,
+      default: () => ({})
     }, 
     disabled: {
       type: Boolean,
@@ -636,7 +638,6 @@ export default {
       if(!this.isDragPanel && this.record.options.listenModel ) {
           const listenModelData = this.record.options.listenModelData
           if(!listenModelData) return null
-          
           const lmodels = listenModelData.split(',')
           let vs = []
           for(let i = 0 ; i < lmodels.length ; i++) {
@@ -648,21 +649,13 @@ export default {
 
             }
           }
-          return vs 
-
+          return vs
       }
       return null
     }
   },
   watch: {
-    checkList:{
-      handler(val, oldVal){
-          // 默认所有val 全部补一个id 标明顺序
-        //this.models[this.record.model] = val
-        this.$set(this.models , this.record.model , val)
-      },
-      deep:true
-    },
+  
     // 远程方法获取的数据尝试再这里回填label
     checkValues: {
       handler(val, oldVal){
@@ -715,7 +708,7 @@ export default {
 
           // 将当前选中值设置为空 防止选择的值目前展示不出来后永远不能反选
           if( (this.record.type === 'select' && this.record.options.multiple) || this.record.type === 'checkbox') {
-            this.checkList = []
+            this.models[this.record.model] = []
           } else {
              this.$set(this.models , this.record.model , null)
           }
@@ -738,7 +731,7 @@ export default {
            
           // 选择值重置
           if(val instanceof Array) {
-            this.checkList = val
+            this.models[this.record.model] = val
           }
  
         } 
@@ -749,22 +742,20 @@ export default {
     // 组件监听 2022-07-10 lyf
     listenModel: {
       handler(val, oldVal){
-        if(this.record.options.listenModel ) {
-          const listenModelData = this.record.options.listenModelData
-          if(!listenModelData) return  
-
-            // 本地搜索
+        if(!this.record.options.listenModel ) return
+        const listenModelData = this.record.options.listenModelData
+        if(!listenModelData) return
+        // 解决 初始化加载数据 被计算数据监听造成数据变化
+        const Ify = JSON.stringify(val)
+        if (this.copyLstenModel != Ify) {
+          this.copyLstenModel = Ify
           const listenScript = this.record.options.listenModelScript 
           if(!listenScript) return
-            
           dynamicFun(listenScript , this.models)
-
-             
         }
       },
-      deep:true
-      
-    }
+      immediate: true,
+    },
   },
   methods: {
     transformAppend(append){
@@ -862,6 +853,9 @@ export default {
       Fn(this.models, this.data)
     },
     handleChange(value, key , type) {
+      if(['select' , 'checkbox' , 'cascader'].includes(this.record.type)){
+        this.$set(this.models, this.record.model, value)
+      }
       // change事件  
       this.$emit("change", value, key); 
 
@@ -1015,8 +1009,8 @@ export default {
           this.$set(this.models , this.record.model , modelValue)
         }
   
-        //this.models[this.record.model] = vs
-        this.checkList = modelValue 
+        this.models[this.record.model] = modelValue
+
       }
 
       return ;
@@ -1026,7 +1020,7 @@ export default {
      
     if(defaultValue != null) {
       if(this.record.type == 'checkbox' || this.record.type == 'cascader'){
-        this.checkList = defaultValue
+        this.models[this.record.model] = defaultValue
       } else {
         if((this.record.type == 'date' || this.record.type == 'time' || this.record.type == 'datePicker' ) && defaultValue == 'now') { 
 

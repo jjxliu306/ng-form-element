@@ -130,8 +130,6 @@ export default {
   name: "ng-form-item", 
   data(){  
     return{
-      checkList: [] ,
- 
     }
   },
   props: {
@@ -155,7 +153,7 @@ export default {
     // form-item 宽度配置
     models: {
       type: Object,
-      required: true
+      required: true,
     }, 
     disabled: {
       type: Boolean,
@@ -182,14 +180,17 @@ export default {
       },
   },
   watch: {
-    checkList:{
-      handler(val, oldVal){
-          // 默认所有val 全部补一个id 标明顺序
-        //this.models[this.record.model] = val
-        this.$set(this.models , this.record.model , val)
+    'record': {
+      handler(pre, nex) {
+        if (this.models[this.record.model]) return ;
+        const defaultValue = this.record.options.defaultValue
+        if (defaultValue) {
+          this.$set(this.models, this.record.model, defaultValue)
+        } 
       },
-      deep:true
-    }
+      deep: true,
+    },
+
   },
   computed: {
     customList() {
@@ -354,21 +355,13 @@ export default {
 
     }
   },
-  mounted() {  
+  created () {
     // 如果已经赋值了 则不管默认值了
-    if(this.models[this.record.model]) 
-      return ;
-
+    if(this.models[this.record.model]) return ;
     const defaultValue = this.record.options.defaultValue
-   
     if(defaultValue) {
-      if(this.record.type == 'checkbox'){
-        this.checkList = defaultValue
-      } else {
-        this.models[this.record.model] = defaultValue
-      } 
+      this.$set(this.models, this.record.model, defaultValue)
     } 
- 
-  }
+  },
 };
 </script>

@@ -1,11 +1,11 @@
 {
-  "name": "ng-form-element",
-  "version": "1.1.2",
+  "name": "ng-form-element-x",
+  "version": "1.0.2",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name ng-form-element --dest lib packages/index.js"
+    "lib": "vue-cli-service build --target lib --name ng-form-element-x --dest lib packages/index.js"
   },
   "dependencies": {
     "axios": "^0.21.2",
@@ -23,7 +23,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11",
     "vuex-persistedstate": "^3.0.1",
-    "webpack-bundle-analyzer": "^4.4.2" 
+    "webpack-bundle-analyzer": "^4.4.2"
   },
   "eslintConfig": {
     "root": true,
@@ -51,8 +51,8 @@
     "not dead"
   ],
   "private": false,
-  "description": "ng-form-element",
-  "main": "lib/ng-form-element.umd.min.js",
+  "description": "ng-form-element-x",
+  "main": "lib/ng-form-element-x.umd.min.js",
   "directories": {
     "example": "example",
     "lib": "lib"
@@ -68,6 +68,7 @@
   },
   "homepage": "https://gitee.com/jjxliu306/vue-form-design#readme",
   "keywords": [
+    "ng-form-element-x",
     "ng-form",
     "ng-form-element",
     "vue-form-design",
