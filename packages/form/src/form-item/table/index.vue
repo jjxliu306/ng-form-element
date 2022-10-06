@@ -31,7 +31,7 @@
         </el-table-column>
         <template  v-for="(item,index) in record.list">
           <el-table-column   
-          v-if="record.options.addType != 'dialog' || (record.options.showItem && record.options.showItem.includes(item.model) )"
+          v-if="record.options.addType != 'dialog' || (!record.options.showItem || record.options.showItem.length == 0 || record.options.showItem.includes(item.model) )"
           :key="index"
           :label="item.label"
           :width="record.options.colWidth && record.options.colWidth[item.model] ? record.options.colWidth[item.model] : undefined"
