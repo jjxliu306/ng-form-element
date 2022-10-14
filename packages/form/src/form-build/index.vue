@@ -37,7 +37,7 @@
   
 </template>
 <script>
- 
+import { noModelList } from '../form-design/config.js'
 import NgFormBuildItem from "./build-item";  
 export default {
   name: "ng-form-build",
@@ -169,7 +169,7 @@ export default {
       // 根据模板迭代一圈 每个组件赋予初值
       const list_ = this.formTemplate.list 
       if(!list_ || list_.length == 0) return 
-
+ 
       const fs_ = (n)=> {
         if(n instanceof Array) {
           n.forEach(t=> {
@@ -182,7 +182,9 @@ export default {
               || (n.type == 'select' && n.options.multiple)) {
               // 多选
               this.$set(this.models , n.model , [])
-            } else if(n.type != 'control' && n.type != 'table' && n.type != 'divider' && n.type != 'grid'){ 
+            } 
+            //else if(n.type != 'control' && n.type != 'table' && n.type != 'divider' && n.type != 'grid' && n.type != ){ 
+            else if(!noModelList.includes(n.type)) {
               // 字符串
               this.$set(this.models , n.model , null)
             }
