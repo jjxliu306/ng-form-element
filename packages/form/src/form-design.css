@@ -641,3 +641,8 @@
   height: 100%;
 }
  
+
+.form-design .table-item .el-form-item__error{
+  position: relative;
+  text-align: left;
+}

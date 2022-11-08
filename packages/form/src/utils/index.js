@@ -5,13 +5,30 @@ export const http_down_file_url = 'http://localhost:9000/sxfw/file/fileDown'
 
  
 
-export function dynamicFun(script , model , key="$") {
+import cloneDeep from 'lodash/cloneDeep'
+ 
+/**
+* 动态函数
+* @param script 函数脚本
+* @param model 整个表单的数据
+* @param key 当前整改表单数据的标识key 
+* @param row 如果为batch 标识当前行的数据
+* @param rowKey 如果为batch 标识当前行数据的key
+* @return 验证结果 函数脚本执行结果
+*/
+export function dynamicFun(script , model , key="$" , row , rowKey) {
   if(!script) return false 
   const func = script.indexOf('return') >= 0 ? '{' + script + '}' : 'return (' + script + ')' 
-  const Fn = new Function(key, func)
-  return Fn(model)
-}
+
+  if(row && rowKey) {
+    const Fn = new Function(key , rowKey, func)
+    return Fn(model , row)
+  } else {
+    const Fn = new Function(key, func)
+    return Fn(model)
+  }
  
+}
  
 export function dateFormater(date , fmt) {  
   const o = {   
