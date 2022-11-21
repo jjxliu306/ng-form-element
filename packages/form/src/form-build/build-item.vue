@@ -72,6 +72,7 @@
  
     <div 
      v-else-if="record.type === 'control' && dynamicVisibleItem" 
+      :id="record.model" :name="record.model"
      >   
      <div v-for="(mdata, idx) in models[record.model]"  :key="idx"
       :class="[
@@ -231,15 +232,15 @@ export default {
     }
   },
   created() {
-    // 如果是control 则默认初始化就有一份空数据,control 下的list所有组件初始一个
-    
-    if(this.record.type == 'control' && !this.renderPreview && !Object.prototype.hasOwnProperty.call(this.models, this.record.model) ) {
+   
+    // 如果是control 则默认初始化就有一份空数据,control 下的list所有组件初始一个 
+    if(this.record.type == 'control' && !this.renderPreview && (!Object.prototype.hasOwnProperty.call(this.models, this.record.model) || !this.models[this.record.model] )) {
       const data_ = {} 
 
-     /* this.record.list.forEach(t=> {
-        data_[t.model] = null
-      })*/
-      
+      this.record.list.forEach(t=> {
+        if(t && t.model)
+          data_[t.model] = null
+      })  
       this.$set(this.models , this.record.model , [data_])
     }
 
@@ -248,6 +249,8 @@ export default {
     // 添加监听取消右键菜单
     document.addEventListener("click", this.handleRemoveRightMenu, true);
     document.addEventListener("contextmenu", this.handleRemoveRightMenu, true);
+
+    
   },
   destroyed() {
     // 移除监听
@@ -323,7 +326,7 @@ export default {
       this.record.list.forEach(t=> {
         data_[t.model] = ''
       })
-      
+      console.log('models' , this.models[this.record.model])
       this.models[this.record.model].push(data_) 
 
     },

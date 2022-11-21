@@ -15,7 +15,7 @@
       :size="formTemplate.config.size"
       :id="randomId"
       :key="randomId"
-    >  
+    >   
     <template >
       <ng-form-build-item
         ref="buildBlocks"
@@ -175,15 +175,15 @@ export default {
           n.forEach(t=> {
             fs_(t)
           })
-        } else {
+        } else if(n){
+           
           if(n.model && (update || !Object.prototype.hasOwnProperty.call(this.models, n.model))) {
 
             if(n.type == 'checkbox' || n.type == 'cascader' || n.type == 'batch'
-              || (n.type == 'select' && n.options.multiple)) {
+              || (n.type == 'select' && n.options.multiple) || n.type == 'uploadFile' || n.type == 'uploadImg') {
               // 多选
               this.$set(this.models , n.model , [])
-            } 
-            //else if(n.type != 'control' && n.type != 'table' && n.type != 'divider' && n.type != 'grid' && n.type != ){ 
+            }  
             else if(!noModelList.includes(n.type)) {
               // 字符串
               this.$set(this.models , n.model , null)
@@ -191,11 +191,13 @@ export default {
    
           } 
           
-          if(n.type != 'batch')
-          for(let i in n) { 
-            if(n[i] instanceof Array)
-              fs_(n[i])
+          if(n.type != 'batch' && n.type != 'control') {
+            for(let i in n) { 
+              if(n[i] instanceof Array)
+                fs_(n[i])
+            }
           }
+          
 
         }
       }
