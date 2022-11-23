@@ -127,7 +127,7 @@
 import TableBatch from "./table"; 
 import BaseItem from './base' 
 import {dynamicFun} from '../utils'
-
+import cloneDeep from 'lodash/cloneDeep'
 export default {
   name: "ng-form-item", 
   data(){  
@@ -248,7 +248,7 @@ export default {
       if(this.isDragPanel || this.renderPreview || !this.record.rules || this.record.rules.length == 0) {
         return []
       }
-      let rules =this.record.rules
+      let rules = cloneDeep(this.record.rules)
 
       // 2020-09-12 判断是否必填 ,非必填得没有值得时候不校验
 
