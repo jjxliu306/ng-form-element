@@ -22,7 +22,8 @@
           'uploadImg',
           'uploadFile',
           'cascader',
-          'state'
+          'state',
+          'address'
         ].includes(record.type) || customList.includes(record.type) ) && dynamicVisibleItem && !(record.type == 'select' && renderPreview &&  record.options.previewHidden )
     "
     :label="formConfig.labelWidth > 0 ? record.label : null " 

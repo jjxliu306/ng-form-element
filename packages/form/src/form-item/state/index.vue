@@ -90,7 +90,7 @@ export default {
   			return this.record && this.record.options ? this.record.options.maxLevel : 3
   		},
   		oneByOne(){
-  			return this.record && this.record.options ? this.record.options.oneByOne : true
+  			return this.record && this.record.options ? this.record.options.oneByOne : false
   		}
   	},
   	mounted(){
@@ -99,7 +99,22 @@ export default {
   	watch:{
   		value(val) {  
       		 	// 找名称
-      	this.updateStateLabel(val)	 	
+      	
+
+      	let currValue = ''
+      	if(this.maxLevel == 1) {
+      		currValue = this.dataForm.province
+      	} else if(this.maxLevel == 2) {
+      		currValue = this.dataForm.city
+      	} else if(this.maxLevel == 3) {
+      		currValue = this.dataForm.district
+      	}
+
+      	if(val != currValue) {
+      		this.init()
+      	} else {
+      		this.updateStateLabel(val)	 	
+      	}
       		 
     	}
   	},
@@ -108,16 +123,26 @@ export default {
 
   		},
       // 更新区划label
-      updateStateLabel(val) {
+      updateStateLabel() {
        
 
-        let address = [] 
-
+        const str_ = this.getLabel()
+   			
+   			if(this.record && this.record.model) {
+   				this.$set(this.models , this.record.model + '_label' , str_)
+   			}
+        
+            
+      },
+      getLabel() {
+      	let address = [] 
+      	const val = this.value
+   
         const fs_ = (areas)=> {
           areas.forEach(t=> {
             if(t.v == val) {
               address.push(t.l)
-            } else if(val.indexOf(t.v.replace(/0+$/ , '')) == 0 && t.c && t.c.length > 0) {
+            } else if(val && val.indexOf(t.v.replace(/0+$/ , '')) == 0 && t.c && t.c.length > 0) {
               address.push(t.l)
               fs_(t.c)
             }
@@ -136,12 +161,8 @@ export default {
         } else {
           str_ = address.length > 0 ? address[address.length - 1] : ''
         }
-   			
-   			if(this.record && this.record.model) {
-   				this.$set(this.models , this.record.model + '_label' , str_)
-   			}
-        
-            
+
+        return  str_
       },
   		init() {
   			this.provinces = this.areas

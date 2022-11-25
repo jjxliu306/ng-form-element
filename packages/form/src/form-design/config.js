@@ -552,7 +552,23 @@ export const personalList = [
       }
     ]
   },
-
+  {
+    type: "address", // 表单类型
+    label: "地址", // 标题文字   
+    options: { 
+      tooptip: '', // 提示
+      hidden: false, // 是否隐藏，false显示，true隐藏
+      disabled: false // 是否禁用
+    },
+    model: "",
+    key: "",
+    rules: [
+      {
+        required: false,
+        message: "必填项"
+      }
+    ]
+  },
 ]
   
 // 布局控件
