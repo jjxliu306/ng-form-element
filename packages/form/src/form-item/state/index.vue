@@ -1,6 +1,6 @@
 <template>
 	<div v-if="!renderPreview || isDragPanel">
-		<el-select class="width-select" v-model="dataForm.province" value-key="value" filterable clearable placeholder="请选择省份" @change="changeProvince" @clear="changeProvince()" :disabled="disabled"> 
+			省:<el-select class="width-select" v-model="dataForm.province" value-key="value" filterable clearable placeholder="请选择省份" @change="changeProvince" @clear="changeProvince()" :disabled="disabled"> 
           <el-option
             v-for="item in provinces"
             :key="item.v"
@@ -8,7 +8,8 @@
             :value="item.v">
           </el-option>
         </el-select>
-        <el-select v-if="record.options.maxLevel >1 && (!record.options.oneByOne || dataForm.province)" class="width-select" v-model="dataForm.city" value-key="value" filterable clearable  placeholder="请选择地市" @change="changeCity" @clear="changeCity()" :disabled="disabled">
+      <template  v-if="maxLevel >1 && (!oneByOne || dataForm.province)">
+      	市:<el-select class="width-select" v-model="dataForm.city" value-key="value" filterable clearable  placeholder="请选择地市" @change="changeCity" @clear="changeCity()" :disabled="disabled">
           <el-option
             v-for="item in citys"
             :key="item.v"
@@ -16,7 +17,9 @@
             :value="item.v">
           </el-option>
         </el-select>
-        <el-select v-if="record.options.maxLevel > 2 && (!record.options.oneByOne || dataForm.city)" class="width-select" v-model="dataForm.district" value-key="value" filterable clearable placeholder="请选择区县" @change="changeDistrict" @clear="changeDistrict()" :disabled="disabled"> 
+      </template>
+    	<template v-if="maxLevel > 2 && (!oneByOne || dataForm.city)" >
+    		县:<el-select class="width-select" v-model="dataForm.district" value-key="value" filterable clearable placeholder="请选择区县" @change="changeDistrict" @clear="changeDistrict()" :disabled="disabled"> 
           <el-option
             v-for="item in districts"
             :key="item.v"
@@ -24,10 +27,11 @@
             :value="item.v">
           </el-option>
         </el-select>
+    	</template>
+        
 	</div>
 	<div v-else> 
-		<span>{{models[record.model + '_label']}}</span>
-		 
+		<span>{{models[record.model + '_label']}}</span> 
 	</div>
 </template>
 <script>
@@ -81,6 +85,14 @@ export default {
 	      default: false
 	    } 
   	},
+  	computed: {
+  		maxLevel() {
+  			return this.record && this.record.options ? this.record.options.maxLevel : 3
+  		},
+  		oneByOne(){
+  			return this.record && this.record.options ? this.record.options.oneByOne : true
+  		}
+  	},
   	mounted(){
   		this.init()
   	},
@@ -113,40 +125,43 @@ export default {
         }
 
         fs_(AreaData) 
-        let separator = this.record.options.separator 
+        let separator = this.record ? this.record.options.separator : null
         if(separator == null || separator == undefined) {
           separator = ''
         }
 
         let str_ = ''
-        if(this.record.options.showAllPath) {
+        if(!this.record || this.record.options.showAllPath) {
           str_ = address.join(separator)
         } else {
           str_ = address.length > 0 ? address[address.length - 1] : ''
         }
-   
-        this.$set(this.models , this.record.model + '_label' , str_)
+   			
+   			if(this.record && this.record.model) {
+   				this.$set(this.models , this.record.model + '_label' , str_)
+   			}
+        
             
       },
   		init() {
   			this.provinces = this.areas
 
   			// 判断当前是否有值
-  			const value = this.models[this.record.model]
-  			if(value) {
+  			//const value = this.models[this.record.model]
+  			if(this.value) {
 
   				// 省
-  				this.dataForm.province = value.substr(0,2) + '0000'
-  				this.dataForm.city  = value.substr(0,4) + '00'
-  				this.dataForm.district  = value 
+  				this.dataForm.province = this.value.substr(0,2) + '0000'
+  				this.dataForm.city  = this.value.substr(0,4) + '00'
+  				this.dataForm.district  = this.value 
 
   				this.changeProvince(this.dataForm.province , 1)
   				this.changeCity(this.dataForm.city , 1)
   				this.changeDistrict(this.dataForm.district , 1)
 
-          if(!this.models[this.record.model + '_label']) {
+          if(this.record && !this.models[this.record.model + '_label']) {
             this.$nextTick(()=> { 
-              this.updateStateLabel(value)
+              this.updateStateLabel(this.value)
             })
             
           }
@@ -205,7 +220,8 @@ export default {
   			}
   			// 判断层级 如果是最小层级 则input change
   			if(!type) {
-  				if(this.record.options.maxLevel == 1){
+  				
+  				if(this.maxLevel == 1){
   					this.$emit("input", v);
   				}
   				else {
@@ -228,7 +244,8 @@ export default {
   				})
 				// 判断层级 如果是最小层级 则input change
 				if(!type) {
-					if(this.record.options.maxLevel == 2){
+				 
+					if(this.maxLevel == 2){
 						this.$emit("input", v);
 					} else {
 						this.$emit("input", '');
@@ -248,7 +265,8 @@ export default {
   		changeDistrict(v , type){
   			if(type) return
   			if(v) {
-  				if(this.record.options.maxLevel == 3) {
+  			 
+  				if(this.maxLevel == 3) {
   					this.$emit("input", v);
   				}
   			} else {

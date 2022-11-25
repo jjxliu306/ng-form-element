@@ -31,7 +31,7 @@
     :required="recordRequired" 
     :id="record.model" :name="record.model"
     :label-width="(record.options.labelWidth >= 0 ? record.options.labelWidth : formConfig.labelWidth) + 'px'"
-  >   recordRules:: {{recordRules}}
+  >    
     <BaseItem 
       :models="models"  
       :formConfig="formConfig"
