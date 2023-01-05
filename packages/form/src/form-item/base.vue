@@ -41,17 +41,7 @@
       :parentDisabled="disabled" 
       :disabled="disabled || record.options.disabled"  
     /> 
-    <!-- 地址 -->
-     <ng-address
-      v-else-if="record.type == 'address'"
-      v-model="models[record.model]" 
-      :renderPreview="renderPreview"
-      :models="models"
-      :record="record"
-      :config="formConfig"
-      :parentDisabled="disabled" 
-      :disabled="disabled || record.options.disabled"  
-    /> 
+    
     <template v-else-if="[
           'radio',
           'checkbox',
@@ -455,21 +445,7 @@
       :config="formConfig"
       :parentDisabled="disabled" 
       :disabled="disabled || record.options.disabled"  
-    /> 
-     <!-- 地址 -->
-    <template v-else-if="record.type == 'address'"> 
-      <ng-address
-       :style="`width:${record.options.width}`"
-      
-      v-model="models[record.model]" 
-      :renderPreview="renderPreview"
-      :models="models"
-      :record="record"
-      :config="formConfig"
-      :parentDisabled="disabled" 
-      :disabled="disabled || record.options.disabled"  
-      /> 
-    </template>
+    />  
     
     <!-- 自定义组件 -->
     <customComponent
@@ -492,7 +468,7 @@ import FileUpload from './upload'
 import {dynamicFun,dateFormater} from '../utils' 
 import CustomComponent from "./custom";
 import NgState from './state/index'
-import NgAddress from './address/index'
+
 export default {
   name: "ng-form-item-base",
   data(){
@@ -562,7 +538,7 @@ export default {
 
   },
   components: {
-     FileUpload,CustomComponent,NgState,NgAddress
+     FileUpload,CustomComponent,NgState 
   }, 
   computed: {
     sliderMarks() {

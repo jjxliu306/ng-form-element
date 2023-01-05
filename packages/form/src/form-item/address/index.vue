@@ -6,9 +6,13 @@
 <template>
  
 	<div v-if="!renderPreview || isDragPanel"> 
-		 
+ 
+		 <el-form-item  :rules="rules" label-width="0px"  :prop="record.model + '.address'">    
 			<State v-model="dataForm.state" ref="state" :isDragPanel="isDragPanel" :disabled="disabled" /> 
+		</el-form-item>
+		 <el-form-item :rules="rules" label-width="0px" :prop="record.model + '.address'">
 			<el-input v-model="dataForm.address" placeholder="请输入详细地址" /> 
+		</el-form-item>
 	</div>
 	<div v-else> 
 	 
@@ -68,6 +72,16 @@ export default {
 	mounted(){ 
   		this.init()
   	},
+  	computed: {
+  		rules() {
+  			if(this.renderPreview || !this.record.rules || this.record.rules.length == 0) {
+        		return []
+      		}
+  			
+  			return this.record.rules
+  		},
+
+  	},
   	watch: { 
   		value: {
 	      handler(val){
@@ -94,6 +108,9 @@ export default {
 	    },
   	}, 
 	methods: {
+		validator() {
+
+  		},
 		init() { 
 			if(this.value  ) { 
 			 	this.dataForm.state = this.value.state

@@ -22,8 +22,7 @@
           'uploadImg',
           'uploadFile',
           'cascader',
-          'state',
-          'address'
+          'state' 
         ].includes(record.type) || customList.includes(record.type) ) && dynamicVisibleItem && !(record.type == 'select' && renderPreview &&  record.options.previewHidden )
     "
     :label="formConfig.labelWidth > 0 ? record.label : null " 
@@ -44,6 +43,29 @@
       /> 
   
   </el-form-item>
+  <el-form-item
+    :id="record.model" :name="record.model"
+    v-else-if="(record.type === 'address') && dynamicVisibleItem"
+    :label="formConfig.labelWidth > 0 ? record.label : null " 
+    :rules="recordRules"
+    :prop="recordProps"
+    :required="recordRequired" 
+    
+    :label-width="(record.options.labelWidth >= 0 ? record.options.labelWidth : formConfig.labelWidth) + 'px'"
+  >
+     <ng-address
+       :style="`width:${record.options.width}`"
+      
+      v-model="models[record.model]" 
+      :renderPreview="renderPreview"
+      :models="models"
+      :record="record"
+      :config="formConfig"
+      :parentDisabled="disabled" 
+      :disabled="disabled || record.options.disabled"  
+      /> 
+     
+  </el-form-item> 
   <!-- 可隐藏label -->
  
   <el-form-item
@@ -127,6 +149,7 @@
 <script> 
 import TableBatch from "./table"; 
 import BaseItem from './base' 
+import NgAddress from './address/index'
 import {dynamicFun} from '../utils'
 import cloneDeep from 'lodash/cloneDeep'
 export default {
@@ -174,7 +197,7 @@ export default {
     } 
   },
   components: {
-     TableBatch,BaseItem
+     TableBatch,BaseItem,NgAddress
   },
   inject: {
       customComponents: {
