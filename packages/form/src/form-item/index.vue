@@ -25,13 +25,13 @@
           'state' 
         ].includes(record.type) || customList.includes(record.type) ) && dynamicVisibleItem && !(record.type == 'select' && renderPreview &&  record.options.previewHidden )
     "
-    :label="formConfig.labelWidth > 0 ? record.label : null " 
+    :label="(record.options.labelWidth >= 0 ? record.options.labelWidth : formConfig.labelWidth) > 0 ? record.label : null " 
     :rules="recordRules"
     :prop="recordProps"
     :required="recordRequired" 
     :id="record.model" :name="record.model"
     :label-width="(record.options.labelWidth >= 0 ? record.options.labelWidth : formConfig.labelWidth) + 'px'"
-  >    
+  >     
     <BaseItem 
       :models="models"  
       :formConfig="formConfig"
@@ -41,7 +41,7 @@
       @forceUpdate="forceUpdate"
       :isDragPanel="isDragPanel"
       /> 
-  
+ 
   </el-form-item>
   <el-form-item
     :id="record.model" :name="record.model"
