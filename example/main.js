@@ -6,8 +6,8 @@ import App from './App'
 //import 'element-ui/lib/theme-chalk/index.css';
  
  // 导入组件库
-import FormDesign from '../packages/index'
-import '../packages/form/src/form-design.css';
+import FormDesign from '../packages/index.js'
+//import '../packages/form/src/form-design.css';
 // 注册组件库
 Vue.use(FormDesign)
 
