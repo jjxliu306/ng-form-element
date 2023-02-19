@@ -1,23 +1,85 @@
-<template>
-<el-card  class="drag-panel">
-	<el-collapse v-model="actives" accordion >
-		<el-collapse-item title="基础组件" name="1" >
-		</el-collapse-item>
-		<el-collapse-item title="布局组件" name="2" >
-		</el-collapse-item>
-	</el-collapse>
-</el-card>
+ 
+<template> 
+		<el-collapse class="drag-panel" v-model="actives" accordion > 
+
+			<template v-for="(colItem,colIndex) in dataList"> 
+				<el-collapse-item :key="colIndex" :title="colItem.name" :name="colIndex + 1" v-if="colItem && colItem.list && colItem.list.length > 0">
+			  		<DragItem 
+		                :list="itemInitArray(colItem.list)"
+                    	:title="colItem.name"
+		                @generateKey="generateKey"  
+		                @dragend="handleEnd"/>
+			  	</el-collapse-item>
+			</template> 
+		</el-collapse>  
 </template>
 <script>
+import itemIndex from "../items/index.js";
+import DragItem from './drag-item.vue'
 export default {
-	data() {
+	components: {
+		DragItem
+	},
+	data(){
 		return {
-			actives: '',
-			basicItem: []
+			actives:[1], 
+		    startType: "",
+		    dataList: itemIndex ,
+		    data: {
+		        list: [],
+		        config: {
+		          layout: "horizontal",
+		          labelCol: { span: 4 },
+		          wrapperCol: { span: 18 },
+		          hideRequiredMark: false,
+		          customStyle: ""
+		        }
+		      },
+		    previewOptions: {
+		        width: 850
+		    }, 
+		    selectItem: {
+		       key: ""
+		    } 
 		}
+	}, 
+	methods: {
+		// 组件初始化
+		itemInitArray(list = []) {
+			 
+	    	if(list && list.length > 0) {
+	    		list.forEach(t=>{ 
+	        		if(!t.key) { 
+	        		 	const key = t.type + "_" + new Date().getTime()
+	        		 	t['key'] = key 
+	        		 	t['model'] = key
+	        		}
+		      	}) ;
+
+	    	} 
+	    	
+	      	return list
+		},
+		generateKey(list, index) {
+			console.log("generateKey" , list , index)
+	      // 生成key值 
+	      const key = list[index].type + "_" + new Date().getTime();
+	      this.$set(list, index, {
+	        ...list[index],
+	        key,
+	        model: key
+	      })
+	    },
+	    handleStart(list,index) {
+	    	this.generateKey(list,index) 
+	    },
+	    handleEnd(list,index){ 
+	    	this.generateKey(list,index) 
+	    }
 	}
 }
-</script>
+
+</script> 
 <style lang="scss">
 .drag-panel {
 	height: 100%;

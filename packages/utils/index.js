@@ -49,3 +49,52 @@ export function dateFormater(date , fmt) {
 }
     
  
+
+// 定制组件参数的规范和转换   
+// 配置数组转 配置项 
+// 配置最多两层，不走迭代
+export function translateConfig(config = []) {
+
+    const fs = (v) => {
+      const formOptions = v.options 
+
+      delete v.options
+
+        if(formOptions.group && formOptions.group.length > 0) {
+            formOptions.group.forEach(t=> {
+                if(t.label && t.prop && t.default != null && !t.column) {
+                    v[t.prop] = t.default
+                } else if(t.column){
+                    v[t.prop] = {}
+                    t.column.filter(tf=>tf.prop).forEach(tc=> {
+                        let jdefault = tc['default']
+                        if (jdefault == undefined || jdefault == null) {
+                            jdefault = ''
+                        }
+
+                        v[t.prop][tc.prop] = jdefault
+                    }) 
+                }
+
+            }) 
+        }
+
+        if(formOptions.columns && formOptions.columns.length > 0) {
+            formOptions.columns.filter(tf=>tf.prop).forEach(tc=> {
+                let jdefault = tc['default']
+                if (jdefault == undefined || jdefault == null) {
+                    jdefault = ''
+                }
+
+                v[tc.prop] = jdefault
+            }) 
+        }
+      
+    }
+
+    const cloneConfig = cloneDeep(config)
+    cloneConfig.map(t => fs(t))
+
+    return cloneConfig
+
+}

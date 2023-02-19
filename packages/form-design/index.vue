@@ -8,11 +8,12 @@
           <el-aside width="260px" class="item-panel">
              <DragPanel />
           </el-aside>
-          <el-main class="center-panel form-main">
-             <ContainerPanel />
+          <el-main class="center-panel form-main"> 
+             <ContainerPanel :data="data" @handleSelectItem="handleSelectItem" :selectItem="selectItem"/>
+            
           </el-main>  
           <el-aside width="260px" class="properties-panel"> 
-              <PropertiesPanel /> 
+              <PropertiesPanel :selectItem="selectItem" :formConfig="data.config"/> 
           </el-aside>  
         </el-container> 
       </el-main> 
@@ -33,7 +34,20 @@ export default {
   },
   data(){
     return {
-       
+      selectItem: undefined,
+      data: {
+        list: [],
+      
+        config: {
+          labelPosition: "left",
+          labelWidth: 100, 
+          size: 'mini',
+          outputHidden: true ,//  是否输出隐藏字段的值 默认打开,所有字段都输出
+          hideRequiredMark: false ,
+          syncLabelRequired: false,
+          customStyle: ""
+        }
+      }
     }
   },
   watch: {
@@ -47,7 +61,10 @@ export default {
      
   },
   methods: {
-     
+     handleSelectItem(record) {
+      console.log('handleSelectItem' , record)
+      this.selectItem = record
+     }
   }
 }
 </script>
