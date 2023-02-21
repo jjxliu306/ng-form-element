@@ -1,7 +1,7 @@
 <template> 
   <el-container class="form-design">
       <el-header class="header" height="40px">
-        ng-form-element
+        <HeaderPanel :formTemplate="formTemplate" />
       </el-header>
       <el-main class="form-main">
         <el-container class="main-container">
@@ -9,11 +9,11 @@
              <DragPanel />
           </el-aside>
           <el-main class="center-panel form-main"> 
-             <ContainerPanel :data="data" @handleSelectItem="handleSelectItem" :selectItem="selectItem"/>
+            <ContainerPanel :formTemplate="formTemplate" @handleSelectItem="handleSelectItem" :selectItem="selectItem"/>
             
           </el-main>  
           <el-aside width="260px" class="properties-panel"> 
-              <PropertiesPanel :selectItem="selectItem" :formConfig="data.config"/> 
+              <PropertiesPanel :selectItem="selectItem" :formConfig="formTemplate.config"/> 
           </el-aside>  
         </el-container> 
       </el-main> 
@@ -21,6 +21,7 @@
 </template>
 
 <script> 
+import HeaderPanel from './header-panel/index.vue'
 import DragPanel from './drag-panel/index.vue'
 import ContainerPanel from './container-panel/index.vue'
 import PropertiesPanel from './properties-panel/index.vue'
@@ -28,6 +29,7 @@ import PropertiesPanel from './properties-panel/index.vue'
 export default {
   name: 'ng-form-design',
   components: {
+    HeaderPanel,
     DragPanel,
     ContainerPanel,
     PropertiesPanel
@@ -35,7 +37,7 @@ export default {
   data(){
     return {
       selectItem: undefined,
-      data: {
+      formTemplate: {
         list: [],
       
         config: {
@@ -61,10 +63,18 @@ export default {
      
   },
   methods: {
-     handleSelectItem(record) {
+    handleSelectItem(record) {
       console.log('handleSelectItem' , record)
       this.selectItem = record
-     }
+    },
+    // 返回编辑好的模板
+    getModel() {
+
+    },
+    // 初始化模板
+    initModel(formTemplate) {
+
+    }
   }
 }
 </script>
@@ -89,19 +99,22 @@ export default {
   }
 
   .item-panel { 
-    background: #f1f4f5; 
+    /* background: #f1f4f5; */
     height: 100%;
     overflow-y: hidden;
+    box-shadow: 1px 0px 6px 3px rgb(48 65 86 / 35%);
   }
 
   .center-panel { 
     height: 100%;
-
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .properties-panel {
     height: 100%;
-    background: #f1f4f5;
+    /* background: #f1f4f5; */
+    box-shadow: -3px 0 6px rgb(48 65 86 / 35%);
   }
 }
 

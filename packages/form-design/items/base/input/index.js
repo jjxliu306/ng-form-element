@@ -26,6 +26,15 @@ obj.options = {
             span: 24,
         },
         {
+            label: '所占栅格', 
+            type: 'slider',
+            prop: 'span',
+            min: 1,
+            max: 24,
+            default: 24,
+            span: 24,
+        },
+        {
             label: '数据字段', 
             prop: 'model',
             span: 24,
@@ -33,7 +42,7 @@ obj.options = {
         {
             label: '数据KEY', 
             prop: 'key',
-            type: 'hidden',
+            show: false,
             span: 24,
         },
         {
@@ -59,9 +68,9 @@ obj.options = {
                     label: '标签宽度', 
                     prop: 'width',
                     type: 'number',
-                    min: 1,
+                    min: -1,
                     max: 1000,
-                    default: 80,
+                    default: -1,
                     span: 24,
                 },
                 {
@@ -116,7 +125,23 @@ obj.options = {
                 }  
 
             ]
-        }
+        },
+        // {
+        //     label: '测试分割',
+        //     prop: 'test', 
+        //     collapse: false, // 是否启用 collapse 必须alone=true
+        //     column: [ 
+        //         {
+        //             label: '标签宽度', 
+        //             prop: 'width',
+        //             type: 'number',
+        //             min: 1,
+        //             max: 1000,
+        //             default: 80,
+        //             span: 24,
+        //         }
+        //     ]
+        // }
     ] 
 }
  

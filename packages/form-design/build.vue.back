@@ -1,0 +1,70 @@
+<template>
+  
+  <ContainerPanel 
+    :id="randomId"
+    :is-build="true"
+    :data="formTemplate"
+  />
+  
+</template>
+<script> 
+import ContainerPanel from './container-panel/index.vue'
+export default {
+  name: "ng-form-build",
+  components: {
+    ContainerPanel
+  },
+  data() {
+    return {
+      randomId: ''
+    };
+  }, 
+  props: {
+    formTemplate: {
+      type: Object,
+      required: true
+    },
+    models: {
+      type: Object,
+      required: true
+    },
+    config: {
+      type: Object,
+      default: () => ({})
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },  
+    // 是否预览结果表单
+    renderPreview: {
+      type: Boolean ,
+      default: false
+    }, 
+    customComponents: {
+      type: Array,
+      default: ()=>[]
+    }, 
+  }, 
+  watch: {
+    formTemplate: {
+      handler (val, oldVal) {
+        this.randomId = 'vue_form_design' + parseInt(Math.random() * 1000000)
+         
+      },
+      deep: true
+    }
+    
+  },
+  components: {
+     
+  },
+  methods: { 
+    
+  },
+  created() {  
+    
+ 
+  }
+};
+</script>

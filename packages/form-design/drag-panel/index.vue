@@ -4,6 +4,9 @@
 
 			<template v-for="(colItem,colIndex) in dataList"> 
 				<el-collapse-item :key="colIndex" :title="colItem.name" :name="colIndex + 1" v-if="colItem && colItem.list && colItem.list.length > 0">
+					<template slot="title">
+					    <span class="title">{{colItem.name}}</span>
+					</template>
 			  		<DragItem 
 		                :list="itemInitArray(colItem.list)"
                     	:title="colItem.name"
@@ -84,6 +87,13 @@ export default {
 .drag-panel {
 	height: 100%;
     overflow-y: hidden;
+
+    .title {
+    	width: 100%;
+	    text-align: center;
+	    font-weight: 600;
+	    font-size: 13px;
+    }
 }
 
 </style>

@@ -17,6 +17,9 @@
         <el-form-item label="标签宽度">
           <el-input-number v-model="config.labelWidth" :min="0" :max="200" :step="10"></el-input-number>
         </el-form-item>
+        <el-form-item label="标签后缀">
+          <el-input v-model="config.labelSuffix" ></el-input>
+        </el-form-item>
         <el-divider></el-divider>
 
         <el-form-item label="组件尺寸">
@@ -79,12 +82,14 @@ export default {
     } 
   },
   methods: {
-    
+
   }
 };
 </script> 
 <style lang="scss">
 .form-properties {
-
+    .properties-body {
+        padding: 10px;
+    }
 }
 </style>

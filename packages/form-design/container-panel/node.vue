@@ -1,10 +1,9 @@
 <template>
+<el-col :span="record.span || 24">
   <div 
     :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-move-box': isDrag}" 
     
   >    
-    
-      
       <div  class="form-item-box" style="height: 100%;width: 100%;" @click.stop="handleSelectItem(record)">
         <Item
           :formConfig="config"
@@ -41,6 +40,7 @@
         </div>
       </div> 
   </div>
+</el-col>
 </template>
 <script> 
  

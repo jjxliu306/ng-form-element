@@ -22,8 +22,10 @@
         v-else-if="column.show == undefined || column.show == true || columnVisible(column.show)">
         <template slot="label" v-if="column.labelScript">
           {{getScriptValue(column.labelScript , column.label)}}
-        </template>
-        <slot :value="column.prop" :column="column" :label="column.prop" :name="column.prop">
+        </template> 
+        
+       <!--  <slot :value="column.prop" :column="column" :name="column.prop">  -->
+           
           <!-- 输入类型判断 -->
           <el-input v-if="!column.type || column.type == 'input'" v-model.trim="model[column.prop]" :placeholder="column.placeholder" />
           <el-input type="textarea" v-else-if="column.type == 'textarea'" v-model="model[column.prop]" :placeholder="column.placeholder" />
@@ -111,7 +113,7 @@
           </template>
           <el-color-picker v-else-if="column.type == 'color'" v-model="model[column.prop]" placeholder="请选择颜色"></el-color-picker>   
           
-        </slot>
+       <!--  </slot> -->
         <!-- 插槽 -->
         <!-- <slot :name="column.prop"></slot> -->
       </el-form-item>
@@ -121,7 +123,7 @@
 <script>
 import { dynamicFun } from '../utils/index.js' 
 export default {
-  name: 'sys-form', 
+  name: 'ng-form', 
   data () {
     return {
       

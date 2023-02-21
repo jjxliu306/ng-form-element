@@ -1,7 +1,7 @@
 // 导入组件
 // 导入组件，组件必须声明 name
 import NgFormDesign from './form-design/index.vue'
-import NgFormBuild from './form-build/index.vue'
+import NgFormBuild from './form-design/build.vue'
 import NgFormItem from './form-design/items/index.vue' 
 //import NgFormItemBase from './form-item/base.vue' 
 
