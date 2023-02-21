@@ -1,18 +1,5 @@
 <template>  
-<!-- 	<el-input 
-		v-if="!renderPreview"
-		:placeholder="record.options.placeholder"
-		:clearable="record.options.clearable"
-		:disabled="disabled"
-		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
-		v-model="models[record.model]" 
-		>
-		<span v-if="record.options.prepend"  slot="prepend" v-html="transformAppend(record.options.prepend)">
-		</span>
-		<span v-if="record.options.append"  slot="append" v-html="transformAppend(record.options.append)">
-		</span>
-	</el-input>  -->
-	 <div 
+	<div 
 	 	v-if="!renderPreview"
 	 	:style="`width:${record.options.width}`" 
 	 	class="form-item-base-number el-input-number-diaplay">
@@ -20,7 +7,7 @@
         <el-input-number
           :class="record.options.append ? 'el-input-number__append' : null" 
           v-model="models[record.model]" 
-          :style="`width:100%;float:left;`"
+          :style="`width:${record.options.width};float:left;`" 
           :min="
             record.options.min || record.options.min === 0
               ? record.options.min
@@ -46,37 +33,21 @@
          
         </div>
   </div>
-	<span v-else>{{models[record.model]}}</span> 
+  <div v-else>
+  	<span  class="base-item-span" v-if="record.options.prepend" v-html="transformAppend(record.options.prepend)"> 
+    </span>
+    <span class="base-item-span" >{{models[record.model]}} </span>
+    <span class="base-item-span" v-if="record.options.append" v-html="transformAppend(record.options.append)"> 
+    </span>  
+  </div>
 </template>
 <script>
 import { dynamicFun } from '../../../../utils/index.js'
 import mixin from '../../mixin.js'
 export default {
 	mixins: [mixin],
-	data() {
-		return {
-
-		}
-	}, 
-	created(){
-	  
-	},
 	mounted () { 
-	  this.updateTextDefaultValue()
-	},
-	methods: {
-		transformAppend(append){
-      if(append && (append.indexOf('return') >= 0 || append.indexOf('$') >= 0 )){
-        // 创建函数 返回结果
-          const script = append
-
-          // 打开了开关 这里获取函数内容 
-          const fvalue = dynamicFun(script,this.models) 
-
-          return fvalue 
-      } 
-      return append 
-    },
+	  this.updateSimpleDefaultValue()
 	}
 }
 </script>
@@ -114,4 +85,8 @@ export default {
 	  display: inline-table;
 	}
 } 
+
+.base-item-span {
+	white-space: pre-wrap;
+}
 </style>

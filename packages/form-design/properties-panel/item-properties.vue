@@ -32,10 +32,9 @@
 	循环group 处理在group中但显示在折叠面板中的表单
 	 -->
 	
-	<el-collapse v-model="activeNames" >
-		<template v-for="(form,formIndex) in groupColumns ">
-			<el-collapse-item 
-				v-if="(form.alone == undefined || form.alone == true ) && form.column && form.column.length > 0"
+	<el-collapse v-model="activeNames" v-if="groupColumnsCollapse && groupColumnsCollapse.length > 0">
+		<template v-for="(form,formIndex) in groupColumnsCollapse ">
+			<el-collapse-item  
 				:key="'form' + formIndex" 
 				:title="form.label" 
 				:name="formIndex + ''"
@@ -49,14 +48,13 @@
 		  	</el-collapse-item> 
 		</template> 
 	</el-collapse> 
-
 	<component 
 		ref="itemProperties" 
 		v-if="propertiesComponent"
-		:data="data"
 		:selectItem="selectItem"   
 		:is="propertiesComponent">  
 	</component>  
+	
 </div>
 </template>
 <script>
@@ -113,6 +111,12 @@ export default {
 	         
 	        return null
 	    }, 
+	    // 分组字段 需要在collapse上显示的列表
+	    groupColumnsCollapse() {
+	    	return this.groupColumns.filter(form=> {
+	    		return (form.alone == undefined || form.alone == true ) && form.column && form.column.length > 0
+	    	})
+	    }
 	},
 	watch: {
 		selectItemKey() {

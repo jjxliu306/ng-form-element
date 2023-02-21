@@ -59,6 +59,7 @@ export default {
 	        		 	t['model'] = key
 
 	        		 	delete t.component
+	        		 	delete t.properties 
 	        		}
 		      	}) ;
 

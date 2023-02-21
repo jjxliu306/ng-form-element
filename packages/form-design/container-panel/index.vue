@@ -34,6 +34,7 @@
 			            	:key="record.key"
 			            	:record="record"
 			            	:isDrag="true"
+			            	:config="formTemplate.config"
 			            	:selectItem="selectItem"
 			            	@handleSelectItem="handleSelectItem"
 			            	>  

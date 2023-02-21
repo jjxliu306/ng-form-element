@@ -64,11 +64,17 @@ obj.options = {
             column: [ 
                 {
                     label: '标签宽度', 
-                    prop: 'width',
+                    prop: 'labelWidth',
                     type: 'number',
                     min: -1,
                     max: 1000,
                     default: -1,
+                    span: 24,
+                },
+                {
+                    label: '要素宽度', 
+                    prop: 'width',  
+                    default: '100%',
                     span: 24,
                 },
                 {

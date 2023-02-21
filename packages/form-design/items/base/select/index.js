@@ -1,14 +1,14 @@
 // 对外输出 包含组件的对外json定义、属性配置页面、展示页面 三部分
  
 import BaseIndex from './index.vue'
-//import BaseProperties from './properties.vue'
+import BaseProperties from './properties.vue'
   
 
 const obj = {}
  
-obj.type = 'textarea'//, // 表单类型 
+obj.type = 'select'//, // 表单类型 
 obj.component = BaseIndex
-
+obj.properties = BaseProperties
 
 // 补充配置样式
 obj.options = {
@@ -20,7 +20,7 @@ obj.options = {
         {
             label: '标签', 
             prop: 'label',
-            default: '文本框',
+            default: '下拉选择器',
             span: 24,
         },
         {
@@ -80,41 +80,79 @@ obj.options = {
                 {
                     label: '默认值', 
                     prop: 'defaultValue',
+                    show: false,
                     span: 24,
-                },
-                {
-                    label: '输入框行数', 
-                    prop: 'rows',
-                    type: 'number',
-                    default: 4,
-                    min: 1,
-                    span: 24,
-                },
-                
+                }, 
                 {
                     label: '输入提示', 
                     prop: 'placeholder',
                     default: '请输入',
                     span: 24,
                 },
+
+                 // dynamic: 0, // 数据获取方式
+                 //  remoteFunc: '',//远程获取数据链接
+                 //  dataPath: '',
+                 //  remoteValue:'' ,
+                 //  remoteLabel:'',
+                 //  dictType: '' ,// 数据字典类型
                 {
-                    label: '最大长度',
-                    type: 'number',
-                    min: -1,
-                    max: 1000,
-                    prop: 'maxLength', 
+                    label: '数据获取', 
+                    prop: 'dynamic',
+                    default: 0,
                     span: 24,
+                    type: 'select', 
+                    show: false,
+                    dicData: [
+                        {label: '静态数据' , value: 0},
+                        {label: 'API接口' , value: 1},
+                        {label: '数据字典' , value: 2}
+                    ]
                 }, 
                 {
-                  label: '可清除',
-                  prop: 'clearable',
+                  label: '远程获取数据链接',
+                  prop: 'remoteFunc', 
+                  show: false
+                } ,
+                {
+                  label: '数据路径',
+                  prop: 'dataPath', 
+                  show: false
+                } ,
+                {
+                  label: '数据值字段',
+                  prop: 'remoteValue', 
+                  show: false
+                } ,
+                {
+                  label: '数据标签字段',
+                  prop: 'remoteLabel', 
+                  show: false
+                } ,
+                {
+                  label: '字典分类',
+                  prop: 'dictType', 
+                  show: false
+                } ,
+                
+                {
+                  label: '多选',
+                  prop: 'multiple',
                   type: 'switch',
                   default: false,
                   span: 24,
                 } ,
                 {
-                  label: '自动高度',
-                  prop: 'autosize',
+                  label: '可搜索',
+                  prop: 'showSearch',
+                  type: 'switch',
+                  default: false,
+                  span: 24,
+                } ,
+                
+                {
+                  label: '可清除',
+                  prop: 'clearable',
                   type: 'switch',
                   default: false,
                   span: 24,

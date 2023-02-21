@@ -2,6 +2,7 @@
 	<el-input 
 		v-if="!renderPreview"
 		type="textarea"
+		:style="`width:${record.options.width}`"
 		:placeholder="record.options.placeholder"
 		:clearable="record.options.clearable"
 		:disabled="disabled"
