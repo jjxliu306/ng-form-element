@@ -16,6 +16,7 @@
 		        v-for="record in formTemplate.list"
 		        :key="record.key"
 		        :record="record"
+		        :models="models"
 		        :isDrag="false"  
 		        >  
 		    </Node>  
@@ -56,7 +57,7 @@ export default {
 	}, 
 	methods: {
 	  	reset() {
-	  		this.$refs.form && this.$refs.form.resetField()
+	  		this.$refs.form && this.$refs.form.resetFields()
 	  	},
 	  	getModel() {
 	  		return cloneDeep(this.models)

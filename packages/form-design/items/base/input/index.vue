@@ -1,73 +1,34 @@
 <template>  
-				<el-input 
-		      :placeholder="record.placeholder"
-		      :clearable="record.clearable"
-		      :maxlength="record.maxLength > 0 ? record.maxLength : null"
-		      v-model="models[record.key]" 
-		    >
-		      <span v-if="record.prepend"  slot="prepend" v-html="transformAppend(record.prepend)">
-		       
-		      </span>
-		      <span v-if="record.append"  slot="append" v-html="transformAppend(record.append)">
-		        
-		      </span>
-		  </el-input> 
- 
+	<el-input 
+		v-if="!renderPreview"
+		:placeholder="record.placeholder"
+		:clearable="record.clearable"
+		:disabled="disabled"
+		:maxlength="record.maxLength > 0 ? record.maxLength : null"
+		v-model="models[record.model]" 
+		>
+		<span v-if="record.prepend"  slot="prepend" v-html="transformAppend(record.prepend)">
+		</span>
+		<span v-if="record.append"  slot="append" v-html="transformAppend(record.append)">
+		</span>
+	</el-input> 
+	<span v-else>{{models[record.model]}}</span> 
 </template>
 <script>
 import { dynamicFun } from '../../../../utils/index.js'
+import mixin from '../../mixin.js'
 export default {
+	mixins: [mixin],
 	data() {
 		return {
 
 		}
-	},
-	props: {
-	    // 表单数组 
-	    record: {
-	      type: Object,
-	      required: true
-	    },
-	    // form-item 宽度配置
-	    formConfig: {
-	      type: Object,
-	      required: false
-	    },
-	    // form-item 宽度配置
-	    models: {
-	      type: Object,
-	      default: ()=> {return {}}
-	      //required: true
-	    },
-	    disabled: {
-	      type: Boolean,
-	      default: false
-	    },
-	    // 是否预览结果表单
-	    renderPreview: {
-	      type: Boolean,
-	      default: false
-	    }
-	  }, 
-	computed: {
-	    recordOptions () {
-	      const options = {   ...this.record.layout  } 
-	      return JSON.stringify(options)
-	    }, 
-	    refresh() {
-	      return this.record.refresh
-	    }
-	},
-	watch: { 
-	    refresh() {
-	       
-	    }
-	},
+	}, 
 	created(){
-	    
+	  
 	},
 	mounted () { 
-	    
+	  this.updateTextDefaultValue()
 	},
 	methods: {
 		transformAppend(append){

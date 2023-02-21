@@ -19,33 +19,34 @@
           @handleDetele="$emit('handleDetele')"
         />
       </div> 
-      <div class="key-box" v-text="record.model" /> 
-      <div v-if="isDrag" class="node-control">     
-         
-        <div
-          class="copy pointer"
-          title="复制"
-          :class="selectItem && record.key === selectItem.key ? 'active' : 'unactivated'"
-          @click.stop="$emit('handleCopy')"
-        >
-          <i class="el-icon-document-copy" />
-        </div>
-        
-        <div
-          class="delete pointer"
-          title="删除"
-          :class="selectItem && record.key === selectItem.key ? 'active' : 'unactivated'"
-          @click.stop="$emit('handleDetele')"
-        >
-          <i class="el-icon-delete" />
-        </div>
-      </div> 
+      <template v-if="isDrag">
+        <div class="key-box" v-text="record.model" /> 
+        <div class="node-control">   
+          <div
+            class="copy pointer"
+            title="复制"
+            :class="selectItem && record.key === selectItem.key ? 'active' : 'unactivated'"
+            @click.stop="$emit('handleCopy')"
+          >
+            <i class="el-icon-document-copy" />
+          </div>
+          
+          <div
+            class="delete pointer"
+            title="删除"
+            :class="selectItem && record.key === selectItem.key ? 'active' : 'unactivated'"
+            @click.stop="$emit('handleDetele')"
+          >
+            <i class="el-icon-delete" />
+          </div>
+        </div> 
+      </template> 
     </div>
   </el-col>
 </template>
 <script> 
  
-import Item from "../items/index.vue";
+import Item from "../items/index.vue"
 import cloneDeep from 'lodash/cloneDeep' 
 
 export default {

@@ -4,13 +4,13 @@
     :visible.sync="visible" 
     style="top:20px;"
     :append-to-body="true"
-    class="design-preview"
+    class="design-preview" 
     :destroy-on-close="true"
     width="800px"
   > 
 
-    <div class="item-main"> 
-      <FormBuild  :formTemplate="formTemplate" :models="models" ref="formBuild" /> 
+    <div class="item-main">  
+      <FormBuild :key="key" :formTemplate="formTemplate" :models="models" ref="formBuild" /> 
     </div> 
     <span slot="footer" class="dialog-footer">
       <el-button size="mini" @click="visible = false">取 消</el-button> 
@@ -28,7 +28,8 @@ export default {
       renderVisisble: false,
       previewWidth: 850,
       models:{},
-      formTemplate: {}
+      formTemplate: {},
+      key: '1'
     };
   },
   components: {
@@ -36,9 +37,11 @@ export default {
   }, 
   methods: {
     init(data) {
-      this.visible = true
+      
       this.formTemplate = data
-
+      this.models = {}
+      this.key = 'key' + new Date().getTime()
+      this.visible = true
       // 重置表单
       this.$nextTick(()=>{
         this.$refs.formBuild.reset()

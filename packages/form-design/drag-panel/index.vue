@@ -17,8 +17,9 @@
 		</el-collapse>  
 </template>
 <script>
-import itemIndex from "../items/index.js";
+import itemIndex from "../items/index.js"
 import DragItem from './drag-item.vue'
+import cloneDeep from 'lodash/cloneDeep' 
 export default {
 	components: {
 		DragItem
@@ -49,22 +50,24 @@ export default {
 	methods: {
 		// 组件初始化
 		itemInitArray(list = []) {
-			 
-	    	if(list && list.length > 0) {
-	    		list.forEach(t=>{ 
+			const nlist = cloneDeep(list)
+	    	if(nlist && nlist.length > 0) {
+	    		nlist.forEach(t=>{ 
 	        		if(!t.key) { 
 	        		 	const key = t.type + "_" + new Date().getTime()
 	        		 	t['key'] = key 
 	        		 	t['model'] = key
+
+	        		 	delete t.component
 	        		}
 		      	}) ;
 
 	    	} 
 	    	
-	      	return list
+	      	return nlist
 		},
 		generateKey(list, index) {
-			console.log("generateKey" , list , index)
+			 
 	      // 生成key值 
 	      const key = list[index].type + "_" + new Date().getTime();
 	      this.$set(list, index, {
