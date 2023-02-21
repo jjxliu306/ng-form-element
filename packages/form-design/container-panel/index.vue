@@ -26,8 +26,7 @@
 			        }"
 			        :force-fallback="true"
 			        v-model="formTemplate.list" 
-			        @add="deepClone"
-			        @start="dragStart($event, formTemplate.list)"
+			        @add="dragEnd($event, formTemplate.list)" 
 			      	>
 			        <transition-group tag="div" name="list" class="items-main"> 
 			        	<Node  
@@ -68,13 +67,13 @@ export default {
 		}
 	}, 
 	methods: {
-	 	dragStart(evt, list) {  
-	      // 拖拽结束,自动选择拖拽的控件项
-	      this.$emit("handleSetSelectItem", list[evt.oldIndex]);
-	    },
-	   	handleSelectItem(record) {
-	   		this.$emit('handleSelectItem' , record)
-	   	}
+	 	dragEnd(evt, list) {   
+	    // 拖拽结束,自动选择拖拽的控件项
+	    this.handleSelectItem(list[evt.newIndex])
+	  },
+	  handleSelectItem(record) {
+	    this.$emit('handleSelectItem' , record)
+	  }
 	}
 }
 </script>

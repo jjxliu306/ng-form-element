@@ -1,9 +1,9 @@
 <template>
-<el-col :span="record.span || 24">
-  <div 
-    :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-move-box': isDrag}" 
-    
-  >    
+  <el-col :span="record.span || 24">
+    <div 
+      :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-move-box': isDrag}" 
+      
+    >    
       <div  class="form-item-box" style="height: 100%;width: 100%;" @click.stop="handleSelectItem(record)">
         <Item
           :formConfig="config"
@@ -19,8 +19,9 @@
           @handleDetele="$emit('handleDetele')"
         />
       </div> 
-    
-    <div v-if="isDrag" class="node-control">        
+      <div class="key-box" v-text="record.model" /> 
+      <div v-if="isDrag" class="node-control">     
+         
         <div
           class="copy pointer"
           title="复制"
@@ -39,8 +40,8 @@
           <i class="el-icon-delete" />
         </div>
       </div> 
-  </div>
-</el-col>
+    </div>
+  </el-col>
 </template>
 <script> 
  
@@ -122,6 +123,13 @@ export default {
   transition: all 0.3s;
   min-height: 36px;
 
+  .key-box {
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+    font-size: 14px;
+    color: #409eff;
+  } 
 
   &::before {
     content: "";
