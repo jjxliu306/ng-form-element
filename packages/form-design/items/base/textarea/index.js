@@ -6,7 +6,7 @@ import BaseIndex from './index.vue'
 
 const obj = {}
  
-obj.type = 'input'//, // 表单类型 
+obj.type = 'textarea'//, // 表单类型 
 obj.component = BaseIndex
 
 
@@ -20,7 +20,7 @@ obj.options = {
         {
             label: '标签', 
             prop: 'label',
-            default: '输入框',
+            default: '文本框',
             span: 24,
         },
         {
@@ -77,15 +77,14 @@ obj.options = {
                     span: 24,
                 },
                 {
-                    label: '前缀', 
-                    prop: 'prepend',
+                    label: '输入框行数', 
+                    prop: 'rows',
+                    type: 'number',
+                    default: 4,
+                    min: 1,
                     span: 24,
                 },
-                {
-                    label: '后缀', 
-                    prop: 'append',
-                    span: 24,
-                },
+                
                 {
                     label: '输入提示', 
                     prop: 'placeholder',
@@ -108,6 +107,13 @@ obj.options = {
                   span: 24,
                 } ,
                 {
+                  label: '自动高度',
+                  prop: 'autosize',
+                  type: 'switch',
+                  default: false,
+                  span: 24,
+                } ,
+                {
                   label: '是否隐藏',
                   prop: 'hidden',
                   type: 'switch',
@@ -123,23 +129,7 @@ obj.options = {
                 }  
 
             ]
-        },
-        // {
-        //     label: '测试分割',
-        //     prop: 'test', 
-        //     collapse: false, // 是否启用 collapse 必须alone=true
-        //     column: [ 
-        //         {
-        //             label: '标签宽度', 
-        //             prop: 'width',
-        //             type: 'number',
-        //             min: 1,
-        //             max: 1000,
-        //             default: 80,
-        //             span: 24,
-        //         }
-        //     ]
-        // }
+        }
     ] 
 }
  

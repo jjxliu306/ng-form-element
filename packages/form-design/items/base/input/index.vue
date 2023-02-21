@@ -1,15 +1,15 @@
 <template>  
 	<el-input 
 		v-if="!renderPreview"
-		:placeholder="record.placeholder"
-		:clearable="record.clearable"
+		:placeholder="record.options.placeholder"
+		:clearable="record.options.clearable"
 		:disabled="disabled"
-		:maxlength="record.maxLength > 0 ? record.maxLength : null"
+		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
 		v-model="models[record.model]" 
 		>
-		<span v-if="record.prepend"  slot="prepend" v-html="transformAppend(record.prepend)">
+		<span v-if="record.options.prepend"  slot="prepend" v-html="transformAppend(record.options.prepend)">
 		</span>
-		<span v-if="record.append"  slot="append" v-html="transformAppend(record.append)">
+		<span v-if="record.options.append"  slot="append" v-html="transformAppend(record.options.append)">
 		</span>
 	</el-input> 
 	<span v-else>{{models[record.model]}}</span> 

@@ -1,0 +1,25 @@
+<template>  
+	<el-input 
+		v-if="!renderPreview"
+		type="textarea"
+		:placeholder="record.options.placeholder"
+		:clearable="record.options.clearable"
+		:disabled="disabled"
+		:rows="record.options.rows"
+		:autosize="record.options.autosize"
+		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
+		v-model="models[record.model]" 
+		> 
+	</el-input> 
+	<span v-else>{{models[record.model]}}</span> 
+</template>
+<script>
+import { dynamicFun } from '../../../../utils/index.js'
+import mixin from '../../mixin.js'
+export default {
+	mixins: [mixin],
+	mounted () { 
+	  this.updateTextDefaultValue()
+	}
+}
+</script>

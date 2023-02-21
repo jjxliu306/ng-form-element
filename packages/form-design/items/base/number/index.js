@@ -6,7 +6,7 @@ import BaseIndex from './index.vue'
 
 const obj = {}
  
-obj.type = 'input'//, // 表单类型 
+obj.type = 'number'//, // 表单类型 
 obj.component = BaseIndex
 
 
@@ -20,7 +20,7 @@ obj.options = {
         {
             label: '标签', 
             prop: 'label',
-            default: '输入框',
+            default: '数字输入框',
             span: 24,
         },
         {
@@ -72,34 +72,49 @@ obj.options = {
                     span: 24,
                 },
                 {
-                    label: '默认值', 
-                    prop: 'defaultValue',
+                    label: '精度', 
+                    prop: 'precision',
+                    type: 'number',
+                    default: 0 ,
                     span: 24,
                 },
                 {
-                    label: '前缀', 
-                    prop: 'prepend',
+                    label: '步长', 
+                    prop: 'step',
+                    type: 'number',
+                    default: 1 ,
+                    span: 24,
+                }, 
+                {
+                    label: '最小值', 
+                    prop: 'min',
+                    type: 'number', 
                     span: 24,
                 },
+                {
+                    label: '最大值', 
+                    prop: 'max',
+                    type: 'number', 
+                    span: 24,
+                },
+                {
+                    label: '默认值', 
+                    prop: 'defaultValue',
+                    type: 'number',
+                    span: 24,
+                }, 
                 {
                     label: '后缀', 
                     prop: 'append',
                     span: 24,
                 },
+                
                 {
                     label: '输入提示', 
                     prop: 'placeholder',
                     default: '请输入',
                     span: 24,
                 },
-                {
-                    label: '最大长度',
-                    type: 'number',
-                    min: -1,
-                    max: 1000,
-                    prop: 'maxLength', 
-                    span: 24,
-                }, 
                 {
                   label: '可清除',
                   prop: 'clearable',
