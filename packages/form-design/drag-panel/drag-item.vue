@@ -15,17 +15,24 @@
           class="form-edit-widget-label"
           v-for="(val, index) in list"
           :key="index"  >
-          <a> 
+          <div class="handle-widget-label"   draggable="true">
+            <div class="label-item"> 
+              <img v-if="weightIcon(val)" draggable="false" class="item-img" :src="weightIcon(val)" :alt="val.label">
+            </div>
+            <div class="handle-label">{{val.label}}</div>
+          </div>
+        <!--   <a> 
             <span>{{val.label}}</span><br>
             <span>{{val.key}}</span>
-          </a> 
+          </a>  -->
         </li>
     </draggable>
   </div>
   
 </template>
 <script>
-import draggable from "vuedraggable";
+import { getItemIcon } from '../../utils/icons.js'
+import draggable from "vuedraggable"
 export default {
   name: "dragItem",
   props: {
@@ -40,6 +47,12 @@ export default {
   methods: { 
     handleEnd(e, list){ 
       this.$emit('dragend' ,list,  e.oldIndex)
+    },
+    //组件图标
+    weightIcon(item) {
+      // 先判断全局是否有配置   
+      //return item.icon  
+      return getItemIcon(item.type)
     }
   }
 };
@@ -84,6 +97,46 @@ export default {
         border: 1px dashed #409EFF;
       }
 
+      .label-item   { 
+        cursor: pointer;
+        background: #f9f9f9;
+        border-radius: 4px;
+        border: 1px solid  #ebebeb;
+        height: 52px;
+        position: relative;
+        width: 100%;
+        -webkit-transition: .15s ease-in-out;
+        transition: .15s ease-in-out;
+        -webkit-transition-property: -webkit-transform;
+        transition-property: -webkit-transform;
+        transition-property: transform;
+        transition-property: transform,-webkit-transform;
+        will-change: transform;
+
+        &:hover {
+          z-index: 1;
+          -webkit-transform: scale(1.075);
+          transform: scale(1.075);
+        }
+      }
+     
+          
+
+      .item-img {
+        height: 100%;
+        -o-object-fit: none;
+        object-fit: scale-down;
+        width: 100%;
+      } 
+
+      .handle-label {
+        font-size: 10px;
+        font-weight: 500;
+        line-height: 12px;
+        margin: 4px -2px 0;
+        text-align: center;
+        color: #777;
+      }
 
     }
 
