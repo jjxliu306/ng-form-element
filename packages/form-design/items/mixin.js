@@ -53,6 +53,17 @@ export default {
 
 	},
 	methods: {
+		// 设置数组类默认值
+		updateArrayDefaultValue() {
+			if(this.models && !Object.prototype.hasOwnProperty.call(this.models,this.record.model)) {
+				const defaultValue = this.record.options.defaultValue
+				if(defaultValue != null && defaultValue != undefined && defaultValue instanceof Array ) {
+					this.$set(this.models , this.record.model , defaultValue)
+				} else {
+					this.$set(this.models , this.record.model , [])
+				}
+			}
+		},
 		// 设置文本类默认值
 		updateSimpleDefaultValue() {
 			// 判断当前models中是否有值 有值则不需要赋予默认值
@@ -62,6 +73,8 @@ export default {
 				const defaultValue = this.record.options.defaultValue
 				if(defaultValue != null && defaultValue != undefined) {
 					this.$set(this.models , this.record.model , defaultValue)
+				} else {
+					this.$set(this.models , this.record.model , '')
 				}
 			}
 		},
@@ -70,6 +83,23 @@ export default {
 	       const func = script.indexOf('return') >= 0 ? '{' + script + '}' : 'return (' + script + ')' 
 	      const Fn = new Function('$','$item', func)
 	      return Fn(this.models , item)
+	    },
+	     // 2021-03-13 针对select radio checkbox判断如果有本地过滤关联，判断该条数据是否该显示 
+	    itemVisible(item) {
+	      // 没有过滤条件 直接全部展示
+	     // console.log('this.localFilter' , this.localFilter)
+	      if(this.isDragPanel || !this.localFilter || this.localFilter.length == 0) return true 
+
+	      //挨个过滤判断 
+	            // 本地搜索开始
+	      for(let i = 0 ; i < this.localFilter.length ; i++) {
+	          const v = this.dynamicVisible(this.localFilter[i] , item )
+	         // console.log('sitem' , item , v)
+	          if(!v) {
+	            return false
+	          }
+	      }  
+	      return true 
 	    },
 		transformAppend(append){
 	      if(append && (append.indexOf('return') >= 0 || append.indexOf('$') >= 0 )){

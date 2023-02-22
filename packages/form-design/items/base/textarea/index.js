@@ -45,15 +45,22 @@ obj.options = {
             span: 24,
         },
         {
-            label: '效验', 
+            type: 'divider',
+            label: '效验规则'
+        },
+        { 
             prop: 'rules',
             type: 'rules',
+            labelWidth: 0,
             default: [{ 
                 required: false, // 必须填写
                 message: "必填项",
                 trigger: ['blur'] 
             }],
             span: 24, 
+        },
+        {
+            type: 'divider', 
         }
     ],
     group: [
