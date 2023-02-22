@@ -6,12 +6,12 @@ import BaseProperties from './properties.vue'
 
 const obj = {}
  
-obj.type = 'checkbox'//, // 表单类型 
+obj.type = 'radio'//, // 表单类型 
 obj.component = BaseIndex
 obj.properties = BaseProperties
 
 // 序号 实际在json中删除
-obj.seq = 5
+obj.seq = 6
 
 // 补充配置样式
 obj.options = {
@@ -23,7 +23,7 @@ obj.options = {
         {
             label: '标签', 
             prop: 'label',
-            default: '多选框',
+            default: '单选框',
             span: 24,
         },
         {
@@ -158,6 +158,7 @@ obj.options = {
                   prop: 'dictType', 
                   show: false
                 } ,
+                 
                 {
                   label: '是否隐藏',
                   prop: 'hidden',
