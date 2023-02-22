@@ -6,7 +6,7 @@ import BaseIndex from './index.vue'
 
 const obj = {}
  
-obj.type = 'date'//, // 表单类型 
+obj.type = 'daterange'//, // 表单类型 
 obj.component = BaseIndex
 //obj.properties = BaseProperties
 
@@ -23,7 +23,7 @@ obj.options = {
         {
             label: '标签', 
             prop: 'label',
-            default: '日期',
+            default: '日期区间',
             span: 24,
         },
         {
@@ -93,7 +93,6 @@ obj.options = {
                     default: 'date' ,
                     type: 'select',
                     dicData: [
-                        {label: '年' , value: 'year'},
                         {label: '月份' , value: 'month'},
                         {label: '日期' , value: 'date'}
                     ],
@@ -105,18 +104,24 @@ obj.options = {
                     default: 'yyyy-MM-dd' ,
                     span: 24,
                 },
+                // {
+                //     label: '默认值', 
+                //     prop: 'defaultValue', 
+                //     default: ['',''],
+                //     span: 24,
+                // },  
                 {
-                    label: '默认值', 
-                    prop: 'defaultValue', 
-                    span: 24,
-                },  
-                {
-                    label: '输入提示', 
-                    prop: 'placeholder',
+                    label: '输入提示1', 
+                    prop: 'rangeStartPlaceholder',
                     default: '请输入',
                     span: 24,
                 },
-                  
+                 {
+                    label: '输入提示2', 
+                    prop: 'rangeEndPlaceholder',
+                    default: '请输入',
+                    span: 24,
+                },  
                 {
                   label: '可清除',
                   prop: 'clearable',

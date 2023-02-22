@@ -40,10 +40,10 @@ export default {
     }
   },
   created() {
-    //this.initDefaultValue()
+    this.updateArrayDefaultValue()
   },
 	mounted () { 
-	  this.updateArrayDefaultValue()
+	  
     // 判断如果是远程方法的话 远程请求数据
     this.initDynamicValue()
 	}
