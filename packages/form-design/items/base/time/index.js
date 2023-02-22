@@ -6,12 +6,12 @@ import BaseIndex from './index.vue'
 
 const obj = {}
  
-obj.type = 'daterange'//, // 表单类型 
+obj.type = 'time'//, // 表单类型 
 obj.component = BaseIndex
 //obj.properties = BaseProperties
 
 // 序号 实际在json中删除
-obj.seq = 8
+obj.seq = 9
 
 // 补充配置样式
 obj.options = {
@@ -23,7 +23,7 @@ obj.options = {
         {
             label: '标签', 
             prop: 'label',
-            default: '日期区间',
+            default: '时间',
             span: 24,
         },
         {
@@ -88,40 +88,23 @@ obj.options = {
                     span: 24,
                 },
                 {
-                    label: '日期类型', 
-                    prop: 'dateType',  
-                    default: 'date' ,
-                    type: 'select',
-                    dicData: [
-                        {label: '月份' , value: 'month'},
-                        {label: '日期' , value: 'date'}
-                    ],
-                    span: 24,
-                },
-                {
-                    label: '日期格式', 
+                    label: '时间格式', 
                     prop: 'format',  
-                    default: 'yyyy-MM-dd' ,
+                    default: 'HH:mm:ss' ,
                     span: 24,
                 },
-                // {
-                //     label: '默认值', 
-                //     prop: 'defaultValue', 
-                //     default: ['',''],
-                //     span: 24,
-                // },  
                 {
-                    label: '输入提示1', 
-                    prop: 'rangeStartPlaceholder',
-                    default: '请输入',
-                    span: 24,
-                },
-                 {
-                    label: '输入提示2', 
-                    prop: 'rangeEndPlaceholder',
-                    default: '请输入',
+                    label: '默认值', 
+                    prop: 'defaultValue', 
                     span: 24,
                 },  
+                {
+                    label: '输入提示', 
+                    prop: 'placeholder',
+                    default: '请输入',
+                    span: 24,
+                },
+                  
                 {
                   label: '可清除',
                   prop: 'clearable',
