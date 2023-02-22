@@ -90,7 +90,7 @@ export default {
   height: 100%;
 
   .header {
-
+    box-shadow: 1px 0px 6px 3px rgba(48, 65, 86, 0.35);
   }
 
 
