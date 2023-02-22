@@ -1,7 +1,7 @@
 <template> 
   <el-container class="form-design">
       <el-header class="header" height="40px">
-        <HeaderPanel :formTemplate="formTemplate" />
+        <HeaderPanel :formTemplate="formTemplate" @importData="importData"/>
       </el-header>
       <el-main class="form-main">
         <el-container class="main-container">
@@ -21,10 +21,10 @@
 </template>
 
 <script> 
-import HeaderPanel from './header-panel/index.vue'
-import DragPanel from './drag-panel/index.vue'
-import ContainerPanel from './container-panel/index.vue'
-import PropertiesPanel from './properties-panel/index.vue'
+import HeaderPanel from './panel-header/index.vue'
+import DragPanel from './panel-drag/index.vue'
+import ContainerPanel from './panel-container/index.vue'
+import PropertiesPanel from './panel-properties/index.vue'
 
 export default {
   name: 'ng-form-design',
@@ -74,6 +74,11 @@ export default {
     // 初始化模板
     initModel(formTemplate) {
 
+    },
+    // 从模板处导入json表单模板
+    importData(formTemplate = {}) {
+      console.log("update" , formTemplate)
+      this.formTemplate = formTemplate
     }
   }
 }

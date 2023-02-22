@@ -8,18 +8,21 @@
 
 
     <Preview v-if="previewVisible" ref="preview" />
-
+    <Code v-if="codeVisible" ref="code" @imp="importData" />
 </div>
 </template>
 <script>
 import Preview from './preview.vue'
+import Code from './code.vue'
 export default{
 	components: {
-		Preview
+		Preview,
+		Code
 	},
 	data() {
 		return {
-			previewVisible: false
+			previewVisible: false,
+			codeVisible: false
 		}
 	},
 	props: {
@@ -27,26 +30,26 @@ export default{
 			type: Object
 		},
 		// 按钮显示隐藏 
-	    clear: {
-	      type: Boolean ,
-	      default: true
-	    },
-	    preview: {
-	      type: Boolean ,
-	      default: true
-	    },
-	    reder: {
-	      type: Boolean ,
-	      default: true
-	    },
-	    imp: {
-	      type: Boolean ,
-	      default: true
-	    },
-	    exp: {
-	      type: Boolean ,
-	      default: true
-	    }
+	  clear: {
+	    type: Boolean ,
+	    default: true
+	  },
+	  preview: {
+	    type: Boolean ,
+	    default: true
+	  },
+	  reder: {
+	    type: Boolean ,
+	    default: true
+	  },
+	  imp: {
+	    type: Boolean ,
+	    default: true
+	  },
+	  exp: {
+	    type: Boolean ,
+	    default: true
+	  }
 	},
 	methods: {
 		handleClear() {
@@ -59,10 +62,20 @@ export default{
 			})
 		},
 		handleImport() {
-
+			this.codeVisible = true 
+			this.$nextTick(()=> {
+				this.$refs.code.init(this.formTemplate , true)
+			})
+		},
+		// 外部导入
+		importData(codes) {
+			this.$emit('importData' , codes)
 		},
 		handleExport() {
-
+			this.codeVisible = true 
+			this.$nextTick(()=> {
+				this.$refs.code.init(this.formTemplate)
+			})
 		}
 	}
 }

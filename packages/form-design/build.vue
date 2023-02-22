@@ -25,7 +25,7 @@
 </div> 
 </template>
 <script> 
-import Node from './container-panel/node.vue'
+import Node from './panel-container/node.vue'
  
 import cloneDeep from 'lodash/cloneDeep'
 

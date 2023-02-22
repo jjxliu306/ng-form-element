@@ -60,6 +60,7 @@ export default {
 
 	        		 	delete t.component
 	        		 	delete t.properties 
+	        		 	delete t.seq 
 	        		}
 		      	}) ;
 
