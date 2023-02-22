@@ -16,7 +16,7 @@
         :prop="column.prop"
         :label="column.label"
         :rules="column.rules"
-        :title="column.tip"
+        :title="column.tip" 
         :label-width="column.labelWidth != null ? (column.labelWidth + 'px') : null"
         :key="column.prop"
         v-else-if="column.show == undefined || column.show == true || columnVisible(column.show)">
@@ -112,7 +112,11 @@
             <el-button type="text" icon="el-icon-plus" @click="addDataColor(model , column.prop)"></el-button>
           </template>
           <el-color-picker v-else-if="column.type == 'color'" v-model="model[column.prop]" placeholder="请选择颜色"></el-color-picker>   
-          
+            
+          <KvList v-else-if="column.type == 'kv'" v-model="model[column.prop]" :keyNumber="column.keyNumber"/>
+          <template v-else-if="column.type == 'rules'"> 
+             <Rules  v-model="model[column.prop]" />
+          </template> 
        <!--  </slot> -->
         <!-- 插槽 -->
         <!-- <slot :name="column.prop"></slot> -->
@@ -122,8 +126,16 @@
 </template>
 <script>
 import { dynamicFun } from '../utils/index.js' 
+
+// key-value数组配置
+import KvList from './kv-list.vue'
+import Rules from './rules.vue'
 export default {
   name: 'ng-form', 
+  components: {
+    KvList,
+    Rules
+  },
   data () {
     return {
       

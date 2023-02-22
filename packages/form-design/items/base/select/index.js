@@ -47,15 +47,22 @@ obj.options = {
             span: 24,
         },
         {
-            label: '效验', 
+            type: 'divider',
+            label: '效验规则'
+        },
+        { 
             prop: 'rules',
             type: 'rules',
+            labelWidth: 0,
             default: [{ 
                 required: false, // 必须填写
                 message: "必填项",
                 trigger: ['blur'] 
             }],
             span: 24, 
+        },
+        {
+            type: 'divider', 
         }
     ],
     group: [
@@ -112,6 +119,20 @@ obj.options = {
                         {label: '数据字典' , value: 2}
                     ]
                 }, 
+                {
+                    label: '静态数据', 
+                    prop: 'options',
+                    default: [
+                        {
+                          value: "1",
+                          label: "下拉框1"
+                        }
+                    ],
+                    span: 24,
+                    //type: 'kv',
+                    show: false
+                }, 
+                
                 {
                   label: '远程获取数据链接',
                   prop: 'remoteFunc', 
