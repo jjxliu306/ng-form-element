@@ -30,6 +30,7 @@
 			      	>
 			        <transition-group tag="div" name="list" class="items-main"> 
 			        	<Node  
+			        		class="drag-move"
 			        		v-for="record in formTemplate.list"
 			            	:key="record.key"
 			            	:record="record"

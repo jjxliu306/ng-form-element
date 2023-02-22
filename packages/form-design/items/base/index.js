@@ -10,6 +10,10 @@ chartFiles.keys().filter((key)=>key != './index.js').forEach((key) => {
   list = list.concat(config)
 })
  
+// 按照seq排序
+list = list.sort(function(a,b){
+  return a.seq - b.seq
+})
 
 
 export default {
