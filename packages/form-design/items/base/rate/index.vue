@@ -1,0 +1,20 @@
+<template>  
+<div>  
+        <el-rate
+              :style="`width:${record.options.width}`"
+              v-model="models[record.model]" 
+              :max="record.options.max"  
+              :allowHalf="record.options.allowHalf" 
+             
+        />
+</div> 
+</template>
+<script> 
+import mixin from '../../mixin.js'
+export default {
+        mixins: [mixin],
+        mounted () { 
+                this.updateSimpleDefaultValue()
+        }
+}
+</script>

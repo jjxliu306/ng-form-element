@@ -6,10 +6,12 @@ import BaseIndex from './index.vue'
 
 const obj = {}
  
-obj.type = 'number'//, // 表单类型 
+obj.type = 'rate'//, // 表单类型 
 obj.component = BaseIndex
+//obj.properties = BaseProperties
+
 // 序号 实际在json中删除
-obj.seq = 3
+obj.seq = 11
 
 // 补充配置样式
 obj.options = {
@@ -21,7 +23,7 @@ obj.options = {
         {
             label: '标签', 
             prop: 'label',
-            default: '数字输入框',
+            default: '评分',
             span: 24,
         },
         {
@@ -86,54 +88,23 @@ obj.options = {
                     span: 24,
                 },
                 {
-                    label: '精度', 
-                    prop: 'precision',
-                    type: 'number',
-                    default: 0 ,
-                    span: 24,
-                },
-                {
-                    label: '步长', 
-                    prop: 'step',
-                    type: 'number',
-                    default: 1 ,
-                    span: 24,
-                }, 
-                {
-                    label: '最小值', 
-                    prop: 'min',
-                    type: 'number', 
-                    default: 0,
-                    span: 24,
-                },
-                {
                     label: '最大值', 
-                    prop: 'max',
-                    type: 'number', 
-                    default: 1000,
+                    prop: 'max',  
+                    type: 'number',
+                    min: 1,
+                    default: 5 ,
                     span: 24,
                 },
                 {
                     label: '默认值', 
-                    prop: 'defaultValue',
-                    type: 'number',
+                    prop: 'defaultValue', 
+                    type: 'number', 
                     span: 24,
-                }, 
+                },  
+               
                 {
-                    label: '后缀', 
-                    prop: 'append',
-                    span: 24,
-                },
-                
-                {
-                    label: '输入提示', 
-                    prop: 'placeholder',
-                    default: '请输入',
-                    span: 24,
-                },
-                {
-                  label: '可清除',
-                  prop: 'clearable',
+                  label: '允许半选',
+                  prop: 'allowHalf',
                   type: 'switch',
                   default: false,
                   span: 24,
@@ -154,23 +125,7 @@ obj.options = {
                 }  
 
             ]
-        },
-        // {
-        //     label: '测试分割',
-        //     prop: 'test', 
-        //     collapse: false, // 是否启用 collapse 必须alone=true
-        //     column: [ 
-        //         {
-        //             label: '标签宽度', 
-        //             prop: 'width',
-        //             type: 'number',
-        //             min: 1,
-        //             max: 1000,
-        //             default: 80,
-        //             span: 24,
-        //         }
-        //     ]
-        // }
+        }
     ] 
 }
  

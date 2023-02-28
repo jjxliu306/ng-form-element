@@ -20,7 +20,7 @@ import mixin from '../../mixin.js'
 export default {
 	mixins: [mixin],
 	mounted () { 
-	  this.updateTextDefaultValue()
+	  this.updateSimpleDefaultValue()
 	}
 }
 </script>
