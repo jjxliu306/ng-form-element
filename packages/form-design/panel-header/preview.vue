@@ -10,6 +10,7 @@
   > 
 
     <div class="item-main">  
+      models:: {{models}}
       <FormBuild :key="key" :formTemplate="formTemplate" :models="models" ref="formBuild" /> 
     </div> 
     <span slot="footer" class="dialog-footer">
