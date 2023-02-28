@@ -41,6 +41,11 @@ export default {
 	      	checkValues: []
 		}
 	},
+	computed: {
+		dynamicVisibleItem() {
+			return true
+		}
+	},
 	inject: {
 	    customComponents: {
 	      from: 'customC',

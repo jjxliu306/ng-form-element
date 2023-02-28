@@ -11,9 +11,6 @@ import { dynamicFun } from '../../../../utils/index.js'
 import mixin from '../../mixin.js'
 export default {
 	mixins: [mixin],
-	mounted () { 
-	  this.updateSimpleDefaultValue()
-	},
 	computed: {
 		showRequiredMark(){
 	      //##############
