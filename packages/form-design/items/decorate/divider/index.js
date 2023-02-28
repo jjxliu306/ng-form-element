@@ -6,10 +6,10 @@ import BaseIndex from './index.vue'
 
 const obj = {}
  
-obj.type = 'text'//, // 表单类型 
+obj.type = 'divider'//, // 表单类型 
 obj.component = BaseIndex
 // 序号 实际在json中删除
-obj.seq = 17
+obj.seq = 3
 
 // 补充配置样式
 obj.options = {
@@ -21,7 +21,7 @@ obj.options = {
         {
             label: '标签', 
             prop: 'label',
-            default: '标签',
+            default: '分割线', 
             type: 'textarea',
             span: 24,
         },
@@ -55,33 +55,30 @@ obj.options = {
                     default: '100%',
                     span: 24,
                 },
-                
                 {
-                    label: '对齐方式', 
-                    prop: 'textAlign',  
-                    default: 'left',
+                    label: '方向', 
+                    prop: 'direction',  
+                    default: 'horizontal',
                     type: 'radioButton',
+                    dicData: [
+                        {label: '横向' , value: 'horizontal'},
+                        {label: '竖向' , value: 'vertical'}
+                    ],
+                    span: 24,
+                }, 
+                {
+                    label: '标签位置', 
+                    prop: 'orientation',  
+                    default: 'center',
+                    type: 'radioButton',
+                    show: '$.options.direction == "horizontal"',
                     dicData: [
                         {label: '左' , value: 'left'},
                         {label: '居中' , value: 'center'},
                         {label: '右' , value: 'right'}
                     ],
                     span: 24,
-                },
-                {
-                  label: '必选标记',
-                  prop: 'showRequiredMark',
-                  type: 'switch',
-                  default: false,
-                  span: 24,
-                } , 
-                {
-                    label: '动态必选', 
-                    prop: 'showRequiredMarkScript',   
-                    show: '$.options.showRequiredMark',
-                    type: 'textarea',
-                    span: 24,
-                },
+                }, 
                 {
                   label: '是否隐藏',
                   prop: 'hidden',

@@ -9,7 +9,7 @@ const obj = {}
 obj.type = 'html'//, // 表单类型 
 obj.component = BaseIndex
 // 序号 实际在json中删除
-obj.seq = 18
+obj.seq = 2
 
 // 补充配置样式
 obj.options = {
@@ -58,6 +58,7 @@ obj.options = {
                     label: 'HTML', 
                     prop: 'defaultValue',  
                     type: 'textarea',
+                    default: '<span style="color:red;">HTML</span>',
                     span: 24,
                 }, 
                 {

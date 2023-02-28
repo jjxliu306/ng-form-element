@@ -4,8 +4,10 @@ import cloneDeep from 'lodash/cloneDeep'
   
 // 扫描下面目录中所有的index.js 然后穷举后返回
 import baseConfig from './base/index.js' 
+import decorateConfig from './decorate/index.js' 
+import layoutConfig from './layout/index.js' 
 
-const list = [ baseConfig  ]
+const list = [ baseConfig , decorateConfig , layoutConfig ]
 
 
 // 将配置信息放到全局变量中
