@@ -68,7 +68,7 @@ export default {
 		updateSimpleDefaultValue() {
 			// 判断当前models中是否有值 有值则不需要赋予默认值
 			// 必须要包含key但没值
-			console.log("this.models" , JSON.stringify(this.models[this.record.model]))
+			console.log("this.models" ,this.record.type , JSON.stringify(this.models[this.record.model]))
 			if(this.models 
 				&& (
 					!Object.prototype.hasOwnProperty.call(this.models,this.record.model)

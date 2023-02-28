@@ -38,6 +38,26 @@
             :max="column.max || undefined"
             :precision="column.precision"
             :step="column.step" />
+          <template v-else-if="column.type == 'numbers'">
+            <div v-for="(item, index) in model[column.prop]" :key='index'>
+              <el-row :span="24">
+                <el-col :span="22">
+                 <!--   --> 
+                <el-input-number
+                  v-model="model[column.prop][index]"
+                  controls-position="right"
+                  :min="column.min || undefined"
+                  :max="column.max || undefined"
+                  :precision="column.precision"
+                  :step="column.step" />
+                </el-col>
+                <el-col :span="2" style="padding-left: 5px">
+                  <el-button type="text" icon="el-icon-close" @click="removeData(model,column.prop, index)"></el-button>
+                </el-col>
+              </el-row>
+            </div>
+            <el-button type="text" icon="el-icon-plus" @click="addData(model , column.prop , column.type)"></el-button>
+          </template>
           <el-radio-group v-else-if="column.type == 'radio'" v-model="model[column.prop]">
             <el-radio :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{rv.label}}</el-radio>
           </el-radio-group>
@@ -105,11 +125,11 @@
                  <el-color-picker v-model="model[column.prop][index]" placeholder="请选择颜色"/> 
                 </el-col>
                 <el-col :span="2" style="padding-left: 5px">
-                  <el-button type="text" icon="el-icon-close" @click="removeColor(model,column.prop, index)"></el-button>
+                  <el-button type="text" icon="el-icon-close" @click="removeData(model,column.prop, index)"></el-button>
                 </el-col>
               </el-row>
             </div>
-            <el-button type="text" icon="el-icon-plus" @click="addDataColor(model , column.prop)"></el-button>
+            <el-button type="text" icon="el-icon-plus" @click="addData(model , column.prop, column.type)"></el-button>
           </template>
           <el-color-picker v-else-if="column.type == 'color'" v-model="model[column.prop]" placeholder="请选择颜色"></el-color-picker>   
             
@@ -179,11 +199,24 @@ export default {
       return true
     },
      
-    addDataColor (recordProp , columnProp) {
-      recordProp[columnProp].push('#ffffff')
+    addData (recordProp , columnProp , type) {
+
+      let defaultVal = '#ffffff'
+      if(type == 'numbers') {
+        type = 0
+      }
+
+      console.log('recordProp[columnProp]' , JSON.stringify(recordProp[columnProp]))
+      if(recordProp[columnProp] == undefined || recordProp[columnProp] == null
+        || !(recordProp[columnProp] instanceof Array)) {
+        this.$set(recordProp , columnProp , [defaultVal])
+      } else {
+        recordProp[columnProp].push(defaultVal)
+      }
+     
       
     },
-    removeColor (model , prop , index) {
+    removeData (model , prop , index) {
       const nlist = model[prop].filter( (value, i)=> i !== index) 
       this.$set(model , prop , nlist)
     },

@@ -13,7 +13,7 @@
 import mixin from '../../mixin.js'
 export default {
         mixins: [mixin],
-        mounted () { 
+        created () { 
                 this.updateSimpleDefaultValue()
         }
 }

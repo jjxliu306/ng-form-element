@@ -75,7 +75,11 @@ export default {
 <style lang="scss">
 .ng-form-kvlist {
 	padding-left: 10px;
- 
+  
+  .el-input__inner {
+    padding: 0px; 
+  }
+   
 	.option-change-box {
     	height: 38px;
     	padding-bottom: 6px; 
