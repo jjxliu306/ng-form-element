@@ -2,15 +2,15 @@
   <div
         :class="[
           'ng-layout-controller', 
-          record.options.customClass ? record.options.customClass : '' , 
-          record.options && record.options.bordered ? 'controller-bordered' : '' 
+          record.options.customClass ? record.options.customClass : '' 
         ]" 
         :style="record.options.customStyle" 
       >
      
         <!-- <div class="batch-label">弹性容器</div>  -->
         <template v-if="isDragPanel">
-          <el-row :gutter="20" class="row"> 
+          <el-row :gutter="20" class="row dragpanel" 
+            :class="{'controller-bordered': record.options && record.options.bordered}"> 
             <draggable 
               tag="div"
               class="draggable-box"
@@ -23,8 +23,7 @@
 
               :force-fallback="true"
               v-model="record.list"
-            > 
-              
+            >  
                 <ng-form-node
                   v-for="item in record.list"
                   :key="item.key"
@@ -35,8 +34,7 @@
                   @handleSelectItem="handleSelectItem"
                   @handleCopy="handleCopy(item)"
                   @handleDetele="handleDetele(item)"
-                />
-              
+                /> 
             </draggable>
           </el-row>
         </template> 
@@ -47,7 +45,7 @@
               record.options.customClass ? record.options.customClass : '' ,
               record.options.bright ? 'bright' : '' ,
               record.options.small ? 'small' : '' ,
-              record.options.bordered ? 'form-table-bordered' : '' 
+              record.options.bordered ? 'controller-bordered' : '' 
             ]" 
             :style="record.options.customStyle"
              @contextmenu.prevent="handleShowRightMenu($event , idx) "
@@ -67,8 +65,23 @@
                 :prop-prepend="record.model + '.' + idx + '.'"
               />
             </div>  
+          </div> 
+           <!-- 右键里的删除和复制 下方的新增 -->
+          <el-button v-if="!renderPreview && record.options.add" type="dashed" size="mini" :disabled="disabled" @click="addControlData">
+            <i class="el-icon-circle-plus-outline" />增加
+          </el-button>
+          <div
+            v-show="!renderPreview && showRightMenu"
+            :style="{ 'top': menuTop + 'px', 'left': menuLeft + 'px' }"
+            class="right-menu"
+            id="rightMenu"
+          >
+            <ul> 
+             <li v-if="record.options.copy" @click="handleCopyData"><i class="el-icon-document" />复制</li>
+              <hr v-if="record.options.copy && record.options.remove">
+              <li v-if="record.options.remove" @click="handleRemoveData"><i class="el-icon-delete" />删除</li> 
+            </ul>
           </div>
-
         </div> 
   </div>
 </template>
@@ -83,8 +96,13 @@ export default {
   components: {
   //  Node , Item
   },
+  data() {
+    return {
+      showRightMenu: false,
+      selectControlIndex: undefined
+    }
+  },
   created() {
-    console.log('isDragPanel' , this.isDragPanel)
     if(this.isDragPanel) {
       if(this.record && (this.record.list == null || this.record.list == undefined)) {
         this.$set(this.record, 'list' , [])
@@ -126,14 +144,105 @@ export default {
       if(oindex >= 0) {
         this.record.list.splice(oindex , 1);
       }
+    },
+    addControlData() {
+        // 将当前数据复制一份 压入
+      const data_ = {} 
+
+      this.record.list.forEach(t=> {
+        data_[t.model] = ''
+      }) 
+      this.models[this.record.model].push(data_) 
+    },
+    handleShowRightMenu(e, idx) {
+      // 显示右键菜单
+      e.stopPropagation();
+
+      // 判断是否有复制和删除 如果没有直接返回
+      if(!this.record.options.remove && !this.record.options.copy) {
+        this.showRightMenu = false
+        return false
+      }
+
+      // this.fileItem = item
+      // 显示
+      this.showRightMenu = true;
+ 
+
+      // 计算rightMenu得高度和宽度 和当前屏幕对比 来决定菜单出现得起始位置
+      let height = 210;// document.getElementById('rightMenu').clientHeight ;
+      let width = 280 ;//document.getElementById('rightMenu').clientWidth ;
+
+      // 获取屏幕高度和宽度 比对
+      const bodyHeight = document.body.clientHeight  ;
+      const bodyWidth = document.body.clientWidth ;
+ 
+        
+      // 定位 
+      if(e.clientY + height > bodyHeight) {
+        this.menuTop = e.clientY - height;
+      } else {
+        this.menuTop = e.clientY;
+      }
+
+      if(e.clientX + width > bodyWidth) {
+        this.menuLeft = e.clientX - width;
+      } else {
+        this.menuLeft = e.clientX + 20 ;
+      }
+      
+      this.selectControlIndex = idx
+
+      return false;
+    },
+    handleCopyData() {
+      if(this.selectControlIndex == undefined || this.selectControlIndex < 0) {
+        this.showRightMenu = false
+        return 
+      }
+
+      if(!this.models[this.record.model] || this.models[this.record.model].length < this.selectControlIndex) {
+        this.showRightMenu = false
+        return 
+      }
+
+      const cloneData = cloneDeep(this.models[this.record.model][this.selectControlIndex])
+
+      this.models[this.record.model].push(cloneData)
+      this.showRightMenu = false
+    },
+    handleRemoveData() {
+      if(this.selectControlIndex == undefined || this.selectControlIndex < 0) {
+        return 
+      }
+
+      if(!this.models[this.record.model] || this.models[this.record.model].length < this.selectControlIndex) {
+        this.showRightMenu = false
+        return 
+      }
+
+      if(this.models[this.record.model].length == 1) {
+        
+        this.$message.error(this.record.label + '内仅存的一条数据不能删除')
+        this.showRightMenu = false
+        return
+      }
+
+      this.models[this.record.model].splice(this.selectControlIndex,1)
+
+      this.showRightMenu = false
     }
   }
 }
 </script>
 <style lang="scss">
 .ng-layout-controller {
-  min-height: 300px;
+  
 
+  .dragpanel {
+    min-height: 300px;
+    margin: 0px;
+  }
 
   .draggable-box , .list-main{
     min-height: 300px;

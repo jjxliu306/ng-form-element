@@ -80,5 +80,36 @@ export default {
     	overflow-x: hidden;
   
 	}
+
+	
+	.right-menu {
+	  width: 190px;
+	  background: #fff;
+	  border: 1px solid #ccc;
+	  position: fixed;
+	  transition: all 0s;
+	  box-shadow: 3px 3px 5px #999;
+	  padding: 8px 0;
+	  z-index: 999;
+
+	  ul {
+		  padding: 0;
+		  margin: 0;
+		  list-style: none;
+
+		  li {
+			  cursor: pointer;
+			  user-select: none;
+			  padding: 0 15px;
+			  height: 30px;
+			  line-height: 30px;
+			  font-size: 14px;
+
+			  &:hover {
+				  background: #eee;
+				}
+			}
+		}
+	}
 }
 </style>
