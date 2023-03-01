@@ -9,7 +9,7 @@ const obj = {}
 obj.type = 'controller'//, // 表单类型 
 obj.component = BaseIndex
 // 序号 实际在json中删除
-obj.seq = 4
+obj.seq = 2
 
 // 补充配置样式
 obj.options = {
