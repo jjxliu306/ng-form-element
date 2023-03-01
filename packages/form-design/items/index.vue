@@ -21,7 +21,11 @@
         }"   
         :disabled="disabled" 
         :preview="preview"
+        :isDragPanel="isDragPanel"
+        :selectItem="selectItem"
+        :formConfig="formConfig"
         :models="models" 
+        @handleSelectItem="handleSelectItem"
         @submit="$emit('submit')"
         @reset="$emit('reset')"
         :is="customComponent"> 
@@ -74,7 +78,10 @@ export default {
     isDragPanel: {
       type: Boolean ,
       default: false
-    } 
+    },
+    selectItem: {
+      type: Object
+    }
   }, 
   watch: {
    
@@ -239,7 +246,9 @@ export default {
     }
   },
   methods: {
-     
+     handleSelectItem(item) {
+      this.$emit('handleSelectItem' , item)
+     }
   },
   mounted() {  
     

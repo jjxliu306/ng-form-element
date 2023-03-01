@@ -13,7 +13,7 @@
     "default-passive-events": "^1.0.10",
     "object-path": "^0.11.5",
     "lodash": "^4.17.21",
-    "vuedraggable": "^2.23.2"
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",

@@ -30,6 +30,12 @@ export default {
 	  isDragPanel: {
 	  	type: Boolean,
 	    default: false
+	  },
+	  selectItem: {
+	  	type: Object
+	  },
+	  formConfig: {
+	  	type: Object
 	  }
 	}, 
 	data() {
@@ -73,14 +79,12 @@ export default {
 		updateSimpleDefaultValue() {
 			// 判断当前models中是否有值 有值则不需要赋予默认值
 			// 必须要包含key但没值
-			console.log("this.models" ,this.record.type , JSON.stringify(this.models[this.record.model]))
 			if(this.models 
 				&& (
 					!Object.prototype.hasOwnProperty.call(this.models,this.record.model)
 					|| this.models[this.record.model] == undefined) 
 				) {
 				const defaultValue = this.record.options.defaultValue
-				console.log('type:' + this.record.type , defaultValue)
 				if(defaultValue != null && defaultValue != undefined) {
 					this.$set(this.models , this.record.model , defaultValue)
 				} else {

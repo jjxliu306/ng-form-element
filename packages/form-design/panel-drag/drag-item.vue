@@ -4,7 +4,7 @@
       tag="ul"
       :value="list"
       v-bind="{
-        group: { name: 'form-draggable', pull: 'clone', put: true },
+        group: { name: 'form-draggable', pull: 'clone', put: false },
         sort: false,
         animation: 180,
         ghostClass: 'moving'

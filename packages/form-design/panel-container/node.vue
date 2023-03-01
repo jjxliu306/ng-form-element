@@ -10,6 +10,7 @@
           :models="models"
           :record="record"
           :isDragPanel="isDrag"    
+          :selectItem="selectItem"
           :preview="preview"
           :key="refreshKey" 
           @submit="$emit('submit')"
@@ -50,7 +51,7 @@ import Item from "../items/index.vue"
 import cloneDeep from 'lodash/cloneDeep' 
 
 export default {
-  name: 'ng-form-container-node',
+  name: 'ng-form-node',
   components: {
     Item 
   },
@@ -146,6 +147,7 @@ export default {
   &.active {
     background: fade(#409EFF, 20%);
     outline-offset: 0;
+    border: 1px solid #3a8ee6;
 
     &::before {
       right: 0;

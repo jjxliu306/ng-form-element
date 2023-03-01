@@ -38,6 +38,8 @@
 			            	:config="formTemplate.config"
 			            	:selectItem="selectItem"
 			            	@handleSelectItem="handleSelectItem"
+			            	@handleCopy="handleCopy(record)"
+			            	@handleDetele="handleDetele(record)"
 			            	>  
 			        	</Node> 
 			        </transition-group>
@@ -48,6 +50,8 @@
 </div> 
 </template>
 <script> 
+import cloneDeep from 'lodash/cloneDeep'
+ 
 import Node from './node'
 export default {
 	name: 'ng-form-container' ,
@@ -75,6 +79,28 @@ export default {
 	  },
 	  handleSelectItem(record) {
 	    this.$emit('handleSelectItem' , record)
+	  },
+	  handleCopy(item){ 
+	  	const nitem = cloneDeep(item)
+	  	const key = item.type + "_" + new Date().getTime() 
+	  	nitem.key = key
+	  	nitem.model = key
+
+	  	// 找到index 插入
+	  	const oindex = this.formTemplate.list.findIndex(t=>t.key == item.key)
+	   
+	  	if(oindex >= 0) {
+	  		// insert 
+	  		this.formTemplate.list.splice(oindex + 1 , 0, nitem)
+
+	  	}
+
+	  },
+	  handleDetele(item) {
+	  	const oindex = this.formTemplate.list.findIndex(t=>t.key == item.key)
+	  	if(oindex >= 0) {
+	  		this.formTemplate.list.splice(oindex , 1);
+	  	}
 	  }
 	}
 }
@@ -108,7 +134,7 @@ export default {
 		}
 		.items-main {
 			height: 100%; 
-
+			padding: 0px 10px;
 		}
 	}
 }

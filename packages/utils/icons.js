@@ -26,7 +26,6 @@ export const icons = {
 
 }
  
-export const getItemIcon = (type)=> {
-	console.log('type' , type)
+export const getItemIcon = (type)=> { 
 	return icons[type]
 }

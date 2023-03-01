@@ -108,6 +108,7 @@ export default {
     height: 100%;
     overflow-y: hidden;
     box-shadow: 1px 0px 6px 3px rgb(48 65 86 / 35%);
+    
   }
 
   .center-panel { 
