@@ -31,8 +31,7 @@
                   class="drag-move"
                   :selectItem="selectItem"
                   :record="item"
-                  :config="formConfig"
-                  @click.stop="clickt"
+                  :config="formConfig" 
                   @handleSelectItem="handleSelectItem"
                   @handleCopy="handleCopy(item)"
                   @handleDetele="handleDetele(item)"
@@ -121,9 +120,6 @@ export default {
     }
   },
   methods: {
-    clickt(ev) {
-      console.log("clickt" , ev)
-    },
     dragEnd(evt, list) {   
       // 拖拽结束,自动选择拖拽的控件项
       this.handleSelectItem(list[evt.newIndex])
