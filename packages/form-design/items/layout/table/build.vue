@@ -25,7 +25,7 @@
                      
                         <el-row> 
                           <template   v-for="item in tdItem.list">
-                              {{item.key}}
+                              
                               <ng-form-item
                                 ref="nestedComponents"
                                 :key="item.key"
@@ -37,7 +37,7 @@
                               />
                              
                           </template> 
-                        </el-row> S
+                        </el-row>
                   </td>
                 </tr>
               </table> 

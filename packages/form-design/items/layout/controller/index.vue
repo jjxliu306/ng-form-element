@@ -124,10 +124,6 @@ export default {
       // 拖拽结束,自动选择拖拽的控件项
       this.handleSelectItem(list[evt.newIndex])
     },
-    handleSelectItem(item) { 
-      console.log("click item " , item.key)
-      this.$emit('handleSelectItem' , item)
-    },
     handleCopy(item){ 
       const nitem = cloneDeep(item)
       const key = item.type + "_" + new Date().getTime() 

@@ -92,6 +92,9 @@ export default {
 				}
 			}
 		},
+		handleSelectItem(item) { 
+      		this.$emit('handleSelectItem' , item)
+    	},
 		 // 2021-03-13 判断列表中具体某个值是否应该显示
 	    dynamicVisible(script , item) {
 	       const func = script.indexOf('return') >= 0 ? '{' + script + '}' : 'return (' + script + ')' 

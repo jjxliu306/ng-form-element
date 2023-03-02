@@ -41,7 +41,7 @@
                       
                         <el-row class="td-row"> 
                           <template   v-for="item in tdItem.list">
-                              {{item.key}}
+                              
                              <ng-form-node 
                               :key="item.key"
                               class="drag-move"
@@ -104,10 +104,7 @@ export default {
 		dragEnd(evt, list) {   
       		// 拖拽结束,自动选择拖拽的控件项
       		this.handleSelectItem(list[evt.newIndex])
-    	},
-		handleSelectItem(item) {
-			this.$emit('handleSelectItem' , item)
-		}
+    	}
 	}
 }
 </script>
