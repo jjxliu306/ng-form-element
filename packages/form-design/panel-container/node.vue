@@ -1,10 +1,9 @@
 <template>
-  <el-col :span="record.span || 24">
-    <div 
-      :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-move-box': isDrag}" 
-      
-    >    
-      <div  class="form-item-box" style="height: 100%;width: 100%;" @click.stop="handleSelectItem(record)">
+  <el-col 
+    :span="record.span || 24"   
+   > 
+    <div  :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-box': isDrag }"  @click.stop="handleSelectItem(record)">
+      <div  class="form-item-box" style="height: 100%;width: 100%;">
         <Item
           :formConfig="config"
           :models="models"
@@ -95,7 +94,9 @@ export default {
      
   },
   created(){
-    
+    if(this.record.type == 'controller' && !this.record.list) {
+      this.$set(this.record , 'list' , [])
+    }
   },
   activated() {     
      
@@ -117,7 +118,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.drag-move-box  {
+.drag-box  {
   position: relative;
   box-sizing: border-box;
   padding: 8px;
@@ -132,7 +133,7 @@ export default {
     font-size: 14px;
     color: #409eff;
   } 
-
+ 
   &::before {
     content: "";
     height: 5px;
@@ -140,14 +141,13 @@ export default {
     background: #409EFF;
     position: absolute;
     top: 0;
-    right: -100%;
-    transition: all 0.3s;
+    right: -100%; 
   }
+  
 
   &.active {
     background: fade(#409EFF, 20%);
-    outline-offset: 0;
-    border: 1px solid #3a8ee6;
+    outline-offset: 0; 
 
     &::before {
       right: 0;
@@ -158,7 +158,7 @@ export default {
     position: relative;
     box-sizing: border-box;
     word-wrap: break-word;
-
+/*
     &::before {
       content: "";
       position: absolute;
@@ -168,6 +168,7 @@ export default {
       left: 0;
       z-index: 888;
     }
+    */
   }
 
   .node-control {
@@ -187,7 +188,6 @@ export default {
       text-align: center;
       color: #fff;
       z-index: 989;
-      transition: all 0.3s;
 
       &.unactivated {
         opacity: 0 !important;

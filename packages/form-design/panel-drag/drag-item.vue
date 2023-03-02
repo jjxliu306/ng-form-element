@@ -15,7 +15,7 @@
           class="form-edit-widget-label"
           v-for="(val, index) in list"
           :key="index"  >
-          <div class="handle-widget-label"   draggable="true">
+          <div class="handle-widget-label"   draggable="true" :title="val.label">
             <div class="label-item"> 
               <img v-if="weightIcon(val)" draggable="false" class="item-img" :src="weightIcon(val)" :alt="val.label">
             </div>
@@ -79,7 +79,7 @@ export default {
     .form-edit-widget-label {
       font-size: 12px;
       display: block;
-      width: 45%;
+      width: 30%;
       line-height: 26px;
       position: relative;
       float: left;
@@ -87,7 +87,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      margin: 1%;
+      margin: 2px;
       color: #333;
       border: 1px solid #F4F6FC;
       text-align: center;
@@ -102,7 +102,7 @@ export default {
         background: #f9f9f9;
         border-radius: 4px;
         border: 1px solid  #ebebeb;
-        height: 52px;
+        height: 45px;
         position: relative;
         width: 100%;
         -webkit-transition: .15s ease-in-out;

@@ -23,7 +23,7 @@ obj.options = {
         {
             label: '标签', 
             prop: 'label',
-            default: '日期时间选择框',
+            default: '日期时间',
             span: 24,
         },
         {

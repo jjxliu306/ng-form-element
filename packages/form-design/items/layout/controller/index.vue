@@ -9,7 +9,7 @@
      
         <!-- <div class="batch-label">弹性容器</div>  -->
         <template v-if="isDragPanel">
-          <el-row :gutter="20" class="row dragpanel" 
+          <el-row :gutter="20" class="controller-row dragpanel" 
             :class="{'controller-bordered': record.options && record.options.bordered}"> 
             <draggable 
               tag="div"
@@ -23,6 +23,7 @@
 
               :force-fallback="true"
               v-model="record.list"
+              @add="dragEnd($event, record.list)" 
             >  
                 <ng-form-node
                   v-for="item in record.list"
@@ -31,6 +32,7 @@
                   :selectItem="selectItem"
                   :record="item"
                   :config="formConfig"
+                  @click.stop="clickt"
                   @handleSelectItem="handleSelectItem"
                   @handleCopy="handleCopy(item)"
                   @handleDetele="handleDetele(item)"
@@ -119,8 +121,15 @@ export default {
     }
   },
   methods: {
+    clickt(ev) {
+      console.log("clickt" , ev)
+    },
+    dragEnd(evt, list) {   
+      // 拖拽结束,自动选择拖拽的控件项
+      this.handleSelectItem(list[evt.newIndex])
+    },
     handleSelectItem(item) { 
-
+      console.log("click item " , item.key)
       this.$emit('handleSelectItem' , item)
     },
     handleCopy(item){ 
@@ -237,7 +246,11 @@ export default {
 </script>
 <style lang="scss">
 .ng-layout-controller {
-  
+  z-index: 0;
+
+  .controller-row {
+    margin: 0px!important;
+  }
 
   .dragpanel {
     min-height: 300px;

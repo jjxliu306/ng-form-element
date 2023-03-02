@@ -95,7 +95,8 @@ export default {
 
     .title {
     	width: 100%;
-	    text-align: center;
+	    /*text-align: center;*/
+	    padding-left: 20px;
 	    font-weight: 600;
 	    font-size: 13px;
     }
