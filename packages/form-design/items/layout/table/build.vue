@@ -49,6 +49,9 @@ export default {
 	mixins: [mixin],
 	created() {
 		 
-	}
+	},
+  methods: {
+    
+  }
 }
 </script>
