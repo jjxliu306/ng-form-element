@@ -93,6 +93,8 @@ export default {
 .ng-layout-row {
   z-index: 0;
   margin: 0px!important;
+  border-radius: 4px;
+  border: 1px dashed #ccc;
 
   .ng-layout-col {
     min-height: 70px;
@@ -100,7 +102,7 @@ export default {
     .draggable-box {
       min-height: 65px;
       border-radius: 4px;
-      border: 1px solid #DCDFE6;
+      border: 1px dashed #ccc;
       box-sizing: border-box;
       padding-left: 2px;
       padding-right: 2px;
