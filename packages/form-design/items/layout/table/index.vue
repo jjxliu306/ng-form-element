@@ -81,8 +81,10 @@ export default {
     border: 1px solid #e8e8e8 !important;
   }
 
-  &.bright tr:hover > td {
-    background: #e6f7ff;
+  &.bright   {
+    .table-td:hover {
+       background: #fafafa;
+    } 
   }
 
   .el-row .el-form-item {

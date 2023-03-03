@@ -72,43 +72,29 @@ obj.options = {
                   type: 'switch',
                   default: true,
                   span: 24,
-                }, 
+                },  
                 {
-                  label: '可新增',
-                  prop: 'add',
+                  label: 'hover点亮',
+                  prop: 'bright',
                   type: 'switch',
                   default: true,
                   span: 24,
                 },
                 {
-                  label: '可复制',
-                  prop: 'copy',
+                  label: '紧凑',
+                  prop: 'small',
                   type: 'switch',
                   default: true,
                   span: 24,
                 },
-                {
-                  label: '可删除',
-                  prop: 'remove',
-                  type: 'switch',
-                  default: true,
-                  span: 24,
-                },
+                
                 {
                   label: '是否隐藏',
                   prop: 'hidden',
                   type: 'switch',
                   default: false,
                   span: 24,
-                },
-                {
-                  label: '是否禁用',
-                  prop: 'disabled',
-                  type: 'switch',
-                  default: false,
-                  span: 24,
-                }  
-
+                } 
             ]
         }
     ] 
