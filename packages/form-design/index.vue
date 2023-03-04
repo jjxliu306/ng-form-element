@@ -1,7 +1,7 @@
 <template> 
   <el-container class="form-design">
       <el-header class="header" height="40px">
-        <HeaderPanel :formTemplate="formTemplate" @importData="importData"/>
+        <HeaderPanel :clear="clear" :preview="preview" :imp="imp" :exp="exp" :formTemplate="formTemplate" @importData="importData"/>
       </el-header>
       <el-main class="form-main">
         <el-container class="main-container">
