@@ -1,4 +1,5 @@
 <template>
+<el-collapse-item name="column" title="字段">
 <el-form class="ng-batch-properties"  size="mini" label-width="80px" label-position="top" >
 	<el-divider class="divider-center" > {{selectItem.options.addType == 'dialog' ? '外部展示字段' : '字段宽度'}} </el-divider>
   <el-form-item  >
@@ -17,6 +18,7 @@
               </el-checkbox-group>
   </el-form-item>  
 </el-form>
+</el-collapse-item>
 </template>
 <script>  
 export default {

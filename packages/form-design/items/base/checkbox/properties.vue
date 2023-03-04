@@ -1,4 +1,5 @@
 <template>
+<el-collapse-item name="data" title="数据">
   <DatasourceConfig :selectItem="selectItem">
     <template slot="defaultValue" >
       <el-form-item v-if="selectItem && selectItem.options.dynamic == 0" label="默认值">
@@ -14,6 +15,7 @@
       </el-form-item>
     </template>
   </DatasourceConfig>
+</el-collapse-item>
 </template>
 <script>
 import DatasourceConfig from '../select/datasource-config.vue'
