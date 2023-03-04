@@ -59,12 +59,35 @@ export default {
 		config() {
 			if(this.formTemplate) return this.formTemplate.config 
 			return {}
-		}
+		},
+		// 配置的数据字典
+	    dicts() {
+	      if(this.config && this.config.dict && this.config.dict.length > 0) {
+	        return this.config.dict
+	      }
+	      return null
+	    },
+	    // 配置中的http配置
+	    httpConfig() {
+	      if(this.config && this.config.httpConfig ) {
+	        return this.config.httpConfig
+	      }
+	      return null
+	      
+	    }
+	},
+	watch: {
+	    httpConfig(val) {
+	      if(val)
+	        window.nghttpConfig = val
+	    }
 	},
 	provide: function () {
     	return {
      		customC: this.customComponents ,
-     		configC: this.config
+     		configC: this.config,
+     		dictsC: this.dicts,
+     		httpConfigC: this.httpConfig
     	}
   	},
 	methods: {

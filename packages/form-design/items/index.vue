@@ -124,7 +124,6 @@ export default {
     },
     // 校验的prop值 动态计算 
     recordProps() {
-      console.log('type:', this.record.key , this.recordRules)
       if(this.recordRules && this.recordRules.length > 0) {
         console.log('this.propPrepend' , this.propPrepend , this.record.model)
         if(this.propPrepend) {

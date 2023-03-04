@@ -13,7 +13,7 @@ export default {
   data(){
     return {
       formConfig: {
-        httpConfig: (config)=>{
+        httpConfig: (config)=>{ 
           config.headers['aaaa'] = 'bbbb'
           return config 
         },

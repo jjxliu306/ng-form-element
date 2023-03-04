@@ -89,13 +89,28 @@ export default {
         return this.config.dict
       }
       return null
+    },
+    // 配置中的http配置
+    httpConfig() {
+      if(this.config && this.config.httpConfig ) {
+        return this.config.httpConfig
+      }
+      return null
+      
+    }
+  },
+  watch: {
+    httpConfig(val) {
+      if(val)
+        window.nghttpConfig = val
     }
   },
   provide: function () {
     return {
      customC: this.customComponents ,
      configC: this.templateConfig,
-     dictsC: this.dicts
+     dictsC: this.dicts,
+     httpConfigC: this.httpConfig
     }
   },
   methods: {

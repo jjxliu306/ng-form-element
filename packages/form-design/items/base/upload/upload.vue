@@ -154,24 +154,24 @@ export default {
 	computed: {
 		// 需要携带的头数据
 		uploadHeader() {
+			let hs = {} 
 			if(this.record && this.record.options && this.record.options.headers) {
-				let hs = {} 
+				
 				this.record.options.headers.forEach(t=> {
 					hs[t.label] = t.value
 				})
-
-				// 2023-03-04 lyf强制性走一次httpConfig
-				if(this.httpConfig) {
-					const config = {headers: {}}
-
-					this.httpConfig(config)
-
-					hs = {...hs , ...config.headers}
-				}
-
-				return hs 
+ 
 			} 
-			return {}
+
+			// 2023-03-04 lyf强制性走一次httpConfig
+			if(this.httpConfig) {
+				const config = {headers: {}}
+
+				this.httpConfig(config)
+
+				hs = {...hs , ...config.headers}
+			}
+			return hs
 		},
 		// 文件上传成功后文件的url路径
 		uploadResponseFileUrl() {
