@@ -3,12 +3,13 @@
  -->
 <template>
  <div  :id="record.model" :name="record.model" class="form-table-index">  
-   
+ 
     <el-table
       :class="[
         'form-table',
         record.options.customClass ? record.options.customClass : '' 
       ]" 
+      :size="config.size"
       :style="record.options.customStyle"
       :rowKey="record => record.key" 
       :data="models[record.model]" 
@@ -39,7 +40,7 @@
           <template  slot-scope="scope"> 
             <!-- 这里就要判断类型了 -->   
             <!-- 2021-03-14 判断新增数据方式，如果是怎加航 这里就不能预览了 -->
-            <TableItem :record="item" :index="scope.$index" :models="models" :parent-model="record.model" :preview="preview || record.options.addType == 'dialog'" :domains="models[record.model][scope.$index]" /> 
+            <TableItem :record="item" :index="scope.$index" :models="models" :parent-model="record.model" :config="config" :preview="preview || record.options.addType == 'dialog'" :domains="models[record.model][scope.$index]" /> 
           </template>  
         </el-table-column>
         </template> 
@@ -49,16 +50,16 @@
           v-if="!preview || record.options.addType == 'dialog'"
           :width="controlWidth ">
           <template  slot-scope="scope"> 
-            <el-button type="success"  v-if="preview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
+            <el-button type="success"  :size="config.size" v-if="preview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
               <i class="el-icon-eye" />查看
             </el-button>
-            <el-button type="primary"  v-if="!preview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
+            <el-button type="primary"  :size="config.size" v-if="!preview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
               <i class="el-icon-edit" />修改
             </el-button>
-            <el-button type="primary"  v-if="!preview && record.options.copyRow"  @click="copyDomain(scope.row , scope.$index)">
+            <el-button type="primary"  :size="config.size" v-if="!preview && record.options.copyRow"  @click="copyDomain(scope.row , scope.$index)">
               <i class="el-icon-copy-document" />复制
             </el-button>
-            <el-button type="danger"   v-if="!preview" @click="removeDomain(scope.$index)">
+            <el-button type="danger"  :size="config.size"  v-if="!preview" @click="removeDomain(scope.$index)">
               <i class="el-icon-delete" />删除 
             </el-button>
           </template> 
@@ -67,7 +68,7 @@
 
        
     </el-table>
-    <el-button v-if="!preview" type="dashed" :disabled="disabled" @click="addDomain">
+    <el-button v-if="!preview" :size="config.size" type="dashed" :disabled="disabled" @click="addDomain">
       <i class="el-icon-circle-plus-outline" />增加
     </el-button>
 

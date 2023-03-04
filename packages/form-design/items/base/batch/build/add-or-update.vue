@@ -5,8 +5,7 @@
      :append-to-body="true" 
     :lock-scroll="false"
     :visible.sync="visible"
-    :id="randomId">  
-    dataForm:: {{dataForm}}
+    :id="randomId">   
    <el-form
       v-if="
         typeof formTemplate.list !== 'undefined' && typeof formTemplate.config !== 'undefined'
@@ -47,8 +46,8 @@
     
 
     <div  class="mod-footer">
-      <el-button @click="visible = false">取消</el-button>
-     <el-button :disabled="loading" v-if="!preview" type="primary" @click="dataFormSubmit()">确定</el-button>
+      <el-button size="mini" @click="visible = false">取消</el-button>
+     <el-button size="mini" :disabled="loading" v-if="!preview" type="primary" @click="dataFormSubmit()">确定</el-button>
     </div>
  <!--  </div> -->
   </el-dialog> 

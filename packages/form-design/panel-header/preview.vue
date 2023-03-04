@@ -5,15 +5,17 @@
     style="top:20px;"
     :append-to-body="true"
     class="design-preview" 
+    :close-on-click-modal="false"
     :destroy-on-close="true"
     width="800px"
-  > 
-
-    <div class="item-main">  
+  >  
+    <div class="item-main">   
       <FormBuild :key="key" :formTemplate="formTemplate" :models="models" ref="formBuild" /> 
     </div> 
     <span slot="footer" class="dialog-footer">
-      <el-button size="mini" @click="visible = false">取 消</el-button> 
+      
+      <el-button size="mini" @click="visible = false">取消</el-button>
+      <el-button type="primary" size="mini" @click="handleValidator">效验</el-button>  
     </span> 
   </el-dialog>
 </template>
@@ -58,13 +60,8 @@ export default {
         });
     },
     handleValidator(){
-       this.$refs.formBuild.getData()
-        .then(res => { 
-  
-        })
-        .catch(err => {
-          console.log(err, "获取数据失败");
-        });
+      console.log("111") 
+       this.$refs.formBuild.validate() 
     },
     handleRender(){
      

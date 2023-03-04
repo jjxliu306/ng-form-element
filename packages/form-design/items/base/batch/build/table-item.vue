@@ -11,14 +11,16 @@
   <!-- html -->
   <div   v-else-if="record.type === 'html'"  v-html="record.options.defaultValue" > 
   </div>  
-    <ng-form-item-node
-     v-else
+    <ng-form-item
+      v-else
       :disabled="disabled"
       :preview="preview"
-      :models.sync="domains"   
+      :models="domains"   
       :record="record"
-      :formConfig="formConfig"  
-    />  
+      :show-label="false"
+      :prop-prepend="parentModel + '.' + index + '.' " 
+      :formConfig="config"  
+    />    
 </div>
 </template>
 <script> 
@@ -30,11 +32,7 @@ export default {
      record: {
       type: Object,
       required : true
-    }, 
-    domains: {
-      type: Object,
-      required : true
-    },  
+    },   
       // 是否预览结果表单
     preview: {
       type: Boolean ,
@@ -44,6 +42,12 @@ export default {
       type: Number
     },
     models: {
+      type: Object
+    },
+    domains: {
+      type: Object
+    },
+    config: {
       type: Object
     },
     parentModel: {

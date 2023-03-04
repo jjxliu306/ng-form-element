@@ -11,6 +11,7 @@ obj.component = BaseIndex
 obj.properties = BaseProperties
 // 序号 实际在json中删除
 obj.seq = 3
+obj.layout = true
 
 // 补充配置样式
 obj.options = {

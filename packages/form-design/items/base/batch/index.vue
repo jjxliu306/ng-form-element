@@ -35,8 +35,7 @@
       </draggable> 
     </el-row>    
   </template> 
-  <template v-else> 
-
+  <template v-else>  
     <TableBuild :record="record" :models="models" :config="formConfig" :preview="preview"/>
 
   </template> 

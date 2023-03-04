@@ -1,17 +1,9 @@
 <!--
 传入record数据，通过判断record.type，来渲染对应的组件
   -->
-<template>  
-
-<el-form-item 
-    :label="(record.options && record.options.labelWidth >= 0 ? record.options.labelWidth : formConfig.labelWidth) > 0 ? record.label : null " 
-    :rules="recordRules"
-    :prop="recordProps"
-    :required="recordRequired" 
-    :id="record.model" :name="record.model"
-    :label-width="(record.options && record.options.labelWidth >= 0 ? record.options.labelWidth : formConfig.labelWidth) + 'px'"
-  >     
+<template>   
   <ItemNode 
+    v-if="isLayout"
     :record="record"
     :disabled="disabled" 
     :preview="preview"
@@ -21,7 +13,26 @@
     :models="models" 
     @handleSelectItem="handleSelectItem"
     /> 
-</el-form-item>
+  <el-form-item 
+    v-else
+    :label="label" 
+    :rules="recordRules"
+    :prop="recordProps"
+    :required="recordRequired" 
+    :id="record.model" :name="record.model"
+    :label-width="labelWidth"
+    >      
+    <ItemNode 
+      :record="record"
+      :disabled="disabled" 
+      :preview="preview"
+      :isDragPanel="isDragPanel"
+      :selectItem="selectItem"
+      :formConfig="formConfig"
+      :models="models" 
+      @handleSelectItem="handleSelectItem"
+      /> 
+  </el-form-item> 
 </template>
 <script>   
 
@@ -70,12 +81,49 @@ export default {
     },
     selectItem: {
       type: Object
+    },
+    // 是否显示label 最终是否显示还要判断其他条件，只是这个为第一条件
+    showLabel: {
+      type: Boolean,
+      default: true
+    },
+    propPrepend: {
+      type: String
     }
   }, 
   computed: {  
-     // 校验的prop值 动态计算
+    // 是否布局组件 但钱不需要验证的哪种
+    isLayout() {
+      return this.record.layout 
+    },
+    label() {
+      if(!this.showLabel) return null
+      let labelWidth = this.formConfig.labelWidth
+      if(this.record.options && this.record.options.labelWidth >= 0) {
+        labelWidth = this.record.options.labelWidth
+      }
+
+      if(labelWidth > 0) {
+        return this.record.label 
+      }
+      
+      return null  
+    },
+    labelWidth() {
+      if(!this.showLabel) return '0px'
+      let labelWidth = this.formConfig.labelWidth
+      if(this.record.options && this.record.options.labelWidth >= 0) {
+        labelWidth = this.record.options.labelWidth
+      }
+
+      return labelWidth + 'px'
+      
+    },
+    // 校验的prop值 动态计算 
     recordProps() {
+      console.log('type:', this.record.key , this.recordRules)
       if(this.recordRules && this.recordRules.length > 0) {
+        console.log('this.propPrepend' , this.propPrepend , this.record.model)
         if(this.propPrepend) {
           return this.propPrepend + this.record.model
         } else {

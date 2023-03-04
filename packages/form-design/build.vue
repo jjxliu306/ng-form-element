@@ -10,11 +10,13 @@
       	ref="form" 
       	:style="formTemplate.config.customStyle" 
       	:size="formTemplate.config.size"
+      	:model="models" 
     >
 	    <el-row :gutter="20" class="row"> 
 	    	<Node  
 		        v-for="record in formTemplate.list"
 		        :key="record.key"
+		        :config="formTemplate.config"
 		        :record="record"
 		        :models="models"
 		        :isDrag="false"  
@@ -58,6 +60,11 @@ export default {
 	methods: {
 	  	reset() {
 	  		this.$refs.form && this.$refs.form.resetFields()
+	  	},
+	  	validate() {
+	  		this.$refs.form && this.$refs.form.validate((valid)=> {
+	  			console.log('valid' , valid)
+	  		})
 	  	},
 	  	getModel() {
 	  		return cloneDeep(this.models)

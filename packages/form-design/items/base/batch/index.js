@@ -11,6 +11,7 @@ obj.component = BaseIndex
 obj.properties = BaseProperties
 // 序号 实际在json中删除
 obj.seq = 20
+obj.layout = true
 
 // 补充配置样式
 obj.options = {
@@ -32,6 +33,17 @@ obj.options = {
             min: 1,
             max: 24,
             default: 24,
+            span: 24,
+        },
+        {
+            label: '数据字段', 
+            prop: 'model',
+            span: 24,
+        },
+        {
+            label: '数据KEY', 
+            prop: 'key',
+            show: false,
             span: 24,
         },
          // 默认栅格值回填
@@ -112,7 +124,7 @@ obj.options = {
                 }, 
                 {
                   label: '边框',
-                  prop: 'bordered',
+                  prop: 'showBorder',
                   type: 'switch',
                   default: true,
                   span: 24,
