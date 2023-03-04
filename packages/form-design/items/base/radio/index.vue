@@ -1,7 +1,8 @@
-<template>  
-	<div>   
+<template>   
     <el-radio-group 
+      v-if="!preview"
       v-model="models[record.model]" 
+      :disabled="recordDisabled"
       :placeholder="record.options.placeholder" 
       >
         <template v-for="(radioitem, index) in checkList" > 
@@ -10,7 +11,9 @@
           </el-radio>
         </template> 
       </el-radio-group>
-	</div>
+	<span v-else>
+    {{models[record.model+'_label']}}  
+  </span>
 </template>
 <script>
 import mixin from '../../mixin.js'

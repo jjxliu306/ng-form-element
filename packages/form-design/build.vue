@@ -50,12 +50,7 @@ export default {
 	      	type: Object,
 	      	required: false,
 	      	default: ()=> {return {}}
-	    },
-		// 当前是否为预览或者编译状态
-		isBuild: {
-			type: Boolean,
-			default: false
-		}
+	    }
 	}, 
 	methods: {
 	  	reset() {

@@ -1,5 +1,5 @@
 <template>  
-	<div>
+	<div v-if="!preview">
 		<el-select 
 		  v-if="record.options.multiple"
         v-model="models[record.model]"
@@ -10,7 +10,7 @@
         :remote-method="remoteMethod"
         :placeholder="record.options.placeholder"
         :filterable="record.options.showSearch"
-        :disabled="dynamicDisabled"
+        :disabled="recordDisabled"
         :clearable="record.options.clearable"
         multiple
         @clear="clearChange" 
@@ -34,7 +34,7 @@
         :remote-method="remoteMethod"
         :placeholder="record.options.placeholder"
         :filterable="record.options.showSearch"
-        :disabled="dynamicDisabled"
+        :disabled="recordDisabled"
         :clearable="record.options.clearable" 
         @clear="clearChange" 
       > 
@@ -49,6 +49,9 @@
         </template> 
       </el-select>
 	</div>
+  <span v-else>
+    {{models[record.model+'_label']}}  
+  </span>
 </template>
 <script>
 import mixin from '../../mixin.js'

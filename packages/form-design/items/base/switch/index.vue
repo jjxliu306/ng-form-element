@@ -3,7 +3,7 @@
       v-model="models[record.model]" 
       :active-text="record.options.activeText"
       :inactive-text="record.options.inactiveText" 
-     
+      :disabled="recordDisabled"
     />
 </template>
 <script> 

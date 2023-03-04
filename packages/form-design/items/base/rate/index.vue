@@ -5,7 +5,7 @@
               v-model="models[record.model]" 
               :max="record.options.max"  
               :allowHalf="record.options.allowHalf" 
-             
+              :disabled="recordDisabled"
         />
 </div> 
 </template>

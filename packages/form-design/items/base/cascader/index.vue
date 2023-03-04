@@ -1,8 +1,6 @@
-<template>  
-  <div>
-      
-
+<template>   
     <el-cascader  
+      v-if="!preview"
       ref="cascader"
       v-model="models[record.model]"
       :options="(record.options.dynamic == 1 && record.options.remoteFunc ? checkValues : record.options.options)"
@@ -11,9 +9,12 @@
       :filterable="record.options.showSearch"  
       :clearable="record.options.clearable"
       :props="itemProp" 
+      :disabled="recordDisabled"
       
     />  
-  </div>
+    <span v-else>
+      {{models[record.model+'_label']}}  
+    </span> 
 </template>
 <script>
 import mixin from '../../mixin.js'

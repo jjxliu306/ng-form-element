@@ -4,6 +4,7 @@
               v-if="!preview"
               arrow-control
               :style="`width:${record.options.width}`"
+              :disabled="recordDisabled"
               v-model="models[record.model]" 
               :clearable="record.options.clearable" 
               :placeholder="record.options.placeholder" 

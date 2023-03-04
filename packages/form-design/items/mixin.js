@@ -50,6 +50,13 @@ export default {
 	computed: {
 		dynamicVisibleItem() {
 			return true
+		},
+		// 禁用
+		recordDisabled() {
+			if(this.disabled || this.preview) return true 
+			if(this.record.options && this.record.options.disabled) return true 
+
+			return false
 		}
 	},
 	inject: {

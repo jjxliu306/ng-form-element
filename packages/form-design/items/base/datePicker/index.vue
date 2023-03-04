@@ -1,11 +1,11 @@
-<template>  
-<div>
+<template>   
         <el-date-picker  
         v-if="!preview"
         :style="`width:${record.options.width}`"
         v-model="models[record.model]"
         align="right"
         type="datetime"
+        :disabled="recordDisabled"
         :clearable="record.options.clearable" 
         :placeholder="record.options.placeholder"
         :format="record.options.format"
@@ -15,7 +15,7 @@
         <span v-else>
                 {{models[record.model]}}
         </span>
-</div> 
+ 
 </template>
 <script> 
 import mixin from '../../mixin.js'

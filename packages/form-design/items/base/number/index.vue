@@ -18,7 +18,7 @@
               ? record.options.max
               : Infinity
           "
-          :disabled="dynamicDisabled"
+          :disabled="recordDisabled"
           :step="record.options.step"
           :precision="
             record.options.precision > 50 ||

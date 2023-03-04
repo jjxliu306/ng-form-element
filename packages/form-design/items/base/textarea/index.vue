@@ -5,7 +5,7 @@
 		:style="`width:${record.options.width}`"
 		:placeholder="record.options.placeholder"
 		:clearable="record.options.clearable"
-		:disabled="disabled"
+		:disabled="recordDisabled"
 		:rows="record.options.rows"
 		:autosize="record.options.autosize"
 		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"

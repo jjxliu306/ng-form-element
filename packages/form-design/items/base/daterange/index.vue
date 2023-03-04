@@ -1,10 +1,10 @@
-<template>  
-<div>
+<template>   
         <el-date-picker 
                 :style="`width:${record.options.width}`"
                 v-if="!preview"
                 v-model="models[record.model]"
                 align="right"
+                :disabled="recordDisabled"
                 :type="record.options.dateType == 'month' ? 'monthrange' : 'daterange'"
                 :clearable="record.options.clearable" 
                 :start-placeholder="record.options.rangeStartPlaceholder"
@@ -15,7 +15,7 @@
         <span v-else>
                 {{models[record.model]}}
         </span>
-</div> 
+ 
 </template>
 <script> 
 import mixin from '../../mixin.js'

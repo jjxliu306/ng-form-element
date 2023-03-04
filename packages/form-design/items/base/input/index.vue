@@ -3,7 +3,7 @@
 		v-if="!preview"
 		:placeholder="record.options.placeholder"
 		:clearable="record.options.clearable"
-		:disabled="disabled"
+		:disabled="recordDisabled"
 		:style="`width:${record.options.width}`"
 		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
 		v-model="models[record.model]" 

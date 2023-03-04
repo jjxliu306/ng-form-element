@@ -4,6 +4,7 @@
                 v-if="!preview"
                 :style="`width:${record.options.width}`"
                 v-model="models[record.model]"
+                :disabled="recordDisabled"
                 align="right" 
                 :type="record.options.dateType"
                 :clearable="record.options.clearable" 

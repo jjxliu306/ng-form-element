@@ -1,6 +1,7 @@
-<template>  
-	<div>  
-		<el-checkbox-group  
+<template>   
+	<el-checkbox-group  
+      v-if="!preview"
+      :disabled="recordDisabled"
       v-model="models[record.model]" 
       :placeholder="record.options.placeholder" 
     >
@@ -10,7 +11,9 @@
       </el-checkbox>
       </template> 
     </el-checkbox-group>
-	</div>
+	<span v-else>
+    {{models[record.model+'_label']}}  
+  </span>
 </template>
 <script>
 import mixin from '../../mixin.js'

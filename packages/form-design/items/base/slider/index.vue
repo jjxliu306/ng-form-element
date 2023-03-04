@@ -1,17 +1,16 @@
 
-<template>  
-<div>  
+<template>   
       <el-slider 
         v-model="models[record.model]"
         :style="`width:${record.options.width}`" 
         :min="record.options.min"
         :max="record.options.max"
+        :disabled="recordDisabled"
         :show-input="record.options.showInput"
         :step="record.options.step"
         :marks="sliderMarks" 
           
-    />  
-</div> 
+    />   
 </template>
 <script> 
 import mixin from '../../mixin.js'
