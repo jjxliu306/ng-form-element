@@ -4,7 +4,7 @@
 	<p class="no-data-text" v-show="!selectItemKey">
       请先从面板中选择组件
     </p>
-	
+	<!-- 先是属性中配置的columns -->
 	<ng-form 
 		v-if="formColumns && formColumns.column && formColumns.column.length > 0" 
 		:config="formColumns.config"   
@@ -48,12 +48,87 @@
 		  	</el-collapse-item> 
 		</template> 
 	</el-collapse> 
+
+	<!-- 最后判断有没有自定义属性配置 -->
 	<component 
 		ref="itemProperties" 
 		v-if="propertiesComponent"
 		:selectItem="selectItem"   
 		:is="propertiesComponent">  
 	</component>  
+
+
+	<!-- 最后是全局的 事件、数据监听、动态显示 -->
+	<el-form label-width="formColumns.config.labelWidth" class="common-form"> 
+
+		<!-- 事件 -->
+		<el-divider >事件</el-divider>
+        <el-form-item  label="获取焦点">
+           <el-input type="textarea" v-model="selectItem.options.focusEvent"  placeholder="获取焦点后事件,eg: $.address = $.city + $.location" /> 
+        </el-form-item>
+        <el-form-item  label="失去焦点">
+           <el-input type="textarea" v-model="selectItem.options.blurEvent"  placeholder="失去焦点后事件,eg: $.address = $.city + $.location" /> 
+        </el-form-item>
+
+        <!-- 数据监听 -->
+        <el-divider >监听</el-divider>
+        <el-form-item  label="数据监听">
+        	<el-switch 
+        		v-model="selectItem.options.listenModel" 
+        		active-text="打开"
+              	inactive-text="关闭"> 
+            </el-switch> 
+        </el-form-item>
+        <template v-if="selectItem.options.listenModel">
+        	<el-form-item label="监听组件model">
+	            <el-input v-model.trim="selectItem.options.listenModelData"  placeholder="多个使用,分割" /> 
+	        </el-form-item>
+	        <el-form-item label="触发表达式">
+	            <el-input size="mini"   type="textarea" v-model="selectItem.options.listenModelScript" placeholder="表达式,eg: $.address = $.city + $.location" />
+	        </el-form-item> 
+        </template>
+
+        <!-- 动态显示 -->
+       	<el-divider >动态显示</el-divider> 
+       	<el-form-item label="动态显示">
+            <!-- 每个元素都有隐藏条件 根据渲染数据的值来改变 --> 
+            <el-switch
+              v-model="selectItem.options.dynamicVisible"
+              active-text="打开"
+              inactive-text="关闭">
+            </el-switch>
+        </el-form-item>
+        <el-form-item label="显示条件" v-if="selectItem.options.dynamicVisible">
+            <!-- 每个元素都有隐藏条件 根据渲染数据的值来改变 -->
+            <el-input
+              type="textarea"
+              :rows="3"
+              placeholder="请输入显示条件,$标识当前整个表单的绑定数据"
+              v-model="selectItem.options.dynamicVisibleValue">
+            </el-input>
+        </el-form-item>
+
+        <!-- 动态禁用 -->
+        <el-form-item label="动态禁用">
+            <!-- 每个元素都有隐藏条件 根据渲染数据的值来改变 --> 
+            <el-switch
+              v-model="selectItem.options.dynamicDisabled"
+              active-text="打开"
+              inactive-text="关闭">
+            </el-switch>
+        </el-form-item>
+        <el-form-item label="禁用条件" v-if="selectItem.options.dynamicDisabled">
+            <!-- 每个元素都有隐藏条件 根据渲染数据的值来改变 -->
+            <el-input
+              type="textarea"
+              :rows="3"
+              placeholder="请输入禁用条件,$标识当前整个表单的绑定数据,data标识当前事项实体数据"
+              v-model="selectItem.options.dynamicDisabledValue">
+            </el-input>
+        </el-form-item>
+
+
+	</el-form>
 	
 </div>
 </template>
@@ -238,6 +313,10 @@ export default {
 	.no-data-text {
 		text-align: center; 
     	font-size: 13px; 
+	}
+
+	.common-form {
+		padding: 10px;
 	}
 }
 

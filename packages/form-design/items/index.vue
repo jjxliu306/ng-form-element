@@ -3,7 +3,7 @@
   -->
 <template>   
   <ItemNode 
-    v-if="isLayout"
+    v-if="isLayout && recordVisible"
     :record="record"
     :disabled="disabled" 
     :preview="preview"
@@ -14,12 +14,13 @@
     @handleSelectItem="handleSelectItem"
     /> 
   <el-form-item 
-    v-else
+    v-else-if="recordVisible"
     :label="label" 
     :rules="recordRules"
     :prop="recordProps"
     :required="recordRequired" 
-    :id="record.model" :name="record.model"
+    :id="record.model" 
+    :name="record.model"
     :label-width="labelWidth"
     >      
     <ItemNode 
@@ -143,25 +144,31 @@ export default {
 
       return mark 
     },
-    // 是否动态显示当前元素 
-     // 是否动态显示当前元素 
+    // 动态显示
     // 返回true 显示 false 不显示
-    dynamicVisibleItem(){ 
+    recordVisible() {
       if(this.isDragPanel) {
-        return true
-      }
+            return true
+        }
+
+        // 判断组件是否自己设置了隐藏
+        if(this.record.options && this.record.options.hidden) {
+          return false
+        }
+          
+        // 判断是否配置了动态显示 或者表达式为空
+        if(!this.record.options 
+          || !this.record.options.dynamicVisible
+          || !this.record.options.dynamicVisibleValue){
+            return true
+        }
+       
+        let fstr = this.record.options.dynamicVisibleValue;
+          // 打开了开关 这里获取函数内容
+        const func =  dynamicFun(fstr , this.models)
+        return func
       
-      if(!this.record.options || !this.record.options.dynamicVisible){
-        return true
-      }
-      if(!this.record.options.dynamicVisibleValue){
-        return true
-      }
-      let fstr = this.record.options.dynamicVisibleValue;
-      // 打开了开关 这里获取函数内容
-      const func =  dynamicFun(fstr , this.models)
-      return func
-    },
+    }, 
     recordRules(){
       // 2020-07-29 如果是预览 不需要规则验证
       if(this.isDragPanel || this.preview || !this.record.rules || this.record.rules.length == 0) {

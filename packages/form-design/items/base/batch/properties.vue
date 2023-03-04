@@ -35,7 +35,7 @@ export default {
 </script>
 <style lang="scss">
 .ng-batch-properties {
-  padding: 20px;
+  padding: 10px;
 
   
 }

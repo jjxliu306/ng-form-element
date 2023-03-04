@@ -48,13 +48,23 @@ export default {
 		}
 	},
 	computed: {
-		dynamicVisibleItem() {
-			return true
-		},
+		
 		// 禁用
 		recordDisabled() {
 			if(this.disabled || this.preview) return true 
 			if(this.record.options && this.record.options.disabled) return true 
+
+
+			// 判断动态禁用是否打开 并且条件是否满足
+			if(this.record.options.dynamicDisabled && this.record.options.dynamicDisabledValue) {
+          		 
+            	const script = this.record.options.dynamicDisabledValue
+
+            	// 打开了开关 这里获取函数内容
+            	const fvalue = dynamicFun(script,this.models ) 
+            	return fvalue
+            }
+          
 
 			return false
 		}
