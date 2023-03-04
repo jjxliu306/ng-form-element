@@ -39,26 +39,26 @@
           <template  slot-scope="scope"> 
             <!-- 这里就要判断类型了 -->   
             <!-- 2021-03-14 判断新增数据方式，如果是怎加航 这里就不能预览了 -->
-            <TableItem :record="item" :index="scope.$index" :models="models" :parent-model="record.model" :renderPreview="renderPreview || record.options.addType == 'dialog'" :domains="models[record.model][scope.$index]" /> 
+            <TableItem :record="item" :index="scope.$index" :models="models" :parent-model="record.model" :preview="preview || record.options.addType == 'dialog'" :domains="models[record.model][scope.$index]" /> 
           </template>  
         </el-table-column>
         </template> 
         <el-table-column  
           label="操作"
           align="center" 
-          v-if="!renderPreview || record.options.addType == 'dialog'"
+          v-if="!preview || record.options.addType == 'dialog'"
           :width="controlWidth ">
           <template  slot-scope="scope"> 
-            <el-button type="success"  v-if="renderPreview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
+            <el-button type="success"  v-if="preview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
               <i class="el-icon-eye" />查看
             </el-button>
-            <el-button type="primary"  v-if="!renderPreview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
+            <el-button type="primary"  v-if="!preview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
               <i class="el-icon-edit" />修改
             </el-button>
-            <el-button type="primary"  v-if="!renderPreview && record.options.copyRow"  @click="copyDomain(scope.row)">
+            <el-button type="primary"  v-if="!preview && record.options.copyRow"  @click="copyDomain(scope.row , scope.$index)">
               <i class="el-icon-copy-document" />复制
             </el-button>
-            <el-button type="danger"   v-if="!renderPreview" @click="removeDomain(scope.$index)">
+            <el-button type="danger"   v-if="!preview" @click="removeDomain(scope.$index)">
               <i class="el-icon-delete" />删除 
             </el-button>
           </template> 
@@ -67,11 +67,11 @@
 
        
     </el-table>
-    <el-button v-if="!renderPreview" type="dashed" :disabled="disabled" @click="addDomain">
+    <el-button v-if="!preview" type="dashed" :disabled="disabled" @click="addDomain">
       <i class="el-icon-circle-plus-outline" />增加
     </el-button>
 
-    <AddOrUpdate ref="addOrUpdate" v-if="addOrUpdateVisible" :formConfig="config" :formTemplate="templateData" :renderPreview="renderPreview" @formAdd="formAdd"  @formUpdate="formUpdate"/>
+    <AddOrUpdate ref="addOrUpdate" v-if="addOrUpdateVisible" :formConfig="config" :formTemplate="templateData" :preview="preview" @formAdd="formAdd"  @formUpdate="formUpdate"/>
 
   </div>
 </template>
@@ -100,7 +100,7 @@ export default {
       default: false
     },
       // 是否预览结果表单
-    renderPreview: {
+    preview: {
       type: Boolean ,
       default: false
     }
@@ -122,12 +122,12 @@ export default {
       return this.record.options.disabled || this.parentDisabled;
     },
     templateData() {
-      return {list: this.record.list, config: { "labelPosition": this.record.options.labelPosition ? this.record.options.labelPosition : "right", "labelWidth": this.record.options.labelWidth, "size": "mini", "hideRequiredMark": false } }
+      return {list: this.record.list, config: this.config }
     },
      controlWidth() {
       let w = 100 
      
-      if(this.renderPreview) { 
+      if(this.preview) { 
         return w
       }
       if(this.record.options.copyRow) {
@@ -178,13 +178,13 @@ export default {
     },
     updateDomain(data) {
       this.addOrUpdateVisible = true
-      
+      console.log('updateDomain' , data)
       this.$nextTick(() => {
         this.$refs.addOrUpdate.init(data)
       })
     },
     // 行复制 2021-02-17 lyf
-    copyDomain(data) {
+    copyDomain(data , index ) {
       let copyData = {...data}
       copyData._id = null
       if(this.record.options.addType == 'dialog') {
@@ -196,11 +196,11 @@ export default {
       } else {
         // 直接添加一行数据
         this.isVisible = false 
-        
+        console.log('index' , index)
         let domains = this.models[this.record.model] 
-        
-        domains.push(copyData)   
-         this.isVisible = true 
+        domains.splice(index + 1, 0, copyData);
+        //domains.push(copyData)   
+        this.isVisible = true 
       }
       
     },
@@ -234,6 +234,7 @@ export default {
       } 
     },
     formAdd(form){
+      console.log('formAdd' , form )
       this.isVisible = false 
       let domains = this.models[this.record.model] 
       if(!domains) {
@@ -258,6 +259,7 @@ export default {
       
     },
     formUpdate(form){ 
+      console.log('formUpdate' , form )
       let domains = this.models[this.record.model] 
 
       for(var i in this.models[this.record.model] ){

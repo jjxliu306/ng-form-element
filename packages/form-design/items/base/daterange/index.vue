@@ -2,7 +2,7 @@
 <div>
         <el-date-picker 
                 :style="`width:${record.options.width}`"
-                v-if="!renderPreview"
+                v-if="!preview"
                 v-model="models[record.model]"
                 align="right"
                 :type="record.options.dateType == 'month' ? 'monthrange' : 'daterange'"

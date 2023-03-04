@@ -6,6 +6,7 @@
     :lock-scroll="false"
     :visible.sync="visible"
     :id="randomId">  
+    dataForm:: {{dataForm}}
    <el-form
       v-if="
         typeof formTemplate.list !== 'undefined' && typeof formTemplate.config !== 'undefined'
@@ -25,19 +26,19 @@
     <ng-form-item  
         :key="item.key"
         :disabled="disabled"
-        :renderPreview="renderPreview"
-        :models.sync="models"   
+        :preview="preview"
+        :models.sync="dataForm"   
         :record="item"
         :formConfig="formConfig"  
       />
       
     </template>
      <el-form-item label="排序" prop="seq">
-          <template v-if="renderPreview">
+          <template v-if="preview">
             {{dataForm.seq}}
           </template>
           <template v-else>
-            <el-input-number v-model="dataForm.seq" controls-position="right" :min="0" label="排序号" :disabled="renderPreview"></el-input-number>
+            <el-input-number v-model="dataForm.seq" controls-position="right" :min="0" label="排序号" :disabled="preview"></el-input-number>
           </template>
          
       </el-form-item>
@@ -47,14 +48,14 @@
 
     <div  class="mod-footer">
       <el-button @click="visible = false">取消</el-button>
-     <el-button :disabled="loading" v-if="!renderPreview" type="primary" @click="dataFormSubmit()">确定</el-button>
+     <el-button :disabled="loading" v-if="!preview" type="primary" @click="dataFormSubmit()">确定</el-button>
     </div>
  <!--  </div> -->
   </el-dialog> 
 </template>
 
 <script>
-//import FormBuild from '../../form-build/index' 
+ 
   import cloneDeep from 'lodash/cloneDeep'
   
   import { dynamicFun} from '../../../../../utils/index' 
@@ -100,7 +101,7 @@
         default: () => ({})
       },
          // 是否预览结果表单
-      renderPreview: {
+      preview: {
         type: Boolean ,
         default: false
       },
@@ -112,7 +113,7 @@
     methods: {
       recordRules(record){
         // 2020-07-29 如果是预览 不需要规则验证
-        if(this.renderPreview) {
+        if(this.preview) {
           return []
         }
         const rules = record.rules   
@@ -211,7 +212,7 @@
       } ,
        
       init (data) {
-          this.randomId = 'sxfw_table_dialog' + parseInt(Math.random() * 1000000)
+          this.randomId = 'ng_table_dialog' + new Date().getTime()
           this.visible = true 
           this.dataForm._id = null  
           if(data) {

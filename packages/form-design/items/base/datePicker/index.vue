@@ -1,7 +1,7 @@
 <template>  
 <div>
         <el-date-picker  
-        v-if="!renderPreview"
+        v-if="!preview"
         :style="`width:${record.options.width}`"
         v-model="models[record.model]"
         align="right"

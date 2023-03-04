@@ -25,7 +25,7 @@
               ref="nestedComponents"
               :key="item.key"
               :disabled="disabled"
-              :renderPreview="renderPreview"
+              :preview="preview"
               :models.sync="models"   
               :record="item"
               :formConfig="formConfig"  

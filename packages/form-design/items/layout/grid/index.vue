@@ -37,7 +37,7 @@
         v-for="node in item.list"
         :key="node.key"
         :disabled="disabled"
-        :renderPreview="renderPreview"
+        :preview="preview"
         :models.sync="models"   
         :record="node"
         :formConfig="formConfig"  

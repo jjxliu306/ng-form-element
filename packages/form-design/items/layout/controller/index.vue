@@ -59,7 +59,7 @@
                 ref="nestedComponents"
                  
                 :disabled="disabled"
-                :renderPreview="renderPreview"
+                :previewpreview="preview"
                 :models.sync="mdata"   
                 :record="item"
                 :formConfig="formConfig" 
@@ -68,11 +68,11 @@
             </div>  
           </div> 
            <!-- 右键里的删除和复制 下方的新增 -->
-          <el-button v-if="!renderPreview && record.options.add" type="dashed" size="mini" :disabled="disabled" @click="addControlData">
+          <el-button v-if="!preview && record.options.add" type="dashed" size="mini" :disabled="disabled" @click="addControlData">
             <i class="el-icon-circle-plus-outline" />增加
           </el-button>
           <div
-            v-show="!renderPreview && showRightMenu"
+            v-show="!preview && showRightMenu"
             :style="{ 'top': menuTop + 'px', 'left': menuLeft + 'px' }"
             class="right-menu"
             id="rightMenu"

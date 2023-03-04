@@ -1,6 +1,6 @@
 <template>  
 	<el-input 
-		v-if="!renderPreview"
+		v-if="!preview"
 		:placeholder="record.options.placeholder"
 		:clearable="record.options.clearable"
 		:disabled="disabled"

@@ -37,7 +37,7 @@
   </template> 
   <template v-else> 
 
-    <TableBuild :record="record" :models="models" :config="formConfig" :renderPreview="renderPreview"/>
+    <TableBuild :record="record" :models="models" :config="formConfig" :preview="preview"/>
 
   </template> 
 </div>

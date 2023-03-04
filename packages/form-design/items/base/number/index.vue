@@ -1,6 +1,6 @@
 <template>  
 	<div 
-	 	v-if="!renderPreview"
+	 	v-if="!preview"
 	 	:style="`width:${record.options.width}`" 
 	 	class="form-item-base-number el-input-number-diaplay">
 

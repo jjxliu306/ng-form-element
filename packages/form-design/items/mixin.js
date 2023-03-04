@@ -22,7 +22,7 @@ export default {
 	    default: false
 	  },
 	  // 是否预览结果表单
-	  renderPreview: {
+	  preview: {
 	    type: Boolean,
 	    default: false
 	  },

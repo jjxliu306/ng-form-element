@@ -1,6 +1,6 @@
 <template>  
 	<el-input 
-		v-if="!renderPreview"
+		v-if="!preview"
 		type="textarea"
 		:style="`width:${record.options.width}`"
 		:placeholder="record.options.placeholder"

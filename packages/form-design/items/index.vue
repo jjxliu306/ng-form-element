@@ -11,40 +11,29 @@
     :id="record.model" :name="record.model"
     :label-width="(record.options && record.options.labelWidth >= 0 ? record.options.labelWidth : formConfig.labelWidth) + 'px'"
   >     
-  <component 
-        :record="record"
-        :style="{  
-          margin: record.margin && record.margin.length > 0 ? record.margin.join('px ') + 'px' : '0px',
-          borderRadius: (record.itemBorderRadius ? record.itemBorderRadius : 0) + 'px',  
-          backgroundColor: record.backgroundColor ? record.backgroundColor  : '',
- 
-        }"   
-        :disabled="disabled" 
-        :preview="preview"
-        :isDragPanel="isDragPanel"
-        :selectItem="selectItem"
-        :formConfig="formConfig"
-        :models="models" 
-        @handleSelectItem="handleSelectItem"
-        @submit="$emit('submit')"
-        @reset="$emit('reset')"
-        :is="customComponent"> 
-  </component>  
+  <ItemNode 
+    :record="record"
+    :disabled="disabled" 
+    :preview="preview"
+    :isDragPanel="isDragPanel"
+    :selectItem="selectItem"
+    :formConfig="formConfig"
+    :models="models" 
+    @handleSelectItem="handleSelectItem"
+    /> 
 </el-form-item>
 </template>
-<script>  
-import ItemList from './index.js' 
+<script>   
 
 import cloneDeep from 'lodash/cloneDeep'
 import { dynamicFun } from '../../utils/index.js'
+
+import ItemNode from './node.vue'
+
 export default {
   name: "ng-form-item", 
   components: { 
-  },
-  data(){  
-    return{ 
-      items: ItemList
-    }
+    ItemNode
   },
   props: {
     // 表单数组
@@ -83,31 +72,7 @@ export default {
       type: Object
     }
   }, 
-  watch: {
-   
-  },
-  computed: { 
-     
-    customComponent() {
-        
-      const selectItemType = this.record.type   
-            // 将数组映射成json
-      if(this.items && this.items.length > 0) {
-            for(let i = 0 ; i < this.items.length ; i++) {
-              const itemList = this.items[i]
-
-              if(itemList.list && itemList.list.length > 0) {
-                const fs = itemList.list.filter(t=>t.type == selectItemType)
-                if(fs && fs.length > 0) {
-                  return fs[0].component
-                } 
-              } 
-
-            }
-      }
-
-      return null
-    },
+  computed: {  
      // 校验的prop值 动态计算
     recordProps() {
       if(this.recordRules && this.recordRules.length > 0) {
@@ -151,7 +116,7 @@ export default {
     },
     recordRules(){
       // 2020-07-29 如果是预览 不需要规则验证
-      if(this.isDragPanel || this.renderPreview || !this.record.rules || this.record.rules.length == 0) {
+      if(this.isDragPanel || this.preview || !this.record.rules || this.record.rules.length == 0) {
         return []
       }
       let rules = cloneDeep(this.record.rules)

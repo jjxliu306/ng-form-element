@@ -1,7 +1,7 @@
 <template>  
 <div> 
         <el-time-select
-              v-if="!renderPreview"
+              v-if="!preview"
               arrow-control
               :style="`width:${record.options.width}`"
               v-model="models[record.model]" 

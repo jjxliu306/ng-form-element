@@ -2,7 +2,7 @@
  传入record数据，通过判断record.type，来渲染对应的组件 
  -->
 <template>
- 
+<div>
       
   <!-- 文本 -->
   <div v-if="record.type === 'text'" :style="{ textAlign: record.options.textAlign }">  
@@ -10,16 +10,16 @@
   </div>
   <!-- html -->
   <div   v-else-if="record.type === 'html'"  v-html="record.options.defaultValue" > 
-  </div>
- 
-  <ng-form-item 
-    v-else
-    :disabled="disabled"
-    :renderPreview="renderPreview"
-    :models.sync="models"   
-    :record="record"
-    :formConfig="formConfig"  
-  />
+  </div>  
+    <ng-form-item-node
+     v-else
+      :disabled="disabled"
+      :preview="preview"
+      :models.sync="domains"   
+      :record="record"
+      :formConfig="formConfig"  
+    />  
+</div>
 </template>
 <script> 
 import { dynamicFun} from '../../../../../utils/index' 
@@ -36,7 +36,7 @@ export default {
       required : true
     },  
       // 是否预览结果表单
-    renderPreview: {
+    preview: {
       type: Boolean ,
       default: false
     },
@@ -62,7 +62,7 @@ export default {
     },
     recordRules() {
        // 2020-07-29 如果是预览 不需要规则验证
-      if(this.renderPreview || !this.record.rules || this.record.rules.length == 0) {
+      if(this.preview || !this.record.rules || this.record.rules.length == 0) {
         return []
       }
       
