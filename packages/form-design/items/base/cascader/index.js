@@ -90,6 +90,7 @@ obj.options = {
                 {
                     label: '默认值', 
                     prop: 'defaultValue',
+                    default: [] ,
                     show: false,
                     span: 24,
                 }, 
