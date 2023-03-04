@@ -67,7 +67,7 @@ export default {
 	},
   	inject: {
       	dicts: {
-        	from: 'ngDictsC',
+        	from: 'dictsC',
         	default: ()=> []
       	},
   	},

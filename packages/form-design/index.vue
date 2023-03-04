@@ -39,7 +39,6 @@ export default {
       selectItem: undefined,
       formTemplate: {
         list: [],
-      
         config: {
           labelPosition: "left",
           labelWidth: 100, 
@@ -73,18 +72,30 @@ export default {
     exp: {
       type: Boolean ,
       default: true
+    },
+    // 外部属性配置
+    config: {
+      type: Object
     }
   },   
   computed: {
-    config() {
+    templateConfig() {
       if(this.formTemplate) return this.formTemplate.config 
       return {}
+    },
+    // 配置的数据字典
+    dicts() {
+      if(this.config && this.config.dict && this.config.dict.length > 0) {
+        return this.config.dict
+      }
+      return null
     }
   },
   provide: function () {
     return {
      customC: this.customComponents ,
-     configC: this.config
+     configC: this.templateConfig,
+     dictsC: this.dicts
     }
   },
   methods: {

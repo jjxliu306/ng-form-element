@@ -57,7 +57,10 @@ export default {
 	        from: 'configC',
 	        default: ()=>({})
 	    },
-
+	    dicts: {
+        	from: 'dictsC',
+        	default: ()=> []
+      	},
 	},
 	computed: {
 		
@@ -169,9 +172,9 @@ export default {
 
 	        // 2022-02-26 lyf  引入数据字典后判断数据字典
 	         
-	        //console.log('ngConfig' , this.ngConfig)
-	        if(this.ngConfig && this.ngConfig.dict && this.ngConfig.dict.length > 0) {
-	          const fsDict = this.ngConfig.dict.filter(t=>t.type == this.record.options.dictType)
+	        console.log('this.dicts' , this.dicts)
+	        if(this.dicts && this.dicts.length > 0) {
+	          const fsDict = this.dicts.filter(t=>t.type == this.record.options.dictType)
 	          this.checkValues = cloneDeep(fsDict)
 
 	          this.itemProp.label = 'label'

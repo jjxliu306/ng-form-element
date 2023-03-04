@@ -58,7 +58,7 @@
   </span>
 </template>
 <script>
-import mixin from '../../mixin.js'
+import mixin from './datasource-mixin.js'
 export default {
 	mixins: [mixin],
 	data() {
