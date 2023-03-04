@@ -64,7 +64,14 @@ export default{
 	},
 	methods: {
 		handleClear() {
-			this.$set(this.formTemplate , 'list' , [])
+			this.$confirm('是否要清空当前面板?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+      }).then(() => {
+        this.$set(this.formTemplate , 'list' , [])
+      })
+			
 		},
 		handlePreview() {
 			this.previewVisible = true 

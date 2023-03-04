@@ -60,16 +60,13 @@ obj.options = {
                 trigger: ['blur'] 
             }],
             span: 24, 
-        },
-        {
-            type: 'divider', 
-        }
+        } 
     ],
     group: [
         {
-            label: '外观',
+            label: '属性',
             prop: 'options',
-            alone: false, // 是否独立与columns之外展示 false则和columns一起，不另外显示
+            alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
             collapse: false, // 是否启用 collapse 必须alone=true
             column: [ 
                 {
@@ -126,13 +123,17 @@ obj.options = {
                         {
                           value: "1",
                           label: "下拉框1"
+                        },
+                        {
+                          value: "2",
+                          label: "下拉框2"
                         }
                     ],
                     span: 24,
                     //type: 'kv',
                     show: false
                 }, 
-                
+
                 {
                   label: '远程获取数据链接',
                   prop: 'remoteFunc', 
@@ -194,6 +195,12 @@ obj.options = {
                   type: 'switch',
                   default: false,
                   span: 24,
+                },
+                {
+                  label: '选择后回调',
+                  prop: 'selectCb',
+                  placeholder: '选择后回调方法,eg: $.A004=$select.name, $表示当前表单数据,$select标示当前选择元素实体' ,
+                  type: 'textarea'
                 }  
 
             ]

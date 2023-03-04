@@ -37,9 +37,9 @@ obj.options = {
     ],
     group: [
         {
-            label: '外观',
+            label: '属性',
             prop: 'options',
-            alone: false, // 是否独立与columns之外展示 false则和columns一起，不另外显示
+            alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
             collapse: false, // 是否启用 collapse 必须alone=true
             column: [ 
                 {

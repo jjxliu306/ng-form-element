@@ -8,7 +8,7 @@
     :append-to-body="true"
     style="top:20px;"
     width="850px"
-  > edit:: {{edit}}
+  >  
      <div class="json-box"> 
       <el-input style="min-height:300px;height: 300px;max-height: 290px;overflow: auto;" autosize  :readonly="!edit" ref="myEditor" type="textarea" v-model="jsonCode"> 
       </el-input> 
