@@ -6,8 +6,9 @@ import cloneDeep from 'lodash/cloneDeep'
 import baseConfig from './base/index.js' 
 import decorateConfig from './decorate/index.js' 
 import layoutConfig from './layout/index.js' 
+import applicationConfig from './application/index.js' 
 
-const list = [ baseConfig , decorateConfig , layoutConfig ]
+const list = [ baseConfig , decorateConfig , layoutConfig , applicationConfig]
 
 
 // 将配置信息放到全局变量中
