@@ -59,7 +59,10 @@
 
 
 	<!-- 最后是全局的 事件、数据监听、动态显示 -->
-	<el-form label-width="formColumns.config.labelWidth" class="common-form"> 
+	<el-form 
+		v-if="selectItem && selectItem.options"
+		label-width="formColumns.config.labelWidth" 
+		class="common-form"> 
 
 		<!-- 事件 -->
 		<el-divider >事件</el-divider>
@@ -71,7 +74,7 @@
         </el-form-item>
 
         <!-- 数据监听 -->
-        <el-divider >监听</el-divider>
+        <!-- <el-divider >监听</el-divider>
         <el-form-item  label="数据监听">
         	<el-switch 
         		v-model="selectItem.options.listenModel" 
@@ -86,7 +89,7 @@
 	        <el-form-item label="触发表达式">
 	            <el-input size="mini"   type="textarea" v-model="selectItem.options.listenModelScript" placeholder="表达式,eg: $.address = $.city + $.location" />
 	        </el-form-item> 
-        </template>
+        </template> -->
 
         <!-- 动态显示 -->
        	<el-divider >动态显示</el-divider> 

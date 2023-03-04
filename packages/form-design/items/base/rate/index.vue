@@ -6,6 +6,8 @@
               :max="record.options.max"  
               :allowHalf="record.options.allowHalf" 
               :disabled="recordDisabled"
+                @focus="handleFocus"
+                @blur="handleBlur"
         />
 </div> 
 </template>

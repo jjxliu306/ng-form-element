@@ -1,4 +1,4 @@
-<template>  
+<template>   
 	<el-input 
 		v-if="!preview"
 		:placeholder="record.options.placeholder"
@@ -7,6 +7,8 @@
 		:style="`width:${record.options.width}`"
 		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
 		v-model="models[record.model]" 
+		@focus="handleFocus"
+      	@blur="handleBlur"
 		>
 		<span v-if="record.options.prepend"  slot="prepend" v-html="transformAppend(record.options.prepend)">
 		</span>
@@ -19,7 +21,7 @@
     <span class="base-item-span" >{{models[record.model]}} </span>
     <span class="base-item-span" v-if="record.options.append" v-html="transformAppend(record.options.append)"> 
     </span>  
-	</div>
+	</div> 
 </template>
 <script>
 import mixin from '../../mixin.js'

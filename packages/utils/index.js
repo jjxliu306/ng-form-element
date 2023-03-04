@@ -28,8 +28,9 @@ export function dynamicFun(script , model , key="$" , row , rowKey) {
     return Fn(model)
   }
  
-}
- 
+} 
+
+
 export function dateFormater(date , fmt) {  
   const o = {   
     "M+" : date.getMonth()+1,                 //月份   

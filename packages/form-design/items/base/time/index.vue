@@ -10,7 +10,10 @@
               :placeholder="record.options.placeholder" 
               :format="record.options.format"
               :picker-options="{selectableRange: '00:00:00 - 23:59:59'}"
-              :value-format="record.options.format" >
+              :value-format="record.options.format" 
+              @focus="handleFocus"
+                @blur="handleBlur"
+              >
         </el-time-select> 
         <span v-else>
                 {{models[record.model]}}

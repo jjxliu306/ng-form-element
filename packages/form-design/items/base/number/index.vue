@@ -28,6 +28,8 @@
           "
           controls-position="right"
           :placeholder="record.options.placeholder" 
+          @focus="handleFocus"
+      		@blur="handleBlur"
         > </el-input-number>
         <div class="el-input-group__append el-input-number-group__append " v-if="record.options.append" v-html="transformAppend(record.options.append)">
          

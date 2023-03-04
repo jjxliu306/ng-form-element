@@ -10,7 +10,8 @@
       :clearable="record.options.clearable"
       :props="itemProp" 
       :disabled="recordDisabled"
-      
+      @focus="handleFocus"
+      @blur="handleBlur"
     />  
     <span v-else>
       {{models[record.model+'_label']}}  

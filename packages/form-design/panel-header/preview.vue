@@ -8,7 +8,7 @@
     :close-on-click-modal="false"
     :destroy-on-close="true"
     width="800px"
-  >  
+  >  models:: {{models}}
     <div class="item-main">   
       <FormBuild :key="key" :formTemplate="formTemplate" :models="models" ref="formBuild" /> 
     </div> 

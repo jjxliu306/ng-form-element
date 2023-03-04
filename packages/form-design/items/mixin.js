@@ -1,5 +1,5 @@
 
-import { dynamicFun } from '../../utils/index.js'
+import { dynamicFun , executeFun } from '../../utils/index.js'
 
 import request from '../../utils/request.js'
 import cloneDeep from 'lodash/cloneDeep'
@@ -44,13 +44,28 @@ export default {
 	      	remoteUrl: '' ,
 	      	remoteFilter: {} , // 远程过滤搜索 结构 {key:xx,value:xx}
 	      	// select radio checkbox 等这种array的远程数据
-	      	checkValues: []
+	      	checkValues: [],
+
+	      	copyLstenModel: ''  // 监听数据字段的变化
 		}
+	},
+	inject: {
+	    customComponents: {
+	      from: 'customC',
+	      default: ()=>[]
+	    },
+	    ngConfig: {
+	        from: 'ngConfigC',
+	        default: ()=>({})
+	    },
+
 	},
 	computed: {
 		
 		// 禁用
 		recordDisabled() {
+			if(this.isDragPanel) return false
+
 			if(this.disabled || this.preview) return true 
 			if(this.record.options && this.record.options.disabled) return true 
 
@@ -67,19 +82,10 @@ export default {
           
 
 			return false
-		}
+		},
+		
 	},
-	inject: {
-	    customComponents: {
-	      from: 'customC',
-	      default: ()=>[]
-	    },
-	    ngConfig: {
-	        from: 'ngConfigC',
-	        default: ()=>({})
-	    },
-
-	},
+	
 	methods: {
 		// 设置数组类默认值
 		updateArrayDefaultValue() {
@@ -215,5 +221,11 @@ export default {
 	        }
 	      }) 
 	    },
+	    handleBlur(e){
+	    	this.$emit('handleBlur' , e)
+	    },
+	    handleFocus(e) {
+	    	this.$emit('handleFocus' , e)
+	    }
 	}
 }

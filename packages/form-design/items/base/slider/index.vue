@@ -9,7 +9,8 @@
         :show-input="record.options.showInput"
         :step="record.options.step"
         :marks="sliderMarks" 
-          
+        @focus="handleFocus"
+        @blur="handleBlur"  
     />   
 </template>
 <script> 

@@ -20,6 +20,8 @@
       :show-label="false"
       :prop-prepend="parentModel + '.' + index + '.' " 
       :formConfig="config"  
+      @focus="handleFocus"
+      @blur="handleBlur"
     />    
 </div>
 </template>

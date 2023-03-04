@@ -29,6 +29,8 @@
         :models.sync="dataForm"   
         :record="item"
         :formConfig="formConfig"  
+        @focus="handleFocus"
+        @blur="handleBlur"
       />
       
     </template>

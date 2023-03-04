@@ -11,7 +11,7 @@
     :selectItem="selectItem"
     :formConfig="formConfig"
     :models="models" 
-    @handleSelectItem="handleSelectItem"
+    @handleSelectItem="handleSelectItem" 
     /> 
   <el-form-item 
     v-else-if="recordVisible"

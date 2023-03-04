@@ -10,7 +10,10 @@
                 :start-placeholder="record.options.rangeStartPlaceholder"
                 :end-placeholder="record.options.rangeEndPlaceholder"
                 :format="record.options.format"
-                :value-format="record.options.format" >
+                :value-format="record.options.format" 
+                @focus="handleFocus"
+                @blur="handleBlur"
+                >
         </el-date-picker>
         <span v-else>
                 {{models[record.model]}}

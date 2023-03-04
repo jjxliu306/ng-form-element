@@ -14,6 +14,8 @@
         :clearable="record.options.clearable"
         multiple
         @clear="clearChange" 
+        @focus="handleFocus"
+        @blur="handleBlur"
       >
         <template  v-for="(item, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)">
           <el-option 
@@ -37,6 +39,8 @@
         :disabled="recordDisabled"
         :clearable="record.options.clearable" 
         @clear="clearChange" 
+        @focus="handleFocus"
+        @blur="handleBlur"
       > 
         <template v-for="(item, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)">
           <el-option
@@ -73,6 +77,11 @@ export default {
 	  //this.updateSimpleDefaultValue()
     // 判断如果是远程方法的话 远程请求数据
     this.initDynamicValue()
-	}
+	},
+  methods: {
+    clearChange(e) {
+      console.log('空 这里要实现')
+    }
+  }
 }
 </script>

@@ -10,6 +10,8 @@
 		:autosize="record.options.autosize"
 		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
 		v-model="models[record.model]" 
+		@focus="handleFocus"
+        @blur="handleBlur"
 		> 
 	</el-input> 
 	<span v-else>{{models[record.model]}}</span> 

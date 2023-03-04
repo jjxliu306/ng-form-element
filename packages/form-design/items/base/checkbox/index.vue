@@ -4,6 +4,8 @@
       :disabled="recordDisabled"
       v-model="models[record.model]" 
       :placeholder="record.options.placeholder" 
+      @focus="handleFocus"
+      @blur="handleBlur"
     >
       <template v-for="(checkitem, index) in  checkList" >
          <el-checkbox :label="checkitem[itemProp.value]" :key="checkitem[itemProp.value] + index" v-if="itemVisible(checkitem)"> 

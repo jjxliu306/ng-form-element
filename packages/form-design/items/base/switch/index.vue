@@ -4,6 +4,8 @@
       :active-text="record.options.activeText"
       :inactive-text="record.options.inactiveText" 
       :disabled="recordDisabled"
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
 </template>
 <script> 

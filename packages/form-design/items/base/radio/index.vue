@@ -4,6 +4,8 @@
       v-model="models[record.model]" 
       :disabled="recordDisabled"
       :placeholder="record.options.placeholder" 
+      @focus="handleFocus"
+      @blur="handleBlur"
       >
         <template v-for="(radioitem, index) in checkList" > 
            <el-radio :label="radioitem[itemProp.value]" :key="radioitem[itemProp.value] + index" v-if="itemVisible(radioitem)">
