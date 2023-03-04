@@ -36,7 +36,7 @@
     </el-row>    
   </template> 
   <template v-else>  
-    <TableBuild :record="record" :models="models" :config="formConfig" :preview="preview"/>
+    <TableBuild :record="record" :models="models" :config="config" :preview="preview"/>
 
   </template> 
 </div>
@@ -50,14 +50,6 @@ export default {
 	mixins: [mixin] , 
   components: {
     TableBuild
-  },
-  data() {
-    return {
-      
-    }
-  },
-  created() {
-    
   },
   methods: {
     dragEnd(evt, list) {   

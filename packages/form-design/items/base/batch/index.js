@@ -10,8 +10,7 @@ obj.type = 'batch'//, // 表单类型
 obj.component = BaseIndex
 obj.properties = BaseProperties
 // 序号 实际在json中删除
-obj.seq = 20
-obj.layout = true
+obj.seq = 20 
 
 // 补充配置样式
 obj.options = {
@@ -66,8 +65,8 @@ obj.options = {
                     label: '标签宽度', 
                     prop: 'labelWidth',
                     type: 'number', 
-                    show: false,
-                    default: 0
+                   
+                    default: -1
                 },
                 {
                     label: '要素宽度', 

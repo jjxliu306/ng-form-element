@@ -112,6 +112,7 @@
         </el-form-item>
 
         <!-- 动态禁用 -->
+        <el-divider >动态禁用</el-divider> 
         <el-form-item label="动态禁用">
             <!-- 每个元素都有隐藏条件 根据渲染数据的值来改变 --> 
             <el-switch

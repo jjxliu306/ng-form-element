@@ -8,12 +8,12 @@
     :id="randomId">   
    <el-form
       v-if="
-        typeof formTemplate.list !== 'undefined' && typeof formTemplate.config !== 'undefined'
+        typeof formTemplate.list !== 'undefined'
       "
       class="form-build form-design"
-      :label-position="formTemplate.config.labelPosition"
-      :hide-required-asterisk="formTemplate.config.hideRequiredMark" 
-      :label-width="formTemplate.config.labelWidth + 'px'" 
+      :label-position="config.labelPosition"
+      :hide-required-asterisk="config.hideRequiredMark" 
+      :label-width="config.labelWidth + 'px'" 
       ref="dataForm" 
       :model="dataForm"  
       size="mini"
@@ -28,7 +28,7 @@
         :preview="preview"
         :models.sync="dataForm"   
         :record="item"
-        :formConfig="formConfig"  
+        :config="config"  
         @focus="handleFocus"
         @blur="handleBlur"
       />
@@ -75,12 +75,6 @@
         }
       }
     },
-    inject: {
-      customComponents: {
-        from: 'customC',
-        default: ()=>[]
-      },
-    },
     computed: {
      customList() {
       if (this.customComponents) {
@@ -97,7 +91,7 @@
         default: () => ({})
       },
       //动态表格整体的配置
-      formConfig: {
+      config: {
         type: Object, 
         default: () => ({})
       },
@@ -156,7 +150,7 @@
       clearHiddenValue() {
         // 根据组件ID 是否隐藏为准
         // 根据 formTemplate.config.outputHidden 来判断是否要输出隐藏 
-        if(!this.formConfig || !this.formConfig.outputHidden) {
+        if(!this.config || !this.config.outputHidden) {
      
           const formdesign = document.getElementById(this.randomId)
          

@@ -19,7 +19,7 @@
       :record="record"
       :show-label="false"
       :prop-prepend="parentModel + '.' + index + '.' " 
-      :formConfig="config"  
+      :config="config"  
       @focus="handleFocus"
       @blur="handleBlur"
     />    

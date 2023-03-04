@@ -33,10 +33,7 @@ export default {
 	  },
 	  selectItem: {
 	  	type: Object
-	  },
-	  formConfig: {
-	  	type: Object
-	  }
+	  } 
 	}, 
 	data() {
 		return {
@@ -50,12 +47,14 @@ export default {
 		}
 	},
 	inject: {
+		// 自定义组件
 	    customComponents: {
 	      from: 'customC',
 	      default: ()=>[]
 	    },
-	    ngConfig: {
-	        from: 'ngConfigC',
+	    // 表单全局config配置
+	    config: {
+	        from: 'configC',
 	        default: ()=>({})
 	    },
 

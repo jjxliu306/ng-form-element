@@ -52,15 +52,40 @@ export default {
       }
     }
   },
-  watch: {
-     
-    
-  },
   props:{
-     
-  },  
-  created(){  
-     
+    customComponents: {
+      type: Array,
+      default: ()=>[]
+    }, 
+    // 按钮显示隐藏 
+    clear: {
+      type: Boolean ,
+      default: true
+    },
+    preview: {
+      type: Boolean ,
+      default: true
+    }, 
+    imp: {
+      type: Boolean ,
+      default: true
+    },
+    exp: {
+      type: Boolean ,
+      default: true
+    }
+  },   
+  computed: {
+    config() {
+      if(this.formTemplate) return this.formTemplate.config 
+      return {}
+    }
+  },
+  provide: function () {
+    return {
+     customC: this.customComponents ,
+     configC: this.config
+    }
   },
   methods: {
     handleSelectItem(record) {
