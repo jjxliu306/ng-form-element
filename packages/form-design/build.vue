@@ -15,8 +15,7 @@
 	    <el-row :gutter="20" class="row"> 
 	    	<Node  
 		        v-for="record in formTemplate.list"
-		        :key="record.key"
-		        :config="formTemplate.config"
+		        :key="record.key" 
 		        :record="record"
 		        :models="models"
 		        :isDrag="false"  
@@ -50,8 +49,24 @@ export default {
 	      	type: Object,
 	      	required: false,
 	      	default: ()=> {return {}}
-	    }
+	    },
+	    customComponents: {
+      		type: Array,
+      		default: ()=>[]
+    	}, 
 	}, 
+	computed: {
+		config() {
+			if(this.formTemplate) return this.formTemplate.config 
+			return {}
+		}
+	},
+	provide: function () {
+    	return {
+     		customC: this.customComponents ,
+     		configC: this.config
+    	}
+  	},
 	methods: {
 	  	reset() {
 	  		this.$refs.form && this.$refs.form.resetFields()

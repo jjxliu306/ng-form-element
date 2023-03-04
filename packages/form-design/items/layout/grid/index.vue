@@ -25,8 +25,7 @@
             :key="node.key"
             class="drag-move"
             :selectItem="selectItem"
-            :record="node"
-            :config="formConfig" 
+            :record="node" 
             @handleSelectItem="handleSelectItem"
             @handleCopy="handleCopy(node)"
             @handleDetele="handleDetele(node)"
@@ -39,8 +38,7 @@
         :disabled="disabled"
         :preview="preview"
         :models.sync="models"   
-        :record="node"
-        :formConfig="formConfig"  
+        :record="node" 
       />
     </template>
   </el-col>

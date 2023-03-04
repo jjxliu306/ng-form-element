@@ -8,8 +8,7 @@
     :disabled="disabled" 
     :preview="preview"
     :isDragPanel="isDragPanel"
-    :selectItem="selectItem"
-    :formConfig="formConfig"
+    :selectItem="selectItem" 
     :models="models" 
     @handleSelectItem="handleSelectItem" 
     /> 
@@ -28,8 +27,7 @@
       :disabled="disabled" 
       :preview="preview"
       :isDragPanel="isDragPanel"
-      :selectItem="selectItem"
-      :formConfig="formConfig"
+      :selectItem="selectItem" 
       :models="models" 
       @handleSelectItem="handleSelectItem"
       /> 
@@ -52,14 +50,6 @@ export default {
     record: {
       type: Object,
       required: true
-    },
-    // form-item 宽度配置
-    formConfig: {
-      type: Object,
-      default: () => ({
-        labelWidth: 120
-      })
-     // required: true
     }, 
     // form-item 宽度配置
     models: {
@@ -92,6 +82,18 @@ export default {
       type: String
     }
   }, 
+  inject: {
+    // 自定义组件
+      customComponents: {
+        from: 'customC',
+        default: ()=>[]
+      },
+      // 表单全局config配置
+      config: {
+          from: 'configC',
+          default: ()=>({})
+      } 
+  },
   computed: {  
     // 是否布局组件 但钱不需要验证的哪种
     isLayout() {
@@ -99,7 +101,7 @@ export default {
     },
     label() {
       if(!this.showLabel) return null
-      let labelWidth = this.formConfig.labelWidth
+      let labelWidth = this.config.labelWidth
       if(this.record.options && this.record.options.labelWidth >= 0) {
         labelWidth = this.record.options.labelWidth
       }
@@ -112,7 +114,7 @@ export default {
     },
     labelWidth() {
       if(!this.showLabel) return '0px'
-      let labelWidth = this.formConfig.labelWidth
+      let labelWidth = this.config.labelWidth
       if(this.record.options && this.record.options.labelWidth >= 0) {
         labelWidth = this.record.options.labelWidth
       }
@@ -215,7 +217,7 @@ export default {
     },
     // 2022-10-06 lyf 判断组件是否必填 动态
     recordRequired() {
-      if(this.formConfig.hideRequiredMark || !this.formConfig.syncLabelRequired) {
+      if(this.config.hideRequiredMark || !this.config.syncLabelRequired) {
         return false
       }
        

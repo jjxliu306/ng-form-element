@@ -5,7 +5,7 @@
      :append-to-body="true" 
     :lock-scroll="false"
     :visible.sync="visible"
-    :id="randomId">   
+    :id="randomId">    
    <el-form
       v-if="
         typeof formTemplate.list !== 'undefined'
@@ -27,8 +27,7 @@
         :disabled="disabled"
         :preview="preview"
         :models.sync="dataForm"   
-        :record="item"
-        :config="config"  
+        :record="item" 
         @focus="handleFocus"
         @blur="handleBlur"
       />
@@ -40,10 +39,8 @@
           </template>
           <template v-else>
             <el-input-number v-model="dataForm.seq" controls-position="right" :min="0" label="排序号" :disabled="preview"></el-input-number>
-          </template>
-         
-      </el-form-item>
-      
+          </template> 
+      </el-form-item> 
 </el-form>
     
 
@@ -89,13 +86,8 @@
       formTemplate: {
         type: Object, 
         default: () => ({})
-      },
-      //动态表格整体的配置
-      config: {
-        type: Object, 
-        default: () => ({})
-      },
-         // 是否预览结果表单
+      }, 
+      // 是否预览结果表单
       preview: {
         type: Boolean ,
         default: false
@@ -105,6 +97,13 @@
         default: false
       }
     },  
+    inject: { 
+      // 表单全局config配置
+      config: {
+          from: 'configC',
+          default: ()=>({})
+      } 
+  },
     methods: {
       recordRules(record){
         // 2020-07-29 如果是预览 不需要规则验证

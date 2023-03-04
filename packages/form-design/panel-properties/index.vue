@@ -4,7 +4,7 @@
 	    	 <ItemProperties :selectItem="selectItem"/>
 	    </el-tab-pane> 
 	    <el-tab-pane label="表单属性" name="form" class="tab-pane"> 
-	    	 <FormProperties :config="formConfig"/>
+	    	 <FormProperties :config="config"/>
 	    </el-tab-pane> 
 
 	    <slot name="extend-tab" :data="data"  class="tab-pane">
@@ -19,10 +19,7 @@ export default {
 	components: {
 		FormProperties , ItemProperties
 	},
-	props: {
-		formConfig: {
-			type: Object
-		},
+	props: { 
 		selectItem: {
 			type: Object
 		}
@@ -31,6 +28,13 @@ export default {
 		return {
 			active: 'item'
 		}
+	},
+	inject: { 
+	    // 表单全局config配置
+	    config: {
+	        from: 'configC',
+	        default: ()=>({})
+	    }
 	},
 	computed: {
 		selectItemKey() {

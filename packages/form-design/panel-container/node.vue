@@ -4,8 +4,7 @@
    > 
     <div  :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-box': isDrag }"  @click.stop="handleSelectItem(record)">
       <div  class="form-item-box" style="height: 100%;width: 100%;">
-        <Item
-          :formConfig="config"
+        <Item 
           :models="models"
           :record="record"
           :isDragPanel="isDrag"    
@@ -62,10 +61,6 @@ export default {
     selectItem: {
       type: Object,
       default: () => {}
-    },
-    config: {
-      type: Object,
-      required: true
     }, 
     // 当前是否拖拽面板
     isDrag: {

@@ -13,7 +13,7 @@
             
           </el-main>  
           <el-aside width="260px" class="properties-panel"> 
-              <PropertiesPanel :selectItem="selectItem" :formConfig="formTemplate.config"/> 
+              <PropertiesPanel :selectItem="selectItem" /> 
           </el-aside>  
         </el-container> 
       </el-main> 

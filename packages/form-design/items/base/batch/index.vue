@@ -26,8 +26,7 @@
             :key="item.key"
             class="drag-move"
             :selectItem="selectItem"
-            :record="item"
-            :config="formConfig" 
+            :record="item" 
             @handleSelectItem="handleSelectItem"
             @handleCopy="handleCopy(item)"
             @handleDetele="handleDetele(item)"
@@ -36,7 +35,7 @@
     </el-row>    
   </template> 
   <template v-else>  
-    <TableBuild :record="record" :models="models" :config="config" :preview="preview"/>
+    <TableBuild :record="record" :models="models"  :preview="preview"/>
 
   </template> 
 </div>

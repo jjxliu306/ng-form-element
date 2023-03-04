@@ -27,8 +27,7 @@
               :disabled="disabled"
               :preview="preview"
               :models.sync="models"   
-              :record="item"
-              :formConfig="formConfig"  
+              :record="item" 
               />
           </template> 
         </el-row>

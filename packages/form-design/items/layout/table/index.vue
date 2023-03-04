@@ -16,8 +16,7 @@
             :disabled="disabled" 
             :preview="preview"
             :isDragPanel="isDragPanel"
-            :selectItem="selectItem"
-            :formConfig="formConfig"
+            :selectItem="selectItem" 
             @handleSelectItem="handleSelectItem"
             :models="models" 
           /> 
@@ -27,8 +26,7 @@
             :disabled="disabled" 
             :preview="preview"
             :isDragPanel="isDragPanel"
-            :selectItem="selectItem"
-            :formConfig="formConfig"
+            :selectItem="selectItem" 
             :models="models" 
           />
            

@@ -14,8 +14,7 @@
         :disabled="disabled" 
         :preview="preview"
         :isDragPanel="isDragPanel"
-        :selectItem="selectItem"
-        :formConfig="formConfig"
+        :selectItem="selectItem" 
         :models.sync="models" 
         @handleSelectItem="handleSelectItem" 
         @handleFocus="handleFocus"
@@ -41,14 +40,6 @@ export default {
       required: true
     },
     // form-item 宽度配置
-    formConfig: {
-      type: Object,
-      default: () => ({
-        labelWidth: 120
-      })
-     // required: true
-    }, 
-    // form-item 宽度配置
     models: {
       type: Object,
       required: true
@@ -71,6 +62,19 @@ export default {
       type: Object
     }
   }, 
+  inject: {
+    // 自定义组件
+      customComponents: {
+        from: 'customC',
+        default: ()=>[]
+      },
+      // 表单全局config配置
+      config: {
+          from: 'configC',
+          default: ()=>({})
+      },
+
+  },
   computed: { 
      
     customComponent() {

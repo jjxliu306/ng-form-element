@@ -30,8 +30,7 @@
                   :key="item.key"
                   class="drag-move"
                   :selectItem="selectItem"
-                  :record="item"
-                  :config="formConfig" 
+                  :record="item" 
                   @handleSelectItem="handleSelectItem"
                   @handleCopy="handleCopy(item)"
                   @handleDetele="handleDetele(item)"
@@ -61,8 +60,7 @@
                 :disabled="disabled"
                 :previewpreview="preview"
                 :models.sync="mdata"   
-                :record="item"
-                :formConfig="formConfig" 
+                :record="item" 
                 :prop-prepend="record.model + '.' + idx + '.'"
               />
             </div>  

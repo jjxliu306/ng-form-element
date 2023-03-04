@@ -18,8 +18,7 @@
       :models="domains"   
       :record="record"
       :show-label="false"
-      :prop-prepend="parentModel + '.' + index + '.' " 
-      :config="config"  
+      :prop-prepend="parentModel + '.' + index + '.' "  
       @focus="handleFocus"
       @blur="handleBlur"
     />    
@@ -48,10 +47,7 @@ export default {
     },
     domains: {
       type: Object
-    },
-    config: {
-      type: Object
-    },
+    }, 
     parentModel: {
       type: String,
       required : true

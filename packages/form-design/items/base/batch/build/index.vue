@@ -72,7 +72,7 @@
       <i class="el-icon-circle-plus-outline" />增加
     </el-button>
 
-    <AddOrUpdate ref="addOrUpdate" v-if="addOrUpdateVisible" :config="config" :formTemplate="templateData" :preview="preview" @formAdd="formAdd"  @formUpdate="formUpdate"/>
+    <AddOrUpdate ref="addOrUpdate" v-if="addOrUpdateVisible"   :formTemplate="templateData" :preview="preview" @formAdd="formAdd"  @formUpdate="formUpdate"/>
 
   </div>
 </template>
@@ -82,30 +82,7 @@
 import TableItem from './table-item'
 import AddOrUpdate from './add-or-update'
 export default {
-  name: "ng-form-base-batch",
-  props:{
-    record: {
-      type: Object,
-      required : true
-    }, 
-    models: {
-      type: Object,
-      required : true
-    }, 
-    config: {
-      type: Object,
-      required : false
-    },
-    parentDisabled: {
-      type: Boolean,
-      default: false
-    },
-      // 是否预览结果表单
-    preview: {
-      type: Boolean ,
-      default: false
-    }
-  }, 
+  name: "ng-form-base-batch", 
   components: {
     TableItem,AddOrUpdate
   },
@@ -115,6 +92,25 @@ export default {
       isVisible: true 
     };
   },
+  props:{
+    record: {
+      type: Object,
+      required : true
+    }, 
+    models: {
+      type: Object,
+      required : true
+    },  
+    parentDisabled: {
+      type: Boolean,
+      default: false
+    },
+      // 是否预览结果表单
+    preview: {
+      type: Boolean ,
+      default: false
+    }
+  },  
   computed: { 
     disabled() {
       return this.record.options.disabled || this.parentDisabled;
@@ -137,6 +133,13 @@ export default {
        
       return w 
     } 
+  },
+  inject: {
+      // 表单全局config配置
+      config: {
+          from: 'configC',
+          default: ()=>({})
+      }
   },
   mounted(){ 
     // 2021-05-10 lyf 只要没有默认值都先给回填一个  这个可以处理初始化么有值，导致后面很多联动没法做，必须要通过v-if刷新 
