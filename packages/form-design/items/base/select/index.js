@@ -201,10 +201,44 @@ obj.options = {
                   prop: 'selectCb',
                   placeholder: '选择后回调方法,eg: $.A004=$select.name, $表示当前表单数据,$select标示当前选择元素实体' ,
                   type: 'textarea'
-                }  
+                },
+                {
+                  label: '联动关联',
+                  prop: 'linkage',
+                  type: 'switch',
+                  default: false,
+                  show: false,
+                  span: 24,
+                },
+                {
+                  label: '联动关联',
+                  prop: 'linkData', 
+                  default: [],
+                  show: false,
+                  span: 24,
+                },
 
             ]
         }
+        // ,
+        // {
+        //     label: '属性',
+        //     prop: 'options',
+        //     alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
+        //     collapse: true, // 是否启用 collapse 必须alone=true
+        //     column: [ 
+        //         {
+        //           label: '联动关联',
+        //           prop: 'linkData',
+        //           type: 'switch',
+        //           default: false,
+        //           span: 24,
+        //         } ,
+
+
+
+        //     ]
+        // }
     ] 
 }
  

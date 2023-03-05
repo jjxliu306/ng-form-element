@@ -26,10 +26,7 @@ export default {
 			itemProp: { 
 		    value: 'value',
 		    label: 'label' 
-		  },
-      value: '',
-      // 2021-03-13 如果该字段带有本地数据过滤,则这里保存本地过滤的过滤条件
-      localFilter: [],
+		  } 
 		}
 	},
   computed: {

@@ -346,6 +346,15 @@ export default {
 		}
 		
 	}
+
+	.linkage-item {
+	  border-bottom: 1px solid #EBEEF5;
+
+	  .linkage-form {
+	    padding: 10px;
+	  }
+	}
+
 }
 
 </style>

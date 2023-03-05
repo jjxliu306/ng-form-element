@@ -1,5 +1,5 @@
 
-import { dynamicFun , executeFun } from '../../utils/index.js'
+import { dynamicFun } from '../../utils/index.js'
 
 import request from '../../utils/request.js'
 import cloneDeep from 'lodash/cloneDeep'
@@ -172,7 +172,7 @@ export default {
 
 	        // 2022-02-26 lyf  引入数据字典后判断数据字典
 	         
-	        console.log('this.dicts' , this.dicts)
+	     
 	        if(this.dicts && this.dicts.length > 0) {
 	          const fsDict = this.dicts.filter(t=>t.type == this.record.options.dictType)
 	          this.checkValues = cloneDeep(fsDict)

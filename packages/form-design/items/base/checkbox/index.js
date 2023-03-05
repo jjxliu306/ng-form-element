@@ -173,7 +173,22 @@ obj.options = {
                   type: 'switch',
                   default: false,
                   span: 24,
-                }  
+                },
+                {
+                  label: '联动关联',
+                  prop: 'linkage',
+                  type: 'switch',
+                  default: false,
+                  show: false,
+                  span: 24,
+                },
+                {
+                  label: '联动关联',
+                  prop: 'linkData', 
+                  default: [],
+                  show: false,
+                  span: 24,
+                },
 
             ]
         }

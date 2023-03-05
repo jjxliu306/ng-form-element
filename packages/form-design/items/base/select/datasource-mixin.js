@@ -1,6 +1,15 @@
 import mixin from '../../mixin.js'
+import { dynamicFun } from '../../../../utils/index.js'
 export default {
   mixins: [mixin], 
+  data() {
+    return {
+      // 2021-03-13 如果该字段带有本地数据过滤,则这里保存本地过滤的过滤条件
+      localFilter: [],
+      remoteFilter: {} , // 远程过滤搜索 结构 {key:xx,value:xx}
+    }
+    
+  },
   computed: {
     // 2022-03-14 lyf 针对select radio checkbox这些数据的动态来源修改后进行刷新
     dynamicOption() {
@@ -20,6 +29,26 @@ export default {
       }
       
       return null
+    },
+    linkageData() {
+      if(!this.isDragPanel && this.record.options.linkage ) {
+          const linkData = this.record.options.linkData
+          if(!linkData) return null
+
+          let vs = []
+          for(let i = 0 ; i < linkData.length ; i++) {
+            // 判断类型 vtype=1 本地搜索 vtype=2 远程过滤
+            const ld = linkData[i]
+            if(ld.model) {
+              // local script
+              vs.push(this.models[ld.model])
+
+            }
+          }
+          return vs.join(',')
+
+      }
+      return null
     }
   }, 
   watch: {
@@ -30,6 +59,60 @@ export default {
       },
       deep:true 
     },
+    // 监听关联字段
+    linkageData: {
+      handler(val , oldVal) { 
+       
+        if(val == oldVal) {
+          return
+        }
+        if(this.record.options.linkage ) {
+          const linkData = this.record.options.linkData
+          if(!linkData) return  
+
+          // 本地搜索
+          let localScript = []
+          let remoteQuery = {}
+          for(let i = 0 ; i < linkData.length ; i++) {
+            // 判断类型 vtype=1 本地搜索 vtype=2 远程过滤
+            const ld = linkData[i]
+            if(ld.vtype == 1) {
+              // local script
+              localScript.push(ld.script) 
+            } else if(ld.vtype == 2 
+              // 确定有远程搜索
+                &&  this.record.options.dynamic == 1 && this.record.options.remoteFunc
+                // 确定搜索的key 和value存在
+                && ld.queryKey && ld.queryValue) {
+              // remote 远程过滤 
+
+              // 解析queryValue
+              const queryValue = dynamicFun(ld.queryValue , this.models)
+
+              remoteQuery[ld.queryKey] = queryValue 
+                
+            }
+          }
+
+          this.localFilter = localScript
+          this.remoteFilter = remoteQuery
+
+          // 将当前选中值设置为空 防止选择的值目前展示不出来后永远不能反选
+          if( (this.record.type === 'select' && this.record.options.multiple) || this.record.type === 'checkbox') {
+            this.models[this.record.model] = []
+          } else {
+             this.$set(this.models , this.record.model , null)
+          }
+    
+
+          if(this.remoteFilter) {
+            this.getRemoteData()
+          }
+
+        }
+         
+      } 
+    }  
   },
   methods: {
 
