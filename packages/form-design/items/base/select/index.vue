@@ -98,8 +98,17 @@ export default {
     }
 	},
   methods: {
-    clearChange(e) {
-      console.log('空 这里要实现')
+     // select 清除后回调
+    clearChange() {
+      // 2021-05-08 lyf 判断是否有清除后回调
+      if(!this.record.options.clearCb) {
+        return
+      }
+
+      const cbScript = this.record.options.clearCb
+      const func =  '{' + cbScript + '}'
+      const Fn = new Function('$' , 'data', func)
+      Fn(this.models, this.data)
     }
   }
 }

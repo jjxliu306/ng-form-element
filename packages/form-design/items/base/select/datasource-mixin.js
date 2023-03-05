@@ -116,6 +116,7 @@ export default {
   },
   methods: {
     handleChange(value) { 
+      console.log('handleChange' , value)
         let labels = []
         // 获取数据 判断从ajax 还是本地默认配置
         let datas = this.record.options.dynamic > 0 ? this.checkValues : this.record.options.options

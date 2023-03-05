@@ -115,7 +115,6 @@ export default {
   },
   methods: {
     handleSelectItem(record) {
-      console.log('handleSelectItem' , record)
       this.selectItem = record
     },
     // 返回编辑好的模板
@@ -128,7 +127,6 @@ export default {
     },
     // 从模板处导入json表单模板
     importData(formTemplate = {}) {
-      console.log("update" , formTemplate)
       this.formTemplate = formTemplate
     }
   }

@@ -179,7 +179,7 @@ export default {
     },
     updateDomain(data) {
       this.addOrUpdateVisible = true
-      console.log('updateDomain' , data)
+    
       this.$nextTick(() => {
         this.$refs.addOrUpdate.init(data)
       })
@@ -197,7 +197,7 @@ export default {
       } else {
         // 直接添加一行数据
         this.isVisible = false 
-        console.log('index' , index)
+       
         let domains = this.models[this.record.model] 
         domains.splice(index + 1, 0, copyData);
         //domains.push(copyData)   
@@ -235,7 +235,7 @@ export default {
       } 
     },
     formAdd(form){
-      console.log('formAdd' , form )
+      
       this.isVisible = false 
       let domains = this.models[this.record.model] 
       if(!domains) {
@@ -260,7 +260,7 @@ export default {
       
     },
     formUpdate(form){ 
-      console.log('formUpdate' , form )
+       
       let domains = this.models[this.record.model] 
 
       for(var i in this.models[this.record.model] ){

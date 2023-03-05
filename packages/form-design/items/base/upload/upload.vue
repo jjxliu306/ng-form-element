@@ -225,30 +225,25 @@ export default {
       		return ["png", "jpg", "jpeg", "bmp"].indexOf(ext.toLowerCase()) !== -1;
     	},
 		handleSuccess(response , file , fileList) {
-			//console.log('add response' , response)
-			//console.log('add file' , file)
-			//console.log('add fileList' , fileList)
-
+		 
 			// 根据返回结果的url来获取实际文件的url
 			const responseFileUrl = this.uploadResponseFileUrl 
  
 
 			const objectPath = require("object-path")
 			const fileUrl = objectPath.get(response, responseFileUrl)
-			console.log('fileUrl' , fileUrl )
+	 
 			if(fileUrl) {
 				// 重新组合
 				const f_ = {name: file.name , size: file.size , url: fileUrl}
 
-				console.log('this.value' , JSON.stringify(this.value))
+			 
 				const addData = [
 			        ...this.value,
 			        {
 			         name: file.name , size: file.size , url: fileUrl
 			        }
-			    ];
-
-			     console.log('addData' , addData)
+			    ]; 
 			    this.$emit("input", addData);
 			}
 

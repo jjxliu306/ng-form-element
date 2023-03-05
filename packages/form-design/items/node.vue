@@ -119,28 +119,21 @@ export default {
   watch: {
     // 组件数据监听
     listenModelValue: {
-        handler(val, oldVal){
-          console.log('val' , val , oldVal)
+        handler(val, oldVal){ 
           if(this.isDragPanel 
             || !this.models
             || !this.record.options.listenModel 
             || !this.record.options.listenModelData
             || !this.record.options.listenModelScript )
             return 
-  
-
-
-
-        console.log('val' , val , oldVal)
+   
           // 解决 初始化加载数据 被计算数据监听造成数据变化
           const ify = JSON.stringify(val)
           if (this.copyLstenModel != ify) {
             this.copyLstenModel = ify
-            console.log('this.copyLstenModel' , this.copyLstenModel)
-            console.log('models1' , JSON.stringify(this.models))
-            console.log('this.record.options.listenModelScript' , this.record.options.listenModelScript)
+           
             dynamicFun(this.record.options.listenModelScript , this.models)
-            console.log('models2' , JSON.stringify(this.models))
+            
           }
         },
         immediate: true

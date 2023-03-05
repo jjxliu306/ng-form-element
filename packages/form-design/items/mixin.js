@@ -128,8 +128,7 @@ export default {
 	    },
 	     // 2021-03-13 针对select radio checkbox判断如果有本地过滤关联，判断该条数据是否该显示 
 	    itemVisible(item) {
-	      // 没有过滤条件 直接全部展示
-	     // console.log('this.localFilter' , this.localFilter)
+	      // 没有过滤条件 直接全部展示 
 	      if(this.isDragPanel || !this.localFilter || this.localFilter.length == 0) return true 
 
 	      //挨个过滤判断 

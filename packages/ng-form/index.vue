@@ -205,8 +205,7 @@ export default {
       if(type == 'numbers') {
         type = 0
       }
-
-      console.log('recordProp[columnProp]' , JSON.stringify(recordProp[columnProp]))
+      
       if(recordProp[columnProp] == undefined || recordProp[columnProp] == null
         || !(recordProp[columnProp] instanceof Array)) {
         this.$set(recordProp , columnProp , [defaultVal])

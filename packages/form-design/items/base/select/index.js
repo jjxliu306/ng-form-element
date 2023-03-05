@@ -203,6 +203,13 @@ obj.options = {
                   type: 'textarea'
                 },
                 {
+                  label: '清除后回调',
+                  prop: 'clearCb',
+                  placeholder: '清除后回调方法,eg: $.A004="", $表示当前表单数据' ,
+                  type: 'textarea',
+                  show: '$.options.clearable'
+                },
+                {
                   label: '联动关联',
                   prop: 'linkage',
                   type: 'switch',
