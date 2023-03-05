@@ -3,6 +3,14 @@ NG-FORM-ELEMENT
 
 ![组件一览](https://s3.ax1x.com/2020/12/22/rr6Dw6.png "11.png")
  
+ **说明**
+ 
+目前已经开始重构2.0版本，配置基本兼容1.x版本。差异部分如下：
+1. 1.x中日期中通过属性来配置是否可以范围选择，2.x版本拆成了两个组件
+2. 2.x版本全局默认使用栅格布局，使用1.x的配置导入进来后，默认每个组件都是占24格
+
+
+
  **在线示例**
 <!--  http://jjxliu306.gitee.io/ng-form-element/ --> 
  https://jjxliu306.github.io/ng-form-element/dist/index.html
