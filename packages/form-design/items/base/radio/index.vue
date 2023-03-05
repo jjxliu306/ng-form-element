@@ -45,12 +45,14 @@ export default {
     }
   },
   created() {
-    //this.initDefaultValue()
+    this.updateSimpleDefaultValue()
+
+     // 判断如果是远程方法的话 远程请求数据
+    this.initDynamicValue()
   },
 	mounted () { 
-	  this.updateSimpleDefaultValue()
-    // 判断如果是远程方法的话 远程请求数据
-    this.initDynamicValue()
+	  
+   
 	}
 }
 </script>

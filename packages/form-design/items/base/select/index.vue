@@ -52,6 +52,8 @@
           </el-option>
         </template> 
       </el-select>
+
+      models：： {{models}}
 	</div>
   <span v-else>
     {{models[record.model+'_label']}}  
@@ -75,6 +77,14 @@ export default {
 	},
 	created () { 
 	  //this.updateSimpleDefaultValue()
+    if(!this.record.options) return 
+    // 初始化一个绑定空值 
+    if(this.record.options.multiple) {
+      this.updateArrayDefaultValue()
+    } else {
+      this.updateSimpleDefaultValue()
+    }
+
     // 判断如果是远程方法的话 远程请求数据
     this.initDynamicValue()
 	},

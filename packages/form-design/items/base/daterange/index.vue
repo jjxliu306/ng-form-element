@@ -26,8 +26,6 @@ export default {
         mixins: [mixin],
         created() {
                 this.updateArrayDefaultValue()
-        },
-        mounted () {  
         }
 }
 </script>

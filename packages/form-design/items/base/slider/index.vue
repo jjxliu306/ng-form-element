@@ -18,25 +18,22 @@ import mixin from '../../mixin.js'
 export default {
         mixins: [mixin],
         created () { 
-                this.updateSimpleDefaultValue()
+          this.updateSimpleDefaultValue()
         },
         computed: {
-                sliderMarks() {
-                      if(!this.record.options.marks || this.record.options.marks.length == 0) {
-                        return null 
-                      }
+          sliderMarks() {
+            if(!this.record.options.marks || this.record.options.marks.length == 0) {
+              return null 
+            }
 
-                      let p = {}  
+            let p = {}  
 
-                      this.record.options.marks.forEach(t=> {
-                       
-                        p[t.value] = t.label 
-                        
-                      })
-
-                      return p ;
+            this.record.options.marks.forEach(t=> {
+              p[t.value] = t.label 
+            })
+            return p ;
    
-                }
+          }
         }
 }
 </script>

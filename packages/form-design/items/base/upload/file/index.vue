@@ -22,6 +22,9 @@ export default {
         mixins: [mixin], 
         components: {
                 Upload
+        },
+        created() {
+                this.updateArrayDefaultValue()
         }
 }
 </script>

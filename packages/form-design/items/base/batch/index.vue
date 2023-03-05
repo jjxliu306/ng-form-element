@@ -50,6 +50,10 @@ export default {
   components: {
     TableBuild
   },
+  created() {
+    // 赋予一个空的默认值
+     this.updateArrayDefaultValue()
+  },
   methods: {
     dragEnd(evt, list) {   
       // 拖拽结束,自动选择拖拽的控件项

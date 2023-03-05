@@ -46,11 +46,13 @@ export default {
   },
   created() {
     this.updateArrayDefaultValue()
+
+     // 判断如果是远程方法的话 远程请求数据
+    this.initDynamicValue()
   },
 	mounted () { 
 	  
-    // 判断如果是远程方法的话 远程请求数据
-    this.initDynamicValue()
+   
 	}
 }
 </script>
