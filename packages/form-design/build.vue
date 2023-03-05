@@ -1,6 +1,6 @@
 <template> 
 <div class="form-build-panel" >  
-	models:: {{models}}
+	 
     <el-form 
     	v-if="formTemplate && formTemplate.config && formTemplate.list"
       	:label-width="formTemplate.config.labelWidth + 'px'" 

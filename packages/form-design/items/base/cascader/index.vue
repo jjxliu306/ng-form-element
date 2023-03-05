@@ -10,6 +10,7 @@
       :clearable="record.options.clearable"
       :props="itemProp" 
       :disabled="recordDisabled"
+      @change="handleChange($event)"
       @focus="handleFocus"
       @blur="handleBlur"
     />  
@@ -33,7 +34,7 @@ export default {
     }
   },
   created () { 
-    //this.updateSimpleDefaultValue()
+    this.updateArrayDefaultValue()
     // 判断如果是远程方法的话 远程请求数据
     this.initDynamicValue()
 
@@ -50,9 +51,46 @@ export default {
 
         this.$set(this.models , this.record.model , this.record.options.defaultValue)
 
-      }
-       
+      } 
+    }
+  },
+  methods: {
+    handleChange(value) {
+      let labels = []
+      let as = [] 
+      // 获取数据 判断从ajax 还是本地默认配置
+      let datas = this.record.options.dynamic > 0 ? this.checkValues : this.record.options.options
 
+      if(!datas) {
+        datas = []
+      }
+
+    
+      // 判断是不是复选
+      if(!this.itemProp.multiple) {
+        // 复选
+        as = [value]
+      } else {
+        as = value
+      }
+
+      const checkNodes = this.$refs.cascader.getCheckedNodes()
+      for(let i = 0 ; i < as.length ; i++){
+        const v = as[i] 
+        // 比对nodes 显示值
+        const fs = checkNodes.filter(t=>t.path == v) 
+              
+        if(fs && fs.length > 0) {
+          const label = fs[0].pathLabels
+          if(label && label.length > 0)
+          labels.push(label.join('/'))
+        }
+              
+      }
+
+      const modelLabel = this.record.model + '_label'
+        //this.models[modelLabel] = labels.join(',')
+      this.$set(this.models , modelLabel , labels.join(','))
     }
   }
 }

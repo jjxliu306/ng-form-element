@@ -13,6 +13,7 @@
         :disabled="recordDisabled"
         :clearable="record.options.clearable"
         multiple
+        @change="handleChange($event)" 
         @clear="clearChange" 
         @focus="handleFocus"
         @blur="handleBlur"
@@ -38,6 +39,7 @@
         :filterable="record.options.showSearch"
         :disabled="recordDisabled"
         :clearable="record.options.clearable" 
+        @change="handleChange($event)" 
         @clear="clearChange" 
         @focus="handleFocus"
         @blur="handleBlur"

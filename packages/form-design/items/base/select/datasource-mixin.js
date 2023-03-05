@@ -115,6 +115,67 @@ export default {
     }  
   },
   methods: {
+    handleChange(value) { 
+        let labels = []
+        // 获取数据 判断从ajax 还是本地默认配置
+        let datas = this.record.options.dynamic > 0 ? this.checkValues : this.record.options.options
+        if(!datas) {
+          datas = []
+        }
 
+        // 回填数据
+        
+          let as = []
+
+           if(!(value instanceof Array)){
+            as = [value]
+           } else {
+            as = value
+           }
+
+           for(let i = 0 ; i < as.length ; i++){
+              const v = as[i] 
+              const fs = datas.filter(t=>t[this.itemProp.value] == v)
+              if(fs && fs.length > 0) {
+                const label = fs[0][this.itemProp.label]
+
+                labels.push(label)
+              }
+              
+            }
+
+    
+
+        const modelLabel = this.record.model + '_label'
+        //this.models[modelLabel] = labels.join(',')
+        this.$set(this.models , modelLabel , labels.join(','))
+
+
+        // 2020-08-01 如果有远程调用并且有选择回调 再这里进行回调 
+        if(this.record.options.selectCb) {
+
+          // 找到当前选择的数据实体  
+          // 获取数据
+          const cvalues = (this.record.options.dynamic == 1 && this.record.options.remoteFunc  ?  this.checkValues : this.record.options.options)
+ 
+          const fs = cvalues.filter(t=>t[this.itemProp.value] == value)
+ 
+          if(fs && fs.length > 0) {
+            const select = fs[0] 
+
+            // 构建函数 去执行 
+            this.$nextTick(()=>{
+              const scriptFunc = this.record.options.selectCb
+              const func =  '{' + scriptFunc + '}'  
+              const Fn = new Function('$' , '$select', func)
+            
+              Fn(this.models,select)
+
+              
+            })
+           
+        }
+      } 
+    }
   }
 }

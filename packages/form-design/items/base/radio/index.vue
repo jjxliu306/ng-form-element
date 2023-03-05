@@ -4,6 +4,7 @@
       v-model="models[record.model]" 
       :disabled="recordDisabled"
       :placeholder="record.options.placeholder" 
+      @change="handleChange($event)" 
       @focus="handleFocus"
       @blur="handleBlur"
       >
