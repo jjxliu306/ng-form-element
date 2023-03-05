@@ -10,13 +10,35 @@
     width="800px"
   >  
     <div class="item-main">   
-      <FormBuild :key="key" :formTemplate="formTemplate" :models="models" ref="formBuild" /> 
+      <FormBuild :key="key" :preview="preview" :formTemplate="formTemplate" :models="models" ref="formBuild" /> 
     </div> 
     <span slot="footer" class="dialog-footer">
       
-      <el-button size="mini" @click="visible = false">取消</el-button>
+      <el-button size="mini" @click="handleCancel">取消</el-button>
       <el-button type="primary" size="mini" @click="handleValidator">效验</el-button>  
+      <el-button type="primary" size="mini" @click="handleGetData">获取数据</el-button>  
+      <el-button type="primary" size="mini" @click="handleView">
+        {{preview ? '查看模式' : '填报模式'}}
+      </el-button>  
     </span> 
+
+
+    <el-dialog
+      title="数据查看"
+      :visible.sync="dataVisible" 
+      style="top:20px;"
+      :append-to-body="true"
+      class="data-preview" 
+      :close-on-click-modal="false"
+      :destroy-on-close="true"
+      width="600px"
+    >  
+    <div class="json-box"> 
+      <el-input style="min-height:300px;height: 300px;max-height: 290px;overflow: auto;" autosize  readonly ref="dataJson" type="textarea" :value="dataJson"> 
+      </el-input> 
+    </div> 
+  </el-dialog>
+
   </el-dialog>
 </template>
 <script> 
@@ -31,7 +53,12 @@ export default {
       previewWidth: 850,
       models:{},
       formTemplate: {},
-      key: '1'
+      key: '1',
+
+      preview: false,
+
+      dataVisible: false,
+      dataJson: ''
     };
   },
   components: {
@@ -51,31 +78,17 @@ export default {
      
     },
     handleGetData() {
-      this.$refs.formBuild.getData()
-        .then(res => { 
-          this.$refs.previewCode.init(res) 
-        })
-        .catch(err => {
-          console.log(err, "获取数据失败");
-        });
+      const models_ = this.$refs.formBuild.getData(false)
+      
+      this.dataJson = JSON.stringify(models_, null, "\t")
+
+      this.dataVisible = true 
     },
-    handleValidator(){
-      console.log("111") 
+    handleValidator(){ 
        this.$refs.formBuild.validate() 
     },
-    handleRender(){
-     
-      this.renderVisisble = true ;
-      this.$refs.formBuild.getData()
-        .then(res => { 
-          this.$nextTick(() => {
-            this.$refs.renderPreview.init(this.jsonData , res)
-          })  
-      })
-      .catch(err => {
-          console.log(err, "获取数据失败");
-      });
-     
+    handleView(){ 
+      this.preview = !this.preview 
     },
     handleCancel() {
       this.visible = false;

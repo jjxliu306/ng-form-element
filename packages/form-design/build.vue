@@ -1,5 +1,6 @@
 <template> 
 <div class="form-build-panel" >  
+	models:: {{models}}
     <el-form 
     	v-if="formTemplate && formTemplate.config && formTemplate.list"
       	:label-width="formTemplate.config.labelWidth + 'px'" 
@@ -18,6 +19,7 @@
 		        :key="record.key" 
 		        :record="record"
 		        :models="models"
+		        :preview="preview"
 		        :isDrag="false"  
 		        >  
 		    </Node>  
@@ -49,6 +51,11 @@ export default {
 	      	type: Object,
 	      	required: false,
 	      	default: ()=> {return {}}
+	    },
+	    // 是否查看模式
+	    preview: {
+	    	type: Boolean,
+	    	default: false
 	    },
 	    customComponents: {
       		type: Array,
@@ -99,9 +106,47 @@ export default {
 	  			console.log('valid' , valid)
 	  		})
 	  	},
-	  	getModel() {
-	  		return cloneDeep(this.models)
-	  	}
+	  	getData(async = true) {
+	  		const data = cloneDeep(this.models)
+	  		if(async) {
+	  			return new Promise((resolve, reject) => { 
+
+			        this.$refs.form && this.$refs.form.validate((valid,values)=>{ 
+			            if (!valid) { 
+			              reject('验证失败');
+			            } 
+			            this.clearHiddenValue()
+			            resolve(data); 
+			          })
+			 
+			    });
+	  		} else {
+	  			return data 
+	  		} 
+	  	},
+	  	// 2021-03-12 清理没有显示的组件的数据
+	    clearHiddenValue(data) {
+	      // 根据组件ID 是否隐藏为准
+	      // 根据 formTemplate.config.outputHidden 来判断是否要输出隐藏 
+	      if(!this.formTemplate.config || !this.formTemplate.config.outputHidden) {
+	       
+	        const formdesign = document.getElementById(this.randomId)
+	       
+	        // 循环当前数据 非P 开头的统一不深入第二层
+	        for(let key in data) {
+	          if(key.indexOf('_label') > 0) continue 
+	          //  判断key的id是否还在
+	          const key_div = formdesign.querySelector('#' + key) 
+	          if(!key_div) {
+	            // 删除
+	            delete data[key]
+	            delete data[key + '_label']
+	          }  
+	        } 
+	      }
+
+	      
+	    },  
 	}
 }
 </script>

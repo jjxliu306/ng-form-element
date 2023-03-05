@@ -51,9 +51,7 @@
             >
           </el-option>
         </template> 
-      </el-select>
-
-      models：： {{models}}
+      </el-select> 
 	</div>
   <span v-else>
     {{models[record.model+'_label']}}  
