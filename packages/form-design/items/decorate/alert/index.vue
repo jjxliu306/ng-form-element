@@ -1,7 +1,7 @@
 <template>  
 <div 
   class="form-label" 
-  v-if="dynamicVisibleItem " 
+  
   :style="{ textAlign: record.options.textAlign }" > 
        <el-alert
         :title="record.options.title"

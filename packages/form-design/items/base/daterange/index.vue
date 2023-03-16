@@ -16,7 +16,10 @@
                 >
         </el-date-picker>
         <span v-else>
-                {{models[record.model]}}
+                <!--
+                2023-03-16 lyf 这里实际时两个数据 拆分
+                -->
+                {{modelText}} 
         </span>
  
 </template>
@@ -26,6 +29,15 @@ export default {
         mixins: [mixin],
         created() {
                 this.updateArrayDefaultValue()
+        },
+        computed: {
+                modelText() {
+                        const value = this.models[this.record.model]
+                        if(value && value instanceof Array) {
+                                return value.join(' ~ ')
+                        }
+                        return ''
+                }
         }
 }
 </script>

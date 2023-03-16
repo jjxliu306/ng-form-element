@@ -1,9 +1,9 @@
-<template>  
+<template>   
 	<div
-    :id="record.model" :name="record.model"
-    v-if="dynamicVisibleItem"
+    :id="record.model" 
+    :name="record.model" 
     v-html="record.options.defaultValue"
-  ></div> 
+    /> 
 </template>
 <script> 
 import mixin from '../../mixin.js'

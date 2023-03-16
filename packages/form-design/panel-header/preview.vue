@@ -18,7 +18,7 @@
       <el-button type="primary" size="mini" @click="handleValidator">效验</el-button>  
       <el-button type="primary" size="mini" @click="handleGetData">获取数据</el-button>  
       <el-button type="primary" size="mini" @click="handleView">
-        {{preview ? '查看模式' : '填报模式'}}
+        {{preview ?  '填报模式': '查看模式'}}
       </el-button>  
     </span> 
 
