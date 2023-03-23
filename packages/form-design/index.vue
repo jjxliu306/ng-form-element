@@ -40,6 +40,8 @@ import DragPanel from './panel-drag/index.vue'
 import ContainerPanel from './panel-container/index.vue'
 import PropertiesPanel from './panel-properties/index.vue'
 
+import cloneDeep from 'lodash/cloneDeep' 
+
 export default {
   name: 'ng-form-design',
   components: {
@@ -153,11 +155,13 @@ export default {
     },
     // 返回编辑好的模板
     getModel() {
+      const model = cloneDeep(this.formTemplate)
 
+      return model 
     },
     // 初始化模板
     initModel(formTemplate) {
-
+      this.formTemplate = cloneDeep(formTemplate)
     },
     // 从模板处导入json表单模板
     importData(formTemplate = {}) {

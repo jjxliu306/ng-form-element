@@ -12,6 +12,7 @@
       	:style="formTemplate.config.customStyle" 
       	:size="formTemplate.config.size"
       	:model="models" 
+      	:disabled="disabled"
     >
 	    <el-row :gutter="20" class="row"> 
 	    	<Node  
@@ -19,7 +20,8 @@
 		        :key="record.key" 
 		        :record="record"
 		        :models="models"
-		        :preview="preview"
+		        :disabled="disabled"
+		        :preview="preview || renderPreview"
 		        :isDrag="false"  
 		        >  
 		    </Node>  
@@ -54,6 +56,15 @@ export default {
 	    },
 	    // 是否查看模式
 	    preview: {
+	    	type: Boolean,
+	    	default: false
+	    },
+	    disabled: {
+	    	type: Boolean,
+	    	default: false
+	    },
+	    // 废弃 只是为了兼容之前的版本
+	    renderPreview: {
 	    	type: Boolean,
 	    	default: false
 	    },
@@ -102,27 +113,29 @@ export default {
 	  		this.$refs.form && this.$refs.form.resetFields()
 	  	},
 	  	validate() {
-	  		this.$refs.form && this.$refs.form.validate((valid)=> {
-	  			console.log('valid' , valid)
-	  		})
+	  		return this.$refs.form && this.$refs.form.validate()
 	  	},
 	  	getData(async = true) {
 	  		const data = cloneDeep(this.models)
-	  		if(async) {
-	  			return new Promise((resolve, reject) => { 
 
-			        this.$refs.form && this.$refs.form.validate((valid,values)=>{ 
+	  		this.clearHiddenValue(data)
+	  		if(!async) {
+
+	  			return data 
+	  		}
+	  		 
+	  		return new Promise((resolve, reject) => { 
+
+			    this.$refs.form && this.$refs.form.validate((valid,values)=>{ 
 			            if (!valid) { 
 			              reject('验证失败');
 			            } 
-			            this.clearHiddenValue()
+			            
 			            resolve(data); 
-			          })
+			    })
 			 
-			    });
-	  		} else {
-	  			return data 
-	  		} 
+			});
+	  		 
 	  	},
 	  	// 2021-03-12 清理没有显示的组件的数据
 	    clearHiddenValue(data) {
