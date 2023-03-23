@@ -1,10 +1,18 @@
 <template>
 	<el-tabs type="card" v-model="active" class="design-properties" >
 	    <el-tab-pane label="控件属性" name="item" class="tab-pane">
-	    	 <ItemProperties :selectItem="selectItem"/>
+	    	<ItemProperties :selectItem="selectItem">
+	    	 	<template slot="custom-properties"  >
+                    <slot name="custom-properties" :selectItem="selectItem"></slot>
+                </template>
+	    	</ItemProperties>
 	    </el-tab-pane> 
 	    <el-tab-pane label="表单属性" name="form" class="tab-pane"> 
-	    	 <FormProperties :config="config"/>
+	    	<FormProperties :config="config">
+	    	 	<template slot="form-extend-properties" :data="data">
+                    <slot name="form-extend-properties" :data="data"></slot>
+                </template> 
+	    	</FormProperties>
 	    </el-tab-pane> 
 
 	    <slot name="extend-tab" :data="data"  class="tab-pane">

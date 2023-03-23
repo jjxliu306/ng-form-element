@@ -6,14 +6,28 @@
       <el-main class="form-main">
         <el-container class="main-container">
           <el-aside width="260px" class="item-panel">
+             <slot name="drag"></slot> 
              <DragPanel :basic-item="basicItem" :decorate-item="decorateItem" :layout-item="layoutItem" :application-item="applicationItem"/>
           </el-aside>
           <el-main class="center-panel form-main"> 
-            <ContainerPanel :formTemplate="formTemplate" @handleSelectItem="handleSelectItem" :selectItem="selectItem" />
-            
+            <ContainerPanel :formTemplate="formTemplate" @handleSelectItem="handleSelectItem" :selectItem="selectItem">
+              <template slot="controlButton" >
+                <slot name="controlButton" ></slot>
+              </template> 
+            </ContainerPanel>  
           </el-main>  
           <el-aside width="260px" class="properties-panel"> 
-              <PropertiesPanel :selectItem="selectItem" /> 
+              <PropertiesPanel :selectItem="selectItem" >
+                  <template slot="custom-properties" >
+                    <slot name="custom-properties" :selectItem="selectItem"></slot>
+                  </template>
+                   <template slot="form-extend-properties"  >
+                      <slot name="form-extend-properties" :data="formTemplate"></slot>
+                  </template>
+                   <template slot="extend-tab" >
+                      <slot name="extend-tab" :data="formTemplate"></slot>
+                  </template>
+              </PropertiesPanel> 
           </el-aside>  
         </el-container> 
       </el-main> 

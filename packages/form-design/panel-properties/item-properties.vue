@@ -13,6 +13,7 @@
 		:columns="formColumns.column"  
 	/> 
 	
+
 	<!-- 
 		分割线
 	循环group 处理在group中但要显示在外部的表单
@@ -28,6 +29,10 @@
 		/> 
 	 
 	</template>
+
+	
+	<slot name="custom-properties"></slot>
+
 	<!-- 
 	循环group 处理在group中但显示在折叠面板中的表单
 	 -->

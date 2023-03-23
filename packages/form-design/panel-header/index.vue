@@ -8,6 +8,9 @@
 			 
 		</el-col>
 		<el-col :span="12">
+			<span>
+				 <slot name="controlButton"></slot>
+			</span>
 			<span class="buttons">
 				<el-button v-if="clear" type="text" size="medium" icon="el-icon-delete" @click="handleClear">清空</el-button>
 		    <el-button v-if="preview" type="text" size="medium" icon="el-icon-view" @click="handlePreview">预览</el-button>
