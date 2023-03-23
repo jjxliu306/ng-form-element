@@ -50,7 +50,8 @@ export default {
     },
     //组件图标
     weightIcon(item) {
-      // 先判断全局是否有配置   
+      // 先判断全局是否有配置 或者是自定义组件 
+      if(item.icon) return item.icon
       //return item.icon  
       return getItemIcon(item.type)
     }
