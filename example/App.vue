@@ -1,17 +1,24 @@
 <template>
   <div id="app">
 
-       <ng-form-design ref="formDesign" :config="formConfig" />
+  <ng-form-design ref="formDesign" :custom-components="custemComponents" :config="formConfig" />
+
+  <!--
+    只想显示部分组件，可参考
+  -->
+  <!-- <ng-form-design ref="formDesign" :config="formConfig" :decorate-item="false" :layout-item="['table','grid']" :basic-item="['input' , 'textarea']" :application-item="true"/> -->
   
   </div>
 </template>
 
 <script> 
+import NgComponents from './components/index.js'
 export default {
-  name: 'App',
-   
+  name: 'App', 
   data(){
     return {
+      // 自定义组件列表
+      custemComponents: NgComponents ,
       formConfig: {
         httpConfig: (config)=>{ 
           config.headers['aaaa'] = 'bbbb'

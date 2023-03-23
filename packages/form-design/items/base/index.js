@@ -17,6 +17,7 @@ list = list.sort(function(a,b){
 
 
 export default {
+  type: 'basic',
   name: '基础组件',
   icon: 'icon-tradingdata',
   list: list 

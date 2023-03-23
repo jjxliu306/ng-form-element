@@ -17,6 +17,7 @@ list = list.sort(function(a,b){
 
 
 export default {
+  type: 'layout',
   name: '布局组件',
   icon: 'icon-tradingdata',
   list: list 

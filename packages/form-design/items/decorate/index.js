@@ -17,6 +17,7 @@ list = list.sort(function(a,b){
 
 
 export default {
+  type: 'decorate',
   name: '装饰组件',
   icon: 'icon-tradingdata',
   list: list 

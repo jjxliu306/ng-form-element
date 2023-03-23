@@ -26,6 +26,21 @@ obj.options = {
             span: 24,
         },
         {
+            label: '标签宽度', 
+            prop: 'labelWidth',
+            type: 'number', 
+            show: false,
+            max: 1000,
+            default: 0,
+            span: 24,
+        },
+        {
+            label: '要素宽度', 
+            prop: 'width',  
+            default: '100%',
+            span: 24,
+        },
+        {
             label: '所占栅格', 
             type: 'slider',
             prop: 'span',
@@ -42,19 +57,7 @@ obj.options = {
             alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
             collapse: false, // 是否启用 collapse 必须alone=true
             column: [ 
-                {
-                    label: '标签宽度', 
-                    prop: 'labelWidth',
-                    type: 'number', 
-                    show: false,
-                    default: 0
-                },
-                {
-                    label: '要素宽度', 
-                    prop: 'width',  
-                    default: '100%',
-                    span: 24,
-                },
+                
                 {
                     label: '方向', 
                     prop: 'direction',  

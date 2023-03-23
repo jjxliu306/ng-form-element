@@ -106,6 +106,11 @@ export default {
         labelWidth = this.record.options.labelWidth
       }
 
+      // 没有options的labelWidth 尝试获取外部的labelWidth
+      if(this.record.labelWidth >= 0) {
+        labelWidth = this.record.labelWidth
+      }
+
       if(labelWidth > 0) {
         return this.record.label 
       }
@@ -117,6 +122,10 @@ export default {
       let labelWidth = this.config.labelWidth
       if(this.record.options && this.record.options.labelWidth >= 0) {
         labelWidth = this.record.options.labelWidth
+      }
+      // 没有options的labelWidth 尝试获取外部的labelWidth
+      if(this.record.labelWidth >= 0) {
+        labelWidth = this.record.labelWidth
       }
 
       return labelWidth + 'px'

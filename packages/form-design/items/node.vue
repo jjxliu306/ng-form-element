@@ -78,6 +78,15 @@ export default {
   computed: { 
      
     customComponent() {
+
+      // 判断是否自定义组件
+      if(this.customComponents && this.customComponents.length > 0) {
+        const cs = this.customComponents.filter(t=> t.type == this.record.type)
+
+        if(cs && cs.length > 0) {
+          return cs[0].component 
+        }
+      }
         
       const selectItemType = this.record.type   
             // 将数组映射成json
@@ -96,6 +105,7 @@ export default {
       }
 
       return null
+       
     },
     // 数据监听中要监听的数据，先通过计算属性计算 然后通过watch监听变化
     listenModelValue() {

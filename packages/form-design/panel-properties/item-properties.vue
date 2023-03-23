@@ -55,7 +55,7 @@
 			:selectItem="selectItem"   
 			:is="propertiesComponent">  
 		</component>  
-		<template v-if="selectItem && selectItem.options">
+		<template v-if="selectItem && selectItem.options && formColumns && formColumns.config">
 			<el-collapse-item name="event" title="事件"  >
 				<ng-form   
 					:config="formColumns.config"   
@@ -179,6 +179,13 @@ export default {
 			type: Object
 		}
 	},
+	inject: {
+    	// 自定义组件
+      	customComponents: {
+        	from: 'customC',
+        	default: ()=>[]
+      	} 
+  	},
 	computed: {
 		selectItemKey() {
 			if(this.selectItem){
@@ -186,7 +193,24 @@ export default {
 			}
 			return null
 		},
+		isCustomComponent() {
+			// 判断自定义组件
+			if(this.customComponents && this.customComponents.length > 0) {
+				const cs = this.customComponents.filter(t=> t.type == this.selectItem.type)
+				return cs && cs.length > 0 
+			}
+			return false
+		},
 		propertiesComponent() {
+
+			// 判断自定义组件
+			if(this.customComponents && this.customComponents.length > 0) {
+				const cs = this.customComponents.filter(t=> t.type == this.selectItem.type)
+				if(cs && cs.length > 0) {
+					return cs[0].properties
+				}
+			}
+
   			if(this.selectItem && this.selectItem.type) {
   				const selectItemType = this.selectItem.type   
 	          	// 将数组映射成json
@@ -287,6 +311,76 @@ export default {
 	      return []
 	    },
 	    initFormColumns() {
+
+	    	// 判断如果是自定义组件 
+	        // 判断自定义组件
+			if(this.isCustomComponent) {
+				 // 如果没有数据 则可能是自定义组件过来的，补充
+	        // 标签，标签宽度，要素宽度，栅格数量，
+
+	        let label_ = this.selectItem.label 
+	        let labelWidth_ = this.selectItem.labelWidth 
+	        let width_ = this.selectItem.width 
+	        let span_ = this.selectItem.span 
+
+	        if(!label_) {
+	        	label_ = this.selectItem.type
+	        	this.$set(this.selectItem, 'label', label_)
+	        }
+	        if(!labelWidth_) {
+	        	labelWidth_ = -1
+	        	this.$set(this.selectItem, 'labelWidth', labelWidth_)
+	        }
+	        if(!width_) {
+	        	width_ = '100%'
+	        	this.$set(this.selectItem, 'width', width_)
+	        }
+	        if(!span_) {
+	        	span_ = 24
+	        	this.$set(this.selectItem, 'span', span_)
+	        }
+
+		        return {
+		        	config: {
+		        		size: 'mini',
+	      				labelWidth: 80
+		        	},
+		        	column: [
+			        	{
+			            	label: '标签', 
+				            prop: 'label', 
+				            default: label_,
+				            span: 24,
+				        },
+				        {
+				            label: '标签宽度', 
+				            prop: 'labelWidth',
+				            type: 'number',
+				            min: -1,
+				            max: 1000,
+				            default: labelWidth_,
+				            span: 24,
+				        },
+				        {
+				            label: '要素宽度', 
+				            prop: 'width',  
+				            default: width_,
+				            span: 24,
+				        },
+				        {
+				            label: '所占栅格', 
+				            type: 'slider',
+				            prop: 'span',
+				            min: 1,
+				            max: 24,
+				            default: span_,
+				            span: 24,
+				        }
+		        	]
+		        } 
+	        
+			}
+
 	    	  // 2023-01-03 lyf 判断是否有单独的columns 不依赖分组信息
 	        const currentType = this.selectItem.type
 	      	const configs = this.$itemConfig
@@ -312,6 +406,7 @@ export default {
 	          	return {config: config_ , column : columns}
 
 	        }
+ 
 
 	        return null
 	    },
