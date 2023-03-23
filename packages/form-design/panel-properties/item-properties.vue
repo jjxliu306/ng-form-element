@@ -3,7 +3,7 @@
 	<!-- 判断是否有自定义的属性配置组件 -->
 	<p class="no-data-text" v-show="!selectItemKey">
       请先从面板中选择组件
-    </p>
+    </p> 
 	<!-- 先是属性中配置的columns -->
 	<ng-form 
 		v-if="formColumns && formColumns.column && formColumns.column.length > 0" 
@@ -21,7 +21,7 @@
 	<template v-for="(form,formIndex) in groupColumns ">
 		<ng-form 
 			v-if="form.alone != undefined && form.alone == false && form.column && form.column.length > 0"
-			:key="formIndex" 
+			:key="formIndex + selectItemKey" 
 			:config="form.config"   
 			:record="selectItem" 
 			:model="selectItem[form.prop]"
@@ -30,14 +30,14 @@
 	 
 	</template>
 
-	
+
 	<slot name="custom-properties"></slot>
 
 	<!-- 
 	循环group 处理在group中但显示在折叠面板中的表单
 	 -->
 	
-	<el-collapse v-model="activeNames" class="ng-form-properties-collapse">
+	<el-collapse :key="'2'+selectItemKey" v-model="activeNames" class="ng-form-properties-collapse">
 		<template v-if="groupColumnsCollapse && groupColumnsCollapse.length > 0" >
 			<el-collapse-item  
 				v-for="(form,formIndex) in groupColumnsCollapse "
@@ -199,6 +199,8 @@ export default {
 			return null
 		},
 		isCustomComponent() {
+			if(!this.selectItem || !this.selectItem.type) return false
+
 			// 判断自定义组件
 			if(this.customComponents && this.customComponents.length > 0) {
 				const cs = this.customComponents.filter(t=> t.type == this.selectItem.type)
@@ -207,32 +209,33 @@ export default {
 			return false
 		},
 		propertiesComponent() {
+			if(!this.selectItem || !this.selectItem.type) return null
 
-			// 判断自定义组件
+ 
+  			// 判断自定义组件
 			if(this.customComponents && this.customComponents.length > 0) {
+					
 				const cs = this.customComponents.filter(t=> t.type == this.selectItem.type)
 				if(cs && cs.length > 0) {
 					return cs[0].properties
 				}
 			}
+  			const selectItemType = this.selectItem.type   
+	        // 将数组映射成json
+		    if(itemIndex && itemIndex.length > 0) {
+		       	for(let i = 0 ; i < itemIndex.length ; i++) {
+		        	const itemList = itemIndex[i]
 
-  			if(this.selectItem && this.selectItem.type) {
-  				const selectItemType = this.selectItem.type   
-	          	// 将数组映射成json
-		        if(itemIndex && itemIndex.length > 0) {
-		        	for(let i = 0 ; i < itemIndex.length ; i++) {
-		        		const itemList = itemIndex[i]
+		        	if(itemList.list && itemList.list.length > 0) {
+			        	const fs = itemList.list.filter(t=>t.type == selectItemType)
+				        if(fs && fs.length > 0) {
+				        	return fs[0].properties
+				        } 
+			        } 
 
-		        		if(itemList.list && itemList.list.length > 0) {
-			        		const fs = itemList.list.filter(t=>t.type == selectItemType)
-				        	if(fs && fs.length > 0) {
-				        		return fs[0].properties
-				        	} 
-			        	} 
-
-		        	}
 		        }
-  			} 
+		    }
+  			 
 	         
 	        return null
 	    }, 
@@ -250,6 +253,7 @@ export default {
 	},
 	methods: {
 		init() {
+			console.log('selectItemKey' , this.selectItemKey)
 			if(this.selectItem) {
 		      	this.$nextTick(()=> {
 		      		if(this.$refs.properties && this.$refs.properties.init) {
@@ -298,7 +302,7 @@ export default {
 
 	            	groupColumn.filter(gf => gf.default).forEach(gc => {
 		              	// 判断column如果有默认值，但当前data没有值 则回填 
-		              	//if(!this_.selectItem[prop][gc.prop]) {
+		               
 		              	if (!Object.prototype.hasOwnProperty.call(this_.selectItem[prop], gc.prop)) {
 		                	this_.$set(this_.selectItem[prop], gc.prop, gc.default)
 		              	}
@@ -319,31 +323,31 @@ export default {
 
 	    	// 判断如果是自定义组件 
 	        // 判断自定义组件
-			if(this.isCustomComponent) {
+			if(this.isCustomComponent && this.selectItem) {
 				 // 如果没有数据 则可能是自定义组件过来的，补充
-	        // 标签，标签宽度，要素宽度，栅格数量，
+		        // 标签，标签宽度，要素宽度，栅格数量，
 
-	        let label_ = this.selectItem.label 
-	        let labelWidth_ = this.selectItem.labelWidth 
-	        let width_ = this.selectItem.width 
-	        let span_ = this.selectItem.span 
+		        let label_ = this.selectItem.label 
+		        let labelWidth_ = this.selectItem.labelWidth 
+		        let width_ = this.selectItem.width 
+		        let span_ = this.selectItem.span 
 
-	        if(!label_) {
-	        	label_ = this.selectItem.type
-	        	this.$set(this.selectItem, 'label', label_)
-	        }
-	        if(!labelWidth_) {
-	        	labelWidth_ = -1
-	        	this.$set(this.selectItem, 'labelWidth', labelWidth_)
-	        }
-	        if(!width_) {
-	        	width_ = '100%'
-	        	this.$set(this.selectItem, 'width', width_)
-	        }
-	        if(!span_) {
-	        	span_ = 24
-	        	this.$set(this.selectItem, 'span', span_)
-	        }
+		        if(!label_) {
+		        	label_ = this.selectItem.type
+		        	this.$set(this.selectItem, 'label', label_)
+		        }
+		        if(!labelWidth_) {
+		        	labelWidth_ = -1
+		        	this.$set(this.selectItem, 'labelWidth', labelWidth_)
+		        }
+		        if(!width_) {
+		        	width_ = '100%'
+		        	this.$set(this.selectItem, 'width', width_)
+		        }
+		        if(!span_) {
+		        	span_ = 24
+		        	this.$set(this.selectItem, 'span', span_)
+		        }
 
 		        return {
 		        	config: {

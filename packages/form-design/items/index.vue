@@ -275,9 +275,49 @@ export default {
     }
   },
   methods: {
-     handleSelectItem(item) {
+    handleSelectItem(item) {
       this.$emit('handleSelectItem' , item)
-     }
+    },
+    validatorFiled (rule , value , callback) {
+      
+        // 判断rule类型 
+        if(rule.vtype == 1) {
+          // 正则
+          if(!rule.pattern) {
+            callback()
+            return
+          }
+          // 正则匹配
+          var patt1=new RegExp(rule.pattern);
+          //document.write(patt1.test("free"));
+
+          if(patt1.test(value)) {
+            callback() 
+           } else {
+            callback(new Error(rule.message)) 
+           }
+
+           return
+        } else if(rule.vtype == 2) {
+          // 表达式
+          const script = rule.script
+
+          // 打开了开关 这里获取函数内容
+         const fvalue =  dynamicFun(script , this.models)
+          
+          if (!fvalue) {
+            callback(new Error(rule.message))
+          } else {
+            callback()
+          }
+
+
+        } else {
+           callback()
+        } 
+
+       
+      } ,
   },
   mounted() {  
     

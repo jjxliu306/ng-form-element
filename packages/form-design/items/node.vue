@@ -25,7 +25,7 @@
 <script>  
 import ItemList from './index.js' 
  
-import { dynamicFun } from '../../utils/index.js'
+import { dynamicFun , dynamicVoidFun } from '../../utils/index.js'
 export default {
   name: "ng-form-item-node", 
   data(){  
@@ -138,13 +138,13 @@ export default {
             return 
    
           // 解决 初始化加载数据 被计算数据监听造成数据变化
-          const ify = JSON.stringify(val)
-          if (this.copyLstenModel != ify) {
-            this.copyLstenModel = ify
-           
-            dynamicFun(this.record.options.listenModelScript , this.models)
+          //const ify = JSON.stringify(val)
+          //if (this.copyLstenModel != ify) {
+          //  this.copyLstenModel = ify
+            console.log('this.record.options.listenModelScript' , this.record.options.listenModelScript , this.models)
+            dynamicVoidFun(this.record.options.listenModelScript , this.models)
             
-          }
+          //}
         },
         immediate: true
     },
@@ -159,7 +159,7 @@ export default {
 
       if(!focusEventScript) return 
 
-      dynamicFun(focusEventScript,this.models) 
+      dynamicVoidFun(focusEventScript,this.models) 
     },
     handleBlur(e) {
        // 判断是否有监听
@@ -167,7 +167,7 @@ export default {
 
       if(!blurEventScript) return 
 
-      dynamicFun(blurEventScript,this.models) 
+      dynamicVoidFun(blurEventScript,this.models) 
     }
   } 
 };

@@ -43,6 +43,7 @@ export default {
     }
   },
   created() {
+    
     this.updateSimpleDefaultValue()
 
      // 判断如果是远程方法的话 远程请求数据

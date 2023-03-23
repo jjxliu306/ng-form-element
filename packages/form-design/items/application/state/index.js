@@ -70,7 +70,7 @@ obj.options = {
             default: [{ 
                 required: false, // 必须填写
                 message: "必填项",
-                trigger: ['blur'] 
+                trigger: ['blur','change'] 
             }],
             span: 24, 
         } 

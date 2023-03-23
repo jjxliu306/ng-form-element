@@ -9,8 +9,8 @@
     :destroy-on-close="true"
     width="800px"
   >  
-    <div class="item-main">   
-      <FormBuild :key="key" :preview="preview" :formTemplate="formTemplate" :models="models" ref="formBuild" /> 
+    <div class="item-main">    
+      <FormBuild :key="key" :preview="preview" :formTemplate="formTemplate" :models="models" :config="{dict: dicts}" ref="formBuild" :customComponents="customComponents" /> 
     </div> 
     <span slot="footer" class="dialog-footer">
       
@@ -64,6 +64,17 @@ export default {
   components: {
     FormBuild
   }, 
+  inject: {
+    // 自定义组件
+    customComponents: {
+      from: 'customC',
+      default: ()=>[]
+    }, 
+    dicts: {
+      from: 'dictsC',
+      default: ()=> []
+    },
+  },
   methods: {
     init(data) {
       

@@ -31,6 +31,31 @@ export function dynamicFun(script , model , key="$" , row , rowKey) {
 } 
 
 
+ 
+/**
+* 动态函数
+* @param script 函数脚本
+* @param model 整个表单的数据
+* @param key 当前整改表单数据的标识key 
+* @param row 如果为batch 标识当前行的数据
+* @param rowKey 如果为batch 标识当前行数据的key
+* @return 验证结果 函数脚本执行结果
+*/
+export function dynamicVoidFun(script , model , key="$" , row , rowKey) {
+  if(!script) return false 
+  const func = script //.indexOf('return') >= 0 ? '{' + script + '}' : 'return (' + script + ')' 
+
+  if(row && rowKey) {
+    const Fn = new Function(key , rowKey, func)
+     Fn(model , row)
+  } else {
+    const Fn = new Function(key, func)
+     Fn(model)
+  }
+ 
+} 
+
+
 export function dateFormater(date , fmt) {  
   const o = {   
     "M+" : date.getMonth()+1,                 //月份   

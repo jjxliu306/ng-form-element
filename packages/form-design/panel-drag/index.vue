@@ -51,7 +51,8 @@ export default {
 		dataList() { 
 			//第一层过滤
 			const this_ = this 
-			let items = itemIndex.filter(t=> {
+			const list = cloneDeep(itemIndex)
+			let items = list.filter(t=> {
 				if(t.type == 'basic' && this_.basicItem ){
 					return true 
 				} else if(t.type == 'layout' && this_.layoutItem ){
@@ -165,6 +166,7 @@ export default {
 	    	this.generateKey(list,index) 
 	    },
 	    handleEnd(list,index){ 
+	    	console.log('end ' , cloneDeep(list[index]))
 	    	this.generateKey(list,index) 
 	    }
 	}

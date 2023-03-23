@@ -49,6 +49,10 @@ export default {
 	      	type: Object,
 	      	required: true
 	    },
+	     // 外部属性配置
+	    config: {
+	      type: Object
+	    },
 	    models: {
 	      	type: Object,
 	      	required: false,
@@ -74,7 +78,7 @@ export default {
     	}, 
 	}, 
 	computed: {
-		config() {
+		templateConfig() {
 			if(this.formTemplate) return this.formTemplate.config 
 			return {}
 		},
@@ -103,7 +107,7 @@ export default {
 	provide: function () {
     	return {
      		customC: this.customComponents ,
-     		configC: this.config,
+     		configC: this.templateConfig,
      		dictsC: this.dicts,
      		httpConfigC: this.httpConfig
     	}
@@ -112,29 +116,29 @@ export default {
 	  	reset() {
 	  		this.$refs.form && this.$refs.form.resetFields()
 	  	},
-	  	validate() {
-	  		return this.$refs.form && this.$refs.form.validate()
+	  	validate(v) {
+	  		return this.$refs.form && this.$refs.form.validate(v)
 	  	},
 	  	getData(async = true) {
 	  		const data = cloneDeep(this.models)
-
+	  		
 	  		this.clearHiddenValue(data)
 	  		if(!async) {
+	  			return new Promise((resolve, reject) => { 
 
-	  			return data 
-	  		}
-	  		 
-	  		return new Promise((resolve, reject) => { 
-
-			    this.$refs.form && this.$refs.form.validate((valid,values)=>{ 
+			    	this.$refs.form && this.$refs.form.validate((valid,values)=>{ 
 			            if (!valid) { 
 			              reject('验证失败');
 			            } 
 			            
 			            resolve(data); 
-			    })
+			    	})
 			 
-			});
+				});
+	  			
+	  		}
+	  		 
+	  		return data 
 	  		 
 	  	},
 	  	// 2021-03-12 清理没有显示的组件的数据

@@ -1,7 +1,11 @@
 <template> 
   <el-container class="form-design">
       <el-header class="header" height="40px">
-        <HeaderPanel :clear="clear" :preview="preview" :imp="imp" :exp="exp" :formTemplate="formTemplate" @importData="importData"/>
+        <HeaderPanel :clear="clear" :preview="preview" :imp="imp" :exp="exp" :formTemplate="formTemplate" @importData="importData">
+          <template slot="controlButton">
+             <slot name="controlButton"></slot>
+          </template>
+        </HeaderPanel>
       </el-header>
       <el-main class="form-main">
         <el-container class="main-container">
@@ -9,7 +13,7 @@
              <slot name="drag"></slot> 
              <DragPanel :basic-item="basicItem" :decorate-item="decorateItem" :layout-item="layoutItem" :application-item="applicationItem"/>
           </el-aside>
-          <el-main class="center-panel form-main"> 
+          <el-main class="center-panel form-main">  
             <ContainerPanel :formTemplate="formTemplate" @handleSelectItem="handleSelectItem" :selectItem="selectItem">
               <template slot="controlButton" >
                 <slot name="controlButton" ></slot>
