@@ -7,6 +7,11 @@ import NgFormNode from './form-design/panel-container/node.vue'
 import NgFormItem from './form-design/items/index.vue' 
 import NgFormItemNode from './form-design/items/node.vue' 
 
+import NgForm  from './ng-form/index.vue' 
+
+NgForm.install = function (Vue) { 
+  Vue.component(NgForm.name, NgForm)
+}
 
 // 为组件提供 install 安装方法，供按需引入
 NgFormDesign.install = function (Vue) { 
@@ -34,7 +39,7 @@ NgFormItemNode.install = function (Vue) {
 //   Vue.component(NgFormItemBase.name, NgFormItemBase)
 // }
 // 默认导出组件
-const components = [ NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode/*,NgFormItemBase*/]
+const components = [ NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode/*,NgFormItemBase*/]
  
  
 

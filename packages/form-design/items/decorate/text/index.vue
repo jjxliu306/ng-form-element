@@ -1,5 +1,5 @@
 <template>  
-	<div class="ng-form-label"  :style="{ textAlign: record.options.textAlign }" > 
+	<div class="ng-form-label"  :style="{ textAlign: record.options.textAlign }" >  
       <label
         :class="{ 'is-required': showRequiredMark }"
         v-text="record.label"
@@ -19,11 +19,11 @@ export default {
 
 	      const fstr = this.record.options.showRequiredMarkScript
 	      if(!fstr || !fstr.trim()){
-	        return false
+	        return true
 	      }
 
 	      const mark = dynamicFun(fstr , this.models)  
-
+	      
 	      return mark 
 	    },
 	}

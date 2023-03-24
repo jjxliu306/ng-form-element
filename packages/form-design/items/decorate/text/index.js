@@ -56,20 +56,6 @@ obj.options = {
             collapse: false, // 是否启用 collapse 必须alone=true
             column: [ 
                 {
-                    label: '标签宽度', 
-                    prop: 'labelWidth',
-                    type: 'number', 
-                    show: false,
-                    default: 0
-                },
-                {
-                    label: '要素宽度', 
-                    prop: 'width',  
-                    default: '100%',
-                    span: 24,
-                },
-                
-                {
                     label: '对齐方式', 
                     prop: 'textAlign',  
                     default: 'left',

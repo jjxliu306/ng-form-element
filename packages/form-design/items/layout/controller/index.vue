@@ -1,7 +1,7 @@
 <template>  
   <div
         :class="[
-          'ng-layout-controller', 
+          'ng-layout-controller drag-box', 
           record.options.customClass ? record.options.customClass : '' 
         ]" 
         :style="record.options.customStyle" 
@@ -160,12 +160,17 @@ export default {
       // 判断是否有复制和删除 如果没有直接返回
       if(!this.record.options.remove && !this.record.options.copy) {
         this.showRightMenu = false
+        this.selectControlIndex = undefined
         return false
       }
 
+      if(this.showRightMenu) {
+        this.showRightMenu = false
+      }
+       
       // this.fileItem = item
       // 显示
-      this.showRightMenu = true;
+     
  
 
       // 计算rightMenu得高度和宽度 和当前屏幕对比 来决定菜单出现得起始位置
@@ -191,6 +196,10 @@ export default {
       }
       
       this.selectControlIndex = idx
+
+      this.$nextTick(()=> {
+         this.showRightMenu = true
+      })
 
       return false;
     },
