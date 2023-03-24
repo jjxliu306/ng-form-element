@@ -43,7 +43,11 @@ cascader没有数据字典
       </el-autocomplete>
     </div>
     <!-- 本地赋值 -->
-    <KvList v-if="selectItem.options.dynamic == 0" v-model="selectItem.options.options" />
+    <template v-if="selectItem.options.dynamic == 0" >
+      <KvListChildren v-if="selectItem.type == 'cascader'" v-model="selectItem.options.options" />
+      <KvList v-else v-model="selectItem.options.options" /> 
+    </template>
+    
   </el-form-item>
   <slot name="defaultValue"> </slot>
   <el-divider></el-divider> 
@@ -51,10 +55,11 @@ cascader没有数据字典
 </template>
 <script>
 import KvList from '../../../../ng-form/kv-list.vue'
+import KvListChildren from '../../../../ng-form/kv-list-children.vue'
 export default {
-  	components: {
-    	KvList
-  	},
+  components: {
+    KvList , KvListChildren
+  },
 	props: {
 		selectItem: {
 			type: Object
