@@ -180,7 +180,7 @@ export default {
     }, 
     recordRules(){
       // 2020-07-29 如果是预览 不需要规则验证
-      if(this.isDragPanel || this.preview || !this.record.rules || this.record.rules.length == 0) {
+      if(/*this.isDragPanel || this.preview || */!this.record.rules || this.record.rules.length == 0) {
         return []
       }
       let rules = cloneDeep(this.record.rules)
