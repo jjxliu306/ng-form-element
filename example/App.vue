@@ -1,7 +1,8 @@
 <template>
-  <transition name="fade">
+  <!-- <transition name="fade">
     <router-view></router-view>
-  </transition>
+  </transition> -->
+  <Design />
 </template>
 <style> 
 html , body {
@@ -9,8 +10,12 @@ html , body {
 }
 </style>
 <script> 
+import Design from './design.vue'
 import Vue from "vue" 
 export default {
+  components: {
+    Design
+  },
   computed: { 
   },
   activated() {
