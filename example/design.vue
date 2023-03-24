@@ -3,7 +3,22 @@
   <ng-form-design ref="formDesign" :custom-components="custemComponents" :config="formConfig" >
      
     <template slot="controlButton" >
-      <el-button   type="text" size="medium"  @click="initDemo(1)">示例</el-button> 
+     <el-popover
+        placement="bottom-start"
+        title="示例"
+        width="240"
+        trigger="hover" >
+        <div>
+          <el-row :gutter="20">
+            <el-col :span="11" v-for="item in  examples" :key="item.name" class="example-col">
+              <span class="example-span" @click="initDemo(item)">{{item.name}}</span>
+            </el-col>
+
+          </el-row>
+
+        </div> 
+         <el-button  slot="reference" type="text" size="medium"   >示例</el-button>
+      </el-popover>
     </template>
     
 
@@ -24,6 +39,14 @@ export default {
   name: 'App', 
   data(){
     return {
+      examples: [
+        {name:'基础示例' , path: 'basic.json'},
+        {name:'select远程联动' , path: 'select远程联动.json'},
+        {name:'动态表格' , path: 'tablebatch.json'},
+        {name:'效验' , path: 'validator1.json'},
+        {name:'组件联动' , path: '组件联动.json'},
+        {name:'焦点事件' , path: '组件获取焦点事件.json'},
+      ],
       // 自定义组件列表
       custemComponents: NgComponents ,
       formConfig: {
@@ -50,7 +73,26 @@ export default {
    // this.formTemplate = require('./data/basic.json')
   },
   methods: {
-     
+    initDemo(row) {
+      const path =  row.path 
+      console.log('path' , path) 
+
+      const files = require.context('./data', true, /\.json$/)
+ 
+      let formTemplate = undefined
+      files.keys().forEach((key) => {
+        console.log('key' , key , key.indexOf(path))
+        if(key.indexOf(path) >= 0) {
+           console.log('files(key).default' , files(key))
+          formTemplate = files(key);
+          return
+        }
+        
+      })
+   
+      if(formTemplate)
+        this.$refs.formDesign.initModel(formTemplate)
+    }
   }
 }
 </script>
@@ -80,5 +122,38 @@ body{
     -webkit-font-feature-settings: 'tnum';
     font-feature-settings: 'tnum';
  
+}
+</style>
+
+<style lang="scss">
+.example-col {
+    font-size: 12px;
+    display: block;
+   
+    line-height: 26px;
+    position: relative;
+    float: left;
+    left: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 2px;
+    color: #333;
+    border: 1px solid #F4F6FC;
+    text-align: center;
+
+
+  .example-span {
+    cursor: pointer;
+    background: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #ebebeb;
+    height: 45px;
+    position: relative;
+    width: 100%;
+    transition: 0.15s ease-in-out;
+    transition-property: transform;
+    will-change: transform;
+  }
 }
 </style>
