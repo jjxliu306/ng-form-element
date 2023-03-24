@@ -1,7 +1,7 @@
 
 <template>
     <div style="padding: 20px;"> 
-    	model:: {{model}}
+    	
         <ng-form-build ref="formBuild" :formTemplate="form" :models="model"/>
 
         <div style="text-align: center;"> 

@@ -89,7 +89,7 @@ export default {
      
     },
     handleGetData() {
-      const models_ = this.$refs.formBuild.getData(false)
+      const models_ = this.$refs.formBuild.getData(true)
       
       this.dataJson = JSON.stringify(models_, null, "\t")
 

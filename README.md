@@ -1,7 +1,7 @@
 # ng-form 致力打造开源最强vue动态表单组件
 NG-FORM-ELEMENT
-
-![组件一览](https://s3.ax1x.com/2020/12/22/rr6Dw6.png "11.png")
+ 
+![组件一览](img/0324_11.png "0324_11.png")  
  
  **说明**
  
@@ -27,8 +27,8 @@ NG-FORM-ELEMENT
 **ngtool 后端解析和校验功能** 
 https://gitee.com/jjxliu306/ngtool
 
-## 文档（陆续更新）
-https://www.ng-form.cn/  
+## 文档（陆续更新） 
+https://www.kancloud.cn/jjxliu306/ng-form/3138508
 
  
 ## 集成示例
@@ -41,15 +41,15 @@ https://www.ng-form.cn/
 ## 示例
 
  **基础表单** 
- ![基础表单](img/basic.gif "basic.gif")  
+ ![基础表单](img/0324_basic.gif "0324_basic.gif")  
 
 
  **表单验证和组件动态显示** 
-![表单验证和组件动态显示](img/validator1.gif "validator1.gif")
+![表单验证和组件动态显示](img/0324_validator.gif "0324_validator.gif")
 
 
  **动态表格** 
-![动态表格](img/tablebatch.gif "tablebatch.gif")
+![动态表格](img/0324_batch.gif "0324_batch.gif")
 
 
 ## 简介
@@ -161,8 +161,7 @@ Vue.use(NgFormElement)
 | customComponents |   自定义组件的配置,具体参加最下方自定义组件示例中的格式 | array | N/A  | 
 | config|表单的一些基础配置，主要为http的一些参数,譬如在http请求中给header增加参数：config: { httpConfig: (config)=>{          config.headers['aaaa'] = 'bbbb'          return config  } }| object |  N/A  |
 | clear|  是否显示面板上清除按钮 |boolean | true |
-| preview|  是否显示面板上预览按钮 |boolean | true |
-| reder|  是否显示面板上渲染按钮 |boolean | true |
+| preview|  是否显示面板上预览按钮 |boolean | true | 
 | imp|  是否显示面板上导入按钮 |boolean | true |
 | exp|  是否显示面板上导出按钮 |boolean | true |
 | basic-item|  基础组件是否要展示或待选组件列表集合 |boolean/Array | true |

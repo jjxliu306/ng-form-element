@@ -13,6 +13,7 @@
       	:size="formTemplate.config.size"
       	:model="models" 
       	:disabled="disabled"
+      	:id="randomId"
     >
 	    <el-row :gutter="20" class="row"> 
 	    	<Node  
@@ -41,7 +42,7 @@ export default {
 	},
 	data(){
 		return {
-			 
+			 randomId: new Date().getTime() + '111',
 		}
 	},
 	props: {
@@ -148,7 +149,7 @@ export default {
 	      if(!this.formTemplate.config || !this.formTemplate.config.outputHidden) {
 	       
 	        const formdesign = document.getElementById(this.randomId)
-	       
+	       	console.log('formdesign' , formdesign)
 	        // 循环当前数据 非P 开头的统一不深入第二层
 	        for(let key in data) {
 	          if(key.indexOf('_label') > 0) continue 

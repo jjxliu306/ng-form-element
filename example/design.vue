@@ -1,21 +1,20 @@
 <template>
   <div id="app">
- 
   <ng-form-design ref="formDesign" :custom-components="custemComponents" :config="formConfig" >
      
     <template slot="controlButton" >
-      <el-button   type="text" size="medium"  @click="initDemo(1)">初始化</el-button> 
+      <el-button   type="text" size="medium"  @click="initDemo(1)">示例</el-button> 
     </template>
     
 
-  </ng-form-design>
+  </ng-form-design> 
   
   <!--
     只想显示部分组件，可参考
   -->
-  <!--
-   <ng-form-design ref="formDesign" :config="formConfig" :decorate-item="false" :layout-item="['table','grid']" :basic-item="['input' , 'textarea']" :application-item="true"/>  
-  -->
+ <!-- 
+   <ng-form-design ref="formDesign" :config="formConfig" :decorate-item="false" :layout-item="['table','grid']" :basic-item="['input' , 'textarea']"   :application-item="true"/>   -->
+ 
   </div>
 </template>
 
