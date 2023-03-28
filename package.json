@@ -21,9 +21,10 @@
     "@vue/cli-service": "~4.4.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "eslint-plugin-vue": "^6.2.2",
+    "terser-webpack-plugin": "^5.3.7",
     "vue-template-compiler": "^2.6.11",
     "vuex-persistedstate": "^3.0.1",
     "webpack-bundle-analyzer": "^4.4.2"
@@ -70,7 +71,7 @@
     "url": "https://gitee.com/jjxliu306/vue-form-design/issues"
   },
   "homepage": "https://gitee.com/jjxliu306/vue-form-design#readme",
-  "keywords": [ 
+  "keywords": [
     "ng-form",
     "ng-form-element",
     "vue-form-design",
