@@ -51,12 +51,12 @@
 </template>
 <script> 
 import cloneDeep from 'lodash/cloneDeep'
- 
+import draggable from 'vuedraggable'
 import Node from './node'
 export default {
 	name: 'ng-form-container' ,
 	components:{
-		Node
+		Node,draggable
 	},
 	data(){
 		return {
