@@ -2,7 +2,7 @@
   <el-col 
     :span="record.span || 24"   
    >  
-    <div  :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-box': isDrag }"  @click.stop="handleSelectItem(record)">
+    <div class="node-item" :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-box': isDrag }"  @click.stop="handleSelectItem(record)">
       <div  class="form-item-box" style="height: 100%;width: 100%;">
         <Item 
           :models="models"
@@ -113,6 +113,18 @@ export default {
 };
 </script>
 <style lang="scss">
+.node-item {
+  padding: 10px;
+  background: #f6f6f6;
+  border-color: #f6f6f6;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.node-item.active{
+  background: #e8eaea;
+  border-color: #e8eaea;
+}
 .drag-box  {
   position: relative;
   box-sizing: border-box;
@@ -129,15 +141,15 @@ export default {
     color: #409eff;
   } 
  
-  &::before {
-    content: "";
-    height: 5px;
-    width: 100%;
-    background: #409EFF;
-    position: absolute;
-    top: 0;
-    right: -100%; 
-  }
+  // &::before {
+  //   content: "";
+  //   height: 5px;
+  //   width: 100%;
+  //   background: #409EFF;
+  //   position: absolute;
+  //   top: 0;
+  //   right: -100%; 
+  // }
   
 
   &.active {
