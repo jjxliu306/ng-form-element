@@ -25,7 +25,7 @@ module.exports = {
     // 打包忽略文件
     externals: {
       "element-ui": "ELEMENT",
-      vue: "Vue",
+      //vue: "Vue",
       "vue-router": "VueRouter",
       vuex: "Vuex" 
     }

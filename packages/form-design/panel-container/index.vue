@@ -115,7 +115,7 @@ export default {
 <style lang="scss">
 .form-panel {
 	height: 100%; 
-
+	min-height: 500px;
 	.no-data-text {
 		text-align: center;
 	    width: 200px;
@@ -130,17 +130,19 @@ export default {
 
 	.row {
 		height: 100%; 
+		min-height: 500px;
 	}
 
 	.ng-form {
 		height: 100%; 
-
+		min-height: 500px;
 		.draggable-box {
 			height: 100%;
 			overflow: auto;
 		}
 		.items-main {
 			height: 100%; 
+			min-height: 500px;
 			padding: 0px 10px;
 		}
 	}

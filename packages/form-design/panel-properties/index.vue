@@ -9,8 +9,8 @@
 	    </el-tab-pane> 
 	    <el-tab-pane label="表单属性" name="form" class="tab-pane"> 
 	    	<FormProperties :config="config">
-	    	 	<template slot="form-extend-properties" :data="data">
-                    <slot name="form-extend-properties" :data="data"></slot>
+	    	 	<template slot="form-extend-properties"  >
+                    <slot name="form-extend-properties"  ></slot>
                 </template> 
 	    	</FormProperties>
 	    </el-tab-pane> 

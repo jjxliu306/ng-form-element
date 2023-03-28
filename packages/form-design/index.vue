@@ -8,7 +8,7 @@
         </HeaderPanel>
       </el-header>
       <el-main class="form-main">
-        <el-container class="main-container">
+        <el-container class="ng-main-container">
           <el-aside width="260px" class="item-panel">
              <slot name="drag"></slot> 
              <DragPanel :basic-item="basicItem" :decorate-item="decorateItem" :layout-item="layoutItem" :application-item="applicationItem"/>
@@ -188,9 +188,11 @@ export default {
   .form-main {
     padding: 0px;
     height: 100%;
+    min-height: 500px;
 
-    .main-container {
+    .ng-main-container {
       height: 100%;
+      min-height: 500px;
     }
   }
 

@@ -1,3 +1,4 @@
+import Vue from 'vue'
 // 导入组件
 // 导入组件，组件必须声明 name
 import NgFormDesign from './form-design/index.vue'
