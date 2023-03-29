@@ -8,7 +8,7 @@ import NgFormNode from './form-design/panel-container/node.vue'
 import NgFormItem from './form-design/items/index.vue' 
 import NgFormItemNode from './form-design/items/node.vue' 
 
-import NgForm  from './ng-form/index.vue' 
+import NgForm  from './ng-form/index.vue'
 
 NgForm.install = function (Vue) { 
   Vue.component(NgForm.name, NgForm)
@@ -50,6 +50,7 @@ const components = [ NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgF
 const install = function (Vue) {
   // 判断是否安装
   if (install.installed) return
+  install.installed = true
   // 遍历注册全局组件
   components.map(component => Vue.component(component.name, component))
 }

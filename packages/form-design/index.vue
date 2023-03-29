@@ -57,21 +57,26 @@ export default {
   data(){
     return {
       selectItem: undefined,
-      formTemplate: {
-        list: [],
-        config: {
-          labelPosition: "left",
-          labelWidth: 100, 
-          size: 'mini',
-          outputHidden: true ,//  是否输出隐藏字段的值 默认打开,所有字段都输出
-          hideRequiredMark: false ,
-          syncLabelRequired: false,
-          customStyle: ""
-        }
-      }
     }
   },
   props:{
+    template: {
+      type: Object,
+      default: () => {
+        return {
+          list: [],
+          config: {
+            labelPosition: "left",
+            labelWidth: 100, 
+            size: 'mini',
+            outputHidden: true ,//  是否输出隐藏字段的值 默认打开,所有字段都输出
+            hideRequiredMark: false ,
+            syncLabelRequired: false,
+            customStyle: ""
+          }
+        }
+      }
+    },
     customComponents: {
       type: Array,
       default: ()=>[]
@@ -119,6 +124,20 @@ export default {
     },
   },   
   computed: {
+    formTemplate() {
+      return this.template || {
+          list: [],
+          config: {
+            labelPosition: "left",
+            labelWidth: 100, 
+            size: 'mini',
+            outputHidden: true ,//  是否输出隐藏字段的值 默认打开,所有字段都输出
+            hideRequiredMark: false ,
+            syncLabelRequired: false,
+            customStyle: ""
+          }
+        }
+    },
     templateConfig() {
       if(this.formTemplate) return this.formTemplate.config 
       return {}
@@ -143,6 +162,13 @@ export default {
     httpConfig(val) {
       if(val)
         window.nghttpConfig = val
+    },
+    formTemplate: {
+      handler: function(newVal, oldVal) {
+        this.$emit('update:formTemplate', newVal)
+      },
+      deep: true,
+      immediate: false,
     }
   },
   provide: function () {
@@ -151,6 +177,22 @@ export default {
      configC: this.templateConfig,
      dictsC: this.dicts,
      httpConfigC: this.httpConfig
+    }
+  },
+  created() {
+    if(this.formTemplate == null){
+      this.formTemplate = {
+          list: [],
+          config: {
+            labelPosition: "left",
+            labelWidth: 100, 
+            size: 'mini',
+            outputHidden: true ,//  是否输出隐藏字段的值 默认打开,所有字段都输出
+            hideRequiredMark: false ,
+            syncLabelRequired: false,
+            customStyle: ""
+          }
+        }
     }
   },
   methods: {

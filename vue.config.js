@@ -21,14 +21,24 @@ module.exports = {
       }, 
     }
   },
-  configureWebpack: {
+  configureWebpack: config => {
     // 打包忽略文件
-    externals: {
-      "element-ui": "ELEMENT",
-      //vue: "Vue",
-      "vue-router": "VueRouter",
-      vuex: "Vuex" 
+    if(process.env.NODE_ENV === 'production'){
+      config.externals = {
+        "element-ui": "ELEMENT",
+        // vue: "Vue",
+        "vue-router": "VueRouter",
+        vuex: "Vuex" 
+      }
+    }else {
+      config.externals = {
+        "element-ui": "ELEMENT",
+        vue: "Vue",
+        "vue-router": "VueRouter",
+        vuex: "Vuex" 
+      }
     }
+    
   }, 
   productionSourceMap: false,
   // 强制内联CSS
@@ -37,6 +47,15 @@ module.exports = {
   chainWebpack: config => { 
     //config.plugin('webpack-bundle-analyzer')
     //    .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+    if(process.env.NODE_ENV === 'production'){
+      config.optimization.minimizer('terser').tap(args => {
+        Object.assign(args[0].terserOptions.compress, {
+          pure_funcs: ['console.log']
+        })
+        return args
+      })
+    }
+
     config.module
       .rule('js')
       .include
