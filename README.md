@@ -167,6 +167,7 @@ Vue.use(NgFormElement)
 | basic-item|  基础组件是否要展示或待选组件列表集合 |boolean/Array | true |
 | personal-item|  个性化组件是否要展示或待选组件列表集合 |boolean/Array | true |
 | layout-item|  布局组件是否要展示或待选组件列表集合 |boolean/Array | true | 
+| template| 初始化表单内容，可通过.sync进行双向绑定。该数据为通过getModel所返回的内容。|Object| {list: [],config: {labelPosition: "left",labelWidth: 100, size: 'mini',outputHidden: true ,hideRequiredMark: false ,syncLabelRequired: false,customStyle: ""}}|
 
 插槽:
 
