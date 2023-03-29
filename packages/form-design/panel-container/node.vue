@@ -153,7 +153,7 @@ export default {
   
 
   &.active {
-    background: fade(#409EFF, 20%);
+    background: #5ea8f57d;
     outline-offset: 0; 
 
     &::before {

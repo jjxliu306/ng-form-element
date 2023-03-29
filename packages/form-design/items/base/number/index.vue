@@ -1,13 +1,13 @@
 <template>  
 	<div 
 	 	v-if="!preview"
-	 	:style="`width:${record.options.width}`" 
+	 	:style="`width:${record.width}`" 
 	 	class="form-item-base-number el-input-number-diaplay">
-
+	
         <el-input-number
           :class="record.options.append ? 'el-input-number__append' : null" 
           v-model="models[record.model]" 
-          :style="`width:${record.options.width};float:left;`" 
+          :style="`width:${record.width};float:left;`" 
           :min="
             record.options.min || record.options.min === 0
               ? record.options.min
