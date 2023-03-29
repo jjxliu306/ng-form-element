@@ -166,6 +166,7 @@ import itemIndex from "../items/index.js";
 
 import { dynamicFun } from '../../utils/index.js' 
 import cloneDeep from 'lodash/cloneDeep'
+import NgConstants from '../../constants'
 
 export default {
 	components: {
@@ -273,7 +274,7 @@ export default {
 		},
 		initFormOptions () {
 	      const currentType = this.selectItem.type
-	      const configs = this.$itemConfig
+	      const configs = NgConstants.itemConfig
 	      if (configs && configs[currentType]) {
 	        const tformOptions = cloneDeep(configs[currentType].options)
 	      	
@@ -389,10 +390,9 @@ export default {
 		        } 
 	        
 			}
-
 	    	  // 2023-01-03 lyf 判断是否有单独的columns 不依赖分组信息
 	        const currentType = this.selectItem.type
-	      	const configs = this.$itemConfig
+	      	const configs = NgConstants.itemConfig
 	      	if (configs && configs[currentType]) {
 	        	const tformOptions = cloneDeep(configs[currentType].options)
 	        	
