@@ -122,9 +122,10 @@ export default {
 }
 
 .node-item.active{
-  background: #e8eaea;
-  border-color: #e8eaea;
+  background: #d9f1ff;
+  border-color: #d9f1ff;
 }
+
 .drag-box  {
   position: relative;
   box-sizing: border-box;
@@ -139,7 +140,7 @@ export default {
     right: 5px;
     font-size: 14px;
     color: #409eff;
-  } 
+  }
  
   // &::before {
   //   content: "";
@@ -273,6 +274,10 @@ export default {
     }
   }
   
-} 
+}
+
+.active .key-box {
+    color: #ff40ec;
+}
 </style>
  
