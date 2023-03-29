@@ -15,7 +15,7 @@
 	    	</FormProperties>
 	    </el-tab-pane> 
 
-	    <slot name="extend-tab" :data="data"  class="tab-pane">
+	    <slot name="extend-tab" class="tab-pane">
 	     	<!-- 扩展插槽,扩展对应要素属性 -->
 	    </slot> 
 	</el-tabs> 
