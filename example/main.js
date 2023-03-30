@@ -4,7 +4,7 @@ import App from './App'
  
 
 // 加入路由
-import router from "./router";
+//import router from "./router";
  
  // 导入组件库
 import FormDesign from '../packages/index.js' 
@@ -16,6 +16,6 @@ Vue.use(FormDesign)
 Vue.config.productionTip = false
 
 new Vue({ 
-  router,
+ // router,
   render: h => h(App),
 }).$mount('#app')
