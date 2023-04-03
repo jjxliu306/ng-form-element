@@ -7,16 +7,14 @@
 				<span class="title">ng-form-element</span>
 			 
 		</el-col>
-		<el-col :span="12">
-			<span>
-				 <slot name="controlButton"></slot>
-			</span>
+		<el-col :span="12"> 
 			<span class="buttons">
+				<slot name="controlButton"></slot>
 				<el-button v-if="clear" type="text" size="medium" icon="el-icon-delete" @click="handleClear">清空</el-button>
-		    <el-button v-if="preview" type="text" size="medium" icon="el-icon-view" @click="handlePreview">预览</el-button>
-		  	<!--   <el-button v-if="reder"  type="text" size="medium" icon="el-icon-view" @click="handleRender">渲染</el-button> -->
-		    <el-button v-if="imp" type="text" size="medium" icon="el-icon-download" @click="handleImport">导入</el-button>
-		    <el-button v-if="exp" type="text" size="medium" icon="el-icon-upload2" @click="handleExport">导出</el-button>
+			    <el-button v-if="preview" type="text" size="medium" icon="el-icon-view" @click="handlePreview">预览</el-button>
+			  	<!--   <el-button v-if="reder"  type="text" size="medium" icon="el-icon-view" @click="handleRender">渲染</el-button> -->
+			    <el-button v-if="imp" type="text" size="medium" icon="el-icon-download" @click="handleImport">导入</el-button>
+			    <el-button v-if="exp" type="text" size="medium" icon="el-icon-upload2" @click="handleExport">导出</el-button>
 			</span> 
 		</el-col> 
 	</el-row>	 
