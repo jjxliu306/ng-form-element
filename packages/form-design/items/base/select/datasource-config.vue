@@ -13,7 +13,7 @@ cascader没有数据字典
   </el-form-item>
   <el-divider>数据配置</el-divider> 
   <el-form-item label-width="0px" >
-    <!-- 远程赋值配置 --> 
+    <!-- 远程赋值配置 -->  
     <div v-if="selectItem.options.dynamic == 1">
       <el-input size="mini" v-model="selectItem.options.remoteFunc">
         <template slot="prepend">远端方法</template>

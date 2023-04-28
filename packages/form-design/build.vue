@@ -117,8 +117,16 @@ export default {
 	  	reset() {
 	  		this.$refs.form && this.$refs.form.resetFields()
 	  	},
-	  	validate(v) {
-	  		return this.$refs.form && this.$refs.form.validate(v)
+	  	validate() {
+	  		return new Promise((resolve, reject) => { 
+	  			if(this.$refs.form) {
+	  				this.$refs.form.validate((valid,values)=>{ 
+			            resolve(valid,values)
+			        })
+	  			} else {
+	  				reject()
+	  			}  
+			})
 	  	},
 	  	getData(async = true) {
 	  		const data = cloneDeep(this.models)
@@ -149,7 +157,7 @@ export default {
 	      if(!this.formTemplate.config || !this.formTemplate.config.outputHidden) {
 	       
 	        const formdesign = document.getElementById(this.randomId)
-	       	console.log('formdesign' , formdesign)
+	        
 	        // 循环当前数据 非P 开头的统一不深入第二层
 	        for(let key in data) {
 	          if(key.indexOf('_label') > 0) continue 

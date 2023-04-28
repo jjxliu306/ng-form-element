@@ -4,7 +4,7 @@
       ref="cascader"
       v-model="models[record.model]"
       :options="(record.options.dynamic == 1 && record.options.remoteFunc ? checkValues : record.options.options)"
-      :style="`width:${record.options.width}`"
+      :style="`width:${record.width}`"
       :placeholder="record.options.placeholder"
       :filterable="record.options.showSearch"  
       :clearable="record.options.clearable"

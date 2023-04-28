@@ -128,6 +128,7 @@ export default {
 	    },
 	     // 2021-03-13 针对select radio checkbox判断如果有本地过滤关联，判断该条数据是否该显示 
 	    itemVisible(item) {
+	    	if(!item) return false
 	      // 没有过滤条件 直接全部展示 
 	      if(this.isDragPanel || !this.localFilter || this.localFilter.length == 0) return true 
 
@@ -157,12 +158,17 @@ export default {
 	     // 初始化远程数据或者数据字典 针对select radio checkbox
 	    initDynamicValue() {
 	      if(this.record.options.dynamic == 1 && this.record.options.remoteFunc) {
+	        
 	        const url =  this.record.options.remoteFunc 
 	        this.remoteUrl = url 
 	        
-
-	        this.getRemoteData()
-	   
+	        // 在配置了远程数据的label和value之后在请求接口
+	        if(this.record.options.remoteLabel && this.record.options.remoteValue) {
+	        	
+	        	
+	        	this.getRemoteData()
+	        }
+ 
 
 	        this.itemProp.label = this.record.options.remoteLabel
 	        this.itemProp.value = this.record.options.remoteValue
@@ -170,8 +176,7 @@ export default {
 	      } else if(this.record.options.dynamic == 2 && this.record.options.dictType ) {
 
 	        // 2022-02-26 lyf  引入数据字典后判断数据字典
-	        console.log('ths.dicts' , this.dicts)
-	     
+	      
 	        if(this.dicts && this.dicts.length > 0) {
 	          const fsDict = this.dicts.filter(t=>t.type == this.record.options.dictType)
 	          this.checkValues = cloneDeep(fsDict)
@@ -206,6 +211,12 @@ export default {
 	      const objectPath = require("object-path");
 	      
 	      const dataPath = this.record.options.dataPath
+
+	      // 如果么有datapath 直接返回
+	      if(!dataPath) {
+	      	this.checkValues = []
+	      	return 
+	      }
 
 	      request({
 	        url: this.remoteUrl,

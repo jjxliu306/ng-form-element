@@ -1,6 +1,6 @@
 <template>   
         <el-date-picker 
-                :style="`width:${record.options.width}`"
+                :style="`width:${record.width}`"
                 v-if="!preview"
                 v-model="models[record.model]"
                 align="right"

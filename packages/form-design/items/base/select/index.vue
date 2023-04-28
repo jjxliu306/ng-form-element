@@ -1,10 +1,10 @@
 <template>  
-	<div v-if="!preview">
-		<el-select 
+	<div v-if="!preview">  
+		 <el-select 
 		  v-if="record.options.multiple"
         v-model="models[record.model]"
-        :value-key="itemProp.value"
-        :style="`width:${record.options.width}`"
+        :value-key="itemValue"
+        :style="`width:${record.width}`"
        
         :remote="record.options.onlineSearch && record.options.showSearch"
         :remote-method="remoteMethod"
@@ -18,11 +18,11 @@
         @focus="handleFocus"
         @blur="handleBlur"
       >
-        <template  v-for="(item, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)">
+        <template  v-for="(item, index) in selectList">
           <el-option 
-            :key="item[itemProp.value] + index"
-            :label="item[itemProp.label]"
-            :value="item[itemProp.value]"
+            :key="item[itemValue] + index"
+            :label="item[itemLabel]"
+            :value="item[itemValue]"
             v-if="itemVisible(item)"
             >
           </el-option>
@@ -31,8 +31,8 @@
       <el-select
         v-else 
         v-model="models[record.model]"
-        :style="`width:${record.options.width}`"
-        :value-key="itemProp.value" 
+        :style="`width:${record.width}`"
+        :value-key="itemValue" 
         :remote="record.options.onlineSearch && record.options.showSearch"
         :remote-method="remoteMethod"
         :placeholder="record.options.placeholder"
@@ -44,16 +44,16 @@
         @focus="handleFocus"
         @blur="handleBlur"
       > 
-        <template v-for="(item, index) in ((record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options)">
+        <template v-for="(item, index) in selectList">
           <el-option
-            :key="item[itemProp.value] + index"
-            :label="item[itemProp.label]"
-            :value="item[itemProp.value]"
+            :key="item[itemValue] + index"
+            :label="item[itemLabel]"
+            :value="item[itemValue]"
             v-if="itemVisible(item)"
             >
           </el-option>
         </template> 
-      </el-select> 
+      </el-select>  
 	</div>
   <span v-else>
     {{models[record.model+'_label']}}  
@@ -75,6 +75,26 @@ export default {
       localFilter: [],
 		}
 	},
+  computed: {
+    itemValue() {
+      if(!this.itemProp.value) return 'value'
+      return this.itemProp.value
+    },
+    itemLabel() {
+      if(!this.itemProp.label) return 'label'
+      return this.itemProp.label
+    },
+    selectList() {
+      if(this.record.options.dynamic == 1 && this.record.options.remoteFunc) {
+        return this.checkValues
+      } else if(this.record.options.dynamic == 2 && this.record.options.dictType) {
+        return this.checkValues
+      } else {
+        return this.record.options.options
+      }
+      // (record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options
+    }
+  },
 	created () { 
 	  //this.updateSimpleDefaultValue()
     if(!this.record.options) return 

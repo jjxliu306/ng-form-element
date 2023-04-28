@@ -3,7 +3,7 @@
         <el-time-select
               v-if="!preview"
               arrow-control
-              :style="`width:${record.options.width}`"
+              :style="`width:${record.width}`"
               :disabled="recordDisabled"
               v-model="models[record.model]" 
               :clearable="record.options.clearable" 
