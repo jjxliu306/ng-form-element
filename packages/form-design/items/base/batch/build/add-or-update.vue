@@ -17,6 +17,7 @@
       ref="dataForm" 
       :model="dataForm"  
       size="mini"
+      :key="dataForm._id"
     > 
     <template
       v-for="item  in formTemplate.list"  
