@@ -17,7 +17,7 @@
           </el-row>
 
         </div> 
-         <el-button  slot="reference" type="text" size="medium"   >示例</el-button>
+         <el-button style="margin: 0px 10px;" icon="el-icon-document" slot="reference" type="text" size="medium"   >示例</el-button>
       </el-popover>
     </template>
     
@@ -89,7 +89,7 @@ export default {
         }
         
       })
-   
+      console.log('formTemplate' , formTemplate)
       if(formTemplate)
         this.$refs.formDesign.initModel(formTemplate)
     }
