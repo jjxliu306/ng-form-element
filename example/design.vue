@@ -74,22 +74,18 @@ export default {
   },
   methods: {
     initDemo(row) {
-      const path =  row.path 
-      console.log('path' , path) 
+      const path =  row.path  
 
       const files = require.context('./data', true, /\.json$/)
  
       let formTemplate = undefined
-      files.keys().forEach((key) => {
-        console.log('key' , key , key.indexOf(path))
-        if(key.indexOf(path) >= 0) {
-           console.log('files(key).default' , files(key))
+      files.keys().forEach((key) => { 
+        if(key.indexOf(path) >= 0) { 
           formTemplate = files(key);
           return
         }
         
-      })
-      console.log('formTemplate' , formTemplate)
+      }) 
       if(formTemplate)
         this.$refs.formDesign.initModel(formTemplate)
     }

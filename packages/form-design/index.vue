@@ -30,10 +30,7 @@
             :formTemplate="formTemplate"
             @handleSelectItem="handleSelectItem"
             :selectItem="selectItem"
-          >
-            <template slot="controlButton">
-              <slot name="controlButton"></slot>
-            </template>
+          > 
           </ContainerPanel>
         </el-main>
         <el-aside width="260px" class="properties-panel">
@@ -217,9 +214,9 @@ export default {
     },
     // 返回编辑好的模板
     getModel() {
-      const model = cloneDeep(this.formTemplate);
+      const model = cloneDeep(this.formTemplate)
 
-      return model;
+      return model
     },
     // 初始化模板
     initModel(formTemplate) {

@@ -1,6 +1,6 @@
 {
   "name": "ng-form-element",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.21.2",
     "core-js": "^3.6.5",
-    "default-passive-events": "^1.0.10",
+    "default-passive-events": "^1.0.10", 
     "lodash": "^4.17.21",
     "object-path": "^0.11.5",
     "vue": "^2.6.12",

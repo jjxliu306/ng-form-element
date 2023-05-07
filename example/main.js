@@ -1,10 +1,7 @@
  
 import Vue from 'vue'
 import App from './App'  
- 
-
-// 加入路由
-//import router from "./router";
+   
  
  // 导入组件库
 import FormDesign from '../packages/index.js' 
