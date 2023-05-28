@@ -166,7 +166,7 @@ export default {
 	    	this.generateKey(list,index) 
 	    },
 	    handleEnd(list,index){ 
-	    	console.log('end ' , cloneDeep(list[index]))
+	    	 
 	    	this.generateKey(list,index) 
 	    }
 	}

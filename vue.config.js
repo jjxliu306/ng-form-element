@@ -21,28 +21,22 @@ module.exports = {
       }, 
     }
   },
-  configureWebpack:   {
+  configureWebpack:  config => {
     // 打包忽略文件
-    // if(process.env.NODE_ENV === 'production'){
-    //   config.externals = {
-    //     "element-ui": "ELEMENT",
-    //     // vue: "Vue",
-    //     "vue-router": "VueRouter",
-    //     vuex: "Vuex" 
-    //   }
-    // }else {
-    //   config.externals = {
-    //     "element-ui": "ELEMENT",
-    //     vue: "Vue",
-    //     "vue-router": "VueRouter",
-    //     vuex: "Vuex" 
-    //   }
-    // }
-     externals: {
-      "element-ui": "ELEMENT",
-       vue: "Vue",
-      "vue-router": "VueRouter",
-      vuex: "Vuex" 
+    if(process.env.NODE_ENV === 'production'){
+      config.externals = {
+        "element-ui": "ELEMENT",
+        // vue: "Vue",
+        "vue-router": "VueRouter",
+        vuex: "Vuex" 
+      }
+    }else {
+      config.externals = {
+        "element-ui": "ELEMENT",
+        vue: "Vue",
+        "vue-router": "VueRouter",
+        vuex: "Vuex" 
+      }
     }
     
   }, 

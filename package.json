@@ -49,11 +49,11 @@
       "no-tabs": "off",
       "no-irregular-whitespace": "off"
     }
-  },
+  }, 
   "browserslist": [
-    "> 1%",
+    "> 0.5%",
     "last 2 versions",
-    "not dead"
+    "not ie <= 8"
   ],
   "private": false,
   "description": "ng-form-element",

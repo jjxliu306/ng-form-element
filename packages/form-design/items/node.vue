@@ -140,8 +140,7 @@ export default {
           // 解决 初始化加载数据 被计算数据监听造成数据变化
           //const ify = JSON.stringify(val)
           //if (this.copyLstenModel != ify) {
-          //  this.copyLstenModel = ify
-            console.log('this.record.options.listenModelScript' , this.record.options.listenModelScript , this.models)
+          //  this.copyLstenModel = ify 
             dynamicVoidFun(this.record.options.listenModelScript , this.models)
             
           //}
