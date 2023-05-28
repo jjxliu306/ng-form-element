@@ -1,6 +1,6 @@
 {
   "name": "ng-form-element",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -64,14 +64,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitee.com/jjxliu306/vue-form-design.git"
+    "url": "git+https://gitee.com/jjxliu306/ng-form-element.git"
   },
   "author": "liuyufeng",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitee.com/jjxliu306/vue-form-design/issues"
+    "url": "https://gitee.com/jjxliu306/ng-form-element/issues"
   },
-  "homepage": "https://gitee.com/jjxliu306/vue-form-design#readme",
+  "homepage": "https://gitee.com/jjxliu306/ng-form-element#readme",
   "keywords": [
     "ng-form",
     "ng-form-element",
