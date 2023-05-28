@@ -43,12 +43,12 @@
 <script> 
 import TableBuild from './build/index.vue'
 import cloneDeep from 'lodash/cloneDeep'
-
+import draggable from "vuedraggable"
 import mixin from '../../mixin.js'
 export default {
 	mixins: [mixin] , 
   components: {
-    TableBuild
+    TableBuild,draggable
   },
   created() {
     // 赋予一个空的默认值
