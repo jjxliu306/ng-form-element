@@ -4,6 +4,7 @@
 		:placeholder="record.options.placeholder"
 		:clearable="record.options.clearable"
 		:disabled="recordDisabled"
+		:type="record.options.type || 'text'"
 		:style="`width:${record.options.width}`"
 		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
 		v-model="models[record.model]" 
