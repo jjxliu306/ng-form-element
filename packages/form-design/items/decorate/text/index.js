@@ -68,6 +68,12 @@ obj.options = {
                     span: 24,
                 },
                 {
+                  label: '字体大小',
+                  prop: 'fontSize',
+                  type: 'number', 
+                  span: 24,
+                } , 
+                {
                   label: '必选标记',
                   prop: 'showRequiredMark',
                   type: 'switch',
@@ -94,7 +100,14 @@ obj.options = {
                   type: 'switch',
                   default: false,
                   span: 24,
-                }  
+                } ,
+                 {
+                  label: '是否加粗',
+                  prop: 'bold',
+                  type: 'switch',
+                  default: false,
+                  span: 24,
+                },
 
             ]
         }

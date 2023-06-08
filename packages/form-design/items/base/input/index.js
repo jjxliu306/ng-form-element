@@ -92,8 +92,7 @@ obj.options = {
                     label: '输入类型', 
                     prop: 'type',
                     span: 24,
-                    type: 'select', 
-                    show: false,
+                    type: 'select',
                     default: 'text',
                     dicData: ['text','date' , 'datetime-local' , 'email','month','number' , 'password' , 'tel' , 'time' , 'url' , 'week'].map(t=> {
                         return {label: t , value: t}

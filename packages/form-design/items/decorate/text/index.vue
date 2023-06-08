@@ -2,6 +2,7 @@
 	<div class="ng-form-label"  :style="{ textAlign: record.options.textAlign }" >  
       <label
         :class="{ 'is-required': showRequiredMark }"
+        :style="textStyle"
         v-text="record.label"
       ></label>
   </div>
@@ -12,6 +13,18 @@ import mixin from '../../mixin.js'
 export default {
 	mixins: [mixin],
 	computed: {
+		textStyle() {
+			const style_ = {}
+
+			if(this.record.options.bold) {
+				style_.fontWeight = 'bold'
+			}
+			if(this.record.options.fontSize && this.record.options.fontSize > 0) {
+				style_.fontSize = this.record.options.fontSize + 'px'
+			}
+			 
+			return style_
+		},
 		showRequiredMark(){
 	      //##############
 	      if(!this.record.options.showRequiredMark) return false
