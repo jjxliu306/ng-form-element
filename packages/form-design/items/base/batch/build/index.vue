@@ -10,8 +10,7 @@
         record.options.customClass ? record.options.customClass : '' 
       ]" 
       :size="config.size"
-      :style="record.options.customStyle"
-      :rowKey="record => record.key" 
+      :style="record.options.customStyle" 
       :data="models[record.model]" 
       :border="record.options.showBorder"
       :scroll="{

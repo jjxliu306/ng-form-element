@@ -77,38 +77,38 @@ export default {
 	 		// 复制一遍
 	 		const clone = cloneDeep(list[evt.newIndex])
 	 		this.$set(list , evt.newIndex , clone)
-	    // 拖拽结束,自动选择拖拽的控件项
-	    //console.log('111' , cloneDeep(list[evt.newIndex]))
-	    this.handleSelectItem(list[evt.newIndex])
-	  },
-	  handleSelectItem(record) {
-	    this.$emit('handleSelectItem' , record)
-	  },
-	  handleCopy(item){ 
-	  	const nitem = cloneDeep(item)
-	  	const key = item.type + "_" + new Date().getTime() 
-	  	nitem.key = key
-	  	nitem.model = key
+	    	// 拖拽结束,自动选择拖拽的控件项
+	    	//console.log('111' , cloneDeep(list[evt.newIndex]))
+	    	this.handleSelectItem(list[evt.newIndex])
+	  	},
+	  	handleSelectItem(record) {
+	    	this.$emit('handleSelectItem' , record)
+	  	},
+	  	handleCopy(item){ 
+	  		const nitem = cloneDeep(item)
+	  		const key = item.type + "_" + new Date().getTime() 
+	  		nitem.key = key
+	  		nitem.model = key
 
-	  	// 找到index 插入
-	  	const oindex = this.formTemplate.list.findIndex(t=>t.key == item.key)
+	  		// 找到index 插入
+	  		const oindex = this.formTemplate.list.findIndex(t=>t.key == item.key)
 	   
-	  	if(oindex >= 0) {
-	  		// insert 
-	  		this.formTemplate.list.splice(oindex + 1 , 0, nitem)
+	  		if(oindex >= 0) {
+	  			// insert 
+	  			this.formTemplate.list.splice(oindex + 1 , 0, nitem)
 
+	  		}
+
+	  	},
+	 	 handleDetele(item) {
+	  		const oindex = this.formTemplate.list.findIndex(t=>t.key == item.key)
+	  		if(oindex >= 0) {
+	  			this.formTemplate.list.splice(oindex , 1);
+
+	  			// 当前selectItem重置
+	  			this.handleSelectItem(undefined)
+	  		}
 	  	}
-
-	  },
-	  handleDetele(item) {
-	  	const oindex = this.formTemplate.list.findIndex(t=>t.key == item.key)
-	  	if(oindex >= 0) {
-	  		this.formTemplate.list.splice(oindex , 1);
-
-	  		// 当前selectItem重置
-	  		this.handleSelectItem(undefined)
-	  	}
-	  }
 	}
 }
 </script>

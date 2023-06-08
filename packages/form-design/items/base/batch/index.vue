@@ -20,7 +20,7 @@
         :force-fallback="true"
         v-model="record.list"
         @add="dragEnd($event, record.list)" 
-        >
+        > 
           <ng-form-node
             v-for="item in record.list"
             :key="item.key"
@@ -31,6 +31,7 @@
             @handleCopy="handleCopy(item)"
             @handleDetele="handleDetele(item)"
             /> 
+         
       </draggable> 
     </el-row>    
   </template> 
@@ -57,7 +58,9 @@ export default {
   methods: {
     dragEnd(evt, list) {   
       // 拖拽结束,自动选择拖拽的控件项
-      this.handleSelectItem(list[evt.newIndex])
+      const clone = cloneDeep(list[evt.newIndex])
+      this.$set(list , evt.newIndex , clone)
+      this.handleSelectItem(clone)
     },
     handleCopy(item){ 
       const nitem = cloneDeep(item)
