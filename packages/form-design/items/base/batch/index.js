@@ -101,6 +101,13 @@ obj.options = {
                     span: 24,
                 },
                 {
+                    label: '空内容提示', 
+                    prop: 'noDataText',  
+                    type: 'textarea',
+                    default: '暂无数据',
+                    span: 24,
+                },
+                {
                     label: '样式class', 
                     prop: 'customClass',  
                     type: 'textarea',

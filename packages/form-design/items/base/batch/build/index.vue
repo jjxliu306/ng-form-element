@@ -12,6 +12,7 @@
       :size="config.size"
       :style="record.options.customStyle" 
       :data="models[record.model]" 
+      :empty-text="record.options.noDataText || '暂无数据'"
       :border="record.options.showBorder"
       :scroll="{
         x:
