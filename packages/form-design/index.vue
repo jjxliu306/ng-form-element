@@ -69,7 +69,7 @@ export default {
   },
   data() {
     return {
-      selectItem: undefined,
+      selectItem: {},
     };
   },
   props: {

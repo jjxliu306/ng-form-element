@@ -91,7 +91,11 @@ export default {
 	methods: {
 		// 设置数组类默认值
 		updateArrayDefaultValue() {
-			if(this.models && !Object.prototype.hasOwnProperty.call(this.models,this.record.model)) {
+			if(this.models && 
+				(!Object.prototype.hasOwnProperty.call(this.models,this.record.model)
+					// 当前赋值类型不是数组
+					|| ! (this.models[this.record.model] instanceof Array)
+				)) {
 				const defaultValue = this.record.options.defaultValue
 				if(defaultValue != null && defaultValue != undefined && defaultValue instanceof Array ) {
 					this.$set(this.models , this.record.model , defaultValue)

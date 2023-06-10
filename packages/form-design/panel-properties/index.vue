@@ -28,8 +28,7 @@ export default {
 		FormProperties , ItemProperties
 	},
 	props: { 
-		selectItem: {
-			type: Object
+		selectItem: { 
 		}
 	},
 	data() {
@@ -46,7 +45,7 @@ export default {
 	},
 	computed: {
 		selectItemKey() {
-			if(this.selectItem){
+			if(this.selectItem && this.selectItem.key){
 				return this.selectItem.key
 			}
 			return null
