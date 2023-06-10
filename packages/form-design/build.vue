@@ -34,7 +34,7 @@
 import Node from './panel-container/node.vue'
  
 import cloneDeep from 'lodash/cloneDeep'
-
+ 
 export default {
 	name: 'ng-form-build' ,
 	components:{
@@ -83,13 +83,22 @@ export default {
 			if(this.formTemplate) return this.formTemplate.config 
 			return {}
 		},
-		// 配置的数据字典
-	    dicts() {
-	      if(this.config && this.config.dict && this.config.dict.length > 0) {
-	        return this.config.dict
-	      }
-	      return null
-	    },
+		// // 配置的数据字典
+	 //    dicts() {
+	 //       	let dict_ = undefined 
+	 //      	if (this.config && this.config.dict && this.config.dict.length > 0) {
+	 //        	dict_ = this.config.dict;
+	 //      	} 
+
+	 //      	const ddata = Vue.observable({
+	 //        	data: dict_, 
+	 //        	get info() {
+	 //          		return this.data;
+	 //        	}
+	 //      	})
+
+	 //      	return ddata
+	 //    },
 	    // 配置中的http配置
 	    httpConfig() {
 	      if(this.config && this.config.httpConfig ) {
@@ -109,8 +118,9 @@ export default {
     	return {
      		customC: this.customComponents ,
      		configC: this.templateConfig,
-     		dictsC: this.dicts,
-     		httpConfigC: this.httpConfig
+     		//dictsC: this.dicts,
+     		httpConfigC: this.httpConfig,
+     		 ngConfig: this.config
     	}
   	},
 	methods: {

@@ -145,12 +145,12 @@ export default {
 		}
 	},
 	
-	inject: { 
-	    // 表单全局config配置
-	    httpConfig: {
-	        from: 'httpConfigC' 
-	    }
-	},
+	// inject: { 
+	//     // 表单全局config配置
+	//     httpConfig: {
+	//         from: 'httpConfigC' 
+	//     }
+	// },
 	computed: {
 		// 需要携带的头数据
 		uploadHeader() {
@@ -164,10 +164,11 @@ export default {
 			} 
 
 			// 2023-03-04 lyf强制性走一次httpConfig
-			if(this.httpConfig) {
+			const nghttpConfig = window.nghttpConfig
+			if(nghttpConfig) {
 				const config = {headers: {}}
 
-				this.httpConfig(config)
+				nghttpConfig(config)
 
 				hs = {...hs , ...config.headers}
 			}

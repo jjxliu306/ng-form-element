@@ -34,6 +34,7 @@
           </ContainerPanel>
         </el-main>
         <el-aside width="260px" class="properties-panel">
+        
           <PropertiesPanel :selectItem="selectItem">
             <template slot="custom-properties">
               <slot name="custom-properties" :selectItem="selectItem"></slot>
@@ -58,7 +59,7 @@ import ContainerPanel from "./panel-container/index.vue";
 import PropertiesPanel from "./panel-properties/index.vue";
 
 import cloneDeep from "lodash/cloneDeep";
-
+ 
 export default {
   name: "ng-form-design",
   components: {
@@ -158,12 +159,22 @@ export default {
       return {};
     },
     // 配置的数据字典
-    dicts() {
-      if (this.config && this.config.dict && this.config.dict.length > 0) {
-        return this.config.dict;
-      }
-      return null;
-    },
+    // dicts() { 
+    
+    //   let dict_ = undefined 
+    //   if (this.config && this.config.dict && this.config.dict.length > 0) {
+    //     dict_ = this.config.dict;
+    //   } 
+
+    //   const ddata = Vue.observable({
+    //     data: dict_, 
+    //     get info() {
+    //       return this.data;
+    //     }
+    //   })
+
+    //   return ddata
+    // },
     // 配置中的http配置
     httpConfig() {
       if (this.config && this.config.httpConfig) {
@@ -188,8 +199,9 @@ export default {
     return {
       customC: this.customComponents,
       configC: this.templateConfig,
-      dictsC: this.dicts,
+      //dictsC: this.dicts,
       httpConfigC: this.httpConfig,
+      ngConfig: this.config
     };
   },
   created() {

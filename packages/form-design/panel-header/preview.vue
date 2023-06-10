@@ -10,7 +10,7 @@
     width="800px"
   >  
     <div class="item-main">    
-      <FormBuild :key="key" :preview="preview" :formTemplate="formTemplate" :models="models" :config="{dict: dicts}" ref="formBuild" :customComponents="customComponents" /> 
+      <FormBuild :key="key" :preview="preview" :formTemplate="formTemplate" :models="models" :config="ngConfig" ref="formBuild" :customComponents="customComponents" /> 
     </div> 
     <span slot="footer" class="dialog-footer">
       
@@ -70,9 +70,9 @@ export default {
       from: 'customC',
       default: ()=>[]
     }, 
-    dicts: {
-      from: 'dictsC',
-      default: ()=> []
+    ngConfig: {
+      from: 'ngConfig',
+      default: ()=> {return {}}
     },
   },
   methods: {

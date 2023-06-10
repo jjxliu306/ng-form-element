@@ -56,14 +56,7 @@ export default {
         },
         // 新增数据字典配置
         dict: [
-          {type: 'sex' , label: '男' , value: '1'},
-          {type: 'sex' , label: '女' , value: '2'},
-          {type: 'yes_or_no' , label: '是' , value: '1'},
-          {type: 'yes_or_no' , label: '否' , value: '2'},
-          {type: 'nation' , label: '汉族' , value: '1'},
-          {type: 'nation' , label: '蒙古族' , value: '2'},
-          {type: 'nation' , label: '藏族' , value: '3'},
-          {type: 'nation' , label: '壮族' , value: '4'}
+         
         ]
       },
     }
@@ -71,6 +64,21 @@ export default {
 
   created() {
    // this.formTemplate = require('./data/basic.json')
+
+   this.$nextTick(()=> {
+    const dicts = [
+      {type: 'sex' , label: '男' , value: '1'},
+          {type: 'sex' , label: '女' , value: '2'},
+          {type: 'yes_or_no' , label: '是' , value: '1'},
+          {type: 'yes_or_no' , label: '否' , value: '2'},
+          {type: 'nation' , label: '汉族' , value: '1'},
+          {type: 'nation' , label: '蒙古族' , value: '2'},
+          {type: 'nation' , label: '藏族' , value: '3'},
+          {type: 'nation' , label: '壮族' , value: '4'}
+      ]
+
+      this.formConfig.dict = dicts
+   })
   },
   methods: {
     initDemo(row) {
