@@ -132,13 +132,14 @@ export default {
 		}
 	}, 
 	methods: {
+		 
 		// 组件初始化
 		itemInitArray(list = []) {
 			const nlist = cloneDeep(list)
 	    	if(nlist && nlist.length > 0) {
-	    		nlist.forEach(t=>{ 
+	    		nlist.forEach((t , idx)=>{ 
 	        		if(!t.key) { 
-	        		 	const key = t.type + "_" + new Date().getTime()
+	        		 	const key = t.type + "_" + new Date().getTime() + '' + idx
 	        		 	t['key'] = key 
 	        		 	t['model'] = key
 
