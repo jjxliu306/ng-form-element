@@ -95,8 +95,12 @@
 <script>
 import cloneDeep from 'lodash/cloneDeep'
 import mixin from '../../mixin.js'
+import draggable from "vuedraggable"
 export default {
 	mixins: [mixin] ,
+  components: {
+    draggable
+  },
 	data() {
 		return { 
       showRightMenu: false,

@@ -88,12 +88,13 @@
 //import Node from '../../../panel-container/node.vue'
 //import Item from '../../index.vue'
 import cloneDeep from 'lodash/cloneDeep'
-
+import draggable from "vuedraggable"
 import mixin from '../../mixin.js'
 export default {
 	mixins: [mixin] ,
   components: {
   //  Node , Item
+    draggable
   },
   data() {
     return {
