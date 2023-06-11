@@ -53,6 +53,47 @@ export default {
 	}
 }
 </script>
+<style>
+.form-item-base-number {
+  vertical-align: middle;
+  display: inline-flex;
+  position: relative;
+  width: 100%;
+}
+
+.form-item-base-number .el-input-number__append {
+  float: left;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #F5F7FA;
+  color: #909399;
+  vertical-align: middle;
+  display: table-cell;
+  position: relative;
+  border: 1px solid #DCDFE6;
+  border-radius: 4px;
+  white-space: nowrap;
+  border-left: 0;
+  border-right: 0;
+}
+
+.form-item-base-number .el-input-number__append .el-input__inner {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-item-base-number .el-input-number-group__append {
+  border-left: 0;
+  text-align: center;
+  display: inline-table;
+}
+
+.base-item-span {
+  white-space: pre-wrap;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .form-item-base-number {
   vertical-align: middle;
@@ -91,4 +132,4 @@ export default {
 .base-item-span {
 	white-space: pre-wrap;
 }
-</style>
+</style> -->

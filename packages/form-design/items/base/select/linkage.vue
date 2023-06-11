@@ -72,7 +72,7 @@ export default {
       if(!this.value) {
         this.value = []
       }
-      let addData = [
+     /* let addData = [
         ...this.value,
         {
           vtype: 1,
@@ -82,7 +82,18 @@ export default {
           queryKey: "",
           queryValue: ""
         }
-      ]; 
+      ]; */
+      const addData = this.value.concat([
+        {
+          vtype: 1,
+          //validator: 'validatorFiled',
+          model: "",
+          script: "",
+          queryKey: "",
+          queryValue: ""
+        }
+      ])
+        
       this.$emit("input", addData);
     },
     handleDelete(deleteIndex) {

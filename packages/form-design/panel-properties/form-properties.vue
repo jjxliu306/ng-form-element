@@ -86,10 +86,16 @@ export default {
   }
 };
 </script> 
-<style lang="scss">
+<style>
+.form-properties .properties-body {
+  padding: 10px;
+}
+
+</style>
+<!-- <style lang="scss">
 .form-properties {
     .properties-body {
         padding: 10px;
     }
 }
-</style>
+</style> -->

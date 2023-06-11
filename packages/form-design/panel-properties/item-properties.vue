@@ -277,7 +277,7 @@ export default {
 	      if (configs && configs[currentType]) {
 	        const tformOptions = cloneDeep(configs[currentType].options)
 	      	
-	        let config_ = { ...tformOptions.config }
+	        let config_ = tformOptions.config //{ ...tformOptions.config }
 
 	        const groups = tformOptions.group
 	        if(!groups || groups.length == 0) {
@@ -395,7 +395,7 @@ export default {
 	      	if (configs && configs[currentType]) {
 	        	const tformOptions = cloneDeep(configs[currentType].options)
 	        	
-	        	let config_ = { ...tformOptions.config }
+	        	let config_ = tformOptions.config //{ ...tformOptions.config }
 
 	        	let columns = tformOptions.columns
 	        	const this_ = this 
@@ -432,6 +432,30 @@ export default {
 	}
 }
 </script>
+<style>
+.item-properties .no-data-text {
+  text-align: center;
+  font-size: 13px;
+}
+
+.item-properties .common-form {
+  padding: 10px;
+}
+
+.item-properties .ng-form-properties-collapse .el-collapse-item__header {
+  padding-left: 10px;
+}
+
+.item-properties .linkage-item {
+  border-bottom: 1px solid #EBEEF5;
+}
+
+.item-properties .linkage-item .linkage-form {
+  padding: 10px;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .item-properties {
 	.no-data-text {
@@ -460,4 +484,4 @@ export default {
 
 }
 
-</style>
+</style> -->

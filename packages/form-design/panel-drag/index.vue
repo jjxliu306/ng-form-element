@@ -157,11 +157,19 @@ export default {
 			 
 	      // 生成key值 
 	      const key = list[index].type + "_" + new Date().getTime();
-	      this.$set(list, index, {
+
+	      const nData = cloneDeep(list[index])
+	      nData.key = key 
+	      nData.model = key 
+	      
+	      nData
+	      this.$set(list, index, nData)
+
+	     /* this.$set(list, index, {
 	        ...list[index],
 	        key,
 	        model: key
-	      })
+	      })*/
 	    },
 	    handleStart(list,index) {
 	    	this.generateKey(list,index) 
@@ -174,6 +182,22 @@ export default {
 }
 
 </script> 
+<style>
+.drag-panel {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.drag-panel .title {
+  width: 100%;
+  /*text-align: center;*/
+  padding-left: 20px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .drag-panel {
 	height: 100%;
@@ -188,4 +212,4 @@ export default {
     }
 }
 
-</style>
+</style> -->

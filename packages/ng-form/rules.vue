@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     handleAddRules() {
-      let addData = [
+      /*let addData = [
         ...this.value,
         {
           vtype: 1,
@@ -75,7 +75,18 @@ export default {
           script: "",
           message: ""
         }
-      ];
+      ];*/
+
+      const addData = this.value.concat([
+        { 
+          vtype: 1,
+          //validator: 'validatorFiled',
+          pattern: "",
+          script: "",
+          message: ""
+        }
+      ])
+
       this.$emit("input", addData);
     },
     handleDelete(deleteIndex) {
@@ -88,6 +99,36 @@ export default {
   }
 }
 </script> 
+<style>
+.ng-form-rules {
+  padding-left: 10px;
+}
+
+.ng-form-rules .option-change-box {
+  height: 38px;
+  padding-bottom: 6px;
+}
+
+.ng-form-rules .option-change-box .option-delete-box {
+  margin-top: 3px;
+  background: #ffe9e9;
+  color: #f22;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.ng-form-rules .option-change-box .option-delete-box:hover {
+  background: #f22;
+  color: #fff;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .ng-form-rules {
 	padding-left: 10px;
@@ -116,4 +157,4 @@ export default {
 	    }
   	} 
 }
-</style>
+</style> -->

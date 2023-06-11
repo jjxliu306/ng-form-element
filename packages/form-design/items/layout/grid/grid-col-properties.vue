@@ -34,13 +34,19 @@ export default {
 	methods: {
 		handleAddCol() {
 	      // 添加栅格Col
-	      let addData = [
-	        ...this.value,
-	        {
-	          span: 12,
+	      // let addData = [
+	      //   ...this.value,
+	      //   {
+	      //     span: 12,
+	      //     list: []
+	      //   }
+	      // ];
+	      const addData = this.value.concat([
+	        { 
+	        	span: 12,
 	          list: []
 	        }
-	      ];
+	      ])
 	      this.$emit("input", addData);
 	    },
 		handleDelete(deleteIndex) {
@@ -53,6 +59,23 @@ export default {
 	}
 }
 </script>
+<style>
+.layout-grid-col-pro .delete {
+  margin-left: 10px;
+  background: #ffe9e9;
+  color: #f22;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .layout-grid-col-pro {
 	.delete {
@@ -69,4 +92,4 @@ export default {
 	    cursor: pointer;
   	}
 }
-</style>
+</style> -->

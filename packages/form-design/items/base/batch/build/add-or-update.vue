@@ -226,9 +226,7 @@
               else 
                 this.dataForm[item.model] = null
             }); 
- 
-            //this.dataForm = {_id:null,seq: 0 , ...d}
-
+  
             this.$nextTick(() => {
               this.$refs['dataForm'] && this.$refs['dataForm'].resetFields()
          

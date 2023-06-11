@@ -127,8 +127,38 @@ body{
     font-feature-settings: 'tnum';
  
 }
-</style>
 
+.example-col {
+  font-size: 12px;
+  display: block;
+  line-height: 26px;
+  position: relative;
+  float: left;
+  left: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 2px;
+  color: #333;
+  border: 1px solid #F4F6FC;
+  text-align: center;
+}
+
+.example-col .example-span {
+  cursor: pointer;
+  background: #f9f9f9;
+  border-radius: 4px;
+  border: 1px solid #ebebeb;
+  height: 45px;
+  position: relative;
+  width: 100%;
+  transition: 0.15s ease-in-out;
+  transition-property: transform;
+  will-change: transform;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .example-col {
     font-size: 12px;
@@ -160,4 +190,4 @@ body{
     will-change: transform;
   }
 }
-</style>
+</style> -->

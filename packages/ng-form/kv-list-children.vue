@@ -70,13 +70,19 @@ export default {
   methods: {
   	handleAdd() {
       // 添加
-      let addData = [
-        ...this.value,
-        {
-          value: "",
+      const addData = this.value.concat([
+        { value: "",
           label: ""
         }
-      ];
+      ])
+
+      // let addData = [
+      //   ...this.value,
+      //   {
+      //     value: "",
+      //     label: ""
+      //   }
+      // ];
       this.$emit("input", addData);
     },
     append(data) {
@@ -96,6 +102,40 @@ export default {
   }
 };
 </script> 
+<style>
+.ng-form-kvlist {
+  padding-left: 10px;
+}
+
+.ng-form-kvlist .el-input__inner {
+  padding: 0px;
+}
+
+.ng-form-kvlist .option-change-box {
+  height: 38px;
+  padding-bottom: 6px;
+}
+
+.ng-form-kvlist .option-change-box .option-delete-box {
+  margin-top: 3px;
+  background: #ffe9e9;
+  color: #f22;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.ng-form-kvlist .option-change-box .option-delete-box:hover {
+  background: #f22;
+  color: #fff;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .ng-form-kvlist {
 	padding-left: 10px;
@@ -128,4 +168,4 @@ export default {
 	    }
   	} 
 }
-</style>
+</style> -->

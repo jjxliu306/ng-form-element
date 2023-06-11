@@ -60,7 +60,17 @@ export default {
 	}
 }
 </script>
-<style lang="scss">
+<style>
+.design-properties div, .design-properties label, .design-properties span {
+  font-size: 13px;
+}
+
+.design-properties .tab-pane {
+  padding: 0px 15px 0px 0px;
+}
+
+</style>
+<!-- <style lang="scss">
 .design-properties {
  
 
@@ -73,4 +83,4 @@ export default {
 	}
 
 }
-</style>
+</style> -->

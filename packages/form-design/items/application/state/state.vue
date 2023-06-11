@@ -306,6 +306,13 @@ export default {
 	},
 }
 </script>
+<style>
+.ng-application-state .width-select .el-input__inner {
+  text-align: right;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .ng-application-state {
 	.width-select {
@@ -314,4 +321,4 @@ export default {
 		}
 	}
 }
-</style>
+</style> -->

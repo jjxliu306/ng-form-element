@@ -112,6 +112,47 @@ export default {
 	}
 }
 </script>
+<style>
+.form-panel {
+  height: 100%;
+  min-height: 500px;
+}
+
+.form-panel .no-data-text {
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.form-panel .row {
+  height: 100%;
+  min-height: 500px;
+}
+
+.form-panel .ng-form {
+  height: 100%;
+  min-height: 500px;
+}
+
+.form-panel .ng-form .draggable-box {
+  height: 100%;
+  overflow: auto;
+}
+
+.form-panel .ng-form .items-main {
+  height: 100%;
+  min-height: 500px;
+  padding: 0px 10px;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .form-panel {
 	height: 100%; 
@@ -149,4 +190,4 @@ export default {
 
  
 }
-</style>
+</style> -->

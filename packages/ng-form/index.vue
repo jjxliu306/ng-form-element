@@ -222,6 +222,26 @@ export default {
   }
 }
 </script>
+<style>
+.hd-form .el-radio {
+  margin-right: 10px;
+}
+
+.hd-form .el-radio .el-radio__label {
+  padding-left: 5px;
+}
+
+.hd-form .hd-form-divider {
+  font-size: 13px;
+}
+
+.hd-form .hd-form-divider .el-divider__text {
+  font-size: 13px;
+}
+
+
+</style>
+<!-- 
 <style lang="scss">
 .hd-form {
   .el-radio {
@@ -240,4 +260,4 @@ export default {
     }
   }
 }
-</style>
+</style> -->

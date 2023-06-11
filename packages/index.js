@@ -60,9 +60,27 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
  
+export {
+  NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode
+}
+ 
+// export default {
+//   // 导出的对象必须具有 install，才能被 Vue.use() 方法安装
+//   install,
+//   // 以下是具体的组件列表
+//   ...components
+// }
+
+
+
+// function install (app:any) {
+
+//   app.component('ng-form-design', NgFormDesign)
+//   app.component('ng-form-build', NgFormBuild)
+// }
+
+
+
 export default {
-  // 导出的对象必须具有 install，才能被 Vue.use() 方法安装
-  install,
-  // 以下是具体的组件列表
-  ...components
+  install
 }

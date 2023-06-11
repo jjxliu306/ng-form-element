@@ -170,7 +170,10 @@ export default {
 
 				nghttpConfig(config)
 
-				hs = {...hs , ...config.headers}
+				//hs = {...hs , ...config.headers}
+				
+				hs = Object.assign(hs, config.headers);
+				 
 			}
 			return hs
 		},
@@ -239,13 +242,20 @@ export default {
 				const f_ = {name: file.name , size: file.size , url: fileUrl}
 
 			 
-				const addData = [
-			        ...this.value,
-			        {
-			         name: file.name , size: file.size , url: fileUrl
-			        }
-			    ]; 
-			    this.$emit("input", addData);
+				// const addData = [
+			 //        ...this.value,
+			 //        {
+			 //         name: file.name , size: file.size , url: fileUrl
+			 //        }
+			 //    ]; 
+
+			  const addData = this.value.concat([
+	        { 
+	        	 name: file.name , size: file.size , url: fileUrl
+	        }
+	      ])
+			  
+			  this.$emit("input", addData);
 			}
 
 			

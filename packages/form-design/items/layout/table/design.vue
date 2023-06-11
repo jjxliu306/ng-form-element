@@ -212,7 +212,8 @@ export default {
             cols.push({colspan:1 , rowspan:1,list:[]})
           }
 
-          this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0 ,...cols )
+          this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0 , cloneDeep(cols) )
+          /*this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0 ,...cols )*/
 
         } 
         if(rowspan > 1) {
@@ -220,8 +221,8 @@ export default {
           cols.push({colspan:1 , rowspan:1,list:[]})  
           
           for(var j = this.trIndex + 1 ; j < this.trIndex + rowspan ; j++){
-             
-            this.record.trs[j].tds.splice(this.tdIndex + 1, 0 ,...cols )
+            this.record.trs[j].tds.splice(this.tdIndex + 1, 0 , cloneDeep(cols) )
+           /* this.record.trs[j].tds.splice(this.tdIndex + 1, 0 ,...cols )*/
           }
         
         }
@@ -465,6 +466,18 @@ export default {
 	}
 }
 </script>
+<style>
+.table-box .td-draggable, .table-box .td-row {
+  min-height: 65px;
+  min-width: 100px;
+}
+
+.table-box .td-draggable {
+  border: 1px solid #e8e8e8 !important;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .table-box {
 	.td-draggable , .td-row {
@@ -479,3 +492,4 @@ export default {
 }
 
 </style>
+ -->

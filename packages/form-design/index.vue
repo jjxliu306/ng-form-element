@@ -244,7 +244,47 @@ export default {
   },
 };
 </script>
+<style>
+.form-design {
+  height: 100%;
+  background: white;
+  text-align: left;
+}
 
+.form-design .header {
+  box-shadow: 1px 0px 6px 3px rgba(48, 65, 86, 0.35);
+}
+
+.form-design .form-main {
+  padding: 0px;
+  height: 100%;
+  min-height: 500px;
+}
+
+.form-design .form-main .ng-main-container {
+  height: 100%;
+  min-height: 500px;
+}
+
+.form-design .item-panel {
+  height: 100%;
+  overflow-y: hidden;
+  box-shadow: 1px 0px 6px 3px rgb(48 65 86 / 35%);
+}
+
+.form-design .center-panel {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.form-design .properties-panel {
+  height: 100%;
+  box-shadow: -3px 0 6px rgb(48 65 86 / 35%);
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .form-design {
   height: 100%;
@@ -284,3 +324,4 @@ export default {
   }
 }
 </style>
+ -->

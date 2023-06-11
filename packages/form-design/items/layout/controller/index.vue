@@ -244,6 +244,33 @@ export default {
   }
 }
 </script>
+<style>
+.ng-layout-controller {
+  z-index: 0;
+}
+
+.ng-layout-controller .controller-row {
+  margin: 0px !important;
+}
+
+.ng-layout-controller .dragpanel {
+  min-height: 300px;
+  margin: 0px;
+}
+
+.ng-layout-controller .draggable-box, .ng-layout-controller .list-main {
+  min-height: 300px;
+}
+
+.controller-bordered {
+  border-radius: 4px;
+  border: 1px solid #DCDFE6;
+  box-sizing: border-box;
+  color: #606266;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .ng-layout-controller {
   z-index: 0;
@@ -269,4 +296,4 @@ export default {
   color: #606266;
     
 }
-</style>
+</style> -->

@@ -225,9 +225,10 @@ export default {
 	      request({
 	        url: this.remoteUrl,
 	        method: 'get',
-	        params: {
+	        params: this.remoteFilter
+	       /* {
 	          ...this.remoteFilter
-	        }
+	        }*/
 	      }).then((data) => {
 	        if (data) { 
 	          // 获取list 根据dataPath 

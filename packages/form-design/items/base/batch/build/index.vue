@@ -81,6 +81,7 @@
 //import TableFormItem from "./table-form-item";
 import TableItem from './table-item'
 import AddOrUpdate from './add-or-update'
+import cloneDeep from 'lodash/cloneDeep' 
 export default {
   name: "ng-form-base-batch", 
   components: {
@@ -186,7 +187,7 @@ export default {
     },
     // 行复制 2021-02-17 lyf
     copyDomain(data , index ) {
-      let copyData = {...data}
+      let copyData = cloneDeep(data) // {...data}
       copyData._id = null
       if(this.record.options.addType == 'dialog') {
         this.addOrUpdateVisible = true 

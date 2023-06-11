@@ -35,10 +35,14 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style>
 .ng-batch-properties {
-  padding: 10px;
-
-  
+  padding: 10px; 
 }
 </style>
+<!-- 
+<style lang="scss">
+.ng-batch-properties {
+  padding: 10px; 
+}
+</style> -->

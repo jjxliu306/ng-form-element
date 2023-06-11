@@ -90,6 +90,29 @@ export default {
   }
 }
 </script>
+<style>
+.ng-layout-row {
+  z-index: 0;
+  margin: 0px !important;
+  border-radius: 4px;
+  border: 1px dashed #ccc;
+}
+
+.ng-layout-row .ng-layout-col {
+  min-height: 70px;
+}
+
+.ng-layout-row .ng-layout-col .draggable-box {
+  min-height: 65px;
+  border-radius: 4px;
+  border: 1px dashed #ccc;
+  box-sizing: border-box;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+</style>
+<!-- 
 <style lang="scss">
 .ng-layout-row {
   z-index: 0;
@@ -111,4 +134,4 @@ export default {
   }
 } 
  
-</style>
+</style> -->
