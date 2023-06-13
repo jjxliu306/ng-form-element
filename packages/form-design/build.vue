@@ -109,9 +109,12 @@ export default {
 	    }
 	},
 	watch: {
-	    httpConfig(val) {
-	      if(val)
-	        window.nghttpConfig = val
+	    httpConfig: {
+	      	handler(newVal) { 
+	        	window.nghttpConfig = newVal;
+	      	},
+	      	deep: true,
+	      	immediate: false,
 	    }
 	},
 	provide: function () {
@@ -121,6 +124,11 @@ export default {
      		//dictsC: this.dicts,
      		httpConfigC: this.httpConfig,
      		 ngConfig: this.config
+    	}
+  	},
+  	created(){
+  		if(this.httpConfig) {
+     		window.nghttpConfig = this.httpConfig;
     	}
   	},
 	methods: {

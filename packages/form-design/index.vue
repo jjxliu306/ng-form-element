@@ -185,8 +185,7 @@ export default {
   },
   watch: { 
     httpConfig: {
-      handler(newVal) {
-        console.log('httpConfig' , newVal)
+      handler(newVal) { 
         window.nghttpConfig = newVal;
       },
       deep: true,
