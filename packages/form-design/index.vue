@@ -183,12 +183,17 @@ export default {
       return null;
     },
   },
-  watch: {
-    httpConfig(val) {
-      if (val) window.nghttpConfig = val;
+  watch: { 
+    httpConfig: {
+      handler(newVal) {
+        console.log('httpConfig' , newVal)
+        window.nghttpConfig = newVal;
+      },
+      deep: true,
+      immediate: false,
     },
     formTemplate: {
-      handler: function (newVal, oldVal) {
+      handler(newVal) {
         this.$emit("update:formTemplate", newVal);
       },
       deep: true,
@@ -218,6 +223,10 @@ export default {
           customStyle: "",
         },
       };
+    }
+
+    if(this.httpConfig) {
+      window.nghttpConfig = this.httpConfig;
     }
   },
   methods: {
