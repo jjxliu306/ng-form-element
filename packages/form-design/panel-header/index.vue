@@ -7,7 +7,7 @@
 				<span class="title">ng-form-element</span>
 			 
 		</el-col>
-		<el-col :span="8">
+		<el-col :span="8" style="min-height: 30px;">
 			<slot name="formName"></slot>
 		</el-col>
 		<el-col :span="8"> 
