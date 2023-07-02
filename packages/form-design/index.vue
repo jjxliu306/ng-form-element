@@ -12,6 +12,9 @@
         <template slot="controlButton">
           <slot name="controlButton"></slot>
         </template>
+        <template slot="formName">
+          <slot name="formName"></slot>
+        </template> 
       </HeaderPanel>
     </el-header>
     <el-main class="form-main">

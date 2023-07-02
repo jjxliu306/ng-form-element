@@ -162,7 +162,7 @@ export default {
 	      nData.key = key 
 	      nData.model = key 
 	      
-	      nData
+	       
 	      this.$set(list, index, nData)
 
 	     /* this.$set(list, index, {
