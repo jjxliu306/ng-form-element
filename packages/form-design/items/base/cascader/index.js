@@ -123,7 +123,17 @@ obj.options = {
                     default: [
                         {
                           value: "1",
-                          label: "下拉框1"
+                          label: "下拉框1",
+                          children: [
+                            {
+                                value: "11",
+                                label: "下拉框11",
+                            },
+                            {
+                                value: "12",
+                                label: "下拉框12",
+                            }
+                          ]
                         }
                     ],
                     span: 24,
