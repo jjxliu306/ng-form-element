@@ -13,7 +13,7 @@ module.exports = {
         ],
         js: [
           "/cdn/vue.min.js",
-          "/cdn/vue-router.min.js",
+          //"/cdn/vue-router.min.js",
           "/cdn/vuex.min.js",
           "/cdn/element-ui-2.5.13.js" 
         ]
@@ -27,14 +27,14 @@ module.exports = {
       config.externals = {
         "element-ui": "ELEMENT",
         // vue: "Vue",
-        "vue-router": "VueRouter",
+        //"vue-router": "VueRouter",
         vuex: "Vuex" 
       }
     }else {
       config.externals = {
         "element-ui": "ELEMENT",
         vue: "Vue",
-        "vue-router": "VueRouter",
+        //"vue-router": "VueRouter",
         vuex: "Vuex" 
       }
     }
@@ -60,6 +60,7 @@ module.exports = {
       .rule('js')
       .include
         .add('/packages')
+        .add('/example')
         .end()
 
       .use('babel')
