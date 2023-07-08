@@ -250,7 +250,10 @@ export default {
     // 从模板处导入json表单模板
     importData(formTemplate = {}) {
       this.formTemplate.list = formTemplate.list;
-      this.formTemplate.config = formTemplate.config;
+      for(let k in formTemplate.config) {
+        this.template.config[k] = formTemplate.config[k]
+      }
+      //this.formTemplate.config = formTemplate.config;
     },
   },
 };
