@@ -11,10 +11,28 @@ cascader没有数据字典
 	    <el-option label="数据字典"	:value="2" v-if="hasDict"></el-option>
 	 </el-select>
   </el-form-item>
+   
+  <template v-if="selectItem.options.dynamic == 1">
+    <el-form-item  label="方法" >
+      <el-radio-group v-model="selectItem.options.methodType">
+        <el-radio label="get">get</el-radio>
+        <el-radio label="post">post</el-radio>
+      </el-radio-group>
+    </el-form-item>
+    <el-form-item  label="数据" v-if="selectItem.options.methodType == 'post'">
+      <el-input type="textarea" placeholder="post请求需要携带的数据(JSON格式)" size="mini" v-model="selectItem.options.dynamicPostData"> 
+      </el-input>
+    </el-form-item>
+  </template>
+ 
+  
+  
   <el-divider>数据配置</el-divider> 
+
   <el-form-item label-width="0px" >
     <!-- 远程赋值配置 -->  
     <div v-if="selectItem.options.dynamic == 1">
+     
       <el-input size="mini" v-model="selectItem.options.remoteFunc">
         <template slot="prepend">远端方法</template>
       </el-input>

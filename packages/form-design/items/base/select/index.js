@@ -134,7 +134,17 @@ obj.options = {
                     //type: 'kv',
                     show: false
                 }, 
-
+                {
+                  label: '方法类型',
+                  default: 'get',
+                  prop: 'methodType', 
+                  show: false
+                } ,
+                {
+                  label: 'post请求携带数据', 
+                  prop: 'dynamicPostData', 
+                  show: false
+                } ,
                 {
                   label: '远程获取数据链接',
                   prop: 'remoteFunc', 

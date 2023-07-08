@@ -222,10 +222,21 @@ export default {
 	      	return 
 	      }
 
+	      // 2023-07-08 lyf 获取方法类型
+	      const methodType = this.record.options.methodType || 'get'
+	      let postData = this.record.options.dynamicPostData
+
+	      if(methodType == 'post' && postData) {
+	      	postData = JSON.parse(postData)
+	      } else {
+	      	postData = {}
+	      }
+
 	      request({
 	        url: this.remoteUrl,
-	        method: 'get',
-	        params: this.remoteFilter
+	        method: methodType,
+	        params: this.remoteFilter,
+	        data: postData
 	       /* {
 	          ...this.remoteFilter
 	        }*/
