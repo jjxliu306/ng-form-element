@@ -13,11 +13,11 @@
 		<el-col :span="8"> 
 			<span class="buttons">
 				<slot name="controlButton"></slot>
-				<el-button v-if="clear" type="text" size="medium" icon="el-icon-delete" @click="handleClear">清空</el-button>
-			    <el-button v-if="preview" type="text" size="medium" icon="el-icon-view" @click="handlePreview">预览</el-button>
+				<el-button v-if="clear" type="text" size="medium" icon="el-icon-delete" @click="handleClear">{{t('ngform.header.clear')}}</el-button>
+			    <el-button v-if="preview" type="text" size="medium" icon="el-icon-view" @click="handlePreview">{{t('ngform.header.preview')}}</el-button>
 			  	<!--   <el-button v-if="reder"  type="text" size="medium" icon="el-icon-view" @click="handleRender">渲染</el-button> -->
-			    <el-button v-if="imp" type="text" size="medium" icon="el-icon-download" @click="handleImport">导入</el-button>
-			    <el-button v-if="exp" type="text" size="medium" icon="el-icon-upload2" @click="handleExport">导出</el-button>
+			    <el-button v-if="imp" type="text" size="medium" icon="el-icon-download" @click="handleImport">{{t('ngform.header.imp')}}</el-button>
+			    <el-button v-if="exp" type="text" size="medium" icon="el-icon-upload2" @click="handleExport">{{t('ngform.header.exp')}}</el-button>
 			</span> 
 		</el-col> 
 	</el-row>	 
@@ -29,7 +29,9 @@
 <script>
 import Preview from './preview.vue'
 import Code from './code.vue'
+import LocalMixin from '../../locale/mixin.js'
 export default{
+	mixins: [LocalMixin],
 	components: {
 		Preview,
 		Code

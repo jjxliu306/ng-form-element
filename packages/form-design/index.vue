@@ -160,24 +160,7 @@ export default {
     templateConfig() {
       if (this.formTemplate) return this.formTemplate.config;
       return {};
-    },
-    // 配置的数据字典
-    // dicts() { 
-    
-    //   let dict_ = undefined 
-    //   if (this.config && this.config.dict && this.config.dict.length > 0) {
-    //     dict_ = this.config.dict;
-    //   } 
-
-    //   const ddata = Vue.observable({
-    //     data: dict_, 
-    //     get info() {
-    //       return this.data;
-    //     }
-    //   })
-
-    //   return ddata
-    // },
+    }, 
     // 配置中的http配置
     httpConfig() {
       if (this.config && this.config.httpConfig) {

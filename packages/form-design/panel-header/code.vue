@@ -3,7 +3,7 @@
 -->
 <template>
   <el-dialog
-    title="模板数据" 
+    :title="t('ngform.header.template_data')" 
     :visible.sync="visible"
     :append-to-body="true"
     style="top:20px;"
@@ -15,19 +15,21 @@
     </div>
     <div class="copy-btn-box" v-if="!edit"> 
       <el-button size="mini" @click="handleExportJson" type="primary">
-        导出代码
+      <!--   导出代码 -->
+      {{t('ngform.header.export_code')}}
       </el-button>
     </div>
     <span slot="footer" class="dialog-footer">
-      <el-button size="mini" @click="handleCancel">关闭</el-button> 
-      <el-button v-if="edit" size="mini" type="primary" @click="handleImp">导入</el-button>
+      <el-button size="mini" @click="handleCancel">{{t('ngform.close')}}</el-button> 
+      <el-button v-if="edit" size="mini" type="primary" @click="handleImp">{{t('ngform.import')}}</el-button>
     </span>
   </el-dialog>
 </template>
 <script> 
- 
+import LocalMixin from '../../locale/mixin.js' 
 export default {
   name: "ng-form-code",
+  mixins: [LocalMixin],
   data() {
     return {
       visible: false,

@@ -2,7 +2,7 @@
  
 import BaseIndex from './index.vue'
 import BaseProperties from './properties.vue'
-  
+import { t } from '../../../../locale/index.js'
 
 const obj = {}
  
@@ -20,25 +20,25 @@ obj.options = {
     },
     columns: [
         {
-            label: '标签', 
+            label: t('ngform.item.label'),//'标签', 
             prop: 'label',
-            default: '动态表格', 
+            default: t('ngform.item.batch.name') ,//'动态表格', 
             span: 24,
         },
         {
-            label: '标签宽度', 
+            label: t('ngform.item.label_width') ,//'标签宽度', 
             prop: 'labelWidth',
             type: 'number', 
             default: -1
         },
         {
-            label: '要素宽度', 
+            label: t('ngform.item.width') ,//'要素宽度', 
             prop: 'width',  
             default: '100%',
             span: 24,
         },
         {
-            label: '所占栅格', 
+            label: t('ngform.item.span') ,//'所占栅格', 
             type: 'slider',
             prop: 'span',
             min: 1,
@@ -47,12 +47,12 @@ obj.options = {
             span: 24,
         },
         {
-            label: '数据字段', 
+            label: t('ngform.item.model') , //'数据字段', 
             prop: 'model',
             span: 24,
         },
         {
-            label: '数据KEY', 
+            label: t('ngform.item.key') , //'数据KEY', 
             prop: 'key',
             show: false,
             span: 24,
@@ -68,14 +68,14 @@ obj.options = {
     ],
     group: [
         {
-            label: '属性',
+            label: t('ngform.item.options') ,//'属性',
             prop: 'options',
             alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
             collapse: false, // 是否启用 collapse 必须alone=true
             column: [ 
                
                 {
-                    label: '滚动高度', 
+                    label: t('ngform.item.batch.scroll_height') ,//'滚动高度', 
                     prop: 'scrollY',  
                     type: 'number',
                     default: 0,
@@ -95,41 +95,41 @@ obj.options = {
                     default: {}
                 },
                 {
-                    label: '样式style', 
+                    label: t('ngform.item.batch.custom_style') ,// '样式style', 
                     prop: 'customStyle',  
                     type: 'textarea',
                     span: 24,
                 },
                 {
-                    label: '空内容提示', 
+                    label: t('ngform.item.batch.no_data_label') ,// '空内容提示', 
                     prop: 'noDataText',  
                     type: 'textarea',
-                    default: '暂无数据',
+                    default: t('ngform.item.batch.no_data') ,//'暂无数据',
                     span: 24,
                 },
                 {
-                    label: '样式class', 
+                    label: t('ngform.item.batch.custom_class') ,//'样式class', 
                     prop: 'customClass',  
                     type: 'textarea',
                     span: 24,
                 },
                 
                 {
-                  label: '行复制',
+                  label: t('ngform.item.batch.copy_row') ,//'行复制',
                   prop: 'copyRow',
                   type: 'switch',
                   default: true,
                   span: 24,
                 }, 
                 {
-                  label: '隐藏序号',
+                  label: t('ngform.item.batch.hide_seq') ,//'隐藏序号',
                   prop: 'hideSequence',
                   type: 'switch',
                   default: true,
                   span: 24,
                 }, 
                 {
-                  label: '边框',
+                  label: t('ngform.item.batch.show_border') ,// '边框',
                   prop: 'showBorder',
                   type: 'switch',
                   default: true,
@@ -137,27 +137,27 @@ obj.options = {
                 }, 
                 
                 {
-                  label: '是否隐藏',
+                  label: t('ngform.item.if_hidden') ,//'是否隐藏',
                   prop: 'hidden',
                   type: 'switch',
                   default: false,
                   span: 24,
                 },
                 {
-                  label: '是否禁用',
+                  label: t('ngform.item.if_disabled') ,//'是否禁用',
                   prop: 'disabled',
                   type: 'switch',
                   default: false,
                   span: 24,
                 },  
                 {
-                    label: '新增方式', 
+                    label: t('ngform.item.batch.add_type') ,// '新增方式', 
                     prop: 'addType',  
                     default: 'line',
                     type: 'radioButton',
                     dicData: [
-                        {label: '增加行' , value: 'line'},
-                        {label: '弹出框' , value: 'dialog'}
+                        {label: t('ngform.item.batch.add_type_line') /*'增加行'*/ , value: 'line'},
+                        {label: t('ngform.item.batch.add_type_dialog')/*'弹出框'*/ , value: 'dialog'}
                     ],
                     span: 24
                 },

@@ -5,8 +5,9 @@ import App from './App'
  
  // 导入组件库
 import FormDesign from '../packages/index.js' 
+import locale from '../packages/locale/lang/en'
 // 注册组件库
-Vue.use(FormDesign)
+Vue.use(FormDesign, { locale })
  
  
 
