@@ -50,20 +50,23 @@
             :style="record.options.customStyle"
              @contextmenu.prevent="handleShowRightMenu($event , idx) "
            >
-            <div  
-              v-for="(item, index) in record.list"  
-              :key="index"  
-              >
-             <ng-form-item
-                ref="nestedComponents"
-                 
-                :disabled="disabled"
-                :previewpreview="preview"
-                :models.sync="mdata"   
-                :record="item" 
-                :prop-prepend="record.model + '.' + idx + '.'"
-              />
-            </div>  
+            <el-row :gutter="20" class="controller-row dragpanel" 
+            :class="{'controller-bordered': record.options && record.options.bordered}"> 
+             
+              <template  v-for="(item, index) in record.list"  >
+                <ng-form-node
+                  :key="index"  
+                  ref="nestedComponents"
+                  :is-drag="false"
+                  :disabled="disabled"
+                  :previewpreview="preview"
+                  :models.sync="mdata"   
+                  :record="item" 
+                  :prop-prepend="record.model + '.' + idx + '.'"
+                />
+              </template> 
+            </el-row>
+            
           </div> 
            <!-- 右键里的删除和复制 下方的新增 -->
           <el-button v-if="!preview && record.options.add" type="dashed" size="mini" :disabled="disabled" @click="addControlData">

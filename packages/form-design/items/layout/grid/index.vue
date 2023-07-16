@@ -32,8 +32,9 @@
           />  
     </draggable>
     <template v-else>
-      <ng-form-item 
+      <ng-form-node 
         v-for="node in item.list"
+        :is-drag="false"
         :key="node.key"
         :disabled="disabled"
         :preview="preview"

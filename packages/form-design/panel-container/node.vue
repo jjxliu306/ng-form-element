@@ -45,8 +45,7 @@
 </template>
 <script> 
  
-import Item from "../items/index.vue"
-import cloneDeep from 'lodash/cloneDeep' 
+import Item from "../items/index.vue" 
 
 export default {
   name: 'ng-form-node',
@@ -89,6 +88,7 @@ export default {
      
   },
   created(){
+    if(!this.isDrag) return
     if(this.record.type == 'controller' && !this.record.list) {
       this.$set(this.record , 'list' , [])
     }
@@ -102,6 +102,7 @@ export default {
   },
   methods: {  
     handleSelectItem(rec,index) {
+      if(!this.isDrag) return
     
       this.$emit('handleSelectItem' , rec , index+1)
     },
