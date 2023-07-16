@@ -21,8 +21,9 @@
         >
         <el-row class="row-td"> 
           <template   v-for="item in tdItem.list">
-            <ng-form-item
+            <ng-form-node
               ref="nestedComponents"
+              :is-drag="false"
               :key="item.key"
               :disabled="disabled"
               :preview="preview"
