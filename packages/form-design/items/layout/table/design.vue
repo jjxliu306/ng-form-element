@@ -21,7 +21,7 @@
         <draggable
           tag="div"
           class="draggable-box td-draggable"
-          :style="{'min-height' : (tdItem.rowspan > 1 ? tdItem.rowspan * 65 : undefined) + 'px'}"
+          :style="{'min-height' : (tdItem.rowspan > 1 ? tdItem.rowspan * 65 : 45) + 'px'}"
           v-bind="{
             group: 'form-draggable',
             ghostClass: 'moving',
@@ -193,45 +193,54 @@ export default {
         parent.list.splice(oindex , 1);
       }
     },
-     // 解除合并
-    handleDropMerge(){ 
+		// 解除合并
+		handleDropMerge() {
+			const td = this.record.trs[this.trIndex].tds[this.tdIndex];
 
-      const td = this.record.trs[this.trIndex].tds[this.tdIndex]
- 
-      const colspan = td.colspan
-      const rowspan = td.rowspan
+			const colspan = td.colspan;
+			const rowspan = td.rowspan;
 
-      if(td && (colspan > 1 || rowspan > 1)) {
-        this.record.trs[this.trIndex].tds[this.tdIndex].colspan = 1
-        this.record.trs[this.trIndex].tds[this.tdIndex].rowspan = 1
+			if (td && (colspan > 1 || rowspan > 1)) {
+				this.record.trs[this.trIndex].tds[this.tdIndex].colspan = 1;
+				this.record.trs[this.trIndex].tds[this.tdIndex].rowspan = 1;
 
-        // 开始拆解
-        let cols = []
-        if(colspan > 1) { 
-          for(var i = 0 ; i < colspan - 1 ; i++){
-            cols.push({colspan:1 , rowspan:1,list:[]})
-          }
+				// 开始拆解
+				if (colspan > 1) {
+					for (var i = 0; i < colspan - 1; i++) {
+						this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0, {
+							colspan: 1,
+							rowspan: 1,
+							list: [],
+						});
+					}
+					// this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0, ...cols);
+				}
+				if (rowspan > 1) {
+					//cols + 1
+					for (var j = this.trIndex + 1; j < this.trIndex + rowspan; j++) {
+						this.record.trs[j].tds.splice(this.tdIndex + 1, 0, {
+							colspan: 1,
+							rowspan: 1,
+							list: [],
+						});
+						// this.record.trs[j].tds.splice(this.tdIndex + 1, 0, ...cols);
+					}
+				}
 
-          this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0 , cloneDeep(cols) )
-          /*this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0 ,...cols )*/
-
-        } 
-        if(rowspan > 1) {
-          //cols + 1 
-          cols.push({colspan:1 , rowspan:1,list:[]})  
-          
-          for(var j = this.trIndex + 1 ; j < this.trIndex + rowspan ; j++){
-            this.record.trs[j].tds.splice(this.tdIndex + 1, 0 , cloneDeep(cols) )
-           /* this.record.trs[j].tds.splice(this.tdIndex + 1, 0 ,...cols )*/
-          }
-        
-        }
-
-      
-      }
-
-
-    },
+				// 斜角方向追加td,填补空隙
+				if (rowspan > 1 && colspan > 1) {
+					for (var y = this.trIndex + 1; y < this.trIndex + rowspan; y++) {
+						for (var x = this.tdIndex + 1; x < this.tdIndex + colspan; x++) {
+							this.record.trs[y].tds.splice(x, 0, {
+								colspan: 1,
+								rowspan: 1,
+								list: [],
+							});
+						}
+					}
+				}
+			}
+		},
     handleDownMerge() {
       // 向下合并
       if (
