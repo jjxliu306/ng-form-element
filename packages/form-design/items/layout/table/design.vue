@@ -139,7 +139,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 import mixin from '../../mixin.js';
 import draggable from 'vuedraggable';
-import { getModel, resetKey } from '../../base/options';
 export default {
 	mixins: [mixin],
 	components: {
@@ -214,8 +213,7 @@ export default {
 			const nitem = cloneDeep(item);
 			const key = item.type + '_' + new Date().getTime();
 			nitem.key = key;
-			resetKey(this.formTemplate.list);
-			nitem.model = getModel(item.type, this.formTemplate.list) || key;
+			nitem.model = key;
 
 			// 找到index 插入
 			const oindex = parent.list.findIndex(t => t.key == item.key);
