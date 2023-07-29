@@ -1,7 +1,7 @@
 <template>
-<el-collapse-item name="column" title="字段">
+<el-collapse-item name="column" :title="t('ngform.item.batch.columns')">
 <el-form class="ng-batch-properties"  size="mini" label-width="80px" label-position="top" >
-	<el-divider class="divider-center" > {{selectItem.options.addType == 'dialog' ? '外部展示字段' : '字段宽度'}} </el-divider>
+	<el-divider class="divider-center" > {{selectItem.options.addType == 'dialog' ? t('ngform.item.batch.dialogConfig') : t('ngform.item.batch.lineConfig')}} </el-divider>
   <el-form-item  >
               <el-checkbox-group v-model="selectItem.options.showItem" >
                 <!-- 获取当前内部已经包含的要素 -->
@@ -21,7 +21,9 @@
 </el-collapse-item>
 </template>
 <script>  
+import LocalMixin from '../../../../locale/mixin.js'
 export default {
+  mixins: [LocalMixin],
   components: {
      
   },

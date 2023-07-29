@@ -5,7 +5,7 @@
       :disabled="recordDisabled"
       v-model="models[record.model]"
       :record="record"
-      accept="image/*" 
+      :accept="record.options.accept" 
       :preview="preview"
       :list-type="record.options.listType"
       :multiple="record.options.multiple" 

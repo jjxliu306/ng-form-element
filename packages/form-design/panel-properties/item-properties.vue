@@ -18,6 +18,7 @@
 		分割线
 	循环group 处理在group中但要显示在外部的表单
 	 -->
+	 
 	<template v-for="(form,formIndex) in groupColumns ">
 		<ng-form 
 			v-if="form.alone != undefined && form.alone == false && form.column && form.column.length > 0"
@@ -42,7 +43,7 @@
 			<el-collapse-item  
 				v-for="(form,formIndex) in groupColumnsCollapse "
 				:key="'form' + formIndex" 
-				:title="form.label" 
+				:title="formTitle(form.label)"  
 				:name="formIndex + ''" 
 				>
 				<ng-form   
@@ -164,7 +165,7 @@ import NgForm from '../../ng-form/index.vue'
 // 获取个性化属性配置 
 import itemIndex from "../items/index.js";
 
-import { dynamicFun } from '../../utils/index.js' 
+import { dynamicFun , getLabel } from '../../utils/index.js' 
 import cloneDeep from 'lodash/cloneDeep'
 import NgConstants from '../../constants'
 
@@ -176,8 +177,8 @@ export default {
 		return {
 			activeNames: [],
 			groupColumns: [],
-		    // 独立与group分组，直接配置的属性
-		    formColumns: {}, 
+		  // 独立与group分组，直接配置的属性
+		  formColumns: {}, 
 		}
 	},
 	props: {
@@ -271,6 +272,14 @@ export default {
 	      		this.formGroupColumn = {}
 	      	}
 		},
+		  // 表单标签 
+    formTitle(v) { 
+      if(typeof v == 'function') {
+        const label = v() 
+        return label 
+      }
+      return v
+    },
 		initFormOptions () {
 	      const currentType = this.selectItem.type
 	      const configs = NgConstants.itemConfig
@@ -304,7 +313,7 @@ export default {
 		              	// 判断column如果有默认值，但当前data没有值 则回填 
 		               
 		              	if (!Object.prototype.hasOwnProperty.call(this_.selectItem[prop], gc.prop)) {
-		                	this_.$set(this_.selectItem[prop], gc.prop, gc.default)
+		                	this_.$set(this_.selectItem[prop], gc.prop, getLabel(gc.default))
 		              	}
 	 
 	            	})
@@ -323,7 +332,7 @@ export default {
 
 	    	// 判断如果是自定义组件 
 	        // 判断自定义组件
-			if(this.isCustomComponent && this.selectItem) {
+				if(this.isCustomComponent && this.selectItem) {
 				 // 如果没有数据 则可能是自定义组件过来的，补充
 		        // 标签，标签宽度，要素宽度，栅格数量，
 
@@ -404,7 +413,7 @@ export default {
 	            	columns.filter(gf => gf.default).forEach(gc => {
 	              		// 判断column如果有默认值，但当前data没有值 则回填  
 	              		if (!Object.prototype.hasOwnProperty.call(this_.selectItem, gc.prop)) {
-	                		this_.$set(this_.selectItem, gc.prop, gc.default)
+	                		this_.$set(this_.selectItem, gc.prop, getLabel(gc.default))
 	              		}
 	 
 	            	})

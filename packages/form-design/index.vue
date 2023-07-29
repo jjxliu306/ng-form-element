@@ -1,5 +1,5 @@
 <template>
-  <el-container class="form-design">
+  <el-container class="form-design"  >
     <el-header class="header" height="40px">
       <HeaderPanel
         :clear="clear"
@@ -36,8 +36,7 @@
           > 
           </ContainerPanel>
         </el-main>
-        <el-aside width="260px" class="properties-panel">
-        
+        <el-aside width="260px" class="properties-panel"> 
           <PropertiesPanel :selectItem="selectItem">
             <template slot="custom-properties">
               <slot name="custom-properties" :selectItem="selectItem"></slot>
@@ -60,7 +59,8 @@ import HeaderPanel from "./panel-header/index.vue";
 import DragPanel from "./panel-drag/index.vue";
 import ContainerPanel from "./panel-container/index.vue";
 import PropertiesPanel from "./panel-properties/index.vue";
-
+import { use } from '../locale/index'
+import { getUUID } from '../utils/index'
 import cloneDeep from "lodash/cloneDeep";
  
 export default {
@@ -74,6 +74,7 @@ export default {
   data() {
     return {
       selectItem: {},
+      i18nkey: getUUID()
     };
   },
   props: {
@@ -167,7 +168,7 @@ export default {
         return this.config.httpConfig;
       }
       return null;
-    },
+    }
   },
   watch: { 
     httpConfig: {
@@ -185,13 +186,13 @@ export default {
       immediate: false,
     },
   },
-  provide: function () {
+  provide() {
     return {
       customC: this.customComponents,
       configC: this.templateConfig,
       //dictsC: this.dicts,
       httpConfigC: this.httpConfig,
-      ngConfig: this.config
+      ngConfig: this.config 
     };
   },
   created() {
@@ -217,6 +218,13 @@ export default {
   methods: {
     handleSelectItem(record) {
       this.selectItem = record;
+    },
+    
+    useLocale(val){
+      use(val)
+      this.i18nkey = val // getUUID()
+ 
+      this.$ngofrm_bus.$emit('i18nRefresh');
     },
     // 返回编辑好的模板
     getModel() {

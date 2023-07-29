@@ -30,7 +30,26 @@ export function dynamicFun(script , model , key="$" , row , rowKey) {
  
 } 
 
+/**
+ * 获取uuid
+ */
+export function getUUID() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+    return (c === "x" ? (Math.random() * 16) | 0 : "r&0x3" | "0x8").toString(
+      16
+    );
+  });
+}
 
+export function getLabel(v) {
+
+    if(typeof v == 'function') {
+        const label = v()
+        return label 
+    }
+    console.log("v" , v)
+    return v
+}
  
 /**
 * 动态函数
@@ -98,7 +117,7 @@ export function translateConfig(config = []) {
                             jdefault = ''
                         }
 
-                        v[t.prop][tc.prop] = jdefault
+                        v[t.prop][tc.prop] = getLabel(jdefault)
                     }) 
                 }
 
@@ -112,7 +131,7 @@ export function translateConfig(config = []) {
                     jdefault = ''
                 }
 
-                v[tc.prop] = jdefault
+                v[tc.prop] = getLabel(jdefault)
             }) 
         }
       

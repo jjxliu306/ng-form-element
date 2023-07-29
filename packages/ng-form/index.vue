@@ -6,15 +6,17 @@
     :model="model "
     :label-suffix="config.labelSuffix"
     size="mini"
+    :key="formKey"
     label-position="right"
     :label-width="(config.labelWidth || 80) + 'px'">
+    
     <template v-for="column in columns">
 
 
       <el-divider :key="column.label" content-position="center" class="ng-form-divider" v-if="column.type == 'divider' && (column.show == undefined || column.show == true || columnVisible(column.show))">{{column.label}}</el-divider> 
       <el-form-item
         :prop="column.prop"
-        :label="column.label"
+        :label="formLabel(column.label)"
         :rules="column.rules"
         :title="column.tip" 
         :label-width="column.labelWidth != null ? (column.labelWidth + 'px') : null"
@@ -27,8 +29,8 @@
        <!--  <slot :value="column.prop" :column="column" :name="column.prop">  -->
            
           <!-- 输入类型判断 -->
-          <el-input v-if="!column.type || column.type == 'input'" v-model.trim="model[column.prop]" :placeholder="column.placeholder" />
-          <el-input type="textarea" v-else-if="column.type == 'textarea'" v-model="model[column.prop]" :placeholder="column.placeholder" />
+          <el-input v-if="!column.type || column.type == 'input'" v-model.trim="model[column.prop]" :placeholder="formLabel(column.placeholder)" />
+          <el-input type="textarea" v-else-if="column.type == 'textarea'" v-model="model[column.prop]" :placeholder="formLabel(column.placeholder)" />
           <el-input-number
             style="width:100%"
             v-else-if="column.type == 'number'"
@@ -59,10 +61,10 @@
             <el-button type="text" icon="el-icon-plus" @click="addData(model , column.prop , column.type)"></el-button>
           </template>
           <el-radio-group v-else-if="column.type == 'radio'" v-model="model[column.prop]">
-            <el-radio :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{rv.label}}</el-radio>
+            <el-radio :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{formLabel(rv.label)}}</el-radio>
           </el-radio-group>
           <el-radio-group v-else-if="column.type == 'radioButton'" v-model="model[column.prop]">
-            <el-radio-button :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{rv.label}}</el-radio-button>
+            <el-radio-button :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{formLabel(rv.label)}}</el-radio-button>
           </el-radio-group>
          <!--  <el-switch v-else-if="column.type == 'switch'" v-model="model[column.prop]"></el-switch> -->
           <el-switch v-else-if="column.type == 'switch'"  v-model="model[column.prop]"  ></el-switch>
@@ -72,17 +74,17 @@
             align="right"
             type="date"
             clearable  
-            :placeholder="column.placeholder"
+            :placeholder="formLabel(column.placeholder)"
             :format="column.format"
             :value-format="column.format" >
           </el-date-picker>
           <el-checkbox-group v-else-if="column.type == 'checkbox'" v-model="model[column.prop]">
-            <el-checkbox :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{rv.label}}</el-checkbox>
+            <el-checkbox :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{formLabel(rv.label)}}</el-checkbox>
           </el-checkbox-group>
-          <el-select clearable v-else-if="column.type == 'select'" v-model="model[column.prop]" placeholder="请选择" style="width:100%">
+          <el-select clearable v-else-if="column.type == 'select'" v-model="model[column.prop]" :placeholder="formLabel(column.placeholder)" style="width:100%">
             <el-option
               v-for="rv in column.dicData"
-              :label="rv.label"
+              :label="formLabel(rv.label)"
               :key="rv.value"
               :value="rv.value">
             </el-option>
@@ -122,7 +124,7 @@
               <el-row :span="24">
                 <el-col :span="22">
                  <!--   -->
-                 <el-color-picker v-model="model[column.prop][index]" placeholder="请选择颜色"/> 
+                 <el-color-picker v-model="model[column.prop][index]" :placeholder="formLabel(column.placeholder)"/> 
                 </el-col>
                 <el-col :span="2" style="padding-left: 5px">
                   <el-button type="text" icon="el-icon-close" @click="removeData(model,column.prop, index)"></el-button>
@@ -131,7 +133,7 @@
             </div>
             <el-button type="text" icon="el-icon-plus" @click="addData(model , column.prop, column.type)"></el-button>
           </template>
-          <el-color-picker v-else-if="column.type == 'color'" v-model="model[column.prop]" placeholder="请选择颜色"></el-color-picker>   
+          <el-color-picker v-else-if="column.type == 'color'" v-model="model[column.prop]" :placeholder="formLabel(column.placeholder)"></el-color-picker>   
             
           <KvList v-else-if="column.type == 'kv'" v-model="model[column.prop]" :keyNumber="column.keyNumber"/>
           <template v-else-if="column.type == 'rules'"> 
@@ -145,8 +147,8 @@
   </el-form>
 </template>
 <script>
-import { dynamicFun } from '../utils/index.js' 
-
+import { dynamicFun , getUUID , getLabel } from '../utils/index.js' 
+import { t , currentLang } from '../locale/index.js'
 // key-value数组配置
 import KvList from './kv-list.vue'
 import Rules from './rules.vue'
@@ -158,9 +160,9 @@ export default {
   },
   data () {
     return {
-      
+      formKey: getUUID()
     }
-  },
+  }, 
   props: {
     // 当前组件整个配置 record
     record: {
@@ -184,7 +186,11 @@ export default {
       default: () => []
     }
   },
-  mounted () { },
+  mounted () {  
+    this.$ngofrm_bus.$on('i18nRefresh', () => { 
+      this.formKey = getUUID()
+    });
+  },
   methods: {
     // 返回函数值
     getScriptValue (script, currentValue) {
@@ -198,7 +204,10 @@ export default {
       }
       return true
     },
-     
+    // 表单标签 
+    formLabel(v) { 
+      return getLabel(v)
+    },
     addData (recordProp , columnProp , type) {
 
       let defaultVal = '#ffffff'

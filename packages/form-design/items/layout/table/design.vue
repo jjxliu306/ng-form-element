@@ -21,7 +21,7 @@
         <draggable
           tag="div"
           class="draggable-box td-draggable"
-          :style="{'min-height' : (tdItem.rowspan > 1 ? tdItem.rowspan * 65 : undefined) + 'px'}"
+          :style="{'min-height' : (tdItem.rowspan > 1 ? tdItem.rowspan * 65 : 45) + 'px'}"
           v-bind="{
             group: 'form-draggable',
             ghostClass: 'moving',
@@ -97,12 +97,12 @@ import cloneDeep from 'lodash/cloneDeep'
 import mixin from '../../mixin.js'
 import draggable from "vuedraggable"
 export default {
-	mixins: [mixin] ,
+  mixins: [mixin] ,
   components: {
     draggable
   },
-	data() {
-		return { 
+  data() {
+    return { 
       showRightMenu: false,
       isMergeCol: false,
       menuTop: 0,
@@ -115,44 +115,44 @@ export default {
         style: '',
         class: ''
       }
-		}
-	},
-	created() {
-		if(this.record && (this.record.trs == null || this.record.trs == undefined)) {
+    }
+  },
+  created() {
+    if(this.record && (this.record.trs == null || this.record.trs == undefined)) {
 
-	        this.$set(this.record, 'trs' ,  [
-	          {
-	            tds: [
-	              {
-	                colspan: 1,
-	                rowspan: 1,
-	                list: []
-	              },
-	              {
-	                colspan: 1,
-	                rowspan: 1,
-	                list: []
-	              }
-	            ]
-	          },
-	          {
-	            tds: [
-	              {
-	                colspan: 1,
-	                rowspan: 1,
-	                list: []
-	              },
-	              {
-	                colspan: 1,
-	                rowspan: 1,
-	                list: []
-	              }
-	            ]
-	          }
-	        ])
-      	}
-	},
-	mounted() {
+          this.$set(this.record, 'trs' ,  [
+            {
+              tds: [
+                {
+                  colspan: 1,
+                  rowspan: 1,
+                  list: []
+                },
+                {
+                  colspan: 1,
+                  rowspan: 1,
+                  list: []
+                }
+              ]
+            },
+            {
+              tds: [
+                {
+                  colspan: 1,
+                  rowspan: 1,
+                  list: []
+                },
+                {
+                  colspan: 1,
+                  rowspan: 1,
+                  list: []
+                }
+              ]
+            }
+          ])
+        }
+  },
+  mounted() {
     // 添加监听取消右键菜单
     document.addEventListener("click", this.handleRemoveRightMenu, true);
     document.addEventListener("contextmenu", this.handleRemoveRightMenu, true);
@@ -166,9 +166,9 @@ export default {
       true
     );
   },
-	methods: {
-		dragEnd(evt, list) {   
-     	// 拖拽结束,自动选择拖拽的控件项
+  methods: {
+    dragEnd(evt, list) {   
+      // 拖拽结束,自动选择拖拽的控件项
       this.handleSelectItem(list[evt.newIndex])
     },
     handleCopy(item , parent){ 
@@ -193,44 +193,53 @@ export default {
         parent.list.splice(oindex , 1);
       }
     },
-     // 解除合并
-    handleDropMerge(){ 
+    // 解除合并
+    handleDropMerge() {
+      const td = this.record.trs[this.trIndex].tds[this.tdIndex];
 
-      const td = this.record.trs[this.trIndex].tds[this.tdIndex]
- 
-      const colspan = td.colspan
-      const rowspan = td.rowspan
+      const colspan = td.colspan;
+      const rowspan = td.rowspan;
 
-      if(td && (colspan > 1 || rowspan > 1)) {
-        this.record.trs[this.trIndex].tds[this.tdIndex].colspan = 1
-        this.record.trs[this.trIndex].tds[this.tdIndex].rowspan = 1
+      if (td && (colspan > 1 || rowspan > 1)) {
+        this.record.trs[this.trIndex].tds[this.tdIndex].colspan = 1;
+        this.record.trs[this.trIndex].tds[this.tdIndex].rowspan = 1;
 
         // 开始拆解
-        let cols = []
-        if(colspan > 1) { 
-          for(var i = 0 ; i < colspan - 1 ; i++){
-            cols.push({colspan:1 , rowspan:1,list:[]})
+        if (colspan > 1) {
+          for (var i = 0; i < colspan - 1; i++) {
+            this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0, {
+              colspan: 1,
+              rowspan: 1,
+              list: [],
+            });
           }
-
-          this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0 , cloneDeep(cols) )
-          /*this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0 ,...cols )*/
-
-        } 
-        if(rowspan > 1) {
-          //cols + 1 
-          cols.push({colspan:1 , rowspan:1,list:[]})  
-          
-          for(var j = this.trIndex + 1 ; j < this.trIndex + rowspan ; j++){
-            this.record.trs[j].tds.splice(this.tdIndex + 1, 0 , cloneDeep(cols) )
-           /* this.record.trs[j].tds.splice(this.tdIndex + 1, 0 ,...cols )*/
+          // this.record.trs[this.trIndex].tds.splice(this.tdIndex + 1, 0, ...cols);
+        }
+        if (rowspan > 1) {
+          //cols + 1
+          for (var j = this.trIndex + 1; j < this.trIndex + rowspan; j++) {
+            this.record.trs[j].tds.splice(this.tdIndex + 1, 0, {
+              colspan: 1,
+              rowspan: 1,
+              list: [],
+            });
+            // this.record.trs[j].tds.splice(this.tdIndex + 1, 0, ...cols);
           }
-        
         }
 
-      
+        // 斜角方向追加td,填补空隙
+        if (rowspan > 1 && colspan > 1) {
+          for (var y = this.trIndex + 1; y < this.trIndex + rowspan; y++) {
+            for (var x = this.tdIndex + 1; x < this.tdIndex + colspan; x++) {
+              this.record.trs[y].tds.splice(x, 0, {
+                colspan: 1,
+                rowspan: 1,
+                list: [],
+              });
+            }
+          }
+        }
       }
-
-
     },
     handleDownMerge() {
       // 向下合并
@@ -419,7 +428,7 @@ export default {
 
     },
     showRightMenuHandle(e,  trIndex, tdIndex , mergeCol) {
-    	// 显示右键菜单
+      // 显示右键菜单
       e.stopPropagation()
       // this.fileItem = item
       // 显示
@@ -463,7 +472,7 @@ export default {
       // 取消右键菜单
       this.showRightMenu = false
     }
-	}
+  }
 }
 </script>
 <style>
@@ -480,15 +489,15 @@ export default {
 <!-- 
 <style lang="scss">
 .table-box {
-	.td-draggable , .td-row {
-		min-height: 65px;
-		min-width: 100px;
-	}
+  .td-draggable , .td-row {
+    min-height: 65px;
+    min-width: 100px;
+  }
 
-	.td-draggable{
-		border: 1px solid #e8e8e8 !important;
+  .td-draggable{
+    border: 1px solid #e8e8e8 !important;
 
-	}
+  }
 }
 
 </style>

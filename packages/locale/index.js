@@ -7,7 +7,7 @@ const format = Format(Vue);
 let lang = defaultLang;
 let merged = false;
 let i18nHandler = function() {
-  console.log('lang' , lang)
+  //console.log('lang' , lang)
   const vuei18n = Object.getPrototypeOf(this || Vue).$t;
   if (typeof vuei18n === 'function' && !!Vue.locale) {
     if (!merged) {
@@ -32,7 +32,7 @@ export const t = function(path, options) {
     const property = array[i];
     value = current[property];
     if (i === j - 1) {
-      console.log('path , value' , path , value)
+      //console.log('path , value' , path , value)
       if(!value) {
         return path
       }
@@ -46,13 +46,38 @@ export const t = function(path, options) {
 };
 
 export const $t = function(path, options) {
+ return ()=> {
+      return t(path , options)
+    }
    
 };
 
 export const use = function(l) {
-  console.log('l' , l)
-  lang = l || lang;
+ 
+
+  if(typeof l == 'string') {
+
+    // 扫描下面目录中所有的index.js 然后穷举后返回 
+    const langFile = require('./lang/' + l + '.js')
+    if(langFile && langFile.default) {
+       
+      lang = langFile.default || lang;
+    }
+     
+  } else {
+    
+    lang = l || lang;
+  }
+
+  console.log('lang' , lang)
+     
+
+  
 };
+
+export const currentLang = function() {
+  return lang 
+}
 
 export const i18n = function(fn) {
   i18nHandler = fn || i18nHandler;

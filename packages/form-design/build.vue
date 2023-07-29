@@ -34,7 +34,8 @@
 import Node from './panel-container/node.vue'
  
 import cloneDeep from 'lodash/cloneDeep'
- 
+import { use } from '../locale/index'
+import { getUUID } from '../utils/index' 
 export default {
 	name: 'ng-form-build' ,
 	components:{
@@ -135,6 +136,12 @@ export default {
 	  	reset() {
 	  		this.$refs.form && this.$refs.form.resetFields()
 	  	},
+	  	useLocale(val){
+	      use(val)
+	      this.key = getUUID()
+
+	      this.$ngofrm_bus.$emit('i18nRefresh');
+	    },
 	  	validate() {
 	  		return new Promise((resolve, reject) => { 
 	  			if(this.$refs.form) {
@@ -144,7 +151,7 @@ export default {
 	  			} else {
 	  				reject()
 	  			}  
-			})
+				})
 	  	},
 	  	getData(async = true) {
 	  		const data = cloneDeep(this.models)

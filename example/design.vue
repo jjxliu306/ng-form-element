@@ -19,6 +19,14 @@
         </div> 
          <el-button style="margin: 0px 10px;" icon="el-icon-document" slot="reference" type="text" size="medium"   >示例</el-button>
       </el-popover>
+      <el-select v-model="i18n" style="width: 100px;" placeholder="语言" size="mini">
+        <el-option
+          v-for="item in i18nList"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
     </template>
     
 
@@ -34,11 +42,17 @@
 </template>
 
 <script> 
+import Vue from 'vue'
 import NgComponents from './components/index.js'
 export default {
   name: 'App', 
   data(){
     return {
+      i18n: 'zh_CN',
+      i18nList: [
+        {label: '中文简体' , value: 'zh_CN'},
+        {label: '英文' , value: 'en'}
+      ],
       examples: [
         {name:'基础示例' , path: 'basic.json'},
         {name:'select远程联动' , path: 'select远程联动.json'},
@@ -61,7 +75,14 @@ export default {
       },
     }
   } ,
-
+  watch: {
+    i18n(val) {
+      //console.log("i18n" , val)
+      //console.log('this.$locale' , this.$locale)
+      //this.$locale.use(val)
+      this.$refs.formDesign.useLocale(val)
+    }
+  },
   created() {
    // this.formTemplate = require('./data/basic.json')
 

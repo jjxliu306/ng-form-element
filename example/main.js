@@ -5,11 +5,12 @@ import App from './App'
  
  // 导入组件库
 import FormDesign from '../packages/index.js' 
-import locale from '../packages/locale/lang/en'
+import en from '../packages/locale/lang/en'
+//import locale from '../packages/locale/index'
 // 注册组件库
-Vue.use(FormDesign, { locale })
+Vue.use(FormDesign , {locale: en})
  
- 
+//Vue.prototype.$locale = locale;
 
 Vue.config.productionTip = false
 

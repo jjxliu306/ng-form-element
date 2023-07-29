@@ -43,6 +43,9 @@ NgFormItemNode.install = function (Vue) {
 // 默认导出组件
 const components = [ NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode/*,NgFormItemBase*/]
  
+const bus = new Vue();
+
+Vue.prototype.$ngofrm_bus = bus;
  
 
 // 存储组件列表 
