@@ -395,7 +395,7 @@ export default {
 			let currentX = 0; //当前选中td的x坐标
 			const currentRowspan = this.record.trs[this.trIndex].tds[this.tdIndex].rowspan; //当前选中td的rowspan
 			const currentColspan = this.record.trs[this.trIndex].tds[this.tdIndex].colspan; //当前选中td的colspan
-			let maxX = 2; //最大的x坐标
+			let maxX = 3; //最大的x坐标
 			//找到被选中的td的x,y坐标
 			storeRecord.trs.forEach((tr, y) => {
 				tr.tds.forEach((td, x) => {
