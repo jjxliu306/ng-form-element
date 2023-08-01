@@ -10,6 +10,8 @@ import NgFormItemNode from './form-design/items/node.vue'
 
 import NgForm  from './ng-form/index.vue'
 
+import mixin from './form-design/items/mixin.js'
+
 NgForm.install = function (Vue) { 
   Vue.component(NgForm.name, NgForm)
 }
@@ -61,7 +63,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
  
 export {
-  NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode
+  mixin , NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode
 }
  
 // export default {
