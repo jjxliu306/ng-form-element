@@ -19,7 +19,7 @@ NG-FORM-ELEMENT
  **iview版本地址**
  https://gitee.com/jjxliu306/ng-form-iview
 
-  **element-plus版本地址**
+  **element-plus版本（VUE3版本）地址**
  https://gitee.com/jjxliu306/ng-form-elementplus
 
  
