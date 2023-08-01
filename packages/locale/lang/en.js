@@ -38,7 +38,26 @@ export default {
       output_hidden_tip: 'When there are dynamically hidden components, this switch determines whether the values in the hidden components will be ignored and deleted' ,
       form_style: 'form style',
       tip: 'tip',
-      result_tip: 'Please click on the preview to view the actual preview effect'
+      result_tip: 'Please click on the preview to view the actual preview effect',
+    
+      no_feature: 'please select freature',
+      event: 'event',
+      listen: 'listen',
+      dynamics: 'dynamics',
+
+      focus_event: 'focus',
+      blur_event: 'blur',
+      listen_model: 'listen',
+      feature_model: 'models',
+      feature_model_tip: 'Multiple feature usage, segmentation',
+      listen_script: 'script',
+
+      dynamic_visible: 'visible',
+      dynamic_visible_tip: '请输入显示脚本,$标识当前整个表单的绑定数据',
+      dynamic_disabled: 'disabled',
+      dynamic_disabled_tip: '请输入禁用脚本,$标识当前整个表单的绑定数据',
+      dynamic_visible_script: 'visible script',
+      disabled_visible_script: 'disabled script'
     },
 
 

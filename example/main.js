@@ -5,10 +5,10 @@ import App from './App'
  
  // 导入组件库
 import FormDesign from '../packages/index.js' 
-import en from '../packages/locale/lang/en'
+import zh from '../packages/locale/lang/zh_CN'
 //import locale from '../packages/locale/index'
 // 注册组件库
-Vue.use(FormDesign , {locale: en})
+Vue.use(FormDesign , {locale: zh})
  
 //Vue.prototype.$locale = locale;
 

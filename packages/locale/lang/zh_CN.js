@@ -38,7 +38,24 @@ export default {
       output_hidden_tip: '当存在动态隐藏的组件时，此开关决定隐藏的组件中的值是否将被忽略删除' ,
       form_style: '表单样式',
       tip: '提示',
-      result_tip: '实际预览效果请点击预览查看'
+      result_tip: '实际预览效果请点击预览查看',
+      no_feature: '请先从面板中选择组件',
+      event: '事件',
+      listen: '监听',
+      dynamics: '动态配置',
+      focus_event: '获取焦点',
+      blur_event: '失去焦点',
+      listen_model: '监听组件',
+      feature_model: '组件model',
+      feature_model_tip: '多个组件使用,分割',
+      listen_script: '触发表达式',
+
+      dynamic_visible: '动态显示',
+      dynamic_visible_tip: 'Please enter the visible script to identify the binding data for the current entire form',
+      dynamic_disabled: '动态禁用',
+      dynamic_disabled_tip: 'Please enter the disable script to identify the binding data for the current entire form',
+      dynamic_visible_script: '显示条件',
+      disabled_visible_script: '禁用条件'
     },
      
     item: {
