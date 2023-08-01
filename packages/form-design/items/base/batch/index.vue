@@ -59,6 +59,7 @@ export default {
     dragEnd(evt, list) {   
       // 拖拽结束,自动选择拖拽的控件项
       const clone = cloneDeep(list[evt.newIndex])
+      delete clone.icon 
       this.$set(list , evt.newIndex , clone)
       this.handleSelectItem(clone)
     },

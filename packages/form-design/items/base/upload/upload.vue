@@ -240,15 +240,7 @@ export default {
 			if(fileUrl) {
 				// 重新组合
 				const f_ = {name: file.name , size: file.size , url: fileUrl}
-
-			 
-				// const addData = [
-			 //        ...this.value,
-			 //        {
-			 //         name: file.name , size: file.size , url: fileUrl
-			 //        }
-			 //    ]; 
-
+ 
 			  const addData = this.value.concat([
 	        { 
 	        	 name: file.name , size: file.size , url: fileUrl
