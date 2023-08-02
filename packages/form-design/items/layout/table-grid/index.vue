@@ -127,6 +127,15 @@ export default {
     margin-bottom: 10px;
 }
 
+.ng-table-controller .grid-build {
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
 .table-bordered {
     border-radius: 4px;
     border: 1px solid #dcdfe6;

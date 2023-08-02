@@ -19,7 +19,7 @@
                 :style="getGridItemStyle(grid)"
             >
                 <div
-                    :class="grid.class"
+                    :class="['grid-build', grid.class]"
                     :style="grid.style"
                 >
                     <template v-for="item in grid.list">
