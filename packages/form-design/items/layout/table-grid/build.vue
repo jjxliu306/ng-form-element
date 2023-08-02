@@ -22,16 +22,18 @@
                     :class="grid.class"
                     :style="grid.style"
                 >
-                    <ng-form-node
-                        v-for="item in grid.list"
-                        :key="item.key"
-                        class="drag-move"
-                        :selectItem="selectItem"
-                        :record="item"
-                        @handleSelectItem="handleSelectItem"
-                        @handleCopy="handleCopy(item, grid)"
-                        @handleDetele="handleDetele(item, grid)"
-                    />
+                    <template v-for="item in grid.list">
+                        <ng-form-node
+                            ref="nestedComponents"
+                            class="drag-move"
+                            :is-drag="false"
+                            :key="item.key"
+                            :disabled="disabled"
+                            :preview="preview"
+                            :models.sync="models"
+                            :record="item"
+                        />
+                    </template>
                 </div>
             </div>
         </div>

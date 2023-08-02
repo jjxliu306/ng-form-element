@@ -123,6 +123,10 @@ export default {
     background-color: white;
 }
 
+.ng-table-controller .drag-move {
+    margin-bottom: 10px;
+}
+
 .table-bordered {
     border-radius: 4px;
     border: 1px solid #dcdfe6;

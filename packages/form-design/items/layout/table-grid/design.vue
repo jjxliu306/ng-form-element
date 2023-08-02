@@ -16,7 +16,7 @@
         >
             <div
                 v-for="(grid, index) in record.grids.list"
-                :key="grid.key"
+                :key="index"
                 :style="getGridItemStyle(grid)"
                 v-show="grid.show"
                 @contextmenu.prevent="
@@ -40,16 +40,17 @@
                         v-model="grid.list"
                         @add="dragEnd($event, grid)"
                     >
-                        <ng-form-node
-                            v-for="item in grid.list"
-                            :key="item.key"
-                            class="drag-move grid-item"
-                            :selectItem="selectItem"
-                            :record="item"
-                            @handleSelectItem="handleSelectItem"
-                            @handleCopy="handleCopy(item, grid)"
-                            @handleDetele="handleDetele(item, grid)"
-                        />
+                        <template v-for="item in grid.list">
+                            <ng-form-node
+                                :key="item.key"
+                                class="drag-move grid-item"
+                                :selectItem="selectItem"
+                                :record="item"
+                                @handleSelectItem="handleSelectItem"
+                                @handleCopy="handleCopy(item, grid)"
+                                @handleDetele="handleDetele(item, grid)"
+                            />
+                        </template>
                     </draggable>
                 </div>
             </div>
@@ -195,7 +196,7 @@ export default {
                     rowStart: Math.floor(i / colNum) + 1,
                     rowEnd: Math.floor(i / colNum) + 1,
                     show: true,
-                    style: '',
+                    style: 'height:100%;',
                     class: '',
                 })
             }
@@ -352,7 +353,7 @@ export default {
                     rowStart: i + 1,
                     rowEnd: i + 1,
                     show: true,
-                    style: '',
+                    style: 'height:100%;',
                     class: '',
                     key: new Date().getTime(),
                 }
@@ -380,7 +381,7 @@ export default {
                     rowStart: rowNum,
                     rowEnd: rowNum,
                     show: true,
-                    style: '',
+                    style: 'height:100%;',
                     class: '',
                     key: new Date().getTime(),
                 })
@@ -397,7 +398,7 @@ export default {
             }
             // 找到当前行的所有项
             const index = this.index
-            const list = this.record.grids.list
+            const list = cloneDeep(this.record.grids.list)
             const currentRow = Math.floor(index / this.record.grids.colNum) + 1 //当前行
             let isMerge = false
             for (let i = list.length - 1; i >= 0; i--) {
@@ -427,9 +428,9 @@ export default {
             // 删除当前行
             for (let i = list.length - 1; i >= 0; i--) {
                 const item = list[i]
-                // 删除当前行的所有项
                 if (item.rowStart == currentRow) {
-                    list.splice(i, 1)
+                    //先标记
+                    item.needRemove = true
                 }
                 // 修改当前行下面的所有项的行号
                 if (item.rowStart > currentRow && item.show) {
@@ -437,6 +438,7 @@ export default {
                     item.rowEnd--
                 }
             }
+            this.record.grids.list = list.filter((item) => !item.needRemove)
             this.record.grids.rowNum-- //行数减一
         },
         handleRemoveCol() {
@@ -450,7 +452,7 @@ export default {
             }
             // 找到当前列的所有项
             const index = this.index
-            const list = this.record.grids.list
+            let list = cloneDeep(this.record.grids.list)
             const currentCol = (index % this.record.grids.colNum) + 1 //当前列
             let isMerge = false
             for (let i = list.length - 1; i >= 0; i--) {
@@ -480,9 +482,9 @@ export default {
             // 删除当前列
             for (let i = list.length - 1; i >= 0; i--) {
                 const item = list[i]
-                // 删除当前列的所有项
                 if (item.colStart == currentCol) {
-                    list.splice(i, 1)
+                    //先标记
+                    item.needRemove = true
                 }
                 // 修改当前列右边的所有项的列号
                 if (item.colStart > currentCol && item.show) {
@@ -490,6 +492,7 @@ export default {
                     item.colEnd--
                 }
             }
+            this.record.grids.list = list.filter((item) => !item.needRemove)
             this.record.grids.colNum-- //列数减一
         },
         handleSettingStyle() {
