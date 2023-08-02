@@ -76,15 +76,17 @@ export default {
 	 	dragEnd(evt, list) {   
 	 		// 复制一遍
 	 		const clone = cloneDeep(list[evt.newIndex])
+	 		// 去掉icon
+	 		delete clone.icon 
 	 		this.$set(list , evt.newIndex , clone)
 	    	// 拖拽结束,自动选择拖拽的控件项
 	    	//console.log('111' , cloneDeep(list[evt.newIndex]))
-	    	this.handleSelectItem(list[evt.newIndex])
-	  	},
-	  	handleSelectItem(record) {
-	    	this.$emit('handleSelectItem' , record)
-	  	},
-	  	handleCopy(item){ 
+	    this.handleSelectItem(list[evt.newIndex])
+	  },
+	  handleSelectItem(record) {
+	    this.$emit('handleSelectItem' , record)
+	  },
+	  handleCopy(item){ 
 	  		const nitem = cloneDeep(item)
 	  		const key = item.type + "_" + new Date().getTime() 
 	  		nitem.key = key
@@ -99,8 +101,8 @@ export default {
 
 	  		}
 
-	  	},
-	 	 handleDetele(item) {
+	  },
+	 	handleDetele(item) {
 	  		const oindex = this.formTemplate.list.findIndex(t=>t.key == item.key)
 	  		if(oindex >= 0) {
 	  			this.formTemplate.list.splice(oindex , 1);
@@ -108,7 +110,7 @@ export default {
 	  			// 当前selectItem重置
 	  			this.handleSelectItem(undefined)
 	  		}
-	  	}
+	  }
 	}
 }
 </script>
