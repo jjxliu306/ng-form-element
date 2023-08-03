@@ -65,6 +65,8 @@ export default {
       data: 'data',
       data_config: 'Config Data' ,
       method_post_tip: 'Post Data (JSON)' ,
+      script: 'Script',
+      add: 'Add'
     },
 
     rules: {
@@ -113,6 +115,16 @@ export default {
       search: 'search',
       clearable: 'clearable',
 
+      linkage: 'Linkage',
+      linkage_title: 'Linkage',
+
+      yes: 'Yes',
+      no: 'No',
+
+      local: 'Local',
+      remote: 'Remote',
+      linkage_column: 'Column' ,
+    
 
       batch: {
         name: 'batch' ,
@@ -134,6 +146,9 @@ export default {
       },
       cascader: {
         name: 'cascader'
+      },
+      checkbox: {
+        name: 'checkbox'
       }
 
     },

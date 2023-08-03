@@ -10,18 +10,18 @@
           <el-col :span="21" >
             <template>
               {{index+1}}、
-              <el-radio v-model="val.vtype" :label="1">本地</el-radio>
-              <el-radio v-model="val.vtype" :label="2">远程</el-radio>
+              <el-radio v-model="val.vtype" :label="1">{{t('ngform.item.local')}}</el-radio>
+              <el-radio v-model="val.vtype" :label="2">{{t('ngform.item.remote')}}</el-radio>
             </template>
           </el-col>
           <el-col :span="21" >
-            <el-input size="mini" v-model="val.model" placeholder="关联字段">
-              <template slot="prepend">关联字段</template>
+            <el-input size="mini" v-model="val.model" :placeholder="t('ngform.item.linkage_column')">
+              <template slot="prepend">{{t('ngform.item.linkage_column')}}</template>
             </el-input>
           </el-col>
           <el-col :span="21">
             <template v-if="val.vtype == 1">
-               表达式:
+               {{t('ngform.item.script')}}:
               <el-input size="mini"   type="textarea" v-model="val.script" placeholder="表达式,eg: $item.value>$.age . 其中$item表示当前数据中具体一条数据,$表示当前整个表单数据" />
 
             </template>
@@ -44,14 +44,15 @@
           </el-col>
         </div>
       </span>
-      <el-col v-if="!disabled" :span="24"><el-button type="primary" size="mini" @click="handleAdd">添加</el-button></el-col>
+      <el-col v-if="!disabled" :span="24"><el-button type="primary" size="mini" @click="handleAdd">{{t('ngform.properties.add')}}</el-button></el-col>
     </el-row>
      
   </div>
 </template>
 <script>
- 
+import LocalMixin from '../../../../locale/mixin.js'
 export default {
+  mixins: [LocalMixin],
   name: "ng-properties-linkage",
   props: {
     value: {

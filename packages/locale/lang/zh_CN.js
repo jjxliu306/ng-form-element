@@ -63,7 +63,8 @@ export default {
       data: '数据',
       data_config: '数据配置' ,
       method_post_tip: 'post请求需要携带的数据(JSON格式)' ,
-
+      script: '表达式',
+      add: '新增'
     },
 
     rules: {
@@ -101,6 +102,7 @@ export default {
       datasource_dict: '数据字典' ,
       method_type: '方法类型',
       post_data: 'Post携带数据' ,
+      dict_type: '字典分类',
 
       api_path: 'API地址' ,
       data_path: '数据路径' ,
@@ -111,7 +113,15 @@ export default {
       search: '搜索',
       clearable: '可清除',
 
+      linkage: '联动关联',
+      linkage_title: '联动',
 
+      yes: '是',
+      no: '否',
+
+      local: '本地',
+      remote: '远程',
+      linkage_column: '关联字段' ,
 
       batch: {
         name: '动态表格' ,
@@ -133,6 +143,9 @@ export default {
       },
       cascader: {
         name: '级联选择器'
+      },
+      checkbox: {
+        name: '多选框'
       }
 
     },
