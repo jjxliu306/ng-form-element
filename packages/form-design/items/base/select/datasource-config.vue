@@ -5,7 +5,7 @@ cascader没有数据字典
 <template>
 <el-form   size="mini" label-width="80px" label-position="right"> 
 	<el-form-item  :label="t('ngform.item.datasource')" ><!-- 数据来源 -->
-    <el-select clearable v-model="selectItem.options.dynamic" placeholder="请选择" style="width:100%"> 
+    <el-select clearable v-model="selectItem.options.dynamic" :placeholder="t('ngform.properties.select')" style="width:100%"> 
 	    <el-option :label="t('ngform.item.datasource_static')"	:value="0"></el-option>
 	    <el-option :label="t('ngform.item.datasource_api')"	:value="1"></el-option>
 	    <el-option :label="t('ngform.item.datasource_dict')"	:value="2" v-if="hasDict"></el-option>
@@ -13,37 +13,39 @@ cascader没有数据字典
   </el-form-item>
    
   <template v-if="selectItem.options.dynamic == 1">
-    <el-form-item  :label="t('ngform.item.method')" >
+    <el-form-item  :label="t('ngform.item.method_type')" >
       <el-radio-group v-model="selectItem.options.methodType">
         <el-radio label="get">get</el-radio>
         <el-radio label="post">post</el-radio>
       </el-radio-group>
     </el-form-item>
-    <el-form-item  label="数据" v-if="selectItem.options.methodType == 'post'">
-      <el-input type="textarea" placeholder="post请求需要携带的数据(JSON格式)" size="mini" v-model="selectItem.options.dynamicPostData"> 
+    <el-form-item :label="t('ngform.properties.data')" v-if="selectItem.options.methodType == 'post'">
+      <el-input type="textarea" :placeholder="t('ngform.properties.method_post_tip')" size="mini" v-model="selectItem.options.dynamicPostData"> 
       </el-input>
     </el-form-item>
   </template>
  
   
   
-  <el-divider>数据配置</el-divider> 
+  <el-divider>{{t('ngform.properties.data_config')}}</el-divider> 
 
   <el-form-item label-width="0px" >
     <!-- 远程赋值配置 -->  
     <div v-if="selectItem.options.dynamic == 1">
      
       <el-input size="mini" v-model="selectItem.options.remoteFunc">
-        <template slot="prepend">远端方法</template>
+        <template slot="prepend">{{t('ngform.item.datasource_api')}}</template>
       </el-input>
       <el-input size="mini" v-model="selectItem.options.dataPath"  title="假设当前接口返回的数据结构为:{code:200,data:[{id:1,name:'11'},{id:2,name:'22'}]} , 则当前的dataPath填写: data">
-        <template slot="prepend">列表数据dataPath</template>
+ 
+
+        <template slot="prepend">{{t('ngform.item.data_path')}}</template>
       </el-input>
       <el-input size="mini" v-model="selectItem.options.remoteValue">
-        <template slot="prepend">值字段</template>
+        <template slot="prepend">{{t('ngform.item.filed_value')}}</template>
       </el-input>
       <el-input size="mini" v-model="selectItem.options.remoteLabel">
-        <template slot="prepend">标签字段</template>
+        <template slot="prepend">{{t('ngform.item.filed_label')}}</template>
       </el-input> 
     </div>  
     <div v-else-if="selectItem.options.dynamic == 2">
@@ -51,10 +53,10 @@ cascader没有数据字典
         v-model="selectItem.options.dictType"
         :fetch-suggestions="queryDictSearch"
         value-key="type"
-        placeholder="请输入"
+        :placeholder="t('ngform.properties.select')"
         @select="handleDictSelect"
       >
-        <template slot="prepend">字典分类</template>
+        <template slot="prepend">{{t('ngform.item.dict_type')}}</template>
         <template slot-scope="{ item }">
           <span class="name">{{ item.type }}</span> 
         </template>

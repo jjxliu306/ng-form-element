@@ -21,6 +21,8 @@ export default {
       feature_property: 'Item',
       form_property: 'Form',
 
+      select: 'Please Select' ,
+
       size: 'size',
       label_position: 'label position',
       left: 'left',
@@ -57,9 +59,26 @@ export default {
       dynamic_disabled: 'disabled',
       dynamic_disabled_tip: 'Please enter the disabled script to identify the binding data for the current entire form',
       dynamic_visible_script: 'visible script',
-      disabled_visible_script: 'disabled script'
+      disabled_visible_script: 'disabled script',
+
+
+      data: 'data',
+      data_config: 'Config Data' ,
+      method_post_tip: 'Post Data (JSON)' ,
     },
 
+    rules: {
+      required: 'required',
+      required_message: 'required message',
+      regular: 'regular',
+      regular_tip: 'Regular expressions do not include /',
+      regular_placeholder: 'Regular expressions' ,
+      script: 'script',
+      script_tip: 'In the expression, $represents global form data, and $row represents data in a single row within a dynamic table',
+      script_placeholder: 'script' ,
+      message_tip: 'message',
+      add_rule: 'Add'
+    },
 
     item: {
       label: 'label',
@@ -81,6 +100,7 @@ export default {
       datasource_static: 'static',
       datasource_api: 'API',
       datasource_dict: 'Dict' ,
+      dict_type: 'Dict Group',
       method_type: 'method',
       post_data: 'Post Data' ,
 

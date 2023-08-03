@@ -21,6 +21,8 @@ export default {
       feature_property: '要素属性',
       form_property: '表单属性',
 
+      select: '请选择' ,
+
       size: '尺寸',
       label_position: '对齐方式',
       left: '左对齐',
@@ -55,7 +57,26 @@ export default {
       dynamic_disabled: '动态禁用',
       dynamic_disabled_tip: 'Please enter the disable script to identify the binding data for the current entire form',
       dynamic_visible_script: '显示条件',
-      disabled_visible_script: '禁用条件'
+      disabled_visible_script: '禁用条件',
+
+
+      data: '数据',
+      data_config: '数据配置' ,
+      method_post_tip: 'post请求需要携带的数据(JSON格式)' ,
+
+    },
+
+    rules: {
+      required: '必填',
+      required_message: '必填校验提示信息',
+      regular: '正则',
+      regular_tip: '正则表达式不要带前后的/',
+      regular_placeholder: '正则表达式pattern' ,
+      script: '表达式',
+      script_tip: '表达式中$表示全局表单数据,$row表示在动态表格内单行的数据',
+      script_placeholder: '条件表达式' ,
+      message_tip: '提示信息',
+      add_rule: '增加效验'
     },
      
     item: {
@@ -89,6 +110,8 @@ export default {
       multiple: '多选',
       search: '搜索',
       clearable: '可清除',
+
+
 
       batch: {
         name: '动态表格' ,
