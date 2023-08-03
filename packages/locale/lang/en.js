@@ -157,6 +157,12 @@ export default {
         year: 'Year',
         month: 'Month',
         date: 'Date'
+      },
+      datePicker: {
+        name: 'DatePicker'
+      },
+      daterange: {
+        name: 'DateRange'
       }
 
     },

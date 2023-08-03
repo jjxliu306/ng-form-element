@@ -155,6 +155,12 @@ export default {
         month: '月份',
         date: '日期'
 
+      },
+      datePicker: {
+        name: '日期时间'
+      },
+      daterange: {
+        name: '日期区间'
       }
 
     },

@@ -111,7 +111,7 @@ obj.options = {
                 {
                     label: $t('ngform.item.placeholder') ,//'输入提示', 
                     prop: 'placeholder',
-                    default: '请输入',
+                    default: $t('ngform.item.placeholder_input') ,// '请输入',
                     span: 24,
                 },
                   
