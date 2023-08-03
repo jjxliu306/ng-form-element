@@ -23,6 +23,40 @@ export function dynamicFun(script , model , key="$" , row , rowKey) {
   }
  
 } 
+/**
+* 数据复制并且格式化
+*/
+export function cloneDeepAndFormat(data) {
+  const clone = cloneDeep(data)
+  delete clone.icon 
+
+  // 按照当前语言对国际化适配的数据进行格式化 
+
+  const fs_ = (p ,k , v) => {
+    if(v instanceof Function) {
+
+      const nv = getLabel(v)
+      p[k] = nv 
+
+    } else if(v instanceof Array) {
+      v.forEach((t,idx)=> {
+        fs_(v ,idx , t)
+      })
+    } else if(v instanceof Object) {
+      for(let key in v) {
+        fs_(v , key , v[key])
+      }
+    }  
+  }
+
+  for(let key in clone) {
+    const kdata = clone[key]
+
+    fs_(clone , key , kdata)
+  }
+
+  return clone 
+}
 
 /**
  * 获取uuid
@@ -40,8 +74,7 @@ export function getLabel(v) {
     if(typeof v == 'function') {
         const label = v()
         return label 
-    }
-    console.log("v" , v)
+    } 
     return v
 }
  
@@ -111,7 +144,7 @@ export function translateConfig(config = []) {
                             jdefault = ''
                         }
 
-                        v[t.prop][tc.prop] = getLabel(jdefault)
+                        v[t.prop][tc.prop] = jdefault 
                     }) 
                 }
 
@@ -125,7 +158,7 @@ export function translateConfig(config = []) {
                     jdefault = ''
                 }
 
-                v[tc.prop] = getLabel(jdefault)
+                v[tc.prop] =  jdefault 
             }) 
         }
       

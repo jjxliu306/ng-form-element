@@ -22,7 +22,7 @@ obj.options = {
         {
             label: $t('ngform.item.label'),//'标签', 
             prop: 'label',
-            default: t('ngform.item.batch.name') ,//'动态表格', 
+            default: $t('ngform.item.batch.name') ,//'动态表格', 
             span: 24,
         },
         {

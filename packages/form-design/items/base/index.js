@@ -15,7 +15,7 @@ list = list.sort(function(a,b){
   return a.seq - b.seq
 })
 
-
+console.log('list' , list)
 export default {
   type: 'basic',
   name: '基础组件',

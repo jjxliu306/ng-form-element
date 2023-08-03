@@ -3,6 +3,7 @@
     <draggable
       tag="ul"
       :value="list"
+      :key="formKey"
       v-bind="{
         group: { name: 'form-draggable', pull: 'clone', put: false },
         sort: false,
@@ -17,11 +18,11 @@
           v-for="(val, index) in list"
           :key="index"  >
          
-          <div class="handle-widget-label"   draggable="true" :title="val.label">
+          <div class="handle-widget-label"   draggable="true" :title="getLabel(val.label)">
             <div class="label-item"> 
-              <img v-if="weightIcon(val)" draggable="false" class="item-img" :src="weightIcon(val)" :alt="val.label">
+              <img v-if="weightIcon(val)" draggable="false" class="item-img" :src="weightIcon(val)" :alt="getLabel(val.label)">
             </div>
-            <div class="handle-label">{{val.label}}</div>
+            <div class="handle-label">{{getLabel(val.label)}}</div>
           </div>
         <!--   <a> 
             <span>{{val.label}}</span><br>
@@ -35,8 +36,15 @@
 <script>
 import { getItemIcon } from '../../utils/icons.js'
 import draggable from "vuedraggable"
+import LocalMixin from '../../locale/mixin.js'
 export default {
   name: "dragItem",
+  mixins: [LocalMixin],
+  data() {
+    return {
+      formKey: '11'
+    }
+  },
   props: {
     list: {
       type: Array,
@@ -45,6 +53,12 @@ export default {
   },
   components: {
     draggable
+  },
+  mounted () {  
+    this.$ngofrm_bus.$on('i18nRefresh', () => { 
+      this.formKey = new Date().getTime()
+       
+    });
   },
   methods: { 
     handleEnd(e, list){ 
