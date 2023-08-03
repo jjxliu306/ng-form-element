@@ -4,16 +4,16 @@ cascader没有数据字典
 -->
 <template>
 <el-form   size="mini" label-width="80px" label-position="right"> 
-	<el-form-item  label="数据来源" >
+	<el-form-item  :label="t('ngform.item.datasource')" ><!-- 数据来源 -->
     <el-select clearable v-model="selectItem.options.dynamic" placeholder="请选择" style="width:100%"> 
-	    <el-option label="静态数据"	:value="0"></el-option>
-	    <el-option label="API接口"	:value="1"></el-option>
-	    <el-option label="数据字典"	:value="2" v-if="hasDict"></el-option>
+	    <el-option :label="t('ngform.item.datasource_static')"	:value="0"></el-option>
+	    <el-option :label="t('ngform.item.datasource_api')"	:value="1"></el-option>
+	    <el-option :label="t('ngform.item.datasource_dict')"	:value="2" v-if="hasDict"></el-option>
 	 </el-select>
   </el-form-item>
    
   <template v-if="selectItem.options.dynamic == 1">
-    <el-form-item  label="方法" >
+    <el-form-item  :label="t('ngform.item.method')" >
       <el-radio-group v-model="selectItem.options.methodType">
         <el-radio label="get">get</el-radio>
         <el-radio label="post">post</el-radio>
@@ -74,7 +74,9 @@ cascader没有数据字典
 <script>
 import KvList from '../../../../ng-form/kv-list.vue'
 import KvListChildren from '../../../../ng-form/kv-list-children.vue'
+import LocalMixin from '../../../../locale/mixin.js'
 export default {
+  mixins: [LocalMixin],
   components: {
     KvList , KvListChildren
   },

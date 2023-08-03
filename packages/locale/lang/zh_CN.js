@@ -68,7 +68,27 @@ export default {
       options: '属性',
       if_hidden: '是否隐藏',
       if_disabled: '是否禁用',
+      validate_rule: '效验规则' ,
+      required: '必填项',
+      default_value: '默认值',
+      placeholder: '输入提示',
+      placeholder_input: '请输入',
 
+      datasource: '数据源',
+      datasource_static: '静态数据',
+      datasource_api: 'API接口',
+      datasource_dict: '数据字典' ,
+      method_type: '方法类型',
+      post_data: 'Post携带数据' ,
+
+      api_path: 'API地址' ,
+      data_path: '数据路径' ,
+      filed_value: '值字段',
+      filed_label: '标签字段',
+
+      multiple: '多选',
+      search: '搜索',
+      clearable: '可清除',
 
       batch: {
         name: '动态表格' ,
@@ -87,6 +107,9 @@ export default {
         dialogConfig: '外部展示字段',
         lineConfig: '字段宽度'
 
+      },
+      cascader: {
+        name: '级联选择器'
       }
 
     },

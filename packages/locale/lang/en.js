@@ -71,6 +71,27 @@ export default {
       options: ' property',
       if_hidden: 'hidden',
       if_disabled: 'disabled',
+      validate_rule: 'rule' ,
+      required: 'required',
+      default_value: 'default',
+      placeholder: 'placeholder',
+      placeholder_input: 'please input',
+
+      datasource: 'datasource',
+      datasource_static: 'static',
+      datasource_api: 'API',
+      datasource_dict: 'Dict' ,
+      method_type: 'method',
+      post_data: 'Post Data' ,
+
+      api_path: 'API Path' ,
+      data_path: 'Data Path' ,
+      filed_value: 'value',
+      filed_label: 'label',
+
+      multiple: 'multiple',
+      search: 'search',
+      clearable: 'clearable',
 
 
       batch: {
@@ -90,6 +111,9 @@ export default {
         dialogConfig: 'showColumn',
         lineConfig: 'columnWidth'
 
+      },
+      cascader: {
+        name: 'cascader'
       }
 
     },

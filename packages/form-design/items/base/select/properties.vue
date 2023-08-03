@@ -1,6 +1,6 @@
 <template>
 <div>  
-    <el-collapse-item name="data" title="数据">
+    <el-collapse-item name="data" :title="t('ngform.item.datasource')">
       <DatasourceConfig :selectItem="selectItem">
         <template slot="defaultValue" >
           <el-form-item v-if="selectItem && selectItem.options.dynamic == 0" label="默认值">
@@ -37,7 +37,9 @@
 <script>
 import DatasourceConfig from './datasource-config.vue'
 import Linkage from './linkage.vue'
+import LocalMixin from '../../../../locale/mixin.js'
 export default {
+  mixins: [LocalMixin],
   components: {
     DatasourceConfig , Linkage
   },

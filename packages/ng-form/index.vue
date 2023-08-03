@@ -13,7 +13,7 @@
     <template v-for="column in columns">
 
 
-      <el-divider :key="column.label" content-position="center" class="ng-form-divider" v-if="column.type == 'divider' && (column.show == undefined || column.show == true || columnVisible(column.show))">{{column.label}}</el-divider> 
+      <el-divider :key="column.label" content-position="center" class="ng-form-divider" v-if="column.type == 'divider' && (column.show == undefined || column.show == true || columnVisible(column.show))">{{formLabel(column.label)}}</el-divider> 
       <el-form-item
         :prop="column.prop"
         :label="formLabel(column.label)"
