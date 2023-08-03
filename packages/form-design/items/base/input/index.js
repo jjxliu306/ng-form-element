@@ -2,7 +2,7 @@
  
 import BaseIndex from './index.vue'
 //import BaseProperties from './properties.vue'
-  
+import { t , $t } from '../../../../locale/index.js'    
 
 const obj = {}
  
@@ -19,13 +19,13 @@ obj.options = {
     },
     columns: [
         {
-            label: '标签', 
+            label: $t('ngform.item.label'), 
             prop: 'label',
-            default: '输入框',
+            default: $t('ngform.item.input.name'),//'输入框',
             span: 24,
         },
         {
-            label: '标签宽度', 
+            label: $t('ngform.item.label_width'), 
             prop: 'labelWidth',
             type: 'number',
             min: -1,
@@ -34,13 +34,13 @@ obj.options = {
             span: 24,
         },
         {
-            label: '要素宽度', 
+            label: $t('ngform.item.width'), 
             prop: 'width',  
             default: '100%',
             span: 24,
         },
         {
-            label: '所占栅格', 
+            label: $t('ngform.item.span') ,//'所占栅格', 
             type: 'slider',
             prop: 'span',
             min: 1,
@@ -49,19 +49,19 @@ obj.options = {
             span: 24,
         },
         {
-            label: '数据字段', 
+            label: $t('ngform.item.model') , //'数据字段', 
             prop: 'model',
             span: 24,
         },
         {
-            label: '数据KEY', 
+            label: $t('ngform.item.key') , //'数据KEY', 
             prop: 'key',
             show: false,
             span: 24,
         },
         {
             type: 'divider',
-            label: '效验规则'
+            label: $t('ngform.item.validate_rule') , //'效验规则'
         },
         { 
             prop: 'rules',
@@ -69,7 +69,7 @@ obj.options = {
             labelWidth: 0,
             default: [{ 
                 required: false, // 必须填写
-                message: "必填项",
+                message: $t('ngform.item.required'), //"必填项",
                 trigger: ['blur'] 
             }],
             span: 24, 
@@ -77,19 +77,19 @@ obj.options = {
     ],
     group: [
         {
-            label: '属性',
+            label: $t('ngform.item.options') ,//'属性',
             prop: 'options',
             alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
             collapse: false, // 是否启用 collapse 必须alone=true
             column: [ 
                 
                 {
-                    label: '默认值', 
+                    label: $t('ngform.item.default_value') ,//'默认值', 
                     prop: 'defaultValue',
                     span: 24,
                 },
                 {
-                    label: '输入类型', 
+                    label: $t('ngform.item.input.input_type') ,//'输入类型', 
                     prop: 'type',
                     span: 24,
                     type: 'select',
@@ -99,23 +99,23 @@ obj.options = {
                     }) 
                 },
                 {
-                    label: '前缀', 
+                    label: $t('ngform.item.input.prepend') ,//'前缀', 
                     prop: 'prepend',
                     span: 24,
                 },
                 {
-                    label: '后缀', 
+                    label: $t('ngform.item.input.append') ,//'后缀', 
                     prop: 'append',
                     span: 24,
                 },
                 {
-                    label: '输入提示', 
+                    label: $t('ngform.item.placeholder') ,//'输入提示', 
                     prop: 'placeholder',
-                    default: '请输入',
+                    default: $t('ngform.item.placeholder_input') ,// '请输入',
                     span: 24,
                 },
                 {
-                    label: '最大长度',
+                    label: $t('ngform.item.input.max_length') ,//'最大长度',
                     type: 'number',
                     min: -1,
                     max: 1000,
@@ -123,21 +123,21 @@ obj.options = {
                     span: 24,
                 }, 
                 {
-                  label: '可清除',
+                  label: $t('ngform.item.clearable'),//'可清除',
                   prop: 'clearable',
                   type: 'switch',
                   default: false,
                   span: 24,
                 } ,
                 {
-                  label: '是否隐藏',
+                  label: $t('ngform.item.if_hidden') ,//'是否隐藏',
                   prop: 'hidden',
                   type: 'switch',
                   default: false,
                   span: 24,
                 },
                 {
-                  label: '是否禁用',
+                  label: $t('ngform.item.if_disabled') ,//'是否禁用',
                   prop: 'disabled',
                   type: 'switch',
                   default: false,

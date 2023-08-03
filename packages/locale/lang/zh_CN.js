@@ -123,6 +123,8 @@ export default {
       remote: '远程',
       linkage_column: '关联字段' ,
 
+      max_length: '最大长度' ,
+
       batch: {
         name: '动态表格' ,
         scroll_height: '滚动高度' ,
@@ -161,6 +163,20 @@ export default {
       },
       daterange: {
         name: '日期区间'
+      },
+      input: {
+        name: '输入框',
+        input_type: '输入类型',
+        prepend: '前缀',
+        append: '后缀'
+      },
+      number: {
+        name: '数字输入框',
+        precision: '精度',
+        step: '步长',
+        min: '最小值',
+        max: '最大值',
+        append: '后缀'
       }
 
     },

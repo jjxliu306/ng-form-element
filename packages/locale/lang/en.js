@@ -125,6 +125,7 @@ export default {
       remote: 'Remote',
       linkage_column: 'Column' ,
     
+      max_length: 'MaxLength' ,
 
       batch: {
         name: 'batch' ,
@@ -163,6 +164,20 @@ export default {
       },
       daterange: {
         name: 'DateRange'
+      },
+      input: {
+        name: 'Input',
+        input_type: 'Type',
+        prepend: 'Prepend',
+        append: 'Append'
+      },
+      number: {
+        name: 'Number',
+        precision: 'Precision',
+        step: 'step',
+        min: 'Min',
+        max: 'Max',
+        append: 'Append'
       }
 
     },
