@@ -185,6 +185,11 @@ export default {
         name: '评分',
         max: '最大值',
         allow_half: '允许半选'
+      },
+      select: {
+        name: '下拉选择器',
+        selectCb: '选择后回调',
+        clearCb: '清除后回调'
       }
 
     },

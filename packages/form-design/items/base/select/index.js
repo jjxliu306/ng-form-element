@@ -2,7 +2,7 @@
  
 import BaseIndex from './index.vue'
 import BaseProperties from './properties.vue'
-  
+import { t , $t } from '../../../../locale/index.js'   
 
 const obj = {}
  
@@ -21,13 +21,13 @@ obj.options = {
     },
     columns: [
         {
-            label: '标签', 
+            label: $t('ngform.item.label'), //'标签', 
             prop: 'label',
-            default: '下拉选择器',
+            default: $t('ngform.item.select.name'),//'下拉选择器',
             span: 24,
         },
         {
-            label: '标签宽度', 
+            label: $t('ngform.item.label_width'), //'标签宽度', 
             prop: 'labelWidth',
             type: 'number',
             min: -1,
@@ -36,13 +36,13 @@ obj.options = {
             span: 24,
         },
         {
-            label: '要素宽度', 
+            label: $t('ngform.item.width'), //'要素宽度', 
             prop: 'width',  
             default: '100%',
             span: 24,
         },
         {
-            label: '所占栅格', 
+            label: $t('ngform.item.span') ,//'所占栅格', 
             type: 'slider',
             prop: 'span',
             min: 1,
@@ -51,19 +51,19 @@ obj.options = {
             span: 24,
         },
         {
-            label: '数据字段', 
+            label: $t('ngform.item.model') , //'数据字段', 
             prop: 'model',
             span: 24,
         },
         {
-            label: '数据KEY', 
+            label: $t('ngform.item.key') , //'数据KEY', 
             prop: 'key',
             show: false,
             span: 24,
         },
         {
             type: 'divider',
-            label: '效验规则'
+            label: $t('ngform.item.validate_rule') , //'效验规则'
         },
         { 
             prop: 'rules',
@@ -71,7 +71,7 @@ obj.options = {
             labelWidth: 0,
             default: [{ 
                 required: false, // 必须填写
-                message: "必填项",
+                message: $t('ngform.item.required'), //"必填项",
                 trigger: ['blur'] 
             }],
             span: 24, 
@@ -79,22 +79,22 @@ obj.options = {
     ],
     group: [
         {
-            label: '属性',
+            label: $t('ngform.item.options') ,//'属性',
             prop: 'options',
             alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
             collapse: false, // 是否启用 collapse 必须alone=true
             column: [ 
                  
                 {
-                    label: '默认值', 
+                    label: $t('ngform.item.default_value') ,//'默认值', 
                     prop: 'defaultValue',
                     show: false,
                     span: 24,
                 }, 
                 {
-                    label: '输入提示', 
+                    label: $t('ngform.item.placeholder') ,//'输入提示', 
                     prop: 'placeholder',
-                    default: '请输入',
+                    default: $t('ngform.item.placeholder_input') ,// '请输入',
                     span: 24,
                 },
 
@@ -105,20 +105,20 @@ obj.options = {
                  //  remoteLabel:'',
                  //  dictType: '' ,// 数据字典类型
                 {
-                    label: '数据获取', 
+                    label:  $t('ngform.item.datasource') ,//'数据获取', 
                     prop: 'dynamic',
                     default: 0,
                     span: 24,
                     type: 'select', 
                     show: false,
                     dicData: [
-                        {label: '静态数据' , value: 0},
-                        {label: 'API接口' , value: 1},
-                        {label: '数据字典' , value: 2}
+                        {label: $t('ngform.item.datasource_static') , value: 0},
+                        {label:  $t('ngform.item.datasource_api') , value: 1},
+                        {label: $t('ngform.item.datasource_dict') , value: 2}
                     ]
                 }, 
                 {
-                    label: '静态数据', 
+                    label:  $t('ngform.item.datasource_static'), //'静态数据', 
                     prop: 'options',
                     default: [
                         {
@@ -135,51 +135,51 @@ obj.options = {
                     show: false
                 }, 
                 {
-                  label: '方法类型',
+                  label: $t('ngform.item.method_type') ,//'方法类型',
                   default: 'get',
                   prop: 'methodType', 
                   show: false
                 } ,
                 {
-                  label: 'post请求携带数据', 
+                  label: $t('ngform.item.post_data'), //'post请求携带数据', 
                   prop: 'dynamicPostData', 
                   show: false
                 } ,
                 {
-                  label: '远程获取数据链接',
+                  label:  $t('ngform.item.api_path'),//'远程获取数据链接',
                   prop: 'remoteFunc', 
                   show: false
                 } ,
                 {
-                  label: '数据路径',
+                  label: $t('ngform.item.data_path'),//'数据路径',
                   prop: 'dataPath', 
                   show: false
                 } ,
                 {
-                  label: '数据值字段',
+                  label: $t('ngform.item.filed_value'),//'数据值字段',
                   prop: 'remoteValue', 
                   show: false
                 } ,
                 {
-                  label: '数据标签字段',
+                  label: $t('ngform.item.filed_label'),//'数据标签字段',
                   prop: 'remoteLabel', 
                   show: false
                 } ,
                 {
-                  label: '字典分类',
+                  label: $t('ngform.item.dict_type'),//'字典分类',
                   prop: 'dictType', 
                   show: false
                 } ,
                 
                 {
-                  label: '多选',
+                  label: $t('ngform.item.multiple'),//'多选',
                   prop: 'multiple',
                   type: 'switch',
                   default: false,
                   span: 24,
                 } ,
                 {
-                  label: '可搜索',
+                  label: $t('ngform.item.search'),//'可搜索',
                   prop: 'showSearch',
                   type: 'switch',
                   default: false,
@@ -187,41 +187,41 @@ obj.options = {
                 } ,
                 
                 {
-                  label: '可清除',
+                  label: $t('ngform.item.clearable'),//'可清除',
                   prop: 'clearable',
                   type: 'switch',
                   default: false,
                   span: 24,
                 } ,
                 {
-                  label: '是否隐藏',
+                  label: $t('ngform.item.if_hidden'),//'是否隐藏',
                   prop: 'hidden',
                   type: 'switch',
                   default: false,
                   span: 24,
                 },
                 {
-                  label: '是否禁用',
+                  label: $t('ngform.item.if_disabled') ,//'是否禁用',
                   prop: 'disabled',
                   type: 'switch',
                   default: false,
                   span: 24,
                 },
                 {
-                  label: '选择后回调',
+                  label: $t('ngform.item.select.selectCb') ,//'选择后回调',
                   prop: 'selectCb',
                   placeholder: '选择后回调方法,eg: $.A004=$select.name, $表示当前表单数据,$select标示当前选择元素实体' ,
                   type: 'textarea'
                 },
                 {
-                  label: '清除后回调',
+                  label: $t('ngform.item.select.clearCb') ,//'清除后回调',
                   prop: 'clearCb',
                   placeholder: '清除后回调方法,eg: $.A004="", $表示当前表单数据' ,
                   type: 'textarea',
                   show: '$.options.clearable'
                 },
                 {
-                  label: '联动关联',
+                  label: $t('ngform.item.linkage') ,//'联动关联',
                   prop: 'linkage',
                   type: 'switch',
                   default: false,
@@ -229,7 +229,7 @@ obj.options = {
                   span: 24,
                 },
                 {
-                  label: '联动关联',
+                  label: $t('ngform.item.linkage') ,//'联动关联',
                   prop: 'linkData', 
                   default: [],
                   show: false,

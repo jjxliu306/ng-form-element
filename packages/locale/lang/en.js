@@ -186,6 +186,11 @@ export default {
         name: 'Rate',
         max: 'Max',
         allow_half: 'AllowHalf'
+      },
+      select: {
+        name: 'Select',
+        selectCb: 'SelectCallback',
+        clearCb: 'SelectCallback'
       }
 
     },
