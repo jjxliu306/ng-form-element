@@ -180,6 +180,11 @@ export default {
       },
       radio: {
         name: '单选框'
+      },
+      rate: {
+        name: '评分',
+        max: '最大值',
+        allow_half: '允许半选'
       }
 
     },

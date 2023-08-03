@@ -181,6 +181,11 @@ export default {
       },
       radio: {
         name: 'Radio'
+      },
+      rate: {
+        name: 'Rate',
+        max: 'Max',
+        allow_half: 'AllowHalf'
       }
 
     },
