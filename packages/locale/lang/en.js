@@ -53,9 +53,9 @@ export default {
       listen_script: 'script',
 
       dynamic_visible: 'visible',
-      dynamic_visible_tip: '请输入显示脚本,$标识当前整个表单的绑定数据',
+      dynamic_visible_tip: 'Please enter the visible script to identify the binding data for the current entire form',
       dynamic_disabled: 'disabled',
-      dynamic_disabled_tip: '请输入禁用脚本,$标识当前整个表单的绑定数据',
+      dynamic_disabled_tip: 'Please enter the disabled script to identify the binding data for the current entire form',
       dynamic_visible_script: 'visible script',
       disabled_visible_script: 'disabled script'
     },
@@ -64,7 +64,7 @@ export default {
     item: {
       label: 'label',
       label_width: 'label width',
-      width: 'feature width',
+      width: 'width',
       span: 'grid num',
       model: 'model',
       key: 'key',
@@ -87,8 +87,8 @@ export default {
         add_type_line: 'line',
         add_type_dialog: 'dialog',
         columns: 'columns',
-        dialogConfig: 'show column',
-        lineConfig: 'column width'
+        dialogConfig: 'showColumn',
+        lineConfig: 'columnWidth'
 
       }
 

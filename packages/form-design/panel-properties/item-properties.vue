@@ -71,14 +71,14 @@
 					:model="selectItem.options"
 					:columns="[  
 						{
-		                    label: t('ngform.properties.focus_event'), 
+		                    label: $t('ngform.properties.focus_event'), 
 		                    prop: 'focusEvent', 
 		                    type: 'textarea',  
 		                    placeholder: 'eg: $.address = $.city + $.location' , 
 		                    span: 24,
 		        },
 		        {
-		                    label: t('ngform.properties.blur_event'), 
+		                    label: $t('ngform.properties.blur_event'), 
 		                    prop: 'blurEvent',
 		                    type: 'textarea', 
 		                    placeholder: 'eg: $.address = $.city + $.location' , 
@@ -94,20 +94,20 @@
 					:model="selectItem.options"
 					:columns="[  
 						{
-		                    label: t('ngform.properties.listen_model') , 
+		                    label: $t('ngform.properties.listen_model') , 
 		                    prop: 'listenModel', 
 		                    type: 'switch',   
 		                    span: 24,
 		                },
 		                {
-		                    label: t('ngform.properties.feature_model'),//'组件model', 
+		                    label: $t('ngform.properties.feature_model'),//'组件model', 
 		                    prop: 'listenModelData', 
-		                    placeholder: t('ngform.properties.feature_model_tip'), //'多个使用,分割' , 
+		                    placeholder: $t('ngform.properties.feature_model_tip'), //'多个使用,分割' , 
 		                    show: '$.options.listenModel' ,
 		                    span: 24,
 		                },
 		                {
-		                    label: t('ngform.properties.listen_script'),//'触发表达式', 
+		                    label: $t('ngform.properties.listen_script'),//'触发表达式', 
 		                    prop: 'listenModelScript',
 		                    type: 'textarea', 
 		                    placeholder: 'eg: $.address = $.city + $.location' , 
@@ -124,31 +124,31 @@
 					:model="selectItem.options"
 					:columns="[  
 						{
-		                    label: t('ngform.properties.dynamic_visible'),//'动态显示', 
+		                    label: $t('ngform.properties.dynamic_visible'),//'动态显示', 
 		                    prop: 'dynamicVisible', 
 		                    type: 'switch',   
 		                    span: 24,
 		                },
 		                {
-		                    label: t('ngform.properties.dynamic_visible_script'),//'显示条件', 
+		                    label: $t('ngform.properties.dynamic_visible_script'),//'显示条件', 
 		                    prop: 'dynamicVisibleValue', 
 		                    show: '$.options.dynamicVisible' ,
 		                    type: 'textarea',
-		                    placeholder: t('ngform.properties.dynamic_visible_tip'),//'请输入显示条件,$标识当前整个表单的绑定数据' , 
+		                    placeholder: $t('ngform.properties.dynamic_visible_tip'),//'请输入显示条件,$标识当前整个表单的绑定数据' , 
 		                    span: 24,
 		                },
 		                {
-		                    label: t('ngform.properties.dynamic_disabled'),//'动态禁用', 
+		                    label: $t('ngform.properties.dynamic_disabled'),//'动态禁用', 
 		                    prop: 'dynamicDisabled', 
 		                    type: 'switch',   
 		                    span: 24,
 		                },
 		                {
-		                    label: t('ngform.properties.disabled_visible_script'),//'禁用条件', 
+		                    label: $t('ngform.properties.disabled_visible_script'),//'禁用条件', 
 		                    prop: 'dynamicDisabledValue', 
 		                    show: '$.options.dynamicDisabled' ,
 		                    type: 'textarea',
-		                    placeholder: t('ngform.properties.dynamic_disabled_tip'),//'请输入禁用条件,$标识当前整个表单的绑定数据' , 
+		                    placeholder: $t('ngform.properties.dynamic_disabled_tip'),//'请输入禁用条件,$标识当前整个表单的绑定数据' , 
 		                    span: 24,
 		                },
 					]"  

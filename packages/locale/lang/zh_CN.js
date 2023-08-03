@@ -61,7 +61,7 @@ export default {
     item: {
       label: '标签',
       label_width: '标签宽度',
-      width: '要素宽度',
+      width: '宽度',
       span: '所占栅格',
       model: '数据字段',
       key: '数据key',

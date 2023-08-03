@@ -11,7 +11,7 @@
                      <span v-else> {{item.label}} </span>
                   </el-col>
                    <el-col :span="12">
-                     <el-input placeholder="宽度" v-model="selectItem.options.colWidth[item.model]" />
+                     <el-input :placeholder="t('ngform.item.width')" v-model="selectItem.options.colWidth[item.model]" />
                   </el-col> 
                 </el-row> 
 
