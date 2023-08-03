@@ -190,6 +190,15 @@ export default {
         name: '下拉选择器',
         selectCb: '选择后回调',
         clearCb: '清除后回调'
+      },
+      slider: {
+        name: '滑动输入条',
+        min: '最小值',
+        max: '最大值',
+        show_input: '输入框',
+        marks: '标记',
+        step: '步长',
+
       }
 
     },

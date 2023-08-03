@@ -191,6 +191,15 @@ export default {
         name: 'Select',
         selectCb: 'SelectCallback',
         clearCb: 'SelectCallback'
+      },
+      slider: {
+        name: 'Slider',
+        min: 'Min',
+        max: 'Max',
+        show_input: 'Input',
+        marks: 'Mark',
+        step: 'Step',
+        
       }
 
     },
