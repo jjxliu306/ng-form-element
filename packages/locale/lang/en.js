@@ -200,6 +200,12 @@ export default {
         marks: 'Mark',
         step: 'Step',
         
+      },
+      switch:{
+        name: 'Switch',
+        active_text: 'ActiveText',
+        inactive_text: 'InactiveText'
+       
       }
 
     },

@@ -199,6 +199,11 @@ export default {
         marks: '标记',
         step: '步长',
 
+      },
+      switch: {
+        name: '开关',
+        active_text: '选中标签',
+        inactive_text: '未选中标签'
       }
 
     },
