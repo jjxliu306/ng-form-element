@@ -146,6 +146,15 @@ export default {
       },
       checkbox: {
         name: '多选框'
+      },
+      date: {
+        name: '日期',
+        date_type: '日期类型',
+        date_format: '日期格式',
+        year: '年',
+        month: '月份',
+        date: '日期'
+
       }
 
     },

@@ -145,10 +145,18 @@ export default {
 
       },
       cascader: {
-        name: 'cascader'
+        name: 'Cascader'
       },
       checkbox: {
-        name: 'checkbox'
+        name: 'Checkbox'
+      },
+      date: {
+        name: 'Date',
+        date_type: 'Date Type',
+        date_format: 'Format',
+        year: 'Year',
+        month: 'Month',
+        date: 'Date'
       }
 
     },
