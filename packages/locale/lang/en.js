@@ -178,6 +178,9 @@ export default {
         min: 'Min',
         max: 'Max',
         append: 'Append'
+      },
+      radio: {
+        name: 'Radio'
       }
 
     },

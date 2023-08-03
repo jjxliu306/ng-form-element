@@ -177,6 +177,9 @@ export default {
         min: '最小值',
         max: '最大值',
         append: '后缀'
+      },
+      radio: {
+        name: '单选框'
       }
 
     },
