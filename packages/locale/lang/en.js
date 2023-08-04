@@ -265,6 +265,16 @@ export default {
         required_mark: 'RequiredMark',
         required_mark_script: 'Script',
         bold: 'Bold'
+      },
+      controller: {
+        name: 'Control',
+        style: 'Style',
+        class: 'Class',
+        bordered: 'Bordered',
+        can_add: 'Add',
+        can_copy: 'Copy',
+        can_remove: 'Delete'
+
       }
 
     },

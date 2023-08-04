@@ -263,7 +263,18 @@ export default {
         required_mark: '必选标记',
         required_mark_script: '动态必选',
         bold: '加粗'
+      },
+      controller: {
+        name: '容器',
+        style: '样式Style',
+        class: '样式Class',
+        bordered: '边框',
+        can_add: '可新增',
+        can_copy: '可复制',
+        can_remove: '可删除'
+
       }
+
 
     },
      
