@@ -247,6 +247,16 @@ export default {
         center: 'Center',
         show_icon: 'Icon',
 
+      },
+      divider: {
+        name: 'Divider',
+        direction: 'Direction',
+        horizontal: 'Horizontal',
+        vertical: 'Vertical',
+        orientation: 'Location',
+        left: 'Left',
+        center: 'Center',
+        right: 'Right'
       }
 
     },

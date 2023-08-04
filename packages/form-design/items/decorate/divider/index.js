@@ -2,7 +2,7 @@
  
 import BaseIndex from './index.vue'
 //import BaseProperties from './properties.vue'
-  
+import { t , $t } from '../../../../locale/index.js'  
 
 const obj = {}
  
@@ -19,14 +19,14 @@ obj.options = {
     },
     columns: [
         {
-            label: '标签', 
+            label: $t('ngform.item.label'), //'标签', 
             prop: 'label',
-            default: '分割线', 
+            default:  $t('ngform.item.divider.name'),//分割线', 
             type: 'textarea',
             span: 24,
         },
         {
-            label: '标签宽度', 
+            label: $t('ngform.item.label_width'),//'标签宽度', '标签宽度', 
             prop: 'labelWidth',
             type: 'number', 
             show: false,
@@ -35,13 +35,13 @@ obj.options = {
             span: 24,
         },
         {
-            label: '要素宽度', 
+            label: $t('ngform.item.width'), //'要素宽度', 
             prop: 'width',  
             default: '100%',
             span: 24,
         },
         {
-            label: '所占栅格', 
+            label: $t('ngform.item.span') ,//'所占栅格', 
             type: 'slider',
             prop: 'span',
             min: 1,
@@ -52,45 +52,45 @@ obj.options = {
     ],
     group: [
         {
-            label: '属性',
+            label: $t('ngform.item.options') ,//'属性',
             prop: 'options',
             alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
             collapse: false, // 是否启用 collapse 必须alone=true
             column: [ 
                 
                 {
-                    label: '方向', 
+                    label: $t('ngform.item.divider.direction') ,//'方向', 
                     prop: 'direction',  
                     default: 'horizontal',
                     type: 'radioButton',
                     dicData: [
-                        {label: '横向' , value: 'horizontal'},
-                        {label: '竖向' , value: 'vertical'}
+                        {label: $t('ngform.item.divider.horizontal') , value: 'horizontal'},
+                        {label: $t('ngform.item.divider.vertical') , value: 'vertical'}
                     ],
                     span: 24,
                 }, 
                 {
-                    label: '标签位置', 
+                    label: $t('ngform.item.divider.orientation'),//'标签位置', 
                     prop: 'orientation',  
                     default: 'center',
                     type: 'radioButton',
                     show: '$.options.direction == "horizontal"',
                     dicData: [
-                        {label: '左' , value: 'left'},
-                        {label: '居中' , value: 'center'},
-                        {label: '右' , value: 'right'}
+                        {label: $t('ngform.item.divider.left') , value: 'left'},
+                        {label: $t('ngform.item.divider.center') , value: 'center'},
+                        {label: $t('ngform.item.divider.right') , value: 'right'}
                     ],
                     span: 24,
                 }, 
                 {
-                  label: '是否隐藏',
+                  label: $t('ngform.item.if_hidden') ,//'是否隐藏',
                   prop: 'hidden',
                   type: 'switch',
                   default: false,
                   span: 24,
                 },
                 {
-                  label: '是否禁用',
+                  label: $t('ngform.item.if_disabled') ,//'是否禁用',
                   prop: 'disabled',
                   type: 'switch',
                   default: false,

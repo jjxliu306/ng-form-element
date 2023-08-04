@@ -245,6 +245,16 @@ export default {
         center: '居中',
         show_icon: '显示图标',
 
+      },
+      divider: {
+        name: '分割线',
+        direction: '方向',
+        horizontal: '横向',
+        vertical: '竖向',
+        orientation: '标签位置',
+        left: '左',
+        center: '居中',
+        right: '右'
       }
 
     },
