@@ -1,8 +1,8 @@
 <template>
 	<div v-if="!preview || isDragPanel" class="ng-application-state">
-			<el-select class="width-select" v-model="dataForm.province" value-key="value" filterable clearable placeholder="请选择省份" @change="changeProvince" @clear="changeProvince()" :disabled="disabled"> 
+			<el-select class="width-select" v-model="dataForm.province" value-key="value" filterable clearable :placeholder="t('ngform.item.state.province_placeholder')" @change="changeProvince" @clear="changeProvince()" :disabled="disabled"> 
 				<template slot="prefix">
-					<span>省份:</span>
+					<span>{{t('ngform.item.state.province')}}:</span>
 				</template>
           <el-option
             v-for="item in provinces"
@@ -12,9 +12,9 @@
           </el-option>
         </el-select>
       <template  v-if="maxLevel >1 && (!oneByOne || dataForm.province)">
-      	<el-select class="width-select" v-model="dataForm.city" value-key="value" filterable clearable  placeholder="请选择地市" @change="changeCity" @clear="changeCity()" :disabled="disabled">
+      	<el-select class="width-select" v-model="dataForm.city" value-key="value" filterable clearable  :placeholder="t('ngform.item.state.city_placeholder')" @change="changeCity" @clear="changeCity()" :disabled="disabled">
       		<template slot="prefix">
-						<span>地市:</span>
+						<span>{{t('ngform.item.state.city')}}:</span>
 					</template>
           <el-option
             v-for="item in citys"
@@ -25,9 +25,9 @@
         </el-select>
       </template>
     	<template v-if="maxLevel > 2 && (!oneByOne || dataForm.city)" >
-    		<el-select class="width-select" v-model="dataForm.district" value-key="value" filterable clearable placeholder="请选择区县" @change="changeDistrict" @clear="changeDistrict()" :disabled="disabled"> 
+    		<el-select class="width-select" v-model="dataForm.district" value-key="value" filterable clearable :placeholder="t('ngform.item.state.district_placeholder')" @change="changeDistrict" @clear="changeDistrict()" :disabled="disabled"> 
     			<template slot="prefix">
-						<span>区县:</span>
+						<span>{{t('ngform.item.state.district')}}:</span>
 					</template>
           <el-option
             v-for="item in districts"
@@ -45,7 +45,9 @@
 </template>
 <script>
 import AreaData from './area.json'
+import LocalMixin from '../../../../locale/mixin.js'
 export default {
+  mixins: [LocalMixin],
 	name: 'ng-state' ,
 	data() {
 		return {

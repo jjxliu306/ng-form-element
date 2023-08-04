@@ -319,6 +319,21 @@ export default {
         tab_first: '标签页1',
         style: '风格类型',
         position: '选项卡位置'
+      },
+      state: {
+        name: '区划选择',
+        max_level: '区划层级',
+        province: '省',
+        city: '地市',
+        district: '区县',
+        one_by_one: '递进式显示',
+        all_path: '回显路径',
+        separator: '分隔符',
+
+        province_placeholder: '请选择省份',
+        city_placeholder: '请选择省地市',
+        district_placeholder: '请选择区县',
+         
       }
 
 

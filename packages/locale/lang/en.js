@@ -319,6 +319,21 @@ export default {
         tab_first: 'Tab1',
         style: 'Style',
         position: 'Position'
+      },
+      state: {
+        name: 'State',
+        max_level: 'MaxLevel',
+        province: 'Province',
+        city: 'City',
+        district: 'District',
+        one_by_one: 'OneByOne',
+        all_path: 'ShowPath',
+        separator: 'Separator',
+
+        province_placeholder: 'Select Province',
+        city_placeholder: 'Select City',
+        district_placeholder: 'Select District',
+         
       }
 
     },
