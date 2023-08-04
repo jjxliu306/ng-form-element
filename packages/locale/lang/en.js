@@ -273,8 +273,10 @@ export default {
         bordered: 'Bordered',
         can_add: 'Add',
         can_copy: 'Copy',
-        can_remove: 'Delete'
-
+        can_remove: 'Delete',
+        add: 'Add',
+        copy: 'Copy',
+        delete: 'Delete' 
       }
 
     },

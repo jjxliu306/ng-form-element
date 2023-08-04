@@ -271,7 +271,10 @@ export default {
         bordered: '边框',
         can_add: '可新增',
         can_copy: '可复制',
-        can_remove: '可删除'
+        can_remove: '可删除',
+        add: '新增',
+        copy: '复制',
+        delete: '删除'
 
       }
 
