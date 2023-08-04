@@ -76,9 +76,9 @@ obj.options = {
                     type: 'radioButton',
                     show: '$.options.direction == "horizontal"',
                     dicData: [
-                        {label: $t('ngform.item.divider.left') , value: 'left'},
-                        {label: $t('ngform.item.divider.center') , value: 'center'},
-                        {label: $t('ngform.item.divider.right') , value: 'right'}
+                        {label: $t('ngform.item.left') , value: 'left'},
+                        {label: $t('ngform.item.center') , value: 'center'},
+                        {label: $t('ngform.item.right') , value: 'right'}
                     ],
                     span: 24,
                 }, 

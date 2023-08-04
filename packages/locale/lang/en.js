@@ -120,6 +120,9 @@ export default {
 
       yes: 'Yes',
       no: 'No',
+      left: 'Left',
+      center: 'Center',
+      right: 'Right',
 
       local: 'Local',
       remote: 'Remote',
@@ -254,9 +257,14 @@ export default {
         horizontal: 'Horizontal',
         vertical: 'Vertical',
         orientation: 'Location',
-        left: 'Left',
-        center: 'Center',
-        right: 'Right'
+       
+      },
+      text: {
+        text_align: 'TextAlign',
+        font_size: 'Fontsize',
+        required_mark: 'RequiredMark',
+        required_mark_script: 'Script',
+        bold: 'Bold'
       }
 
     },

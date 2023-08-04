@@ -118,6 +118,9 @@ export default {
 
       yes: '是',
       no: '否',
+      left: '左',
+      center: '居中',
+      right: '右',
 
       local: '本地',
       remote: '远程',
@@ -252,9 +255,14 @@ export default {
         horizontal: '横向',
         vertical: '竖向',
         orientation: '标签位置',
-        left: '左',
-        center: '居中',
-        right: '右'
+      
+      },
+      text: {
+        text_align: '对齐方式',
+        font_size: '字体大小',
+        required_mark: '必选标记',
+        required_mark_script: '动态必选',
+        bold: '加粗'
       }
 
     },
