@@ -1,4 +1,4 @@
-
+import { t , $t } from '../../../locale/index.js' 
 // 扫描下面目录中所有的index.js 然后穷举后返回 
 const chartFiles = require.context('./', true, /index\.js$/)
 
@@ -18,7 +18,7 @@ list = list.sort(function(a,b){
 
 export default {
   type: 'application',
-  name: '应用组件',
+  name: $t('ngform.item.application'),//'应用组件',
   icon: 'icon-tradingdata',
   list: list 
 }

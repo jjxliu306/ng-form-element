@@ -3,7 +3,7 @@
 		<el-collapse class="drag-panel" v-model="actives" accordion > 
 
 			<template v-for="(colItem,colIndex) in dataList"> 
-				<el-collapse-item :key="colIndex" :title="getLabel(colItem.name)" :name="colIndex + 1" v-if="colItem && colItem.list && colItem.list.length > 0">
+				<el-collapse-item :key="colIndex + formKey" :title="getLabel(colItem.name)" :name="colIndex + 1" v-if="colItem && colItem.list && colItem.list.length > 0">
 					<template slot="title">
 					    <span class="title">{{getLabel(colItem.name)}}</span>
 					</template>
@@ -94,7 +94,7 @@ export default {
 
 				items.push({
 					type: 'custom',
-					name: '自定义组件',
+					name: this.$t('ngform.item.custom_components') ,//'自定义组件',
 					list: this.customComponents
 				})
 
@@ -112,6 +112,7 @@ export default {
   	},
 	data(){
 		return {
+			formKey: '111',
 			actives:[1], 
 		    startType: "",
 		    //dataList: itemIndex ,
@@ -132,10 +133,13 @@ export default {
 		       key: ""
 		    } 
 		}
-	}, 
-	created() {
-			console.log('itemIndex' , this.dataList)
-	},
+	},  
+	mounted () {  
+    this.$ngofrm_bus.$on('i18nRefresh', () => { 
+      this.formKey = new Date().getTime()
+       
+    });
+  },
 	methods: {
 		 
 		// 组件初始化

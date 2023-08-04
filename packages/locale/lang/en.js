@@ -138,6 +138,12 @@ export default {
       class: 'Class',
       bordered: 'Bordered',
 
+      application: 'Application',
+      basic: 'Basic',
+      decorate: 'Decorate',
+      layout: 'Layout',
+      custom_components: 'Custom',
+
       batch: {
         name: 'batch' ,
         scroll_height: 'scroll height' ,

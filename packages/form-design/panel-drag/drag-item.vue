@@ -3,7 +3,7 @@
     <draggable
       tag="ul"
       :value="list"
-      :key="formKey"
+       
       v-bind="{
         group: { name: 'form-draggable', pull: 'clone', put: false },
         sort: false,
@@ -54,12 +54,7 @@ export default {
   components: {
     draggable
   },
-  mounted () {  
-    this.$ngofrm_bus.$on('i18nRefresh', () => { 
-      this.formKey = new Date().getTime()
-       
-    });
-  },
+  
   methods: { 
     handleEnd(e, list){ 
 

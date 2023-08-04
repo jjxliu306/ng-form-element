@@ -31,5 +31,7 @@ list.forEach(t=> {
 	t.list = translateConfig(t.list) 
 })
 
+console.log('list' , list)
+
 export default list
  
