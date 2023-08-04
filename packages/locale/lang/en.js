@@ -226,6 +226,27 @@ export default {
         limit: 'MaxSize',
         header: 'Headers',
         style: 'Style'
+      },
+      alert: {
+        name: 'Alert',
+        title: 'Title',
+        default: 'Default Title',
+        description: 'description',
+        type: 'Type',
+        success: 'success',
+        warning: 'warning',
+        info: 'info',
+        error: 'error',
+        
+        effect: 'Effect',
+        light: 'Light',
+        dark: 'Dark',
+        closable: 'Closable',
+        close_text: 'Close Text',
+        close_text_placeholder: 'Do not fill in if not required',
+        center: 'Center',
+        show_icon: 'Icon',
+
       }
 
     },

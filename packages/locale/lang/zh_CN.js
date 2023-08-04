@@ -224,6 +224,27 @@ export default {
         limit: '文件数量',
         header: '携带头信息',
         style: '样式'
+      },
+      alert: {
+        name: '提示',
+        title: '标题',
+        default: '提示标题',
+        description: '辅助文字',
+        type: '类型',
+        success: '成功',
+        warning: '告警',
+        info: '信息',
+        error: '异常',
+        
+        effect: '主题',
+        light: '高亮',
+        dark: '暗黑',
+        closable: '可关闭',
+        close_text: '关闭文本',
+        close_text_placeholder: '不需要则不填',
+        center: '居中',
+        show_icon: '显示图标',
+
       }
 
     },
