@@ -204,6 +204,26 @@ export default {
         name: '开关',
         active_text: '选中标签',
         inactive_text: '未选中标签'
+      },
+      textarea: {
+        name: '文本框',
+        rows: '行数',
+        autosize: '自动高度' 
+      },
+      time: {
+        name: '时间',
+        time_format: '时间格式'
+      },
+      upload: {
+        file_name: '上传文件',
+        img_name: '上传图片',
+        upload_url: '上传地址',
+        file_type: '文件类型',
+        file_url_path: 'EPL地址',
+        limit_size: '文件大小',
+        limit: '文件数量',
+        header: '携带头信息',
+        style: '样式'
       }
 
     },

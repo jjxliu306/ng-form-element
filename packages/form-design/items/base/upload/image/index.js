@@ -2,7 +2,7 @@
  
 import BaseIndex from './index.vue'
 //import BaseProperties from './properties.vue'
-  
+import { t , $t } from '../../../../../locale/index.js'       
 
 const obj = {}
  
@@ -21,13 +21,13 @@ obj.options = {
     },
     columns: [
         {
-            label: '标签', 
+            label: $t('ngform.item.label'), //'标签', 
             prop: 'label',
-            default: '上传图片',
+            default: $t('ngform.item.upload.img_name'),//'上传图片',
             span: 24,
         },
         {
-            label: '标签宽度', 
+            label: $t('ngform.item.label_width'),//'标签宽度', 
             prop: 'labelWidth',
             type: 'number',
             min: -1,
@@ -36,13 +36,13 @@ obj.options = {
             span: 24,
         },
         {
-            label: '要素宽度', 
+            label: $t('ngform.item.width'), //'要素宽度', 
             prop: 'width',  
             default: '100%',
             span: 24,
         },
         {
-            label: '所占栅格', 
+            label: $t('ngform.item.span') ,//'所占栅格', 
             type: 'slider',
             prop: 'span',
             min: 1,
@@ -51,19 +51,19 @@ obj.options = {
             span: 24,
         },
         {
-            label: '数据字段', 
+            label: $t('ngform.item.model') , //'数据字段', 
             prop: 'model',
             span: 24,
         },
         {
-            label: '数据KEY', 
+            label: $t('ngform.item.key') , //'数据KEY', 
             prop: 'key',
             show: false,
             span: 24,
         },
         {
             type: 'divider',
-            label: '效验规则'
+            label: $t('ngform.item.validate_rule') , //'效验规则'
         },
         { 
             prop: 'rules',
@@ -71,7 +71,7 @@ obj.options = {
             labelWidth: 0,
             default: [{ 
                 required: false, // 必须填写
-                message: "必填项",
+                message: $t('ngform.item.required'), //"必填项",
                 trigger: ['blur'] 
             }],
             span: 24, 
@@ -79,27 +79,27 @@ obj.options = {
     ],
     group: [
         {
-            label: '属性',
+            label: $t('ngform.item.options') ,//'属性',
             prop: 'options',
             alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
             collapse: false, // 是否启用 collapse 必须alone=true
             column: [ 
                 
                 {
-                    label: '上传地址', 
+                    label: $t('ngform.item.upload.upload_url'),//'上传地址', 
                     prop: 'action',  
                     type: 'textarea',
                     span: 24,
                 },
                 {
-                    label: 'epl地址', 
+                    label: $t('ngform.item.upload.file_url_path'),//'epl地址', 
                     prop: 'responseFileUrl',  
                     type: 'textarea',
                     placeholder: "上传成功后解析文件url的epl地址",
                     span: 24,
                 }, 
                 {
-                    label: '样式', 
+                    label: $t('ngform.item.upload.style'),//'样式', 
                     prop: 'listType',   
                     type: 'radioButton',
                     default: 'picture-card',
@@ -111,52 +111,52 @@ obj.options = {
                     span: 24
                 }, 
                 {
-                    label: '文件大小', 
+                    label: $t('ngform.item.upload.limit_size'),//'文件大小', 
                     prop: 'limitSize',   
                     type: 'number', 
                     default: 10 ,
-                    placeholder: "文件大小(Mb)",
+                    placeholder: $t('ngform.item.upload.limit_size'),//"文件大小(Mb)",
                     span: 24,
                 },
                 {
-                    label: '默认值', 
+                    label: $t('ngform.item.default_value') ,//'默认值', 
                     prop: 'defaultValue', 
                     show: false,
                     default: [],
                     span: 24,
                 },   
                 {
-                  label: '多选',
+                  label: $t('ngform.item.multiple') ,//'多选', 
                   prop: 'multiple',
                   type: 'switch',
                   default: false,
                   span: 24,
                 } ,
                 {
-                    label: '最大上传数量', 
+                    label: $t('ngform.item.upload.limit'),//'最大上传数量',
                     prop: 'limit',   
                     type: 'number', 
                     default: 3 ,
                     show: '$.options.multiple' ,
-                    placeholder: "最大上传文件数量",
+                    placeholder: $t('ngform.item.upload.limit'),//'最大上传数量',
                     span: 24,
                 },
                 {
-                  label: '是否隐藏',
+                  label: $t('ngform.item.if_hidden') ,//'是否隐藏',
                   prop: 'hidden',
                   type: 'switch',
                   default: false,
                   span: 24,
                 },
                 {
-                  label: '是否禁用',
+                  label: $t('ngform.item.if_disabled') ,//'是否禁用',
                   prop: 'disabled',
                   type: 'switch',
                   default: false,
                   span: 24,
                 },
                 {
-                  label: '携带头信息',
+                  label: $t('ngform.item.upload.header') ,//'携带头信息',
                   prop: 'headers',
                   type: 'kv',
                   default: [],

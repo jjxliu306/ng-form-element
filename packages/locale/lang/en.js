@@ -206,6 +206,26 @@ export default {
         active_text: 'ActiveText',
         inactive_text: 'InactiveText'
        
+      },
+      textarea: {
+        name: 'Textarea',
+        rows: 'Rows',
+        autosize: 'AutoHeight' 
+      },
+      time: {
+        name: 'Time',
+        time_format: 'Format'
+      },
+      upload: {
+        file_name: 'FileUpload',
+        img_name: 'ImageUpload',
+        upload_url: 'Upload Url',
+        file_type: 'File Type',
+        file_url_path: 'EPL Path',
+        limit_size: 'LimitSize',
+        limit: 'MaxSize',
+        header: 'Headers',
+        style: 'Style'
       }
 
     },
