@@ -57,19 +57,19 @@ obj.options = {
             column: [ 
                
                 {
-                    label: $t('ngform.item.controller.style'),//'样式style', 
+                    label: $t('ngform.item.style'),//'样式style', 
                     prop: 'customStyle',  
                     type: 'textarea',
                     span: 24,
                 },
                 {
-                    label: $t('ngform.item.controller.class'),//'样式class', 
+                    label: $t('ngform.item.class'),//'样式class', 
                     prop: 'customClass',  
                     type: 'textarea',
                     span: 24,
                 },
                 {
-                  label: $t('ngform.item.controller.bordered'),//'边框',
+                  label: $t('ngform.item.bordered'),//'边框',
                   prop: 'bordered',
                   type: 'switch',
                   default: true,

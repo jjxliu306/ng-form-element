@@ -132,6 +132,10 @@ export default {
 
       max_length: '最大长度' ,
 
+      style: '样式Style',
+      class: '样式Class',
+      bordered: '边框',
+
       batch: {
         name: '动态表格' ,
         scroll_height: '滚动高度' ,
@@ -269,10 +273,8 @@ export default {
         bold: '加粗'
       },
       controller: {
-        name: '容器',
-        style: '样式Style',
-        class: '样式Class',
-        bordered: '边框',
+        name: '容器', 
+        
         can_add: '可新增',
         can_copy: '可复制',
         can_remove: '可删除',
@@ -283,9 +285,26 @@ export default {
         name: '栅格布局',
         columns: '栅格',
         gutter: '间隔',
-        style: '样式Style',
-        class: '样式Class',
+      
         config: '列配置'
+      },
+      table: {
+        name: '表格',
+        bright: '移动高亮',
+        small: '紧凑',
+        style: '样式配置',
+        unmerge: '解除合并',
+        merge_down: '向下合并',
+        merge_right: '向右合并',
+        add_col: '增加一列',
+        add_row: '增加一行',
+        delete_col: '删除当前列',
+        delete_row: '删除当前行',
+        cell_style_config: '表内单元格样式配置',
+        class_placeholder: '请输入class名称',
+        css_placeholder: '请输入css样式',
+        cancel: '取消',
+        ok: '确定'
       }
 
 

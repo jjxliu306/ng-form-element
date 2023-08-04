@@ -71,66 +71,70 @@
 			<ul>
 				<li @click="handleSettingStyle">
 					<i class="el-icon-magic-stick" />
-					样式配置
+					{{t('ngform.item.table.style')}}
 				</li>
 				<hr />
 				<template v-if="isMergeCol">
 					<li @click="handleDropMerge(null, trIndex, tdIndex)">
 						<i class="el-icon-delete" />
-						解除合并
+						{{t('ngform.item.table.unmerge')}}
 					</li>
 					<hr />
 				</template>
 				<li @click="handleDownMerge">
 					<i class="el-icon-bottom" />
-					向下合并
+					<!-- 向下合并 -->{{t('ngform.item.table.merge_down')}}
 				</li>
 				<li @click="handleRightMerge">
 					<i class="el-icon-right" />
-					向右合并
+					<!-- 向右合并 -->{{t('ngform.item.table.merge_right')}}
 				</li>
 				<li @click="handleAddCol">
 					<i class="el-icon-zoom-in" />
-					增加一列
+					<!-- 增加一列 -->{{t('ngform.item.table.add_col')}}
 				</li>
 				<li @click="handleAddRow">
 					<i class="el-icon-zoom-in" />
-					增加一行
+					<!-- 增加一行 -->{{t('ngform.item.table.add_row')}}
 				</li>
 				<hr />
 				<li @click="handleRemoveRow">
 					<i class="el-icon-zoom-out" />
-					删除当前行
+					<!-- 删除当前行 -->{{t('ngform.item.table.delete_col')}}
 				</li>
 				<li @click="handleRemoveCol">
 					<i class="el-icon-zoom-out" />
-					删除当前列
+					<!-- 删除当前列 -->{{t('ngform.item.table.delete_row')}}
 				</li>
 			</ul>
 		</div>
 
 		<el-dialog
-			title="表内单元格样式配置"
+			:title="t('ngform.item.table.cell_style_config')"
 			:visible.sync="styleVisible"
 			style="top: 20px"
 			:append-to-body="true"
 		>
 			<el-form size="mini" :model="tdStyle" label-width="80px">
 				<el-form-item label="class">
-					<el-input v-model="tdStyle.class" placeholder="请输入class名称" />
+					<el-input v-model="tdStyle.class" :placeholder="t('ngform.item.table.class_placeholder')" />
 				</el-form-item>
 				<el-form-item label="style">
 					<el-input
 						type="textarea"
 						:rows="3"
 						v-model="tdStyle.style"
-						placeholder="请输入css样式"
+						:placeholder="t('ngform.item.table.css_placeholder')"
 					/>
 				</el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer">
-				<el-button @click="styleVisible = false">取 消</el-button>
-				<el-button type="primary" @click="settingStyle">确 定</el-button>
+				<el-button @click="styleVisible = false" size="mini">
+					{{t('ngform.item.table.cancel')}}
+				</el-button>
+				<el-button type="primary" @click="settingStyle" size="mini">
+					{{t('ngform.item.table.ok')}}
+				</el-button>
 			</span>
 		</el-dialog>
 	</div>

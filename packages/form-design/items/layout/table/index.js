@@ -2,7 +2,7 @@
  
 import BaseIndex from './index.vue'
 //import BaseProperties from './properties.vue'
-  
+import { t , $t } from '../../../../locale/index.js'     
 
 const obj = {}
  
@@ -20,26 +20,26 @@ obj.options = {
     },
     columns: [
         {
-            label: '标签', 
+            label:  $t('ngform.item.label'), //'标签',
             prop: 'label',
-            default: '表格布局', 
+            default: $t('ngform.item.table.name') ,//'表格布局', 
             span: 24,
         },
         {
-            label: '标签宽度', 
+            label: $t('ngform.item.label_width'),//'标签宽度', 
             prop: 'labelWidth',
             type: 'number', 
             show: false,
             default: 0
         },
         {
-            label: '要素宽度', 
+            label: $t('ngform.item.width'), //'要素宽度', 
             prop: 'width',  
             default: '100%',
             span: 24,
         },
         {
-            label: '所占栅格', 
+            label: $t('ngform.item.span') ,//'所占栅格', 
             type: 'slider',
             prop: 'span',
             min: 1,
@@ -50,40 +50,40 @@ obj.options = {
     ],
     group: [
         {
-            label: '属性',
+            label: $t('ngform.item.options') ,//'属性',
             prop: 'options',
             alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
             collapse: false, // 是否启用 collapse 必须alone=true
             column: [ 
                
                 {
-                    label: '样式style', 
+                    label: $t('ngform.item.style'),//'样式style', 
                     prop: 'customStyle',  
                     type: 'textarea',
                     span: 24,
                 },
                 {
-                    label: '样式class', 
+                    label: $t('ngform.item.class'),//'样式class', 
                     prop: 'customClass',  
                     type: 'textarea',
                     span: 24,
                 },
                 {
-                  label: '边框',
+                  label: $t('ngform.item.bordered'),//'边框',
                   prop: 'bordered',
                   type: 'switch',
                   default: true,
                   span: 24,
                 },  
                 {
-                  label: 'hover点亮',
+                  label: $t('ngform.item.table.bright') ,//'hover点亮',
                   prop: 'bright',
                   type: 'switch',
                   default: true,
                   span: 24,
                 },
                 {
-                  label: '紧凑',
+                  label: $t('ngform.item.table.small') ,//'紧凑',
                   prop: 'small',
                   type: 'switch',
                   default: true,
@@ -91,7 +91,7 @@ obj.options = {
                 },
                 
                 {
-                  label: '是否隐藏',
+                  label: $t('ngform.item.if_hidden') ,//'是否隐藏','是否隐藏',
                   prop: 'hidden',
                   type: 'switch',
                   default: false,

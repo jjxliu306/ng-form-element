@@ -84,13 +84,13 @@ obj.options = {
                     span: 24,
                 },
                 {
-                    label: $t('ngform.item.grid.style'),//'样式style', 
+                    label: $t('ngform.item.style'),//'样式style', 
                     prop: 'customStyle',  
                     type: 'textarea',
                     span: 24,
                 },
                 {
-                    label: $t('ngform.item.grid.class'),//'样式class', 
+                    label: $t('ngform.item.class'),//'样式class', 
                     prop: 'customClass',  
                     type: 'textarea',
                     span: 24,

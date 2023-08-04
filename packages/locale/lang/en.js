@@ -134,6 +134,10 @@ export default {
     
       max_length: 'MaxLength' ,
 
+      style: 'Style',
+      class: 'Class',
+      bordered: 'Bordered',
+
       batch: {
         name: 'batch' ,
         scroll_height: 'scroll height' ,
@@ -271,10 +275,8 @@ export default {
         bold: 'Bold'
       },
       controller: {
-        name: 'Control',
-        style: 'Style',
-        class: 'Class',
-        bordered: 'Bordered',
+        name: 'Control', 
+       
         can_add: 'Add',
         can_copy: 'Copy',
         can_remove: 'Delete',
@@ -284,9 +286,26 @@ export default {
         name: 'Grid',
         columns: 'Grid',
         gutter: 'Gutter',
-        style: 'Style',
-        class: 'Class',
+       
         config: 'Cols'
+      },
+      table: {
+        name: 'Table',
+        bright: 'HoverLight',
+        small: 'Small',
+        style: 'Style',
+        unmerge: 'Unmerge',
+        merge_down: 'Merge Down',
+        merge_right: 'Merge Right',
+        add_col: 'Add Col',
+        add_row: 'Add Row',
+        delete_col: 'Delete Col',
+        delete_row: 'Delete Row',
+        cell_style_config: 'Table Cell Style Configuration',
+        class_placeholder: 'Please Input Class Name',
+        css_placeholder: 'Please Input css Style',
+        cancel: 'Cancel',
+        ok: 'Confirm'
       }
 
     },
