@@ -95,6 +95,7 @@ export default {
       default_value: '默认值',
       placeholder: '输入提示',
       placeholder_input: '请输入',
+      name: '名称',
 
       datasource: '数据源',
       datasource_static: '静态数据',
@@ -121,6 +122,9 @@ export default {
       left: '左',
       center: '居中',
       right: '右',
+      add: '新增',
+      copy: '复制',
+      delete: '删除',
 
       local: '本地',
       remote: '远程',
@@ -272,10 +276,16 @@ export default {
         can_add: '可新增',
         can_copy: '可复制',
         can_remove: '可删除',
-        add: '新增',
-        copy: '复制',
-        delete: '删除'
+        
 
+      },
+      grid: {
+        name: '栅格布局',
+        columns: '栅格',
+        gutter: '间隔',
+        style: '样式Style',
+        class: '样式Class',
+        config: '列配置'
       }
 
 

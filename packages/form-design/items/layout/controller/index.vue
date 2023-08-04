@@ -70,7 +70,7 @@
           </div> 
            <!-- 右键里的删除和复制 下方的新增 -->
           <el-button v-if="!preview && record.options.add" type="dashed" size="mini" :disabled="disabled" @click="addControlData">
-            <i class="el-icon-circle-plus-outline" />{{t('ngform.item.controller.add')}}
+            <i class="el-icon-circle-plus-outline" />{{t('ngform.item.add')}}
           </el-button>
           <div
             v-show="!preview && showRightMenu"
@@ -79,9 +79,9 @@
             id="rightMenu"
           >
             <ul> 
-             <li v-if="record.options.copy" @click="handleCopyData"><i class="el-icon-document" />{{t('ngform.item.controller.copy')}}</li>
+             <li v-if="record.options.copy" @click="handleCopyData"><i class="el-icon-document" />{{t('ngform.item.copy')}}</li>
               <hr v-if="record.options.copy && record.options.remove">
-              <li v-if="record.options.remove" @click="handleRemoveData"><i class="el-icon-delete" />{{t('ngform.item.controller.delete')}}</li> 
+              <li v-if="record.options.remove" @click="handleRemoveData"><i class="el-icon-delete" />{{t('ngform.item.delete')}}</li> 
             </ul>
           </div>
         </div> 

@@ -97,6 +97,7 @@ export default {
       default_value: 'default',
       placeholder: 'placeholder',
       placeholder_input: 'please input',
+      name: 'Name',
 
       datasource: 'datasource',
       datasource_static: 'static',
@@ -123,6 +124,9 @@ export default {
       left: 'Left',
       center: 'Center',
       right: 'Right',
+      add: 'Add',
+      copy: 'Copy',
+      delete: 'Delete' ,
 
       local: 'Local',
       remote: 'Remote',
@@ -274,9 +278,15 @@ export default {
         can_add: 'Add',
         can_copy: 'Copy',
         can_remove: 'Delete',
-        add: 'Add',
-        copy: 'Copy',
-        delete: 'Delete' 
+       
+      },
+      grid: {
+        name: 'Grid',
+        columns: 'Grid',
+        gutter: 'Gutter',
+        style: 'Style',
+        class: 'Class',
+        config: 'Cols'
       }
 
     },
