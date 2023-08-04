@@ -306,6 +306,13 @@ export default {
         css_placeholder: 'Please Input css Style',
         cancel: 'Cancel',
         ok: 'Confirm'
+      },
+      tab: {
+        name: 'Tabs',
+        tab: 'Tabs',
+        tab_first: 'Tab1',
+        style: 'Style',
+        position: 'Position'
       }
 
     },

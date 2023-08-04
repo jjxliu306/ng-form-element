@@ -305,6 +305,13 @@ export default {
         css_placeholder: '请输入css样式',
         cancel: '取消',
         ok: '确定'
+      },
+      tab: {
+        name: '选项卡',
+        tab: '标签页',
+        tab_first: '标签页1',
+        style: '风格类型',
+        position: '选项卡位置'
       }
 
 

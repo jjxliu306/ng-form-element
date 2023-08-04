@@ -2,7 +2,7 @@
  
 import BaseIndex from './index.vue'
 import BaseProperties from './properties.vue'
-  
+import { t , $t } from '../../../../locale/index.js'     
 
 const obj = {}
  
@@ -21,26 +21,26 @@ obj.options = {
     },
     columns: [
         {
-            label: '标签', 
+            label:  $t('ngform.item.label'), //'标签',
             prop: 'label',
-            default: '选项卡', 
+            default:  $t('ngform.item.tab.name') ,//'选项卡', 
             span: 24,
         },
         {
-            label: '标签宽度', 
+            label: $t('ngform.item.label_width'),//'标签宽度', 
             prop: 'labelWidth',
             type: 'number', 
             show: false,
             default: 0
         },
         {
-            label: '要素宽度', 
+            label: $t('ngform.item.width'), //'要素宽度', 
             prop: 'width',  
             default: '100%',
             span: 24,
         },
         {
-            label: '所占栅格', 
+            label: $t('ngform.item.span') ,//'所占栅格', 
             type: 'slider',
             prop: 'span',
             min: 1,
@@ -50,12 +50,12 @@ obj.options = {
         },
         // 默认栅格值回填
         {
-            label: '标签页', 
+            label: $t('ngform.item.tab.tab') ,//'标签页', 
             prop: 'columns',  
             show: false,
             default: [
                 { 
-                    label: '选项卡1',
+                    label:  $t('ngform.item.tab.tab_first') ,//'选项卡1',
                     list: []
                 }
             ],
@@ -64,7 +64,7 @@ obj.options = {
     ],
     group: [
         {
-            label: '属性',
+            label: $t('ngform.item.options') ,//'属性',
             prop: 'options',
             alone: true, // 是否独立与columns之外展示 false则和columns一起，不另外显示
             collapse: false, // 是否启用 collapse 必须alone=true
@@ -72,7 +72,7 @@ obj.options = {
                 
                
                 {
-                    label: '风格类型', 
+                    label:  $t('ngform.item.tab.style'),//'风格类型', 
                     prop: 'type' ,  
                     default: 'border-card',
                     type: 'radioButton',
@@ -83,7 +83,7 @@ obj.options = {
                     span: 24,
                 },
                 {
-                    label: '选项卡位置', 
+                    label: $t('ngform.item.tab.position'),//'选项卡位置', 
                     prop: 'position' ,  
                     default: 'top',
                     type: 'radioButton',
@@ -96,14 +96,14 @@ obj.options = {
                     span: 24,
                 }, 
                 {
-                  label: '是否隐藏',
+                  label: $t('ngform.item.if_hidden') ,//'是否隐藏',
                   prop: 'hidden',
                   type: 'switch',
                   default: false,
                   span: 24,
                 },
                 {
-                  label: '是否禁用',
+                  label: $t('ngform.item.if_disabled') ,//'是否禁用','是否禁用',
                   prop: 'disabled',
                   type: 'switch',
                   default: false,
