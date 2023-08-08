@@ -58,13 +58,6 @@ export default {
     t,
     handleAdd() {
       // 添加
-      /*let addData = [
-        ...this.value,
-        {
-          value: "",
-          label: ""
-        }
-      ];*/
       const addData = this.value.concat([
         { value: "",
           label: ""

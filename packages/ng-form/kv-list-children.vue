@@ -51,7 +51,8 @@ k-v配置
   </div>
 </template>
 <script>
-import { t  } from '../locale/index.js'
+
+import { t , currentLang } from '../locale/index.js'
 export default {
   name: "ng-form-kv-children",
   props: {
@@ -78,15 +79,7 @@ export default {
         { value: "",
           label: ""
         }
-      ])
-
-      // let addData = [
-      //   ...this.value,
-      //   {
-      //     value: "",
-      //     label: ""
-      //   }
-      // ];
+      ]) 
       this.$emit("input", addData);
     },
     append(data) {
