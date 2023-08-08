@@ -7,9 +7,17 @@ import App from './App'
 import FormDesign from '../packages/index.js' 
 import zh from '../packages/locale/lang/zh_CN'
 import en from '../packages/locale/lang/en'
+
+import ngEn from './locale/en.js'
+import ngZh from './locale/zh_CN.js'
+
+console.log('ngZh' , ngZh)
+
+const mergeZh = Object.assign({}, ngZh, zh); // {...ngZh , ...zh}
+//console.log('mergeZh' , mergeZh)
 //import locale from '../packages/locale/index'
 // 注册组件库
-Vue.use(FormDesign , {locale: zh})
+Vue.use(FormDesign , {locale: mergeZh})
  
 //Vue.prototype.$locale = locale;
 

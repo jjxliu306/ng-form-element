@@ -5,7 +5,7 @@
     <template slot="controlButton" >
      <el-popover
         placement="bottom-start"
-        title="示例"
+        :title="t('ng.example')"
         width="240"
         trigger="hover" >
         <div>
@@ -17,7 +17,7 @@
           </el-row>
 
         </div> 
-         <el-button style="margin: 0px 10px;" icon="el-icon-document" slot="reference" type="text" size="medium"   >示例</el-button>
+         <el-button style="margin: 0px 10px;" icon="el-icon-document" slot="reference" type="text" size="medium" >{{t('ng.example')}}</el-button>
       </el-popover>
       <el-select v-model="i18n" style="width: 100px;" placeholder="语言" size="mini">
         <el-option
@@ -44,14 +44,23 @@
 <script> 
 import Vue from 'vue'
 import NgComponents from './components/index.js'
+
+import zh from '../packages/locale/lang/zh_CN'
+import en from '../packages/locale/lang/en'
+
+import ngEn from './locale/en.js'
+import ngZh from './locale/zh_CN.js'
+
+import { LocalMixin } from '../packages/index.js'
 export default {
+  mixins: [LocalMixin],
   name: 'App', 
   data(){
     return {
       i18n: 'zh_CN',
       i18nList: [
         {label: '中文简体' , value: 'zh_CN'},
-        {label: '英文' , value: 'en'}
+        {label: 'English' , value: 'en'}
       ],
       examples: [
         {name:'基础示例' , path: 'basic.json'},
@@ -80,7 +89,21 @@ export default {
       //console.log("i18n" , val)
       //console.log('this.$locale' , this.$locale)
       //this.$locale.use(val)
-      this.$refs.formDesign.useLocale(val)
+
+      let merge = {} 
+
+      if(val == 'zh_CN') {
+        merge = Object.assign({},  zh , ngZh);
+      } else {
+         merge = Object.assign({}, en , ngEn);
+      }
+
+  
+      //import locale from '../packages/locale/index'
+      // 注册组件库
+      //Vue.use(FormDesign , {locale: mergeZh})
+
+      this.$refs.formDesign.useLocale(merge)
     }
   },
   created() {
