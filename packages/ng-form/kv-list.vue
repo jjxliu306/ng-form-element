@@ -1,4 +1,4 @@
-<!--
+
 k-v配置
 -->
 <!--
@@ -10,27 +10,32 @@ k-v配置
    
     <el-row   :gutter="8">
       <div class="option-change-box" v-for="(val, index) in value" :key="index">
-        <el-col :span="9" :title="keyNumber ? '值' : '标签'">
-          <el-input v-if="keyNumber" v-model="val.value"  type="number" placeholder="值"/>
-          <el-input v-else v-model="val.label" type="text" placeholder="名称"/>
+        <el-col :span="9" :title="keyNumber ? t('ngform.item.value') : t('ngform.item.label')">
+          <el-input v-if="keyNumber" v-model="val.value"  type="number" :placeholder="t('ngform.item.value')"/>
+          <el-input v-else v-model="val.label" type="text" :placeholder="t('ngform.item.name')"/>
         </el-col>
-        <el-col :span="9" :title="keyNumber ? '标签' : '值'"> 
-          <el-input v-if="keyNumber" v-model="val.label" placeholder="名称"/>
-          <el-input v-else v-model="val.value" placeholder="值"/>
+        <el-col :span="9" :title="keyNumber ? t('ngform.item.label') : t('ngform.item.value')"> 
+          <el-input v-if="keyNumber" v-model="val.label" :placeholder="t('ngform.item.name')"/>
+          <el-input v-else v-model="val.value" :placeholder="t('ngform.item.value')"/>
         </el-col>
         <el-col :span="6">
-        	<div @click="handleDelete(index)" class="option-delete-box" title="删除当前行数据">
+        	<div @click="handleDelete(index)" class="option-delete-box" :title="t('ngform.item.delete')">
             	<i class="el-icon-delete" />
         	</div>
     	</el-col>
       </div>
-      <el-col v-if="!disabled" :span="24"><el-button type="primary" @click="handleAdd">添加</el-button></el-col>
+      <el-col v-if="!disabled" :span="24">
+        <el-button type="primary" @click="handleAdd">
+        <!-- 添加 -->
+         {{t('ngform.item.add')}}
+        </el-button>
+      </el-col>
     </el-row>
       
   </div>
 </template>
 <script>
- 
+import { t  } from '../locale/index.js'
 export default {
   name: "ng-form-kv",
   props: {
@@ -50,6 +55,7 @@ export default {
     },
   },
   methods: {
+    t,
     handleAdd() {
       // 添加
       /*let addData = [
@@ -143,4 +149,4 @@ export default {
 	    }
   	} 
 }
-</style> -->
+</style> 

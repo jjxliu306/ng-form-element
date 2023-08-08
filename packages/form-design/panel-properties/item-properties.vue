@@ -258,8 +258,8 @@ export default {
 	},
 	mounted () {  
 		this.$ngofrm_bus.$on('i18nRefresh', () => { 
-      this.formKey = new Date().getTime()
-    });
+	      this.formKey = new Date().getTime()
+	    });
 	},
 	methods: {
 		init() {

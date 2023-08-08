@@ -17,6 +17,8 @@ export default {
     import: 'import',
     validator: 'validator',
 
+    select_item: 'Please Select a component to add from the left',
+
     properties: {
       feature_property: 'Item',
       form_property: 'Form',
@@ -98,6 +100,7 @@ export default {
       placeholder: 'placeholder',
       placeholder_input: 'please input',
       name: 'Name',
+      value: 'Value',
 
       datasource: 'datasource',
       datasource_static: 'static',

@@ -17,6 +17,8 @@ export default {
     import: '导入',
     validator: '效验',
 
+    select_item: '从左侧选择组件添加',
+
     properties: {
       feature_property: '要素属性',
       form_property: '表单属性',
@@ -96,6 +98,7 @@ export default {
       placeholder: '输入提示',
       placeholder_input: '请输入',
       name: '名称',
+      value: '值',
 
       datasource: '数据源',
       datasource_static: '静态数据',
