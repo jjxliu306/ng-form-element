@@ -38,7 +38,7 @@
                         }"
                         :force-fallback="true"
                         v-model="grid.list"
-                        @add="dragEnd($event, grid)"
+                        @add="dragEnd($event, grid.list)"
                     >
                         <template v-for="item in grid.list">
                             <ng-form-node
@@ -224,7 +224,11 @@ export default {
         },
         dragEnd(evt, list) {
             // 拖拽结束,自动选择拖拽的控件项
-            this.handleSelectItem(list[evt.newIndex])
+            const clone = cloneDeep(list[evt.newIndex])
+            // 去掉icon
+            delete clone.icon 
+            this.$set(list , evt.newIndex , clone) 
+            this.handleSelectItem(list[evt.newIndex]);
         },
         handleCopy(item, parent) {
             const nitem = cloneDeep(item)
