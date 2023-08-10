@@ -38,7 +38,7 @@
                         }"
                         :force-fallback="true"
                         v-model="grid.list"
-                        @add="dragEnd($event, grid)"
+                        @add="dragEnd($event, grid.list)"
                     >
                         <template v-for="item in grid.list">
                             <ng-form-node
@@ -226,11 +226,13 @@ export default {
             }
         },
         dragEnd(evt, list) { 
+              
             // 拖拽结束,自动选择拖拽的控件项
             const clone = this.cloneDeepAndFormat(list[evt.newIndex])
             // 去掉icon
             delete clone.icon 
             this.$set(list , evt.newIndex , clone) 
+
             this.handleSelectItem(list[evt.newIndex]);
         },
         handleCopy(item, parent) {
@@ -307,7 +309,7 @@ export default {
             } else {
                 // 不能合并
                 this.$message({
-                    message: '当前网格不能向下合并',
+                    message: this.t('ngform.item.table.no_bottom_merge'),
                     type: 'warning',
                 })
             }
@@ -341,7 +343,7 @@ export default {
             } else {
                 // 不能合并
                 this.$message({
-                    message: '当前网格不能向右合并',
+                    message: this.t('ngform.item.table.no_right_merge'),
                     type: 'warning',
                 })
             }
@@ -398,7 +400,7 @@ export default {
             // 删除一行
             if (this.record.grids.rowNum == 1) {
                 this.$message({
-                    message: '不能删除最后一行',
+                    message: this.t('ngform.item.table.no_del_by_endrow'),
                     type: 'warning',
                 })
                 return
@@ -427,7 +429,7 @@ export default {
             }
             if (isMerge) {
                 this.$message({
-                    message: '当前行有合并项，不能删除',
+                    message: this.t('ngform.item.table.no_del_by_merge'),
                     type: 'warning',
                 })
                 return
@@ -452,7 +454,7 @@ export default {
             // 删除一列
             if (this.record.grids.colNum == 1) {
                 this.$message({
-                    message: '不能删除最后一列',
+                    message: this.t('ngform.item.table.no_del_by_endcol'),
                     type: 'warning',
                 })
                 return
@@ -481,7 +483,7 @@ export default {
             }
             if (isMerge) {
                 this.$message({
-                    message: '当前列有合并项，不能删除',
+                    message: this.t('ngform.item.table.no_del_by_merge'),
                     type: 'warning',
                 })
                 return

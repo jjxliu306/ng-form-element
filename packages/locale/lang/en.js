@@ -313,8 +313,18 @@ export default {
         cell_style_config: 'Table Cell Style Configuration',
         class_placeholder: 'Please Input Class Name',
         css_placeholder: 'Please Input css Style',
+
+        no_right_merge: 'The current table cannot be merged to the right',
+        no_bottom_merge: 'The current table cannot be merged to the bottom',
+        no_del_by_merge: 'The current cell has been merged and cannot be deleted',
+        no_del_by_endrow: 'Currently the last row cannot be deleted',
+        no_del_by_endcol: 'Currently the last col cannot be deleted',
+
         cancel: 'Cancel',
         ok: 'Confirm'
+      },
+      tableGrid: {
+        name: 'TableGrid'
       },
       tab: {
         name: 'Tabs',

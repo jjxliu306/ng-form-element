@@ -46,7 +46,8 @@
       "vue/no-unused-components": "off",
       "no-mixed-spaces-and-tabs": "off",
       "no-tabs": "off",
-      "no-irregular-whitespace": "off"
+      "no-irregular-whitespace": "off",
+      "vue/no-parsing-error": "off"
     }
   }, 
   "browserslist": [

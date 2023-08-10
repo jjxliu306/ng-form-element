@@ -313,8 +313,18 @@ export default {
         cell_style_config: '表内单元格样式配置',
         class_placeholder: '请输入class名称',
         css_placeholder: '请输入css样式',
+
+        no_right_merge: '当前表格无法向右合并',
+        no_bottom_merge: '当前表格无法向下合并',
+        no_del_by_merge: '当前单元格已合并，无法删除',
+        no_del_by_endrow: '当前是最后一行,无法删除',
+        no_del_by_endcol: '当前只剩下最后一列,无法删除',
+
         cancel: '取消',
         ok: '确定'
+      },
+      tableGrid: {
+        name: '网格布局'
       },
       tab: {
         name: '选项卡',
