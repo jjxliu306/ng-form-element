@@ -5,7 +5,7 @@
      :append-to-body="true" 
     :lock-scroll="false"
     :visible.sync="visible"
-    :id="randomId">    
+    :id="randomId">     
    <el-form
       v-if="
         typeof formTemplate.list !== 'undefined'
@@ -213,7 +213,8 @@
           if(data) {
             //this.dataForm = data
             for(var i in data){
-              this.dataForm[i] = data[i]
+              //this.dataForm[i] = data[i]
+              this.$set(this.dataForm , i , data[i])
             }
           } else {
             // 初始化数据  
@@ -222,9 +223,11 @@
             this.dataForm.seq = 0 
             this.formTemplate.list.forEach(item => {
               if(item.options.defaultValue)
-                this.dataForm[item.model] = item.options.defaultValue;
+                this.$set(this.dataForm ,item.model , item.options.defaultValue)
+                //this.dataForm[item.model] = item.options.defaultValue;
               else 
-                this.dataForm[item.model] = null
+                //this.dataForm[item.model] = undefined
+                this.$set(this.dataForm ,item.model , undefined)
             }); 
   
             this.$nextTick(() => {
