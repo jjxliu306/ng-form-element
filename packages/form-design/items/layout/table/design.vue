@@ -207,6 +207,10 @@ export default {
 	methods: {
 		dragEnd(evt, list) {
 			// 拖拽结束,自动选择拖拽的控件项
+			const clone = cloneDeep(list[evt.newIndex])
+		    // 去掉icon
+		    delete clone.icon 
+		    this.$set(list , evt.newIndex , clone) 
 			this.handleSelectItem(list[evt.newIndex]);
 		},
 		handleCopy(item, parent) {
