@@ -173,7 +173,7 @@ export default {
         getGridStyle() {
             return {
                 'grid-template-columns': `repeat(${this.record.grids.colNum}, 1fr)`,
-                'grid-template-rows': `repeat(${this.record.grids.rowNum}, 1fr)`,
+               // 'grid-template-rows': `repeat(${this.record.grids.rowNum}, 1fr)`,
             }
         },
     },
