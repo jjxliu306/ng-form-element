@@ -1,4 +1,4 @@
-<!--
+
 k-v配置
 -->
 <!--
@@ -17,10 +17,10 @@ k-v配置
             <span> 
               <el-row :gutter="4">
                 <el-col :span="9">
-                  <el-input v-model="data.label"  :type="keyNumber ? 'number' : 'text'" placeholder="名称" />
+                  <el-input v-model="data.label"  :type="keyNumber ? 'number' : 'text'" :placeholder="t('ngform.item.name')" />
                 </el-col>
                 <el-col :span="9">
-                  <el-input v-model="data.value" placeholder="值"/>
+                  <el-input v-model="data.value"  :placeholder="t('ngform.item.value')"/>
                 </el-col>
                 <el-col :span="6">
                   <el-button
@@ -43,12 +43,16 @@ k-v配置
         </el-tree>
       
       <el-col v-if="!disabled" :span="24">
-      	<el-button type="primary" @click="handleAdd">添加</el-button>
+      	<el-button type="primary" @click="handleAdd">
+          <!-- 添加 -->
+          {{t('ngform.item.add')}}
+        </el-button>
       </el-col>
   </div>
 </template>
 <script>
- 
+
+import { t , currentLang } from '../locale/index.js'
 export default {
   name: "ng-form-kv-children",
   props: {
@@ -68,21 +72,14 @@ export default {
     },
   },
   methods: {
+    t,
   	handleAdd() {
       // 添加
       const addData = this.value.concat([
         { value: "",
           label: ""
         }
-      ])
-
-      // let addData = [
-      //   ...this.value,
-      //   {
-      //     value: "",
-      //     label: ""
-      //   }
-      // ];
+      ]) 
       this.$emit("input", addData);
     },
     append(data) {
@@ -168,4 +165,4 @@ export default {
 	    }
   	} 
 }
-</style> -->
+</style> 

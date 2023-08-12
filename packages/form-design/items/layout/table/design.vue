@@ -384,13 +384,13 @@ export default {
 							targetLeft <= currentRight && targetRight >= currentRight,
 						];
 						if (conditions.includes(true)) {
-							this.$message.error('当前表格无法向下合并');
+							this.$message.error(this.t('ngform.item.table.no_bottom_merge'));
 							return false;
 						}
 					}
 				}
 			}
-			this.$message.error('当前表格无法向下合并');
+			this.$message.error(this.t('ngform.item.table.no_bottom_merge'));
 		},
 		handleRightMerge() {
 			//向右合并
@@ -442,7 +442,7 @@ export default {
 
 					//横向不接触，不可以合并
 					if (currentRight + currentColspan !== targetLeft) {
-						this.$message.error('当前表格无法向右合并');
+						this.$message.error(this.t('ngform.item.table.no_right_merge'));
 						return false;
 					}
 
@@ -461,7 +461,7 @@ export default {
 					}
 				}
 			}
-			this.$message.error('当前表格无法向右合并');
+			this.$message.error(this.t('ngform.item.table.no_right_merge'));
 		},
 		handleAddCol() {
 			// 增加列
@@ -498,11 +498,11 @@ export default {
 			const colspan = this.record.trs[tri].tds[this.tdIndex].colspan;
 			const rowspan = this.record.trs[tri].tds[this.tdIndex].rowspan;
 			if (colspan > 1 || rowspan > 1) {
-				this.$message.error('当前单元格已合并，无法删除');
+				this.$message.error(this.t('ngform.item.table.no_del_by_merge'));
 				return;
 			}
 			if (len <= 1) {
-				this.$message.error('当前是最后一行,无法删除');
+				this.$message.error(this.t('ngform.item.table.no_del_by_endrow'));
 				return;
 			}
 			this.record.trs.splice(tri, 1);
@@ -515,7 +515,7 @@ export default {
 			const rowspan = this.record.trs[this.trIndex].tds[this.tdIndex].rowspan;
 
 			if (colspan > 1 || rowspan > 1) {
-				this.$message.error('当前单元格已合并，无法删除');
+				this.$message.error(this.t('ngform.item.table.no_del_by_merge'));
 				return;
 			}
 
@@ -524,7 +524,7 @@ export default {
 			for (let i in this.record.trs) {
 				let tds = this.record.trs[i].tds;
 				if (tds.length <= 1) {
-					this.$message.error('当前只剩下最后一列,无法删除');
+					this.$message.error(this.t('ngform.item.table.no_del_by_endcol'));
 					return;
 				}
 			}

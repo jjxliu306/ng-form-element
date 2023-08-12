@@ -3,11 +3,14 @@
 import BaseIndex from './index.vue'
 import BaseProperties from './properties.vue'
 import icon from './icon.js'
+import { locale } from '../../../packages/index.js'
+
+console.log('locale' , locale)
 
 const obj = {}
  
 obj.type = 'ngImage'//, // 表单类型 
-obj.label = '图片'
+obj.label = locale.$t('ng.ngImage.name')
 obj.component = BaseIndex
 obj.properties = BaseProperties
 obj.icon = icon

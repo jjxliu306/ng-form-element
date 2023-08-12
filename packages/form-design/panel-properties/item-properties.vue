@@ -5,7 +5,7 @@
     <!--   请先从面板中选择组件 -->
     {{t('ngform.properties.no_feature')}}
   </p> 
-	<!-- 先是属性中配置的columns -->
+	<!-- 先是属性中配置的columns --> 
 	<ng-form 
 		v-if="formColumns && formColumns.column && formColumns.column.length > 0" 
 		:config="formColumns.config"   
@@ -258,8 +258,8 @@ export default {
 	},
 	mounted () {  
 		this.$ngofrm_bus.$on('i18nRefresh', () => { 
-      this.formKey = new Date().getTime()
-    });
+	      this.formKey = new Date().getTime()
+	    });
 	},
 	methods: {
 		init() {
@@ -374,13 +374,13 @@ export default {
 		        	},
 		        	column: [
 			        	{
-			            	label: '标签', 
+			            	label: this.$t('ngform.item.label') ,//'标签', 
 				            prop: 'label', 
 				            default: label_,
 				            span: 24,
 				        },
 				        {
-				            label: '标签宽度', 
+				            label: this.$t('ngform.item.label_width') ,//'标签宽度', 
 				            prop: 'labelWidth',
 				            type: 'number',
 				            min: -1,
@@ -389,13 +389,13 @@ export default {
 				            span: 24,
 				        },
 				        {
-				            label: '要素宽度', 
+				            label: this.$t('ngform.item.width') ,//'要素宽度', 
 				            prop: 'width',  
 				            default: width_,
 				            span: 24,
 				        },
 				        {
-				            label: '所占栅格', 
+				            label: this.$t('ngform.item.span') ,// '所占栅格', 
 				            type: 'slider',
 				            prop: 'span',
 				            min: 1,

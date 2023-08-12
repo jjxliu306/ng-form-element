@@ -1,8 +1,9 @@
 <template> 
 <div class="form-panel" > 
     
-    <p class="no-data-text" v-if="!formTemplate || !formTemplate.list || formTemplate.list.length === 0">
-      从左侧选择组件添加
+    <p class="no-data-text" v-if="!formTemplate || !formTemplate.list || formTemplate.list.length === 0" :key="formKey">
+      <!-- 从左侧选择组件添加 -->
+      {{t('ngform.select_item')}}
     </p>
     <el-form  
       	:label-width="formTemplate.config.labelWidth + 'px'" 
@@ -54,14 +55,16 @@ import cloneDeep from 'lodash/cloneDeep'
 import { cloneDeepAndFormat } from '../../utils/index.js'
 import draggable from 'vuedraggable'
 import Node from './node'
+import LocalMixin from '../../locale/mixin.js'
 export default {
 	name: 'ng-form-container' ,
+	mixins: [LocalMixin],
 	components:{
 		Node,draggable
 	},
 	data(){
 		return {
-			 
+			 formKey: '111',
 		}
 	},
 	props: {
@@ -73,6 +76,11 @@ export default {
 			type: Object
 		}
 	}, 
+	mounted () {  
+		this.$ngofrm_bus.$on('i18nRefresh', () => { 
+	      this.formKey = new Date().getTime()
+	    });
+	},
 	methods: {
 	 	dragEnd(evt, list) {   
 	 		// 复制一遍
@@ -81,12 +89,12 @@ export default {
 	 		this.$set(list , evt.newIndex , clone)
 	    	// 拖拽结束,自动选择拖拽的控件项
 	    	//console.log('111' , cloneDeep(list[evt.newIndex]))
-	    this.handleSelectItem(list[evt.newIndex])
-	  },
-	  handleSelectItem(record) {
-	    this.$emit('handleSelectItem' , record)
-	  },
-	  handleCopy(item){ 
+	    	this.handleSelectItem(list[evt.newIndex])
+	  	},
+	  	handleSelectItem(record) {
+	    	this.$emit('handleSelectItem' , record)
+	  	},
+	  	handleCopy(item){ 
 	  		const nitem = cloneDeep(item)
 	  		const key = item.type + "_" + new Date().getTime() 
 	  		nitem.key = key
@@ -101,7 +109,7 @@ export default {
 
 	  		}
 
-	  },
+	  	},
 	 	handleDetele(item) {
 	  		const oindex = this.formTemplate.list.findIndex(t=>t.key == item.key)
 	  		if(oindex >= 0) {
@@ -110,7 +118,7 @@ export default {
 	  			// 当前selectItem重置
 	  			this.handleSelectItem(undefined)
 	  		}
-	  }
+	  	}
 	}
 }
 </script>
@@ -122,7 +130,7 @@ export default {
 
 .form-panel .no-data-text {
   text-align: center;
-  width: 200px;
+ 
   height: 50px;
   position: absolute;
   top: 40%;

@@ -12,6 +12,7 @@ import NgForm  from './ng-form/index.vue'
 import locale from './locale';
 
 import mixin from './form-design/items/mixin.js'
+import LocalMixin from './locale/mixin.js'
 
 NgForm.install = function (Vue) { 
   Vue.component(NgForm.name, NgForm)
@@ -78,7 +79,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
  
 export {
-  mixin , locale , NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode
+  mixin ,LocalMixin, locale , NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode
 }
   
 

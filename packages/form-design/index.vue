@@ -232,7 +232,7 @@ export default {
     
     useLocale(val){
       use(val)
-      this.i18nkey = val // getUUID()
+      this.i18nkey =  getUUID()
  
       this.$ngofrm_bus.$emit('i18nRefresh');
     },
