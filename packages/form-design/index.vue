@@ -168,6 +168,16 @@ export default {
         return this.config.httpConfig;
       }
       return null;
+    },
+    // 自定义组件
+    components() {
+      if(this.$ngofrm_components && this.$ngofrm_components.length > 0) {
+        return this.$ngofrm_components 
+      } else if(this.customComponents && this.customComponents.length > 0) {
+        return this.customComponents
+      }
+
+      return undefined
     }
   },
   watch: { 
@@ -188,7 +198,7 @@ export default {
   },
   provide() {
     return {
-      customC: this.customComponents,
+      customC: this.components,
       configC: this.templateConfig,
       //dictsC: this.dicts,
       httpConfigC: this.httpConfig,

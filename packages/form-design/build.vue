@@ -83,31 +83,24 @@ export default {
 		templateConfig() {
 			if(this.formTemplate) return this.formTemplate.config 
 			return {}
-		},
-		// // 配置的数据字典
-	 //    dicts() {
-	 //       	let dict_ = undefined 
-	 //      	if (this.config && this.config.dict && this.config.dict.length > 0) {
-	 //        	dict_ = this.config.dict;
-	 //      	} 
-
-	 //      	const ddata = Vue.observable({
-	 //        	data: dict_, 
-	 //        	get info() {
-	 //          		return this.data;
-	 //        	}
-	 //      	})
-
-	 //      	return ddata
-	 //    },
-	    // 配置中的http配置
-	    httpConfig() {
-	      if(this.config && this.config.httpConfig ) {
-	        return this.config.httpConfig
-	      }
-	      return null
-	      
+		}, 
+	  // 配置中的http配置
+	  httpConfig() {
+	    if(this.config && this.config.httpConfig ) {
+	      return this.config.httpConfig
 	    }
+	    return null 
+	  },
+	  // 自定义组件
+	  components() {
+	  	if(this.$ngofrm_components && this.$ngofrm_components.length > 0) {
+	  		return this.$ngofrm_components 
+	  	} else if(this.customComponents && this.customComponents.length > 0) {
+	  		return this.customComponents
+	  	}
+
+	  	return undefined
+	  }
 	},
 	watch: {
 	    httpConfig: {
@@ -120,11 +113,11 @@ export default {
 	},
 	provide: function () {
     	return {
-     		customC: this.customComponents ,
+     		customC: this.components ,
      		configC: this.templateConfig,
      		//dictsC: this.dicts,
      		httpConfigC: this.httpConfig,
-     		 ngConfig: this.config
+     		ngConfig: this.config
     	}
   	},
   	created(){

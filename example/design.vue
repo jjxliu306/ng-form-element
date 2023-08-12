@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <ng-form-design ref="formDesign" :custom-components="custemComponents" :config="formConfig" >
+  <ng-form-design ref="formDesign"  :config="formConfig" >
      
     <template slot="controlButton" >
      <el-popover
@@ -43,7 +43,7 @@
 
 <script> 
 import Vue from 'vue'
-import NgComponents from './components/index.js'
+//import NgComponents from './components/index.js'
 export default {
   name: 'App', 
   data(){
@@ -62,7 +62,7 @@ export default {
         {name:'焦点事件' , path: '组件获取焦点事件.json'},
       ],
       // 自定义组件列表
-      custemComponents: NgComponents ,
+      //custemComponents: NgComponents ,
       formConfig: {
         httpConfig: (config)=>{ 
           config.headers['aaaa'] = 'bbbb'

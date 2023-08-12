@@ -58,6 +58,13 @@ const install = function (Vue, opts = {}) {
   locale.use(opts.locale);
   locale.i18n(opts.i18n);
 
+  // 2023-08-12 lyf 判断是否注入了自定义组件 
+  // 后续自定义组件由安装时配置，不再组件中直接引用
+
+  if(opts.components) {
+    Vue.prototype.$ngofrm_components = opts.components
+  }
+
   // 判断是否安装
   if (install.installed) return
   //install.installed = true
