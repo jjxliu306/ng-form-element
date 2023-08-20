@@ -13,17 +13,13 @@ import en from '../packages/locale/lang/en'
 
 import ngEn from './locale/en.js'
 import ngZh from './locale/zh_CN.js'
-
-console.log('ngZh' , ngZh)
-
-const mergeZh = Object.assign({}, ngZh, zh); // {...ngZh , ...zh}
-const deep =  deepmerge(zh, ngZh, { clone: true })
- console.log('deep' , deep)
-//import locale from '../packages/locale/index'
+ 
+ 
+const mergeZh =  deepmerge(zh, ngZh, { clone: true })
+ 
 // 注册组件库
 Vue.use(FormDesign , {locale: mergeZh , components: NgComponents})
- 
-//Vue.prototype.$locale = locale;
+  
 
 Vue.config.productionTip = false
 
