@@ -20,8 +20,9 @@
         :rowspan="tdItem.rowspan" 
         >
         <el-row class="row-td"> 
-          <template   v-for="item in tdItem.list">
+          
             <ng-form-node
+              v-for="item in tdItem.list"
               ref="nestedComponents"
               :is-drag="false"
               :key="item.key"
@@ -30,7 +31,7 @@
               :models.sync="models"   
               :record="item" 
               />
-          </template> 
+          
         </el-row>
       </td>
     </tr>

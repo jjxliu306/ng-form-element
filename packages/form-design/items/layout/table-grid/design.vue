@@ -27,21 +27,22 @@
                     :class="grid.class"
                     :style="grid.style"
                 >
-                    <draggable
-                        tag="div"
-                        class="draggable-box td-draggable"
-                        v-bind="{
-                            group: 'form-draggable',
-                            ghostClass: 'moving',
-                            animation: 180,
-                            handle: '.drag-move',
-                        }"
-                        :force-fallback="true"
-                        v-model="grid.list"
-                        @add="dragEnd($event, grid.list)"
-                    >
-                        <template v-for="item in grid.list">
+                    <el-row class="td-row">
+                        <draggable
+                            tag="div"
+                            class="draggable-box td-draggable"
+                            v-bind="{
+                                group: 'form-draggable',
+                                ghostClass: 'moving',
+                                animation: 180,
+                                handle: '.drag-move',
+                            }"
+                            :force-fallback="true"
+                            v-model="grid.list"
+                            @add="dragEnd($event, grid.list)"
+                        > 
                             <ng-form-node
+                                v-for="item in grid.list"
                                 :key="item.key"
                                 class="drag-move grid-item"
                                 :selectItem="selectItem"
@@ -49,9 +50,9 @@
                                 @handleSelectItem="handleSelectItem"
                                 @handleCopy="handleCopy(item, grid)"
                                 @handleDetele="handleDetele(item, grid)"
-                            />
-                        </template>
-                    </draggable>
+                            /> 
+                        </draggable>
+                    </el-row>
                 </div>
             </div>
         </div>
