@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import App from './App'  
    
+import deepmerge from 'deepmerge';
   
 // 自定义组件
 import NgComponents from './components/index.js' 
@@ -16,7 +17,8 @@ import ngZh from './locale/zh_CN.js'
 console.log('ngZh' , ngZh)
 
 const mergeZh = Object.assign({}, ngZh, zh); // {...ngZh , ...zh}
-//console.log('mergeZh' , mergeZh)
+const deep =  deepmerge(zh, ngZh, { clone: true })
+ console.log('deep' , deep)
 //import locale from '../packages/locale/index'
 // 注册组件库
 Vue.use(FormDesign , {locale: mergeZh , components: NgComponents})

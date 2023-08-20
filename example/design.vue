@@ -5,7 +5,7 @@
     <template slot="controlButton" >
      <el-popover
         placement="bottom-start"
-        :title="t('ng.example')"
+        :title="t('ngform.example')"
         width="240"
         trigger="hover" >
         <div>
@@ -17,7 +17,7 @@
           </el-row>
 
         </div> 
-         <el-button style="margin: 0px 10px;" icon="el-icon-document" slot="reference" type="text" size="medium" >{{t('ng.example')}}</el-button>
+         <el-button style="margin: 0px 10px;" icon="el-icon-document" slot="reference" type="text" size="medium" >{{t('ngform.example')}}</el-button>
       </el-popover>
       <el-select v-model="i18n" style="width: 100px;" placeholder="语言" size="mini">
         <el-option
@@ -44,6 +44,7 @@
 <script> 
 import Vue from 'vue'
 //import NgComponents from './components/index.js'
+import deepmerge from 'deepmerge';
 
 import zh from '../packages/locale/lang/zh_CN'
 import en from '../packages/locale/lang/en'
@@ -93,9 +94,10 @@ export default {
       let merge = {} 
 
       if(val == 'zh_CN') {
-        merge = Object.assign({},  zh , ngZh);
+        const deep =  
+        merge = deepmerge(zh, ngZh, { clone: true }) //Object.assign({},  zh , ngZh);
       } else {
-         merge = Object.assign({}, en , ngEn);
+         merge = deepmerge(en, ngEn, { clone: true }) //Object.assign({}, en , ngEn);
       }
 
   

@@ -10,7 +10,7 @@ console.log('locale' , locale)
 const obj = {}
  
 obj.type = 'ngImage'//, // 表单类型 
-obj.label = locale.$t('ng.ngImage.name')
+obj.label = locale.$t('ngform.ngImage.name')
 obj.component = BaseIndex
 obj.properties = BaseProperties
 obj.icon = icon

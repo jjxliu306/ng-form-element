@@ -147,7 +147,8 @@ export default {
 .drag-item ul .form-edit-widget-label .handle-label {
   font-size: 10px;
   font-weight: 500;
-  line-height: 12px;
+  line-height: 5px;
+  height: 12px;
   margin: 4px -2px 0;
   text-align: center;
   color: #777;

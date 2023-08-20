@@ -28,36 +28,35 @@
 						)
 					"
 				>
-					<draggable
-						tag="div"
-						class="draggable-box td-draggable"
-						:style="{
-							'min-height': (tdItem.rowspan > 1 ? tdItem.rowspan * 65 : 45) + 'px',
-						}"
-						v-bind="{
-							group: 'form-draggable',
-							ghostClass: 'moving',
-							animation: 180,
-							handle: '.drag-move',
-						}"
-						:force-fallback="true"
-						v-model="tdItem.list"
-						@add="dragEnd($event, tdItem.list)"
-					>
-						<el-row class="td-row">
-							<template v-for="item in tdItem.list">
-								<ng-form-node
-									:key="item.key"
-									class="drag-move"
-									:selectItem="selectItem"
-									:record="item"
-									@handleSelectItem="handleSelectItem"
-									@handleCopy="handleCopy(item, tdItem)"
-									@handleDetele="handleDetele(item, tdItem)"
-								/>
-							</template>
-						</el-row>
-					</draggable>
+					<el-row class="td-row">
+						<draggable
+							tag="div"
+							class="draggable-box td-draggable"
+							:style="{
+								'min-height': (tdItem.rowspan > 1 ? tdItem.rowspan * 65 : 45) + 'px',
+							}"
+							v-bind="{
+								group: 'form-draggable',
+								ghostClass: 'moving',
+								animation: 180,
+								handle: '.drag-move',
+							}"
+							:force-fallback="true"
+							v-model="tdItem.list"
+							@add="dragEnd($event, tdItem.list)"
+						>  
+							<ng-form-node
+								v-for="item in tdItem.list"
+								:key="item.key"
+								class="drag-move"
+								:selectItem="selectItem"
+								:record="item"
+								@handleSelectItem="handleSelectItem"
+								@handleCopy="handleCopy(item, tdItem)"
+								@handleDetele="handleDetele(item, tdItem)"
+							/>  
+						</draggable>
+					</el-row>
 				</td>
 			</tr>
 		</table>

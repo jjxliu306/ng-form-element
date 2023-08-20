@@ -8,12 +8,14 @@
 	      	:style="style"
 	      	:src="imgUrl"
 	      	fit="scale-down"></el-image> 
-	    <el-empty v-else description="暂无配置图片"></el-empty>  	
+	    <el-empty v-else :description="t('ngform.ngImage.no_data')"></el-empty>  	
 	</div>
  	
 </template>
 <script>
+import { LocalMixin } from '../../../packages/index.js'
 export default { 
+	mixins: [LocalMixin],
 	props: { 
 	  // 当前组件配置
 	  record: {

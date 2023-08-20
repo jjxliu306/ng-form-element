@@ -69,7 +69,7 @@ export const use = function(l) {
     lang = l || lang;
   }
 
-  console.log('lang' , lang)
+  //console.log('lang' , lang)
      
 
   
