@@ -3,6 +3,11 @@ import Vue from 'vue';
 import deepmerge from 'deepmerge';
 import Format from './format';
 
+import zhCn from './lang/zh_CN.js'
+import en from './lang/en.js'
+
+const langs = {'zh_cn': zhCn , 'en': en}
+
 const format = Format(Vue);
 let lang = defaultLang;
 let merged = false;
@@ -83,4 +88,4 @@ export const i18n = function(fn) {
   i18nHandler = fn || i18nHandler;
 };
 
-export default { use, $t , t, i18n };
+export default { use, $t , t, i18n ,langs};

@@ -46,9 +46,7 @@ NgFormItemNode.install = function (Vue) {
 // 默认导出组件
 const components = [ NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode/*,NgFormItemBase*/]
  
-const bus = new Vue();
 
-Vue.prototype.$ngofrm_bus = bus;
  
 
 // 存储组件列表 
@@ -65,6 +63,10 @@ const install = function (Vue, opts = {}) {
   if(opts.components) {
     Vue.prototype.$ngofrm_components = opts.components
   }
+
+  const bus = new Vue();
+
+  Vue.prototype.$ngofrm_bus = bus;
 
   // 判断是否安装
   if (install.installed) return
