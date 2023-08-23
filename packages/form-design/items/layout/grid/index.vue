@@ -6,42 +6,45 @@
     :key="index"
     :span="item.span || 0"
     >
-    <draggable
-      v-if="isDragPanel"
-      tag="div"
-      class="draggable-box"
-      v-bind="{
-        group: 'form-draggable',
-        ghostClass: 'moving',
-        animation: 180,
-        handle: '.drag-move'
-      }"
-      :force-fallback="true"
-      v-model="item.list"
-      @add="dragEnd($event, item.list)" 
-      > 
-        <ng-form-node
-            v-for="node in item.list"
-            :key="node.key"
-            class="drag-move"
-            :selectItem="selectItem"
-            :record="node" 
-            @handleSelectItem="handleSelectItem"
-            @handleCopy="handleCopy(node , item.list)"
-            @handleDetele="handleDetele(node , item.list)"
-          />  
-    </draggable>
-    <template v-else>
-      <ng-form-node 
-        v-for="node in item.list"
-        :is-drag="false"
-        :key="node.key"
-        :disabled="disabled"
-        :preview="preview"
-        :models.sync="models"   
-        :record="node" 
-      />
-    </template>
+    <el-row class="grid-row">
+      <draggable
+        v-if="isDragPanel"
+        tag="div"
+        class="draggable-box"
+        v-bind="{
+          group: 'form-draggable',
+          ghostClass: 'moving',
+          animation: 180,
+          handle: '.drag-move'
+        }"
+        :force-fallback="true"
+        v-model="item.list"
+        @add="dragEnd($event, item.list)" 
+        > 
+
+          <ng-form-node
+              v-for="node in item.list"
+              :key="node.key"
+              class="drag-move"
+              :selectItem="selectItem"
+              :record="node" 
+              @handleSelectItem="handleSelectItem"
+              @handleCopy="handleCopy(node , item.list)"
+              @handleDetele="handleDetele(node , item.list)"
+            />  
+      </draggable>
+      <template v-else>
+        <ng-form-node 
+          v-for="node in item.list"
+          :is-drag="false"
+          :key="node.key"
+          :disabled="disabled"
+          :preview="preview"
+          :models.sync="models"   
+          :record="node" 
+        />
+      </template>
+    </el-row>
   </el-col>
 </el-row>
 </template>
@@ -71,6 +74,7 @@ export default {
       this.handleSelectItem(columns[evt.newIndex])
     },
     handleCopy(item , list){ 
+      console.log('item copy' , item , list )
       const nitem = cloneDeep(item)
       const key = item.type + "_" + new Date().getTime() 
       nitem.key = key
@@ -97,7 +101,7 @@ export default {
 </script>
 <style>
 .ng-layout-row {
-  z-index: 0;
+  
   margin: 0px !important;
   border-radius: 4px;
   border: 1px dashed #ccc;
