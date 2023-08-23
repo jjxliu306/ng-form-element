@@ -97,7 +97,7 @@ export default {
 </script>
 <style>
 .ng-layout-row {
-  z-index: 0;
+  
   margin: 0px !important;
   border-radius: 4px;
   border: 1px dashed #ccc;
