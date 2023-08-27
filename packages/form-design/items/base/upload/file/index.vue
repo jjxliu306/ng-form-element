@@ -11,7 +11,7 @@
       :multiple="record.options.multiple" 
       :action="record.options.action"
       :limit="record.options.limit" 
-      
+      :upload-auto-hidden="record.options.uploadHidden"
     />  
 </template>
 <script> 

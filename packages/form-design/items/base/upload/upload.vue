@@ -1,6 +1,6 @@
 <template>
 <div> 
-	<div v-if="renderPreview || disabled">
+	<div v-if="preview || disabled">
 		<!-- 判断图片还是文件列表 -->
 		<div v-if="accept && accept.indexOf('image') >= 0 && listType && listType.indexOf('picture-card') >= 0" >
         <ul > 
@@ -32,6 +32,7 @@
 	<el-upload
 	  v-else 
 	  class="ng-form-upload"
+	  :class="{'upload': !uploadVisible}"
 	  :action="action"
 	  :drag="drag"
 	  :disabled="disabled"
@@ -41,14 +42,15 @@
 	  :accept="accept"
 	  :list-type="listType"
 	  :with-credentials="withCredentials"
-	   :before-upload="beforeUpload"
+	  :before-upload="beforeUpload"
 	  :on-success="handleSuccess"
 	  :on-remove="handleRemove"
 	  :on-preview="handlePreview"
 	  :auto-upload="autoUpload"
 	  :file-list="fileList">
-	  <template v-if="!renderPreview">
+	  <template v-if="uploadVisible"> 
 	  	 <el-button slot="trigger" v-if="listType != 'picture-card'"  :disabled="disabled" size="small" type="primary">选取文件</el-button>
+	  	 
 	   	<i v-else class="el-icon-plus"></i>
 	  	<div v-if="tip != undefined" slot="tip" class="el-upload__tip">请选择图片，且不超过500kb</div>
 	  </template> 
@@ -131,6 +133,11 @@ export default {
 	    imgDownBut: {
 	    	type: Boolean,
 	    	default: true
+	    },
+	    // 2023-8-27 lyf 文件上传后自动隐藏上传按钮 默认关闭
+	    uploadAutoHidden: {
+	    	type: Boolean ,
+	    	default: false
 	    }
 	},
 	watch: {
@@ -152,6 +159,17 @@ export default {
 	//     }
 	// },
 	computed: {
+		// 上传按钮显示条件 
+		// 1、只上传一个时有文件则不显示 多个时导致门限也不现实
+		// 2、预览时不显示
+		uploadVisible() {
+			if(!this.uploadAutoHidden) return true
+			if(this.preview || this.disabled) return false 	
+			if(!this.multiple && this.value && this.value.length > 0) return false 
+			if(this.multiple && this.value && this.value.length >= this.limit) return false
+
+			return true 
+		},
 		// 需要携带的头数据
 		uploadHeader() {
 			let hs = {} 
@@ -300,3 +318,8 @@ export default {
 	}
 }
 </script>
+<style>
+.ng-form-upload.upload .el-upload {
+	display: none;
+}
+</style>
