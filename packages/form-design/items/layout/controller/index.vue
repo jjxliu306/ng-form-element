@@ -132,7 +132,7 @@ export default {
       this.handleSelectItem(list[evt.newIndex])
     },
     handleCopy(item){ 
-      const nitem = cloneDeep(item)
+      const nitem = this.cloneDeepAndFormat(item)
       const key = item.type + "_" + new Date().getTime() 
       nitem.key = key
       nitem.model = key
@@ -223,7 +223,7 @@ export default {
         return 
       }
 
-      const cloneData = cloneDeep(this.models[this.record.model][this.selectControlIndex])
+      const cloneData = this.cloneDeepAndFormat(this.models[this.record.model][this.selectControlIndex])
 
       this.models[this.record.model].push(cloneData)
       this.showRightMenu = false

@@ -90,15 +90,15 @@ export default {
 	    	// 拖拽结束,自动选择拖拽的控件项
 	    	//console.log('111' , cloneDeep(list[evt.newIndex]))
 	    	this.handleSelectItem(list[evt.newIndex])
-	  	},
-	  	handleSelectItem(record) {
+	  },
+	  handleSelectItem(record) {
 	    	this.$emit('handleSelectItem' , record)
-	  	},
-	  	handleCopy(item){ 
-	  		const nitem = cloneDeep(item)
+	  },
+	  handleCopy(item){ 
+	  		const nitem = cloneDeepAndFormat(item)
 	  		const key = item.type + "_" + new Date().getTime() 
 	  		nitem.key = key
-	  		nitem.model = key
+	  		nitem.model = key 
 
 	  		// 找到index 插入
 	  		const oindex = this.formTemplate.list.findIndex(t=>t.key == item.key)
@@ -109,7 +109,7 @@ export default {
 
 	  		}
 
-	  	},
+	  },
 	 	handleDetele(item) {
 	  		const oindex = this.formTemplate.list.findIndex(t=>t.key == item.key)
 	  		if(oindex >= 0) {

@@ -55,8 +55,7 @@
     </el-tab-pane> 
 </el-tabs> 
 </template>
-<script>
-import cloneDeep from 'lodash/cloneDeep'
+<script> 
 import draggable from "vuedraggable"
 import mixin from '../../mixin.js'
 export default {
@@ -82,7 +81,7 @@ export default {
       this.handleSelectItem(list[evt.newIndex])
     },
     handleCopy(item , list){ 
-      const nitem = cloneDeep(item)
+      const nitem = this.cloneDeepAndFormat(item)
       const key = item.type + "_" + new Date().getTime() 
       nitem.key = key
       nitem.model = key

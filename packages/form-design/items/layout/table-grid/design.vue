@@ -237,7 +237,7 @@ export default {
             this.handleSelectItem(list[evt.newIndex]);
         },
         handleCopy(item, parent) {
-            const nitem = cloneDeep(item)
+            const nitem = this.cloneDeepAndFormat(item)
             const key = item.type + '_' + new Date().getTime()
             nitem.key = key
             nitem.model = key

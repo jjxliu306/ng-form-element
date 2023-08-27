@@ -75,7 +75,7 @@ export default {
     },
     handleCopy(item , list){ 
       console.log('item copy' , item , list )
-      const nitem = cloneDeep(item)
+      const nitem = this.cloneDeepAndFormat(item)
       const key = item.type + "_" + new Date().getTime() 
       nitem.key = key
       nitem.model = key
