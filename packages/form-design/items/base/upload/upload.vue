@@ -48,9 +48,9 @@
 	  :auto-upload="autoUpload"
 	  :file-list="fileList">
 	  <template v-if="!renderPreview">
-	  	 <el-button slot="trigger" v-if="listType != 'picture-card'"  :disabled="disabled" size="small" type="primary">选取文件</el-button>
+	  	 <el-button slot="trigger" v-if="listType != 'picture-card'"  :disabled="disabled" size="small" type="primary">{{t('ngform.item.upload.select')}}</el-button>
 	   	<i v-else class="el-icon-plus"></i>
-	  	<div v-if="tip != undefined" slot="tip" class="el-upload__tip">请选择图片，且不超过500kb</div>
+	  	<div v-if="tip != undefined" slot="tip" class="el-upload__tip">{{tip}}</div>
 	  </template> 
 	</el-upload>
 
@@ -61,8 +61,9 @@
 </div>
 </template>
 <script>
-
+import LocalMixin from '../../../../locale/mixin.js'
 export default {
+	mixins: [LocalMixin],
 	name: 'ng-form-upload',
 	data() {
 		return {
@@ -101,6 +102,11 @@ export default {
 	    // 最多上传几个
 	    limit: {
 	    	type: Number
+	    },
+	    // 文件大小
+	    limitSize: {
+	    	type: Number,
+	    	default: 10
 	    },
 	    // 是否支持发送cookie信息
 	    withCredentials: {
@@ -213,12 +219,12 @@ export default {
 		        this.accept.indexOf("image") >= 0 &&
 		        !this.isAssetTypeAnImage(fileSuffix)
 		    ) {
-		        this.$message.error("当前图片格式只支持:[png,jpg,jpeg,bmp]");
+		        this.$message.error(this.$t('ngform.item.upload.error_img_filetype') + "[png,jpg,jpeg,bmp]");
 		        return false;
 		    }
 
-	      	if (this.record.options.limitSize && ltSize > this.record.options.limitSize) {
-	        	this.$message.error( "上传文件大小不能超过" + (this.record.options.limitSize) + "MB!" )
+	      	if (this.limitSize && ltSize > this.limitSize) {
+	        	this.$message.error(this.$t('ngform.item.upload.error_max_size') + (this.limitSize) + "MB!" )
 
 	        	return false
 	         
@@ -278,7 +284,7 @@ export default {
 				this.dialogImageUrl = file.url 
 				//window.location.href = file.url
 			} else {
-				this.$message.error('找不到文件下载路径')
+				this.$message.error(this.$t('ngform.item.upload.error_not_found_file'))
 			}
 
 		},
@@ -292,7 +298,7 @@ export default {
 	    	if(file.url) {
 				 window.open(file.url)
 			} else {
-				this.$message.error('找不到文件下载路径')
+				this.$message.error(this.$t('ngform.item.upload.error_not_found_file'))
 			}
 
 	     

@@ -246,7 +246,11 @@ export default {
         limit_size: 'LimitSize',
         limit: 'MaxSize',
         header: 'Headers',
-        style: 'Style'
+        style: 'Style',
+        select: 'Select File',
+        error_max_size: 'The size of the uploaded file cannot exceed ',
+        error_not_found_file: 'Unable to find file download path',
+        error_img_filetype: 'The current image format only supports:'
       },
       alert: {
         name: 'Alert',

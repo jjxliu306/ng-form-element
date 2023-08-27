@@ -11,6 +11,7 @@
       :multiple="record.options.multiple" 
       :action="record.options.action"
       :limit="record.options.limit" 
+      :limit-size="record.options.limitSize"
       
     />  
 </template>
