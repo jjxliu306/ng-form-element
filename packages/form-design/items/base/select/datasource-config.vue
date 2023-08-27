@@ -15,8 +15,8 @@ cascader没有数据字典
   <template v-if="selectItem.options.dynamic == 1">
     <el-form-item  label="方法" >
       <el-radio-group v-model="selectItem.options.methodType">
-        <el-radio label="get">get</el-radio>
-        <el-radio label="post">post</el-radio>
+        <el-radio label="get">GET</el-radio>
+        <el-radio label="post">POST</el-radio>
       </el-radio-group>
     </el-form-item>
     <el-form-item  label="数据" v-if="selectItem.options.methodType == 'post'">
@@ -44,6 +44,9 @@ cascader没有数据字典
       </el-input>
       <el-input size="mini" v-model="selectItem.options.remoteLabel">
         <template slot="prepend">标签字段</template>
+      </el-input> 
+      <el-input size="mini" v-if="selectItem.type == 'cascader'" v-model="selectItem.options.remoteChildren">
+        <template slot="prepend">下级字段</template>
       </el-input> 
     </div>  
     <div v-else-if="selectItem.options.dynamic == 2">

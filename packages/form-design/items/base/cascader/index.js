@@ -171,7 +171,11 @@ obj.options = {
                   prop: 'remoteLabel', 
                   show: false
                 } , 
-                
+                {
+                  label: '下级字段' ,//'下级字段',
+                  prop: 'remoteChildren', 
+                  show: false
+                } , 
                 {
                   label: '多选',
                   prop: 'multiple',
