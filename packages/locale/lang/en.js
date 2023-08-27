@@ -247,6 +247,7 @@ export default {
         limit: 'MaxSize',
         header: 'Headers',
         style: 'Style',
+        upload_hidden: 'Uploaded Hide',
         select: 'Select File',
         error_max_size: 'The size of the uploaded file cannot exceed ',
         error_not_found_file: 'Unable to find file download path',

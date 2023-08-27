@@ -1,6 +1,6 @@
 <template>
 <div> 
-	<div v-if="renderPreview || disabled">
+	<div v-if="preview || disabled">
 		<!-- 判断图片还是文件列表 -->
 		<div v-if="accept && accept.indexOf('image') >= 0 && listType && listType.indexOf('picture-card') >= 0" >
         <ul > 
@@ -32,6 +32,7 @@
 	<el-upload
 	  v-else 
 	  class="ng-form-upload"
+	  :class="{'upload': !uploadVisible}"
 	  :action="action"
 	  :drag="drag"
 	  :disabled="disabled"
@@ -47,7 +48,7 @@
 	  :on-preview="handlePreview"
 	  :auto-upload="autoUpload"
 	  :file-list="fileList">
-	  <template v-if="!renderPreview">
+	 	<template v-if="uploadVisible"> 
 	  	 <el-button slot="trigger" v-if="listType != 'picture-card'"  :disabled="disabled" size="small" type="primary">{{t('ngform.item.upload.select')}}</el-button>
 	   	<i v-else class="el-icon-plus"></i>
 	  	<div v-if="tip != undefined" slot="tip" class="el-upload__tip">{{tip}}</div>
@@ -137,6 +138,11 @@ export default {
 	    imgDownBut: {
 	    	type: Boolean,
 	    	default: true
+	    },
+	     // 2023-8-27 lyf 文件上传后自动隐藏上传按钮 默认关闭
+	    uploadAutoHidden: {
+	    	type: Boolean ,
+	    	default: false
 	    }
 	},
 	watch: {
@@ -150,14 +156,18 @@ export default {
 			}
 		}
 	},
-	
-	// inject: { 
-	//     // 表单全局config配置
-	//     httpConfig: {
-	//         from: 'httpConfigC' 
-	//     }
-	// },
 	computed: {
+		// 上传按钮显示条件 
+		// 1、只上传一个时有文件则不显示 多个时导致门限也不现实
+		// 2、预览时不显示
+		uploadVisible() {
+			if(!this.uploadAutoHidden) return true
+			if(this.preview || this.disabled) return false 	
+			if(!this.multiple && this.value && this.value.length > 0) return false 
+			if(this.multiple && this.value && this.value.length >= this.limit) return false
+
+			return true 
+		},
 		// 需要携带的头数据
 		uploadHeader() {
 			let hs = {} 
@@ -219,12 +229,12 @@ export default {
 		        this.accept.indexOf("image") >= 0 &&
 		        !this.isAssetTypeAnImage(fileSuffix)
 		    ) {
-		        this.$message.error(this.$t('ngform.item.upload.error_img_filetype') + "[png,jpg,jpeg,bmp]");
+		        this.$message.error(this.t('ngform.item.upload.error_img_filetype') + "[png,jpg,jpeg,bmp]");
 		        return false;
 		    }
 
 	      	if (this.limitSize && ltSize > this.limitSize) {
-	        	this.$message.error(this.$t('ngform.item.upload.error_max_size') + (this.limitSize) + "MB!" )
+	        	this.$message.error(this.t('ngform.item.upload.error_max_size') + (this.limitSize) + "MB!" )
 
 	        	return false
 	         
@@ -284,7 +294,7 @@ export default {
 				this.dialogImageUrl = file.url 
 				//window.location.href = file.url
 			} else {
-				this.$message.error(this.$t('ngform.item.upload.error_not_found_file'))
+				this.$message.error(this.t('ngform.item.upload.error_not_found_file'))
 			}
 
 		},
@@ -298,7 +308,7 @@ export default {
 	    	if(file.url) {
 				 window.open(file.url)
 			} else {
-				this.$message.error(this.$t('ngform.item.upload.error_not_found_file'))
+				this.$message.error(this.t('ngform.item.upload.error_not_found_file'))
 			}
 
 	     
@@ -306,3 +316,8 @@ export default {
 	}
 }
 </script>
+<style>
+.ng-form-upload.upload .el-upload {
+	display: none;
+}
+</style>

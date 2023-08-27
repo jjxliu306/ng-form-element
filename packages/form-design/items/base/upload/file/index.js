@@ -150,6 +150,13 @@ obj.options = {
                   span: 24,
                 },
                 {
+                  label:  $t('ngform.item.upload.upload_hidden') ,//'上传后隐藏',
+                  prop: 'uploadHidden',
+                  type: 'switch',
+                  default: false,
+                  span: 24,
+                },
+                {
                   label: $t('ngform.item.upload.header') ,//'携带头信息',
                   prop: 'headers',
                   type: 'kv',

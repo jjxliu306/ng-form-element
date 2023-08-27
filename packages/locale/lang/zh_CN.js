@@ -246,6 +246,7 @@ export default {
         limit: '文件数量',
         header: '携带头信息',
         style: '样式',
+        upload_hidden: '上传后隐藏',
         select: '选择文件',
         error_max_size: '上传文件大小不能超过',
         error_not_found_file: '找不到文件下载路径',
