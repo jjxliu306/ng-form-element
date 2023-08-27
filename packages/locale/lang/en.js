@@ -112,8 +112,9 @@ export default {
 
       api_path: 'API Path' ,
       data_path: 'Data Path' ,
-      filed_value: 'value',
-      filed_label: 'label',
+      filed_value: 'Value',
+      filed_label: 'Label',
+      filed_children: 'Chilren',
 
       multiple: 'multiple',
       search: 'search',

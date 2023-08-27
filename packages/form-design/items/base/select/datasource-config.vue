@@ -15,8 +15,8 @@ cascader没有数据字典
   <template v-if="selectItem.options.dynamic == 1">
     <el-form-item  :label="t('ngform.item.method_type')" >
       <el-radio-group v-model="selectItem.options.methodType">
-        <el-radio label="get">get</el-radio>
-        <el-radio label="post">post</el-radio>
+        <el-radio label="get">GET</el-radio>
+        <el-radio label="post">POST</el-radio>
       </el-radio-group>
     </el-form-item>
     <el-form-item :label="t('ngform.properties.data')" v-if="selectItem.options.methodType == 'post'">
@@ -46,6 +46,9 @@ cascader没有数据字典
       </el-input>
       <el-input size="mini" v-model="selectItem.options.remoteLabel">
         <template slot="prepend">{{t('ngform.item.filed_label')}}</template>
+      </el-input> 
+      <el-input size="mini" v-model="selectItem.options.remoteChildren">
+        <template slot="prepend">{{t('ngform.item.filed_children')}}</template>
       </el-input> 
     </div>  
     <div v-else-if="selectItem.options.dynamic == 2">

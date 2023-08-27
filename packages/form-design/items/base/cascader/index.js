@@ -171,6 +171,11 @@ obj.options = {
                   prop: 'remoteLabel', 
                   show: false
                 } , 
+                {
+                  label: $t('ngform.item.filed_children') ,//'下级字段',
+                  prop: 'remoteChildren', 
+                  show: false
+                } , 
                 
                 {
                   label: $t('ngform.item.multiple'),//'多选',

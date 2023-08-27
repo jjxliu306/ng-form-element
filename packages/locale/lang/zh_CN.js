@@ -112,6 +112,7 @@ export default {
       data_path: '数据路径' ,
       filed_value: '值字段',
       filed_label: '标签字段',
+      filed_children: '下级字段',
 
       multiple: '多选',
       search: '搜索',
