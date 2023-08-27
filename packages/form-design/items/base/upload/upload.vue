@@ -104,6 +104,11 @@ export default {
 	    limit: {
 	    	type: Number
 	    },
+	    // 最大文件体积
+	    limitSize: {
+	    	type: Number,
+	    	default: 10
+	    },
 	    // 是否支持发送cookie信息
 	    withCredentials: {
 	    	type: Boolean ,
@@ -235,8 +240,8 @@ export default {
 		        return false;
 		    }
 
-	      	if (this.record.options.limitSize && ltSize > this.record.options.limitSize) {
-	        	this.$message.error( "上传文件大小不能超过" + (this.record.options.limitSize) + "MB!" )
+	      	if (this.limitSize && ltSize > this.limitSize) {
+	        	this.$message.error( "上传文件大小不能超过" + (this.limitSize) + "MB!" )
 
 	        	return false
 	         
