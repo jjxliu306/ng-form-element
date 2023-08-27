@@ -47,7 +47,7 @@ cascader没有数据字典
       <el-input size="mini" v-model="selectItem.options.remoteLabel">
         <template slot="prepend">{{t('ngform.item.filed_label')}}</template>
       </el-input> 
-      <el-input size="mini" v-model="selectItem.options.remoteChildren">
+      <el-input size="mini" v-if="selectItem.type == 'cascader'" v-model="selectItem.options.remoteChildren">
         <template slot="prepend">{{t('ngform.item.filed_children')}}</template>
       </el-input> 
     </div>  
