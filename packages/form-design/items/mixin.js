@@ -1,6 +1,6 @@
 
-import { dynamicFun } from '../../utils/index.js'
-
+import { dynamicFun , cloneDeepAndFormat } from '../../utils/index.js'
+ 
 import request from '../../utils/request.js'
 import cloneDeep from 'lodash/cloneDeep'
 
@@ -89,6 +89,7 @@ export default {
 	},
 	
 	methods: {
+		cloneDeepAndFormat,
 		// 设置数组类默认值
 		updateArrayDefaultValue() {
 			if(this.models && 

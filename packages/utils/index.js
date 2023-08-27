@@ -118,3 +118,42 @@ export function translateConfig(config = []) {
     return cloneConfig
 
 }
+
+
+
+/**
+* 数据复制并且格式化
+*/
+export function cloneDeepAndFormat(data) {
+  const clone = cloneDeep(data)
+  delete clone.icon 
+ 
+
+  let idx = 1
+  // 2023-08-27 lyf 迭代判断是否包含子组件，全部替换子组件的key和model
+  const iterKeyReplace_ = (v)=> {
+    if(v instanceof Array){
+      v.forEach(c=> {
+        iterKeyReplace_(c)
+      })
+    } else if(v.key) {
+      // 重置key和model
+      idx++
+      const vkey = v.type + "_" + new Date().getTime() + '' + idx
+      v['key'] = vkey 
+      v['model'] = vkey 
+    }
+
+    for(let k in v) {
+      const kd = v[k]
+      if(kd instanceof Array) {
+        iterKeyReplace_(kd)
+      }
+      
+    }
+  }
+
+  iterKeyReplace_(clone)
+
+  return clone 
+}

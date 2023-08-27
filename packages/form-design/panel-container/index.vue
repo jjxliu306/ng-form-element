@@ -51,6 +51,7 @@
 </template>
 <script> 
 import cloneDeep from 'lodash/cloneDeep'
+import { cloneDeepAndFormat } from '../../utils/index.js'
 import draggable from 'vuedraggable'
 import Node from './node'
 export default {
@@ -75,9 +76,8 @@ export default {
 	methods: {
 	 	dragEnd(evt, list) {   
 	 		// 复制一遍
-	 		const clone = cloneDeep(list[evt.newIndex])
-	 		// 去掉icon
-	 		delete clone.icon 
+	 		const clone = cloneDeepAndFormat(list[evt.newIndex])
+	 
 	 		this.$set(list , evt.newIndex , clone)
 	    	// 拖拽结束,自动选择拖拽的控件项
 	    	//console.log('111' , cloneDeep(list[evt.newIndex]))
@@ -87,7 +87,7 @@ export default {
 	    this.$emit('handleSelectItem' , record)
 	  },
 	  handleCopy(item){ 
-	  		const nitem = cloneDeep(item)
+	  		const nitem = cloneDeepAndFormat(item)
 	  		const key = item.type + "_" + new Date().getTime() 
 	  		nitem.key = key
 	  		nitem.model = key

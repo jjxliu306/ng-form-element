@@ -58,13 +58,13 @@ export default {
   methods: {
     dragEnd(evt, list) {   
       // 拖拽结束,自动选择拖拽的控件项
-      const clone = cloneDeep(list[evt.newIndex])
-      delete clone.icon 
+      const clone = this.cloneDeepAndFormat(list[evt.newIndex])
+       
       this.$set(list , evt.newIndex , clone)
       this.handleSelectItem(clone)
     },
     handleCopy(item){ 
-      const nitem = cloneDeep(item)
+      const nitem = this.cloneDeepAndFormat(item)
       const key = item.type + "_" + new Date().getTime() 
       nitem.key = key
       nitem.model = key

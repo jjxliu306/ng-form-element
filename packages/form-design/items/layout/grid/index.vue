@@ -64,14 +64,13 @@ export default {
   methods: {
     dragEnd(evt, columns) {   
       // 拖拽结束,自动选择拖拽的控件项
-      const clone = cloneDeep(columns[evt.newIndex])
-      // 去掉icon
-      delete clone.icon 
+      const clone = this.cloneDeepAndFormat(columns[evt.newIndex])
+       
       this.$set(columns , evt.newIndex , clone) 
       this.handleSelectItem(columns[evt.newIndex])
     },
     handleCopy(item , list){ 
-      const nitem = cloneDeep(item)
+      const nitem = this.cloneDeepAndFormat(item)
       const key = item.type + "_" + new Date().getTime() 
       nitem.key = key
       nitem.model = key
