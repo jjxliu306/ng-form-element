@@ -26,6 +26,7 @@
       :record="record"
       :disabled="disabled" 
       :preview="preview"
+      :prop-prepend="propPrepend"
       :isDragPanel="isDragPanel"
       :selectItem="selectItem" 
       :models="models" 
