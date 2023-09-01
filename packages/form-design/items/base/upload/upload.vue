@@ -36,7 +36,7 @@
 	  :action="action"
 	  :drag="drag"
 	  :disabled="disabled"
-	  :multiple="multiple"
+	  :multiple="false"
 	  :limit="limit"
 	  :headers="uploadHeader"
 	  :accept="accept"
@@ -55,11 +55,7 @@
 	  	<div v-if="tip != undefined" slot="tip" class="el-upload__tip">请选择图片，且不超过500kb</div>
 	  </template> 
 	</el-upload>
-
-	  <!--附件上传-->
-    <el-dialog :append-to-body="true" :visible.sync="dialogVisible">
-      <img width="100%" :src="dialogImageUrl" alt="">
-    </el-dialog>
+ 
 </div>
 </template>
 <script>
@@ -67,9 +63,7 @@
 export default {
 	name: 'ng-form-upload',
 	data() {
-		return {
-			dialogVisible: false,
-			dialogImageUrl: '',
+		return { 
 			fileList: []
 		}
 	},
@@ -292,17 +286,8 @@ export default {
 		// 点击下载或者预览
 		handlePreview(file) {
 			//console.log('handlePreview file' , file)
-
-			// 从url中下载
-			if(file.url) {
-				 
-
-				this.dialogVisible = true 
-				this.dialogImageUrl = file.url 
-				//window.location.href = file.url
-			} else {
-				this.$message.error('找不到文件下载路径')
-			}
+			this.fileDown(file)
+		 
 
 		},
 		 // 浏览下载文件
