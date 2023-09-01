@@ -243,6 +243,7 @@ export default {
         file_type: '文件类型',
         file_url_path: 'EPL地址',
         limit_size: '文件大小',
+        multiple: '多文件',
         limit: '文件数量',
         header: '携带头信息',
         style: '样式',

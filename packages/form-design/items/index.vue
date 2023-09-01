@@ -8,6 +8,7 @@
     :disabled="disabled" 
     :preview="preview"
     :isDragPanel="isDragPanel"
+    :prop-prepend="propPrepend"
     :selectItem="selectItem" 
     :models="models" 
     @handleSelectItem="handleSelectItem" 
@@ -28,6 +29,7 @@
       :preview="preview"
       :isDragPanel="isDragPanel"
       :selectItem="selectItem" 
+      :prop-prepend="propPrepend"
       :models="models" 
       @handleSelectItem="handleSelectItem"
       /> 

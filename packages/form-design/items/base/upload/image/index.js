@@ -126,7 +126,7 @@ obj.options = {
                     span: 24,
                 },   
                 {
-                  label: $t('ngform.item.multiple') ,//'多选', 
+                  label: $t('ngform.item.upload.multiple') ,//'多选', 
                   prop: 'multiple',
                   type: 'switch',
                   default: false,

@@ -244,6 +244,7 @@ export default {
         file_type: 'File Type',
         file_url_path: 'EPL Path',
         limit_size: 'LimitSize',
+        multiple: 'Multiple',
         limit: 'MaxSize',
         header: 'Headers',
         style: 'Style',

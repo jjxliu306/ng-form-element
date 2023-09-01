@@ -36,7 +36,7 @@
 	  :action="action"
 	  :drag="drag"
 	  :disabled="disabled"
-	  :multiple="multiple"
+	  :multiple="false"
 	  :limit="limit"
 	  :headers="uploadHeader"
 	  :accept="accept"
@@ -55,10 +55,7 @@
 	  </template> 
 	</el-upload>
 
-	  <!--附件上传-->
-    <el-dialog :append-to-body="true" :visible.sync="dialogVisible">
-      <img width="100%" :src="dialogImageUrl" alt="">
-    </el-dialog>
+	  
 </div>
 </template>
 <script>
@@ -67,9 +64,7 @@ export default {
 	mixins: [LocalMixin],
 	name: 'ng-form-upload',
 	data() {
-		return {
-			dialogVisible: false,
-			dialogImageUrl: '',
+		return {  
 			fileList: []
 		}
 	},
@@ -285,34 +280,21 @@ export default {
 		// 点击下载或者预览
 		handlePreview(file) {
 			//console.log('handlePreview file' , file)
-
-			// 从url中下载
-			if(file.url) {
-				 
-
-				this.dialogVisible = true 
-				this.dialogImageUrl = file.url 
-				//window.location.href = file.url
-			} else {
-				this.$message.error(this.t('ngform.item.upload.error_not_found_file'))
-			}
+			this.fileDown(file) 
 
 		},
 		 // 浏览下载文件
-	    reviewDown (file) {
+	  reviewDown (file) {
 	      this.handlePreview(file)
-	    },
-	    
-	    // 图片下载
-	    fileDown (file) {
-	    	if(file.url) {
-				 window.open(file.url)
+	  },
+	  // 图片下载
+	  fileDown (file) {
+	    if(file.url) {
+				window.open(file.url)
 			} else {
 				this.$message.error(this.t('ngform.item.upload.error_not_found_file'))
 			}
-
-	     
-	    },
+	  }
 	}
 }
 </script>
