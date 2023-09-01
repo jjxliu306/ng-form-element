@@ -40,7 +40,7 @@
           <template  slot-scope="scope"> 
             <!-- 这里就要判断类型了 -->   
             <!-- 2021-03-14 判断新增数据方式，如果是怎加航 这里就不能预览了 -->
-            <TableItem :record="item" :index="scope.$index" :models="models" :parent-model="record.model"  :preview="preview || record.options.addType == 'dialog'" :domains="models[record.model][scope.$index]" /> 
+            <TableItem :record="item" :index="scope.$index" :models="models" :parent-model="propPrepend + record.model"  :preview="preview || record.options.addType == 'dialog'" :domains="models[record.model][scope.$index]" /> 
           </template>  
         </el-table-column>
         </template> 
@@ -110,7 +110,12 @@ export default {
     preview: {
       type: Boolean ,
       default: false
+    },
+    propPrepend:{
+      type: String,
+      default: ''
     }
+     
   },  
   computed: { 
     disabled() {

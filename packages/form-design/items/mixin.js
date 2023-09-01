@@ -34,7 +34,11 @@ export default {
 	  },
 	  selectItem: {
 	  	type: Object
-	  } 
+	  }, 
+      propPrepend: {
+      	type: String,
+      	default: ''
+      }
 	}, 
 	data() {
 		return {

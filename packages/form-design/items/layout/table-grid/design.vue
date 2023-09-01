@@ -47,6 +47,7 @@
                                 class="drag-move grid-item"
                                 :selectItem="selectItem"
                                 :record="item"
+                                :prop-prepend="propPrepend"
                                 @handleSelectItem="handleSelectItem"
                                 @handleCopy="handleCopy(item, grid)"
                                 @handleDetele="handleDetele(item, grid)"

@@ -36,7 +36,7 @@
     </el-row>    
   </template> 
   <template v-else>  
-    <TableBuild :record="record" :models="models"  :preview="preview"/>
+    <TableBuild :record="record" :models="models" :prop-prepend="propPrepend" :preview="preview"/>
 
   </template> 
 </div>

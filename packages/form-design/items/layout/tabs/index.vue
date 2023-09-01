@@ -45,6 +45,7 @@
               :key="node.key"
               :disabled="disabled"
               :preview="preview"
+              :prop-prepend="propPrepend"
               :models.sync="models"   
               :record="node" 
             />

@@ -27,6 +27,7 @@
               :is-drag="false"
               :key="item.key"
               :disabled="disabled"
+              :prop-prepend="propPrepend"
               :preview="preview"
               :models.sync="models"   
               :record="item" 

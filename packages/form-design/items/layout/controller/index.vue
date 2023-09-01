@@ -61,8 +61,8 @@
                   :disabled="disabled"
                   :previewpreview="preview"
                   :models.sync="mdata"   
-                  :record="item" 
-                  :prop-prepend="record.model + '.' + idx + '.'"
+                  :record="item"  
+                  :prop-prepend="propPrepend + record.model + '.' + idx + '.'"
                 />
               </template> 
             </el-row>
