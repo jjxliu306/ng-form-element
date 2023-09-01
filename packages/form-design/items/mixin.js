@@ -33,7 +33,11 @@ export default {
 	  },
 	  selectItem: {
 	  	type: Object
-	  } 
+	  },
+	  propPrepend: {
+	      type: String,
+	      default: ''
+	  }
 	}, 
 	data() {
 		return {
@@ -62,8 +66,7 @@ export default {
         	default: ()=> ({})
       	},
 	},
-	computed: {
-		
+	computed: { 
 		// 禁用
 		recordDisabled() {
 			if(this.isDragPanel) return false

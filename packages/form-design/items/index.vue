@@ -2,12 +2,14 @@
 传入record数据，通过判断record.type，来渲染对应的组件
   -->
 <template>   
+  <div> 
   <ItemNode 
     v-if="isLayout && recordVisible"
     :record="record"
     :disabled="disabled" 
     :preview="preview"
     :isDragPanel="isDragPanel"
+    :prop-prepend="propPrepend"
     :selectItem="selectItem" 
     :models="models" 
     @handleSelectItem="handleSelectItem" 
@@ -22,6 +24,7 @@
     :name="record.model"
     :label-width="labelWidth"
     >      
+   
     <ItemNode 
       :record="record"
       :disabled="disabled" 
@@ -33,6 +36,7 @@
       @handleSelectItem="handleSelectItem"
       /> 
   </el-form-item> 
+</div>
 </template>
 <script>   
 

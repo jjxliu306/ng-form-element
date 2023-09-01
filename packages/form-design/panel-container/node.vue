@@ -4,6 +4,7 @@
    >  
     <div :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-box': isDrag , 'node-item': isDrag}"  @click.stop="handleSelectItem(record)">
       <div  class="form-item-box" style="height: 100%;width: 100%;">
+   
         <Item 
           :models="models"
           :record="record"
@@ -80,7 +81,8 @@ export default {
       default: ()=>{return {}}
     }, 
     propPrepend: {
-      type: String
+      type: String,
+      default: ''
     }
   },
   data(){

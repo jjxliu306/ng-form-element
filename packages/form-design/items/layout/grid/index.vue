@@ -26,6 +26,7 @@
             class="drag-move"
             :selectItem="selectItem"
             :record="node" 
+            :prop-prepend="propPrepend"
             @handleSelectItem="handleSelectItem"
             @handleCopy="handleCopy(node , item.list)"
             @handleDetele="handleDetele(node , item.list)"

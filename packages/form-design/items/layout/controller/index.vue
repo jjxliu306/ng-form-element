@@ -54,6 +54,7 @@
             :class="{'controller-bordered': record.options && record.options.bordered}"> 
              
               <template  v-for="(item, index) in record.list"  >
+                
                 <ng-form-node
                   :key="index"  
                   ref="nestedComponents"
@@ -62,7 +63,7 @@
                   :previewpreview="preview"
                   :models.sync="mdata"   
                   :record="item" 
-                  :prop-prepend="record.model + '.' + idx + '.'"
+                  :prop-prepend="propPrepend + record.model + '.' + idx + '.'"
                 />
               </template> 
             </el-row>

@@ -28,6 +28,7 @@
               :key="item.key"
               :disabled="disabled"
               :preview="preview"
+              :prop-prepend="propPrepend"
               :models.sync="models"   
               :record="item" 
               />

@@ -31,6 +31,7 @@
                             :disabled="disabled"
                             :preview="preview"
                             :models.sync="models"
+                            :prop-prepend="propPrepend"
                             :record="item"
                         />
                     </template>
