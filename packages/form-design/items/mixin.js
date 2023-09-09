@@ -172,8 +172,11 @@ export default {
 	        this.remoteUrl = url 
 	        
 	        // 在配置了远程数据的label和value之后在请求接口
-	        if(this.record.options.remoteLabel && this.record.options.remoteValue) {
-	        	
+	        if(this.record.options.remoteLabel 
+	        	&& this.record.options.remoteValue
+	        	// 2023-09-09 lyf 判断是否有联动 如果有链接并且还是接口 则此处不处理，等后面处理
+	        	&& !(this.linkageData && this.linkageTypes && this.linkageTypes.includes(2))
+	        	) { 
 	        	
 	        	this.getRemoteData()
 	        }

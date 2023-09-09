@@ -84,12 +84,12 @@ export default {
 	methods: {
 	 	dragEnd(evt, list) {   
 	 		// 复制一遍
-	 		const clone = cloneDeepAndFormat(list[evt.newIndex])
+	 		const clone = cloneDeepAndFormat(list[evt.newIndex] , evt)
 	 		 
 	 		this.$set(list , evt.newIndex , clone)
 	    	// 拖拽结束,自动选择拖拽的控件项
 	    	//console.log('111' , cloneDeep(list[evt.newIndex]))
-	    	this.handleSelectItem(list[evt.newIndex])
+	    this.handleSelectItem(list[evt.newIndex])
 	  },
 	  handleSelectItem(record) {
 	    	this.$emit('handleSelectItem' , record)

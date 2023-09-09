@@ -48,6 +48,11 @@ export default {
      // 判断如果是远程方法的话 远程请求数据
     this.initDynamicValue()
 
+    // 判断是否有联动关联需要处理 
+    if(this.linkageData) {
+      this.linkageDataHandle(false)
+    }
+
     // 判断如果已经有了值 但没有label 则尝试回填label 
     const value = this.models[this.record.model]
     if(value && value.length > 0) {

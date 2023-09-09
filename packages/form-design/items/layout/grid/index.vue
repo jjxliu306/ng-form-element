@@ -68,7 +68,7 @@ export default {
   methods: {
     dragEnd(evt, columns) {   
       // 拖拽结束,自动选择拖拽的控件项
-      const clone = this.cloneDeepAndFormat(columns[evt.newIndex])
+      const clone = this.cloneDeepAndFormat(columns[evt.newIndex] , evt)
       // 去掉icon
       delete clone.icon 
       this.$set(columns , evt.newIndex , clone) 

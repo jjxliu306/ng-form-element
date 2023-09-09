@@ -26,9 +26,10 @@ export function dynamicFun(script , model , key="$" , row , rowKey) {
 /**
 * 数据复制并且格式化
 */
-export function cloneDeepAndFormat(data) {
+export function cloneDeepAndFormat(data , e) {
   const clone = cloneDeep(data)
   delete clone.icon 
+
 
   // 按照当前语言对国际化适配的数据进行格式化 
 
@@ -53,6 +54,13 @@ export function cloneDeepAndFormat(data) {
     const kdata = clone[key]
 
     fs_(clone , key , kdata)
+  }
+
+
+  // 判断事件 和数据来源 如果存在且来自非ul 则不刷新key和model
+  //console.log('e.from.nodeName' , e ? e.from.nodeName : 'none')
+  if(e && e.from && e.from.nodeName != 'UL') {
+    return clone 
   }
 
   let idx = 1
