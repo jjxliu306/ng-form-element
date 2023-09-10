@@ -113,6 +113,7 @@ obj.options = {
                     label: $t('ngform.item.default_value') ,//'默认值', 
                     prop: 'defaultValue', 
                     type: 'number', 
+                    default: 0,
                     span: 24,
                 },  
                
@@ -127,6 +128,7 @@ obj.options = {
                   label: $t('ngform.item.slider.marks'),//'标记',
                   prop: 'marks',
                   type: 'kv', 
+                  default: [],
                   span: 24,
                 } ,
                 {

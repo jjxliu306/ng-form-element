@@ -1,7 +1,7 @@
 
 <template>
     <div style="padding: 20px;"> 
-        <ng-form-build ref="formBuild" :formTemplate="form" />
+        <ng-form-build ref="formBuild" :models="models" :formTemplate="form" />
 
         <div style="text-align: center;"> 
       		<el-button type="primary" size="mini" @click="dataFormSubmit()">提交</el-button>
@@ -12,112 +12,117 @@
 export default { 
    	data() {
     	return {
+    		models: {
+	"province": "2",
+	"city": null,
+	"province_label": "下拉框2"
+},
     		form: {
 	"list": [
 		{
-			"type": "table",
-			"layout": true,
+			"type": "select",
 			"options": {
-				"customStyle": "",
-				"customClass": "",
-				"bordered": true,
-				"bright": true,
-				"small": true,
-				"hidden": false
+				"defaultValue": "",
+				"placeholder": "请输入",
+				"dynamic": 0,
+				"options": [
+					{
+						"value": "1",
+						"label": "下拉框1"
+					},
+					{
+						"value": "2",
+						"label": "下拉框2"
+					}
+				],
+				"methodType": "get",
+				"dynamicPostData": "",
+				"remoteFunc": "",
+				"dataPath": "",
+				"remoteValue": "",
+				"remoteLabel": "",
+				"dictType": "",
+				"multiple": false,
+				"showSearch": false,
+				"clearable": false,
+				"hidden": false,
+				"disabled": false,
+				"selectCb": "",
+				"clearCb": "",
+				"linkage": false,
+				"linkData": []
 			},
-			"label": "表格布局",
-			"labelWidth": 0,
+			"label": "下拉选择器",
+			"labelWidth": -1,
 			"width": "100%",
 			"span": 24,
-			"key": "table_16909703413130",
-			"model": "table_16909703413130",
-			"trs": [
+			"model": "province",
+			"key": "select_16942303175332",
+			"rules": [
 				{
-					"tds": [
-						{
-							"colspan": 1,
-							"rowspan": 1,
-							"list": [
-								{
-									"type": "input",
-									"options": {
-										"defaultValue": "",
-										"type": "text",
-										"prepend": "",
-										"append": "",
-										"placeholder": "请输入",
-										"maxLength": "",
-										"clearable": false,
-										"hidden": false,
-										"disabled": false
-									},
-									"label": "输入框",
-									"labelWidth": -1,
-									"width": "100%",
-									"span": 24,
-									"model": "input_16909703429150",
-									"key": "input_16909703429150",
-									"rules": [
-										{
-											"required": false,
-											"message": "必填项",
-											"trigger": [
-												"blur"
-											]
-										}
-									]
-								}
-							]
-						},
-						{
-							"colspan": 1,
-							"rowspan": 1,
-							"list": [
-								{
-									"type": "input",
-									"options": {
-										"defaultValue": "",
-										"type": "text",
-										"prepend": "",
-										"append": "",
-										"placeholder": "请输入",
-										"maxLength": "",
-										"clearable": false,
-										"hidden": false,
-										"disabled": false
-									},
-									"label": "输入框",
-									"labelWidth": -1,
-									"width": "100%",
-									"span": 24,
-									"model": "input_1690970343763",
-									"key": "input_1690970343763",
-									"rules": [
-										{
-											"required": false,
-											"message": "必填项",
-											"trigger": [
-												"blur"
-											]
-										}
-									]
-								}
-							]
-						}
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"blur"
 					]
-				},
+				}
+			]
+		},
+		{
+			"type": "select",
+			"options": {
+				"defaultValue": "",
+				"placeholder": "请输入",
+				"dynamic": 1,
+				"options": [
+					{
+						"value": "1",
+						"label": "下拉框1"
+					},
+					{
+						"value": "2",
+						"label": "下拉框2"
+					}
+				],
+				"methodType": "get",
+				"dynamicPostData": "",
+				"remoteFunc": "https://netopt.net/api/bbs/api/hotTopic",
+				"dataPath": "data",
+				"remoteValue": "id",
+				"remoteLabel": "title",
+				"dictType": "",
+				"multiple": false,
+				"showSearch": false,
+				"clearable": false,
+				"hidden": false,
+				"disabled": false,
+				"selectCb": "",
+				"clearCb": "",
+				"linkage": true,
+				"linkData": [
+					{
+						"vtype": 2,
+						"model": "province",
+						"script": "",
+						"queryKey": "province",
+						"queryValue": "$.province"
+					}
+				],
+				"listenModel": false,
+				"listenModelData": "province"
+			},
+			"label": "下拉选择器",
+			"labelWidth": -1,
+			"width": "100%",
+			"span": 24,
+			"model": "city",
+			"key": "select_16942303194132",
+			"rules": [
 				{
-					"tds": [
-						{
-							"colspan": 1,
-							"rowspan": 1,
-							"list": []
-						},
-						{
-							"colspan": 1,
-							"rowspan": 1,
-							"list": []
-						}
+					"required": false,
+					"message": "必填项",
+					"trigger": [
+						"blur"
 					]
 				}
 			]
