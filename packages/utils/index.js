@@ -124,10 +124,16 @@ export function translateConfig(config = []) {
 /**
 * 数据复制并且格式化
 */
-export function cloneDeepAndFormat(data) {
+export function cloneDeepAndFormat(data , e) {
   const clone = cloneDeep(data)
   delete clone.icon 
  
+ 
+  // 判断事件 和数据来源 如果存在且来自非ul 则不刷新key和model
+  //console.log('e.from.nodeName' , e ? e.from.nodeName : 'none')
+  if(e && e.from && e.from.nodeName != 'UL') {
+    return clone 
+  }
 
   let idx = 1
   // 2023-08-27 lyf 迭代判断是否包含子组件，全部替换子组件的key和model

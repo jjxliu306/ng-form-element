@@ -87,6 +87,8 @@ obj.options = {
                     label: '精度', 
                     prop: 'precision',
                     type: 'number',
+                    step: 1,
+                    precision: 0,
                     default: 0 ,
                     span: 24,
                 },

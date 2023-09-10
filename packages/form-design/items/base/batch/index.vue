@@ -59,7 +59,7 @@ export default {
   methods: {
     dragEnd(evt, list) {   
       // 拖拽结束,自动选择拖拽的控件项
-      const clone = this.cloneDeepAndFormat(list[evt.newIndex])
+      const clone = this.cloneDeepAndFormat(list[evt.newIndex] , evt)
        
       this.$set(list , evt.newIndex , clone)
       this.handleSelectItem(clone)

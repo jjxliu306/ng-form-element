@@ -113,6 +113,7 @@ obj.options = {
                     label: '默认值', 
                     prop: 'defaultValue', 
                     type: 'number', 
+                    default: 0,
                     span: 24,
                 },  
                
@@ -127,6 +128,7 @@ obj.options = {
                   label: '标记',
                   prop: 'marks',
                   type: 'kv', 
+                  default: [],
                   span: 24,
                 } ,
                 {
