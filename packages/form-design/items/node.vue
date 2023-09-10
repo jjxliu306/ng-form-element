@@ -135,12 +135,20 @@ export default {
     listenModelValue: {
         handler(val, oldVal){ 
           if(this.isDragPanel 
+            || (!val && !oldVal)
             || !this.models
             || !this.record.options.listenModel 
             || !this.record.options.listenModelData
             || !this.record.options.listenModelScript )
             return 
-   
+
+          //2023-09-10 lyf 确保当前组件的model在models中已经被挂载在执行
+          if(!Object.prototype.hasOwnProperty.call(this.models,this.record.model)) {
+            return 
+          }
+          
+          
+         // console.log('this.record.options.listenModelScript' , this.record.options.listenModelScript)
           // 解决 初始化加载数据 被计算数据监听造成数据变化
           //const ify = JSON.stringify(val)
           //if (this.copyLstenModel != ify) {
@@ -148,8 +156,10 @@ export default {
             dynamicVoidFun(this.record.options.listenModelScript , this.models)
             
           //}
+
+          //console.log("this.models" , this.models)
         },
-        immediate: true
+        //immediate: true
     },
   },
   methods: {
