@@ -123,6 +123,13 @@ obj.options = {
                   span: 24,
                 },
                 {
+                  label: $t('ngform.item.search'),//'可搜索',
+                  prop: 'showSearch',
+                  type: 'switch',
+                  default: true,
+                  span: 24,
+                } ,
+                {
                   label: $t('ngform.item.if_hidden') ,//'是否隐藏',
                   prop: 'hidden',
                   type: 'switch',

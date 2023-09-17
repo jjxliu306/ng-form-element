@@ -1,6 +1,6 @@
 <template>
 	<div v-if="!preview || isDragPanel" class="ng-application-state">
-			<el-select class="width-select" v-model="dataForm.province" value-key="value" filterable clearable :placeholder="t('ngform.item.state.province_placeholder')" @change="changeProvince" @clear="changeProvince()" :disabled="disabled"> 
+			<el-select class="width-select" v-model="dataForm.province" value-key="value" :filterable="filterable" clearable :placeholder="t('ngform.item.state.province_placeholder')" @change="changeProvince" @clear="changeProvince()" :disabled="disabled"> 
 				<template slot="prefix">
 					<span>{{t('ngform.item.state.province')}}:</span>
 				</template>
@@ -12,7 +12,7 @@
           </el-option>
         </el-select>
       <template  v-if="maxLevel >1 && (!oneByOne || dataForm.province)">
-      	<el-select class="width-select" v-model="dataForm.city" value-key="value" filterable clearable  :placeholder="t('ngform.item.state.city_placeholder')" @change="changeCity" @clear="changeCity()" :disabled="disabled">
+      	<el-select class="width-select" v-model="dataForm.city" value-key="value" :filterable="filterable" clearable  :placeholder="t('ngform.item.state.city_placeholder')" @change="changeCity" @clear="changeCity()" :disabled="disabled">
       		<template slot="prefix">
 						<span>{{t('ngform.item.state.city')}}:</span>
 					</template>
@@ -25,7 +25,7 @@
         </el-select>
       </template>
     	<template v-if="maxLevel > 2 && (!oneByOne || dataForm.city)" >
-    		<el-select class="width-select" v-model="dataForm.district" value-key="value" filterable clearable :placeholder="t('ngform.item.state.district_placeholder')" @change="changeDistrict" @clear="changeDistrict()" :disabled="disabled"> 
+    		<el-select class="width-select" v-model="dataForm.district" value-key="value" :filterable="filterable" clearable :placeholder="t('ngform.item.state.district_placeholder')" @change="changeDistrict" @clear="changeDistrict()" :disabled="disabled"> 
     			<template slot="prefix">
 						<span>{{t('ngform.item.state.district')}}:</span>
 					</template>
@@ -102,6 +102,13 @@ export default {
   		},
   		oneByOne(){
   			return this.record && this.record.options ? this.record.options.oneByOne : false
+  		},
+  		// 是否可以过滤 默认true
+  		filterable() {
+  			if(this.record.options ) {
+  				return this.record.options.showSearch
+  			}
+  			return true 
   		}
   	},
   	mounted(){
