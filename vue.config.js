@@ -27,7 +27,7 @@ module.exports = {
       config.externals = {
         "element-ui": "ELEMENT",
         // 编译 build的时候放开
-         vue: "Vue",
+        // vue: "Vue",
         //"vue-router": "VueRouter",
         vuex: "Vuex" 
       }
