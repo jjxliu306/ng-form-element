@@ -6,6 +6,7 @@
         align="right"
         type="datetime"
         :disabled="recordDisabled"
+        :editable="record.options.editable"
         :clearable="record.options.clearable" 
         :placeholder="record.options.placeholder"
         :format="record.options.format"

@@ -7,6 +7,7 @@
                 :disabled="recordDisabled"
                 :type="record.options.dateType == 'month' ? 'monthrange' : 'daterange'"
                 :clearable="record.options.clearable" 
+                :editable="record.options.editable"
                 :start-placeholder="record.options.rangeStartPlaceholder"
                 :end-placeholder="record.options.rangeEndPlaceholder"
                 :format="record.options.format"

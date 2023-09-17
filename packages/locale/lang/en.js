@@ -119,6 +119,7 @@ export default {
       multiple: 'multiple',
       search: 'search',
       clearable: 'clearable',
+      editable: 'editable',
 
       linkage: 'Linkage',
       linkage_title: 'Linkage',

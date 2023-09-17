@@ -5,6 +5,7 @@
                 v-model="models[record.model]"
                 :disabled="recordDisabled"
                 align="right" 
+                :editable="record.options.editable"
                 :type="record.options.dateType"
                 :clearable="record.options.clearable" 
                 :placeholder="record.options.placeholder"

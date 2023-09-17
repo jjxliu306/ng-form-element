@@ -122,6 +122,13 @@ obj.options = {
                   default: false,
                   span: 24,
                 } ,
+                 {
+                  label: $t('ngform.item.editable'),//'可编辑',
+                  prop: 'editable',
+                  type: 'switch',
+                  default: true,
+                  span: 24,
+                },
                 {
                   label: $t('ngform.item.if_hidden') ,//'是否隐藏',
                   prop: 'hidden',

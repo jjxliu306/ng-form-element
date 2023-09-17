@@ -117,6 +117,7 @@ export default {
       multiple: '多选',
       search: '搜索',
       clearable: '可清除',
+      editable: '可编辑',
 
       linkage: '联动关联',
       linkage_title: '联动',

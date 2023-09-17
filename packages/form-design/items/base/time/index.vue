@@ -7,6 +7,7 @@
               :disabled="recordDisabled"
               v-model="models[record.model]" 
               :clearable="record.options.clearable" 
+               :editable="record.options.editable"
               :placeholder="record.options.placeholder" 
               :format="record.options.format"
               :picker-options="{selectableRange: '00:00:00 - 23:59:59'}"
