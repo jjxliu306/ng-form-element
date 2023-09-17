@@ -6,6 +6,7 @@
       v-model="models[record.model]"
       :record="record"
       accept="image/*" 
+      :image="true"
       :preview="preview"
       :list-type="record.options.listType"
       :multiple="record.options.multiple" 

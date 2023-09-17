@@ -55,7 +55,10 @@
 	  </template> 
 	</el-upload>
 
-	  
+	    <!--图片查看-->
+    <el-dialog :append-to-body="true" :visible.sync="dialogVisible">
+      <img width="100%" :src="dialogImageUrl" alt="">
+    </el-dialog>
 </div>
 </template>
 <script>
@@ -65,6 +68,8 @@ export default {
 	name: 'ng-form-upload',
 	data() {
 		return {  
+			dialogVisible: false,
+			dialogImageUrl: '',
 			fileList: []
 		}
 	},
@@ -86,6 +91,10 @@ export default {
 	    multiple: {
 	      type: Boolean ,
 	      default: false
+	    },
+	    image: {
+	    	type: Boolean,
+	    	default: false
 	    },
 	    // 文件接收类型
 	    accept: {
@@ -290,7 +299,13 @@ export default {
 	  // 图片下载
 	  fileDown (file) {
 	    if(file.url) {
-				window.open(file.url)
+	    	if(this.image) {
+	    		this.dialogVisible = true 
+					this.dialogImageUrl = file.url 
+	    	} else {
+	    		window.open(file.url)
+	    	}
+				
 			} else {
 				this.$message.error(this.t('ngform.item.upload.error_not_found_file'))
 			}
