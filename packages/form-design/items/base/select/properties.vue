@@ -3,12 +3,12 @@
     <el-collapse-item name="data" :title="t('ngform.item.datasource')">
       <DatasourceConfig :selectItem="selectItem">
         <template slot="defaultValue" >
-          <el-form-item v-if="selectItem && selectItem.options.dynamic == 0" label="默认值">
+          <el-form-item v-if="selectItem && selectItem.options.dynamic == 0" :label="t('ngform.item.default_value')">
             <!-- 判断当前是否多选 -->
             <el-select :multiple="selectItem.options.multiple" v-model="selectItem.options.defaultValue"  :clearable="true">
               <el-option
                     v-for="(item, index) in selectItem.options.options"
-                    :key="item.value + index"
+                    :key="item.value + index" 
                     :label="item.label"
                     :value="item.value">
               </el-option>
