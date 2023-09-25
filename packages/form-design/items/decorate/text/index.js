@@ -70,6 +70,7 @@ obj.options = {
                 {
                   label: $t('ngform.item.text.font_size') ,//'字体大小',
                   prop: 'fontSize',
+                  default: 13,
                   type: 'number', 
                   span: 24,
                 } , 

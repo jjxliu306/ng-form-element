@@ -70,13 +70,13 @@ export default{
 	},
 	methods: {
 		handleClear() {
-			this.$confirm('是否要清空当前面板?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-      }).then(() => {
-        this.$set(this.formTemplate , 'list' , [])
-      })
+			this.$confirm( this.t('ngform.header.clear_prompt'),   this.t('ngform.header.prompt'), {
+          		confirmButtonText:  this.t('ngform.confirm') ,
+          		cancelButtonText:  this.t('ngform.cancel') ,
+          		type: 'warning'
+      		}).then(() => {
+        		this.$set(this.formTemplate , 'list' , [])
+      		})
 			
 		},
 		handlePreview() {
