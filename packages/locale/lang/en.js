@@ -1,21 +1,23 @@
 export default {
   ngform: {
     header: {
-      imp: 'import',
-      exp: 'export',
-      clear: 'clear',
-      preview: 'preview',
-      export_code: 'export code',
-      template_data: 'template data' ,
-      get_data: 'get data',
-      write_mode: 'write mode',
-      read_mode: 'read mode'
+      imp: 'Import',
+      exp: 'Export',
+      clear: 'Clear',
+      preview: 'Preview',
+      export_code: 'Export code',
+      template_data: 'Template data' ,
+      get_data: 'Get data',
+      write_mode: 'Write mode',
+      read_mode: 'Read mode',
+      prompt: 'Prompt',
+      clear_prompt: 'Do you want to clear the current panel?'
     },
-    close: 'close',
-    confirm: 'confirm',
-    cancel: 'cancel',
-    import: 'import',
-    validator: 'validator',
+    close: 'Close',
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+    import: 'Import',
+    validator: 'Validator',
 
     select_item: 'Please Select a component to add from the left',
 
@@ -25,17 +27,17 @@ export default {
 
       select: 'Please Select' ,
 
-      size: 'size',
-      label_position: 'label position',
-      left: 'left',
-      right: 'right',
-      top: 'top',
-      label_width: 'label width',
-      label_suffix: 'label suffix',
-      validate_prompt: 'validate tip',
+      size: 'Size',
+      label_position: 'Label position',
+      left: 'Left',
+      right: 'Right',
+      top: 'Top',
+      label_width: 'Label width',
+      label_suffix: 'Label suffix',
+      validate_prompt: 'Validate tip',
       validate_prompt_tip: 'Do you want to turn on the hide_required_asterisk switch in the element-ui, that is, whether to hide the red asterisk next to the label of the required field',
-      open: 'open',
-      close: 'close',
+      open: 'Open',
+      close: 'Close',
       dynamics_validate_label: 'dynamics validate label',
       dynamics_validate_label_tip: 'Does this switch display the red asterisk next to the label along with the verification rules of the component when turning on the hide required asterisk' ,
       output_hidden: 'output hidden',
@@ -211,8 +213,8 @@ export default {
       },
       select: {
         name: 'Select',
-        selectCb: 'SelectCallback',
-        clearCb: 'SelectCallback'
+        selectCb: 'Select Callback',
+        clearCb: 'Clear Callback'
       },
       slider: {
         name: 'Slider',
