@@ -98,7 +98,7 @@ export default {
 		dicts(val) {
 			// 只有数据字典要素才需要
 			if(this.record.options.dynamic != 2 || !this.record.options.dictType ) return 
-			console.log('watch dict' , val)
+			//console.log('watch dict' , val)
 			if(val) {
 				this.initDynamicValue()
 			} else {
