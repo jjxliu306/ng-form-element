@@ -2,8 +2,9 @@
   <!-- <transition name="fade">
     <router-view></router-view>
   </transition> -->
-   <Design />  
+   <Design /> 
   <!-- <Fill/>  -->
+ <!-- <Edit/>-->
 </template>
 <style> 
 html , body {
@@ -11,12 +12,13 @@ html , body {
 }
 </style>
 <script> 
+import Edit from './build/edit'
 import Fill from './build/fill.vue'
 import Design from './design.vue'
 import Vue from "vue" 
 export default {
   components: {
-    Design,Fill
+    Design,Fill,Edit
   },
   computed: { 
   },
