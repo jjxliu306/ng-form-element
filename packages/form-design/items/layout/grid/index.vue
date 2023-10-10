@@ -1,5 +1,5 @@
 <template>  
-<el-row class="ng-layout-row" :gutter="record.options.gutter">
+<el-row class="ng-layout-row" :class="record.options.customClass" :style="record.options.customStyle" :gutter="record.options.gutter"> 
   <el-col
     class="ng-layout-col"
     v-for="(item, index) in record.columns"

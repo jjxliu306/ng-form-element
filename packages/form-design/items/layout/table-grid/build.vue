@@ -1,5 +1,5 @@
 <template>
-    <div class="table-box">
+    <div class="table-box" :style="record.options.customStyle" >
         <div
             :class="[
                 'form-table',

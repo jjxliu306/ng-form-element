@@ -1,7 +1,7 @@
 
 <template>
     <div style="padding: 20px;"> 
-        <ng-form-build ref="formBuild" :models="models" :config="config" :formTemplate="form" />
+        <ng-form-build  ref="formBuild" :models="models" :config="config" :formTemplate="form" />
 
         <div style="text-align: center;"> 
       		<el-button type="primary" size="mini" @click="dataFormSubmit()">提交</el-button>
@@ -11,7 +11,7 @@
 <script>
 export default { 
    	data() {
-    	return {
+    	return { 
     		form: { 
 				 
 				"list": [
@@ -99,16 +99,25 @@ export default {
     		},
 
     		config: {
-    			dict: [
-		          {type: 'sex' , label: '男' , value: '1'},
-		          {type: 'sex' , label: '女' , value: '2'}
-		        ]
+    			
     		},
     		// 标记历史数据 
     		models: {
     			sex: '2'
     		}
     	} 
+    },
+    created(){
+    	this.$nextTick(()=> {
+    		const dict = [
+		          {type: 'sex' , label: '男' , value: '1'},
+		          {type: 'sex' , label: '女' , value: '2'}
+		        ]
+
+		    this.$set(this.config , 'dict' , dict)
+
+		    //this.keys++
+    	})
     },
     methods: {
     	dataFormSubmit() {
