@@ -56,7 +56,8 @@ export default {
 
     // 判断如果已经有了值 但没有label 则尝试回填label 
     const value = this.models[this.record.model]
-    if(value && value.length > 0) {
+    const label = this.models[this.record.model + '_label']
+    if(value && value.length > 0 && !label) {
       this.handleChange(value)
     }
   },
