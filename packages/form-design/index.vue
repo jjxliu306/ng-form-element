@@ -164,8 +164,12 @@ export default {
     }, 
     // 配置中的http配置
     httpConfig() {
+       //2023-10-11 lyf 判断是否注入了全局config 
+      // 优先判断内部
       if (this.config && this.config.httpConfig) {
         return this.config.httpConfig;
+      } else if(this.$ngofrm_httpConfig) {
+        return this.$ngofrm_httpConfig
       }
       return null;
     },

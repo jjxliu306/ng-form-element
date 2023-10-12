@@ -64,6 +64,16 @@ const install = function (Vue, opts = {}) {
     Vue.prototype.$ngofrm_components = opts.components
   }
 
+  //2023-10-11 lyf 判断是否注入了全局config
+  if(opts.httpConfig) {
+    Vue.prototype.$ngofrm_httpConfig = opts.httpConfig
+  }
+
+  // 判断是否注入了全局数据字典
+  if(opts.dict) {
+    Vue.prototype.$ngofrm_dict = opts.dict
+  }
+
   const bus = new Vue();
 
   Vue.prototype.$ngofrm_bus = bus;

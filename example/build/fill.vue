@@ -1,6 +1,7 @@
 
 <template>
     <div style="padding: 20px;"> 
+    
         <ng-form-build ref="formBuild" :models="models" :formTemplate="form" />
 
         <div style="text-align: center;"> 
@@ -13,56 +14,52 @@ export default {
    	data() {
     	return {
     		models: {
-	"province": "2",
-	"city": null,
-	"province_label": "下拉框2"
-},
+				"categorys": "6c1ce7771063b2cbda63b8808dc52074",
+				"docs": "7263c76969d643fc9903b583517674b4",
+				"categorys_label": "职场面试",
+				"docs_label": "LTE网络优化经典案例-重要.docx"
+			},
     		form: {
+
+    			 
 	"list": [
 		{
 			"type": "select",
+			"label": "分类",
+			"index": "D",
 			"options": {
-				"defaultValue": "",
-				"placeholder": "请输入",
-				"dynamic": 0,
+				"width": "100%",
+				"multiple": false,
+				"disabled": false,
+				"clearable": false,
+				"hidden": false,
+				"placeholder": "请选择",
+				"valueKey": "value",
+				"tooptip": "",
+				"dynamic": 1,
+				"remoteFunc": "https://www.netopt.net/netopt-admin/doc/api/selectCategory",
+				"dataPath": "data",
+				"remoteValue": "id",
+				"remoteLabel": "name",
+				"linkage": false,
 				"options": [
 					{
 						"value": "1",
 						"label": "下拉框1"
-					},
-					{
-						"value": "2",
-						"label": "下拉框2"
 					}
 				],
-				"methodType": "get",
-				"dynamicPostData": "",
-				"remoteFunc": "",
-				"dataPath": "",
-				"remoteValue": "",
-				"remoteLabel": "",
-				"dictType": "",
-				"multiple": false,
 				"showSearch": false,
-				"clearable": false,
-				"hidden": false,
-				"disabled": false,
-				"selectCb": "",
-				"clearCb": "",
-				"linkage": false,
-				"linkData": []
+				"dynamicHide": false,
+				"dynamicHideValue": ""
 			},
-			"label": "下拉选择器",
-			"labelWidth": -1,
-			"width": "100%",
-			"span": 24,
-			"model": "province",
-			"key": "select_16942303175332",
+			"model": "categorys",
+			"key": "select_1620375951136",
 			"rules": [
 				{
 					"required": false,
 					"message": "必填项",
 					"trigger": [
+						"change",
 						"blur"
 					]
 				}
@@ -70,58 +67,50 @@ export default {
 		},
 		{
 			"type": "select",
+			"label": "文章",
+			"index": "D",
 			"options": {
-				"defaultValue": "",
-				"placeholder": "请输入",
+				"width": "100%",
+				"multiple": false,
+				"disabled": false,
+				"clearable": false,
+				"hidden": false,
+				"placeholder": "请选择",
+				"valueKey": "value",
+				"tooptip": "",
 				"dynamic": 1,
+				"remoteFunc": "https://www.netopt.net/netopt-admin/doc/api/listPage",
+				"dataPath": "data.list",
+				"remoteValue": "id",
+				"remoteLabel": "name",
+				"linkage": true,
 				"options": [
 					{
 						"value": "1",
 						"label": "下拉框1"
-					},
-					{
-						"value": "2",
-						"label": "下拉框2"
 					}
 				],
-				"methodType": "get",
-				"dynamicPostData": "",
-				"remoteFunc": "https://netopt.net/api/bbs/api/hotTopic",
-				"dataPath": "data",
-				"remoteValue": "id",
-				"remoteLabel": "title",
-				"dictType": "",
-				"multiple": false,
 				"showSearch": false,
-				"clearable": false,
-				"hidden": false,
-				"disabled": false,
-				"selectCb": "",
-				"clearCb": "",
-				"linkage": true,
+				"dynamicHide": false,
+				"dynamicHideValue": "",
 				"linkData": [
 					{
 						"vtype": 2,
-						"model": "province",
+						"model": "categorys",
 						"script": "",
-						"queryKey": "province",
-						"queryValue": "$.province"
+						"queryKey": "categoryId",
+						"queryValue": "$.categorys"
 					}
-				],
-				"listenModel": false,
-				"listenModelData": "province"
+				]
 			},
-			"label": "下拉选择器",
-			"labelWidth": -1,
-			"width": "100%",
-			"span": 24,
-			"model": "city",
-			"key": "select_16942303194132",
+			"model": "docs",
+			"key": "select_1620375952166",
 			"rules": [
 				{
 					"required": false,
 					"message": "必填项",
 					"trigger": [
+						"change",
 						"blur"
 					]
 				}
@@ -133,11 +122,14 @@ export default {
 		"labelWidth": 100,
 		"size": "mini",
 		"outputHidden": true,
-		"hideRequiredMark": false,
+		"hideRequiredMark": true,
 		"syncLabelRequired": false,
 		"customStyle": ""
 	}
-}
+ 
+
+    		}
+	
     	} 
     },
     methods: {
