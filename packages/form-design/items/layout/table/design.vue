@@ -99,11 +99,11 @@
 				<hr />
 				<li @click="handleRemoveRow">
 					<i class="el-icon-zoom-out" />
-					<!-- 删除当前行 -->{{t('ngform.item.table.delete_col')}}
+					<!-- 删除当前行 -->{{t('ngform.item.table.delete_row')}}
 				</li>
 				<li @click="handleRemoveCol">
 					<i class="el-icon-zoom-out" />
-					<!-- 删除当前列 -->{{t('ngform.item.table.delete_row')}}
+					<!-- 删除当前列 -->{{t('ngform.item.table.delete_col')}}
 				</li>
 			</ul>
 		</div>
