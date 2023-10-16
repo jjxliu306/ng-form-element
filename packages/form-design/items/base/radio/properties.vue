@@ -37,7 +37,9 @@
 <script>
 import DatasourceConfig from '../select/datasource-config.vue'
 import Linkage from '../select/linkage.vue'
+import LocalMixin from '../../../../locale/mixin.js'
 export default {
+  mixins: [LocalMixin],
   components: {
     DatasourceConfig , Linkage
   },
