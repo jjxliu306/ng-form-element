@@ -9,7 +9,7 @@ export default {
       template_data: '模板数据' ,
       get_data: '获取数据',
       write_mode: '填写模式',
-      read_mode: '查看默认',
+      read_mode: '查看模式',
       prompt: '提示',
       clear_prompt: '是否要清空当前面板?'
     },
