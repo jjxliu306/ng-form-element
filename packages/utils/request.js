@@ -24,14 +24,14 @@ request.interceptors.request.use(
   }
 )
 
-request.interceptors.response.use(
-  response => { 
-    return response.data
-  },
-  error => {
-    console.log('error', error)
-    return Promise.reject(new Error(error).message)
-  }
-)
+// request.interceptors.response.use(
+//   response => { 
+//     return response.data
+//   },
+//   error => {
+//     console.log('error', error)
+//     return Promise.reject(new Error(error).message)
+//   }
+// )
 
 export default request

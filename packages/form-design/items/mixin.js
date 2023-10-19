@@ -235,40 +235,43 @@ export default {
 
 	      const objectPath = require("object-path");
 	      
-	      const dataPath = this.record.options.dataPath
+	      	const dataPath = this.record.options.dataPath
+	        
+	      	// 如果么有datapath 直接返回
+	      	if(!dataPath) { 
+	      		this.checkValues = []
+	      		return 
+	      	}
 
-	      // 如果么有datapath 直接返回
-	      if(!dataPath) {
-	      	this.checkValues = []
-	      	return 
-	      }
+	      	// 2023-07-08 lyf 获取方法类型
+	      	const methodType = this.record.options.methodType || 'get'
+	      	let postData = this.record.options.dynamicPostData
 
-	      // 2023-07-08 lyf 获取方法类型
-	      const methodType = this.record.options.methodType || 'get'
-	      let postData = this.record.options.dynamicPostData
+	      	const requsetData = { 
+	        	url: this.remoteUrl,
+	        	method: methodType,
+	        	params: this.remoteFilter 
+	      	}
 
-	      if(methodType == 'post' && postData) {
-	      	postData = JSON.parse(postData)
-	      } else {
-	      	postData = {}
-	      }
+	      	if(methodType == 'post' && postData) { 
+	      		requsetData.data = JSON.parse(postData) 
+	      	} 
 
-	      request({
-	        url: this.remoteUrl,
-	        method: methodType,
-	        params: this.remoteFilter,
-	        data: postData
-	       /* {
-	          ...this.remoteFilter
-	        }*/
-	      }).then((data) => {
-	        if (data) { 
-	          // 获取list 根据dataPath 
-	          const rdata = objectPath.get(data, dataPath);
+	       
+	      	request(requsetData).then((res) => {
+	      		 
 
-	          this.checkValues = rdata
-	        }
-	      }) 
+		        if (res && res.data) { 
+		        	const data = res.data 
+		          	// 获取list 根据dataPath 
+		          	const rdata = objectPath.get(data, dataPath);
+
+		          	this.checkValues = rdata
+ 
+		        }
+	      	}).catch(e=> {
+	      		console.error('remote request' , e)
+	      	})
 	    },
 	    handleBlur(e){
 	    	this.$emit('handleBlur' , e)

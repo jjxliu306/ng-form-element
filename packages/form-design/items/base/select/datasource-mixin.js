@@ -78,6 +78,7 @@ export default {
      // 2022-03-14 lyf 监听下拉、多选、单选配置变化后如果当前是表单模板编辑状态 则刷新
     dynamicOption: {
       handler(val, oldVal){
+        if(val != oldVal)
          this.initDynamicValue()
       },
       deep:true 
