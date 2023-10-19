@@ -233,7 +233,7 @@ export default {
 	    // 获取远程数据
 	    getRemoteData() { 
 
-	      const objectPath = require("object-path");
+	     
 	      
 	      	const dataPath = this.record.options.dataPath
 	        
@@ -264,6 +264,7 @@ export default {
 		        if (res && res.data) { 
 		        	const data = res.data 
 		          	// 获取list 根据dataPath 
+		          	 const objectPath = require("object-path");
 		          	const rdata = objectPath.get(data, dataPath);
 
 		          	this.checkValues = rdata
