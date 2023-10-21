@@ -134,6 +134,8 @@ export default {
       add: 'Add',
       copy: 'Copy',
       delete: 'Delete' ,
+      edit: 'Edit',
+      view: 'View',
 
       local: 'Local',
       remote: 'Remote',
@@ -152,7 +154,7 @@ export default {
       custom_components: 'Custom',
 
       batch: {
-        name: 'batch' ,
+        name: 'Batch' ,
         scroll_height: 'scroll height' ,
         custom_style: 'style',
         custom_class: 'class',
@@ -166,7 +168,12 @@ export default {
         add_type_dialog: 'dialog',
         columns: 'columns',
         dialogConfig: 'showColumn',
-        lineConfig: 'columnWidth'
+        lineConfig: 'columnWidth',
+        seq: '#',
+        operate: 'Operate',
+        seq_label: 'Sequence',
+        operation_success: 'Operation success',
+        delete_prompt: 'Are you sure to delete this data?'
 
       },
       cascader: {

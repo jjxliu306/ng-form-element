@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="!dataForm._id ? '新增' : '修改'"
+    :title="!dataForm._id ? t('ngform.item.add') : t('ngform.item.edit')"
     :close-on-click-modal="false"
      :append-to-body="true" 
     :lock-scroll="false"
@@ -34,32 +34,33 @@
       />
       
     </template>
-     <el-form-item label="排序" prop="seq">
+     <el-form-item :label="t('ngform.item.batch.seq_label')" prop="seq">
           <template v-if="preview">
             {{dataForm.seq}}
           </template>
           <template v-else>
-            <el-input-number v-model="dataForm.seq" controls-position="right" :min="0" label="排序号" :disabled="preview"></el-input-number>
+            <el-input-number v-model="dataForm.seq" controls-position="right" :min="0" :placeholder="t('ngform.item.batch.seq_label')" :disabled="preview"></el-input-number>
           </template> 
       </el-form-item> 
 </el-form>
     
 
     <div  class="mod-footer">
-      <el-button size="mini" @click="visible = false">取消</el-button>
-     <el-button size="mini" :disabled="loading" v-if="!preview" type="primary" @click="dataFormSubmit()">确定</el-button>
+      <el-button size="mini" @click="visible = false">{{t('ngform.cancel')}}</el-button>
+     <el-button size="mini" :disabled="loading" v-if="!preview" type="primary" @click="dataFormSubmit()">{{t('ngform.confirm')}}</el-button>
     </div>
  <!--  </div> -->
   </el-dialog> 
 </template>
 
 <script>
- 
+  import LocalMixin from '../../../../../locale/mixin.js'
   import cloneDeep from 'lodash/cloneDeep'
   
   import { dynamicFun} from '../../../../../utils/index' 
   export default {
     name: 'table-add-or-update' ,
+    mixins: [LocalMixin] , 
     data () {
       return {
         randomId: '' ,
@@ -262,3 +263,8 @@
     }
   }
 </script>
+<style>
+.mod-footer {
+  text-align: center;
+}
+</style>

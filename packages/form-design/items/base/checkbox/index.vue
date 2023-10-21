@@ -9,7 +9,7 @@
       @blur="handleBlur"
     >
       <template v-for="(checkitem, index) in  checkList" >
-         <el-checkbox :label="checkitem[itemProp.value]" :key="checkitem[itemProp.value] + index" v-if="itemVisible(checkitem)"> 
+         <el-checkbox :label="checkitem[itemProp.value]" :key="index" v-if="itemVisible(checkitem)"> 
        {{checkitem[itemProp.label]}}
       </el-checkbox>
       </template> 

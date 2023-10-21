@@ -132,6 +132,8 @@ export default {
       add: '新增',
       copy: '复制',
       delete: '删除',
+      edit: '修改',
+      view: '查看',
 
       local: '本地',
       remote: '远程',
@@ -165,8 +167,12 @@ export default {
         add_type_dialog: '弹出框',
         columns: '字段',
         dialogConfig: '外部展示字段',
-        lineConfig: '字段宽度'
-
+        lineConfig: '字段宽度',
+        seq: '序号',
+        operate: '操作',
+        seq_label: '排序号',
+        operation_success: '更新成功',
+        delete_prompt: '确定删除此数据?'
       },
       cascader: {
         name: '级联选择器'

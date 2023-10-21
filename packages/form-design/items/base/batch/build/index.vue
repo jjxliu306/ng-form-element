@@ -25,7 +25,7 @@
       <template  v-if="isVisible"> 
         <el-table-column 
           v-if="!record.options.hideSequence"
-          label="序号"
+          :label="t('ngform.item.batch.seq')" 
           align="center"
           type="index"
           width="50" >  
@@ -45,22 +45,22 @@
         </el-table-column>
         </template> 
         <el-table-column  
-          label="操作"
+          :label="t('ngform.item.batch.operate')"
           align="center" 
           v-if="!preview || record.options.addType == 'dialog'"
           :width="controlWidth ">
           <template  slot-scope="scope"> 
             <el-button type="success"  :size="config.size" v-if="preview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
-              <i class="el-icon-eye" />查看
+              <i class="el-icon-eye" /> {{t('ngform.item.view')}}  
             </el-button>
             <el-button type="primary"  :size="config.size" v-if="!preview && record.options.addType == 'dialog'"  @click="updateDomain(scope.row)">
-              <i class="el-icon-edit" />修改
+              <i class="el-icon-edit" /> {{t('ngform.item.edit')}}  
             </el-button>
             <el-button type="primary"  :size="config.size" v-if="!preview && record.options.copyRow"  @click="copyDomain(scope.row , scope.$index)">
-              <i class="el-icon-copy-document" />复制
+              <i class="el-icon-copy-document" />{{t('ngform.item.copy')}} 
             </el-button>
             <el-button type="danger"  :size="config.size"  v-if="!preview" @click="removeDomain(scope.$index)">
-              <i class="el-icon-delete" />删除 
+              <i class="el-icon-delete" />{{t('ngform.item.delete')}} 
             </el-button>
           </template> 
         </el-table-column> 
@@ -69,7 +69,7 @@
        
     </el-table>
     <el-button v-if="!preview" :size="config.size" type="dashed" :disabled="disabled" @click="addDomain">
-      <i class="el-icon-circle-plus-outline" />增加
+      <i class="el-icon-circle-plus-outline" />{{t('ngform.item.add')}} 
     </el-button>
 
     <AddOrUpdate ref="addOrUpdate" v-if="addOrUpdateVisible"   :formTemplate="templateData" :preview="preview" @formAdd="formAdd"  @formUpdate="formUpdate"/>
@@ -82,8 +82,10 @@
 import TableItem from './table-item'
 import AddOrUpdate from './add-or-update'
 import cloneDeep from 'lodash/cloneDeep' 
+import mixin from '../../../mixin.js'
 export default {
   name: "ng-form-base-batch", 
+  mixins: [mixin] , 
   components: {
     TableItem,AddOrUpdate
   },
@@ -162,10 +164,10 @@ export default {
       this.$refs.dynamicValidateForm.resetFields();
     },
     removeDomain(index) { 
-
-      this.$confirm(`确定删除此数据?`, '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+      const this_ = this 
+      this.$confirm(this.t('ngform.item.batch.delete_prompt'),  this.t('ngform.header.prompt'), {
+          confirmButtonText: this.t('ngform.confirm'),
+          cancelButtonText: this.t('ngform.cancel'),
           type: 'warning'
       }).then(() => {
         let domains = this.models[this.record.model] 
@@ -174,7 +176,7 @@ export default {
             domains.splice(index, 1);
 
             this.$message({
-              message: '删除成功',
+              message:  this_.t('ngform.item.batch.operation_success'),
               type: 'success',
               duration: 1000 
             })
@@ -258,7 +260,7 @@ export default {
       });
       this.isVisible = true
       this.$message({
-        message: '添加成功',
+        message: this.t('ngform.item.batch.operation_success'),
         type: 'success',
         duration: 1000 
       })
@@ -280,7 +282,7 @@ export default {
           return a.seq - b.seq
         });
       this.$message({
-        message: '更新成功',
+        message: this.t('ngform.item.batch.operation_success'),
         type: 'success',
         duration: 1000 
       }) 

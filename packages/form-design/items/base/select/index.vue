@@ -20,7 +20,7 @@
       >
         <template  v-for="(item, index) in selectList">
           <el-option 
-            :key="item[itemValue] + index"
+            :key="index"
             :label="item[itemLabel]"
             :value="item[itemValue]"
             v-if="itemVisible(item)"
@@ -46,7 +46,7 @@
       > 
         <template v-for="(item, index) in selectList">
           <el-option
-            :key="item[itemValue] + index"
+            :key="index"
             :label="item[itemLabel]"
             :value="item[itemValue]"
             v-if="itemVisible(item)"
