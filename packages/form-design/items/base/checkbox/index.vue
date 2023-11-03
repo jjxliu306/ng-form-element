@@ -1,5 +1,5 @@
-<template>   
-	<el-checkbox-group  
+<template>    
+  <el-checkbox-group  
       v-if="!preview"
       :disabled="recordDisabled"
       v-model="models[record.model]" 
@@ -8,13 +8,14 @@
       @focus="handleFocus"
       @blur="handleBlur"
     >
+   
       <template v-for="(checkitem, index) in  checkList" >
          <el-checkbox :label="checkitem[itemProp.value]" :key="index" v-if="itemVisible(checkitem)"> 
        {{checkitem[itemProp.label]}}
       </el-checkbox>
       </template> 
     </el-checkbox-group>
-	<span v-else>
+  <span v-else>
     {{models[record.model+'_label']}}  
   </span>
 </template>
@@ -40,6 +41,16 @@ export default {
       } else {
         return this.record.options.options
       } 
+    },
+    recordModel() {
+      return this.record.model
+    }
+  },
+  watch: {
+    recordModel(val) {
+      if(val) {
+        this.updateArrayDefaultValue()
+      }
     }
   },
   created() {
