@@ -316,56 +316,29 @@ export default {
 </script>
 ```
 
-3.3 在动态表单绘制面板中进行配置
+3.3 全局挂载动态表单自定义组件
+
+main.js
 
 ```
-<template>
-  <div id="app">
-    <ng-form-design ref="formDesign" :custom-components="customComponents" > 
-      <!-- 自定义属性配置 -->
-      <template slot="custom-properties" slot-scope="{selectItem}">
-        <Properties :selectItem="selectItem"/>
-      </template> 
-      <template  slot="formName">
-        <span> vue-drag-formdesign 示例 </span>
-      </template>
-    </ng-form-design>   
-  </div>
-</template> 
-<script>
-// 引用自定义的表单组件和自定义组件配置信息修改组件
-import CustomT from './components/TCustom'
-import Properties from './components/properties'
-export default {
-  name: 'App',
-  components: {CustomT , Properties},
-  data(){
-    return {  
-      // 自定义组件列表
-      customComponents: [
-        { 
-          type: 'customT' ,
-          label: "自定义图片展示", // 标题文字 
-          component: CustomT ,
-          options: {
-            style: 'width:100px;height:100px'
-          },
-          model: "customT",
-          key: "customT",
-          rules: [
-            {
-              required: false,
-              message: "必填项"
-            }
-          ]
-        },
-      ]
-    }
-  } ,  
-  methods: { 
+import CustomIndex from './custom.vue'
+import CustomProperties from './properties.vue'
+import icon from './icon.js' 
+
+const customComponents = [
+  {
+    type: 'custom',
+    label: '自定义组件1',
+    component: CustomIndex ,
+    properties: CustomProperties,
+    icon: icon
   }
-}
-</script>
+]
+ 
+// 挂载动态表单组件
+import FormDesign from 'ng-form-element' 
+Vue.use(FormDesign , {components: customComponents})
+ 
  
 ```
 
