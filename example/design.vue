@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <ng-form-design ref="formDesign"  :config="formConfig" >
+  <ng-form-design ref="formDesign"  >
      
     <template slot="controlButton" >
      <el-popover
