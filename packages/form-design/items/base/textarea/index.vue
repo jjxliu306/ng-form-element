@@ -3,7 +3,7 @@
 		v-if="!preview"
 		type="textarea"
 		:style="`width:${record.options.width}`"
-		:placeholder="record.options.placeholder"
+		:placeholder="getLabel(record.options.placeholder)"
 		:clearable="record.options.clearable"
 		:disabled="recordDisabled"
 		:rows="record.options.rows"

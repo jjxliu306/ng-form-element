@@ -1,7 +1,7 @@
 <template>   
 	<el-input 
 		v-if="!preview"
-		:placeholder="record.options.placeholder"
+		:placeholder="getLabel(record.options.placeholder)"
 		:clearable="record.options.clearable"
 		:disabled="recordDisabled"
 		:type="record.options.type || 'text'"

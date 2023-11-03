@@ -3,7 +3,7 @@
       v-if="!preview"
       :disabled="recordDisabled"
       v-model="models[record.model]" 
-      :placeholder="record.options.placeholder" 
+      :placeholder="getLabel(record.options.placeholder)" 
       @change="handleChange($event)" 
       @focus="handleFocus"
       @blur="handleBlur"

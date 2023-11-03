@@ -8,7 +8,7 @@
        
         :remote="record.options.onlineSearch && record.options.showSearch"
         :remote-method="remoteMethod"
-        :placeholder="record.options.placeholder"
+        :placeholder="getLabel(record.options.placeholder)"
         :filterable="record.options.showSearch"
         :disabled="recordDisabled"
         :clearable="record.options.clearable"
@@ -35,7 +35,7 @@
         :value-key="itemValue" 
         :remote="record.options.onlineSearch && record.options.showSearch"
         :remote-method="remoteMethod"
-        :placeholder="record.options.placeholder"
+        :placeholder="getLabel(record.options.placeholder)"
         :filterable="record.options.showSearch"
         :disabled="recordDisabled"
         :clearable="record.options.clearable" 

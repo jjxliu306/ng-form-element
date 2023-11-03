@@ -8,19 +8,18 @@
     size="mini"
     :key="formKey"
     label-position="right"
-    :label-width="(config.labelWidth || 80) + 'px'">
-    
-    <template v-for="column in columns">
+    :label-width="(config.labelWidth || 80) + 'px'"> 
+    <template v-for="(column,idx) in columns">
 
 
-      <el-divider :key="column.label" content-position="center" class="ng-form-divider" v-if="column.type == 'divider' && (column.show == undefined || column.show == true || columnVisible(column.show))">{{formLabel(column.label)}}</el-divider> 
+      <el-divider :key="'divider' + idx" content-position="center" class="ng-form-divider" v-if="column.type == 'divider' && (column.show == undefined || column.show == true || columnVisible(column.show))">{{formLabel(column.label)}}</el-divider> 
       <el-form-item
         :prop="column.prop"
         :label="formLabel(column.label)"
         :rules="column.rules"
         :title="column.tip" 
         :label-width="column.labelWidth != null ? (column.labelWidth + 'px') : null"
-        :key="column.prop"
+        :key="'formitem' + idx"
         v-else-if="column.show == undefined || column.show == true || columnVisible(column.show)">
         <template slot="label" v-if="column.labelScript">
           {{getScriptValue(column.labelScript , column.label)}}
@@ -61,10 +60,10 @@
             <el-button type="text" icon="el-icon-plus" @click="addData(model , column.prop , column.type)"></el-button>
           </template>
           <el-radio-group v-else-if="column.type == 'radio'" v-model="model[column.prop]">
-            <el-radio :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{formLabel(rv.label)}}</el-radio>
+            <el-radio :label="rv.value" v-for="(rv,index) in column.dicData" :key="'radio' + index">{{formLabel(rv.label)}}</el-radio>
           </el-radio-group>
           <el-radio-group v-else-if="column.type == 'radioButton'" v-model="model[column.prop]">
-            <el-radio-button :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{formLabel(rv.label)}}</el-radio-button>
+            <el-radio-button :label="rv.value" v-for="(rv,index) in column.dicData" :key="'radioB' + index">{{formLabel(rv.label)}}</el-radio-button>
           </el-radio-group>
          <!--  <el-switch v-else-if="column.type == 'switch'" v-model="model[column.prop]"></el-switch> -->
           <el-switch v-else-if="column.type == 'switch'"  v-model="model[column.prop]"  ></el-switch>
@@ -79,13 +78,13 @@
             :value-format="column.format" >
           </el-date-picker>
           <el-checkbox-group v-else-if="column.type == 'checkbox'" v-model="model[column.prop]">
-            <el-checkbox :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{formLabel(rv.label)}}</el-checkbox>
+            <el-checkbox :label="rv.value" v-for="(rv,index) in column.dicData" :key="'checkbox' + index">{{formLabel(rv.label)}}</el-checkbox>
           </el-checkbox-group>
           <el-select clearable v-else-if="column.type == 'select'" v-model="model[column.prop]" :placeholder="formLabel(column.placeholder)" style="width:100%">
             <el-option
-              v-for="rv in column.dicData"
+              v-for="(rv,index) in column.dicData"
               :label="formLabel(rv.label)"
-              :key="rv.value"
+              :key="'select' + index"
               :value="rv.value">
             </el-option>
           </el-select>
@@ -120,7 +119,7 @@
             </el-col>
           </el-row>
           <template v-else-if="column.type == 'colors'">
-            <div v-for="(item, index) in model[column.prop]" :key='index'>
+            <div v-for="(item, index) in model[column.prop]" :key='"color" + index'>
               <el-row :span="24">
                 <el-col :span="22">
                  <!--   -->
