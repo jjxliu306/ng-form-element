@@ -91,7 +91,7 @@ export default {
 			return false
 		},
 		dicts() {
-			return this.ngConfig.dict
+			return this.ngConfig ? this.ngConfig.dict : undefined
 		}
 	},
 	watch: {

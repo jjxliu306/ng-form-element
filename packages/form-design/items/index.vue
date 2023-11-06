@@ -39,11 +39,12 @@
 
 import cloneDeep from 'lodash/cloneDeep'
 import { dynamicFun } from '../../utils/index.js'
-
+import LocalMixin from '../../locale/mixin.js'
 import ItemNode from './node.vue'
 
 export default {
   name: "ng-form-item", 
+  mixins: [LocalMixin],
   components: { 
     ItemNode
   },
@@ -113,8 +114,8 @@ export default {
         labelWidth = this.record.labelWidth
       }
 
-      if(labelWidth > 0) {
-        return this.record.label 
+      if(labelWidth > 0) { 
+        return this.getLabel(this.record.label)
       }
       
       return null  

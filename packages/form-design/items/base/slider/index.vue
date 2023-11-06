@@ -2,7 +2,7 @@
 <template>   
       <el-slider 
         v-model="models[record.model]"
-        :style="`width:${record.options.width}`" 
+        :style="`width:${record.width}`" 
         :min="record.options.min"
         :max="record.options.max"
         :disabled="recordDisabled"

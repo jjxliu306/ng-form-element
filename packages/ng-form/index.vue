@@ -1,32 +1,27 @@
 <template>
   <el-form
-      ref="form"
-      class="ng-form"
-      @submit.native.prevent
-      :model="model "
-      :label-suffix="config.labelSuffix"
-      size="mini"
-      :key="formKey"
-      label-position="right"
-      :label-width="(config.labelWidth || 80) + 'px'"
-  >
+    ref="form"
+    class="ng-form"
+    @submit.native.prevent
+    :model="model "
+    :label-suffix="config.labelSuffix"
+    size="mini"
+    :key="formKey"
+    label-position="right"
+    :label-width="(config.labelWidth || 80) + 'px'">
 
     <template v-for="column in columns">
 
 
-      <el-divider :key="column.label" content-position="center" class="ng-form-divider"
-                  v-if="column.type == 'divider' && (column.show == undefined || column.show == true || columnVisible(column.show))"
-      >{{ formLabel(column.label) }}
-      </el-divider>
+      <el-divider :key="'divider' + idx" content-position="center" class="ng-form-divider" v-if="column.type == 'divider' && (column.show == undefined || column.show == true || columnVisible(column.show))">{{formLabel(column.label)}}</el-divider>
       <el-form-item
-          :prop="column.prop"
-          :label="formLabel(column.label)"
-          :rules="column.rules"
-          :title="column.tip"
-          :label-width="column.labelWidth != null ? (column.labelWidth + 'px') : null"
-          :key="column.prop"
-          v-else-if="column.show == undefined || column.show == true || columnVisible(column.show)"
-      >
+        :prop="column.prop"
+        :label="formLabel(column.label)"
+        :rules="column.rules"
+        :title="column.tip"
+        :label-width="column.labelWidth != null ? (column.labelWidth + 'px') : null"
+        :key="'formitem' + idx"
+        v-else-if="column.show == undefined || column.show == true || columnVisible(column.show)">
         <template slot="label" v-if="column.labelScript">
           {{ getScriptValue(column.labelScript, column.label) }}
         </template>
@@ -56,31 +51,29 @@
               <el-col :span="22">
                 <!--   -->
                 <el-input-number
-                    v-model="model[column.prop][index]"
-                    controls-position="right"
-                    :min="column.min || undefined"
-                    :max="column.max || undefined"
-                    :precision="column.precision"
-                    :step="column.step"
-                />
-              </el-col>
-              <el-col :span="2" style="padding-left: 5px">
-                <el-button type="text" icon="el-icon-close" @click="removeData(model,column.prop, index)"></el-button>
-              </el-col>
-            </el-row>
-          </div>
-          <el-button type="text" icon="el-icon-plus" @click="addData(model , column.prop , column.type)"></el-button>
-        </template>
-        <el-radio-group v-else-if="column.type == 'radio'" v-model="model[column.prop]">
-          <el-radio :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{ formLabel(rv.label) }}</el-radio>
-        </el-radio-group>
-        <el-radio-group v-else-if="column.type == 'radioButton'" v-model="model[column.prop]">
-          <el-radio-button :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{ formLabel(rv.label) }}
-          </el-radio-button>
-        </el-radio-group>
-        <!--  <el-switch v-else-if="column.type == 'switch'" v-model="model[column.prop]"></el-switch> -->
-        <el-switch v-else-if="column.type == 'switch'" v-model="model[column.prop]"></el-switch>
-        <el-date-picker
+                  v-model="model[column.prop][index]"
+                  controls-position="right"
+                  :min="column.min || undefined"
+                  :max="column.max || undefined"
+                  :precision="column.precision"
+                  :step="column.step" />
+                </el-col>
+                <el-col :span="2" style="padding-left: 5px">
+                  <el-button type="text" icon="el-icon-close" @click="removeData(model,column.prop, index)"></el-button>
+                </el-col>
+              </el-row>
+            </div>
+            <el-button type="text" icon="el-icon-plus" @click="addData(model , column.prop , column.type)"></el-button>
+          </template>
+          <el-radio-group v-else-if="column.type == 'radio'" v-model="model[column.prop]">
+            <el-radio :label="rv.value" v-for="(rv,index) in column.dicData" :key="'radio' + index">{{formLabel(rv.label)}}</el-radio>
+          </el-radio-group>
+          <el-radio-group v-else-if="column.type == 'radioButton'" v-model="model[column.prop]">
+            <el-radio-button :label="rv.value" v-for="(rv,index) in column.dicData" :key="'radioB' + index">{{formLabel(rv.label)}}</el-radio-button>
+          </el-radio-group>
+         <!--  <el-switch v-else-if="column.type == 'switch'" v-model="model[column.prop]"></el-switch> -->
+          <el-switch v-else-if="column.type == 'switch'"  v-model="model[column.prop]"  ></el-switch>
+          <el-date-picker
             v-else-if="column.type == 'date'"
             v-model="model[column.prop]"
             align="right"
@@ -138,44 +131,40 @@
                 controls-position="right"
                 :min="column.min || undefined"
                 :max="column.max || undefined"
-                style="width: 100%;"
-            >
-            </el-input-number>
-          </el-col>
-          <el-col :span="12">
-            <el-input-number
+                style="width: 100%;">
+              </el-input-number>
+            </el-col>
+            <el-col :span="12">
+              <el-input-number
                 v-model="model[column.prop][1]"
                 controls-position="right"
                 :min="column.min || undefined"
                 :max="column.max || undefined"
-                style="width: 100%;"
-            >
-            </el-input-number>
-          </el-col>
-        </el-row>
-        <template v-else-if="column.type == 'colors'">
-          <div v-for="(item, index) in model[column.prop]" :key="index">
-            <el-row :span="24">
-              <el-col :span="22">
-                <!--   -->
-                <el-color-picker v-model="model[column.prop][index]" :placeholder="formLabel(column.placeholder)"/>
-              </el-col>
-              <el-col :span="2" style="padding-left: 5px">
-                <el-button type="text" icon="el-icon-close" @click="removeData(model,column.prop, index)"></el-button>
-              </el-col>
-            </el-row>
-          </div>
-          <el-button type="text" icon="el-icon-plus" @click="addData(model , column.prop, column.type)"></el-button>
-        </template>
-        <el-color-picker v-else-if="column.type == 'color'" v-model="model[column.prop]"
-                         :placeholder="formLabel(column.placeholder)"
-        ></el-color-picker>
+                style="width: 100%;">
+              </el-input-number>
+            </el-col>
+          </el-row>
+          <template v-else-if="column.type == 'colors'">
+            <div v-for="(item, index) in model[column.prop]" :key='index'>
+              <el-row :span="24">
+                <el-col :span="22">
+                 <!--   -->
+                 <el-color-picker v-model="model[column.prop][index]" :placeholder="formLabel(column.placeholder)"/>
+                </el-col>
+                <el-col :span="2" style="padding-left: 5px">
+                  <el-button type="text" icon="el-icon-close" @click="removeData(model,column.prop, index)"></el-button>
+                </el-col>
+              </el-row>
+            </div>
+            <el-button type="text" icon="el-icon-plus" @click="addData(model , column.prop, column.type)"></el-button>
+          </template>
+          <el-color-picker v-else-if="column.type == 'color'" v-model="model[column.prop]" :placeholder="formLabel(column.placeholder)"></el-color-picker>
 
-        <KvList v-else-if="column.type == 'kv'" v-model="model[column.prop]" :keyNumber="column.keyNumber"/>
-        <template v-else-if="column.type == 'rules'">
-          <Rules v-model="model[column.prop]"/>
-        </template>
-        <!--  </slot> -->
+          <KvList v-else-if="column.type == 'kv'" v-model="model[column.prop]" :keyNumber="column.keyNumber"/>
+          <template v-else-if="column.type == 'rules'">
+             <Rules  v-model="model[column.prop]" />
+          </template>
+       <!--  </slot> -->
         <!-- 插槽 -->
         <!-- <slot :name="column.prop"></slot> -->
       </el-form-item>
@@ -183,19 +172,18 @@
   </el-form>
 </template>
 <script>
-import { dynamicFun, getUUID, getLabel } from '../utils/index.js'
-import { t, currentLang } from '../locale/index.js'
+import { dynamicFun , getUUID , getLabel } from '../utils/index.js'
+import { t , currentLang } from '../locale/index.js'
 // key-value数组配置
 import KvList from './kv-list.vue'
 import Rules from './rules.vue'
-
 export default {
   name: 'ng-form',
   components: {
     KvList,
     Rules
   },
-  data() {
+  data () {
     return {
       formKey: getUUID()
     }
@@ -223,19 +211,19 @@ export default {
       default: () => []
     }
   },
-  mounted() {
+  mounted () {
     this.$ngofrm_bus.$on('i18nRefresh', () => {
       this.formKey = getUUID()
-    })
+    });
   },
   methods: {
     // 返回函数值
-    getScriptValue(script, currentValue) {
+    getScriptValue (script, currentValue) {
       //script , model ,currentValue , key="$"
       return dynamicFun(script, this.record, currentValue)
     },
-    columnVisible(script) {
-      if (script == false) return false
+    columnVisible (script) {
+      if (script == false) return false;
       if (typeof script == 'string') {
         return dynamicFun(script, this.record)
       }
@@ -245,24 +233,25 @@ export default {
     formLabel(v) {
       return getLabel(v)
     },
-    addData(recordProp, columnProp, type) {
+    addData (recordProp , columnProp , type) {
 
       let defaultVal = '#ffffff'
-      if (type == 'numbers') {
+      if(type == 'numbers') {
         type = 0
       }
 
-      if (recordProp[columnProp] == undefined || recordProp[columnProp] == null
-          || !(recordProp[columnProp] instanceof Array)) {
-        this.$set(recordProp, columnProp, [defaultVal])
+      if(recordProp[columnProp] == undefined || recordProp[columnProp] == null
+        || !(recordProp[columnProp] instanceof Array)) {
+        this.$set(recordProp , columnProp , [defaultVal])
       } else {
         recordProp[columnProp].push(defaultVal)
       }
 
+
     },
-    removeData(model, prop, index) {
-      const nlist = model[prop].filter((value, i) => i !== index)
-      this.$set(model, prop, nlist)
+    removeData (model , prop , index) {
+      const nlist = model[prop].filter( (value, i)=> i !== index)
+      this.$set(model , prop , nlist)
     },
     handleChangeSpanType(column) {
       if (column.type === 'slider') {

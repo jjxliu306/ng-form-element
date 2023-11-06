@@ -27,7 +27,7 @@
               : record.options.precision
           "
           controls-position="right"
-          :placeholder="record.options.placeholder" 
+          :placeholder="getLabel(record.options.placeholder)" 
           @focus="handleFocus"
       		@blur="handleBlur"
         > </el-input-number>

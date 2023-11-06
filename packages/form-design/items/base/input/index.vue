@@ -1,11 +1,11 @@
 <template>   
 	<el-input 
 		v-if="!preview"
-		:placeholder="record.options.placeholder"
+		:placeholder="getLabel(record.options.placeholder)"
 		:clearable="record.options.clearable"
 		:disabled="recordDisabled"
 		:type="record.options.type || 'text'"
-		:style="`width:${record.options.width}`"
+		:style="`width:${record.width}`"
 		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
 		v-model="models[record.model]" 
 		@focus="handleFocus"

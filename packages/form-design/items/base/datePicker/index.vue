@@ -8,7 +8,7 @@
         :disabled="recordDisabled"
         :editable="record.options.editable"
         :clearable="record.options.clearable" 
-        :placeholder="record.options.placeholder"
+        :placeholder="getLabel(record.options.placeholder)"
         :format="record.options.format"
         :value-format="record.options.format" 
         @focus="handleFocus"

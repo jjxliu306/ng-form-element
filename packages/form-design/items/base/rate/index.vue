@@ -1,7 +1,7 @@
 <template>  
 <div>  
         <el-rate
-              :style="`width:${record.options.width}`"
+              :style="`width:${record.width}`"
               v-model="models[record.model]" 
               :max="record.options.max"  
               :allowHalf="record.options.allowHalf" 
