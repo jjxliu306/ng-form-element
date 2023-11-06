@@ -1,40 +1,40 @@
 <!-- 弹性容器 -->
-<template>  
+<template>
   <div
         :class="[
-          'ng-table-controller', 
+          'ng-table-controller',
           record.options.customClass ? record.options.customClass : '' ,
           record.options && record.options.bordered ? 'controller-bordered' : ''
-        ]" 
-        :style="record.options.customStyle" 
+        ]"
+        :style="record.options.customStyle"
       >
-     
-        
-          <Design  
+
+
+          <Design
             v-if="isDragPanel"
             :record="record"
-            :disabled="disabled" 
+            :disabled="disabled"
             :preview="preview"
             :isDragPanel="isDragPanel"
-            :selectItem="selectItem" 
+            :selectItem="selectItem"
             @handleSelectItem="handleSelectItem"
-            :models="models" 
-          /> 
-          <Build 
+            :models="models"
+          />
+          <Build
             v-else
             :record="record"
-            :disabled="disabled" 
+            :disabled="disabled"
             :preview="preview"
             :isDragPanel="isDragPanel"
-            :selectItem="selectItem" 
-            :models="models" 
+            :selectItem="selectItem"
+            :models="models"
           />
-           
-        
+
+
   </div>
 </template>
 <script>
- 
+
 import Build from './build.vue'
 import Design from './design.vue'
 
@@ -49,13 +49,13 @@ export default {
       showRightMenu: false,
       selectControlIndex: undefined
     }
-  }, 
+  },
   methods: {
-    handleSelectItem(item) { 
+    handleSelectItem(item) {
 
       this.$emit('handleSelectItem' , item)
     },
-   
+
   }
 }
 </script>
@@ -130,15 +130,15 @@ export default {
 }
 
 </style>
-<!-- 
+<!--
 <style lang="scss">
 .ng-table-controller {
-  
 
-  .dragpanel { 
+
+  .dragpanel {
     margin: 0px;
   }
- 
+
 
 
 .form-table {
@@ -154,7 +154,7 @@ export default {
   &.bright   {
     .table-td:hover {
        background: #fafafa;
-    } 
+    }
   }
 
   .el-row .el-form-item {
@@ -203,15 +203,15 @@ export default {
   }
 
 }
- 
+
  }
- 
- 
+
+
 
 .table-bordered {
   border-radius: 4px;
   border: 1px solid #DCDFE6;
   box-sizing: border-box;
-  color: #606266; 
+  color: #606266;
 }
 </style> -->

@@ -1,68 +1,72 @@
 <template>
-  <el-col 
-    :span="record.span || 24"   
-   >  
-    <div :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-box': isDrag , 'node-item': isDrag}"  @click.stop="handleSelectItem(record)">
-      <div  class="form-item-box" style="height: 100%;width: 100%;">
-        <Item 
-          :models="models"
-          :record="record"
-          :isDragPanel="isDrag"    
-          :selectItem="selectItem"
-          :preview="preview"
-          :key="refreshKey" 
-          :prop-prepend="propPrepend"
-          @submit="$emit('submit')"
-          @reset="$emit('reset')"
-          @handleSelectItem="handleSelectItem"
-          @handleCopy="$emit('handleCopy')"
-          @handleDetele="$emit('handleDetele')"
+  <el-col
+      :span="record.span || 24"
+  >
+    <div :class="{ 'active': selectItem && record.key === selectItem.key , 'drag-box': isDrag , 'node-item': isDrag}"
+         @click.stop="handleSelectItem(record)"
+    >
+      <div class="form-item-box" style="height: 100%;width: 100%;">
+        <Item
+            :models="models"
+            :record="record"
+            :isDragPanel="isDrag"
+            :selectItem="selectItem"
+            :preview="preview"
+            :key="refreshKey"
+            :prop-prepend="propPrepend"
+            @submit="$emit('submit')"
+            @reset="$emit('reset')"
+            @handleSelectItem="handleSelectItem"
+            @handleCopy="$emit('handleCopy')"
+            @handleDetele="$emit('handleDetele')"
         />
-      </div> 
+      </div>
       <template v-if="isDrag">
-        <div class="key-box" v-text="record.model" /> 
-        <div class="node-control">   
+        <div class="key-box" v-text="record.model"/>
+        <div class="node-control">
           <div
-            class="copy pointer"
-            :title="t('ngform.item.copy')"
-            :class="selectItem && record.key === selectItem.key ? 'active' : 'unactivated'"
-            @click.stop="$emit('handleCopy')"
+              class="copy pointer"
+              :title="t('ngform.item.copy')"
+              :class="selectItem && record.key === selectItem.key ? 'active' : 'unactivated'"
+              @click.stop="$emit('handleCopy')"
           >
-            <i class="el-icon-document-copy" />
+            <i class="el-icon-document-copy"/>
           </div>
-          
+
           <div
-            class="delete pointer"
-            :title="t('ngform.item.delete')"
-            :class="selectItem && record.key === selectItem.key ? 'active' : 'unactivated'"
-            @click.stop="$emit('handleDetele')"
+              class="delete pointer"
+              :title="t('ngform.item.delete')"
+              :class="selectItem && record.key === selectItem.key ? 'active' : 'unactivated'"
+              @click.stop="$emit('handleDetele')"
           >
-            <i class="el-icon-delete" />
+            <i class="el-icon-delete"/>
           </div>
-        </div> 
-      </template> 
+        </div>
+      </template>
     </div>
   </el-col>
 </template>
-<script> 
- 
-import Item from "../items/index.vue" 
+<script>
+
+import Item from '../items/index.vue'
 import LocalMixin from '../../locale/mixin.js'
+
 export default {
   name: 'ng-form-node',
   mixins: [LocalMixin],
   components: {
-    Item 
+    Item
   },
-  props: {    
+  props: {
     record: {
       type: Object,
       required: true
     },
     selectItem: {
       type: Object,
-      default: () => {}
-    }, 
+      default: () => {
+      }
+    },
     // 当前是否拖拽面板
     isDrag: {
       type: Boolean,
@@ -77,52 +81,51 @@ export default {
       default: false
     },
     models: {
-      type: Object ,
-      default: ()=>{return {}}
-    },  
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
     propPrepend: {
       type: String
     }
   },
-  data(){
-    return { 
-      refreshKey: 1    
-    }
-  }, 
-  computed: {
-     
-  },
-  created(){
-    if(!this.isDrag) return
-    if(this.record.type == 'controller' && !this.record.list) {
-      this.$set(this.record , 'list' , [])
+  data() {
+    return {
+      refreshKey: 1
     }
   },
-  activated() {     
-     
+  computed: {},
+  created() {
+    if (!this.isDrag) return
+    if (this.record.type == 'controller' && !this.record.list) {
+      this.$set(this.record, 'list', [])
+    }
   },
-  mounted(){
-   
-    
+  activated() {
+
   },
-  methods: {  
-    handleSelectItem(rec,index) {
-      if(!this.isDrag) return
-    
-      this.$emit('handleSelectItem' , rec , index+1)
+  mounted() {
+
+  },
+  methods: {
+    handleSelectItem(rec, index) {
+      if (!this.isDrag) return
+
+      this.$emit('handleSelectItem', rec, index + 1)
     },
-    handleRefresh(){
+    handleRefresh() {
       this.refreshKey++
-    } 
+    }
   }
 
-};
+}
 </script>
 <style>
 .node-item {
   padding: 10px;
-  background: #f6f6f6;
-  border-color: #f6f6f6;
+  background: white;
+  border-color: white;
   border-radius: 5px;
   margin-top: 10px;
 }
@@ -139,6 +142,7 @@ export default {
   overflow: hidden;
   transition: all 0.3s;
   min-height: 36px;
+  background: white;
 }
 
 .drag-box .key-box {
@@ -150,7 +154,7 @@ export default {
 }
 
 .drag-box.active {
-  background: #5ea8f57d;
+  background: rgba(132, 185, 241, 0.49);
   outline-offset: 0;
 }
 
@@ -272,7 +276,7 @@ export default {
 }
 
 </style>
-<!-- 
+<!--
 <style lang="scss">
 .node-item {
   padding: 10px;
@@ -302,7 +306,7 @@ export default {
     font-size: 14px;
     color: #409eff;
   }
- 
+
   // &::before {
   //   content: "";
   //   height: 5px;
@@ -310,13 +314,13 @@ export default {
   //   background: #409EFF;
   //   position: absolute;
   //   top: 0;
-  //   right: -100%; 
+  //   right: -100%;
   // }
-  
+
 
   &.active {
     background: #5ea8f57d;
-    outline-offset: 0; 
+    outline-offset: 0;
 
     &::before {
       right: 0;
@@ -361,7 +365,7 @@ export default {
       &.unactivated {
         opacity: 0 !important;
         pointer-events: none;
- 
+
       }
 
       &.active {
@@ -374,7 +378,7 @@ export default {
       right: 30px;
       background: #409EFF;
 
-     
+
     }
 
     .delete {
@@ -383,7 +387,7 @@ export default {
     }
   }
 
-  .node-control { 
+  .node-control {
     display: none;
     position: absolute;
     top: 0;
@@ -394,17 +398,17 @@ export default {
 
   &:hover {
     background: fade(#409EFF, 20%);
-    
+
     .node-control {
       /*visibility: visible;*/
       display: block;
     }
-    
+
   }
 
 
 
-  
+
   .right-menu {
     width: 190px;
     background: #fff;
@@ -434,7 +438,7 @@ export default {
       }
     }
   }
-  
+
 }
 
 .active .key-box {

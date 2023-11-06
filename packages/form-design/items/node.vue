@@ -1,36 +1,36 @@
 <!--
 传入record数据，通过判断record.type，来渲染对应的组件
   -->
-<template>  
-  
-  <component 
+<template>
+
+  <component
         :record="record"
-        :style="{  
+        :style="{
           margin: record.margin && record.margin.length > 0 ? record.margin.join('px ') + 'px' : '0px',
-          borderRadius: (record.itemBorderRadius ? record.itemBorderRadius : 0) + 'px',  
+          borderRadius: (record.itemBorderRadius ? record.itemBorderRadius : 0) + 'px',
           backgroundColor: record.backgroundColor ? record.backgroundColor  : '',
- 
-        }"   
-        :disabled="disabled" 
+
+        }"
+        :disabled="disabled"
         :preview="preview"
         :isDragPanel="isDragPanel"
-        :selectItem="selectItem" 
+        :selectItem="selectItem"
         :prop-prepend="propPrepend"
-        :models.sync="models" 
-        @handleSelectItem="handleSelectItem" 
+        :models.sync="models"
+        @handleSelectItem="handleSelectItem"
         @handleFocus="handleFocus"
         @handleBlur="handleBlur"
-        :is="customComponent"> 
-  </component>   
+        :is="customComponent">
+  </component>
 </template>
-<script>  
-import ItemList from './index.js' 
- 
+<script>
+import ItemList from './index.js'
+
 import { dynamicFun , dynamicVoidFun } from '../../utils/index.js'
 export default {
-  name: "ng-form-item-node", 
-  data(){  
-    return{ 
+  name: "ng-form-item-node",
+  data(){
+    return{
       items: ItemList
     }
   },
@@ -44,7 +44,7 @@ export default {
     models: {
       type: Object,
       required: true
-    }, 
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -65,7 +65,7 @@ export default {
     propPrepend: {
       type: String
     }
-  }, 
+  },
   inject: {
     // 自定义组件
       customComponents: {
@@ -79,8 +79,8 @@ export default {
       },
 
   },
-  computed: { 
-     
+  computed: {
+
     customComponent() {
 
       // 判断是否自定义组件
@@ -88,11 +88,11 @@ export default {
         const cs = this.customComponents.filter(t=> t.type == this.record.type)
 
         if(cs && cs.length > 0) {
-          return cs[0].component 
+          return cs[0].component
         }
       }
-        
-      const selectItemType = this.record.type   
+
+      const selectItemType = this.record.type
             // 将数组映射成json
       if(this.items && this.items.length > 0) {
             for(let i = 0 ; i < this.items.length ; i++) {
@@ -102,19 +102,17 @@ export default {
                 const fs = itemList.list.filter(t=>t.type == selectItemType)
                 if(fs && fs.length > 0) {
                   return fs[0].component
-                } 
-              } 
+                }
+              }
 
             }
       }
-
       return null
-       
     },
     // 数据监听中要监听的数据，先通过计算属性计算 然后通过watch监听变化
     listenModelValue() {
       if(!this.isDragPanel && this.record.options.listenModel && this.record.options.listenModelData) {
-               
+
               const lmodels = this.record.options.listenModelData.split(',')
               let vs = []
               for(let i = 0 ; i < lmodels.length ; i++) {
@@ -122,39 +120,39 @@ export default {
                 const ld = lmodels[i]
                 if(ld && ld.trim()) {
                     // local script
-                    vs.push(this.models[ld.trim()]) 
+                    vs.push(this.models[ld.trim()])
                 }
               }
               return vs.join(',')
-          } 
+          }
           return null
     }
   },
   watch: {
     // 组件数据监听
     listenModelValue: {
-        handler(val, oldVal){ 
-          if(this.isDragPanel 
+        handler(val, oldVal){
+          if(this.isDragPanel
             || (!val && !oldVal)
             || !this.models
-            || !this.record.options.listenModel 
+            || !this.record.options.listenModel
             || !this.record.options.listenModelData
             || !this.record.options.listenModelScript )
-            return 
+            return
 
           //2023-09-10 lyf 确保当前组件的model在models中已经被挂载在执行
           if(!Object.prototype.hasOwnProperty.call(this.models,this.record.model)) {
-            return 
+            return
           }
-          
-          
+
+
          // console.log('this.record.options.listenModelScript' , this.record.options.listenModelScript)
           // 解决 初始化加载数据 被计算数据监听造成数据变化
           //const ify = JSON.stringify(val)
           //if (this.copyLstenModel != ify) {
-          //  this.copyLstenModel = ify 
+          //  this.copyLstenModel = ify
             dynamicVoidFun(this.record.options.listenModelScript , this.models)
-            
+
           //}
 
           //console.log("this.models" , this.models)
@@ -170,18 +168,18 @@ export default {
        // 判断是否有监听
       const focusEventScript = this.record.options.focusEvent
 
-      if(!focusEventScript) return 
+      if(!focusEventScript) return
 
-      dynamicVoidFun(focusEventScript,this.models) 
+      dynamicVoidFun(focusEventScript,this.models)
     },
     handleBlur(e) {
        // 判断是否有监听
       const blurEventScript = this.record.options.blurEvent
 
-      if(!blurEventScript) return 
+      if(!blurEventScript) return
 
-      dynamicVoidFun(blurEventScript,this.models) 
+      dynamicVoidFun(blurEventScript,this.models)
     }
-  } 
+  }
 };
 </script>

@@ -1,20 +1,20 @@
 <template>
-  <el-container class="form-design"  >
+  <el-container class="form-design">
     <el-header class="header" height="40px">
       <HeaderPanel
-        :clear="clear"
-        :preview="preview"
-        :imp="imp"
-        :exp="exp"
-        :formTemplate="formTemplate"
-        @importData="importData"
+          :clear="clear"
+          :preview="preview"
+          :imp="imp"
+          :exp="exp"
+          :formTemplate="formTemplate"
+          @importData="importData"
       >
         <template slot="controlButton">
           <slot name="controlButton"></slot>
         </template>
         <template slot="formName">
           <slot name="formName"></slot>
-        </template> 
+        </template>
       </HeaderPanel>
     </el-header>
     <el-main class="form-main">
@@ -22,21 +22,21 @@
         <el-aside width="260px" class="item-panel">
           <slot name="drag"></slot>
           <DragPanel
-            :basic-item="basicItem"
-            :decorate-item="decorateItem"
-            :layout-item="layoutItem"
-            :application-item="applicationItem"
+              :basic-item="basicItem"
+              :decorate-item="decorateItem"
+              :layout-item="layoutItem"
+              :application-item="applicationItem"
           />
         </el-aside>
         <el-main class="center-panel form-main">
           <ContainerPanel
-            :formTemplate="formTemplate"
-            @handleSelectItem="handleSelectItem"
-            :selectItem="selectItem"
-          > 
+              :formTemplate="formTemplate"
+              @handleSelectItem="handleSelectItem"
+              :selectItem="selectItem"
+          >
           </ContainerPanel>
         </el-main>
-        <el-aside width="260px" class="properties-panel"> 
+        <el-aside width="370px" class="properties-panel">
           <PropertiesPanel :selectItem="selectItem">
             <template slot="custom-properties">
               <slot name="custom-properties" :selectItem="selectItem"></slot>
@@ -55,150 +55,192 @@
 </template>
 
 <script>
-import HeaderPanel from "./panel-header/index.vue";
-import DragPanel from "./panel-drag/index.vue";
-import ContainerPanel from "./panel-container/index.vue";
-import PropertiesPanel from "./panel-properties/index.vue";
+import HeaderPanel from './panel-header/index.vue'
+import DragPanel from './panel-drag/index.vue'
+import ContainerPanel from './panel-container/index.vue'
+import PropertiesPanel from './panel-properties/index.vue'
 import { use } from '../locale/index'
 import { getUUID } from '../utils/index'
-import cloneDeep from "lodash/cloneDeep";
- 
+import cloneDeep from 'lodash/cloneDeep'
+
 export default {
-  name: "ng-form-design",
+  name: 'ng-form-design',
   components: {
     HeaderPanel,
     DragPanel,
     ContainerPanel,
-    PropertiesPanel,
+    PropertiesPanel
   },
   data() {
     return {
       selectItem: {},
       i18nkey: getUUID()
-    };
+    }
   },
   props: {
     template: {
       type: Object,
       default: () => {
         return {
-          list: [],
+          list: [{
+            type: 'controller',
+            layou: true,
+            options: {
+              customStyle: '',
+              customClass: '',
+              bordered: false,
+              add: true,
+              copy: true,
+              remove: true,
+              hidden: false,
+              disabled: false
+            },
+            label: '容器',
+            labelWidth: 0,
+            width: '100%',
+            span: 24,
+            key: 'controller_16992571869592',
+            model: 'controller_16992571869592',
+            list: []
+          }],
           config: {
-            labelPosition: "left",
+            labelPosition: 'top',
             labelWidth: 100,
-            size: "mini",
+            size: 'mini',
             outputHidden: true, //  是否输出隐藏字段的值 默认打开,所有字段都输出
             hideRequiredMark: false,
             syncLabelRequired: false,
-            customStyle: "",
-          },
-        };
-      },
+            customStyle: ''
+          }
+        }
+      }
     },
     customComponents: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     // 按钮显示隐藏
     clear: {
       type: Boolean,
-      default: true,
+      default: true
     },
     preview: {
       type: Boolean,
-      default: true,
+      default: true
     },
     imp: {
       type: Boolean,
-      default: true,
+      default: true
     },
     exp: {
       type: Boolean,
-      default: true,
+      default: true
     },
     // 外部属性配置
     config: {
-      type: Object,
+      type: Object
     },
     //基础组件是否要展示或待选组件列表集合
     basicItem: {
       type: [Array, Boolean],
-      default: true,
+      default: true
     },
     //装饰组件是否要展示或待选组件列表集合
     decorateItem: {
       type: [Array, Boolean],
-      default: true,
+      default: true
     },
     //布局组件是否要展示或待选组件列表集合
     layoutItem: {
       type: [Array, Boolean],
-      default: true,
+      default: true
     },
     //应用组件是否要展示或待选组件列表集合
     applicationItem: {
       type: [Array, Boolean],
-      default: true,
-    },
+      default: true
+    }
   },
   computed: {
     formTemplate() {
       return (
-        this.template || {
-          list: [],
-          config: {
-            labelPosition: "left",
-            labelWidth: 100,
-            size: "mini",
-            outputHidden: true, //  是否输出隐藏字段的值 默认打开,所有字段都输出
-            hideRequiredMark: false,
-            syncLabelRequired: false,
-            customStyle: "",
-          },
-        }
-      );
+          this.template || {
+            list: [
+              {
+                type: 'controller',
+                layou: true,
+                options: {
+                  customStyle: '',
+                  customClass: '',
+                  bordered: false,
+                  add: true,
+                  copy: true,
+                  remove: true,
+                  hidden: false,
+                  disabled: false
+                },
+                label: '容器',
+                labelWidth: 0,
+                width: '100%',
+                span: 24,
+                key: 'controller_16992571869592',
+                model: 'controller_16992571869592',
+                list: []
+              }
+            ],
+            config: {
+              labelPosition: 'left',
+              labelWidth: 100,
+              size: 'mini',
+              outputHidden: true, //  是否输出隐藏字段的值 默认打开,所有字段都输出
+              hideRequiredMark: false,
+              syncLabelRequired: false,
+              customStyle: ''
+            }
+          }
+      )
     },
     templateConfig() {
-      if (this.formTemplate) return this.formTemplate.config;
-      return {};
-    }, 
+      if (this.formTemplate) return this.formTemplate.config
+      return {}
+    },
     // 配置中的http配置
     httpConfig() {
-       //2023-10-11 lyf 判断是否注入了全局config 
+      //2023-10-11 lyf 判断是否注入了全局config
       // 优先判断内部
       if (this.config && this.config.httpConfig) {
-        return this.config.httpConfig;
-      } else if(this.$ngofrm_httpConfig) {
+        return this.config.httpConfig
+      } else if (this.$ngofrm_httpConfig) {
         return this.$ngofrm_httpConfig
       }
-      return null;
+      return null
     },
     // 自定义组件
     components() {
-      if(this.$ngofrm_components && this.$ngofrm_components.length > 0) {
-        return this.$ngofrm_components 
-      } else if(this.customComponents && this.customComponents.length > 0) {
+      if (this.$ngofrm_components && this.$ngofrm_components.length > 0) {
+        return this.$ngofrm_components
+      } else if (this.customComponents && this.customComponents.length > 0) {
         return this.customComponents
       }
 
       return undefined
     }
   },
-  watch: { 
+  watch: {
     httpConfig: {
-      handler(newVal) { 
-        window.nghttpConfig = newVal;
+      handler(newVal) {
+        window.nghttpConfig = newVal
       },
       deep: true,
-      immediate: false,
+      immediate: false
     },
     formTemplate: {
       handler(newVal) {
-        this.$emit("update:formTemplate", newVal);
+        this.$emit('update:formTemplate', newVal)
       },
       deep: true,
-      immediate: false,
-    },
+      immediate: false
+    }
   },
   provide() {
     return {
@@ -206,39 +248,39 @@ export default {
       configC: this.templateConfig,
       //dictsC: this.dicts,
       httpConfigC: this.httpConfig,
-      ngConfig: this.config 
-    };
+      ngConfig: this.config
+    }
   },
   created() {
     if (this.formTemplate == null) {
       this.formTemplate = {
         list: [],
         config: {
-          labelPosition: "left",
+          labelPosition: 'left',
           labelWidth: 100,
-          size: "mini",
+          size: 'mini',
           outputHidden: true, //  是否输出隐藏字段的值 默认打开,所有字段都输出
           hideRequiredMark: false,
           syncLabelRequired: false,
-          customStyle: "",
-        },
-      };
+          customStyle: ''
+        }
+      }
     }
 
-    if(this.httpConfig) {
-      window.nghttpConfig = this.httpConfig;
+    if (this.httpConfig) {
+      window.nghttpConfig = this.httpConfig
     }
   },
   methods: {
     handleSelectItem(record) {
-      this.selectItem = record;
+      this.selectItem = record
     },
-    
-    useLocale(val){
+
+    useLocale(val) {
       use(val)
-      this.i18nkey =  getUUID()
- 
-      this.$ngofrm_bus.$emit('i18nRefresh');
+      this.i18nkey = getUUID()
+
+      this.$ngofrm_bus.$emit('i18nRefresh')
     },
     // 返回编辑好的模板
     getModel() {
@@ -254,24 +296,24 @@ export default {
     },
     // 从模板处导入json表单模板
     importData(formTemplate = {}) {
-      this.formTemplate.list = formTemplate.list;
-      for(let k in formTemplate.config) {
+      this.formTemplate.list = formTemplate.list
+      for (let k in formTemplate.config) {
         this.template.config[k] = formTemplate.config[k]
       }
       //this.formTemplate.config = formTemplate.config;
-    },
-  },
-};
+    }
+  }
+}
 </script>
 <style>
 .form-design {
   height: 100%;
-  background: white;
-  text-align: left;
+//background: white; text-align: left;
 }
 
 .form-design .header {
   box-shadow: 1px 0px 6px 3px rgba(48, 65, 86, 0.35);
+  background: white;
 }
 
 .form-design .form-main {
@@ -289,21 +331,25 @@ export default {
   height: 100%;
   overflow-y: hidden;
   box-shadow: 1px 0px 6px 3px rgb(48 65 86 / 35%);
+  background: white;
 }
 
 .form-design .center-panel {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: #d5d5d5;
+  padding: 100px 50px 0 50px;
 }
 
 .form-design .properties-panel {
   height: 100%;
   box-shadow: -3px 0 6px rgb(48 65 86 / 35%);
+  background: white;
 }
 
 </style>
-<!-- 
+<!--
 <style lang="scss">
 .form-design {
   height: 100%;
