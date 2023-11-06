@@ -83,11 +83,11 @@ export default {
       message_tip: '提示信息',
       add_rule: '增加效验'
     },
-     
+
     item: {
       label: '标签',
       label_width: '标签宽度',
-      width: '宽度',
+      width: '填充宽度',
       span: '所占栅格',
       model: '数据字段',
       key: '数据key',
@@ -239,7 +239,7 @@ export default {
       textarea: {
         name: '文本框',
         rows: '行数',
-        autosize: '自动高度' 
+        autosize: '自动高度'
       },
       time: {
         name: '时间',
@@ -272,7 +272,7 @@ export default {
         warning: '告警',
         info: '信息',
         error: '异常',
-        
+
         effect: '主题',
         light: '高亮',
         dark: '暗黑',
@@ -289,7 +289,7 @@ export default {
         horizontal: '横向',
         vertical: '竖向',
         orientation: '标签位置',
-      
+
       },
       text: {
         text_align: '对齐方式',
@@ -299,19 +299,19 @@ export default {
         bold: '加粗'
       },
       controller: {
-        name: '容器', 
-        
+        name: '容器',
+
         can_add: '可新增',
         can_copy: '可复制',
         can_remove: '可删除',
-        
+
 
       },
       grid: {
         name: '栅格布局',
         columns: '栅格',
         gutter: '间隔',
-      
+
         config: '列配置'
       },
       table: {
@@ -362,12 +362,12 @@ export default {
         province_placeholder: '请选择省份',
         city_placeholder: '请选择省地市',
         district_placeholder: '请选择区县',
-         
+
       }
 
 
     },
-     
+
 
   }
 }
