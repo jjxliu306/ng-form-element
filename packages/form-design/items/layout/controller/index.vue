@@ -8,9 +8,12 @@
       >
      
         <!-- <div class="batch-label">弹性容器</div>  -->
-        <template v-if="isDragPanel">
-          <el-row :gutter="20" class="controller-row dragpanel" 
-            :class="{'controller-bordered': record.options && record.options.bordered}"> 
+        <template v-if="isDragPanel"> 
+          <el-row :gutter="20" class="controller-row"  
+            :class="{
+              'controller-bordered': record.options && record.options.bordered,
+              'dragpanel': isDragPanel
+            }"> 
             <draggable 
               tag="div"
               class="draggable-box"
@@ -50,7 +53,7 @@
             :style="record.options.customStyle"
              @contextmenu.prevent="handleShowRightMenu($event , idx) "
            >
-            <el-row :gutter="20" class="controller-row dragpanel" 
+            <el-row :gutter="20" class="controller-row" 
             :class="{'controller-bordered': record.options && record.options.bordered}"> 
              
               <template  v-for="(item, index) in record.list"  >

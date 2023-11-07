@@ -46,7 +46,12 @@ obj.options = {
             max: 24,
             default: 24,
             span: 24,
-        }
+        },
+        {
+            label: $t('ngform.item.model') , //'数据字段', 
+            prop: 'model',
+            span: 24,
+        },
     ],
     group: [
         {
