@@ -121,7 +121,7 @@
           </el-col>
           <el-col :span="2"></el-col>
           <el-col :span="2">
-            <i class="el-icon-sort" @click="handleChangeSpanType(column)"></i>
+            <i class="el-icon-sort" style="cursor: pointer;" @click="handleChangeSpanType(column)"></i>
           </el-col>
         </el-row>
         <el-row v-else-if="column.type == 'doubleNumber'">

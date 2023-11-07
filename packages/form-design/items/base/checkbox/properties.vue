@@ -2,7 +2,7 @@
 <div>
   <el-collapse-item name="data" :title="t('ngform.item.datasource')">
     <DatasourceConfig :selectItem="selectItem">
-      <template slot="defaultValue" > default_value
+      <template slot="defaultValue" >
         <el-form-item v-if="selectItem && selectItem.options.dynamic == 0" :label="t('ngform.item.default_value')">
           <!-- 判断当前是否多选 -->
           <el-checkbox-group
