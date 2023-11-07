@@ -1,8 +1,8 @@
 <template>  
 	 <el-switch
       v-model="models[record.model]" 
-      :active-text="record.options.activeText"
-      :inactive-text="record.options.inactiveText" 
+      :active-text="getLabel(record.options.activeText)"
+      :inactive-text="getLabel(record.options.inactiveText)" 
       :disabled="recordDisabled"
       @focus="handleFocus"
       @blur="handleBlur"
