@@ -46,7 +46,18 @@ obj.options = {
       max: 24,
       default: 24,
       span: 24
-    }
+    },
+    {
+      label: $t('ngform.item.model'), //'数据字段',
+      prop: 'model',
+      span: 24
+    },
+    {
+      label: $t('ngform.item.key'), //'数据KEY',
+      prop: 'key',
+      show: false,
+      span: 24
+    },
   ],
   group: [
     {
@@ -109,7 +120,12 @@ obj.options = {
           type: 'switch',
           default: false,
           span: 24
-        }
+        },
+        {
+            label: $t('ngform.item.model') , //'数据字段', 
+            prop: 'model',
+            span: 24,
+        },
 
       ]
     }
