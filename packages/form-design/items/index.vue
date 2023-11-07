@@ -12,7 +12,12 @@
     :selectItem="selectItem" 
     :models="models" 
     @handleSelectItem="handleSelectItem" 
-    /> 
+    >
+      <!-- 递归传递插槽！！！ -->
+      <template v-for="slot in Object.keys($slots)"  :slot="slot">
+        <slot :name="slot" :record="record"/>
+      </template>
+    </ItemNode> 
   <el-form-item 
     v-else-if="recordVisible"
     :label="label" 
@@ -32,7 +37,12 @@
       :prop-prepend="propPrepend"
       :models="models" 
       @handleSelectItem="handleSelectItem"
-      /> 
+      >
+        <!-- 递归传递插槽！！！ -->
+        <template v-for="slot in Object.keys($slots)"  :slot="slot">
+          <slot :name="slot" :record="record"/>
+        </template>
+      </ItemNode> 
   </el-form-item> 
 </template>
 <script>   

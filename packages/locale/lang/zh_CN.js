@@ -403,6 +403,11 @@ export default {
         city_placeholder: '请选择省地市',
         district_placeholder: '请选择区县',
 
+        select_type: '样式',
+        select: '下拉框' ,
+        cascader: '级联选择',
+        any_select: '任意可选'
+
       },
       collapse: {
         name: '折叠面板',

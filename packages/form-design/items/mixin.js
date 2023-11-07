@@ -96,6 +96,7 @@ export default {
 	},
 	watch: {
 		dicts(val) {
+			if(!this.record || !this.record.options) return
 			// 只有数据字典要素才需要
 			if(this.record.options.dynamic != 2 || !this.record.options.dictType ) return 
 			//console.log('watch dict' , val)
@@ -114,6 +115,7 @@ export default {
 					// 当前赋值类型不是数组
 					|| ! (this.models[this.record.model] instanceof Array)
 				)) {
+				if(!this.record.options) return
 				const defaultValue = this.record.options.defaultValue
 				if(defaultValue != null && defaultValue != undefined && defaultValue instanceof Array ) {
 					this.$set(this.models , this.record.model , defaultValue)
@@ -131,6 +133,8 @@ export default {
 					!Object.prototype.hasOwnProperty.call(this.models,this.record.model)
 					|| this.models[this.record.model] == undefined) 
 				) {
+				if(!this.record.options) return
+
 				const defaultValue = this.record.options.defaultValue
 				if(defaultValue != null && defaultValue != undefined) {
 					this.$set(this.models , this.record.model , defaultValue)
@@ -179,6 +183,8 @@ export default {
 	    },
 	     // 初始化远程数据或者数据字典 针对select radio checkbox
 	    initDynamicValue() {
+	      if(!this.record || !this.record.options) return
+
 	      if(this.record.options.dynamic == 1 && this.record.options.remoteFunc) {
 	        
 	        const url =  this.record.options.remoteFunc 
@@ -215,6 +221,7 @@ export default {
 	      }
 	    },
 	    remoteMethod(query){
+	      if(!this.record || !this.record.options) return
 	      let queryParam = this.record.options.onlineParams
 	      queryParam = queryParam.replace('$' , query)
 
@@ -232,7 +239,7 @@ export default {
 	    },
 	    // 获取远程数据
 	    getRemoteData() { 
-
+	    	if(!this.record || !this.record.options) return
 	     
 	      
 	      	const dataPath = this.record.options.dataPath

@@ -25,6 +25,10 @@
 		        :preview="preview || renderPreview"
 		        :isDrag="false"  
 		        >  
+		      <!-- 递归传递插槽！！！ -->
+          <template v-for="slot in Object.keys($slots)"  :slot="slot"  > 
+            <slot :name="slot" :record="record"/>
+          </template>  
 		    </Node>  
 	    </el-row> 
 	</el-form> 
@@ -123,12 +127,20 @@ export default {
      		httpConfigC: this.httpConfig,
      		ngConfig: this.config
     	}
-  	},
-  	created(){
-  		if(this.httpConfig) {
-     		window.nghttpConfig = this.httpConfig;
-    	}
-  	},
+  },
+  created(){
+  	if(this.httpConfig) {
+     	window.nghttpConfig = this.httpConfig;
+    }
+  },
+  mounted() {
+  	// console.log('0 $slots' , this.$slots)
+  	this.$ngofrm_bus.$on('reset', () => { 
+	    this.$nextTick(()=> {
+  			this.$refs.form.resetFields()
+  		})
+	  });
+  },
 	methods: {
 	  	reset() {
 	  		this.$refs.form && this.$refs.form.resetFields()

@@ -42,6 +42,7 @@
 			            	@handleCopy="handleCopy(record)"
 			            	@handleDetele="handleDetele(record)"
 			            	>  
+			            
 			        	</Node> 
 			        </transition-group>
 		    	</draggable> 

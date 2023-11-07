@@ -111,6 +111,18 @@ export default {
         this.$set(this.record, 'list' , [])
       }
     } else {
+      this.initFirst()
+    }
+  },
+  mounted(){ 
+    
+    this.$ngofrm_bus.$on('reset', () => { 
+       this.initFirst()
+    });
+
+  },
+  methods: {
+    initFirst() {
       if(!this.models ) return 
       if(!this.models[this.record.model]) {
         let firstData = {} 
@@ -119,9 +131,7 @@ export default {
         })
         this.$set(this.models , this.record.model , [firstData])
       }
-    }
-  },
-  methods: {
+    },
     dragEnd(evt, list) {   
       // 拖拽结束,自动选择拖拽的控件项
       // 复制一遍

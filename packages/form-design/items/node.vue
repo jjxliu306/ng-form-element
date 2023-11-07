@@ -21,6 +21,10 @@
         @handleFocus="handleFocus"
         @handleBlur="handleBlur"
         :is="customComponent">
+      <!-- 递归传递插槽！！！ -->
+      <template v-for="slot in Object.keys($slots)"  :slot="slot">
+        <slot :name="slot" :record="record"/>
+      </template>  
   </component>
 </template>
 <script>
@@ -111,7 +115,7 @@ export default {
     },
     // 数据监听中要监听的数据，先通过计算属性计算 然后通过watch监听变化
     listenModelValue() {
-      if(!this.isDragPanel && this.record.options.listenModel && this.record.options.listenModelData) {
+      if(!this.isDragPanel && this.record.options && this.record.options.listenModel && this.record.options.listenModelData) {
 
               const lmodels = this.record.options.listenModelData.split(',')
               let vs = []
@@ -135,6 +139,7 @@ export default {
           if(this.isDragPanel
             || (!val && !oldVal)
             || !this.models
+            || !this.record.options
             || !this.record.options.listenModel
             || !this.record.options.listenModelData
             || !this.record.options.listenModelScript )
@@ -165,6 +170,7 @@ export default {
       this.$emit('handleSelectItem' , item)
     },
     handleFocus(e) {
+      if(!this.record || !this.record.options) return
        // 判断是否有监听
       const focusEventScript = this.record.options.focusEvent
 
@@ -173,6 +179,7 @@ export default {
       dynamicVoidFun(focusEventScript,this.models)
     },
     handleBlur(e) {
+      if(!this.record || !this.record.options) return
        // 判断是否有监听
       const blurEventScript = this.record.options.blurEvent
 

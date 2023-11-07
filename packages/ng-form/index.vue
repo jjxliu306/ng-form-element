@@ -88,7 +88,7 @@
           <el-checkbox :label="rv.value" v-for="rv in column.dicData" :key="rv.value">{{ formLabel(rv.label) }}
           </el-checkbox>
         </el-checkbox-group>
-        <el-select clearable v-else-if="column.type == 'select'" v-model="model[column.prop]"
+        <el-select  :clearable="column.clearable == null || column.clearable == undefined ? true : column.clearable"  v-else-if="column.type == 'select'" v-model="model[column.prop]"
                    :placeholder="formLabel(column.placeholder)" style="width:100%"
         >
           <el-option
@@ -164,6 +164,9 @@
           <template v-else-if="column.type == 'rules'">
              <Rules  v-model="model[column.prop]" />
           </template>
+          <template v-else-if="column.type == 'image'"> 
+            <ImageUpload  v-model="model[column.prop]" />
+          </template> 
        <!--  </slot> -->
         <!-- 插槽 -->
         <!-- <slot :name="column.prop"></slot> -->
@@ -177,11 +180,13 @@ import { t , currentLang } from '../locale/index.js'
 // key-value数组配置
 import KvList from './kv-list.vue'
 import Rules from './rules.vue'
+import ImageUpload from './image.vue'
 export default {
   name: 'ng-form',
   components: {
     KvList,
-    Rules
+    Rules,
+    ImageUpload
   },
   data () {
     return {

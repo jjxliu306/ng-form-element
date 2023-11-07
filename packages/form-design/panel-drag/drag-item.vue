@@ -77,7 +77,8 @@ export default {
 .drag-item {
   padding: 8px 0;
   width: 100%;
-  height: 100%;
+  max-height: 400px;
+  overflow: auto;
 }
 
 .drag-item .widget-cate {

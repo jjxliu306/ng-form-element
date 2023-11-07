@@ -19,7 +19,12 @@
             @handleSelectItem="handleSelectItem"
             @handleCopy="$emit('handleCopy')"
             @handleDetele="$emit('handleDetele')"
-        />
+        >
+         <!-- 递归传递插槽！！！ -->
+          <template v-for="slot in Object.keys($slots)"  :slot="slot"> 
+            <slot :name="slot" :record="record"/>
+          </template>
+        </Item>
       </div>
       <template v-if="isDrag">
         <div class="key-box" v-text="record.model"/>

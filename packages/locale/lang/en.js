@@ -402,6 +402,11 @@ export default {
         province_placeholder: 'Select Province',
         city_placeholder: 'Select City',
         district_placeholder: 'Select District',
+
+        select_type: 'Type',
+        select: 'Select' ,
+        cascader: 'Cascader',
+        any_select: 'Any select'
          
       },
       collapse: {
