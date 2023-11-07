@@ -151,6 +151,7 @@ export default {
       layout: '布局组件',
       custom_components: '自定义组件',
 
+      height: '高度',
 
       batch: {
         name: '动态表格' ,
@@ -209,6 +210,23 @@ export default {
         max: '最大值',
         append: '后缀'
       },
+      button: {
+        name: '按钮',
+        size: '尺寸',
+        align: '排列方式',
+        type: '类型',
+        plain: '朴素',
+        round: '圆角',
+        circle: '圆形',
+        control: '功能',
+        reset: '重置',
+        custom: '自定义',
+        script: '执行脚本'
+      },
+      editor: {
+        name: '富文本框',
+        if_html: 'Html预览'
+      },
       radio: {
         name: '单选框'
       },
@@ -246,12 +264,14 @@ export default {
         time_format: '时间格式'
       },
       upload: {
+        upload_type: '上传类型',
         file_name: '上传文件',
+        bucket: '存储桶' ,
         img_name: '上传图片',
         upload_url: '上传地址',
         file_type: '文件类型',
         file_url_path: 'EPL地址',
-        limit_size: '文件大小',
+        limit_size: '最大(Mb)',
         multiple: '多文件',
         limit: '文件数量',
         header: '携带头信息',

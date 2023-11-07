@@ -153,6 +153,8 @@ export default {
       layout: 'Layout',
       custom_components: 'Custom',
 
+      height: 'Height',
+
       batch: {
         name: 'Batch' ,
         scroll_height: 'scroll height' ,
@@ -210,6 +212,23 @@ export default {
         max: 'Max',
         append: 'Append'
       },
+      button: {
+        name: 'Button',
+        size: 'Size',
+        type: 'Type',
+        align: 'Align',
+        plain: 'Plain',
+        round: 'Round',
+        circle: 'Circle',
+        control: 'Control',
+        reset: 'Reset',
+        custom: 'Custom',
+        script: 'Script'
+      },
+      editor: {
+        name: 'Editor',
+        if_html: 'Html Preview'
+      },
       radio: {
         name: 'Radio'
       },
@@ -248,14 +267,16 @@ export default {
         time_format: 'Format'
       },
       upload: {
+        upload_type: 'Type',
+        bucket: 'BucketName' ,
         file_name: 'FileUpload',
         img_name: 'ImageUpload',
         upload_url: 'Upload Url',
         file_type: 'File Type',
         file_url_path: 'EPL Path',
-        limit_size: 'LimitSize',
+        limit_size: 'MaxSize(Mb)',
         multiple: 'Multiple',
-        limit: 'MaxSize',
+        limit: 'LimitSize',
         header: 'Headers',
         style: 'Style',
         upload_hidden: 'Uploaded Hide',
