@@ -1,6 +1,6 @@
 {
   "name": "ng-form-element",
-  "version": "2.1.10",
+  "version": "2.2.1",
   "scripts": {
     "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
