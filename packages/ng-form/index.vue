@@ -10,7 +10,7 @@
     label-position="right"
     :label-width="(config.labelWidth || 80) + 'px'">
 
-    <template v-for="column in columns">
+    <template v-for="(column,idx) in columns">
 
 
       <el-divider :key="'divider' + idx" content-position="center" class="ng-form-divider" v-if="column.type == 'divider' && (column.show == undefined || column.show == true || columnVisible(column.show))">{{formLabel(column.label)}}</el-divider>

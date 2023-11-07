@@ -285,6 +285,38 @@ export default {
         show_icon: 'Icon',
 
       },
+      barcode: {
+        name: 'Barcode',
+        info: 'Data',
+         width: 'Width',
+         height: 'Height',
+        margin: 'Margin',
+        format: 'Format',
+        display_value: 'Display Value',
+        font_size: 'Fontsize',
+        font_options: 'Font',
+        text_align: 'TextAlign',
+        text_position: 'TextPosition',
+        text_margin: 'TextMargin',
+        background: 'Background',
+        line_color: 'LineColor'
+      },
+      qrcode: {
+        name: 'Qrcode',
+        info: 'Data',
+        height: 'Height',
+        margin: 'Margin',
+        color_dark: 'ColorDark',
+        color_light: 'ColorLight',
+        logo_margin: 'LogoMargin',
+        bg_src: 'BGImage',
+        bg_color: 'BGColor',
+        logo_src: 'Logo',
+        logo_scale: 'Logo Scale',
+        logo_bg_color: 'Logo BgColor',
+        logo_radius: 'Logo Radius',
+        white_margin: 'White margin'
+      },
       divider: {
         name: 'Divider',
         direction: 'Direction',
@@ -299,6 +331,13 @@ export default {
         required_mark: 'RequiredMark',
         required_mark_script: 'Script',
         bold: 'Bold'
+      },
+      link: {
+        name: 'Link',
+        href: 'Href',
+        type: 'Type',
+        underline: 'Underline',
+        icon: 'Icon'
       },
       controller: {
         name: 'Control', 
@@ -364,6 +403,47 @@ export default {
         city_placeholder: 'Select City',
         district_placeholder: 'Select District',
          
+      },
+      collapse: {
+        name: 'Collapse',
+        item: 'Collapse',
+        title_font_size: 'Title FontSize',
+        title_background: 'Title Background',
+        title_font_color: 'Title Color',
+        item_first: 'CollapseFirst', 
+        accordion: 'Accordion'
+      },
+      card: {
+        name: 'Card', 
+        title_font_size: 'Title FontSize',
+        title_background: 'Title Background',
+        title_font_color: 'Title Color',
+        shadow: 'Shadow'
+      },
+      signature: {
+        name: 'Signature',
+        image_type: 'ImageType',
+        quality: 'Quality',
+        line_width: 'LineWidth',
+        line_color: 'LineColor',
+        bg_color: 'Background',
+        if_crop: 'Crop',
+        clear: 'Clear' 
+
+      },
+      slot: {
+        name: 'Slot',
+        slot_name: 'Slot Name',
+        name_placeholder: 'English sloat name'
+      },
+      iframe: {
+        name: 'Iframe',
+        url: 'Url',
+        url_placeholder: 'Enter the web url of the iframe',
+        marginheight: 'Marginheight',
+        marginwidth: 'Marginwidth',
+        sandbox: 'Sandbox',
+        scrolling: 'Scrolling'
       }
 
     },

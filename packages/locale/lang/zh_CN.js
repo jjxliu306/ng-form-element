@@ -283,6 +283,39 @@ export default {
         show_icon: '显示图标',
 
       },
+      barcode: {
+        name: '条形码',
+        info: '内容',
+        width: '宽度',
+         height: '高度',
+        margin: '边距',
+        format: '格式',
+        display_value: '显示文字',
+        font_size: '字体大小',
+        font_options: '字体',
+        text_align: '对齐方式',
+        text_position: '文本位置',
+        text_margin: '文本间距',
+        background: '背景色',
+        line_color: '条码颜色'
+      },
+      qrcode: {
+        name: '二维码',
+        info: '内容',
+        height: '高度',
+        margin: '边距',
+        color_dark: '实点颜色',
+        color_light: '亮点颜色',
+        bg_src: '背景图片',
+        bg_color: '背景颜色',
+        logo_src: 'LOGO图片',
+        logo_scale: 'LOGO缩放比',
+        logo_margin: 'LOGO边距',
+        logo_bg_color: 'LOGO背景色',
+        logo_radius: 'LOGO圆角',
+        white_margin: '空白边框'
+
+      },
       divider: {
         name: '分割线',
         direction: '方向',
@@ -297,6 +330,13 @@ export default {
         required_mark: '必选标记',
         required_mark_script: '动态必选',
         bold: '加粗'
+      },
+      link: {
+        name: '文字链接',
+        href: '跳转链接',
+        type: '类型',
+        underline: '下滑线',
+        icon: '图标'
       },
       controller: {
         name: '容器',
@@ -363,6 +403,47 @@ export default {
         city_placeholder: '请选择省地市',
         district_placeholder: '请选择区县',
 
+      },
+      collapse: {
+        name: '折叠面板',
+        item: '折叠面板',
+        title_font_size: '标题字号',
+        title_background: '标题背景',
+        title_font_color: '标题颜色',
+        item_first: '面板1', 
+        accordion: '手风琴模式'
+      },
+      card: {
+        name: '卡片', 
+        title_font_size: '标题字号',
+        title_background: '标题背景',
+        title_font_color: '标题颜色',
+        shadow: '阴影'
+      },
+      signature: {
+         name: '签名',
+         image_type: '图片类型',
+         quality: '图片质量',
+         line_width: '画笔粗度',
+         line_color: '画笔颜色',
+         bg_color: '背景颜色',
+         if_crop: '是否裁剪',
+         clear: '清空画板' 
+
+      },
+      slot: {
+        name: '插槽',
+        slot_name: '插槽名称',
+        name_placeholder: '扩展插槽的名称,英文'
+      },
+      iframe: {
+        name: 'Iframe',
+        url: '地址',
+        url_placeholder: '输入iframe的网页地址',
+        marginheight: '上下边距',
+        marginwidth: '左右边距',
+        sandbox: '沙箱',
+        scrolling: '滚动条'
       }
 
 
