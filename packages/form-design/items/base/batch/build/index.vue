@@ -225,9 +225,9 @@ export default {
         const items = this.record.list
 
         const itemObject = {} 
-        items.forEach(t=>{
-          itemObject[t.model] = ''
-        })
+        // items.forEach(t=>{
+        //   itemObject[t.model] = ''
+        // })
  
         let domains = this.models[this.record.model] 
         if(!domains) {

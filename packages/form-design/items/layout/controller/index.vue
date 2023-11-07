@@ -157,9 +157,9 @@ export default {
         // 将当前数据复制一份 压入
       const data_ = {} 
 
-      this.record.list.forEach(t=> {
-        data_[t.model] = ''
-      }) 
+      // this.record.list.forEach(t=> {
+      //   data_[t.model] = ''
+      // }) 
       this.models[this.record.model].push(data_) 
     },
     handleShowRightMenu(e, idx) {
