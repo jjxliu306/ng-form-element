@@ -134,8 +134,8 @@ export default {
   height: 50px;
   position: absolute;
   top: 40%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
+  left: 40%;
+  //-webkit-transform: translate(-50%, -40%);
   font-size: 20px;
   font-weight: 700;
 }

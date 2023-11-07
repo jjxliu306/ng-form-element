@@ -82,30 +82,10 @@ export default {
       type: Object,
       default: () => {
         return {
-          list: [{
-            type: 'controller',
-            layou: true,
-            options: {
-              customStyle: '',
-              customClass: '',
-              bordered: false,
-              add: true,
-              copy: true,
-              remove: true,
-              hidden: false,
-              disabled: false
-            },
-            label: '容器',
-            labelWidth: 0,
-            width: '100%',
-            span: 24,
-            key: 'controller_16992571869592',
-            model: 'controller_16992571869592',
-            list: []
-          }],
+          list: [],
           config: {
             labelPosition: 'top',
-            labelWidth: 100,
+            labelWidth: 80,
             size: 'mini',
             outputHidden: true, //  是否输出隐藏字段的值 默认打开,所有字段都输出
             hideRequiredMark: false,
@@ -308,7 +288,8 @@ export default {
 <style>
 .form-design {
   height: 100%;
-//background: white; text-align: left;
+  background: white; 
+  text-align: left;
 }
 
 .form-design .header {
@@ -338,8 +319,8 @@ export default {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: #d5d5d5;
-  padding: 100px 50px 0 50px;
+  //background-color: #d5d5d5;
+  //padding: 100px 50px 0 50px;
 }
 
 .form-design .properties-panel {
