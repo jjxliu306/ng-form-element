@@ -110,8 +110,16 @@ obj.options = {
                     type: 'radio',
                     dicData: [
                         {value: 'reset' , label: $t('ngform.item.button.reset')},
+                        {value: 'event' , label: $t('ngform.item.button.event')},
                         {value: 'custom' , label: $t('ngform.item.button.custom')}
                     ],
+                    span: 24,
+                }, 
+                {
+                    label: $t('ngform.item.button.event_name'),// 布局
+                    prop: 'eventName',   
+                    show: '$.options.control == "event"',
+                    type: 'textarea', 
                     span: 24,
                 }, 
                 {
@@ -136,19 +144,21 @@ obj.options = {
                   span: 24,
                 } ,
                 {
-                  label: $t('ngform.item.button.round'),//圆角按钮
-                  prop: 'round',
-                  type: 'switch',
+                  label: $t('ngform.item.button.circle') ,//圆形按钮
+                  prop: 'circle',
+                  type: 'switch', 
                   default: false,
                   span: 24,
                 },
                 {
-                  label: $t('ngform.item.button.circle') ,//圆形按钮
-                  prop: 'hidden',
+                  label: $t('ngform.item.button.round'),//圆角按钮
+                  prop: 'round',
                   type: 'switch',
+                  show: '!$.options.circle',
                   default: false,
                   span: 24,
                 },
+              
                 {
                   label: $t('ngform.item.if_disabled') ,//'是否禁用',
                   prop: 'disabled',

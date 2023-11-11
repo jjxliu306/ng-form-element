@@ -221,6 +221,8 @@ export default {
         control: '功能',
         reset: '重置',
         custom: '自定义',
+        event: '事件',
+        event_name: '事件名称',
         script: '执行脚本'
       },
       editor: {

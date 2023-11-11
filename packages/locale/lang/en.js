@@ -223,6 +223,8 @@ export default {
         control: 'Control',
         reset: 'Reset',
         custom: 'Custom',
+        event: 'Event',
+        event_name: 'EventName',
         script: 'Script'
       },
       editor: {

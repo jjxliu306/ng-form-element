@@ -10,8 +10,8 @@
 		>
 		 
 	</Editor> 
-	<div v-else>
-		{{models[record.model]}} 
+	<div v-else v-html="models[record.model]">
+		<!-- {{models[record.model]}}  -->
 	</div> 
 </template>
 <script>
