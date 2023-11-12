@@ -26,7 +26,14 @@ export default {
     		if(control == 'reset') {
     			// 清空
     			this.$ngofrm_bus.$emit('reset');
-    		} else {
+    		} else if(control == 'event') {
+    			// vue全局事件 eventbus
+    			const event = this.record.options.eventName 
+    			if(event) {
+    				this.$ngofrm_bus.$emit(event);
+    			}
+
+    		} else if(control == 'custom') {
     			// 判断是否有脚本
     			const clickScript = this.record.options.script 
     			if(!clickScript) return 
