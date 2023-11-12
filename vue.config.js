@@ -57,6 +57,15 @@ module.exports = {
         //"vue-router": "VueRouter",
         //vuex: "Vuex"
       }
+      config.performance= {
+        hints: 'warning',
+        maxEntrypointSize: 40000000,
+        // 生成文件的最大体积
+        maxAssetSize: 20000000,
+        assetFilter: function(assetFilename) {
+          return assetFilename.endsWith('.js')
+        }
+      }
     }
 
   },
