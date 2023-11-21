@@ -151,6 +151,13 @@ obj.options = {
           span: 24
         },
         {
+          label: $t('ngform.item.batch.fixed_operate'),//'是否禁用',
+          prop: 'fixedBtn',
+          type: 'switch',
+          default: false,
+          span: 24
+        },
+        {
           label: $t('ngform.item.batch.add_type'),// '新增方式',
           prop: 'addType',
           default: 'line',

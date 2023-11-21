@@ -12,7 +12,7 @@
       :size="config.size"
       :style="record.options.customStyle" 
       :data="models[record.model]" 
-      :empty-text="record.options.noDataText || t('ngform.item.batch.no_data')"
+      :empty-text="getLabel(record.options.noDataText) || t('ngform.item.batch.no_data')"
       :border="record.options.showBorder"
       :scroll="{
         x:
@@ -47,6 +47,7 @@
         <el-table-column  
           :label="t('ngform.item.batch.operate')"
           align="center" 
+          :fixed="record.options.fixedBtn ? 'right' : undefined"
           v-if="!preview || record.options.addType == 'dialog'"
           :width="controlWidth ">
           <template  slot-scope="scope"> 
@@ -68,7 +69,7 @@
 
        
     </el-table>
-    <el-button v-if="!preview" :size="config.size" type="dashed" :disabled="disabled" @click="addDomain">
+    <el-button v-if="!preview" :size="config.size" type="dashed" :disabled="curDisabled" @click="addDomain">
       <i class="el-icon-circle-plus-outline" />{{t('ngform.item.add')}} 
     </el-button>
 
@@ -120,8 +121,8 @@ export default {
      
   },  
   computed: { 
-    disabled() {
-      return this.record.options.disabled || this.parentDisabled;
+    curDisabled() {
+      return this.record.options.disabled || this.disabled || this.parentDisabled;
     },
     templateData() {
       return {list: this.record.list, config: this.config }

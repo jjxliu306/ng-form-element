@@ -75,7 +75,7 @@ export default {
         this.editor.txt.html(val)
       }
       try {
-        this.editor.selection.moveCursor(this.phoneEditor.$textElem.elems[0], false);
+        this.editor.selection.moveCursor(this.editor.$textElem.elems[0], false);
       } catch (err) {
         console.error(err)
       }

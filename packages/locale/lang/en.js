@@ -175,7 +175,8 @@ export default {
         operate: 'Operate',
         seq_label: 'Sequence',
         operation_success: 'Operation success',
-        delete_prompt: 'Are you sure to delete this data?'
+        delete_prompt: 'Are you sure to delete this data?',
+        fixed_operate: 'Operate Fixed'
 
       },
       cascader: {

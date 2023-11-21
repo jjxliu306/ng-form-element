@@ -1,7 +1,7 @@
 <template>   
 	<Editor 
 		v-if="!preview"
-		:placeholder="record.options.placeholder"
+		:placeholder="getLabel(record.options.placeholder)"
 		:clearable="record.options.clearable"
 		:disabled="recordDisabled || isDragPanel" 
 		:preview="preview"

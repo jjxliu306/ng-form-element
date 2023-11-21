@@ -18,8 +18,8 @@
       :record="record"
       :show-label="false"
       :prop-prepend="parentModel + '.' + index + '.' "  
-      @focus="handleFocus"
-      @blur="handleBlur"
+      @focus="$emit('focus')"
+      @blur="$emit('blur')"
     />    
 </div>
 </template>
@@ -47,6 +47,10 @@ export default {
     domains: {
       type: Object
     }, 
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     parentModel: {
       type: String,
       required : true

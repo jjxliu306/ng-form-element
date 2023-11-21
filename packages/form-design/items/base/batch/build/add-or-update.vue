@@ -6,7 +6,7 @@
     :lock-scroll="false"
     :visible.sync="visible"
     :id="randomId">     
-   <el-form
+  <el-form
       v-if="
         typeof formTemplate.list !== 'undefined'
       "
@@ -19,21 +19,23 @@
       size="mini"
       :key="dataForm._id"
     > 
-    <template
-      v-for="item  in formTemplate.list"  
-    >
-       
-    <ng-form-item  
-        :key="item.key"
-        :disabled="disabled"
-        :preview="preview"
-        :models.sync="dataForm"   
-        :record="item" 
-        @focus="handleFocus"
-        @blur="handleBlur"
-      />
-      
-    </template>
+    <el-row :gutter="20" > 
+      <template
+        v-for="item  in formTemplate.list"  
+      > 
+      <el-col :span="item.span || 24">
+        <ng-form-item  
+            :key="item.key"
+            :disabled="disabled"
+            :preview="preview"
+            :models.sync="dataForm"   
+            :record="item" 
+            @focus="handleFocus"
+            @blur="handleBlur"
+          />
+        </el-col> 
+      </template>
+    </el-row>
      <el-form-item :label="t('ngform.item.batch.seq_label')" prop="seq">
           <template v-if="preview">
             {{dataForm.seq}}

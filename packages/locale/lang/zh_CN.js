@@ -173,7 +173,8 @@ export default {
         operate: '操作',
         seq_label: '排序号',
         operation_success: '更新成功',
-        delete_prompt: '确定删除此数据?'
+        delete_prompt: '确定删除此数据?',
+        fixed_operate: '操作固定'
       },
       cascader: {
         name: '级联选择器'

@@ -113,10 +113,10 @@
             >
             </el-slider>
             <el-radio-group v-model="model[column.prop]" v-else>
-              <el-radio-button label="6">25%</el-radio-button>
-              <el-radio-button label="12">50%</el-radio-button>
-              <el-radio-button label="18">75%</el-radio-button>
-              <el-radio-button label="24">100%</el-radio-button>
+              <el-radio-button :label="6">25%</el-radio-button>
+              <el-radio-button :label="12">50%</el-radio-button>
+              <el-radio-button :label="18">75%</el-radio-button>
+              <el-radio-button :label="24">100%</el-radio-button>
             </el-radio-group>
           </el-col>
           <el-col :span="2"></el-col>
