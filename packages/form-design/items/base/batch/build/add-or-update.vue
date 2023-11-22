@@ -221,7 +221,8 @@
             }
           } else {
             // 初始化数据  
-             
+
+          
             //const d = {}
             this.dataForm.seq = 0 
             this.formTemplate.list.forEach(item => {
@@ -231,8 +232,11 @@
               else 
                 //this.dataForm[item.model] = undefined
                 this.$set(this.dataForm ,item.model , undefined)
+
+                // 删除对应的label
+                delete this.dataForm[item.model + 'label']
             }); 
-  
+            console.log('this.dataForm' , this.dataForm)
             this.$nextTick(() => {
               this.$refs['dataForm'] && this.$refs['dataForm'].resetFields()
          

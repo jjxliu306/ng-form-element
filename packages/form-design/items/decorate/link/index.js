@@ -21,6 +21,7 @@ obj.options = {
         {   
             label: $t('ngform.item.label'), 
             prop: 'label',
+            type: 'textarea',
             default: $t('ngform.item.link.name'),//'输入框',
             span: 24,
         }, 
