@@ -12,6 +12,10 @@ obj.component = BaseIndex
 // 序号 实际在json中删除
 obj.seq = 20
 
+// 不需要事件和监听
+obj.event_ = false
+obj.listen_ = false
+
 // 补充配置样式
 obj.options = {
 	config: {

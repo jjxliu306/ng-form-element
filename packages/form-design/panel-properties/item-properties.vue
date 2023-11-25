@@ -65,7 +65,7 @@
       >
       </component>
       <template v-if="selectItem && selectItem.options && formColumns && formColumns.config">
-        <el-collapse-item name="event" :title="t('ngform.properties.event')">
+        <el-collapse-item name="event" v-if="showEvent" :title="t('ngform.properties.event')">
           <ng-form
               :config="formColumns.config"
               :record="selectItem"
@@ -88,7 +88,7 @@
 					]"
           />
         </el-collapse-item>
-        <el-collapse-item name="listen" :title="t('ngform.properties.listen')">
+        <el-collapse-item name="listen" v-if="showListen" :title="t('ngform.properties.listen')">
           <ng-form
               :config="formColumns.config"
               :record="selectItem"
@@ -138,9 +138,11 @@
 		                    placeholder: $t('ngform.properties.dynamic_visible_tip'),//'请输入显示条件,$标识当前整个表单的绑定数据' ,
 		                    span: 24,
 		                },
+                    // 动态禁用必须包含disabled属性
 		                {
 		                    label: $t('ngform.properties.dynamic_disabled'),//'动态禁用',
 		                    prop: 'dynamicDisabled',
+                        show: '$.options.disabled != undefined && $.options.disabled != null' ,
 		                    type: 'switch',
 		                    span: 24,
 		                },
@@ -203,6 +205,20 @@ export default {
       }
       return ''
     },
+    // 是否显示事件
+    showEvent() {
+      if(!this.selectItem) return false
+      if(this.selectItem.event_ != undefined && !this.selectItem.event_) return false 
+
+      return true ;
+    },
+    // 是否显示监听
+    showListen() {
+      if(!this.selectItem) return false
+      if(this.selectItem.listen_ != undefined && !this.selectItem.listen_) return false 
+
+      return true ;
+    },
     isCustomComponent() {
       if (!this.selectItem || !this.selectItem.type) return false
 
@@ -255,7 +271,7 @@ export default {
     }
   },
   mounted() {
-    this.$ngofrm_bus.$on('i18nRefresh', () => {
+    this.$ngform_bus.$on('i18nRefresh', () => {
       this.formKey = new Date().getTime()
     })
   },

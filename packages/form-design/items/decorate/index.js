@@ -15,6 +15,11 @@ list = list.sort(function(a,b){
   return a.seq - b.seq
 })
 
+list.forEach(t=> {
+  // 不需要事件和监听
+  t.event_ = false
+  t.listen_ = false
+})
 
 export default {
   type: 'decorate',

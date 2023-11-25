@@ -135,7 +135,7 @@ export default {
   },
   mounted() {
   	// console.log('0 $slots' , this.$slots)
-  	this.$ngofrm_bus.$on('reset', () => { 
+  	this.$ngform_bus.$on('reset', () => { 
 	    this.$nextTick(()=> {
   			this.$refs.form.resetFields()
   		})
@@ -149,7 +149,7 @@ export default {
 	      use(val)
 	      this.key = getUUID()
 
-	      this.$ngofrm_bus.$emit('i18nRefresh');
+	      this.$ngform_bus.$emit('i18nRefresh');
 	    },
 	  	validate() {
 	  		return new Promise((resolve, reject) => { 

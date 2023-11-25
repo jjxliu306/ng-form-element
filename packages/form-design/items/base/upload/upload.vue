@@ -81,7 +81,7 @@ export default {
 	    },
 	    action: {
 	      type: String,
-	      required: true
+	      default: ''
 	    },
 	    disabled: {
 	      type: Boolean,

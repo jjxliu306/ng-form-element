@@ -13,6 +13,10 @@ obj.component = BaseIndex
 // 序号 实际在json中删除
 obj.seq = 7
 
+// 不需要事件和监听
+obj.event_ = false
+obj.listen_ = false
+
 // 补充配置样式
 obj.options = {
 	config: {
@@ -105,7 +109,7 @@ obj.options = {
                     span: 24,
                 },
                 {
-                    label: $t('ngform.item.button.control'),// 布局
+                    label: $t('ngform.item.button.click_control'),// 布局
                     prop: 'control',   
                     type: 'radio',
                     dicData: [
@@ -116,9 +120,10 @@ obj.options = {
                     span: 24,
                 }, 
                 {
-                    label: $t('ngform.item.button.event_name'),// 布局
+                    label: $t('ngform.item.button.event_name'),//事件
                     prop: 'eventName',   
                     show: '$.options.control == "event"',
+                    placeholder: 'event_bus name',
                     type: 'textarea', 
                     span: 24,
                 }, 
@@ -126,6 +131,7 @@ obj.options = {
                     label: $t('ngform.item.button.script'),// 布局
                     prop: 'script',   
                     show: '$.options.control == "custom"',
+                    placeholder: 'eg: $.a = $.b',
                     type: 'textarea', 
                     span: 24,
                 }, 

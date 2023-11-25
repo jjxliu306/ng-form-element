@@ -76,7 +76,7 @@ const install = function (Vue, opts = {}) {
 
   const bus = new Vue();
 
-  Vue.prototype.$ngofrm_bus = bus;
+  Vue.prototype.$ngform_bus = bus;
 
   // 判断是否安装
   if (install.installed) return

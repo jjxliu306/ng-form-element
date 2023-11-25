@@ -25,12 +25,13 @@ export default {
  
     		if(control == 'reset') {
     			// 清空
-    			this.$ngofrm_bus.$emit('reset');
+    			this.$ngform_bus.$emit('reset');
     		} else if(control == 'event') {
     			// vue全局事件 eventbus
     			const event = this.record.options.eventName 
     			if(event) {
-    				this.$ngofrm_bus.$emit(event);
+    				// 携带当前的表单数据
+    				this.$ngform_bus.$emit(event , this.models);
     			}
 
     		} else if(control == 'custom') {

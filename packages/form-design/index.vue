@@ -260,7 +260,7 @@ export default {
       use(val)
       this.i18nkey = getUUID()
 
-      this.$ngofrm_bus.$emit('i18nRefresh')
+      this.$ngform_bus.$emit('i18nRefresh')
     },
     // 返回编辑好的模板
     getModel() {

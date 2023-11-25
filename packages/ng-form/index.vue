@@ -217,7 +217,7 @@ export default {
     }
   },
   mounted () {
-    this.$ngofrm_bus.$on('i18nRefresh', () => {
+    this.$ngform_bus.$on('i18nRefresh', () => {
       this.formKey = getUUID()
     });
   },

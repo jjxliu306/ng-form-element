@@ -156,7 +156,7 @@ export default {
       this.$set(this.models , this.record.model , [])
     }
 
-    this.$ngofrm_bus.$on('reset', () => { 
+    this.$ngform_bus.$on('reset', () => { 
       this.$set(this.models , this.record.model , [])
     });
 

@@ -12,28 +12,18 @@ import { dynamicFun } from '../../../../utils/index.js'
 import mixin from '../../mixin.js'
 export default {
 	mixins: [mixin],
-	computed: {
-		// textStyle() {
-		// 	const style_ = {}
-
-		// 	if(this.record.options.bold) {
-		// 		style_.fontWeight = 'bold'
-		// 	}
-		// 	if(this.record.options.fontSize && this.record.options.fontSize > 0) {
-		// 		style_.fontSize = this.record.options.fontSize + 'px'
-		// 	}
-			 
-		// 	return style_
-		// },
+	computed: { 
 		linkHref(){
+
+			// 判断是否禁用
+			if(this.record.options.disabled) return undefined
 	      
-	      if(!this.record.options.href) return undefined
+	      	if(!this.record.options.href) return undefined
 	      
-	      const href = this.record.options.href 
-	    	if(href.trim == '') return undefined
- 
+	      	const href = this.record.options.href 
+	    	if(href.trim == '') return undefined 
 	      
-	      return href 
+	      	return href 
 	    },
 	}
 }

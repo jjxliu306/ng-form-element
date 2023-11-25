@@ -119,7 +119,7 @@ export default {
   },
   mounted(){ 
     
-    this.$ngofrm_bus.$on('reset', () => { 
+    this.$ngform_bus.$on('reset', () => { 
        this.initFirst()
     });
 

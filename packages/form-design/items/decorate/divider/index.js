@@ -88,14 +88,7 @@ obj.options = {
           type: 'switch',
           default: false,
           span: 24
-        },
-        {
-          label: $t('ngform.item.if_disabled'),//'是否禁用',
-          prop: 'disabled',
-          type: 'switch',
-          default: false,
-          span: 24
-        }
+        } 
 
       ]
     }
