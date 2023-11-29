@@ -167,6 +167,11 @@
           <template v-else-if="column.type == 'image'"> 
             <ImageUpload  v-model="model[column.prop]" />
           </template> 
+          <template v-else-if="column.type == 'button'">
+            <el-button :type="column.buttonType || 'text'" @click="btnClick(column.event)">
+              {{column.label}}
+            </el-button>
+          </template>
        <!--  </slot> -->
         <!-- 插槽 -->
         <!-- <slot :name="column.prop"></slot> -->
@@ -222,6 +227,9 @@ export default {
     });
   },
   methods: {
+    btnClick(eventName) {
+      this.$ngform_bus.$emit(eventName);
+    },
     // 返回函数值
     getScriptValue (script, currentValue) {
       //script , model ,currentValue , key="$"

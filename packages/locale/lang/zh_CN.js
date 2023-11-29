@@ -472,6 +472,26 @@ export default {
         marginwidth: '左右边距',
         sandbox: '沙箱',
         scrolling: '滚动条'
+      },
+      dataTable: {
+        name: '数据表格',
+        db_type: '数据来源',
+        static: '静态数据',
+        api: 'API',
+        static_data: '静态数据',
+        method_type: '方法类型',
+        query_data: '查询条件',
+        api_path: 'API地址',
+        queryData: '查询参数',
+        columns: '字段',
+        api_data_script: '解析方法',
+        page: '分页',
+        page_index_key: '页码KEY',
+        page_size_key: '数量KEY',
+        page_size: '每页数据',
+        stripe: '斑马线',
+        show_index: '显示下标'
+
       }
 
 
