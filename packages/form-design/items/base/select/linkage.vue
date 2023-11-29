@@ -21,7 +21,7 @@
           </el-col>
           <el-col :span="21">
             <template v-if="val.vtype == 1">
-               {{t('ngform.item.script')}}:
+               {{t('ngform.properties.script')}}: 
               <el-input size="mini"   type="textarea" v-model="val.script" placeholder="表达式,eg: $item.value>$.age . 其中$item表示当前数据中具体一条数据,$表示当前整个表单数据" />
 
             </template>
