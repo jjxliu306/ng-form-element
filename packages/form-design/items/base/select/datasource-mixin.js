@@ -208,6 +208,21 @@ export default {
            
         }
       } 
+    },
+    itemDisabled(item) {
+      if(!this.record.options.disableItemScript) {
+        return false
+      }
+
+      const cbScript = this.record.options.disableItemScript
+      try { 
+        const Fn = eval(cbScript)
+        return Fn(item , this.models)
+      } catch (error) {
+        console.error('select item disabled script error' , error)
+        return false
+      }
+      
     }
   }
 }

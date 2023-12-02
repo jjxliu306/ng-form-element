@@ -170,7 +170,11 @@ obj.options = {
           prop: 'dictType',
           show: false
         },
-
+        { 
+          prop: 'disableItemScript',
+          show: false
+        },
+        
         {
           label: $t('ngform.item.multiple'),//'多选',
           prop: 'multiple',

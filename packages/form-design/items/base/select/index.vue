@@ -24,6 +24,7 @@
             :label="item[itemLabel]"
             :value="item[itemValue]"
             v-if="itemVisible(item)"
+            :disabled="itemDisabled(item)"
             >
           </el-option>
         </template>
@@ -50,6 +51,7 @@
             :label="item[itemLabel]"
             :value="item[itemValue]"
             v-if="itemVisible(item)"
+            :disabled="itemDisabled(item)"
             >
           </el-option>
         </template> 
@@ -135,6 +137,7 @@ export default {
       const Fn = new Function('$' , 'data', func)
       Fn(this.models, this.data)
     }
+   
   }
 }
 </script>

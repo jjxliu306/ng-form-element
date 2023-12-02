@@ -74,6 +74,19 @@ cascader没有数据字典
   </el-form-item>
   <slot name="defaultValue"> </slot>
   <el-divider></el-divider> 
+  <el-form-item  v-if="selectItem.type != 'cascader'" :label="t('ngform.properties.disabled_visible_script')">
+    <el-input  type="textarea" :rows="5" placeholder="eg: 
+(row , formModel)=>{
+  // return true is disabled
+  if(row.value == '1') { 
+    return true
+  }
+  return false
+}" v-model="selectItem.options.disableItemScript"> </el-input>
+
+  </el-form-item>
+
+
 </el-form>
 </template>
 <script>

@@ -9,7 +9,11 @@
       @blur="handleBlur"
       >
         <template v-for="(radioitem, index) in checkList" > 
-           <el-radio :label="radioitem[itemProp.value]" :key="index" v-if="itemVisible(radioitem)">
+           <el-radio 
+            :label="radioitem[itemProp.value]" 
+            :key="index" 
+            :disabled="itemDisabled(radioitem)"
+            v-if="itemVisible(radioitem)">
            {{radioitem[itemProp.label]}}
           </el-radio>
         </template> 

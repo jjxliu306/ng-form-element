@@ -170,7 +170,10 @@ obj.options = {
           prop: 'dictType',
           show: false
         },
-
+         { 
+          prop: 'disableItemScript',
+          show: false
+        },
         {
           label: $t('ngform.item.if_hidden'),//'是否隐藏',
           prop: 'hidden',
