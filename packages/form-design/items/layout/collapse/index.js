@@ -79,14 +79,14 @@ obj.options = {
                     span: 24,
                 }, 
                 {
-                    label: $t('ngform.item.collapse.title_background'),//标题字体大小
+                    label: $t('ngform.item.collapse.title_background'),//标题背景
                     prop: 'titleBackColor' ,  
                     default: '#FFFFFF',
                     type: 'color', 
                     span: 24,
                 }, 
                 {
-                    label: $t('ngform.item.collapse.title_font_color'),//标题字体大小
+                    label: $t('ngform.item.collapse.title_font_color'),//标题字体颜色
                     prop: 'titleFontColor' ,  
                     default: '#000000',
                     type: 'color', 

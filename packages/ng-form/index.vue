@@ -169,7 +169,7 @@
           </template> 
           <template v-else-if="column.type == 'button'">
             <el-button :type="column.buttonType || 'text'" @click="btnClick(column.event)">
-              {{column.label}}
+              {{formLabel(column.label)}}
             </el-button>
           </template>
        <!--  </slot> -->

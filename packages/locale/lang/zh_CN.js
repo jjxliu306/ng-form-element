@@ -19,7 +19,7 @@ export default {
     import: '导入',
     validator: '效验',
 
-    select_item: '从左侧选择组件添加',
+    select_item: '从左侧选择组件拖入',
 
     properties: {
       feature_property: '要素属性',
@@ -152,6 +152,7 @@ export default {
       custom_components: '自定义组件',
 
       height: '高度',
+      max_height: '最大高度',
 
       batch: {
         name: '动态表格' ,
@@ -482,15 +483,27 @@ export default {
         method_type: '方法类型',
         query_data: '查询条件',
         api_path: 'API地址',
-        queryData: '查询参数',
+        // queryData: '查询参数',
         columns: '字段',
         api_data_script: '解析方法',
         page: '分页',
+        page_align: '分页位置',
         page_index_key: '页码KEY',
         page_size_key: '数量KEY',
         page_size: '每页数据',
         stripe: '斑马线',
-        show_index: '显示下标'
+        show_index: '显示下标',
+        // columns: '字段',
+        row_height: '行高度',
+        header_height: '标题高度',
+        small_page: '小型分页',
+        static_json_data: '静态JSON数据',
+        column_align: '对齐方式',
+        width: '宽度',
+        column_formatter: '字段格式化',
+        column_formatter_tip: '字段格式化说明',
+        label_empty_error: '标签不能为空',
+        no_column_tip: '暂无配置字段，请点击左下角加号进行字段添加'
 
       }
 

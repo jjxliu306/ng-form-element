@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="!dataForm.id ? '新增' : '修改'"
+    :title="!dataForm.id ? t('ngform.item.add')  : t('ngform.item.edit')"
     :close-on-click-modal="false"
     :modal-append-to-body="false"
     :visible.sync="visible">
@@ -9,56 +9,61 @@
      
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item label="标签" prop="label"  >
-            <el-input v-model="dataForm.label" placeholder="请输入" />
+          <el-form-item :label="t('ngform.item.label')" prop="label"  >
+            <el-input v-model="dataForm.label" :placeholder="t('ngform.item.placeholder_input')" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="字段" prop="column">  
-            <el-input v-model="dataForm.column" placeholder="请输入" /> 
+          <el-form-item :label="t('ngform.item.model')" prop="column">  
+            <el-input v-model="dataForm.column" :placeholder="t('ngform.item.placeholder_input')"  /> 
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item label="对齐方式" prop="align">
-            <el-select v-model="dataForm.align" placeholder="请选择">
+          <el-form-item :label="t('ngform.item.dataTable.column_align')" prop="align">
+            <el-select v-model="dataForm.align"  :placeholder="t('ngform.properties.select')">
               <el-option v-for="item in ['left','center','right']" :key="item" :label="item" :value="item"></el-option>
             </el-select>
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="宽度" prop="width">
-            <el-input v-model.trim="dataForm.width" placeholder="请输入: 80px or 50%" />
+          <el-form-item :label="t('ngform.item.dataTable.width')" prop="width">
+            <el-input v-model.trim="dataForm.width" :placeholder="t('ngform.item.placeholder_input') + ': 80px or 50%'" />
           </el-form-item>
         </el-col>
       </el-row>
         
-      <el-form-item label="字段格式化" prop="formater">
+      <el-form-item :label="t('ngform.item.dataTable.column_formatter')" prop="formater">
         <template slot="label">
-          <span>字段格式化</span>
+          <span>{{t('ngform.item.dataTable.column_formatter')}}</span>
           <i class="el-icon-question" @click="drawer = true"></i>
         </template>
         <el-input
           type="textarea"
           :autosize="{ minRows: 3, maxRows: 6}"
           v-model="dataForm.formater"
-          placeholder="请输入,eg: (data , models)=>{ return data }" />
+          :placeholder="t('ngform.item.placeholder_input') + ',eg: (data , models)=>{ return data }'" />
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer" v-loading="isOnSubmit">
-      <el-button size="mini" @click="visible = false">取消</el-button>
-      <el-button size="mini" type="primary" @click="dataFormSubmit()" :disabled="isOnSubmit">确定</el-button>
+      <el-button size="mini" @click="visible = false">
+          {{t('ngform.close')}}
+      </el-button>
+      <el-button size="mini" type="primary" @click="dataFormSubmit()" :disabled="isOnSubmit">
+        {{t('ngform.confirm')}}
+      </el-button>
     </span>
-    <el-drawer title="字段格式化说明" :visible.sync="drawer" append-to-body size="60%" direction="btt">
+    <el-drawer :title="t('ngform.item.dataTable.column_formatter_tip')" :visible.sync="drawer" append-to-body size="60%" direction="btt">
       <el-input type="textarea" :readonly="true" :rows="15" v-model="formatterTip"></el-input>
     </el-drawer>
   </el-dialog>
 </template>
 <script>
 import cloneDeep from 'lodash/cloneDeep'
- 
+import LocalMixin from '../../../../locale/mixin.js'
 export default { 
+  mixins: [LocalMixin],
   data () {
     return {
       visible: false,
@@ -115,8 +120,8 @@ export default {
       }, 
       parent: {},
       dataRule: {
-        label: [{ required: true, message: "标签不能为空", trigger: "blur" }],
-        column: [{ required: true, message: "字段不能为空", trigger: "blur" }],
+        label: [{ required: true, message: this.t('ngform.item.dataTable.label_empty_error')/*"标签不能为空"*/, trigger: "blur" }],
+        //column: [{ required: true, message: "字段不能为空", trigger: "blur" }],
         
       }
     };

@@ -5,14 +5,15 @@
       <template slot="defaultValue" >
         <el-form-item v-if="selectItem && selectItem.options.dynamic == 0" :label="t('ngform.item.default_value')">
           <!-- 判断当前是否多选 -->
-          <el-radio-group
+         <!--  <el-radio-group
             :options="selectItem.options.options"
             v-model="selectItem.options.defaultValue"
-            >
-            <el-radio  v-for="(item, index) in  [].concat(selectItem.options.options)" :label="item.value" :key="item.value + index"> 
+            > -->
+            defaultValue:{{selectItem.options.defaultValue}}
+            <el-radio v-model="selectItem.options.defaultValue" v-for="(item, index) in  [].concat(selectItem.options.options)" :label="item.value" :key="index" @click.stop="selectRadio(item.value)"> 
               {{item.label}}
             </el-radio>
-          </el-radio-group> 
+          <!-- </el-radio-group>  -->
         </el-form-item>
       </template>
     </DatasourceConfig>
@@ -46,6 +47,11 @@ export default {
   props: {
     selectItem: {
       type: Object
+    }
+  },
+  methods: {
+    selectRadio(v) {
+      console.log('v' , v)
     }
   }
 }

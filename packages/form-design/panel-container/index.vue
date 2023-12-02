@@ -133,10 +133,12 @@ export default {
   text-align: center;
  
   height: 50px;
+  width: calc(100% - 370px - 260px);
+
   position: absolute;
   top: 40%;
-  left: 40%;
-  //-webkit-transform: translate(-50%, -40%);
+   
+   
   font-size: 20px;
   font-weight: 700;
 }

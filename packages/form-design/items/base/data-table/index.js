@@ -63,6 +63,30 @@ obj.options = {
       prop: 'key',
       show: false,
       span: 24
+    },
+    {
+      label: $t('ngform.properties.size'), //'数据KEY',
+      prop: 'size',
+      type: 'select',
+      default: 'medium',
+      dicData: [
+        { label: 'medium', value: 'medium' },
+        { label: 'small', value: 'small' } ,
+        { label: 'mini', value: 'mini' } ,
+      ],
+      span: 24
+    },
+    {
+      label: $t('ngform.item.height'), // 高度
+      prop: 'height',
+      type: 'number',
+      span: 24
+    } ,
+    {
+      label: $t('ngform.item.max_height'), // 最大高度
+      prop: 'maxHeight',
+      type: 'number',
+      span: 24
     } 
   ],
   group: [
@@ -104,11 +128,10 @@ obj.options = {
           label: $t('ngform.item.dataTable.static_data'),// 静态数据
           prop: 'datasourceStatic',
           default: [],
-          type: 'button',
-          label: '配置',
+          type: 'button', 
           buttonType: 'primary' ,
           event: 'dataTableStaticData',
-          // show: false,
+          show: '$.options.dbType == 1',
           span: 24
         },
         {
@@ -140,8 +163,12 @@ obj.options = {
         }, 
        
         { 
+          label: $t('ngform.item.dataTable.columns'),// 
           prop: 'columns',
-          default: [],
+          default: [], 
+          type: 'button', 
+          buttonType: 'primary' ,
+          event: 'dataTableColumns',
           show: false,
           span: 24
         }, 
@@ -152,13 +179,44 @@ obj.options = {
           show: '$.options.dbType == 2',
           span: 24
         }, 
-        
-
+        {
+          label: $t('ngform.item.dataTable.row_height'),//'默认值',
+          prop: 'rowHeight', 
+          type: 'number', 
+          span: 24
+        }, 
+        {
+          label: $t('ngform.item.dataTable.header_height'),//'默认值',
+          prop: 'headerHeight', 
+          type: 'number', 
+          span: 24
+        }, 
         {
           label: $t('ngform.item.dataTable.page'),// 
           prop: 'page',
           type: 'switch',
           default: true,
+          span: 24
+        },
+        {
+          label: $t('ngform.item.dataTable.small_page'),// 
+          prop: 'smallPage',
+          type: 'switch',
+          default: false,
+          show: '$.options.page',
+          span: 24
+        },
+        {
+          label: $t('ngform.item.dataTable.page_align'),// 
+          prop: 'pageAlign', 
+          type: 'radio',
+          default: 'center',
+          dicData: [
+            { label: 'left', value: 'left' }, 
+            { label: 'center', value: 'center' },
+            { label: 'right', value: 'right' },
+          ], 
+          show: '$.options.page',
           span: 24
         },
         {

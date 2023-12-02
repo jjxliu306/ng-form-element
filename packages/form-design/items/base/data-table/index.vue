@@ -1,11 +1,16 @@
 <template>
-<div> 
+<div>  
 <el-table
       :data="dataList" 
       :border="record.options.border||false" 
       :stripe="record.options.stripe||false" 
       v-loading="dataListLoading"  
       :key="refreshKey" 
+      :size="record.size"
+      :height="record.height ? record.height : undefined"
+      :max-height="record.maxHeight ? record.maxHeight : undefined"
+      :row-style="rowStyle"
+      :header-row-style="headerStyle"
       :style="record.style">
       <el-table-column type="index" width="50" header-align="center" align="center" v-if="record.options.showIndex"></el-table-column>
      
@@ -22,20 +27,22 @@
       </template>
     </el-table>
     <el-pagination
-      class="mod-footer"
+      :style="{'textAlign': record.options.pageAlign}"
       v-if="page"
+      :small="record.options.smallPage"
       @current-change="currentChangeHandle"
       :current-page="pageIndex"
       :page-size="pageSize"
       :total="totalCount"
-      layout="total, prev, pager, next, jumper">
+      :layout="record.options.smallPage ? 'prev, pager, next' : 'total, prev, pager, next, jumper'">
     </el-pagination>
-
+ 
 </div>
 </template>
 <script> 
 import mixin from '../../mixin.js'
 import NgTableColumn from './table-column.vue'
+import request from '../../../../utils/request.js'
 export default {
 	mixins: [mixin] ,
 	components: {
@@ -284,6 +291,20 @@ export default {
 	      this.pageIndex = val;
 	      this.getDataList();
 	    },
+	    // 处理行高
+	    rowStyle() {
+	    	if(this.record.options.rowHeight) {
+	    		return {'height' : this.record.options.rowHeight + 'px'}
+	    	}
+	    	return ''
+	    },
+	    // 处理标题高
+	    headerStyle() {
+	    	if(this.record.options.headerHeight) {
+	    		return {'height' : this.record.options.headerHeight + 'px'}
+	    	}
+	    	return ''
+	    }
 	    	 
 	}
 }

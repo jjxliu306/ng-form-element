@@ -1,12 +1,9 @@
 <template>
-<div v-if="selectItem && selectItem.key && selectItem.type == 'dataTable'" class="form-tableList-properties">
-	 
-	 
-	 
+<div v-if="selectItem && selectItem.key && selectItem.type == 'dataTable'" class="form-tableList-properties"> 
     <!-- 字段配置 -->   
-    <el-collapse-item title="字段列表" name="columns">
+    <el-collapse-item :title="t('ngform.item.dataTable.columns')" name="columns">
         <div :key="datasetKey" class="data-set">
-            <el-tree :data="options.columns" class="table-column-tree" default-expand-all :expand-on-click-node="false">
+            <el-tree :data="options.columns" class="table-column-tree" default-expand-all :expand-on-click-node="false" :empty-text="t('ngform.item.dataTable.no_column_tip')">
               <span style="width: 100%;" slot-scope="{ node, data }">
                 <el-row class="tree-row">
                   <el-col :span="9">
@@ -28,16 +25,20 @@
 	<AddOrUpdateColumn ref="columnset" v-if="columnVisisble"   @add="addDataColumn"  @update="updateDataColumn"/>
 
 	<el-dialog
-    title="静态数据"
+    :title="t('ngform.item.dataTable.static_data')"
     :close-on-click-modal="false"
     :modal-append-to-body="false"
     :visible.sync="staticVisible">
 
-    <el-input  type="textarea" :rows="10" v-model="staticText" placeholder="静态数据JSON" ></el-input>
+    <el-input  type="textarea" :rows="10" v-model="staticText" :placeholder="t('ngform.item.dataTable.static_json_data')" ></el-input>
 
     <span slot="footer" class="dialog-footer" >
-      <el-button size="mini" @click="staticVisible = false">取消</el-button>
-      <el-button size="mini" type="primary" @click="staticDataSubmit()">确定</el-button>
+      <el-button size="mini" @click="staticVisible = false">
+      	{{t('ngform.close')}}
+      </el-button>
+      <el-button size="mini" type="primary" @click="staticDataSubmit()">
+      	{{t('ngform.confirm')}}
+      </el-button>
     </span>
   </el-dialog>
 
@@ -45,10 +46,12 @@
 </template>
 <script>
 import AddOrUpdateColumn from './add-or-update-column'
-import QeuryList from './query-list.vue'
+//import QeuryList from './query-list.vue'
+import LocalMixin from '../../../../locale/mixin.js'
 export default {
+  mixins: [LocalMixin],
 	components: {
-		AddOrUpdateColumn , QeuryList
+		AddOrUpdateColumn //, QeuryList
 	},
 	data() {
 		return {
@@ -75,10 +78,15 @@ export default {
 		}
 	},
 	mounted() {
-			this.$ngform_bus.$on('dataTableStaticData', () => { 
-		     this.configStaticDataHandle()
-		  });
-		}, 
+		this.$ngform_bus.$on('dataTableStaticData', () => { 
+		  this.configStaticDataHandle()
+		});
+
+		  // 字段配置
+		this.$ngform_bus.$on('dataTableColumns', () => { 
+		  this.configColumnHandle()
+		});
+	}, 
 	methods: {
 		configStaticDataHandle() {
 			if(this.options.datasourceStatic) {
@@ -87,9 +95,11 @@ export default {
 				this.staticText = '[]'
 			}
 
-			this.staticVisible = true
-			  
-			
+			this.staticVisible = true 
+		},
+		// 字段配置handle
+		configColumnHandle() {
+
 		},
 		generateId () {
 	      return new Date().getTime() + parseInt(Math.random() * 1000000)
