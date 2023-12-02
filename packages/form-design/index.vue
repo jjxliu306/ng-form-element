@@ -15,6 +15,9 @@
         <template slot="formName">
           <slot name="formName"></slot>
         </template>
+        <template slot="logo">
+          <slot name="logo"></slot>
+        </template>
       </HeaderPanel>
     </el-header>
     <el-main class="form-main">
