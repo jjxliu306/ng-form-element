@@ -1,7 +1,7 @@
 <template> 
 <div class="form-panel" > 
     
-    <p class="no-data-text" v-if="!formTemplate || !formTemplate.list || formTemplate.list.length === 0" :key="formKey">
+    <p class="no-data-text" v-if="!formTemplate || !formTemplate.list || formTemplate.list.length === 0" :key="formKey + arrow" :style="{'width': (arrow ? 'calc(100% - 260px)' : 'calc(100% - 370px -260px)')}">
       <!-- 从左侧选择组件添加 -->
       {{t('ngform.select_item')}}
     </p>
@@ -75,6 +75,10 @@ export default {
 		},
 		selectItem: {
 			type: Object
+		},
+		arrow: {
+			type: Boolean,
+			default: false
 		}
 	}, 
 	mounted () {  
@@ -132,9 +136,8 @@ export default {
 .form-panel .no-data-text {
   text-align: center;
  
-  height: 50px;
+  height: 50px; 
   width: calc(100% - 370px - 260px);
-
   position: absolute;
   top: 40%;
    

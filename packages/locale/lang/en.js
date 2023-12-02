@@ -18,6 +18,8 @@ export default {
     cancel: 'Cancel',
     import: 'Import',
     validator: 'Validator',
+    open_properties_panel: 'Open the Property Configuration Panel',
+    close_properties_panel: 'Hidden the Property Configuration Panel',
 
     select_item: 'Select components from the left and drag them in',
 

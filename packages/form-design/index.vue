@@ -33,10 +33,12 @@
               :formTemplate="formTemplate"
               @handleSelectItem="handleSelectItem"
               :selectItem="selectItem"
+              :arrow="arrow"
           >
           </ContainerPanel>
         </el-main>
-        <el-aside width="370px" class="properties-panel">
+        <el-aside :width="arrow ? '0px' : '370px'"  class="properties-panel">
+          <a  :class="[arrow ? 'togglelefts ' : 'togglelefts arrowR']" @click="arrow=!arrow" :style="{right: (arrow ?  '0px': '370px')}" :title="arrow ? t('ngform.open_properties_panel') : t('ngform.close_properties_panel')"></a>
           <PropertiesPanel :selectItem="selectItem">
             <template slot="custom-properties">
               <slot name="custom-properties" :selectItem="selectItem"></slot>
@@ -62,8 +64,9 @@ import PropertiesPanel from './panel-properties/index.vue'
 import { use } from '../locale/index'
 import { getUUID } from '../utils/index'
 import cloneDeep from 'lodash/cloneDeep'
-
+import LocalMixin from '../locale/mixin.js'
 export default {
+  mixins: [LocalMixin],
   name: 'ng-form-design',
   components: {
     HeaderPanel,
@@ -74,6 +77,7 @@ export default {
   data() {
     return {
       selectItem: {},
+      arrow: false,
       i18nkey: getUUID()
     }
   },
@@ -328,6 +332,102 @@ export default {
   box-shadow: -3px 0 6px rgb(48 65 86 / 35%);
   background: white;
 }
+
+</style>
+<style>
+
+
+.togglelefts {
+  width: 14px;
+  height: 54px;
+  border: solid 1px #dadada;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  background: #fff;
+  position: absolute;
+  top: 45%;
+  margin-top: -27px;
+  z-index: 1000;
+  border-right:solid 1px #fff;
+  cursor: pointer;
+}
+.togglelefts:before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 3px;
+  width: 0;
+  height: 0;
+  border-right: 5px solid #0662ac;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+}
+.togglelefts:after {
+  content: "";
+  position: absolute;
+  top: 21px;
+  left: 4px;
+  width: 0;
+  height: 0;
+  border-bottom: 4px solid transparent;
+  border-right: 4px solid #fff;
+  border-top: 4px solid transparent;
+}
+
+.togglelefts:hover {
+  background: #d9f1ff;
+}
+.togglelefts:hover:before {
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+}
+.togglelefts:hover:after {
+  border-bottom: 4px solid transparent;
+  border-right: 4px solid #d9f1ff;
+  border-top: 4px solid transparent;
+}
+
+.arrowR:before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 4px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid #0662ac;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  border-right: none;
+  cursor: pointer;
+}
+.arrowR:after {
+  content: "";
+  position: absolute;
+  top: 21px;
+  left: 4px;
+  width: 0;
+  height: 0;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid #fff;
+  border-top: 4px solid transparent;
+  border-right: none;
+  cursor: pointer;
+}
+.arrowR:hover:before {
+  border-left: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-right: none;
+  border-top: 5px solid transparent;
+  cursor: pointer;
+}
+.arrowR:hover:after {
+  border-right: none;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid #005eaa;
+  border-top: 4px solid transparent;
+  cursor: pointer;
+}  
 
 </style>
 <!--

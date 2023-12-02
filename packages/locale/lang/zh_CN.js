@@ -18,6 +18,8 @@ export default {
     cancel: '取消',
     import: '导入',
     validator: '效验',
+    open_properties_panel: '打开属性配置面板',
+    close_properties_panel: '隐藏属性配置面板',
 
     select_item: '从左侧选择组件拖入',
 
