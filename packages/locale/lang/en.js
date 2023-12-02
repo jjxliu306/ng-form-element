@@ -234,7 +234,8 @@ export default {
         if_html: 'Html Preview'
       },
       radio: {
-        name: 'Radio'
+        name: 'Radio',
+        clear_default_tip: 'Clear default value'
       },
       rate: {
         name: 'Rate',

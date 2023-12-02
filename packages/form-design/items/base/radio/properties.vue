@@ -4,17 +4,26 @@
     <DatasourceConfig :selectItem="selectItem">
       <template slot="defaultValue" >
         <el-form-item v-if="selectItem && selectItem.options.dynamic == 0" :label="t('ngform.item.default_value')">
+          <template slot="label">
+            <span>{{t('ngform.item.default_value')}}</span>
+               <!--
+          添加清空默认值
+        --> 
+            <el-button :title="t('ngform.item.radio.clear_default_tip')" type="text" icon="el-icon-delete" style="color: red;" @click="selectItem.options.defaultValue = ''"></el-button>
+          </template>
           <!-- 判断当前是否多选 -->
-         <!--  <el-radio-group
+          <el-radio-group
             :options="selectItem.options.options"
             v-model="selectItem.options.defaultValue"
-            > -->
-            defaultValue:{{selectItem.options.defaultValue}}
-            <el-radio v-model="selectItem.options.defaultValue" v-for="(item, index) in  [].concat(selectItem.options.options)" :label="item.value" :key="index" @click.stop="selectRadio(item.value)"> 
+            > 
+           <!--  defaultValue:{{selectItem.options.defaultValue}} -->
+            <el-radio   v-for="(item, index) in  [].concat(selectItem.options.options)" :label="item.value" :key="index" @click.stop="selectRadio(item.value)"> 
               {{item.label}}
             </el-radio>
-          <!-- </el-radio-group>  -->
+           </el-radio-group>   
         </el-form-item>
+     
+
       </template>
     </DatasourceConfig>
   </el-collapse-item>

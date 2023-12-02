@@ -232,7 +232,8 @@ export default {
         if_html: 'Html预览'
       },
       radio: {
-        name: '单选框'
+        name: '单选框',
+        clear_default_tip: '清空默认值'
       },
       rate: {
         name: '评分',
