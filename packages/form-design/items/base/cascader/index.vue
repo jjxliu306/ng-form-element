@@ -71,6 +71,7 @@ export default {
   },
   methods: {
     handleChange(value) {
+      if(!this.$refs.cascader) return 
       let labels = []
       let as = [] 
       // 获取数据 判断从ajax 还是本地默认配置
@@ -106,6 +107,7 @@ export default {
       const modelLabel = this.record.model + '_label'
         //this.models[modelLabel] = labels.join(',')
       this.$set(this.models , modelLabel , labels.join(','))
+ 
     }
   }
 }
