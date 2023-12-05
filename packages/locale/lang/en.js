@@ -122,6 +122,8 @@ export default {
 
       multiple: 'Multiple',
       search: 'Search',
+      online_search: 'OnlineSearch',
+      online_search_query: 'Query Key',
       clearable: 'Clearable',
       editable: 'Editable',
 

@@ -189,7 +189,20 @@ obj.options = {
           default: false,
           span: 24
         },
-
+        {
+          label: $t('ngform.item.online_search'),// 在线搜索
+          prop: 'onlineSearch',
+          type: 'switch',
+          default: false,
+          show: '$.options.showSearch && $.options.dynamic == 1',
+          span: 24
+        },
+        {
+          label: $t('ngform.item.online_search_query'),// 搜索key
+          prop: 'onlineSearchQuery', 
+          show: '$.options.showSearch && $.options.dynamic == 1 && $.options.onlineSearch',
+          span: 24
+        },
         {
           label: $t('ngform.item.clearable'),//'可清除',
           prop: 'clearable',
