@@ -11,7 +11,9 @@ export default {
       write_mode: 'Write mode',
       read_mode: 'Read mode',
       prompt: 'Prompt',
-      clear_prompt: 'Do you want to clear the current panel?'
+      clear_prompt: 'Do you want to clear the current panel?',
+      content_not_empty: 'Content cannot be empty',
+      content_parse_error: 'Content parsing exception, please check the text content',
     },
     close: 'Close',
     confirm: 'Confirm',

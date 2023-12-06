@@ -52,7 +52,7 @@ export default {
     },
     handleImp() {
       if(!this.jsonCode) {
-        alert('文本不能为空')
+        this.$message.error(this.t('ngform.header.content_not_empty'))
         return
       }  
       try {
@@ -63,12 +63,12 @@ export default {
           
           this.handleCancel()
         } else {
-          this.$message.error('模板解析异常，请检查文本内容.')
+          this.$message.error(this.t('ngform.header.content_parse_error'))
           return
         }
         
       } catch (error) {
-        this.$message.error('模板解析异常，请检查文本内容.')
+        this.$message.error(this.t('ngform.header.content_parse_error'))
         return
       }
     },
