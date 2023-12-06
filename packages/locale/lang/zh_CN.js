@@ -122,6 +122,8 @@ export default {
 
       multiple: '多选',
       search: '搜索',
+      online_search: '在线搜索',
+      online_search_query: '参数KEY',
       clearable: '可清除',
       editable: '可编辑',
 

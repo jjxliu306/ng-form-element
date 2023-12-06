@@ -5,9 +5,9 @@
         v-model="models[record.model]"
         :value-key="itemValue"
         :style="`width:${record.width}`"
-       
-        :remote="record.options.onlineSearch && record.options.showSearch"
-        :remote-method="remoteMethod"
+         :loading="loading"
+        :remote="showRemote"
+        :remote-method="remoteFilterMethod"
         :placeholder="getLabel(record.options.placeholder)"
         :filterable="record.options.showSearch"
         :disabled="recordDisabled"
@@ -31,11 +31,12 @@
       </el-select>
       <el-select
         v-else 
+         :loading="loading"
         v-model="models[record.model]"
         :style="`width:${record.width}`"
         :value-key="itemValue" 
-        :remote="record.options.onlineSearch && record.options.showSearch"
-        :remote-method="remoteMethod"
+        :remote="showRemote"
+        :remote-method="remoteFilterMethod"
         :placeholder="getLabel(record.options.placeholder)"
         :filterable="record.options.showSearch"
         :disabled="recordDisabled"
@@ -67,6 +68,7 @@ export default {
 	mixins: [mixin],
 	data() {
 		return {
+      loading: false,
 			itemProp: {
 		        children: 'children',
 		        value: 'value',
@@ -95,7 +97,16 @@ export default {
         return this.record.options.options
       }
       // (record.options.dynamic == 1 && record.options.remoteFunc) || (record.options.dynamic == 2 && record.options.dictType) ? checkValues : record.options.options
+    },
+    showRemote() {
+      if(this.record.options.onlineSearch && this.record.options.showSearch && this.record.options.onlineSearchQuery){
+        return true
+      } else {
+        return false
+      }
+      
     }
+
   },
 	created () { 
 	  //this.updateSimpleDefaultValue()
@@ -125,7 +136,24 @@ export default {
     }
 	},
   methods: {
-     // select 清除后回调
+    remoteFilterMethod(queryValue) {
+      if (queryValue) {
+          
+
+          if(!this.record || !this.record.options) return
+          let queryParam = this.record.options.onlineSearchQuery
+
+          //this.loading = true;
+ 
+          this.$set(this.remoteFilter , queryParam , queryValue )
+ 
+
+          this.getRemoteData()
+
+        
+      } 
+    },
+      // select 清除后回调
     clearChange() {
       // 2021-05-08 lyf 判断是否有清除后回调
       if(!this.record.options.clearCb) {
