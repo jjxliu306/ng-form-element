@@ -34,7 +34,7 @@ export default {
     }
   },
   created () { 
-    //this.updateArrayDefaultValue()
+    this.updateArrayDefaultValue()
    
 
     // 如果是静态数据 判断当前是否有值 是否要回填默认值
