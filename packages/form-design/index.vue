@@ -153,27 +153,6 @@ export default {
       return (
           this.template || {
             list: [
-              {
-                type: 'controller',
-                layou: true,
-                options: {
-                  customStyle: '',
-                  customClass: '',
-                  bordered: false,
-                  add: true,
-                  copy: true,
-                  remove: true,
-                  hidden: false,
-                  disabled: false
-                },
-                label: '容器',
-                labelWidth: 0,
-                width: '100%',
-                span: 24,
-                key: 'controller_16992571869592',
-                model: 'controller_16992571869592',
-                list: []
-              }
             ],
             config: {
               labelPosition: 'left',

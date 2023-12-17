@@ -514,7 +514,7 @@ export default {
 			const rowspan = this.record.trs[this.trIndex].tds[this.tdIndex].rowspan;
 
 			if (colspan > 1 || rowspan > 1) {
-				this.$message.error(this.t('ngform.item.table.no_del_by_merge'));
+				this.$message.error(this.t('ngform.item.table.no_del_by_endcol'));
 				return;
 			}
 

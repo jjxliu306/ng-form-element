@@ -61,9 +61,9 @@ export default {
       listen_script: '触发表达式',
 
       dynamic_visible: '动态显示',
-      dynamic_visible_tip: 'Please enter the visible script to identify the binding data for the current entire form',
+      dynamic_visible_tip: '请输入显示条件,$表示当前整个表单的绑定数据',
       dynamic_disabled: '动态禁用',
-      dynamic_disabled_tip: 'Please enter the disable script to identify the binding data for the current entire form',
+      dynamic_disabled_tip: '请输入禁用条件,$标识当前整个表单的绑定数据',
       dynamic_visible_script: '显示条件',
       disabled_visible_script: '禁用条件',
 
