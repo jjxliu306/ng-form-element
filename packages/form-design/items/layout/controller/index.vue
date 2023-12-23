@@ -62,7 +62,7 @@
                   ref="nestedComponents"
                   :is-drag="false"
                   :disabled="disabled"
-                  :previewpreview="preview"
+                  :preview="preview"
                   :models.sync="mdata"   
                   :record="item"  
                   :prop-prepend="propPrepend + record.model + '.' + idx + '.'"

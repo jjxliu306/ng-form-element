@@ -74,11 +74,11 @@ export default {
         this.text = val;
         this.editor.txt.html(val)
       }
-      try {
-        this.editor.selection.moveCursor(this.editor.$textElem.elems[0], false);
-      } catch (err) {
-        console.error(err)
-      }
+      // try {
+      //   this.editor.selection.moveCursor(this.editor.$textElem.elems[0], false);
+      // } catch (err) {
+      //   console.error(err)
+      // }
     },
     text(val) {
       if (this.value != val) {
@@ -106,8 +106,7 @@ export default {
         }
         
       }
-
-      console.log('menus' , this.editor.config.menus)
+ 
 
     } 
   },
