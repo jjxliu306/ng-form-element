@@ -57,7 +57,7 @@ cascader没有数据字典
         :fetch-suggestions="queryDictSearch"
         value-key="type"
         :placeholder="t('ngform.properties.select')"
-        @select="handleDictSelect"
+       
       >
         <template slot="prepend">{{t('ngform.item.dict_type')}}</template>
         <template slot-scope="{ item }">
