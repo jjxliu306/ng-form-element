@@ -1,6 +1,6 @@
 <template>
 <div>
-	<div class="layout-grid-col-pro" v-for="(val, index) in value" :key="index">
+	<el-row class="layout-grid-col-pro" v-for="(val, index) in value" :key="index">
         <el-col :span="18">
         	<el-input-number
 	            style="width:100%"
@@ -14,12 +14,12 @@
              	<i class="el-icon-delete" />
          	</div>
      	</el-col>
-    </div>
-    <div v-if="!disabled" :span="24">
+    </el-row>
+    <el-row v-if="!disabled" :span="24">
     	<el-button type="primary" @click="handleAddCol">
     		{{t('ngform.item.add')}}
     	</el-button>
-    </div>
+    </el-row>
 </div>
 </template>
 <script>
