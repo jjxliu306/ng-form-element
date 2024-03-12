@@ -149,6 +149,8 @@ export default {
 .form-panel .row {
   height: 100%;
   min-height: 500px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .form-panel .ng-form {
