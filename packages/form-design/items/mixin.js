@@ -58,17 +58,17 @@ export default {
 	      default: ()=>[]
 	    },
 	    // 表单全局config配置
-	    config: {
-	        from: 'configC',
-	        default: ()=>({})
+	    configInject: {
+	        from: 'configC', 
 	    },
 	    ngConfig: {
-        	from: 'ngConfig',
-        	default: ()=> ({})
+        	from: 'ngConfig', 
       	},
 	},
-	computed: {
-		
+	computed: {  
+		config() {
+			return this.configInject() || {}
+		},
 		// 禁用
 		recordDisabled() {
 			if(this.isDragPanel) return false

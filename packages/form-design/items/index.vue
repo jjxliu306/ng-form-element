@@ -1,7 +1,7 @@
 <!--
 传入record数据，通过判断record.type，来渲染对应的组件
   -->
-<template>   
+<template>    
   <ItemNode 
     v-if="isLayout && recordVisible"
     :record="record"
@@ -27,7 +27,7 @@
     :id="record.model" 
     :name="record.model"
     :label-width="labelWidth"
-    >      
+    >       
     <ItemNode 
       :record="record"
       :disabled="disabled" 
@@ -43,7 +43,7 @@
           <slot :name="slot" :record="record"/>
         </template>
       </ItemNode> 
-  </el-form-item> 
+  </el-form-item>  
 </template>
 <script>   
 
@@ -102,19 +102,22 @@ export default {
         default: ()=>[]
       },
       // 表单全局config配置
-      config: {
-          from: 'configC',
-          default: ()=>({})
+      formConfig: {
+          from: 'configC' 
       } 
   },
   computed: {  
+    config() {
+      return this.formConfig()
+    },
     // 是否布局组件 但钱不需要验证的哪种
     isLayout() {
       return this.record.layout 
     },
     label() {
       if(!this.showLabel) return null
-      let labelWidth = this.config.labelWidth
+      
+      let labelWidth = this.config ? this.config.labelWidth : null
       if(this.record.options && this.record.options.labelWidth >= 0) {
         labelWidth = this.record.options.labelWidth
       }
@@ -132,7 +135,7 @@ export default {
     },
     labelWidth() {
       if(!this.showLabel) return '0px'
-      let labelWidth = this.config.labelWidth
+      let labelWidth = this.config ? this.config.labelWidth : null
       if(this.record.options && this.record.options.labelWidth >= 0) {
         labelWidth = this.record.options.labelWidth
       }
@@ -237,7 +240,8 @@ export default {
     },
     // 2022-10-06 lyf 判断组件是否必填 动态
     recordRequired() {
-      if(this.config.hideRequiredMark || !this.config.syncLabelRequired) {
+     
+      if(this.config && (this.config.hideRequiredMark || !this.config.syncLabelRequired)) {
         return false
       }
        

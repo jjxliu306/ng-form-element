@@ -1,6 +1,6 @@
 <template> 
-<div class="form-build-panel" >  
-	 
+<div class="form-build-panel" >   
+ 
     <el-form 
     	v-if="formTemplate && formTemplate.config && formTemplate.list"
       	:label-width="formTemplate.config.labelWidth + 'px'" 
@@ -14,6 +14,7 @@
       	:model="models" 
       	:disabled="disabled"
       	:id="randomId"
+      	 
     >
 	    <el-row :gutter="20" class="row"> 
 	    	<Node  
@@ -47,7 +48,7 @@ export default {
 	},
 	data(){
 		return {
-			 randomId: new Date().getTime() + '111',
+			randomId: new Date().getTime() + '111',
 		}
 	},
 	props: {
@@ -85,7 +86,7 @@ export default {
 	}, 
 	computed: {
 		templateConfig() {
-			if(this.formTemplate) return this.formTemplate.config 
+			if(this.formTemplate && this.formTemplate.config ) return this.formTemplate.config 
 			return {}
 		}, 
 	   // 配置中的http配置
@@ -110,19 +111,20 @@ export default {
 	  	return undefined
 	  }
 	},
-	watch: {
-	    httpConfig: {
-	      	handler(newVal) { 
-	        	window.nghttpConfig = newVal;
-	      	},
-	      	deep: true,
-	      	immediate: false,
-	    }
+	watch: { 
+	  httpConfig: {
+	    handler(newVal) { 
+	      window.nghttpConfig = newVal;
+	    },
+	    deep: true,
+	    immediate: false,
+	  }
 	},
 	provide: function () {
+		 const this_ = this
     	return {
      		customC: this.components ,
-     		configC: this.templateConfig,
+     		configC: ()=>this.templateConfig,
      		//dictsC: this.dicts,
      		httpConfigC: this.httpConfig,
      		ngConfig: this.config

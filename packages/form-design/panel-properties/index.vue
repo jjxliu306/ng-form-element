@@ -39,14 +39,11 @@ export default {
 			active: 'item'
 		}
 	},
-	inject: { 
-	    // 表单全局config配置
-	    config: {
-	        from: 'configC',
-	        default: ()=>({})
-	    }
-	},
+	inject: ['configC'],
 	computed: {
+		config() {
+			return this.configC() || {}
+		},
 		selectItemKey() {
 			if(this.selectItem && this.selectItem.key){
 				return this.selectItem.key

@@ -77,13 +77,16 @@
       }
     },
     computed: {
-     customList() {
-      if (this.customComponents) {
-        return this.customComponents.map(item => item.type);
-      } else {
-        return [];
-      }
-    }
+      customList() {
+        if (this.customComponents) {
+          return this.customComponents.map(item => item.type);
+        } else {
+          return [];
+        }
+      },
+      config() {
+        return this.configInject() || {}
+      },
     },
     props: {
       // 表格内部的配置
@@ -103,11 +106,14 @@
     },  
     inject: { 
       // 表单全局config配置
-      config: {
-          from: 'configC',
-          default: ()=>({})
-      } 
-  },
+      configInject: {
+          from: 'configC' 
+      },
+      customComponents: {
+        from: 'customC',
+        default: ()=>[]
+      },
+    },
     methods: {
       recordRules(record){
         // 2020-07-29 如果是预览 不需要规则验证

@@ -141,13 +141,15 @@ export default {
       } 
        
       return w 
-    } 
+    },
+    config() {
+      return this.configInject() || {}
+    },
   },
   inject: {
       // 表单全局config配置
-      config: {
-          from: 'configC',
-          default: ()=>({})
+      configInject: {
+          from: 'configC' 
       }
   },
   mounted(){ 
