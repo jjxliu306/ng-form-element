@@ -31,8 +31,8 @@
 			      	>
 			        <transition-group tag="div" name="list" class="items-main"> 
 			        	<Node  
-			        		class="drag-move"
-			        		v-for="record in formTemplate.list"
+			        			:class="{'drag-move' : record.drag_ == undefined || record.drag_  }"
+			        			v-for="record in formTemplate.list"
 			            	:key="record.key"
 			            	:record="record"
 			            	:isDrag="true"
@@ -149,8 +149,7 @@ export default {
 .form-panel .row {
   height: 100%;
   min-height: 500px;
-  display: flex;
-  flex-wrap: wrap;
+ 
 }
 
 .form-panel .ng-form {

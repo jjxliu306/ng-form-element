@@ -6,13 +6,13 @@
       record.options.customClass ? record.options.customClass : '' ,
       record.options.bright ? 'bright' : '' ,
       record.options.small ? 'small' : '' ,
-      record.options.bordered ? 'bordered' : '' 
+       
     ]" 
     :style="record.options.customStyle"
     >
     <tr v-for="(trItem, trIndex) in record.trs" :key="trIndex" >
       <td
-        :class="['table-td', tdItem.class]"
+        :class="['table-td', tdItem.class , record.options.bordered ? 'td-bordered' : '']"
         :style="tdItem.style"
         v-for="(tdItem, tdIndex) in trItem.tds"
         :key="tdIndex"
