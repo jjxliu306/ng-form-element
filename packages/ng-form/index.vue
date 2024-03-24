@@ -149,7 +149,7 @@
               <el-row :span="24">
                 <el-col :span="22">
                  <!--   -->
-                 <el-color-picker v-model="model[column.prop][index]" :placeholder="formLabel(column.placeholder)"/>
+                 <el-color-picker show-alpha v-model="model[column.prop][index]" :placeholder="formLabel(column.placeholder)"/>
                 </el-col>
                 <el-col :span="2" style="padding-left: 5px">
                   <el-button type="text" icon="el-icon-close" @click="removeData(model,column.prop, index)"></el-button>
@@ -158,7 +158,7 @@
             </div>
             <el-button type="text" icon="el-icon-plus" @click="addData(model , column.prop, column.type)"></el-button>
           </template>
-          <el-color-picker v-else-if="column.type == 'color'" v-model="model[column.prop]" :placeholder="formLabel(column.placeholder)"></el-color-picker>
+          <el-color-picker show-alpha v-else-if="column.type == 'color'" v-model="model[column.prop]" :placeholder="formLabel(column.placeholder)"></el-color-picker>
 
           <KvList v-else-if="column.type == 'kv'" v-model="model[column.prop]" :keyNumber="column.keyNumber"/>
           <template v-else-if="column.type == 'rules'">
