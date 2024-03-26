@@ -7,7 +7,8 @@ let list = []
 chartFiles.keys().filter((key)=>key != './index.js').forEach((key) => {
   
   const config = chartFiles(key).default;
-  list = list.concat(config)
+  if(config.type)  
+    list = list.concat(config)
 })
  
 // 按照seq排序
