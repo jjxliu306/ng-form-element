@@ -149,7 +149,8 @@ export default {
 .form-panel .row {
   height: 100%;
   min-height: 500px;
- 
+ 	/*display: flex;
+  flex-wrap: wrap;*/
 }
 
 .form-panel .ng-form {
@@ -160,12 +161,19 @@ export default {
 .form-panel .ng-form .draggable-box {
   height: 100%;
   overflow: auto;
+  width: 100%;
 }
 
 .form-panel .ng-form .items-main {
   height: 100%;
   min-height: 500px;
   padding: 0px 10px;
+}
+
+.ng-form .el-row {
+	  display: flex;
+  flex-wrap: wrap;
+
 }
 
 </style>

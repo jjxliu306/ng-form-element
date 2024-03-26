@@ -221,6 +221,7 @@ export default {
 .form-build-panel .row {
   height: 100%;
   overflow: auto;
+
 }
 
 .form-build-panel .ng-form-build {
