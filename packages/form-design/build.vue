@@ -224,6 +224,11 @@ export default {
 
 }
 
+.ng-form-build .row {
+	display: flex;
+  flex-wrap: wrap;
+}
+
 .form-build-panel .ng-form-build {
   height: 100%;
   overflow-y: auto;
