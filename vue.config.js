@@ -24,6 +24,7 @@ if (IS_PROD && buildProdFlag) {
 }
 
 module.exports = {
+   lintOnSave: false,
   /* 开启vue运行时模板编译功能！！ */
   runtimeCompiler: true,
   // 修改 src 目录 为 examples 目录
