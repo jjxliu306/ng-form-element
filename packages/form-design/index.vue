@@ -81,7 +81,21 @@ export default {
     return {
       selectItem: {},
       arrow: false,
-      i18nkey: getUUID()
+      i18nkey: getUUID(),
+      formTemplate: this.template || {
+              list: [
+              ],
+              config: {
+                labelPosition: 'left',
+                labelWidth: 100,
+                size: 'mini',
+                outputHidden: true, //  是否输出隐藏字段的值 默认打开,所有字段都输出
+                hideRequiredMark: false,
+                syncLabelRequired: false,
+                labelSuffix: '' , // 标签后缀
+                customStyle: ''
+              }
+            },
     }
   },
   props: {
@@ -150,24 +164,7 @@ export default {
     }
   },
   computed: {
-    formTemplate() {
-      return (
-          this.template || {
-            list: [
-            ],
-            config: {
-              labelPosition: 'left',
-              labelWidth: 100,
-              size: 'mini',
-              outputHidden: true, //  是否输出隐藏字段的值 默认打开,所有字段都输出
-              hideRequiredMark: false,
-              syncLabelRequired: false,
-              labelSuffix: '' , // 标签后缀
-              customStyle: ''
-            }
-          }
-      )
-    },
+    
     templateConfig() {
       if (this.formTemplate) return this.formTemplate.config
       return {}
@@ -204,7 +201,7 @@ export default {
     },
     formTemplate: {
       handler(newVal) {
-        this.$emit('update:formTemplate', newVal)
+        this.$emit('update:template', newVal)
       },
       deep: true,
       immediate: false
@@ -241,6 +238,7 @@ export default {
   },
   methods: {
     handleSelectItem(record) {
+      console.log(record)
       this.selectItem = record
     },
 
