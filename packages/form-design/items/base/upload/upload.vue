@@ -1,6 +1,6 @@
 <template>
-<div> 
-	<div v-if="preview || disabled">
+<div>  
+	<div v-if="preview || disabled  ">
 		<!-- 判断图片还是文件列表 -->
 		<div v-if="accept && accept.indexOf('image') >= 0 && listType && listType.indexOf('picture-card') >= 0" >
         <ul > 
@@ -165,10 +165,12 @@ export default {
 		// 1、只上传一个时有文件则不显示 多个时导致门限也不现实
 		// 2、预览时不显示
 		uploadVisible() {
-			if(!this.uploadAutoHidden) return true
+		
 			if(this.preview || this.disabled) return false 	
 			if(!this.multiple && this.value && this.value.length > 0) return false 
 			if(this.multiple && this.value && this.value.length >= this.limit) return false
+
+			if(!this.uploadAutoHidden) return true
 
 			return true 
 		},
@@ -205,7 +207,16 @@ export default {
 			} 
 
 			return null
+		},
+		uploadResponseFileId() {
+			if(this.record && this.record.options && this.record.options.responseFileId) {
+				 
+				return this.record.options.responseFileId 
+			} 
+
+			return null
 		}
+		
 	},
 	mounted() {
 		if(this.value == null || this.value == undefined) {
@@ -249,25 +260,35 @@ export default {
       		return ["png", "jpg", "jpeg", "bmp"].indexOf(ext.toLowerCase()) !== -1;
     	},
 		handleSuccess(response , file , fileList) {
-		 
+		 	console.log('file' , file)
 			// 根据返回结果的url来获取实际文件的url
 			const responseFileUrl = this.uploadResponseFileUrl 
  
 
 			const objectPath = require("object-path")
 			const fileUrl = objectPath.get(response, responseFileUrl)
-	 
+	 		//console.log('fileUrl' , fileUrl)
 			if(fileUrl) {
 				// 重新组合
 				const f_ = {name: file.name , size: file.size , url: fileUrl}
  
-			  const addData = this.value.concat([
-	        { 
-	        	 name: file.name , size: file.size , url: fileUrl
-	        }
-	      ])
+				
+				const uploadData = {
+					name: file.name , size: file.size , url: fileUrl
+				}
+			  
+			  // 文件id 
+				if(this.uploadResponseFileId) {
+					const fileId = objectPath.get(response, this.uploadResponseFileId)
+					 
+					uploadData['id'] = fileId
+				}
+
+				const addData = this.value.concat([uploadData])
+
 			  
 			  this.$emit("input", addData);
+			  //this.$emit('change' , addData)
 			}
 
 			

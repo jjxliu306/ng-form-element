@@ -99,7 +99,14 @@ obj.options = {
           label: $t('ngform.item.upload.file_url_path'),//'epl地址',
           prop: 'responseFileUrl',
           type: 'textarea',
-          placeholder: '上传成功后解析文件url的epl地址',
+          placeholder:  $t('ngform.item.upload.file_url_path_placeholder'),//'必填,上传成功后解析文件url的epl地址',
+          span: 24
+        },
+        {
+          label: $t('ngform.item.upload.file_id_path'),//'epl地址',
+          prop: 'responseFileId',
+          type: 'textarea',
+          placeholder: $t('ngform.item.upload.file_id_path_placeholder'),// '选填,上传成功后解析文件ID的epl地址',
           span: 24
         },
         {
