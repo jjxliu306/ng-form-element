@@ -11,8 +11,12 @@ import NgFormItemNode from './form-design/items/node.vue'
 import NgForm  from './ng-form/index.vue'
 import locale from './locale';
 
+import * as utils from './utils/index.js'
+
 import mixin from './form-design/items/mixin.js'
 import LocalMixin from './locale/mixin.js'
+
+import { addCustomConfig } from './constants.js'
 
 NgForm.install = function (Vue) { 
   Vue.component(NgForm.name, NgForm)
@@ -91,13 +95,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
  
 export {
-  mixin ,LocalMixin, locale , NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode
+  addCustomConfig  ,utils , mixin ,LocalMixin, locale , NgForm , NgFormDesign,NgFormBuild,NgFormItem,NgFormNode,NgFormItemNode
 }
   
 
 
 export default {
-  version: '2.1.0',
+  version: '2.3.5',
   locale: locale.use,
   i18n: locale.i18n,
   install

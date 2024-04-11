@@ -159,7 +159,7 @@ export function dateFormater(date , fmt) {
 // 定制组件参数的规范和转换   
 // 配置数组转 配置项 
 // 配置最多两层，不走迭代
-export function translateConfig(config = []) {
+export function translateConfig(config) {
 
     const fs = (v) => {
       const formOptions = v.options 
@@ -199,7 +199,12 @@ export function translateConfig(config = []) {
     }
 
     const cloneConfig = cloneDeep(config)
-    cloneConfig.map(t => fs(t))
+    
+    if(cloneConfig instanceof Array) {
+      cloneConfig.map(t => fs(t))
+    } else {
+      fs(cloneConfig)
+    }
 
     return cloneConfig
 
