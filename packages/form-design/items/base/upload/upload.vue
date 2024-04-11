@@ -260,7 +260,7 @@ export default {
       		return ["png", "jpg", "jpeg", "bmp"].indexOf(ext.toLowerCase()) !== -1;
     	},
 		handleSuccess(response , file , fileList) {
-		 	console.log('file' , file)
+		 	 
 			// 根据返回结果的url来获取实际文件的url
 			const responseFileUrl = this.uploadResponseFileUrl 
  
@@ -270,9 +270,7 @@ export default {
 	 		//console.log('fileUrl' , fileUrl)
 			if(fileUrl) {
 				// 重新组合
-				const f_ = {name: file.name , size: file.size , url: fileUrl}
- 
-				
+				 
 				const uploadData = {
 					name: file.name , size: file.size , url: fileUrl
 				}
