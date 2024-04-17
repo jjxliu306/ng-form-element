@@ -1,5 +1,5 @@
 import { t , $t } from './index';
-import { cloneDeepAndFormat } from '../utils/index.js'
+import { cloneDeepAndFormat , dynamicFun } from '../utils/index.js'
  
  
 export default {
@@ -13,7 +13,23 @@ export default {
       if(typeof v == 'function') {
           const label = v()
           return label 
-      } 
+      }  
+      return v
+    },
+    getDynamicLabel(v , models) { 
+      if(typeof v == 'function') {
+          const label = v()
+          return label 
+      } else {
+        // 尝试转换为函数 
+        try {
+          const label = dynamicFun(v , models)
+          return label 
+        } catch (error) { 
+          //console.error('get dynamic label error , script: ' + v , error)
+          return v
+        }
+      }
       return v
     }
   }

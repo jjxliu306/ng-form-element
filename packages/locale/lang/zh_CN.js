@@ -89,6 +89,7 @@ export default {
     },
 
     item: {
+      dynamicLabel: '动态标签' ,
       label: '标签',
       label_width: '标签宽度',
       width: '填充宽度',

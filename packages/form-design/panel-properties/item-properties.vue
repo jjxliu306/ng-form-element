@@ -264,11 +264,30 @@ export default {
       return this.groupColumns.filter(form => {
         return (form.alone == undefined || form.alone == true) && form.column && form.column.length > 0
       })
+    },
+    // 动态标签值
+    dynamicLabel() {
+      return this.selectItem ? this.selectItem.dynamicLabel : undefined
     }
   },
   watch: {
     selectItemKey() {
       this.init()
+    },
+    dynamicLabel(val) {
+      // 动态标签打开时 将标签的类型切换为textarea
+      const editType = val ? 'textarea' : 'input'
+      
+      // 从column中找到label 刷新格式
+      const fcolumns = this.formColumns.column
+      if(!fcolumns || fcolumns.length == 0) return 
+          
+      const fs = fcolumns.filter(t=> t.prop == 'label')
+      if(fs && fs.length > 0) {
+
+        fs[0].type = editType
+      }
+
     }
   },
   mounted() {
@@ -381,12 +400,26 @@ export default {
           this.$set(this.selectItem, 'span', span_)
         }
 
+        // 2024-04-17 lyf 补充动态标签开关
+        let dynamicLabel_ = this.selectItem.dynamicLabel
+        if(dynamicLabel_ == undefined || dynamicLabel_ == null) {
+          dynamicLabel_ = false
+          this.$set(this.selectItem, 'dynamicLabel', dynamicLabel_)
+        }
+
         let defaultCustemOptions = {
           config: {
             size: 'mini',
             labelWidth: 80
           },
           column: [
+            {
+              label: this.$t('ngform.item.dynamicLabel'),//'标签',
+              prop: 'dynamicLabel',
+              type: 'switch',
+              default: dynamicLabel_,
+              span: 24
+            },
             {
               label: this.$t('ngform.item.label'),//'标签',
               prop: 'label',
@@ -458,6 +491,27 @@ export default {
             }
 
           })
+
+          // 判断是否有自动标签的开关 没有则回填
+           // 2024-04-17 lyf 补充动态标签开关
+          let dynamicLabel_ = this.selectItem.dynamicLabel
+          if(dynamicLabel_ == undefined || dynamicLabel_ == null) {
+            dynamicLabel_ = false
+            this.$set(this.selectItem, 'dynamicLabel', dynamicLabel_)
+          }
+
+          // 判断columns里是否已经有了动态标签开关 ，没有的化加上
+          const ffs = columns.filter(t=> t.prop == 'dynamicLabel')
+          if(!ffs || ffs.length == 0) {
+            columns.unshift({
+              label: this.$t('ngform.item.dynamicLabel'),//'标签',
+              prop: 'dynamicLabel',
+              type: 'switch',
+              default: dynamicLabel_,
+              span: 24
+            })
+          } 
+
         }
 
         return { config: config_, column: columns }
