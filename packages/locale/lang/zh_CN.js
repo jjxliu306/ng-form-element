@@ -153,7 +153,7 @@ export default {
 
       application: '应用组件',
       basic: '基础组件',
-      decorate: '装饰组件',
+      decorate: '展示组件',
       layout: '布局组件',
       custom_components: '自定义组件',
 

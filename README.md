@@ -26,7 +26,7 @@ NG-FORM-ELEMENT
 https://gitee.com/jjxliu306/ngtool
 
 ## 文档（陆续更新） 
-https://www.kancloud.cn/jjxliu306/ng-form/3191385
+http://www.ng-form.cn
 
  
 ## 集成示例
