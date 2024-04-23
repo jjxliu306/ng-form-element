@@ -100,6 +100,6 @@ module.exports = {
           return options
         })
 
-  }
+  } 
 
 }

@@ -1,5 +1,5 @@
 
-import { dynamicFun } from '../../utils/index.js'
+import { dynamicFun,dateFormater } from '../../utils/index.js'
 import LocalMixin from '../../locale/mixin.js'
 import request from '../../utils/request.js'
 import cloneDeep from 'lodash/cloneDeep'
@@ -135,8 +135,17 @@ export default {
 				) {
 				if(!this.record.options) return
 
-				const defaultValue = this.record.options.defaultValue
+				let defaultValue = this.record.options.defaultValue
 				if(defaultValue != null && defaultValue != undefined) {
+
+					// 日期类型比较特殊 如果是now 则回填当前日期
+					if((this.record.type == 'date' || this.record.type == 'time' || this.record.type == 'datePicker' ) && defaultValue == 'now') { 
+
+				        defaultValue = dateFormater(new Date() ,this.record.options.format)
+				 
+				    }  
+
+
 					this.$set(this.models , this.record.model , defaultValue)
 				} else {
 					this.$set(this.models , this.record.model , '')

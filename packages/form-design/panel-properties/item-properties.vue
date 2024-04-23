@@ -124,7 +124,14 @@
               :record="selectItem"
               :model="selectItem.options"
               :columns="[
-						{
+                    {
+                        label: $t('ngform.properties.edit_hidden'),//编辑时隐藏
+                        prop: 'editHidden',
+                        type: 'switch',
+                        default: false,
+                        span: 24,
+                    },
+						        {
 		                    label: $t('ngform.properties.dynamic_visible'),//'动态显示',
 		                    prop: 'dynamicVisible',
 		                    type: 'switch',

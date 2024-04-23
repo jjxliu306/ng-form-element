@@ -72,7 +72,8 @@ export default {
       data_config: '数据配置' ,
       method_post_tip: 'post请求需要携带的数据(JSON格式)' ,
       script: '表达式',
-      add: '新增'
+      add: '新增',
+      edit_hidden: '编辑时隐藏'
     },
 
     rules: {
@@ -516,6 +517,15 @@ export default {
         label_empty_error: '标签不能为空',
         no_column_tip: '暂无配置字段，请点击左下角加号进行字段添加'
 
+      },
+      code: {
+        name: '编码',
+        script: '规则',
+        script_placeholder: '请输入规则函数,返回具体编码',
+        api_path: 'API路径',
+        api_path_placeholder: '请输入后台API地址',
+        data_url_path: '数据路径',
+        data_url_path_placeholder: '必填,上传成功后解析数据的epl地址'
       }
 
 

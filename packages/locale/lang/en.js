@@ -74,7 +74,8 @@ export default {
       data_config: 'Config Data' ,
       method_post_tip: 'Post Data (JSON)' ,
       script: 'Script',
-      add: 'Add'
+      add: 'Add',
+      edit_hidden: 'Edit Hidden'
     },
 
     rules: {
@@ -517,6 +518,15 @@ export default {
         label_empty_error: 'Label is not null',
         no_column_tip: 'Please click on the plus sign in the bottom left corner to add the fields'
 
+      },
+      code: {
+        name: 'Code',
+        script: 'Rule',
+        script_placeholder: 'Please input the rule function to return the specific code',
+        api_path: 'API',
+        api_path_placeholder: 'Please input the API path',
+        data_url_path: 'Data Url',
+        data_url_path_placeholder: 'Required, the EPL address for parsing data after successful '
       }
 
     },
