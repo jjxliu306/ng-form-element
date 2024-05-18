@@ -198,8 +198,11 @@ export default {
 	        for(let key in data) {
 	          if(key.indexOf('_label') > 0) continue 
 	          //  判断key的id是否还在
+	        	// 2024-05-18 lyf 目前采用隐藏的手段，修改之前判断在不在的方法为判断是否隐藏
 	          const key_div = formdesign.querySelector('#' + key) 
-	          if(!key_div) {
+	          // 判断是否隐藏
+	          //console.log('key_div' , key_div)
+	          if(!key_div || (key_div.style && key_div.style.display == 'none' )) {
 	            // 删除
 	            delete data[key]
 	            delete data[key + '_label']

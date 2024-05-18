@@ -75,7 +75,8 @@ export default {
       method_post_tip: 'Post Data (JSON)' ,
       script: 'Script',
       add: 'Add',
-      edit_hidden: 'Edit Hidden'
+      edit_hidden: 'Edit Hidden',
+      preview_hidden: 'Preview Hidden'
     },
 
     rules: {

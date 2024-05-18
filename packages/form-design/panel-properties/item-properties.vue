@@ -131,6 +131,13 @@
                         default: false,
                         span: 24,
                     },
+                    {
+                        label: $t('ngform.properties.preview_hidden'),//查看时隐藏
+                        prop: 'previewHidden',
+                        type: 'switch',
+                        default: false,
+                        span: 24,
+                    },
 						        {
 		                    label: $t('ngform.properties.dynamic_visible'),//'动态显示',
 		                    prop: 'dynamicVisible',

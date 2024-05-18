@@ -206,6 +206,10 @@ export default {
         if(!this.preview && this.record.options.editHidden) {
           return false
         }
+        // 判断是否查看时隐藏
+        if(this.preview && this.record.options.previewHidden) {
+          return false
+        }
           
         // 判断是否配置了动态显示 或者表达式为空
         if(!this.record.options 

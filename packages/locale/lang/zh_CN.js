@@ -73,7 +73,8 @@ export default {
       method_post_tip: 'post请求需要携带的数据(JSON格式)' ,
       script: '表达式',
       add: '新增',
-      edit_hidden: '编辑时隐藏'
+      edit_hidden: '编辑时隐藏',
+      preview_hidden: '查看时隐藏'
     },
 
     rules: {
