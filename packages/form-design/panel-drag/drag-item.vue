@@ -9,8 +9,7 @@
         sort: false,
         animation: 180,
         ghostClass: 'moving'
-      }"
-      :force-fallback="true" 
+      }" 
       @start="handleStart($event,list)"
       @end="handleEnd($event, list)">  
         <li
@@ -57,11 +56,11 @@ export default {
   
   methods: { 
     handleEnd(e, list){ 
-
+      console.log('dragend')
       this.$emit('dragend' ,list,  e.oldIndex)
     },
     handleStart(e , list) {
-      
+      console.log('handleStart')
     },
     //组件图标
     weightIcon(item) {

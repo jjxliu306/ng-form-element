@@ -17,7 +17,7 @@
           animation: 180,
           handle: '.drag-move'
         }"
-        :force-fallback="true"
+        
         v-model="item.list"
         @add="dragEnd($event, item.list)" 
         > 

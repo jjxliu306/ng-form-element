@@ -15,7 +15,7 @@
             animation: 180,
             handle: '.drag-move'
           }"
-          :force-fallback="true"
+          
           :list="record.list"
           @add="dragEnd($event, record.list)" 
           > 

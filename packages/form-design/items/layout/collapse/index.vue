@@ -23,7 +23,7 @@
             animation: 180,
             handle: '.drag-move'
           }"
-          :force-fallback="true"
+          
           :list="item.list"
           @add="dragEnd($event, item.list)" 
           > 

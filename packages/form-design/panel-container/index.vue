@@ -25,7 +25,7 @@
 			          animation: 180,
 			          handle: '.drag-move'
 			        }"
-			        :force-fallback="true"
+			         
 			        v-model="formTemplate.list" 
 			        @add="dragEnd($event, formTemplate.list)" 
 			      	>
@@ -88,6 +88,7 @@ export default {
 	},
 	methods: {
 	 	dragEnd(evt, list) {   
+	 		console.log('111' , evt)
 	 		// 复制一遍
 	 		const clone = cloneDeepAndFormat(list[evt.newIndex] , evt)
 	 		 

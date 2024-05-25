@@ -37,7 +37,7 @@
                                 animation: 180,
                                 handle: '.drag-move',
                             }"
-                            :force-fallback="true"
+                            
                             v-model="grid.list"
                             @add="dragEnd($event, grid.list)"
                         > 
