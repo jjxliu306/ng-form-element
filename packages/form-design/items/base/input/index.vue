@@ -8,6 +8,7 @@
 		:style="`width:${record.width}`"
 		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
 		v-model="models[record.model]" 
+		:show-word-limit="record.options.maxLength && record.options.maxLength > 0"
 		@focus="handleFocus"
       	@blur="handleBlur"
 		>

@@ -68,7 +68,11 @@ export default {
     }
   },
   watch: {
-
+    disabled(val) {
+      if (val != null && val && this.editor) {
+         this.editor.disable()
+      }
+    },
     value(val) {
       if (val !== this.editor.txt.html()) {
         this.text = val;
