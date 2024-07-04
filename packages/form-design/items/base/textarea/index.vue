@@ -9,7 +9,7 @@
 		:rows="record.options.rows"
 		:autosize="record.options.autosize"
 		:maxlength="record.options.maxLength > 0 ? record.options.maxLength : null"
-		:show-word-limit="record.options.maxLength && record.options.maxLength > 0"
+		:show-word-limit="record.options.maxLength && record.options.maxLength > 0 ? true : false"
 		v-model="models[record.model]" 
 		@focus="handleFocus"
         @blur="handleBlur"
