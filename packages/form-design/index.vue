@@ -238,7 +238,7 @@ export default {
   },
   methods: {
     handleSelectItem(record) {
-      console.log(record)
+      //console.log(record)
       this.selectItem = record
     },
 

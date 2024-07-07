@@ -88,7 +88,7 @@ export default {
 	},
 	methods: {
 	 	dragEnd(evt, list) {   
-	 		console.log('111' , evt)
+	 		//console.log('111' , evt)
 	 		// 复制一遍
 	 		const clone = cloneDeepAndFormat(list[evt.newIndex] , evt)
 	 		 

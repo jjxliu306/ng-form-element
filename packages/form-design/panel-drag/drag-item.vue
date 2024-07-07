@@ -56,11 +56,11 @@ export default {
   
   methods: { 
     handleEnd(e, list){ 
-      console.log('dragend')
+      //console.log('dragend')
       this.$emit('dragend' ,list,  e.oldIndex)
     },
     handleStart(e , list) {
-      console.log('handleStart')
+      //console.log('handleStart')
     },
     //组件图标
     weightIcon(item) {
