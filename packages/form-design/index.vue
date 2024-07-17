@@ -1,14 +1,8 @@
 <template>
   <el-container class="form-design">
     <el-header class="header" height="40px">
-      <HeaderPanel
-          :clear="clear"
-          :preview="preview"
-          :imp="imp"
-          :exp="exp"
-          :formTemplate="formTemplate"
-          @importData="importData"
-      >
+      <HeaderPanel :clear="clear" :preview="preview" :imp="imp" :exp="exp" :formTemplate="formTemplate"
+        @importData="importData" @undo="handleUndo" @redo="handleRedo">
         <template slot="controlButton">
           <slot name="controlButton"></slot>
         </template>
@@ -24,24 +18,18 @@
       <el-container class="ng-main-container">
         <el-aside width="260px" class="item-panel">
           <slot name="drag"></slot>
-          <DragPanel
-              :basic-item="basicItem"
-              :decorate-item="decorateItem"
-              :layout-item="layoutItem"
-              :application-item="applicationItem"
-          />
+          <DragPanel :basic-item="basicItem" :decorate-item="decorateItem" :layout-item="layoutItem"
+            :application-item="applicationItem" />
         </el-aside>
         <el-main class="center-panel form-main">
-          <ContainerPanel
-              :formTemplate="formTemplate"
-              @handleSelectItem="handleSelectItem"
-              :selectItem="selectItem"
-              :arrow="arrow"
-          >
+          <ContainerPanel :formTemplate="formTemplate" @handleSelectItem="handleSelectItem" :selectItem="selectItem"
+            :arrow="arrow">
           </ContainerPanel>
         </el-main>
-        <el-aside :width="arrow ? '0px' : '370px'"  class="properties-panel">
-          <a  :class="[arrow ? 'togglelefts ' : 'togglelefts arrowR']" @click="arrow=!arrow" :style="{right: (arrow ?  '0px': '370px')}" :title="arrow ? t('ngform.open_properties_panel') : t('ngform.close_properties_panel')"></a>
+        <el-aside :width="arrow ? '0px' : '370px'" class="properties-panel">
+          <a :class="[arrow ? 'togglelefts ' : 'togglelefts arrowR']" @click="arrow = !arrow"
+            :style="{ right: (arrow ? '0px' : '370px') }"
+            :title="arrow ? t('ngform.open_properties_panel') : t('ngform.close_properties_panel')"></a>
           <PropertiesPanel :selectItem="selectItem">
             <template slot="custom-properties">
               <slot name="custom-properties" :selectItem="selectItem"></slot>
@@ -68,6 +56,69 @@ import { use } from '../locale/index'
 import { getUUID } from '../utils/index'
 import cloneDeep from 'lodash/cloneDeep'
 import LocalMixin from '../locale/mixin.js'
+
+function debounce(func, wait) {
+  let timeout;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(context, args);
+    }, wait);
+  };
+}
+class Command {
+  constructor(execute, undo) {
+    this.execute = execute;
+    this.undo = undo;
+  }
+}
+class UndoCommand extends Command {
+  constructor(context) {
+    super(
+      () => {
+        if (context.undoStack.length > 1) {
+          let laststate = context.undoStack[context.undoStack.length - 2];
+          context.formTemplate = deepClone(laststate);
+          let redostate = context.undoStack.pop();
+          context.redoStack.push(redostate);
+        } else {
+          alert("撤回栈已空，无法撤回");
+        }
+        setTimeout(() => {
+          context.ischange = false;
+        }, 400);
+      },
+      () => {
+        if (context.redoStack.length > 0) {
+          context.formTemplate = context.redoStack.pop();
+        } else {
+          alert("无法重做");
+        }
+      }
+    );
+  }
+}
+
+
+class RedoCommand extends Command {
+  constructor(context) {
+    super(
+      () => {
+        if (context.redoStack.length > 0) {
+          context.formTemplate = context.redoStack.pop();
+        } else {
+          alert("无法重做");
+        }
+      },
+      () => {
+        // 这里可以实现撤销 redo 的逻辑，但我们暂时不需要
+      }
+    );
+  }
+}
+const deepClone = (obj) => JSON.parse(JSON.stringify(obj));
 export default {
   mixins: [LocalMixin],
   name: 'ng-form-design',
@@ -83,19 +134,24 @@ export default {
       arrow: false,
       i18nkey: getUUID(),
       formTemplate: this.template || {
-              list: [
-              ],
-              config: {
-                labelPosition: 'left',
-                labelWidth: 100,
-                size: 'mini',
-                outputHidden: true, //  是否输出隐藏字段的值 默认打开,所有字段都输出
-                hideRequiredMark: false,
-                syncLabelRequired: false,
-                labelSuffix: '' , // 标签后缀
-                customStyle: ''
-              }
-            },
+        list: [
+        ],
+        config: {
+          labelPosition: 'left',
+          labelWidth: 100,
+          size: 'mini',
+          outputHidden: true, //  是否输出隐藏字段的值 默认打开,所有字段都输出
+          hideRequiredMark: false,
+          syncLabelRequired: false,
+          labelSuffix: '', // 标签后缀
+          customStyle: ''
+        }
+      },
+      undoStack: [],
+      redoStack: [],
+      ischange: false,
+      maxUndoStackSize: 15,
+      maxRedoStackSize: 5,
     }
   },
   props: {
@@ -111,7 +167,7 @@ export default {
             outputHidden: true, //  是否输出隐藏字段的值 默认打开,所有字段都输出
             hideRequiredMark: false,
             syncLabelRequired: false,
-            labelSuffix: '' , // 标签后缀
+            labelSuffix: '', // 标签后缀
             customStyle: ''
           }
         }
@@ -164,7 +220,7 @@ export default {
     }
   },
   computed: {
-    
+
     templateConfig() {
       if (this.formTemplate) return this.formTemplate.config
       return {}
@@ -200,17 +256,25 @@ export default {
       immediate: false
     },
     formTemplate: {
-      handler(newVal) {
+      handler: debounce(function (oldVal, newVal) {
         this.$emit('update:template', newVal)
-      },
+
+        if (!this.ischange) {
+          this.undoStack.push(deepClone(oldVal));
+          if (this.undoStack.length > this.maxUndoStackSize) {
+            this.undoStack.shift();
+          }
+          if (!this.first) this.first = true;
+        }
+      }, 300),
       deep: true,
-      immediate: false
+      immediate: true,
     }
   },
   provide() {
     return {
       customC: this.components,
-      configC: ()=>this.templateConfig,
+      configC: () => this.templateConfig,
       //dictsC: this.dicts,
       httpConfigC: this.httpConfig,
       ngConfig: this.config
@@ -237,6 +301,16 @@ export default {
     }
   },
   methods: {
+    //撤销重做
+    handleUndo() {
+      this.ischange = true;
+      const undoCommand = new UndoCommand(this);
+      undoCommand.execute();
+    },
+    handleRedo() {
+      const redoCommand = new RedoCommand(this);
+      redoCommand.execute();
+    },
     handleSelectItem(record) {
       //console.log(record)
       this.selectItem = record
@@ -274,7 +348,7 @@ export default {
 <style>
 .form-design {
   height: 100%;
-  background: white; 
+  background: white;
   text-align: left;
 }
 
@@ -314,11 +388,8 @@ export default {
   box-shadow: -3px 0 6px rgb(48 65 86 / 35%);
   background: white;
 }
-
 </style>
 <style>
-
-
 .togglelefts {
   width: 14px;
   height: 54px;
@@ -330,9 +401,10 @@ export default {
   top: 45%;
   margin-top: -27px;
   z-index: 1000;
-  border-right:solid 1px #fff;
+  border-right: solid 1px #fff;
   cursor: pointer;
 }
+
 .togglelefts:before {
   content: "";
   position: absolute;
@@ -344,6 +416,7 @@ export default {
   border-bottom: 5px solid transparent;
   border-top: 5px solid transparent;
 }
+
 .togglelefts:after {
   content: "";
   position: absolute;
@@ -359,11 +432,13 @@ export default {
 .togglelefts:hover {
   background: #d9f1ff;
 }
+
 .togglelefts:hover:before {
   border-right: 5px solid #fff;
   border-bottom: 5px solid transparent;
   border-top: 5px solid transparent;
 }
+
 .togglelefts:hover:after {
   border-bottom: 4px solid transparent;
   border-right: 4px solid #d9f1ff;
@@ -383,6 +458,7 @@ export default {
   border-right: none;
   cursor: pointer;
 }
+
 .arrowR:after {
   content: "";
   position: absolute;
@@ -396,6 +472,7 @@ export default {
   border-right: none;
   cursor: pointer;
 }
+
 .arrowR:hover:before {
   border-left: 5px solid #fff;
   border-bottom: 5px solid transparent;
@@ -403,14 +480,14 @@ export default {
   border-top: 5px solid transparent;
   cursor: pointer;
 }
+
 .arrowR:hover:after {
   border-right: none;
   border-bottom: 4px solid transparent;
   border-left: 4px solid #005eaa;
   border-top: 4px solid transparent;
   cursor: pointer;
-}  
-
+}
 </style>
 <!--
 <style lang="scss">

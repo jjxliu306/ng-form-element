@@ -14,6 +14,8 @@ export default {
       clear_prompt: '是否要清空当前面板?',
       content_not_empty: '内容不能为空',
       content_parse_error: '内容解析异常，请检查文本内容',
+      undo: '撤销',
+      redo: '重做',
     },
     close: '关闭',
     confirm: '确定',
