@@ -13,7 +13,9 @@ export default {
       prompt: "Prompt",
       clear_prompt: "Do you want to clear the current panel?",
       content_not_empty: "Content cannot be empty",
-      content_parse_error: "Content parsing exception, please check the text content"
+      content_parse_error: "Content parsing exception, please check the text content",
+      undo: "undo",
+      redo: "redo"
     },
     close: "Close",
     confirm: "Confirm",

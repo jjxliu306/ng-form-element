@@ -77,12 +77,15 @@ export default {
     },
     // 表单全局config配置
     configInject: {
-      from: "configC"
+      from: "configC" 
     }
   },
   computed: {
     config() {
-      return this.configInject() || {}
+      if(this.configInject) {
+        return this.configInject() || {}
+      }
+      return {}
     },
     customComponent() {
       // 判断是否自定义组件

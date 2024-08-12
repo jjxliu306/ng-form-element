@@ -86,7 +86,10 @@ export default {
       }
     },
     config() {
-      return this.configInject() || {}
+      if(this.configInject) {
+        return this.configInject() || {}
+      }
+      return {}
     }
   },
   props: {
@@ -108,7 +111,7 @@ export default {
   inject: {
     // 表单全局config配置
     configInject: {
-      from: "configC"
+      from: "configC" 
     },
     customComponents: {
       from: "customC",

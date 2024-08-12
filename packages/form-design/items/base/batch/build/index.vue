@@ -143,13 +143,16 @@ export default {
       return w 
     },
     config() {
-      return this.configInject() || {}
+      if(this.configInject) {
+        return this.configInject() || {}
+      }
+      return {}
     },
   },
   inject: {
       // 表单全局config配置
       configInject: {
-          from: 'configC' 
+        from: 'configC' 
       }
   },
   mounted(){ 

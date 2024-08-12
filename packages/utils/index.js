@@ -11,14 +11,15 @@ import cloneDeep from "lodash/cloneDeep"
  */
 export function dynamicFun(script, model, key = "$", row, rowKey, thisObj = window) {
   if (!script) return false
+ 
   const func = script.indexOf("return") >= 0 ? "{" + script + "}" : "return (" + script + ")"
 
   if (row && rowKey) {
     const Fn = new Function(key, rowKey, func)
-    return Fn(thisObj, model, row)
+    return Fn(model, row)
   } else {
     const Fn = new Function(key, func)
-    return Fn(thisObj, model)
+    return Fn(model)
   }
 }
 /**

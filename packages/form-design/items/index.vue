@@ -105,12 +105,15 @@ export default {
     },
     // 表单全局config配置
     formConfig: {
-      from: "configC"
+      from: "configC" 
     }
   },
   computed: {
-    config() {
-      return this.formConfig()
+    config() { 
+      if(this.formConfig) {
+        return this.formConfig() || {}
+      }
+      return {}
     },
     // 是否布局组件 但钱不需要验证的哪种
     isLayout() {
