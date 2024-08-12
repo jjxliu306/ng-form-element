@@ -1,7 +1,9 @@
 <template>
   <el-container class="form-design">
+     
     <el-header class="header" height="40px">
-      <HeaderPanel :clear="clear" :preview="preview" :imp="imp" :exp="exp" :formTemplate="formTemplate"
+
+      <HeaderPanel :clear="clear" :preview="preview" :imp="imp" :exp="exp" :formTemplate="formTemplate" :is-undo="undoStack && undoStack.length > 1" :is-redo="redoStack && redoStack.length > 0"
         @importData="importData" @undo="handleUndo" @redo="handleRedo">
         <template slot="controlButton">
           <slot name="controlButton"></slot>
@@ -55,7 +57,7 @@ import PropertiesPanel from './panel-properties/index.vue'
 import { use } from '../locale/index'
 import { getUUID } from '../utils/index'
 import cloneDeep from 'lodash/cloneDeep'
-import LocalMixin from '../locale/mixin.js'
+import LocalMixin from '../locale/mixin.js' 
 
 function debounce(func, wait) {
   let timeout;
@@ -80,10 +82,12 @@ class UndoCommand extends Command {
       () => {
         if (context.undoStack.length > 1) {
           let laststate = context.undoStack[context.undoStack.length - 2];
-          context.formTemplate = deepClone(laststate);
+          context.formTemplate = cloneDeep(laststate);
           let redostate = context.undoStack.pop();
           context.redoStack.push(redostate);
         } else {
+          //       noUndo: '暂无可撤回内容',
+          // noRedo: '无法重做'
           alert("撤回栈已空，无法撤回");
         }
         setTimeout(() => {
@@ -118,7 +122,7 @@ class RedoCommand extends Command {
     );
   }
 }
-const deepClone = (obj) => JSON.parse(JSON.stringify(obj));
+ 
 export default {
   mixins: [LocalMixin],
   name: 'ng-form-design',
@@ -260,7 +264,7 @@ export default {
         this.$emit('update:template', newVal)
 
         if (!this.ischange) {
-          this.undoStack.push(deepClone(oldVal));
+          this.undoStack.push(cloneDeep(oldVal));
           if (this.undoStack.length > this.maxUndoStackSize) {
             this.undoStack.shift();
           }

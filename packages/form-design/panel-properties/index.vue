@@ -42,7 +42,11 @@ export default {
 	inject: ['configC'],
 	computed: {
 		config() {
-			return this.configC() || {}
+			if(this.configC) {
+				return this.configC() || {}
+			}
+			return {}
+			
 		},
 		selectItemKey() {
 			if(this.selectItem && this.selectItem.key){

@@ -1,7 +1,7 @@
 <template>
 	<div class="panel-header-index">
 		<el-row>
-			<el-col :span="6">
+			<el-col :span="5">
 				<slot name="logo">
 					<a href="https://gitee.com/jjxliu306/ng-form-element" target="_black">
 						<img class="logo"
@@ -10,10 +10,11 @@
 					</a>
 				</slot>
 			</el-col>
-			<el-col :span="8" style="min-height: 30px;">
-				<el-button v-if="clear" type="text" size="medium" icon="el-icon-back" @click="handleUndo">{{
+			<el-col :span="9" style="min-height: 30px;">
+			<!-- 	isUndo:{{isUndo}} , isRedo:{{isRedo}} -->
+				<el-button v-if="clear" type="text" size="medium" icon="el-icon-back" @click="handleUndo" :disabled="!isUndo">{{
 				t('ngform.header.undo') }}</el-button>
-				<el-button v-if="clear" type="text" size="medium" icon="el-icon-right" @click="handleRedo">{{
+				<el-button v-if="clear" type="text" size="medium" icon="el-icon-right" @click="handleRedo" :disabled="!isRedo">{{
 				t('ngform.header.redo') }}</el-button>
 				<slot name="formName"></slot>
 			</el-col>
@@ -56,6 +57,14 @@ export default {
 	props: {
 		formTemplate: {
 			type: Object
+		},
+		isRedo: {
+			type: Boolean,
+			default: false
+		},
+		isUndo: {
+			type: Boolean,
+			default: false
 		},
 		// 按钮显示隐藏 
 		clear: {
