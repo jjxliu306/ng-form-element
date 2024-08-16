@@ -3,7 +3,7 @@
      
     <el-header class="header" height="40px">
 
-      <HeaderPanel :clear="clear" :preview="preview" :imp="imp" :exp="exp" :formTemplate="formTemplate" :is-undo="undoStack && undoStack.length > 1" :is-redo="redoStack && redoStack.length > 0"
+      <HeaderPanel :clear="clear" :preview="preview" :imp="imp" :exp="exp" :formTemplate="formTemplate" :undo="undo" :is-undo="undoStack && undoStack.length > 1" :is-redo="redoStack && redoStack.length > 0"
         @importData="importData" @undo="handleUndo" @redo="handleRedo">
         <template slot="controlButton">
           <slot name="controlButton"></slot>
@@ -32,7 +32,7 @@
           <a :class="[arrow ? 'togglelefts ' : 'togglelefts arrowR']" @click="arrow = !arrow"
             :style="{ right: (arrow ? '0px' : '370px') }"
             :title="arrow ? t('ngform.open_properties_panel') : t('ngform.close_properties_panel')"></a>
-          <PropertiesPanel :selectItem="selectItem">
+          <PropertiesPanel :selectItem="selectItem" >
             <template slot="custom-properties">
               <slot name="custom-properties" :selectItem="selectItem"></slot>
             </template>
@@ -88,7 +88,8 @@ class UndoCommand extends Command {
         } else {
           //       noUndo: '暂无可撤回内容',
           // noRedo: '无法重做'
-          alert("撤回栈已空，无法撤回");
+          // alert("撤回栈已空，无法撤回");
+          context.$message.error("撤回栈已空，无法撤回")
         }
         setTimeout(() => {
           context.ischange = false;
@@ -98,7 +99,8 @@ class UndoCommand extends Command {
         if (context.redoStack.length > 0) {
           context.formTemplate = context.redoStack.pop();
         } else {
-          alert("无法重做");
+          //alert("无法重做");
+          context.$message.error("无法重做")
         }
       }
     );
@@ -113,7 +115,8 @@ class RedoCommand extends Command {
         if (context.redoStack.length > 0) {
           context.formTemplate = context.redoStack.pop();
         } else {
-          alert("无法重做");
+          //alert("无法重做");
+          context.$message.error("无法重做")
         }
       },
       () => {
@@ -180,6 +183,11 @@ export default {
     customComponents: {
       type: Array,
       default: () => []
+    },
+    // 是否开启undo redo
+    undo: {
+      type: Boolean,
+      default: false
     },
     // 按钮显示隐藏
     clear: {
@@ -263,13 +271,19 @@ export default {
       handler: debounce(function (oldVal, newVal) {
         this.$emit('update:template', newVal)
 
-        if (!this.ischange) {
-          this.undoStack.push(cloneDeep(oldVal));
-          if (this.undoStack.length > this.maxUndoStackSize) {
-            this.undoStack.shift();
+        if(this.undo) {
+          if (!this.ischange) {
+            this.undoStack.push(cloneDeep(oldVal));
+            if (this.undoStack.length > this.maxUndoStackSize) {
+              this.undoStack.shift();
+            }
+            if (!this.first) this.first = true;
+          } else {
+            // 刷新面板 看看能不能找到 selectItem.key 的组件 进行重置
+            this.refreshselectItem()
           }
-          if (!this.first) this.first = true;
         }
+       
       }, 300),
       deep: true,
       immediate: true,
@@ -305,6 +319,43 @@ export default {
     }
   },
   methods: {
+    refreshselectItem() {
+      if(!this.selectItem || !this.selectItem.key) return 
+      
+      const key_ = this.selectItem.key 
+
+      const this_ = this 
+      let selectItem_tmp = null 
+      const fs_ = (v)=> {
+          if(v instanceof Array) {
+            v.forEach(vc=> fs_(vc))
+          } else if(v.key == key_) {
+            selectItem_tmp= v
+            return
+          } else {
+            // 遍历迭代
+            const keys_ = Object.keys(v)
+            for(const k in keys_) {
+              const vk = v[k]
+
+              if(vk instanceof Array) {
+                vk.forEach(k_ => fs_(k_) )
+              }
+            }
+
+          }
+      }
+
+      fs_(this.formTemplate.list)
+
+
+      if(selectItem_tmp) {
+        this.selectItem = selectItem_tmp
+      } else {
+        this.selectItem = null
+      }
+
+    },
     //撤销重做
     handleUndo() {
       this.ischange = true;
@@ -334,9 +385,14 @@ export default {
     },
     // 初始化模板
     initModel(formTemplate) {
+
+      //2024-08-13 lyf init的时候初始化恢复和重做 
       const modelData = cloneDeep(formTemplate)
 
       this.importData(modelData)
+
+      this.undoStack = []
+      this.redoStack = []
     },
     // 从模板处导入json表单模板
     importData(formTemplate = {}) {
@@ -359,6 +415,7 @@ export default {
 .form-design .header {
   box-shadow: 1px 0px 6px 3px rgba(48, 65, 86, 0.35);
   background: white;
+  padding-left:  0px;
 }
 
 .form-design .form-main {

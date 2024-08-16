@@ -104,16 +104,17 @@ export default {
       default: () => []
     },
     // 表单全局config配置
-    formConfig: {
-      from: "configC" 
+    configInject: {
+      from: "configC" ,
+       default: null
     }
   },
   computed: {
     config() { 
-      if(this.formConfig) {
-        return this.formConfig() || {}
+      if(this.configInject && this.configInject != null && this.configInject != undefined) {
+        return this.configInject() || {}
       }
-      return {}
+      return {} 
     },
     // 是否布局组件 但钱不需要验证的哪种
     isLayout() {

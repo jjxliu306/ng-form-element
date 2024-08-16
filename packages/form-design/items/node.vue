@@ -74,19 +74,9 @@ export default {
     customComponents: {
       from: "customC",
       default: () => []
-    },
-    // 表单全局config配置
-    configInject: {
-      from: "configC" 
-    }
+    } 
   },
-  computed: {
-    config() {
-      if(this.configInject) {
-        return this.configInject() || {}
-      }
-      return {}
-    },
+  computed: { 
     customComponent() {
       // 判断是否自定义组件
       if (this.customComponents && this.customComponents.length > 0) {
@@ -164,6 +154,8 @@ export default {
       }
       //immediate: true
     }
+  },
+  created() { 
   },
   methods: {
     handleSelectItem(item) {

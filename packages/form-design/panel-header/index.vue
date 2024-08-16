@@ -1,7 +1,7 @@
 <template>
 	<div class="panel-header-index">
-		<el-row>
-			<el-col :span="5">
+		<div class="header-sub">
+			<div class="header-left">
 				<slot name="logo">
 					<a href="https://gitee.com/jjxliu306/ng-form-element" target="_black">
 						<img class="logo"
@@ -9,13 +9,44 @@
 						<span class="title">ng-form-element</span>
 					</a>
 				</slot>
+			</div>
+			<div class="header-right">
+				<div class="right-left">
+					<template v-if="undo">
+						<el-button v-if="clear" type="text" size="medium" icon="el-icon-back" @click="handleUndo" :disabled="!isUndo">{{
+						t('ngform.header.undo') }}</el-button>
+						<el-button v-if="clear" type="text" size="medium" icon="el-icon-right" @click="handleRedo" :disabled="!isRedo" style="padding-right: 20px;">{{
+						t('ngform.header.redo') }}</el-button>
+					</template> 
+					<slot name="formName"></slot>
+				</div>
+				<div class="right-right">
+					<span class="buttons">
+						<slot name="controlButton"></slot>
+						<el-button v-if="clear" type="text" size="medium" icon="el-icon-delete"
+							@click="handleClear">{{ t('ngform.header.clear') }}</el-button>
+						<el-button v-if="preview" type="text" size="medium" icon="el-icon-view"
+							@click="handlePreview">{{ t('ngform.header.preview') }}</el-button>
+						<!--   <el-button v-if="reder"  type="text" size="medium" icon="el-icon-view" @click="handleRender">渲染</el-button> -->
+						<el-button v-if="imp" type="text" size="medium" icon="el-icon-download"
+							@click="handleImport">{{ t('ngform.header.imp') }}</el-button>
+						<el-button v-if="exp" type="text" size="medium" icon="el-icon-upload2"
+							@click="handleExport">{{ t('ngform.header.exp') }}</el-button>
+					</span>
+				</div>
+			</div> 
+		</div>
+		<!-- <el-row>
+			<el-col :span="5">
+				
 			</el-col>
-			<el-col :span="9" style="min-height: 30px;">
-			<!-- 	isUndo:{{isUndo}} , isRedo:{{isRedo}} -->
-				<el-button v-if="clear" type="text" size="medium" icon="el-icon-back" @click="handleUndo" :disabled="!isUndo">{{
-				t('ngform.header.undo') }}</el-button>
-				<el-button v-if="clear" type="text" size="medium" icon="el-icon-right" @click="handleRedo" :disabled="!isRedo">{{
-				t('ngform.header.redo') }}</el-button>
+			<el-col :span="9" style="min-height: 30px;"> 
+				<template v-if="undo">
+					<el-button v-if="clear" type="text" size="medium" icon="el-icon-back" @click="handleUndo" :disabled="!isUndo">{{
+					t('ngform.header.undo') }}</el-button>
+					<el-button v-if="clear" type="text" size="medium" icon="el-icon-right" @click="handleRedo" :disabled="!isRedo">{{
+					t('ngform.header.redo') }}</el-button>
+				</template> 
 				<slot name="formName"></slot>
 			</el-col>
 			<el-col :span="10">
@@ -25,14 +56,14 @@
 						@click="handleClear">{{ t('ngform.header.clear') }}</el-button>
 					<el-button v-if="preview" type="text" size="medium" icon="el-icon-view"
 						@click="handlePreview">{{ t('ngform.header.preview') }}</el-button>
-					<!--   <el-button v-if="reder"  type="text" size="medium" icon="el-icon-view" @click="handleRender">渲染</el-button> -->
+				 
 					<el-button v-if="imp" type="text" size="medium" icon="el-icon-download"
 						@click="handleImport">{{ t('ngform.header.imp') }}</el-button>
 					<el-button v-if="exp" type="text" size="medium" icon="el-icon-upload2"
 						@click="handleExport">{{ t('ngform.header.exp') }}</el-button>
 				</span>
 			</el-col>
-		</el-row>
+		</el-row> -->
 
 		<Preview v-if="previewVisible" ref="preview" />
 		<Code v-if="codeVisible" ref="code" @imp="importData" />
@@ -58,6 +89,11 @@ export default {
 		formTemplate: {
 			type: Object
 		},
+		 // 是否开启undo redo
+    undo: {
+      type: Boolean,
+      default: false
+    },
 		isRedo: {
 			type: Boolean,
 			default: false
@@ -130,14 +166,43 @@ export default {
 	}
 }
 </script>
+<style scoped>
+
+</style>
 <style>
 .panel-header-index {
 	height: 100%;
 }
 
+.panel-header-index .header-sub {
+	display: flex;
+	padding:  0px;
+}
+
+.panel-header-index .header-sub .header-left {
+	width: 260px;
+
+}
+
+.panel-header-index .header-sub .header-right {
+	display: flex;
+	justify-content: space-between;
+	flex: 2;
+  flex-basis: auto;
+}
+
+.panel-header-index .header-sub .header-right .right-left {
+	
+}
+
+.panel-header-index .header-sub .header-right .right-right {
+	
+}
+
 .panel-header-index .logo,
 .panel-header-index .title {
 	float: left;
+	padding-left: 10px;
 }
 
 .panel-header-index .title {
