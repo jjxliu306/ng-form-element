@@ -95,10 +95,10 @@ obj.options = {
             { label: $t("ngform.item.date.year"), value: "year" },
             { label: $t("ngform.item.date.month"), value: "month" },
             { label: $t("ngform.item.date.date"), value: "date" },
-            { label: "多日期", value: "dates" },
-            { label: "多月份", value: "months" },
-            { label: "多年份", value: "years" },
-            { label: "周", value: "week" }
+            // { label: "多日期", value: "dates" },
+            // { label: "多月份", value: "months" },
+            // { label: "多年份", value: "years" },
+            // { label: "周", value: "week" }
             // { label: "日期区间", value: "daterange" },
             // { label: "月份区间", value: "monthrange" }
           ],
