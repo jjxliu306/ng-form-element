@@ -52,19 +52,21 @@ export default {
     }
   },
   watch: {
-    labelWidth(val) {
-      const esignBox = window.getComputedStyle(this.$refs.esignBox)
-      this.boxWidth = parseFloat(esignBox.width ) 
+    labelWidth(val) { 
+      this.initSize()
     }
   },
   mounted() {
-    const esignBox = window.getComputedStyle(this.$refs.esignBox)
-    this.boxWidth = parseFloat(esignBox.width ) 
-    //const boxHeight = esignBox.height 
-
+    this.initSize()
      
   },
   methods: {
+    initSize() {
+      this.$nextTick(()=> {
+        const esignBox = window.getComputedStyle(this.$refs.esignBox)
+        this.boxWidth = parseFloat(esignBox.width ) 
+      })
+    },
     handleReset () {
       this.$set(this.models , this.record.model , '')
       this.$refs.esign.reset()

@@ -34,7 +34,7 @@
         <!--  <slot :value="column.prop" :column="column" :name="column.prop">  -->
 
         <!-- 输入类型判断 -->
-        <el-input v-if="!column.type || column.type == 'input'" v-model.trim="model[column.prop]" :placeholder="formLabel(column.placeholder)" />
+        <el-input v-if="!column.type || column.type == 'input'" v-model="model[column.prop]" :placeholder="formLabel(column.placeholder)" />
         <el-input type="textarea" v-else-if="column.type == 'textarea'" v-model="model[column.prop]" :placeholder="formLabel(column.placeholder)" />
         <el-input-number
           style="width: 100%"
