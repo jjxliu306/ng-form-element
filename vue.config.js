@@ -52,11 +52,11 @@ module.exports = {
     // 打包忽略文件
     if(process.env.NODE_ENV === 'production'){
       config.externals = {
-        //"element-ui": "ELEMENT",
+        "element-ui": "ELEMENT",
         // 编译 build的时候放开
-        //vue: "Vue",
+        vue: "Vue",
         //"vue-router": "VueRouter",
-        //vuex: "Vuex"
+        vuex: "Vuex"
       }
       config.performance= {
         hints: 'warning',

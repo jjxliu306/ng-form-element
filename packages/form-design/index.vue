@@ -3,8 +3,7 @@
      
     <el-header class="header" height="40px">
 
-      <HeaderPanel :clear="clear" :preview="preview" :imp="imp" :exp="exp" :formTemplate="formTemplate" :undo="undo" :is-undo="undoStack && undoStack.length > 1" :is-redo="redoStack && redoStack.length > 0"
-        @importData="importData" @undo="handleUndo" @redo="handleRedo">
+      <HeaderPanel :clear="clear" :preview="preview" :imp="imp" :exp="exp" :formTemplate="formTemplate" :undo="undo" :is-undo="undoStack && undoStack.length > 1" :is-redo="redoStack && redoStack.length > 0"  @importData="importData" @undo="handleUndo" @redo="handleRedo">
         <template slot="controlButton">
           <slot name="controlButton"></slot>
         </template>

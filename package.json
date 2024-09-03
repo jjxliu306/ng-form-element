@@ -13,13 +13,13 @@
     "core-js": "3.6.5",
     "deepmerge": "^4.3.1",
     "default-passive-events": "1.0.10",
-    "lodash": "4.17.21",
-    "object-path": "0.11.5",
-    "vue": "^2.6.12",
-    "vuedraggable": "2.24.3",
     "element-ui": "2.15.14",
     "jsbarcode": "3.11.5",
+    "lodash": "4.17.21",
+    "object-path": "0.11.5",
+    "vue": "2.6.11",
     "vue-qr": "4.0.9",
+    "vuedraggable": "2.24.3",
     "wangeditor": "4.7.15"
   },
   "devDependencies": {
