@@ -416,6 +416,7 @@ export default {
   box-shadow: 1px 0px 6px 3px rgba(48, 65, 86, 0.35);
   background: white;
   padding-left:  0px;
+  z-index: 100;
 }
 
 .form-design .form-main {

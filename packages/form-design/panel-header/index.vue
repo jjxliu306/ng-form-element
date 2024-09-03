@@ -35,35 +35,7 @@
 					</span>
 				</div>
 			</div> 
-		</div>
-		<!-- <el-row>
-			<el-col :span="5">
-				
-			</el-col>
-			<el-col :span="9" style="min-height: 30px;"> 
-				<template v-if="undo">
-					<el-button v-if="clear" type="text" size="medium" icon="el-icon-back" @click="handleUndo" :disabled="!isUndo">{{
-					t('ngform.header.undo') }}</el-button>
-					<el-button v-if="clear" type="text" size="medium" icon="el-icon-right" @click="handleRedo" :disabled="!isRedo">{{
-					t('ngform.header.redo') }}</el-button>
-				</template> 
-				<slot name="formName"></slot>
-			</el-col>
-			<el-col :span="10">
-				<span class="buttons">
-					<slot name="controlButton"></slot>
-					<el-button v-if="clear" type="text" size="medium" icon="el-icon-delete"
-						@click="handleClear">{{ t('ngform.header.clear') }}</el-button>
-					<el-button v-if="preview" type="text" size="medium" icon="el-icon-view"
-						@click="handlePreview">{{ t('ngform.header.preview') }}</el-button>
-				 
-					<el-button v-if="imp" type="text" size="medium" icon="el-icon-download"
-						@click="handleImport">{{ t('ngform.header.imp') }}</el-button>
-					<el-button v-if="exp" type="text" size="medium" icon="el-icon-upload2"
-						@click="handleExport">{{ t('ngform.header.exp') }}</el-button>
-				</span>
-			</el-col>
-		</el-row> -->
+		</div> 
 
 		<Preview v-if="previewVisible" ref="preview" />
 		<Code v-if="codeVisible" ref="code" @imp="importData" />

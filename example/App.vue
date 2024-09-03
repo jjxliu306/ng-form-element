@@ -3,8 +3,8 @@
     <router-view></router-view>
   </transition> -->
    <Design /> 
-  <!--  <Fill/>  -->
- <!-- <Edit/>-->
+  <!-- <Fill/>  
+ <Edit/>-->
 </template>
 <style> 
 html , body {

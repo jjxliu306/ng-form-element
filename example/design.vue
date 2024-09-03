@@ -126,9 +126,12 @@ export default {
       this.formConfig.dict = dicts
    })
 
-    this.$ngform_bus.$on('form-event', (data)=>{ 
-       console.log('form-event data' , data )
-    }) 
+   if(this.$ngform_bus) {
+      this.$ngform_bus.$on('form-event', (data)=>{ 
+        console.log('form-event data' , data )
+      }) 
+   }
+    
   },
   methods: {
     initDemo(row) {
