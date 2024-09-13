@@ -28,6 +28,10 @@ https://gitee.com/jjxliu306/ngtool
 ## 文档（陆续更新） 
 http://www.ng-form.cn
 
+##移动端示例
+**uniapp ng-form组件**
+https://ext.dcloud.net.cn/plugin?id=20207
+
  
 ## 集成示例
 **基于springboot + vue 的前后端分离集成案例**
