@@ -33,7 +33,7 @@
 	  v-else 
 	  class="ng-form-upload"
 	  :class="{'upload': !uploadVisible}"
-	  :action="action"
+	  :action="uploadAction"
 	  :drag="drag"
 	  :disabled="disabled"
 	  :multiple="false"
@@ -157,10 +157,23 @@ export default {
 				if(fileListNames != valueNames) {
 					this.fileList = val 
 				} 
+			} else {
+				this.fileList = []
 			}
 		}
 	},
 	computed: {
+		uploadAction() {
+			let uploadUrl = this.action
+			if(window.nghttpConfig) {
+				const uconfig = window.nghttpConfig({headers: {}})
+				if(uconfig.baseURL) {
+					return uconfig.baseURL + uploadUrl
+				}
+			}
+
+			return uploadUrl
+		},
 		// 上传按钮显示条件 
 		// 1、只上传一个时有文件则不显示 多个时导致门限也不现实
 		// 2、预览时不显示
