@@ -97,7 +97,7 @@ obj.options = {
           label: $t('ngform.item.slider.min'),//'最小值',
           prop: 'min',
           type: 'number',
-          min: 1,
+          min: 0,
           default: 0,
           span: 24
         },

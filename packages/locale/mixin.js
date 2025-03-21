@@ -22,7 +22,7 @@ export default {
       } else {
         // 尝试转换为函数
         try {
-          const label = dynamicFun(v, models, undefined, undefined, undefined, this)
+          const label = dynamicFun(v, models)
           return label
         } catch (error) {
           //console.error('get dynamic label error , script: ' + v , error)

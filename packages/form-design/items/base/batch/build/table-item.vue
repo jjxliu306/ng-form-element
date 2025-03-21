@@ -23,8 +23,7 @@
     />    
 </div>
 </template>
-<script> 
-import { dynamicFun} from '../../../../../utils/index' 
+<script>  
  
 export default {
   name: "TableItem",

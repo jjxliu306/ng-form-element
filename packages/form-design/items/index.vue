@@ -175,7 +175,7 @@ export default {
         return false
       }
 
-      const mark = dynamicFun(fstr, this.models, undefined, undefined, undefined, this)
+      const mark = dynamicFun(fstr, this.models)
 
       return mark
     },
@@ -220,7 +220,7 @@ export default {
 
       let fstr = this.record.options.dynamicVisibleValue
       // 打开了开关 这里获取函数内容
-      const func = dynamicFun(fstr, this.models, undefined, undefined, undefined, this)
+      const func = dynamicFun(fstr, this.models)
       return func
     },
     recordRules() {

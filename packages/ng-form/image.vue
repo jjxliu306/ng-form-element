@@ -19,6 +19,7 @@
     </ul>
     <el-upload
     	v-else
+    	action=""
 	  class="ng-form-upload" 
 	  :on-preview="handlePreview"
 	  :on-remove="handleRemove"

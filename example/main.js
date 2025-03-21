@@ -21,9 +21,21 @@ import ngZh from './locale/zh_CN.js'
 // 将本地的国际化资源和组件内资源合并
 const mergeZh =  deepmerge(zh, ngZh, { clone: true })
 
+const uploadConfig = {
+    uploadUrl: 'http://localhost:8080/common/upload' ,
+    filePath: 'url',
+    fileIdPath: ''
+}
+
+const httpConfig = (config)=> {
+    config.headers['Authorization'] = 'Bearer ' + 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjIwZDRhNmU3LTZkMTMtNGNhNy05NThkLTA4ZDM0ZDllMDE2NSJ9.WbJZtczTqd_UYG0qznYBGNH6oMQ6xqJVtBTddzoG5GJwzPvpnXjxAupYtQM9NGvPNh17zpv-omxHmiSUOsLrOw'
+    return config 
+}
+  
+
 // 注册组件库
 Vue.use(ElementUI)
-Vue.use(FormDesign , {locale: mergeZh , components: NgComponents})
+Vue.use(FormDesign , {locale: mergeZh , components: NgComponents , httpConfig: httpConfig , uploadConfig: uploadConfig})
 Vue.config.productionTip = false
 
 new Vue({

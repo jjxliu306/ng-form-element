@@ -143,10 +143,10 @@ export default {
       return w 
     },
     config() {
-      if(this.configInject) {
+      if(this.configInject && this.configInject != null && this.configInject != undefined) {
         return this.configInject() || {}
       }
-      return {}
+      return {} 
     },
   },
   inject: {

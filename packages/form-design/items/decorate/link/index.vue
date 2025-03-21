@@ -7,8 +7,7 @@
 		{{record.label}}
 	</el-link>
 </template>
-<script>
-import { dynamicFun } from '../../../../utils/index.js'
+<script> 
 import mixin from '../../mixin.js'
 export default {
 	mixins: [mixin],

@@ -86,10 +86,10 @@ export default {
       }
     },
     config() {
-      if(this.configInject) {
+      if(this.configInject && this.configInject != null && this.configInject != undefined) {
         return this.configInject() || {}
       }
-      return {}
+      return {} 
     }
   },
   props: {
@@ -153,7 +153,7 @@ export default {
       }
       let fstr = record.options.dynamicVisibleValue
       // 打开了开关 这里获取函数内容
-      const func = dynamicFun(fstr, this.dataForm, undefined, undefined, undefined, this)
+      const func = dynamicFun(fstr, this.dataForm)
       return func
     },
     // 2021-03-12 清理没有显示的组件的数据
@@ -200,7 +200,7 @@ export default {
         const script = rule.script
 
         // 打开了开关 这里获取函数内容
-        const fvalue = dynamicFun(script, this.dataForm, undefined, undefined, undefined, this)
+        const fvalue = dynamicFun(script, this.dataForm)
 
         if (!fvalue) {
           callback(new Error(rule.message))

@@ -106,7 +106,7 @@ export default {
           if (value.indexOf("$") >= 0) {
             // 解析
             try {
-              value = this.dynamicFun(value, this.models, undefined, undefined, undefined, this)
+              value = this.dynamicFun(value, this.models)
             } catch (error) {
               console.error("parse script error", error)
             }

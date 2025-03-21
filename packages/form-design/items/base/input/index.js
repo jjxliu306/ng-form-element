@@ -118,7 +118,7 @@ obj.options = {
           label: $t('ngform.item.max_length'),//'最大长度',
           type: 'number',
           min: -1,
-          max: 1000,
+          max: 100000,
           prop: 'maxLength',
           span: 24
         },

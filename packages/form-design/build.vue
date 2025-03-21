@@ -100,6 +100,14 @@ export default {
       }
       return null;
     },
+    ngConfig() { 
+      const ngofrm_config = this.$ngofrm_config || {}
+      // 优先判断内部
+      if (this.config ) {
+        return {...this.config ,...ngofrm_config}
+      }  
+      return {...ngofrm_config}
+    },
 	  // 自定义组件
 	  components() {
 	  	if(this.$ngofrm_components && this.$ngofrm_components.length > 0) {
@@ -127,7 +135,7 @@ export default {
      		configC: ()=>this.templateConfig,
      		//dictsC: this.dicts,
      		httpConfigC: this.httpConfig,
-     		ngConfig: this.config
+     		ngConfig: this.ngConfig
     	}
   },
   created(){

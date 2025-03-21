@@ -9,7 +9,7 @@ import cloneDeep from "lodash/cloneDeep"
  * @param rowKey 如果为batch 标识当前行数据的key
  * @return 验证结果 函数脚本执行结果
  */
-export function dynamicFun(script, model, key = "$", row, rowKey, thisObj = window) {
+export function dynamicFun(script, model, key = "$", row, rowKey) {
   if (!script) return false
  
   const func = script.indexOf("return") >= 0 ? "{" + script + "}" : "return (" + script + ")"
@@ -112,16 +112,16 @@ export function getLabel(v) {
  * @param rowKey 如果为batch 标识当前行数据的key
  * @return 验证结果 函数脚本执行结果
  */
-export function dynamicVoidFun(script, model, key = "$", row, rowKey, thisObj = window) {
+export function dynamicVoidFun(script, model, key = "$", row, rowKey) {
   if (!script) return false
   const func = script //.indexOf('return') >= 0 ? '{' + script + '}' : 'return (' + script + ')'
 
   if (row && rowKey) {
     const Fn = new Function(key, rowKey, func)
-    Fn.call(thisObj, model, row)
+    Fn.call(model, row)
   } else {
     const Fn = new Function(key, func)
-    Fn.call(thisObj, model)
+    Fn.call(model)
   }
 }
 

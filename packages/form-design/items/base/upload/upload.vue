@@ -276,7 +276,8 @@ export default {
 		 	 
 			// 根据返回结果的url来获取实际文件的url
 			const responseFileUrl = this.uploadResponseFileUrl 
- 
+ 	
+ 			//console.log('upload response' , response)
 
 			const objectPath = require("object-path")
 			const fileUrl = objectPath.get(response, responseFileUrl)
@@ -300,6 +301,8 @@ export default {
 			  
 			  this.$emit("input", addData);
 			  //this.$emit('change' , addData)
+
+			  //console.log('upload end' , addData)
 			}
 
 			

@@ -69,10 +69,10 @@ export default {
   },
   computed: {
     config() {
-      if(this.configInject) {
+      if(this.configInject && this.configInject != null && this.configInject != undefined) {
         return this.configInject() || {}
       }
-      return {}
+      return {} 
     },
     // 禁用
     recordDisabled() {
@@ -86,7 +86,7 @@ export default {
         const script = this.record.options.dynamicDisabledValue
 
         // 打开了开关 这里获取函数内容
-        const fvalue = dynamicFun(script, this.models, undefined, undefined, undefined, this)
+        const fvalue = dynamicFun(script, this.models)
         return fvalue
       }
 
@@ -125,7 +125,21 @@ export default {
         } else {
           this.$set(this.models, this.record.model, [])
         }
-      }
+      } else if(this.models &&
+         Object.prototype.hasOwnProperty.call(this.models, this.record.model) &&
+          // 当前赋值类型不是数组
+          !(this.models[this.record.model] instanceof Array)) {
+
+          // 当前数据如果[开头 则json转数组 否则 使用str.split 转数组
+          const modelValueStr = this.models[this.record.model] 
+          if(modelValueStr.indexOf('[') == 0) {
+
+            this.$set(this.models, this.record.model, JSON.parse(modelValueStr))
+          } else {
+            this.$set(this.models, this.record.model, modelValueStr.split(','))
+          }
+
+        }
     },
     // 设置文本类默认值
     updateSimpleDefaultValue() {
@@ -179,7 +193,7 @@ export default {
         const script = append
 
         // 打开了开关 这里获取函数内容
-        const fvalue = dynamicFun(script, this.models, undefined, undefined, undefined, this)
+        const fvalue = dynamicFun(script, this.models)
 
         return fvalue
       }

@@ -41,7 +41,7 @@ obj.options = {
         },
         {
             label: $t('ngform.item.span') ,//'所占栅格', 
-            type: 'slider',
+            type: 'spanGroup',
             prop: 'span',
             min: 1,
             max: 24,

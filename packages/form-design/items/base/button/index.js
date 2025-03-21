@@ -48,7 +48,7 @@ obj.options = {
         },
         {
             label: $t('ngform.item.span') ,//'所占栅格', 
-            type: 'slider',
+            type: 'spanGroup',
             prop: 'span',
             min: 1,
             max: 24,
@@ -66,7 +66,7 @@ obj.options = {
             prop: 'key',
             show: false,
             span: 24,
-        },
+        }
         
     ],
     group: [

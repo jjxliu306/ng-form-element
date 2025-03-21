@@ -78,6 +78,13 @@ const install = function (Vue, opts = {}) {
     Vue.prototype.$ngofrm_dict = opts.dict
   }
 
+  if(opts.uploadConfig) {
+    Vue.prototype.$ngofrm_uploadConfig = opts.uploadConfig
+  }
+
+  Vue.prototype.$ngofrm_config = opts 
+   
+
   const bus = new Vue();
 
   Vue.prototype.$ngform_bus = bus;

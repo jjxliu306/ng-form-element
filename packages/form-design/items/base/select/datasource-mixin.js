@@ -45,8 +45,8 @@ export default {
           const ld = linkData[i]
           if (ld.model) {
             // local script
-            // vs.push(this.models[ld.model])
-            vs.push(get(this.models, ld.model)) // zzg 可以监听深层的model
+            vs.push(this.models[ld.model])
+            //vs.push(get(this.models, ld.model)) // zzg 可以监听深层的model
           }
         }
         return vs.join(",")
@@ -120,7 +120,7 @@ export default {
             // remote 远程过滤
 
             // 解析queryValue
-            const queryValue = dynamicFun(ld.queryValue, this.models, undefined, undefined, undefined, this)
+            const queryValue = dynamicFun(ld.queryValue, this.models)
 
             remoteQuery[ld.queryKey] = queryValue
           }
