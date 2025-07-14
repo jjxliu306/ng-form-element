@@ -1,10 +1,11 @@
 <template>
   <!-- <transition name="fade">
     <router-view></router-view>
-  </transition> -->
-   <Design /> 
-  <!-- <Fill/>  
- <Edit/>-->
+  </transition>  
+  
+    <Fill/> 
+  <Edit/>  -->
+   <Design />  
 </template>
 <style> 
 html , body {

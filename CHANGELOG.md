@@ -1,6 +1,33 @@
 
  **版本更新说明**
 
+**2.4.7**  
+
+```
+2025-07-14
+
+1、 修复远程接口在添加了联动后数据获取失败
+2、 修复组件配置的时候，占据栅格配置问题
+
+
+```
+
+**2.4.6**  
+
+```
+2025-03-21
+
+1、增加文件、图片上传的地址、返回url的全局配置
+const uploadConfig = {
+    uploadUrl: baseUrl + '/common/upload' ,
+    filePath: 'url',
+    fileIdPath: ''
+}
+
+Vue.use(NgFormElement , {uploadConfig: uploadConfig})
+
+
+```
 
 **2.4.5**  
 

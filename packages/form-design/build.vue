@@ -117,6 +117,10 @@ export default {
 	  	}
 
 	  	return undefined
+	  },
+	  // 最顶层的models
+	  topModels() {
+	  	return this.models
 	  }
 	},
 	watch: { 
@@ -135,7 +139,8 @@ export default {
      		configC: ()=>this.templateConfig,
      		//dictsC: this.dicts,
      		httpConfigC: this.httpConfig,
-     		ngConfig: this.ngConfig
+     		ngConfig: this.ngConfig,
+     		topModels: this.topModels
     	}
   },
   created(){

@@ -104,6 +104,8 @@ export default {
   },
   data() {
     return {
+      menuTop: '' ,
+      menuLeft: '',
       showRightMenu: false,
       selectControlIndex: undefined
     }

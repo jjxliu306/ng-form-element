@@ -107,6 +107,11 @@ export default {
     configInject: {
       from: "configC" ,
        default: null
+    },
+    // 顶层 models
+    topModels: {
+       from: "topModels" ,
+       default: ()=> {return {}}
     }
   },
   computed: {
