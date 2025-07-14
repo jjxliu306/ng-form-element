@@ -27,8 +27,7 @@
               :preview="preview"
               :models.sync="dataForm"
               :record="item"
-              @focus="handleFocus"
-              @blur="handleBlur"
+               
             />
           </el-col>
         </template>

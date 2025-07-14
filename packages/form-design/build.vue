@@ -140,7 +140,7 @@ export default {
      		//dictsC: this.dicts,
      		httpConfigC: this.httpConfig,
      		ngConfig: this.ngConfig,
-     		topModels: this.topModels
+     		//topModels: this.topModels
     	}
   },
   created(){

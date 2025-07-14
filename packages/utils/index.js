@@ -113,6 +113,9 @@ export function getLabel(v) {
  * @return 验证结果 函数脚本执行结果
  */
 export function dynamicVoidFun(script, model, key = "$", row, rowKey) {
+
+  console.log('script' , script , key, JSON.stringify(model))
+
   if (!script) return false
   const func = script //.indexOf('return') >= 0 ? '{' + script + '}' : 'return (' + script + ')'
 
@@ -121,7 +124,8 @@ export function dynamicVoidFun(script, model, key = "$", row, rowKey) {
     Fn.call(model, row)
   } else {
     const Fn = new Function(key, func)
-    Fn.call(model)
+    //console.log('ddada$' , model)
+    Fn.call(model , model)
   }
 }
 
