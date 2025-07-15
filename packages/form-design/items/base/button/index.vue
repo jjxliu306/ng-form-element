@@ -39,7 +39,7 @@ export default {
         if (!clickScript) return
 
         // 执行脚本
-        dynamicVoidFun(clickScript, this.models)
+        dynamicVoidFun(clickScript, this.models , this.topModels)
       }
     }
   }

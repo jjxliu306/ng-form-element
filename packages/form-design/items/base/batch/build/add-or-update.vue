@@ -89,7 +89,13 @@ export default {
         return this.configInject() || {}
       }
       return {} 
-    }
+    },
+     topModels() {
+      if(this.topModelsC && this.topModelsC != null && this.topModelsC != undefined) {
+        return this.topModelsC() || {}
+      }
+      return {} 
+    },
   },
   props: {
     // 表格内部的配置
@@ -115,6 +121,10 @@ export default {
     customComponents: {
       from: "customC",
       default: () => []
+    },
+    topModelsC: {
+      from: "topModelsC",
+      default: null
     }
   },
   methods: {
@@ -152,7 +162,7 @@ export default {
       }
       let fstr = record.options.dynamicVisibleValue
       // 打开了开关 这里获取函数内容
-      const func = dynamicFun(fstr, this.dataForm)
+      const func = dynamicFun(fstr, this.dataForm,this.topModels)
       return func
     },
     // 2021-03-12 清理没有显示的组件的数据
@@ -199,7 +209,7 @@ export default {
         const script = rule.script
 
         // 打开了开关 这里获取函数内容
-        const fvalue = dynamicFun(script, this.dataForm)
+        const fvalue = dynamicFun(script, this.dataForm,this.topModels)
 
         if (!fvalue) {
           callback(new Error(rule.message))

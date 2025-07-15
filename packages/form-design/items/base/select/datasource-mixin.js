@@ -120,7 +120,7 @@ export default {
             // remote 远程过滤
 
             // 解析queryValue
-            const queryValue = dynamicFun(ld.queryValue, this.models)
+            const queryValue = dynamicFun(ld.queryValue, this.models,this.topModels)
 
             remoteQuery[ld.queryKey] = queryValue
           }

@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     initStaticData() {
-      let defaultValue = dynamicFun(this.record.script, this.models)
+      let defaultValue = dynamicFun(this.record.script, this.models , this.topModels)
       if (defaultValue != null && defaultValue != undefined) {
         this.$set(this.models, this.record.model, defaultValue)
       } else {

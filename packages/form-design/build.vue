@@ -119,7 +119,7 @@ export default {
 	  	return undefined
 	  },
 	  // 最顶层的models
-	  topModels() {
+	  topModelsC() {
 	  	return this.models
 	  }
 	},
@@ -140,7 +140,7 @@ export default {
      		//dictsC: this.dicts,
      		httpConfigC: this.httpConfig,
      		ngConfig: this.ngConfig,
-     		//topModels: this.topModels
+     		topModelsC: ()=>this.topModelsC
     	}
   },
   created(){

@@ -9,14 +9,17 @@ import cloneDeep from "lodash/cloneDeep"
  * @param rowKey 如果为batch 标识当前行数据的key
  * @return 验证结果 函数脚本执行结果
  */
-export function dynamicFun(script, model, key = "$", row, rowKey) {
+export function dynamicFun(script, model, topModels) {
   if (!script) return false
+
+  const key  = '$'
+  const topKey = '$top'
  
   const func = script.indexOf("return") >= 0 ? "{" + script + "}" : "return (" + script + ")"
 
-  if (row && rowKey) {
-    const Fn = new Function(key, rowKey, func)
-    return Fn(model, row)
+  if (topModels) {
+    const Fn = new Function(key, topKey, func)
+    return Fn(model, topModels)
   } else {
     const Fn = new Function(key, func)
     return Fn(model)
@@ -112,16 +115,19 @@ export function getLabel(v) {
  * @param rowKey 如果为batch 标识当前行数据的key
  * @return 验证结果 函数脚本执行结果
  */
-export function dynamicVoidFun(script, model, key = "$", row, rowKey) {
+export function dynamicVoidFun(script, model, topModels) {
 
-  console.log('script' , script , key, JSON.stringify(model))
+   
 
   if (!script) return false
   const func = script //.indexOf('return') >= 0 ? '{' + script + '}' : 'return (' + script + ')'
 
-  if (row && rowKey) {
-    const Fn = new Function(key, rowKey, func)
-    Fn.call(model, row)
+  const key  = '$'
+  const topKey = '$top'
+
+  if (topModels) {
+    const Fn = new Function(key, topKey, func)
+    Fn.call(model , model, topModels)
   } else {
     const Fn = new Function(key, func)
     //console.log('ddada$' , model)

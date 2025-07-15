@@ -140,8 +140,8 @@ export default {
       if (!script) return undefined
       const func = script.indexOf("return") >= 0 ? "{" + script + "}" : "return (" + script + ")"
 
-      const Fn = new Function(key, func)
-      return Fn.call(this, model)
+      const Fn = new Function(key , '$top', func)
+      return Fn.call(this, model , this.topModels)
     },
     init() {
       this.pageIndex = 1

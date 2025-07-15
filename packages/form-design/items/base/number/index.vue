@@ -44,7 +44,7 @@
   </div>
 </template>
 <script>
-import { dynamicFun } from '../../../../utils/index.js'
+//import { dynamicFun } from '../../../../utils/index.js'
 import mixin from '../../mixin.js'
 export default {
 	mixins: [mixin],

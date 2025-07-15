@@ -15,14 +15,14 @@ export default {
       }
       return v
     },
-    getDynamicLabel(v, models) {
+    getDynamicLabel(v, models,topModels) {
       if (typeof v == "function") {
         const label = v()
         return label
       } else {
         // 尝试转换为函数
         try {
-          const label = dynamicFun(v, models)
+          const label = dynamicFun(v, models , topModels)
           return label
         } catch (error) {
           //console.error('get dynamic label error , script: ' + v , error)

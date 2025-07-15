@@ -39,7 +39,8 @@ export default {
     propPrepend: {
       type: String,
       default: ""
-    }
+    },
+    
   },
   data() {
     return {
@@ -65,12 +66,23 @@ export default {
     ngConfig: {
       from: "ngConfig",
       default: ()=> {return {}}
+    },
+    topModelsC: {
+      from: "topModelsC",
+      default: null
     }
   },
   computed: {
     config() {
       if(this.configInject && this.configInject != null && this.configInject != undefined) {
         return this.configInject() || {}
+      }
+      return {} 
+    },
+    topModels() {
+      console.log('this.topModelsC' , this.topModelsC)
+      if(this.topModelsC && this.topModelsC != null && this.topModelsC != undefined) {
+        return this.topModelsC() || {}
       }
       return {} 
     },
@@ -86,7 +98,7 @@ export default {
         const script = this.record.options.dynamicDisabledValue
 
         // 打开了开关 这里获取函数内容
-        const fvalue = dynamicFun(script, this.models)
+        const fvalue = dynamicFun(script, this.models , this.topModels)
         return fvalue
       }
 
@@ -193,7 +205,7 @@ export default {
         const script = append
 
         // 打开了开关 这里获取函数内容
-        const fvalue = dynamicFun(script, this.models)
+        const fvalue = dynamicFun(script, this.models , this.topModels)
 
         return fvalue
       }

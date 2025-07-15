@@ -109,15 +109,21 @@ export default {
        default: null
     },
     // 顶层 models
-    topModels: {
-       from: "topModels" ,
-       default: ()=> {return {}}
+    topModelsC: {
+      from: "topModelsC" ,
+      default: null
     }
   },
   computed: {
     config() { 
       if(this.configInject && this.configInject != null && this.configInject != undefined) {
         return this.configInject() || {}
+      }
+      return {} 
+    },
+    topModels() {
+      if(this.topModelsC && this.topModelsC != null && this.topModelsC != undefined) {
+        return this.topModelsC() || {}
       }
       return {} 
     },
@@ -141,7 +147,7 @@ export default {
       if (labelWidth > 0) {
         // 这里判断以下是否打开了动态标签
         if (this.record.dynamicLabel) {
-          return this.getDynamicLabel(this.record.label, this.models)
+          return this.getDynamicLabel(this.record.label, this.models , this.topModels)
         } else {
           return this.getLabel(this.record.label)
         }

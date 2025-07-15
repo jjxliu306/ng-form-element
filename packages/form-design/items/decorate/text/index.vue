@@ -30,7 +30,7 @@ export default {
         return true
       }
 
-      const mark = dynamicFun(fstr, this.models)
+      const mark = dynamicFun(fstr, this.models , this.topModels)
 
       return mark
     }

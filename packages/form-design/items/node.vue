@@ -30,7 +30,7 @@
 <script>
 import ItemList from './index.js'
 
-import { dynamicFun , dynamicVoidFun } from '../../utils/index.js'
+import { dynamicVoidFun } from '../../utils/index.js'
 export default {
   name: "ng-form-item-node",
   data(){
@@ -81,12 +81,22 @@ export default {
           from: 'configC',
           default: ()=> {return {}}
       },
+      topModelsC: {
+        from: "topModelsC",
+        default: null
+      }
 
   },
   computed: {
     config() {
       if(this.configInject && this.configInject != null && this.configInject != undefined) {
         return this.configInject() || {}
+      }
+      return {} 
+    },
+    topModels() {
+      if(this.topModelsC && this.topModelsC != null && this.topModelsC != undefined) {
+        return this.topModelsC() || {}
       }
       return {} 
     },
@@ -161,7 +171,7 @@ export default {
           //const ify = JSON.stringify(val)
           //if (this.copyLstenModel != ify) {
           //  this.copyLstenModel = ify
-            dynamicVoidFun(this.record.options.listenModelScript , this.models)
+            dynamicVoidFun(this.record.options.listenModelScript , this.models , this.topModels)
 
           //}
 
@@ -181,7 +191,7 @@ export default {
 
       if(!focusEventScript) return
 
-      dynamicVoidFun(focusEventScript,this.models)
+      dynamicVoidFun(focusEventScript,this.models,this.topModels)
     },
     handleBlur(e) {
       if(!this.record || !this.record.options) return
@@ -190,7 +200,9 @@ export default {
 
       if(!blurEventScript) return
 
-      dynamicVoidFun(blurEventScript,this.models)
+        console.log('topmodels' , this.topModels , this.topModelsC)
+
+      dynamicVoidFun(blurEventScript,this.models,this.topModels)
     }
   }
 };
