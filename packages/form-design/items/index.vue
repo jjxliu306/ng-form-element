@@ -186,7 +186,7 @@ export default {
         return false
       }
 
-      const mark = dynamicFun(fstr, this.models)
+      const mark = dynamicFun(fstr, this.models , this.topModels)
 
       return mark
     },
@@ -231,7 +231,7 @@ export default {
 
       let fstr = this.record.options.dynamicVisibleValue
       // 打开了开关 这里获取函数内容
-      const func = dynamicFun(fstr, this.models)
+      const func = dynamicFun(fstr, this.models, this.topModels)
       return func
     },
     recordRules() {
@@ -324,7 +324,7 @@ export default {
           const script = rule.script
 
           // 打开了开关 这里获取函数内容
-          const fvalue = dynamicFun(script, this.models)
+          const fvalue = dynamicFun(script, this.models, this.topModels)
 
           if (!fvalue) {
             return true
@@ -363,7 +363,7 @@ export default {
         const script = rule.script
 
         // 打开了开关 这里获取函数内容
-        const fvalue = dynamicFun(script, this.models)
+        const fvalue = dynamicFun(script, this.models, this.topModels)
 
         if (!fvalue) {
           callback(new Error(rule.message))
