@@ -2,16 +2,16 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>vue-drag-formdesign</title> 
+<title>ng-form-element</title> 
 <!-- 引入样式 -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jjxliu306/vue-form-design@2.0.10/lib/vue-drag-formdesign.css">
+<link rel="stylesheet" href="./lib/ng-form-element.css">
 <!-- 引入组件库 -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
 
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/jjxliu306/vue-form-design@2.0.10/lib/vue-drag-formdesign.umd.min.js"></script>
+<script src="./lib/ng-form-element.umd.min.js"></script>
 
 </head> 
 <body>
@@ -19,7 +19,7 @@
 
     <el-tabs v-model="activeName" style="padding: 20px;" @tab-click="changeTab">
         <el-tab-pane label="表单绘制" name="first">
-            <vue-drag-formdesign ref="formDesign" >
+            <ng-form-design ref="formDesign" >
                 
                 <template  slot="formName">
                     <span> vue-drag-formdesign 示例 </span>
@@ -36,7 +36,7 @@
              <el-button   type="primary" size="mini"  @click="validator()">验证</el-button>
              <el-button   type="primary" size="mini"  @click="getData()">获取数据</el-button>
           
-            <vue-drag-form-build ref="formbuild" :form-template="formTemplate" :models="models" />
+            <ng-form-build ref="formbuild" :form-template="formTemplate" :models="models" />
 
  
 
@@ -86,7 +86,7 @@ new Vue({
       } 
     },
     getData() {
-      this.$refs.formbuild.getData().then((data)=>{
+      this.$refs.formbuild.getData(false).then((data)=>{
         console.log('data' , data)
       })
     }
